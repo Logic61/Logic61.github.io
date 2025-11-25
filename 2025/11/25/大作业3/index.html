@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>undefined | Logic の 博客</title>
+    <title>大作业开发记（3） | Logic の 博客</title>
     <meta name="author" content="Logic" />
     <meta name="description" content="一小块凝固的时间" />
     <meta name="keywords" content="" />
@@ -42,6 +42,10 @@
 
 
 <script src="/js/lib/preview.js"></script>
+
+
+
+
 
 
 
@@ -157,7 +161,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1></h1>
+        <h1>大作业开发记（3）</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -165,6 +169,15 @@
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
             2025/11/25
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
         </span>
         
         
@@ -176,92 +189,15 @@
             
             <span class="tag">
                 
-                <a href="/tags/poem/" style="color: #00a596">
-                    poem
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E5%9B%9E%E5%BF%86%E5%BD%95/" style="color: #ffa2c4">
-                    回忆录
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E5%A4%A7%E4%BD%9C%E4%B8%9A/" style="color: #00a596">
+                <a href="/tags/%E5%A4%A7%E4%BD%9C%E4%B8%9A/" style="color: #03a9f4">
                     大作业
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E6%9D%82%E8%AE%B0/" style="color: #00bcd4">
+                <a href="/tags/%E6%9D%82%E8%AE%B0/" style="color: #00a596">
                     杂记
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E5%B0%9D%E8%AF%95%E9%9B%86/" style="color: #ff7d73">
-                    尝试集
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E5%90%90%E6%A7%BD/" style="color: #00a596">
-                    吐槽
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E9%AB%98%E4%B8%AD%E6%95%B0%E5%AD%A6/" style="color: #ff7d73">
-                    高中数学
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E4%BF%AE%E7%82%BC/" style="color: #ffa2c4">
-                    修炼
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E6%A1%A9%E5%8A%9F/" style="color: #00bcd4">
-                    桩功
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E6%80%9D%E4%BF%AE/" style="color: #00a596">
-                    思修
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E8%AE%BA%E6%96%87/" style="color: #ffa2c4">
-                    论文
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/piano/" style="color: #00bcd4">
-                    piano
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/English/" style="color: #03a9f4">
-                    English
                 </a>
             </span>
             
@@ -270,8 +206,32 @@
     </div>
     
     <div class="content" v-pre>
-        
+        <p>有一段时间没写大作业了</p>
+<span id="more"></span>
+
+<p>之前的做到除了AI是随便乱走其他功能都没问题</p>
+<p><img src="/../images/QQ20251125-174651.png"></p>
+<p>然后现在17:49，开始学习算法并准备动手写个聪明的AI。</p>
+<p>19:48，费了老大劲写了MAXMIN层还有alpha-beta剪枝，然后不知道哪里可能搜索完没有还原状态，现在AI下一步棋会毁掉两个人类方的子……这已经是修复过的结果了，修复前AI下一步棋就直接赢了，什么万宁亚马逊棋。现在排查了生成所有可能步函数和最后调用的问题，应该是MaxMin搜索和剪枝的函数挂了，不知道挂哪了，我恨bug。</p>
+<p><img src="/../images/50869d49-12c9-464d-b487-7f4835ba5324.png"></p>
+<p>修复了一点点bug,我采用AI的逻辑之后没发现AI很迷惑地先干了一步搜索里的事情再从第二次开始调用搜索，好神经，果断删掉先干的那步。</p>
+<p><span style = "color:green;">好消息：不会吃子了</span></p>
+<p><span style = "color:red;">坏消息：黑棋现在一直钻角落……</span></p>
+<p>事情变得有点诡异，我认为我的每一次生成可行步都有判定合理性，但是黑棋诡异地下在角落之后原地tp，为什么会这样。</p>
+<p>20：51，虽然不知道为什么，但是搜索的时候先记录一下原棋盘再恢复就好了，虽然我感觉直接恢复成空地和原来的子应该逻辑上也没问题，但可能实际上有一点莫名其妙的问题。总之，<span style = "color:green;">解决！！！</span></p>
+<p>21：31，加上了附件3*3空地判断，和队友抱团（真的有用吗，感觉AI在坑我），然后发现悔棋还有问题……我要不把悔棋删了吧，好烦人。</p>
+<p>21:42，破防了，悔棋改不好，我现在直接禁止人机模式悔棋！！！今天活就干到着了，我真不行了，打会游戏。woc写了4个小时，快死掉了。</p>
+
     </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
     
     
 </div>
@@ -304,6 +264,29 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
     
 </body>
 </html>
