@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>凡人修仙法 | Logic の 博客</title>
+    <title>Logic の 博客</title>
     <meta name="author" content="Logic" />
     <meta name="description" content="一小块凝固的时间" />
     <meta name="keywords" content="" />
@@ -47,9 +47,7 @@
 
 
 
-
-
-
+<script src="/js/lib/home.js"></script>
 
 <link rel="stylesheet" href="/css/main.css" />
 
@@ -159,63 +157,178 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>凡人修仙法</h1>
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/background.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Logic の 博客</h1>
+                <h3></h3>
+                <h5>一小块凝固的时间</h5>
+            </div>
+        </span>
     </div>
-    <div class="info">
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/1145/01/14/%E7%BA%BF%E4%BB%A3%E8%AE%A9%E6%88%91%E6%9A%B4%E9%B8%A3/">
+        <h2 class="post-title">线代让我发出尖锐暴鸣</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%9E%83%E5%9C%BE%E6%A1%B6/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                垃圾桶
+            </a>
+        </span>
+        
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2025/12/2
+            1145/1/14
         </span>
         
-        <span class="category">
-            <a href="/categories/%E5%8A%9F%E6%B3%95/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                功法
-            </a>
-        </span>
-        
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/%E4%BF%AE%E7%82%BC/" style="color: #00a596">
-                    修炼
-                </a>
-            </span>
-            
-        </span>
         
     </div>
-    
-    <div class="content" v-pre>
-        <p>虽说不劝人修行，但听闻有礼物漂流活动时，觉得小法门是个很有趣的礼物，故作信。</p>
-<span id="more"></span>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <style>
+.hell-wrapper {
+    background: #0a0000;
+    padding: 40px 30px;
+    border: 2px solid #400000;
+    box-shadow: 0 0 25px #300000 inset, 0 0 45px #ff000022;
+    font-family: "Times New Roman", serif;
+    color: #c30000;
+    letter-spacing: 0.5px;
+    line-height: 1.75;
+}
 
-<p><img src="/../images/MVIMG_20251202_190220.jpg"></p>
-<p>后面的内容就比较偏礼物祝福什么的，放出来也没什么意思，有用点的内容总结就是：<strong>不熬夜，坚持练，自有成效。</strong></p>
+.hell-wrapper p {
+    margin: 6px 0;
+    padding-left: 6px;
+    border-left: 2px solid #220000;
+    text-shadow: 0 0 4px #500000;
+}
+
+.hell-wrapper .section-title {
+    font-size: 1.3rem;
+    color: #ff1a1a;
+    text-shadow: 0 0 8px #ff0000;
+    margin: 16px 0 10px;
+}
+
+.hell-wrapper .end {
+    text-align: right;
+    color: #ff4444;
+    margin-top: 18px;
+    text-shadow: 0 0 8px #d50000;
+}
+</style>
+
+<div class="hell-wrapper">
+
+<p>
+大寄
+</p>
+
+<p>
+我当然知道大学是学东西不是来考试的，但是……我的绩点怎么办，虽然我现在也不知道绩点到底怎么个事，取消到底何意味好像<span style = "color:red;">暂时没有明确答复</span>。而且这很负反馈吧……
+</p>
+
+<p>
+查卷后续：wssb，有1.4l
+</p>
+
+</div>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%90%90%E6%A7%BD/" style="color: #03a9f4">吐槽</a>
+        </span>
+        
+    </div>
+    <a href="/1145/01/14/%E7%BA%BF%E4%BB%A3%E8%AE%A9%E6%88%91%E6%9A%B4%E9%B8%A3/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <a class="page-num" href="/page/3/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">4</span>
+    
+    
+    
+    
+</div>
 
     </div>
     
-    
-    
-    
-    <div id="comment">
-        <div id="giscus-container" class="giscus"></div>
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">Logic</div>
+        <div class="description">
+            <p>冀幸橐龠生光</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://github.com/Logic61">My github（几乎空空如也）</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://iculizhi.github.io/">JingsXu&#39;s site</a>
+            </div>
+            
+        </div>
+        
     </div>
-    
-    
-    
+</div>
+
+    </div>
     
 </div>
 
@@ -247,29 +360,6 @@
         
     </div>
     <script src="/js/main.js"></script>
-    
-    
-<script
-    src="https://giscus.app/client.js"
-    data-repo="logic61/logic61.github.io"
-    data-repo-id="R_kgDOQVax3w"
-    data-category="Announcements"
-    data-category-id="DIC_kwDOQVax384CxyHP"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="preferred_color_scheme"
-    data-lang="zh-CN"
-    crossorigin
-    async
-></script>
-
-
-
-
-
     
 </body>
 </html>
