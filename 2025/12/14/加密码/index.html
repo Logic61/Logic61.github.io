@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>杂记（2） | Logic の 博客</title>
+    <title>密码测试，密码123456 | Logic の 博客</title>
     <meta name="author" content="Logic" />
     <meta name="description" content="一小块凝固的时间" />
     <meta name="keywords" content="" />
@@ -161,65 +161,49 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>杂记（2）</h1>
+        <h1>密码测试，密码123456</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2025/11/16
+            2025/12/14
         </span>
         
-        <span class="category">
-            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                日记类
-            </a>
-        </span>
-        
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/%E6%9D%82%E8%AE%B0/" style="color: #ff7d73">
-                    杂记
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/piano/" style="color: #03a9f4">
-                    piano
-                </a>
-            </span>
-            
-        </span>
         
     </div>
     
     <div class="content" v-pre>
-        <p>虽然不知道为什么要把大作业单独列出来写，但既然已经列了，有点懒得动了。但是愿意另开一个文件来写杂记()</p>
-<p>摘要：肖叙三弹完   S.146练习感觉    弄臣演奏视频</p>
-<span id="more"></span>
-
-<p>好像没什么必要在加缩略，但既然已经加了，删掉也很麻烦（<br><br><br>今天能把肖叙三以较慢的速度从头顺利地弹到尾了，这实在是一个很不错的进度。鉴于我在国庆才开始开谱，而且只有周末会练琴，好快！比我之前弹叙一快多了。当然，我的机能进步了。不愧是<span style="font-family: 'Arial'; font-style: italic;color: purple;">李斯特</span>吗，S.146感觉真的很能锻炼手指。我也按如上的频率练了一个月吧，开头那几条我还是弹得有点吃力，但是弹完有种我能狠狠撸下所有曲子的力量感hhh。给你们欣赏一下S.146片段：</p>
-<p><img src="/../images/7171616D37F861AC797D9E351DEAD38E.jpg" alt="s.146"></p>
-<p><del>被三度塞满了呢</del><br><br><br>练完确实感觉机能大进。哈基李你这家伙。<br>诶突然写了很长，指比我预料的长，我预料里只有这一句话：【今天能把肖叙三以较慢的速度从头顺利地弹到尾了。】但是写着写着就长了，但愿我水论文的时候也能有这种惊喜。这样看来缩略是很好的，免去了首页的臃肿。<br><br><br>今天又试着录了一下弄臣，但还是……一录音就有很多神秘小错误，难评。<br><br><br>另：感觉建了这个网站之后就天天写杂记了，也许算是好事吗，记录生活！<br><br><br>在23:13，舍友居然都上床了，以往的话起码要……也许四五十分吗，结果我成最后一个上床的了hhh，说好的养生呢。<br><br><br>今天录的弄臣：</p>
-<div style="position: relative; width: 100%; padding-bottom: 56.25%;">
-    <iframe 
-        src="https://player.bilibili.com/player.html?bvid=BV14zC9BBEVq"
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-        frameborder="0" 
-        allowfullscreen></iframe>
+        <!-- ParticleX 原生风格密码框 -->
+<div id="px-auth" style="max-width:400px; margin:80px auto; padding:30px; background:#1e1e2f; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.3); text-align:center;">
+  <input id="px-pwd" type="password" placeholder="请输入密码" 
+         style="width:80%; padding:10px 15px; margin-bottom:20px; border-radius:8px; border:1px solid #555; background:#2b2b3c; color:#eee; font-size:16px;" 
+         onkeydown="if(event.key==='Enter') pxCheck()"/>
+  <br>
+  <button onclick="pxCheck()" 
+          style="padding:10px 25px; border:none; border-radius:8px; background:linear-gradient(90deg,#6c5ce7,#a29bfe); color:white; font-size:16px; cursor:pointer; transition:0.3s;">
+    进入
+  </button>
 </div>
+
+<div id="px-content" style="display:none; max-width:600px; margin:40px auto; text-align:center; font-size:18px; line-height:1.6; color:#cdaaff;">
+  <h2>🔒 私密内容</h2>
+  <p>（并非多私密</p>
+</div>
+
+<script>
+function pxCheck() {
+  var pwd = document.getElementById("px-pwd").value;
+  if(pwd === "123456") {   // 这里是密码，可自定义
+    document.getElementById("px-auth").style.display = "none";
+    document.getElementById("px-content").style.display = "block";
+  } else {
+    alert("密码错误，请重试！");
+  }
+}
+</script>
+
     </div>
     
     
