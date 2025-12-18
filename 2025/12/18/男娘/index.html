@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>杂记（8）： 略微魔幻的一天 | Logic の 博客</title>
+    <title>测试Gemini写网页 | Logic の 博客</title>
     <meta name="author" content="Logic" />
     <meta name="description" content="一小块凝固的时间" />
     <meta name="keywords" content="" />
@@ -161,57 +161,219 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>杂记（8）： 略微魔幻的一天</h1>
+        <h1>测试Gemini写网页</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2025/11/26
+            2025/12/18
         </span>
         
-        <span class="category">
-            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                日记类
-            </a>
-        </span>
-        
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/%E6%9D%82%E8%AE%B0/" style="color: #ffa2c4">
-                    杂记
-                </a>
-            </span>
-            
-        </span>
         
     </div>
     
     <div class="content" v-pre>
-        <p>突然意识到tag就是让我写关键词的，但tag又能拿来搜索，要不要扔太多呢，感觉会看得眼花缭乱</p>
-<p>摘要：军理课间签到，找不到快递，助教挂黑板，可乐匹配中</p>
-<span id="more"></span>
+        <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>年度男娘程度总结器</title>
+    <style>
+        body {
+            background-color: #f9eff6;
+            font-family: "Microsoft YaHei", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-<p>晨起日常导引、赤子桩后便看线代，回顾了一下3b1b的教程，感觉还是让我耳目一新。最近正好课程进度到相抵相似对角化那块，正好是3b1b覆盖的最后一点东西。不过感觉还是有点一次看太多了，到后面有点头昏脑涨的。不明白那些一周刷一本书的怎么弄的，头不晕吗……佩服佩服。</p>
-<p>下午，军理来了个二渡二教。我上课前进去签到的时候听到老师说怎么看很多人签完到就走了，我也没管那么多，厚着脸皮就走了。回宿舍一看微信群，有斥候听到要第二次签到，就好好等着，结果不是下课签是课间签到，真不是人，3分钟从宿舍飞到二教签到，弄得喉咙疼，天气好冷，骑车又拼了点，就喉咙疼了。签完回宿舍，又听有人说第一次签到签了第二次可以不签？真是整人，毫无意义，他明知道这样子除了恶心人没用吧，看来贵校也不全都是体谅人的老师。像思修那样不限制距离签到，把签到码发群里不好吗，不想去的你怎么签到我都有办法吧，形式主义那一套多无聊。</p>
-<p>不过偶尔来一次也挺好玩，定向越野这一块，还有打卡点（</p>
-<p>但最好不要经常整！！！</p>
-<p>晚上习题课助教挂黑板了（目移），趁他挂着溜了，还有合唱排练。排练来了一窝蜂领导，好像基本都到齐了，恐怖。</p>
-<p>排练我也要皮兜一下，我当然很赞赏每人定制名字的可乐来鼓舞大家，但是你放前面桌子让一百号人自己上去找……我只能说分法一点也不聪明。找了半天才找到自己的名字。只好多顺一点点零食慰藉自己。</p>
-<p>排练完去拿快递，找不到在哪……今天真是够魔幻的。结果找了十几分钟回宿舍了……明天等柜台上班了去问问吧。</p>
-<p>忙碌了一天坐在电脑前，没忍住做了一些游戏的周常任务，然后就十一点半了，真是糟糕，我的早睡大业又在起起伏伏了 TvT</p>
+<pre><code>    .container {
+        background-color: white;
+        width: 90%;
+        max-width: 400px;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        text-align: center;
+    }
 
+    h1 {
+        color: #f2a6d1;
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        color: #888;
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 16px;
+        margin-bottom: 20px;
+        outline: none;
+    }
+
+    .result-section {
+        display: none; /* 初始隐藏 */
+        margin-top: 20px;
+    }
+
+    .flower-icon {
+        font-size: 40px;
+        color: #ff85c0;
+        margin-bottom: 10px;
+    }
+
+    .score {
+        font-size: 32px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .rank {
+        font-size: 20px;
+        font-weight: bold;
+        color: #555;
+        margin: 5px 0;
+    }
+
+    .comment {
+        color: #666;
+        font-size: 14px;
+        margin: 15px 0;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 12px;
+        background-color: #eee;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background-color: #333; /* 对应原图的黑色进度条 */
+        width: 0%;
+        transition: width 1s ease-in-out;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: white;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        cursor: pointer;
+        color: #555;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #fcfcfc;
+    }
+
+    .footer-tip {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #aaa;
+    }
+&lt;/style&gt;
+</code></pre>
+</head>
+<body>
+
+<div class="container">
+    <h1>🌸 年度男娘程度总结器 🌸</h1>
+    <p class="subtitle">输入你的昵称，测测你的男娘指数吧！</p>
+
+<pre><code>&lt;input type=&quot;text&quot; id=&quot;nameInput&quot; placeholder=&quot;请输入你的昵称&quot;&gt;
+
+&lt;div id=&quot;resultArea&quot; class=&quot;result-section&quot;&gt;
+    &lt;div class=&quot;flower-icon&quot;&gt;🌸&lt;/div&gt;
+    &lt;div class=&quot;score&quot; id=&quot;scoreValue&quot;&gt;0 分&lt;/div&gt;
+    &lt;div class=&quot;rank&quot; id=&quot;rankText&quot;&gt;SSS级男娘&lt;/div&gt;
+    &lt;p class=&quot;comment&quot; id=&quot;commentText&quot;&gt;&lt;/p&gt;
+    
+    &lt;div class=&quot;progress-bar&quot;&gt;
+        &lt;div class=&quot;progress-fill&quot; id=&quot;progressFill&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;button onclick=&quot;calculateScore()&quot; id=&quot;btnText&quot;&gt;开始测试&lt;/button&gt;
+
+&lt;p class=&quot;footer-tip&quot;&gt;💡 提示：相同的昵称会得到相同的结果哦&lt;/p&gt;
+</code></pre>
+</div>
+
+<script>
+    function calculateScore() {
+        const name = document.getElementById('nameInput').value.trim();
+        if (!name) {
+            alert("请输入名字哦！");
+            return;
+        }
+
+        let score = 0;
+
+        // 特殊名单逻辑
+        if (name === "邹旻珂" || name === "黄翊航") {
+            score = 100;
+        } else {
+            // 简单算法：根据字符编码生成固定分数（保证同一个名字分数一致）
+            let hash = 0;
+            for (let i = 0; i < name.length; i++) {
+                hash = name.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            score = Math.abs(hash % 101); // 生成 0-100 的随机数
+        }
+
+        // 显示结果区域
+        document.getElementById('resultArea').style.display = 'block';
+        document.getElementById('scoreValue').innerText = score + " 分";
+        document.getElementById('progressFill').style.width = score + "%";
+        
+        // 设置评语和等级
+        let rank = "";
+        let comment = "";
+        
+        if (score >= 95) {
+            rank = "SSS级男娘";
+            comment = "恭喜你！你已经达到了男娘的最高境界，萌力爆表！💖";
+        } else if (score >= 80) {
+            rank = "极品男娘";
+            comment = "非常可爱！你散发着令人无法抗拒的魅力~✨";
+        } else if (score >= 60) {
+            rank = "资深男娘";
+            comment = "已经很熟练了呢，继续加油呀！";
+        } else {
+            rank = "新手男娘";
+            comment = "还有很大的提升空间，尝试一下穿上裙子吧？";
+        }
+
+        document.getElementById('rankText').innerText = rank;
+        document.getElementById('commentText').innerText = comment;
+        document.getElementById('btnText').innerText = "重新测试";
+    }
+</script>
+
+</body>
+</html>
     </div>
     
     

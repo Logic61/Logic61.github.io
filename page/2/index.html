@@ -232,7 +232,7 @@
         
         <span class="tag">
             
-            <a href="/tags/poem/" style="color: #00a596">poem</a>
+            <a href="/tags/poem/" style="color: #ffa2c4">poem</a>
         </span>
         
     </div>
@@ -290,7 +290,7 @@
         
         <span class="tag">
             
-            <a href="/tags/emo/" style="color: #03a9f4">emo</a>
+            <a href="/tags/emo/" style="color: #ffa2c4">emo</a>
         </span>
         
     </div>
@@ -342,7 +342,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%B0%8F%E8%AF%B4/" style="color: #ff7d73">小说</a>
+            <a href="/tags/%E5%B0%8F%E8%AF%B4/" style="color: #03a9f4">小说</a>
         </span>
         
     </div>
@@ -394,7 +394,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E6%95%A3%E6%96%87/" style="color: #ffa2c4">散文</a>
+            <a href="/tags/%E6%95%A3%E6%96%87/" style="color: #00a596">散文</a>
         </span>
         
     </div>
@@ -446,12 +446,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E4%BF%AE%E7%82%BC/" style="color: #ffa2c4">修炼</a>
+            <a href="/tags/%E4%BF%AE%E7%82%BC/" style="color: #03a9f4">修炼</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%A1%A9%E5%8A%9F/" style="color: #00a596">桩功</a>
+            <a href="/tags/%E6%A1%A9%E5%8A%9F/" style="color: #ff7d73">桩功</a>
         </span>
         
     </div>
@@ -499,6 +499,282 @@
         
     </div>
     <a href="/2022/04/30/%E5%88%9D%E4%B8%AD%E7%94%9F%E6%B4%BB%E5%BF%8F%E6%82%94%E5%BD%95/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/12/18/%E7%94%B7%E5%A8%98/">
+        <h2 class="post-title">测试Gemini写网页</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/18
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>年度男娘程度总结器</title>
+    <style>
+        body {
+            background-color: #f9eff6;
+            font-family: "Microsoft YaHei", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+<pre><code>    .container {
+        background-color: white;
+        width: 90%;
+        max-width: 400px;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        text-align: center;
+    }
+
+    h1 {
+        color: #f2a6d1;
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        color: #888;
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 16px;
+        margin-bottom: 20px;
+        outline: none;
+    }
+
+    .result-section {
+        display: none; /* 初始隐藏 */
+        margin-top: 20px;
+    }
+
+    .flower-icon {
+        font-size: 40px;
+        color: #ff85c0;
+        margin-bottom: 10px;
+    }
+
+    .score {
+        font-size: 32px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .rank {
+        font-size: 20px;
+        font-weight: bold;
+        color: #555;
+        margin: 5px 0;
+    }
+
+    .comment {
+        color: #666;
+        font-size: 14px;
+        margin: 15px 0;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 12px;
+        background-color: #eee;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background-color: #333; /* 对应原图的黑色进度条 */
+        width: 0%;
+        transition: width 1s ease-in-out;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: white;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        cursor: pointer;
+        color: #555;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #fcfcfc;
+    }
+
+    .footer-tip {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #aaa;
+    }
+&lt;/style&gt;
+</code></pre>
+</head>
+<body>
+
+<div class="container">
+    <h1>🌸 年度男娘程度总结器 🌸</h1>
+    <p class="subtitle">输入你的昵称，测测你的男娘指数吧！</p>
+
+<pre><code>&lt;input type=&quot;text&quot; id=&quot;nameInput&quot; placeholder=&quot;请输入你的昵称&quot;&gt;
+
+&lt;div id=&quot;resultArea&quot; class=&quot;result-section&quot;&gt;
+    &lt;div class=&quot;flower-icon&quot;&gt;🌸&lt;/div&gt;
+    &lt;div class=&quot;score&quot; id=&quot;scoreValue&quot;&gt;0 分&lt;/div&gt;
+    &lt;div class=&quot;rank&quot; id=&quot;rankText&quot;&gt;SSS级男娘&lt;/div&gt;
+    &lt;p class=&quot;comment&quot; id=&quot;commentText&quot;&gt;&lt;/p&gt;
+    
+    &lt;div class=&quot;progress-bar&quot;&gt;
+        &lt;div class=&quot;progress-fill&quot; id=&quot;progressFill&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;button onclick=&quot;calculateScore()&quot; id=&quot;btnText&quot;&gt;开始测试&lt;/button&gt;
+
+&lt;p class=&quot;footer-tip&quot;&gt;💡 提示：相同的昵称会得到相同的结果哦&lt;/p&gt;
+</code></pre>
+</div>
+
+<script>
+    function calculateScore() {
+        const name = document.getElementById('nameInput').value.trim();
+        if (!name) {
+            alert("请输入名字哦！");
+            return;
+        }
+
+        let score = 0;
+
+        // 特殊名单逻辑
+        if (name === "邹旻珂" || name === "黄翊航") {
+            score = 100;
+        } else {
+            // 简单算法：根据字符编码生成固定分数（保证同一个名字分数一致）
+            let hash = 0;
+            for (let i = 0; i < name.length; i++) {
+                hash = name.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            score = Math.abs(hash % 101); // 生成 0-100 的随机数
+        }
+
+        // 显示结果区域
+        document.getElementById('resultArea').style.display = 'block';
+        document.getElementById('scoreValue').innerText = score + " 分";
+        document.getElementById('progressFill').style.width = score + "%";
+        
+        // 设置评语和等级
+        let rank = "";
+        let comment = "";
+        
+        if (score >= 95) {
+            rank = "SSS级男娘";
+            comment = "恭喜你！你已经达到了男娘的最高境界，萌力爆表！💖";
+        } else if (score >= 80) {
+            rank = "极品男娘";
+            comment = "非常可爱！你散发着令人无法抗拒的魅力~✨";
+        } else if (score >= 60) {
+            rank = "资深男娘";
+            comment = "已经很熟练了呢，继续加油呀！";
+        } else {
+            rank = "新手男娘";
+            comment = "还有很大的提升空间，尝试一下穿上裙子吧？";
+        }
+
+        document.getElementById('rankText').innerText = rank;
+        document.getElementById('commentText').innerText = comment;
+        document.getElementById('btnText').innerText = "重新测试";
+    }
+</script>
+
+</body>
+</html>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2025/12/18/%E7%94%B7%E5%A8%98/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/12/16/%E6%9D%82%E8%AE%B014/">
+        <h2 class="post-title">杂记（14） 论文风波</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/16
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>turnitin测出来AI率84%……</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%9D%82%E8%AE%B0/" style="color: #00bcd4">杂记</a>
+        </span>
+        
+    </div>
+    <a href="/2025/12/16/%E6%9D%82%E8%AE%B014/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
@@ -592,112 +868,11 @@ function pxCheck() {
         
         <span class="tag">
             
-            <a href="/tags/%E6%9D%82%E8%AE%B0/" style="color: #ffa2c4">杂记</a>
+            <a href="/tags/%E6%9D%82%E8%AE%B0/" style="color: #00bcd4">杂记</a>
         </span>
         
     </div>
     <a href="/2025/12/08/%E6%9D%82%E8%AE%B012/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2025/12/06/%E5%85%B3%E4%BA%8E%E5%AF%BC%E5%BC%95%E9%98%9F/">
-        <h2 class="post-title">关于导引队</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/%E9%81%90%E6%80%9D/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                遐思
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2025/12/6
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>导引社那的老队长邀请我进导引队诶，有点纠结——</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E6%9D%82%E8%AE%B0/" style="color: #03a9f4">杂记</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E4%BF%AE%E7%82%BC/" style="color: #ffa2c4">修炼</a>
-        </span>
-        
-    </div>
-    <a href="/2025/12/06/%E5%85%B3%E4%BA%8E%E5%AF%BC%E5%BC%95%E9%98%9F/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2025/12/06/%E6%9D%82%E8%AE%B011%20129%E5%90%88%E5%94%B1/">
-        <h2 class="post-title">杂记（11）</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                日记类
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2025/12/6
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>一二九合唱，感觉大家唱的还行吧，结果倒一了？</p>
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E6%9D%82%E8%AE%B0/" style="color: #ffa2c4">杂记</a>
-        </span>
-        
-    </div>
-    <a href="/2025/12/06/%E6%9D%82%E8%AE%B011%20129%E5%90%88%E5%94%B1/" class="go-post">阅读全文</a>
 </div>
 
 
