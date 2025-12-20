@@ -189,7 +189,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E9%AB%98%E6%95%B0/" style="color: #ffa2c4">
+                <a href="/tags/%E9%AB%98%E6%95%B0/" style="color: #00bcd4">
                     高数
                 </a>
             </span>
@@ -438,6 +438,20 @@ $$
 
 <p>那么显然海瑟矩阵负定，所以驻点为极大值点。</p>
 <hr>
+<ol start="9">
+<li>设一元函数 $f(x)$在闭区间$[a, b] (a &lt; b)$上二阶可导，$f(a) &#x3D; f(b) &#x3D; f’(a) &#x3D; f’(b) &#x3D; 0$，且当 $x \in [a, b]$时$|f’’(x)| \leqslant M$ （$M$ 为一个正数）。求证：$|f(x)| \leqslant \frac{M}{16}(b-a)^2, \quad x \in [a, b]$</li>
+</ol>
+<p>解：</p>
+<p>只会这个不太严谨的证明（</p>
+<p>由于 $ f’’(x) \leqslant M $， 所以 $ f’(x) $ 最快只能以 $ M $ 的速度增加。 因为 $ f’(a) &#x3D; 0 $，所以在 $ [a, \b] $ 上，$ f’(x) \leq M(x - a) $。</p>
+<p>由于 $ f(a) &#x3D; f(b) &#x3D; 0 $， 所以我们有：</p>
+<p> $$ \int_a^b f'(x) dx = 0 $$ </p>
+
+<p>也就是说， $ f’(x) $ 在 $ [a, b] $ 上的正面积和负面积相等。 由于 $ f’(x) \leq M(x - a) $， 所以在 $ [a, \frac{a+b}{2}] $ 上，$ f’(x) $ 的最大值出现在 $ x &#x3D; \frac{a+b}{4} $， 也就是 $ f’(\frac{a+b}{4}) \leq M(\frac{b-a}{4}) $。 否则它没法满足积分为0的条件。</p>
+<p>此时，计算正面积三角形的面积：</p>
+<p> $$ S_{正} \leq \frac{1}{2} \cdot \frac{b-a}{2} \cdot M \cdot \frac{b-a}{4} = \frac{M(b-a)^2}{16} $$ </p>
+
+<p>由于正面积和负面积相等，负面积的绝对值也小于等于 $ \frac{M(b-a)^2}{16} $。这也就完成了证明。</p>
 
     </div>
     
