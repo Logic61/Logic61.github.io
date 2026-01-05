@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>数学随笔1：线代中的embedding technique | Logic の 博客</title>
+    <title>数学随笔1：添行与合成大矩阵 | Logic の 博客</title>
     <meta name="author" content="Logic" />
     <meta name="description" content="一小块凝固的时间" />
     <meta name="keywords" content="" />
@@ -161,7 +161,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>数学随笔1：线代中的embedding technique</h1>
+        <h1>数学随笔1：添行与合成大矩阵</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -189,14 +189,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #00a596">
+                <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #ffa2c4">
                     线代
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ffa2c4">
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00a596">
                     数学
                 </a>
             </span>
@@ -353,6 +353,20 @@ $$</p>
 <p>$$\det(\lambda I_m - AB) = \lambda^{m-n} \det(\lambda I_n - BA)$$</p>
 
 <p>这显然与结论等价。</p>
+<h5 id="Binet-Cauchy公式的证明"><a href="#Binet-Cauchy公式的证明" class="headerlink" title="*Binet-Cauchy公式的证明"></a>*Binet-Cauchy公式的证明</h5><p>具体公式为：若 $A$ 是 $n \times m$ 矩阵，$B$ 是 $m \times n$ 矩阵（$n \le m$），则：</p>
+<p>$$\det(AB) = \sum_{1 \le j_1 < j_2 < \dots < j_n \le m} \det(A_{j_1, \dots, j_n}) \det(B^{j_1, \dots, j_n})$$</p>
+
+<p>其中 $A_{j_1, \dots, j_n}$ 是取 $A$ 的第 $j_1, \dots, j_n$ 列构成的方阵，$B^{j_1, \dots, j_n}$ 是取 $B$ 的第 $j_1, \dots, j_n$ 行构成的方阵。</p>
+<p>证明：</p>
+<p>我们通过构造一个 $(n+m) \times (n+m)$ 的分块矩阵 $M$ 来实现：</p>
+<p>$$M = \begin{pmatrix} I_m & B \\ -A & 0 \end{pmatrix}$$</p>
+
+<p>显然$M$的行列式也就是$det(AB)$，利用 Laplace 展开</p>
+<p>直接对 $M$ 的前 $m$ 行进行 Laplace 展开。</p>
+<p>由于左上角是 $I_m$，每一个不为零的展开项都对应着 $A$ 的一个 $n$ 阶子式与 $B$ 的一个 $n$ 阶子式的乘积。由于 $I_m$ 是单位阵，选取的行和列匹配时才非零，最终会自然产生：</p>
+<p>$$\sum_{1 \le j_1 < j_2 < \dots < j_n \le m} \det(A_{j_1, \dots, j_n}) \det(B^{j_1, \dots, j_n})$$</p>
+
+<p>结合一的结果，结论得证。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>大概如是，使用情景大概为：</p>
 <ul>
 <li><p><strong>乘积顺序交换：</strong> 涉及到 $AB$ 与 $BA$ 的对称性。</p>
