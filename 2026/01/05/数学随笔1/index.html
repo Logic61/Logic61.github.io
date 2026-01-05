@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>线代中的embedding technique | Logic の 博客</title>
+    <title>数学随笔1：线代中的embedding technique | Logic の 博客</title>
     <meta name="author" content="Logic" />
     <meta name="description" content="一小块凝固的时间" />
     <meta name="keywords" content="" />
@@ -161,7 +161,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>线代中的embedding technique</h1>
+        <h1>数学随笔1：线代中的embedding technique</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -189,14 +189,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #00bcd4">
+                <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #00a596">
                     线代
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #03a9f4">
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ffa2c4">
                     数学
                 </a>
             </span>
@@ -209,15 +209,119 @@
         <p>Gemini说叫embedding technique，那就叫这个吧，基本是我自己写的，然后用AI帮我快速生成代码，除了cauchy行列式懒得算（</p>
 <span id="more"></span>
 
-<h1 id="构造矩阵联系起各种要素，从而进一步处理"><a href="#构造矩阵联系起各种要素，从而进一步处理" class="headerlink" title="构造矩阵联系起各种要素，从而进一步处理"></a>构造矩阵联系起各种要素，从而进一步处理</h1><h4 id="例如，在行列式计算中，我们有所谓添行。"><a href="#例如，在行列式计算中，我们有所谓添行。" class="headerlink" title="例如，在行列式计算中，我们有所谓添行。"></a>例如，在行列式计算中，我们有所谓添行。</h4><h5 id="除了对角元以外都一样的行列式求解"><a href="#除了对角元以外都一样的行列式求解" class="headerlink" title="除了对角元以外都一样的行列式求解"></a>除了对角元以外都一样的行列式求解</h5><p>$$<br>\begin{pmatrix}<br>a &amp; t &amp; \cdots &amp; t \<br>t &amp; a &amp; \cdots &amp; t \<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>t &amp; t &amp; \cdots &amp; a<br>\end{pmatrix}<br>$$<br>的行列式求解，一种是我们可以直接做行列变换，还有一种操作是构造一个更大的矩阵：<br>$$<br>\left(<br>\begin{array}{c|cccc}<br>1 &amp; t &amp; t &amp; \cdots &amp; t\ \hline<br>0 &amp; a &amp; t &amp; \cdots &amp; t \<br>0 &amp; t &amp; a &amp; \cdots &amp; t \<br>\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>0 &amp; t &amp; t &amp; \cdots &amp; a<br>\end{array}<br>\right)<br>$$<br>此时行列式可以看做对第一列展开，仍然不变，这时执行消元，看起来简单的多。<br>$$<br>\begin{pmatrix}<br>1 &amp; t &amp; t &amp; \cdots &amp; t \<br>-1 &amp; a-t &amp; 0 &amp; \cdots &amp; 0 \<br>-1 &amp; 0 &amp; a-t &amp; \cdots &amp; 0 \<br>\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>-1 &amp; 0 &amp; 0 &amp; \cdots &amp; a-t<br>\end{pmatrix}<br>$$</p>
+<h1 id="构造矩阵联系起各种要素，从而进一步处理"><a href="#构造矩阵联系起各种要素，从而进一步处理" class="headerlink" title="构造矩阵联系起各种要素，从而进一步处理"></a>构造矩阵联系起各种要素，从而进一步处理</h1><h4 id="例如，在行列式计算中，我们有所谓添行。"><a href="#例如，在行列式计算中，我们有所谓添行。" class="headerlink" title="例如，在行列式计算中，我们有所谓添行。"></a>例如，在行列式计算中，我们有所谓添行。</h4><h5 id="除了对角元以外都一样的行列式求解"><a href="#除了对角元以外都一样的行列式求解" class="headerlink" title="*除了对角元以外都一样的行列式求解"></a>*除了对角元以外都一样的行列式求解</h5><p>$$
+\begin{pmatrix}
+a & t & \cdots & t \\
+t & a & \cdots & t \\
+\vdots & \vdots & \ddots & \vdots \\
+t & t & \cdots & a
+\end{pmatrix}
+$$</p>
+
+<p>的行列式求解，一种是我们可以直接做行列变换，还有一种操作是构造一个更大的矩阵：</p>
+<p>$$
+\left(
+\begin{array}{c|cccc}
+1 & t & t & \cdots & t\\ \hline
+0 & a & t & \cdots & t \\
+0 & t & a & \cdots & t \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & t & t & \cdots & a
+\end{array}
+\right)
+$$</p>
+
+<p>此时行列式可以看做对第一列展开，仍然不变，这时执行消元，看起来简单的多。</p>
+<p>$$
+\begin{pmatrix}
+1 & t & t & \cdots & t \\
+-1 & a-t & 0 & \cdots & 0 \\
+-1 & 0 & a-t & \cdots & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+-1 & 0 & 0 & \cdots & a-t
+\end{pmatrix}
+$$</p>
+
 <p>随后消去第一行或第一列即可</p>
-<h5 id="添行列-代数余子式"><a href="#添行列-代数余子式" class="headerlink" title="添行列+代数余子式"></a>添行列+代数余子式</h5><p>（pku25秋线代期中）已知 $|A| &#x3D; 5, a_{11} &#x3D; 2$，$A_{ij}$ 为元素 $a_{ij}$ 的代数余子式。<br>$$<br>\text{求：}<br>\begin{vmatrix}<br>A_{22} &amp; A_{23} &amp; \cdots &amp; A_{2n} \<br>A_{32} &amp; A_{33} &amp; \cdots &amp; A_{3n} \<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>A_{n2} &amp; A_{n3} &amp; \cdots &amp; A_{nn}<br>\end{vmatrix}<br>$$<br>我们容易想到余子式的正交性，添行：<br>$$<br>\begin{vmatrix}<br>A_{11} &amp; A_{12} &amp; A_{13} &amp; \cdots &amp; A_{1n} \<br>0 &amp; A_{22} &amp; A_{23} &amp; \cdots &amp; A_{2n} \<br>0 &amp; A_{32} &amp; A_{33} &amp; \cdots &amp; A_{3n} \<br>\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>0 &amp; A_{n2} &amp; A_{n3} &amp; \cdots &amp; A_{nn}<br>\end{vmatrix}<br>$$<br>这时利用经典的 $det(AB) &#x3D; det(A) \cdot det(B)$,我们左乘原来的矩阵的转置：<br>$$<br>\begin{pmatrix} a_{11} &amp; a_{21} &amp; a_{31} &amp; \cdots &amp; a_{n1} \ a_{12} &amp; a_{22} &amp; a_{32} &amp; \cdots &amp; a_{n2} \ a_{13} &amp; a_{23} &amp; a_{33} &amp; \cdots &amp; a_{n3} \ \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \ a_{1n} &amp; a_{2n} &amp; a_{3n} &amp; \cdots &amp; a_{nn} \end{pmatrix}<br>\begin{pmatrix}<br>A_{11} &amp; A_{12} &amp; \cdots &amp; A_{1n} \<br>0 &amp; A_{22} &amp; \cdots &amp; A_{2n} \<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>0 &amp; A_{n2} &amp; \cdots &amp; A_{nn}<br>\end{pmatrix}<br>$$<br>利用正交性也就有：<br>$$<br>\begin{pmatrix}<br>a_{11}A_{11} &amp; a_{11}A_{12} + \dots &amp; \cdots &amp; a_{11}A_{1n} + \dots \<br>0 &amp; |A| &amp; \cdots &amp; 0 \<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>0 &amp; 0 &amp; \cdots &amp; |A|<br>\end{pmatrix}<br>$$</p>
-<p>从而<br>$$<br>a_{11}A_{11}|A|^{n-1} &#x3D; |A| \cdot A_{11} \cdot \det(\text{子矩阵}) \implies \text{子式} &#x3D; |A|^{n-2} \cdot a_{11}<br>$$</p>
-<h4 id="在矩阵操作中，也常有合成大矩阵"><a href="#在矩阵操作中，也常有合成大矩阵" class="headerlink" title="在矩阵操作中，也常有合成大矩阵"></a>在矩阵操作中，也常有合成大矩阵</h4><h5 id="基础准备：分块矩阵的秩与行列式"><a href="#基础准备：分块矩阵的秩与行列式" class="headerlink" title="基础准备：分块矩阵的秩与行列式"></a>基础准备：分块矩阵的秩与行列式</h5><p>根据Laplace展开，我们知道：<br>$$<br>\det \begin{pmatrix} A &amp; O \ C &amp; B \end{pmatrix} &#x3D; \det(A) \det(B)<br>$$<br>同时，我们还有：<br>$$<br>rank \begin{pmatrix} A &amp; O \ O &amp; B \end{pmatrix} &#x3D; rank(A)+rank(B)<br>$$<br>可以通过做行列变化得到，以及：<br>$$<br>rank \begin{pmatrix} A &amp; O \ C &amp; B \end{pmatrix} \ge rank(A)+rank(B)<br>$$</p>
-<h5 id="Frobenius不等式的证明"><a href="#Frobenius不等式的证明" class="headerlink" title="Frobenius不等式的证明"></a>Frobenius不等式的证明</h5><p>$$\text{rank}(ABC) + \text{rank}(B) \ge \text{rank}(AB) + \text{rank}(BC)$$<br>我们构造如下的 $2 \times 2$ 分块矩阵 $M$：</p>
-<p>$$M &#x3D; \begin{pmatrix} AB &amp; O \ B &amp; BC \end{pmatrix}$$<br>这里不难看出，$rank(M)&gt;&#x3D;rank(AB)+rank(BC)$，如果构造左下角是$O$，虽然直接等于了，但我们没什么操作空间。这时我们行列变换消去左上角和右下角：<br>$$\begin{pmatrix} AB &amp; O \ B &amp; BC \end{pmatrix} \xrightarrow{R_1 - AR_2} \begin{pmatrix} O &amp; -ABC \ B &amp; BC \end{pmatrix} \xrightarrow{C_2 - C_1C} \begin{pmatrix} O &amp; -ABC \ B &amp; O \end{pmatrix}$$<br>那么也就得到了想要的结论</p>
-<h6 id="Sylvester不等式"><a href="#Sylvester不等式" class="headerlink" title="Sylvester不等式"></a>Sylvester不等式</h6><p>虽然和主题无关，但只要将$B$取为$I$，我们也就得到了Sylvester不等式：<br>$$\text{rank}(AC) + \text{rank}(I) \ge \text{rank}(A) + \text{rank}(C)$$</p>
-<p>即：<br>$$\text{rank}(AC) \ge \text{rank}(A) + \text{rank}(C) - n$$<br>这个不等式在秩相关问题可以大展身手。例如证明$\text{rank}(A) &#x3D; n-1$时伴随矩阵秩1：</p>
+<h5 id="添行列-代数余子式"><a href="#添行列-代数余子式" class="headerlink" title="*添行列+代数余子式"></a>*添行列+代数余子式</h5><p>（pku25秋线代期中）已知 $|A| &#x3D; 5, a_{11} &#x3D; 2$，$A_{ij}$ 为元素 $a_{ij}$ 的代数余子式。</p>
+<p>$$
+\text{求：} 
+\begin{vmatrix}
+A_{22} & A_{23} & \cdots & A_{2n} \\
+A_{32} & A_{33} & \cdots & A_{3n} \\
+\vdots & \vdots & \ddots & \vdots \\
+A_{n2} & A_{n3} & \cdots & A_{nn}
+\end{vmatrix}
+$$</p>
+
+<p>我们容易想到余子式的正交性，添行：</p>
+<p>$$
+\begin{vmatrix}
+A_{11} & A_{12} & A_{13} & \cdots & A_{1n} \\
+0 & A_{22} & A_{23} & \cdots & A_{2n} \\
+0 & A_{32} & A_{33} & \cdots & A_{3n} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & A_{n2} & A_{n3} & \cdots & A_{nn}
+\end{vmatrix}
+$$</p>
+
+<p>这时利用经典的 $det(AB) &#x3D; det(A) \cdot det(B)$,我们左乘原来的矩阵的转置：</p>
+<p>$$
+\begin{pmatrix} a_{11} & a_{21} & a_{31} & \cdots & a_{n1} \\ a_{12} & a_{22} & a_{32} & \cdots & a_{n2} \\ a_{13} & a_{23} & a_{33} & \cdots & a_{n3} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ a_{1n} & a_{2n} & a_{3n} & \cdots & a_{nn} \end{pmatrix}
+\begin{pmatrix}
+A_{11} & A_{12} & \cdots & A_{1n} \\
+0 & A_{22} & \cdots & A_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & A_{n2} & \cdots & A_{nn}
+\end{pmatrix}
+$$</p>
+
+<p>利用正交性也就有：</p>
+<p>$$
+\begin{pmatrix}
+a_{11}A_{11} & a_{11}A_{12} + \dots & \cdots & a_{11}A_{1n} + \dots \\
+0 & |A| & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & |A|
+\end{pmatrix}
+$$</p>
+
+<p>从而</p>
+<p>$$
+a_{11}A_{11}|A|^{n-1} = |A| \cdot A_{11} \cdot \det(\text{子矩阵}) \implies \text{子式} = |A|^{n-2} \cdot a_{11}
+$$</p>
+
+<h4 id="在矩阵操作中，也常有合成大矩阵"><a href="#在矩阵操作中，也常有合成大矩阵" class="headerlink" title="在矩阵操作中，也常有合成大矩阵"></a>在矩阵操作中，也常有合成大矩阵</h4><h5 id="基础准备：分块矩阵的秩与行列式"><a href="#基础准备：分块矩阵的秩与行列式" class="headerlink" title="*基础准备：分块矩阵的秩与行列式"></a>*基础准备：分块矩阵的秩与行列式</h5><p>根据Laplace展开，我们知道：</p>
+<p>$$
+\det \begin{pmatrix} A & O \\ C & B \end{pmatrix} = \det(A) \det(B)
+$$</p>
+
+<p>同时，我们还有：</p>
+<p>$$
+rank \begin{pmatrix} A & O \\ O & B \end{pmatrix} = rank(A)+rank(B)
+$$</p>
+
+<p>可以通过做行列变化得到，以及：</p>
+<p>$$
+rank \begin{pmatrix} A & O \\ C & B \end{pmatrix} \ge rank(A)+rank(B)
+$$</p>
+
+<h5 id="Frobenius不等式的证明"><a href="#Frobenius不等式的证明" class="headerlink" title="*Frobenius不等式的证明"></a>*Frobenius不等式的证明</h5><p>$$\text{rank}(ABC) + \text{rank}(B) \ge \text{rank}(AB) + \text{rank}(BC)$$</p>
+
+<p>我们构造如下的 $2 \times 2$ 分块矩阵 $M$：</p>
+<p>$$M = \begin{pmatrix} AB & O \\ B & BC \end{pmatrix}$$</p>
+
+<p>这里不难看出，$rank(M)&gt;&#x3D;rank(AB)+rank(BC)$，如果构造左下角是$O$，虽然直接等于了，但我们没什么操作空间。这时我们行列变换消去左上角和右下角：</p>
+<p>$$\begin{pmatrix} AB & O \\ B & BC \end{pmatrix} \xrightarrow{R_1 - AR_2} \begin{pmatrix} O & -ABC \\ B & BC \end{pmatrix} \xrightarrow{C_2 - C_1C} \begin{pmatrix} O & -ABC \\ B & O \end{pmatrix}$$</p>
+
+<p>那么也就得到了想要的结论</p>
+<h6 id="Sylvester不等式"><a href="#Sylvester不等式" class="headerlink" title="*Sylvester不等式"></a>*Sylvester不等式</h6><p>虽然和主题无关，但只要将$B$取为$I$，我们也就得到了Sylvester不等式：</p>
+<p>$$\text{rank}(AC) + \text{rank}(I) \ge \text{rank}(A) + \text{rank}(C)$$</p>
+
+<p>即：</p>
+<p>$$\text{rank}(AC) \ge \text{rank}(A) + \text{rank}(C) - n$$</p>
+
+<p>这个不等式在秩相关问题可以大展身手。例如证明$\text{rank}(A) &#x3D; n-1$时伴随矩阵秩1：</p>
 <ul>
 <li><p>因为 $\text{rank}(A) &#x3D; n-1$，所以存在一个 $n-1$ 阶子式不为 $0$，故 $A^* \neq O$，得 $\text{rank}(A^*) \ge 1$。</p>
 </li>
@@ -225,13 +329,30 @@
 </li>
 <li><p>构造秩的不等式：</p>
 <p>  根据 $\text{rank}(AB) &#x3D; 0 \implies \text{rank}(A) + \text{rank}(B) \le n$：</p>
-<p>  $$\text{rank}(A) + \text{rank}(A^*) \le n$$</p>
-<p>  $$(n-1) + \text{rank}(A^<em>) \le n \implies \text{rank}(A^</em>) \le 1$$</p>
-</li>
+  <p>$$\text{rank}(A) + \text{rank}(A^*) \le n$$</p>
+  
+  <p>$$(n-1) + \text{rank}(A^*) \le n \implies \text{rank}(A^*) \le 1$$</p></li>
 </ul>
-<h5 id="证明-det-I-AB-det-I-BA"><a href="#证明-det-I-AB-det-I-BA" class="headerlink" title="证明$\det(I+AB) &#x3D; \det(I+BA)$"></a>证明$\det(I+AB) &#x3D; \det(I+BA)$</h5><p>类似地我们构造：$$\begin{pmatrix} I &amp; A \ O &amp; I+BA \end{pmatrix}$$<br>然后进行消元操作：<br>$$\begin{pmatrix} I &amp; A \ O &amp; I+BA \end{pmatrix} \xrightarrow{R_2 - BR_1} \begin{pmatrix} I &amp; A \ -B &amp; I \end{pmatrix} \xrightarrow{R_1 + AR_2} \begin{pmatrix} I-AB &amp; O \ B &amp; I \end{pmatrix}$$<br>也就证明了结论</p>
-<h5 id="AB-与-BA-特征多项式的关系"><a href="#AB-与-BA-特征多项式的关系" class="headerlink" title="$AB$ 与 $BA$ 特征多项式的关系"></a>$AB$ 与 $BA$ 特征多项式的关系</h5><p>设 $A \in \mathbb{F}^{m \times n}, B \in \mathbb{F}^{n \times m}$，则：</p>
-<p>$$\lambda^n \det(\lambda I_m - AB) &#x3D; \lambda^m \det(\lambda I_n - BA)$$<br>如法炮制，构造矩阵：<br>$$\begin{pmatrix} \lambda I_m - AB &amp; O \ B &amp; I_n \end{pmatrix}$$<br>消元：<br>	$$\begin{pmatrix} \lambda I_m - AB &amp; O \ B &amp; I_n \end{pmatrix} \xrightarrow{R_1 + AR_2} \begin{pmatrix} \lambda I_m &amp; A \ B &amp; I_n \end{pmatrix} \xrightarrow{R_2 - \frac{1}{\lambda}BR_2} \begin{pmatrix} \lambda I_m &amp; A \ O &amp; I_n - \frac{1}{\lambda}B A \end{pmatrix}$$<br>从而$$\det(\lambda I_m - AB) &#x3D; \lambda^{m-n} \det(\lambda I_n - BA)$$<br>这显然与结论等价。</p>
+<h5 id="证明-det-I-AB-det-I-BA"><a href="#证明-det-I-AB-det-I-BA" class="headerlink" title="*证明$\det(I+AB) &#x3D; \det(I+BA)$"></a>*证明$\det(I+AB) &#x3D; \det(I+BA)$</h5><p>类似地我们构造：</p>
+<p>$$\begin{pmatrix} I & A \\ O & I+BA \end{pmatrix}$$</p>
+
+<p>然后进行消元操作：</p>
+<p>$$\begin{pmatrix} I & A \\ O & I+BA \end{pmatrix} \xrightarrow{R_2 - BR_1} \begin{pmatrix} I & A \\ -B & I \end{pmatrix} \xrightarrow{R_1 + AR_2} \begin{pmatrix} I-AB & O \\ B & I \end{pmatrix}$$</p>
+
+<p>也就证明了结论</p>
+<h5 id="AB-与-BA-特征多项式的关系"><a href="#AB-与-BA-特征多项式的关系" class="headerlink" title="*$AB$ 与 $BA$ 特征多项式的关系"></a>*$AB$ 与 $BA$ 特征多项式的关系</h5><p>设 $A \in \mathbb{F}^{m \times n}, B \in \mathbb{F}^{n \times m}$，则：</p>
+<p>$$\lambda^n \det(\lambda I_m - AB) = \lambda^m \det(\lambda I_n - BA)$$</p>
+
+<p>如法炮制，构造矩阵：</p>
+<p>$$\begin{pmatrix} \lambda I_m - AB & O \\ B & I_n \end{pmatrix}$$</p>
+
+<p>消元：</p>
+<p>$$\begin{pmatrix} \lambda I_m - AB & O \\ B & I_n \end{pmatrix} \xrightarrow{R_1 + AR_2} \begin{pmatrix} \lambda I_m & A \\ B & I_n \end{pmatrix} \xrightarrow{R_2 - \frac{1}{\lambda}BR_2} \begin{pmatrix} \lambda I_m & A \\ O & I_n - \frac{1}{\lambda}B A \end{pmatrix}$$</p>
+
+<p>从而</p>
+<p>$$\det(\lambda I_m - AB) = \lambda^{m-n} \det(\lambda I_n - BA)$$</p>
+
+<p>这显然与结论等价。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>大概如是，使用情景大概为：</p>
 <ul>
 <li><p><strong>乘积顺序交换：</strong> 涉及到 $AB$ 与 $BA$ 的对称性。</p>
@@ -243,12 +364,22 @@
 </ul>
 <h1 id="Vandermonde行列式"><a href="#Vandermonde行列式" class="headerlink" title="Vandermonde行列式"></a>Vandermonde行列式</h1><p>通过多项式因式分解确定行列式形式</p>
 <h5 id="Vandermonde行列式-1"><a href="#Vandermonde行列式-1" class="headerlink" title="Vandermonde行列式"></a>Vandermonde行列式</h5><p>设 $n$ 阶范德蒙德行列式为：</p>
-<p>$$V_n &#x3D; \begin{vmatrix} 1 &amp; 1 &amp; \cdots &amp; 1 \ x_1 &amp; x_2 &amp; \cdots &amp; x_n \ x_1^2 &amp; x_2^2 &amp; \cdots &amp; x_n^2 \ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \ x_1^{n-1} &amp; x_2^{n-1} &amp; \cdots &amp; x_n^{n-1} \end{vmatrix}$$</p>
+<p>$$
+V_n = \begin{vmatrix} 1 & 1 & \cdots & 1 \\ x_1 & x_2 & \cdots & x_n \\ x_1^2 & x_2^2 & \cdots & x_n^2 \\ \vdots & \vdots & \ddots & \vdots \\ x_1^{n-1} & x_2^{n-1} & \cdots & x_n^{n-1} \end{vmatrix}
+$$</p>
+
 <p>我们要证明：$V_n &#x3D; \prod_{1 \le i &lt; j \le n} (x_j - x_i)$。<br>当 $n&#x3D;2$ 时：</p>
-<p>$$V_2 &#x3D; \begin{vmatrix} 1 &amp; 1 \ x_1 &amp; x_2 \end{vmatrix} &#x3D; x_2 - x_1$$</p>
-<p>公式成立。<br>假设公式对于 $n-1$ 阶范德蒙德行列式成立。<br>对最后一列展开，显然是最高次为$x_n^{n-1}$的多项式，最高次系数根据归纳假设为$V_n &#x3D; \prod_{1 \le i &lt; j \le n-1} (x_j - x_i)$，注意到$x_n$等于$\forall i &lt; n, i \in \mathbb{N}^+$的时候多项式为$0$，也就是说可以因式分解为：<br>$$<br>\prod_{1 \le i \le n-1}(x_n - x_i)\prod_{1 \le i &lt; j \le n-1} (x_j - x_i)<br>$$<br>合并即可得到结论。</p>
+<p>$$V_2 = \begin{vmatrix} 1 & 1 \\ x_1 & x_2 \end{vmatrix} = x_2 - x_1$$</p>
+
+<p>公式成立。<br>假设公式对于 $n-1$ 阶范德蒙德行列式成立。<br>对最后一列展开，显然是最高次为$x_n^{n-1}$的多项式，最高次系数根据归纳假设为$V_n &#x3D; \prod_{1 \le i &lt; j \le n-1} (x_j - x_i)$，注意到$x_n$等于$\forall i &lt; n, i \in \mathbb{N}^+$的时候多项式为$0$，也就是说可以因式分解为：</p>
+<p>$$
+\prod_{1 \le i \le n-1}(x_n - x_i)\prod_{1 \le i < j \le n-1} (x_j - x_i)
+$$</p>
+
+<p>合并即可得到结论。</p>
 <h5 id="Cauchy行列式"><a href="#Cauchy行列式" class="headerlink" title="Cauchy行列式"></a>Cauchy行列式</h5><p>证明 $n$ 阶 Cauchy 行列式：（由AI给出，懒得打了）</p>
-<p>$$C_n &#x3D; \begin{vmatrix} \frac{1}{a_1+b_1} &amp; \cdots &amp; \frac{1}{a_1+b_n} \ \vdots &amp; \ddots &amp; \vdots \ \frac{1}{a_n+b_1} &amp; \cdots &amp; \frac{1}{a_n+b_n} \end{vmatrix} &#x3D; \frac{\prod_{1 \le i &lt; j \le n} (a_j - a_i)(b_j - b_i)}{\prod_{i&#x3D;1}^n \prod_{j&#x3D;1}^n (a_i + b_j)}$$</p>
+<p>$$C_n = \begin{vmatrix} \frac{1}{a_1+b_1} & \cdots & \frac{1}{a_1+b_n} \\ \vdots & \ddots & \vdots \\ \frac{1}{a_n+b_1} & \cdots & \frac{1}{a_n+b_n} \end{vmatrix} = \frac{\prod_{1 \le i < j \le n} (a_j - a_i)(b_j - b_i)}{\prod_{i=1}^n \prod_{j=1}^n (a_i + b_j)}$$</p>
+
 <h6 id="第一步：基础步骤"><a href="#第一步：基础步骤" class="headerlink" title="第一步：基础步骤"></a>第一步：基础步骤</h6><p>当 $n&#x3D;1$ 时：</p>
 <ul>
 <li><p>左边 $&#x3D; \frac{1}{a_1+b_1}$</p>
@@ -263,7 +394,8 @@
 <li>消去第一行以外的元素：</li>
 </ol>
 <p>对行列式进行列变换。用第 $j$ 列减去第 $n$ 列 ($j&#x3D;1, 2, \dots, n-1$)：</p>
-<p>$$c_{ij}’ &#x3D; \frac{1}{a_i+b_j} - \frac{1}{a_i+b_n} &#x3D; \frac{b_n - b_j}{(a_i+b_j)(a_i+b_n)}$$</p>
+<p>$$c_{ij}' = \frac{1}{a_i+b_j} - \frac{1}{a_i+b_n} = \frac{b_n - b_j}{(a_i+b_j)(a_i+b_n)}$$</p>
+
 <p><strong>2. 提取公因子：</strong></p>
 <ul>
 <li><p>从每一列 $j$ ($j &lt; n$) 提取公因子 $(b_n - b_j)$。</p>
@@ -274,7 +406,8 @@
 </li>
 </ul>
 <p>经过一系列复杂的提取（或直接对每一项进行代数变形），行列式可以转化为：</p>
-<p>$$C_n &#x3D; \frac{\prod_{j&#x3D;1}^{n-1}(b_n-b_j) \cdot \prod_{i&#x3D;1}^{n-1}(a_n-a_i)}{\prod_{i&#x3D;1}^n(a_i+b_n) \cdot \prod_{j&#x3D;1}^{n-1}(a_n+b_j)} \cdot C_{n-1}$$</p>
+<p>$$C_n = \frac{\prod_{j=1}^{n-1}(b_n-b_j) \cdot \prod_{i=1}^{n-1}(a_n-a_i)}{\prod_{i=1}^n(a_i+b_n) \cdot \prod_{j=1}^{n-1}(a_n+b_j)} \cdot C_{n-1}$$</p>
+
 <h6 id="第三步：递推求解"><a href="#第三步：递推求解" class="headerlink" title="第三步：递推求解"></a>第三步：递推求解</h6><p>将归纳假设中的 $C_{n-1}$ 代入上述递推式：</p>
 <ol>
 <li><p><strong>分子部分</strong>：$C_{n-1}$ 贡献了 $1 \le i &lt; j \le n-1$ 的差积，递推项贡献了包含 $n$ 的差积（如 $a_n-a_i$ 和 $b_n-b_j$）。合起来正好构成 $1 \le i &lt; j \le n$ 的完整差积。</p>
