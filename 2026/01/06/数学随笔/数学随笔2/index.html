@@ -196,7 +196,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ff7d73">
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #03a9f4">
                     数学
                 </a>
             </span>
@@ -208,88 +208,63 @@
     <div class="content" v-pre>
         <p>作为一个整理而已，没有太多思想。</p>
 <span id="more"></span>
+<h5 id="分块矩阵的行列式"><a href="#分块矩阵的行列式" class="headerlink" title="分块矩阵的行列式"></a>分块矩阵的行列式</h5><p>如果希望求解分块矩阵的行列式，我们通常也像正常行列式那样消元形成三角阵，那也就可以如此操作：</p>
+<p>$$\begin{pmatrix} A & B \\ C & D \end{pmatrix} \xrightarrow{R_1 - BD^{-1}R_2} \begin{pmatrix} A-BD^{-1}C & O \\ C & D \end{pmatrix} $$</p>
+此时就可以得到 <p>$$\det(M) = \det(D) \cdot \det(A - BD^{-1}C)$$</p>
 
-<h3 id="分块矩阵的行列式"><a href="#分块矩阵的行列式" class="headerlink" title="分块矩阵的行列式"></a>分块矩阵的行列式</h3><p>如果希望求解分块矩阵的行列式，我们通常也像正常行列式那样消元形成三角阵，那也就可以如此操作：</p>
-<p>$$\begin{pmatrix} A & B \\ C & D \end{pmatrix} \xrightarrow{R_1 - BD^{-1}R_2} \begin{pmatrix} A-BD^{-1}C & O \\ C & D \end{pmatrix}$$</p>
-
-<p>此时就可以得到：</p>
-<p>$$\det(M) = \det(D) \cdot \det(A - BD^{-1}C)$$</p>
-
-<hr>
-<h3 id="Woodbury-恒等式"><a href="#Woodbury-恒等式" class="headerlink" title="Woodbury 恒等式"></a>Woodbury 恒等式</h3><p>$$(A - BD^{-1}C)^{-1} = A^{-1} + A^{-1}B(D - CA^{-1}B)^{-1}CA^{-1}$$</p>
-
-<p>证明通过行列变换给出：</p>
-<p>设 <p>$M &#x3D; \begin{pmatrix} A &amp; B \ C &amp; D \end{pmatrix}$</p>，假设 <p>$A$</p> 可逆。</p>
-<p>首先我们可以进行行列变换：</p>
-<p>$$\begin{pmatrix} A & B \\ C & D \end{pmatrix} \xrightarrow{R_1 - BD^{-1}R_2} \begin{pmatrix} A-BD^{-1}C & O \\ C & D \end{pmatrix}$$</p>
-
-<p>这样就得到了左边出现的 <p>$(A - BD^{-1}C)$</p>，如何求逆呢？</p>
-<p>我们只要求出 <p>$M$</p> 的逆，它的左上角即为 <p>$A-BD^{-1}C$</p> 的逆了，那么就只是简单的消元，构造增广矩阵：</p>
+<h5 id="Woodbury-恒等式"><a href="#Woodbury-恒等式" class="headerlink" title="Woodbury 恒等式"></a>Woodbury 恒等式</h5><p>$$(A - BD^{-1}C)^{-1} = A^{-1} + A^{-1}B(D - CA^{-1}B)^{-1}CA^{-1}$$</p>
+证明通过行列变换给出：
+设 $M = \begin{pmatrix} A & B \\ C & D \end{pmatrix}$，假设 $A$ 可逆。
+首先我们可以进行行列变换：
+<p>$$\begin{pmatrix} A & B \\ C & D \end{pmatrix} \xrightarrow{R_1 - BD^{-1}R_2} \begin{pmatrix} A-BD^{-1}C & O \\ C & D \end{pmatrix} $$</p>
+这样就得到了左边出现的 $(A - BD^{-1}C)$，如何求逆呢？
+我们只要求出 $M$ 的逆，他的左上角即为 $A-BD^{-1}C$ 的逆了，那么就只是简单的消元，构造增广矩阵：
 <p>$$\left( \begin{array}{cc|cc} A & B & I & 0 \\ C & D & 0 & I \end{array} \right)$$</p>
-
-<p>第一行乘 <p>$A^{-1}$</p>：</p>
+第一行乘 $A^{-1}$：
 <p>$$\left( \begin{array}{cc|cc} I & A^{-1}B & A^{-1} & 0 \\ C & D & 0 & I \end{array} \right)$$</p>
-
-<p>消去左下角 <p>$C$</p>：</p>
+消去左下角 $C$
 <p>$$\left( \begin{array}{cc|cc} I & A^{-1}B & A^{-1} & 0 \\ 0 & D - CA^{-1}B & -CA^{-1} & I \end{array} \right)$$</p>
-
-<p>记 <p>$\Delta_A&#x3D;D - CA^{-1}B$</p>，然后乘上它的逆：</p>
+记 $\Delta_A=D - CA^{-1}B$，然后乘上他的逆：
 <p>$$\left( \begin{array}{cc|cc} I & A^{-1}B & A^{-1} & 0 \\ 0 & I & -\Delta_A^{-1}CA^{-1} & \Delta_A^{-1} \end{array} \right)$$</p>
-
-<p>最后消掉右上角：</p>
+最后消掉右上角：
 <p>$$\left( \begin{array}{cc|cc} I & 0 & A^{-1} + A^{-1}B\Delta_A^{-1}CA^{-1} & -A^{-1}B\Delta_A^{-1} \\ 0 & I & -\Delta_A^{-1}CA^{-1} & \Delta_A^{-1} \end{array} \right)$$</p>
-
-<p>代入 <p>$\Delta_A&#x3D;D - CA^{-1}B$</p> 我们就得到：</p>
+代入 $\Delta_A=D - CA^{-1}B$ 我们就得到：
 <p>$$(A - BD^{-1}C)^{-1} = A^{-1} + A^{-1}B(D - CA^{-1}B)^{-1}CA^{-1}$$</p>
-
-<p>这就完成了证明。如果我们代入一些简单的值就会得到漂亮的等式：</p>
+这就完成了证明。如果我们代入一些简单的值就会得到漂亮的等式：
 <p>$$(I_n - BA)^{-1} = I_n + B(I_m - AB)^{-1}A$$</p>
-
-<p>把矩阵换成向量 <p>$\alpha, \beta^T$</p>：</p>
+把矩阵换成向量 $\alpha, \beta^T$：
 <p>$$(I_n - \alpha \beta^T)^{-1} = 1-\beta^T \alpha$$</p>
 
-<hr>
-<h3 id="Schur-补"><a href="#Schur-补" class="headerlink" title="Schur 补"></a>Schur 补</h3><p>上面的 <p>$D - CA^{-1}B$</p> 就被称为 <strong>Schur 补</strong>。</p>
-<h4 id="Schur-补与判别式"><a href="#Schur-补与判别式" class="headerlink" title="Schur 补与判别式"></a>Schur 补与判别式</h4><p>二次函数 <p>$ax^2 + bx + c$</p>。我们可以把它写成对称矩阵的二次型：</p>
+<h5 id="Schur-补"><a href="#Schur-补" class="headerlink" title="Schur 补"></a>Schur 补</h5><p>上面的 $D - CA^{-1}B$ 就被称为 Schur 补。</p>
+<h6 id="Schur-补与判别式"><a href="#Schur-补与判别式" class="headerlink" title="Schur 补与判别式"></a>Schur 补与判别式</h6><p>二次函数 $ax^2 + bx + c$。我们可以把它写成对称矩阵的二次型：</p>
 <p>$$f(x, 1) = \begin{pmatrix} x & 1 \end{pmatrix} \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix} \begin{pmatrix} x \\ 1 \end{pmatrix}$$</p>
-
-<p>对于这个 <p>$2 \times 2$</p> 矩阵，如果我们计算 <p>$a$</p> 的 Schur 补：</p>
+对于这个 $2 \times 2$ 矩阵，如果我们计算 $a$ 的 Schur 补：
 <p>$$S = c - (b/2)a^{-1}(b/2) = c - \frac{b^2}{4a} = \frac{4ac - b^2}{4a}$$</p>
-
-<p>你会发现 Schur 补的分子部分正好就是判别式 <p>$\Delta$</p> 的相反数。</p>
-<p>这实际上可以推广到分块矩阵的正定性。对于对称矩阵 <p>$M &#x3D; \begin{pmatrix} A &amp; B \ B^T &amp; C \end{pmatrix}$</p>，<p>$M \succ 0$</p>（正定）当且仅当：</p>
-<ol>
-<li><p>$A \succ 0$</p></li>
-<li><p>$S = C - B^T A^{-1} B \succ 0$</p></li>
-</ol>
-<p>因为这实际上相当于我们做了一个合同变换把它变成了对角阵：</p>
+你会发现 Schur 补的分子部分正好就是判别式 $\Delta$ 的相反数。
+这实际上可以推广到分块矩阵的正定性。
+对于对称矩阵 $M = \begin{pmatrix} A & B \\ B^T & C \end{pmatrix}$，$M \succ 0$（正定）当且仅当：
+1. $A \succ 0$
+2. $S = C - B^T A^{-1} B \succ 0$
+因为这实际上相当于我们做了一个合同变换把他变成了对角阵：
 <p>$$M' = \begin{pmatrix} A & O \\ O & C-B^TA^{-1}B \end{pmatrix}$$</p>
+从而保正定性，只要 $M'$ 正定就可知 $M$ 正定。
 
-<p>从而保正定性，只要 <p>$M’$</p> 正定就可知 <p>$M$</p> 正定。</p>
-<h4 id="正定加半正定行列式不变小"><a href="#正定加半正定行列式不变小" class="headerlink" title="正定加半正定行列式不变小"></a>正定加半正定行列式不变小</h4><p>假设 <p>$A, B$</p> 是两个复 Hermitian 矩阵，其中 <p>$A$</p> 正定，<p>$B$</p> 半正定，那么有：</p>
-<p>$$\det(A+B) \ge \det(A)$$</p>
-
-<p><strong>证明：</strong></p>
-<p>我们希望更直观地看到 <p>$A+B$</p> 与 <p>$A$</p> 的差别，利用 Schur 补：</p>
+<h6 id="正定加半正定行列式不变小"><a href="#正定加半正定行列式不变小" class="headerlink" title="正定加半正定行列式不变小"></a>正定加半正定行列式不变小</h6><p>假设 $A, B$ 是两个复 $Hermitian$ 矩阵，其中 $A$ 正定，$B$ 半正定，那么有：</p>
+<p>$$\det(A+B) \ge \det(A) $$</p>
+证明：
+我们希望更直观地看到 $A+B$ 与 $A$ 的差别，利用 Schur 补：
 <p>$$\det(A+B)=\det(A) \cdot \det(I+A^{-1}B)$$</p>
-
-<p>然后我们只需要证明：</p>
+然后我们只需要证明：
 <p>$$\det(I+A^{-1}B) \ge 1$$</p>
-
-<p>这时利用 <p>$A$</p> 正定从而 <p>$A^{-1}$</p> 正定（特征值全部大于 0），就可以拆分：</p>
-<p>$$\det(I+A^{-1/2} \cdot A^{-1/2} \cdot B)$$</p>
-
-<p>利用交换乘法顺序的结论（<p>$\det(I+XY) &#x3D; \det(I+YX)$</p>）：</p>
-<p>$$\det(I+A^{-1/2}BA^{-1/2})$$</p>
-
-<p>这相当于对 <p>$B$</p> 做合同变换，保特征值符号。可见 <p>$A^{-1&#x2F;2}BA^{-1&#x2F;2}$</p> 半正定且对称，于是可以把它对角化：</p>
+这时利用 $A$ 正定从而 $A^{-1}$ 正定（特征值全部大于 0），就可以拆分：
+<p>$$\det(I+A^{-1/2} \cdot A^{-1/2} \cdot B) $$</p>
+利用$\det(I+AB) = \det(I+BA)$，把后两个矩阵看做一块，和第一个交换乘法顺序：
+<p>$$\det(I+A^{-1/2}BA^{-1/2}) $$</p>
+这相当于对 $B$ 做合同变换，保特征值，可见 $A^{-1/2}BA^{-1/2}$ 半正定，显然这也对称，于是可以把它对角化：
 <p>$$A^{-1/2}BA^{-1/2} = Q \Sigma Q^*$$</p>
-
-<p>由于 <p>$\Sigma$</p> 特征值非负，从而：</p>
+那么 $\Sigma$ 特征值非负，从而原来那个行列式也就等于
 <p>$$\det(I+ \Sigma) \ge \det(I) = 1$$</p>
-
-<p>证毕。</p>
-
+也就完成了证明。
     </div>
     
     
