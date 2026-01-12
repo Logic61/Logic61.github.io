@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>关于导引队 | Logic の 博客</title>
+    <title>数学随笔5：Cauchy不等式类型的证明技巧 | Logic の 博客</title>
     <meta name="author" content="Logic" />
     <meta name="description" content="一小块凝固的时间" />
     <meta name="keywords" content="" />
@@ -161,22 +161,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>关于导引队</h1>
+        <h1>数学随笔5：Cauchy不等式类型的证明技巧</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2025/12/6
+            2026/1/12
         </span>
         
         <span class="category">
-            <a href="/categories/%E9%81%90%E6%80%9D/">
+            <a href="/categories/%E6%95%B0%E5%AD%A6%E9%9A%8F%E7%AC%94/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                遐思
+                数学随笔
             </a>
         </span>
         
@@ -189,15 +189,15 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%9D%82%E8%AE%B0/" style="color: #ff7d73">
-                    杂记
+                <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #00a596">
+                    线代
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E4%BF%AE%E7%82%BC/" style="color: #00bcd4">
-                    修炼
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ff7d73">
+                    数学
                 </a>
             </span>
             
@@ -206,42 +206,72 @@
     </div>
     
     <div class="content" v-pre>
-        <p>导引社那的老队长邀请我进导引队诶，有点纠结——</p>
+        <p>这类型的证明似乎只针对特定问题，但实在有点巧妙。<br>主要利用非负性结合二次函数判别式完成。</p>
 <span id="more"></span>
 
-<p>其实往导引与太极拳社跑一开始是想去导引的，但是后来学了一些其他的导引，了解到导引大概的用处，感觉不是很有必要学太多导引，只要有了精髓动作也没必要太细，也没必要练太多……学多了没什么用啊。不过确实也倒是各有各的优点，但是总的来说反正选那么一两套好好练也就完了，所以后来我又觉得导引队一下要你学一大堆导引……不好玩，还要表演，干什么呢，拿奖评综测吗，我都练这个了显然不是奔着这个来的，虽然锦上添花是很好，但是为了表演去练习没意思。</p>
-<p>导引队 &#x3D; 免去85km + 必学一坨导引并抽相当的时间为了比赛练习？</p>
-<p>感觉也是两边差不多的权重，85km我按最低配速来看1km走9min，或者好一点，假装自己好好跑步，慢慢地6Min去跑，6 * 85 &#x3D; 510 min， 就算9min， 765min，十几个小时吧，但是你说去导引队，为了表演练，那就是……每周两小时，虽然也不全是为了表演在练，但总感觉，好像侵占了好多时间。</p>
-<!-- ParticleX 原生风格密码框 -->
-<div id="px-auth" style="max-width:400px; margin:80px auto; padding:30px; background:#1e1e2f; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.3); text-align:center;">
-  <input id="px-pwd" type="password" placeholder="请输入密码" 
-         style="width:80%; padding:10px 15px; margin-bottom:20px; border-radius:8px; border:1px solid #555; background:#2b2b3c; color:#eee; font-size:16px;" 
-         onkeydown="if(event.key==='Enter') pxCheck()"/>
-  <br>
-  <button onclick="pxCheck()" 
-          style="padding:10px 25px; border:none; border-radius:8px; background:linear-gradient(90deg,#6c5ce7,#a29bfe); color:white; font-size:16px; cursor:pointer; transition:0.3s;">
-    进入
-  </button>
-</div>
+<hr>
+<h3 id="1-经典-Cauchy-不等式（离散形式）"><a href="#1-经典-Cauchy-不等式（离散形式）" class="headerlink" title="1. 经典 Cauchy 不等式（离散形式）"></a>1. 经典 Cauchy 不等式（离散形式）</h3><p>这种方法的核心在于：如果一个二次多项式恒非负，那么其判别式必须满足 $\Delta \le 0$。</p>
+<p>
+$$\left(\sum_{i=1}^n a_ib_i\right)^2 \le \left(\sum_{i=1}^n a_i^2\right)\left(\sum_{i=1}^n b_i^2\right)$$
+</p>
 
-<div id="px-content" style="display:none; max-width:600px; margin:40px auto; text-align:center; font-size:18px; line-height:1.6; color:black;">
-  <p>我最开始练导引这些目的很简单，补足精气，奠定开关基础而已，如果现在说要加入导引队什么的……好像有点麻烦诶，最关键是这个有点长期要求，虽然导引一直练倒是合理的，但是吧，我一直练，到时候我得去带后面的人一起练吧，那时间开销可就……不小了，我也不至于厚着脸皮光学，到时候人家要让我教我不教，那真的是……不太好。感觉导引花个半小时够多了……你让我练2小时，按传统武术去练，没必要呢。我练传统武术干什么，现代社会这一块（，我也对以武入道没有很感兴趣。无意听杜老师说他下午意守丹田，看起来也不只是对武术感兴趣了，看上去对修炼是比较有兴趣的，要旁敲侧击什么的交流交流吗，但我是社交笨蛋诶……我唐的自己有点看不下去，有点不敢讲hh，或者跟师兄师姐聊？上次唐队长问我为什么老是能来就应该说的，那次没绷住说不出口感觉就不太好说了诶。</p>
-  <p>权衡一下的话，还是没权衡出来加不加……开学那会权衡了一次，决定好好修炼，没加，现在嘛，他邀请我诶，邀请诶，怎么办。而且感觉上次训练他就很热情指导我，难道我每次都去给他觉得我是可塑之才吗hh。难办诶，可以找他聊聊？如果我有这个勇气，唉真麻烦。感觉他们应该也是对修炼感兴趣但找不到路？或者只是单纯觉得训练这些形体什么的很好玩？我感觉吧多少都沾点对修炼的向往，当然也可能就是对武术感兴趣，换我小时候估计就对以武入道很感兴趣，现在就算了。当然没有说他们幼稚，只是说人是多元的。</p>
-</div>
+<p><strong>证明：</strong><br>构造关于 $t$ 的非负函数：</p>
+<p>
+$$f(t) = \sum_{i=1}^n (a_it + b_i)^2 \ge 0$$
+</p>
+将其展开：
+<p>
+$$f(t) = \left(\sum_{i=1}^n a_i^2\right)t^2 + 2\left(\sum_{i=1}^n a_ib_i\right)t + \left(\sum_{i=1}^n b_i^2\right) \ge 0$$
+</p>
+利用判别式：
+<p>
+$$\Delta = \left[2\left(\sum_{i=1}^n a_ib_i\right)\right]^2 - 4\left(\sum_{i=1}^n a_i^2\right)\left(\sum_{i=1}^n b_i^2\right) \le 0$$
+</p>
+整理即得结论。
 
-<script>
-function pxCheck() {
-  var pwd = document.getElementById("px-pwd").value;
-  if(pwd === "123456") {   // 这里是密码，可自定义
-    document.getElementById("px-auth").style.display = "none";
-    document.getElementById("px-content").style.display = "block";
-  } else {
-    alert("密码错误，请重试！");
-  }
-}
-</script>
+<hr>
+<h3 id="2-Cauchy-积分不等式"><a href="#2-Cauchy-积分不等式" class="headerlink" title="2. Cauchy 积分不等式"></a>2. Cauchy 积分不等式</h3><p>在连续函数空间中，逻辑完全一致。</p>
+<p>
+$$\left(\int_a^b f(x)g(x)dx\right)^2 \le \int_a^b f(x)^2dx \cdot \int_a^b g(x)^2dx$$
+</p>
 
+<p><strong>证明：</strong><br>构造非负积分：</p>
+<p>
+$$I(t) = \int_a^b (f(x) + tg(x))^2 dx \ge 0$$
+</p>
+展开后得到关于 $t$ 的二次多项式：
+<p>
+$$I(t) = \left(\int_a^b g(x)^2dx\right)t^2 + \left(2\int_a^b f(x)g(x)dx\right)t + \left(\int_a^b f(x)^2dx\right) \ge 0$$
+</p>
+由于 $I(t) \ge 0$ 恒成立，其判别式 $\Delta \le 0$，从而证明不等式。
 
+<p><strong>小应用：</strong><br>若令 $g(x) &#x3D; \frac{1}{f(x)}$（假设 $f(x) &gt; 0$），则有：</p>
+<p>
+$$\int_a^b \frac{1}{f(x)} dx \ge \frac{(b-a)^2}{\int_a^b f(x)dx}$$
+</p>
+
+<hr>
+<h3 id="3-三角不等式"><a href="#3-三角不等式" class="headerlink" title="3. 三角不等式"></a>3. 三角不等式</h3><p>
+$$\|u+v\| \le \|u\| + \|v\|$$
+</p>
+
+<p><strong>证明：</strong><br>构造内积形式的非负二次式：</p>
+<p>
+$$(u+tv, u+tv) \ge 0$$
+</p>
+展开得到：
+<p>
+$$(v,v)t^2 + 2(u,v)t + (u,u) \ge 0$$
+</p>
+由判别式 $\Delta \le 0$ 得：
+<p>
+$$(u,v)^2 \le (u,u)(v,v) \implies |(u,v)| \le \|u\| \cdot \|v\|$$
+</p>
+利用上述结论展开 $\|u+v\|^2$：
+<p>
+$$\|u+v\|^2 = (u+v, u+v) = \|u\|^2 + 2(u,v) + \|v\|^2 \le (\|u\| + \|v\|)^2$$
+</p>
+两侧开方即得三角不等式。
     </div>
     
     
