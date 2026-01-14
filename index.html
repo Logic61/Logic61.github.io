@@ -217,140 +217,6 @@
         <div class="content" v-pre>
             
             <p>高度 AI 化，因为只是作为整理，当时马上考线代了，我真的懒得自己整了。</p>
-<h2 id="矩阵的-LU-分解"><a href="#矩阵的-LU-分解" class="headerlink" title="矩阵的 LU 分解"></a>矩阵的 LU 分解</h2><p>最实用的方法是基于<strong>高斯消元法</strong>的变形，我们在消元的过程中同时构造 $L$ 和 $U$。</p>
-<h4 id="步骤-1：通过消元构造-U"><a href="#步骤-1：通过消元构造-U" class="headerlink" title="步骤 1：通过消元构造 $U$"></a>步骤 1：通过消元构造 $U$</h4><p>将矩阵 $A$ 通过初等行变换（只能使用“将某行的倍数加到另一行”这一种变换）转化为上三角矩阵。</p>
-<ul>
-<li>这个最终得到的上三角矩阵就是 <strong>$U$</strong>。</li>
-<li><strong>注意：</strong> 在标准 LU 分解中，不允许进行行交换。如果必须交换行，则需要引入置换矩阵 $P$，变为 $PA&#x3D;LU$。</li>
-<li>如果把 $U$ 的对角线元素都改成 $1$，把 $U$ 写成 $DU$，就得到 $LDU$ 分解，这里的 $D$ 是对角阵， $U$ 是对角线为 1 的上三角阵。对于对称矩阵，就变成了 $LDL^T$ 。</li>
-</ul>
-<h4 id="步骤-2：通过消元系数构造-L"><a href="#步骤-2：通过消元系数构造-L" class="headerlink" title="步骤 2：通过消元系数构造 $L$"></a>步骤 2：通过消元系数构造 $L$</h4><p>在进行消元时，如果你使用了操作：$R_i \leftarrow R_i - k \cdot R_j$（将第 $j$ 行的 $k$ 倍从第 $i$ 行减去），那么这个系数 $k$ 就填在矩阵 $L$ 的第 $i$ 行、第 $j$ 列的位置。</p>
-<ul>
-<li>$L$ 的对角线默认为 $1$。</li>
-<li>$L$ 的其余位置（上三角部分）全为 $0$。</li>
-</ul>
-<hr>
-<h4 id="算例-3×3-矩阵"><a href="#算例-3×3-矩阵" class="headerlink" title="算例 (3×3 矩阵)"></a>算例 (3×3 矩阵)</h4><p>假设我们要分解矩阵：</p>
-<p>$$A = \begin{pmatrix} 2 & 1 & 1 \\ 4 & 3 & 3 \\ 8 & 7 & 9 \end{pmatrix}$$</p>
-
-<h5 id="1-消第一列："><a href="#1-消第一列：" class="headerlink" title="1. 消第一列："></a>1. 消第一列：</h5><ul>
-<li>$R_2 \leftarrow R_2 - \mathbf{2}R_1$，得到第二行新元素 $[0, 1, 1]$。系数 $L_{21} &#x3D; 2$。</li>
-<li>$R_3 \leftarrow R_3 - \mathbf{4}R_1$，得到第三行新元素 $[0, 3, 5]$。系数 $L_{31} &#x3D; 4$。</li>
-</ul>
-<h5 id="2-消第二列："><a href="#2-消第二列：" class="headerlink" title="2. 消第二列："></a>2. 消第二列：</h5><ul>
-<li>此时矩阵变为 $\begin{pmatrix} 2 &amp; 1 &amp; 1 \ 0 &amp; 1 &amp; 1 \ 0 &amp; 3 &amp; 5 \end{pmatrix}$。</li>
-<li>$R_3 \leftarrow R_3 - \mathbf{3}R_2$，得到第三行新元素 $[0, 0, 2]$。系数 $L_{32} &#x3D; 3$。</li>
-</ul>
-<h5 id="3-得到结果："><a href="#3-得到结果：" class="headerlink" title="3. 得到结果："></a>3. 得到结果：</h5><ul>
-<li>上三角矩阵 $U$ (消元后的结果):</li>
-</ul>
-<p>$$U = \begin{pmatrix} 2 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 2 \end{pmatrix}$$</p>
-
-<ul>
-<li>下三角矩阵 $L$ (填入系数和对角线1):</li>
-</ul>
-<p>$$L = \begin{pmatrix} 1 & 0 & 0 \\ \mathbf{2} & 1 & 0 \\ \mathbf{4} & \mathbf{3} & 1 \end{pmatrix}$$</p>
-
-<hr>
-<h2 id="矩阵的-QR-分解-QR-Decomposition"><a href="#矩阵的-QR-分解-QR-Decomposition" class="headerlink" title="矩阵的 QR 分解 (QR Decomposition)"></a>矩阵的 QR 分解 (QR Decomposition)</h2><h3 id="1-施密特正交化过程-Gram-Schmidt-Process"><a href="#1-施密特正交化过程-Gram-Schmidt-Process" class="headerlink" title="1. 施密特正交化过程 (Gram-Schmidt Process)"></a>1. 施密特正交化过程 (Gram-Schmidt Process)</h3><p>这是将一组基 ${\alpha_1, \alpha_2, \alpha_3}$ 转化为正交基 ${\beta_1, \beta_2, \beta_3}$ 的过程：</p>
-<p>$$
-\begin{aligned}
-\alpha_1 &= \beta_1 \\
-\alpha_2 &= \frac{(\alpha_2, \beta_1)}{\|\beta_1\|^2}\beta_1 + \beta_2 \\
-\alpha_3 &= \frac{(\alpha_3, \beta_1)}{\|\beta_1\|^2}\beta_1 + \frac{(\alpha_3, \beta_2)}{\|\beta_2\|^2}\beta_2 + \beta_3
-\end{aligned}
-$$</p>
-
-<blockquote>
-<p><strong>复杂度说明</strong>：该算法的时间复杂度通常为 $O(n^3)$ 次乘法。</p>
-</blockquote>
-<hr>
-<h3 id="2-QR-分解表示法"><a href="#2-QR-分解表示法" class="headerlink" title="2. QR 分解表示法"></a>2. QR 分解表示法</h3><p>矩阵 $A$ 可以分解为一个<strong>正交矩阵 (Q)</strong> 与一个<strong>上三角矩阵 (R)</strong> 的乘积：</p>
-<p>$$
-\begin{aligned}
-A &= [\alpha_1 \quad \alpha_2 \quad \alpha_3] \\
-&= \underbrace{\left[ \frac{\beta_1}{\|\beta_1\|} \quad \frac{\beta_2}{\|\beta_2\|} \quad \frac{\beta_3}{\|\beta_3\|} \right]}_{\text{正交矩阵 } Q} \underbrace{\begin{bmatrix}
-\|\beta_1\| & \frac{(\alpha_2, \beta_1)}{\|\beta_1\|} & \frac{(\alpha_3, \beta_1)}{\|\beta_1\|} \\
-0 & \|\beta_2\| & \frac{(\alpha_3, \beta_2)}{\|\beta_2\|} \\
-0 & 0 & \|\beta_3\|
-\end{bmatrix}}_{\text{上三角矩阵 } R}
-\end{aligned}
-$$</p>
-
-<hr>
-<h3 id="QR-分解具体算例-Gram-Schmidt"><a href="#QR-分解具体算例-Gram-Schmidt" class="headerlink" title="QR 分解具体算例 (Gram-Schmidt)"></a>QR 分解具体算例 (Gram-Schmidt)</h3><h4 id="1-待分解矩阵-A"><a href="#1-待分解矩阵-A" class="headerlink" title="1. 待分解矩阵 $A$"></a>1. 待分解矩阵 $A$</h4><p>设矩阵 $A$ 的列向量为 $\alpha_1, \alpha_2, \alpha_3$：</p>
-<p>$$
-A = \begin{bmatrix} 1 & 2 & -1 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \end{bmatrix}
-$$</p>
-
-<h4 id="2-施密特正交化步骤-求-beta-i"><a href="#2-施密特正交化步骤-求-beta-i" class="headerlink" title="2. 施密特正交化步骤 (求 $\beta_i$)"></a>2. 施密特正交化步骤 (求 $\beta_i$)</h4><ol>
-<li><p><strong>计算 $\beta_1$</strong>：</p>
-<p>$$\beta_1 = \alpha_1 = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}, \quad \|\beta_1\| = \sqrt{2}$$</p>
-</li>
-<li><p><strong>计算 $\beta_2$</strong>：</p>
-<p>$$\beta_2 = \alpha_2 - \frac{(\alpha_2, \beta_1)}{\|\beta_1\|^2}\beta_1 = \begin{bmatrix} 2 \\ 0 \\ 1 \end{bmatrix} - \frac{2}{2}\begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 1 \\ -1 \\ 1 \end{bmatrix}, \quad \|\beta_2\| = \sqrt{3}$$</p>
-</li>
-<li><p><strong>计算 $\beta_3$</strong>：</p>
-<p>$$\beta_3 = \alpha_3 - \frac{(\alpha_3, \beta_1)}{\|\beta_1\|^2}\beta_1 - \frac{(\alpha_3, \beta_2)}{\|\beta_2\|^2}\beta_2 = \begin{bmatrix} -1 \\ 1 \\ 1 \end{bmatrix} - \frac{0}{2}\beta_1 - \frac{-1}{3}\begin{bmatrix} 1 \\ -1 \\ 1 \end{bmatrix} = \begin{bmatrix} -2/3 \\ 2/3 \\ 4/3 \end{bmatrix}, \quad \|\beta_3\| = \sqrt{\frac{24}{9}} = \frac{2\sqrt{6}}{3}$$</p></li>
-</ol>
-<h4 id="3-分解结果：-A-QR"><a href="#3-分解结果：-A-QR" class="headerlink" title="3. 分解结果：$A &#x3D; QR$"></a>3. 分解结果：$A &#x3D; QR$</h4><ul>
-<li><strong>正交矩阵 $Q$</strong> (单位化后的基)</li>
-</ul>
-<p>$$
-Q = \begin{bmatrix} 
-1/\sqrt{2} & 1/\sqrt{3} & -1/\sqrt{6} \\ 
-1/\sqrt{2} & -1/\sqrt{3} & 1/\sqrt{6} \\ 
-0 & 1/\sqrt{3} & 2/\sqrt{6} 
-\end{bmatrix}
-$$</p>
-
-<ul>
-<li><strong>上三角矩阵 $R$</strong></li>
-</ul>
-<p>$$
-R = \begin{bmatrix} 
-\sqrt{2} & \sqrt{2} & 0 \\ 
-0 & \sqrt{3} & -1/\sqrt{3} \\ 
-0 & 0 & 2\sqrt{6}/3 
-\end{bmatrix}
-$$</p>
-
-<hr>
-<h2 id="矩阵的-LL-T-分解-Cholesky-Decomposition"><a href="#矩阵的-LL-T-分解-Cholesky-Decomposition" class="headerlink" title="矩阵的 $LL^T$ 分解 (Cholesky Decomposition)"></a>矩阵的 $LL^T$ 分解 (Cholesky Decomposition)</h2><h3 id="1-定义与前提"><a href="#1-定义与前提" class="headerlink" title="1. 定义与前提"></a>1. 定义与前提</h3><p>如果矩阵 $A$ 是一个<strong>对称正定矩阵</strong> (Symmetric Positive Definite)，则它可以唯一地分解为一个下三角矩阵 $L$ 及其转置的乘积：</p>
-<p>$$
-A = LL^T
-$$</p>
-
-<p>其中 $L$ 是一个对角线元素皆为正数的<strong>下三角矩阵</strong>。</p>
-<h3 id="2-计算公式-逐列求解"><a href="#2-计算公式-逐列求解" class="headerlink" title="2. 计算公式 (逐列求解)"></a>2. 计算公式 (逐列求解)</h3><p>$$
-\begin{aligned}
-l_{jj} &= \sqrt{a_{jj} - \sum_{k=1}^{j-1} l_{jk}^2} \\
-l_{ij} &= \frac{1}{l_{jj}} \left( a_{ij} - \sum_{k=1}^{j-1} l_{ik}l_{jk} \right), \quad i > j
-\end{aligned}
-$$</p>
-
-<hr>
-<h2 id="矩阵的-SVD-分解-Singular-Value-Decomposition"><a href="#矩阵的-SVD-分解-Singular-Value-Decomposition" class="headerlink" title="矩阵的 SVD 分解 (Singular Value Decomposition)"></a>矩阵的 SVD 分解 (Singular Value Decomposition)</h2><h3 id="1-核心定义"><a href="#1-核心定义" class="headerlink" title="1. 核心定义"></a>1. 核心定义</h3><p>对于任何一个 $m \times n$ 的实矩阵 $A$，都存在如下分解：</p>
-<p>$$
-A = U \Sigma V^T
-$$</p>
-
-<ul>
-<li><strong>$U$</strong>：左奇异向量（$AA^T$ 的特征向量）。</li>
-<li><strong>$\Sigma$</strong>：奇异值（$\sqrt{\lambda_i}$）。</li>
-<li><strong>$V$</strong>：右奇异向量（$A^TA$ 的特征向量）。</li>
-</ul>
-<hr>
-<h2 id="矩阵的极分解-Polar-Decomposition"><a href="#矩阵的极分解-Polar-Decomposition" class="headerlink" title="矩阵的极分解 (Polar Decomposition)"></a>矩阵的极分解 (Polar Decomposition)</h2><h3 id="1-核心定理"><a href="#1-核心定理" class="headerlink" title="1. 核心定理"></a>1. 核心定理</h3><p>每个实方阵 $A$ 都可以分解为一个<strong>半正定实对称矩阵</strong>与一个<strong>正交矩阵</strong>的乘积。</p>
-<p>$$
-A = (U \Sigma U^T) (U V^T)
-$$</p>
-
-<ul>
-<li><strong>$U \Sigma U^T$</strong>：对称变换（拉伸&#x2F;压缩）。</li>
-<li><strong>$U V^T$</strong>：正交变换（旋转&#x2F;镜像）。</li>
-</ul>
-
             
         </div>
     </div>
@@ -416,7 +282,7 @@ $$</p>
         
         <span class="tag">
             
-            <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ff7d73">数学</a>
+            <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00a596">数学</a>
         </span>
         
     </div>
@@ -468,7 +334,7 @@ $$</p>
         
         <span class="tag">
             
-            <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #ffa2c4">线代</a>
+            <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #00a596">线代</a>
         </span>
         
         <span class="tag">
@@ -525,12 +391,12 @@ $$</p>
         
         <span class="tag">
             
-            <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #03a9f4">线代</a>
+            <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #ffa2c4">线代</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00bcd4">数学</a>
+            <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ff7d73">数学</a>
         </span>
         
     </div>
@@ -582,12 +448,12 @@ $$</p>
         
         <span class="tag">
             
-            <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #00a596">线代</a>
+            <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #03a9f4">线代</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ffa2c4">数学</a>
+            <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ff7d73">数学</a>
         </span>
         
     </div>
@@ -639,12 +505,12 @@ $$</p>
         
         <span class="tag">
             
-            <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #00bcd4">线代</a>
+            <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #ffa2c4">线代</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00a596">数学</a>
+            <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #03a9f4">数学</a>
         </span>
         
     </div>
@@ -697,7 +563,7 @@ $$</p>
         
         <span class="tag">
             
-            <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ffa2c4">数学</a>
+            <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #03a9f4">数学</a>
         </span>
         
     </div>
@@ -802,7 +668,7 @@ $$</p>
         
         <span class="tag">
             
-            <a href="/tags/%E9%AB%98%E6%95%B0/" style="color: #03a9f4">高数</a>
+            <a href="/tags/%E9%AB%98%E6%95%B0/" style="color: #00bcd4">高数</a>
         </span>
         
     </div>
@@ -856,7 +722,7 @@ $$</p>
         
         <span class="tag">
             
-            <a href="/tags/poem/" style="color: #ffa2c4">poem</a>
+            <a href="/tags/poem/" style="color: #ff7d73">poem</a>
         </span>
         
     </div>
