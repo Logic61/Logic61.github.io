@@ -301,6 +301,15 @@ R = \begin{bmatrix}
 \end{bmatrix}
 $$</p>
 
+
+<blockquote>
+<p> 几何意义验证</p>
+<ul>
+<li>$R_{11} &#x3D; \sqrt{2}$ 是第一个向量 $\alpha_1$ 的长度。</li>
+<li>$R_{12} &#x3D; \sqrt{2}$ 是 $\alpha_2$ 在 $\alpha_1$ 方向上的投影分量。</li>
+<li>$R_{33} &#x3D; 2\sqrt{6}&#x2F;3$ 是 $\alpha_3$ 到平面 $\text{span}(\alpha_1, \alpha_2)$ 的垂直距离。</li>
+</ul>
+</blockquote>
 <hr>
 <h2 id="矩阵的-LL-T-分解-Cholesky-Decomposition"><a href="#矩阵的-LL-T-分解-Cholesky-Decomposition" class="headerlink" title="矩阵的 $LL^T$ 分解 (Cholesky Decomposition)"></a>矩阵的 $LL^T$ 分解 (Cholesky Decomposition)</h2><h3 id="1-定义与前提"><a href="#1-定义与前提" class="headerlink" title="1. 定义与前提"></a>1. 定义与前提</h3><p>如果矩阵 $A$ 是一个<strong>对称正定矩阵</strong> (Symmetric Positive Definite)，则它可以唯一地分解为一个下三角矩阵 $L$ 及其转置的乘积：</p>
 <p>$$
@@ -315,6 +324,51 @@ l_{ij} &= \frac{1}{l_{jj}} \left( a_{ij} - \sum_{k=1}^{j-1} l_{ik}l_{jk} \right)
 \end{aligned}
 $$</p>
 
+<p>Cholesky 分解 ($LL^T$) 具体算例</p>
+<h4 id="1-待分解矩阵-A-1"><a href="#1-待分解矩阵-A-1" class="headerlink" title="1. 待分解矩阵 $A$"></a>1. 待分解矩阵 $A$</h4><p>设 $A$ 是一个对称正定矩阵：</p>
+<p>
+$$
+A = \begin{bmatrix} 4 & 12 & -16 \\ 12 & 37 & -43 \\ -16 & -43 & 98 \end{bmatrix}
+$$
+</p>
+
+<hr>
+<h4 id="2-计算步骤-逐列求解下三角矩阵-L"><a href="#2-计算步骤-逐列求解下三角矩阵-L" class="headerlink" title="2. 计算步骤 (逐列求解下三角矩阵 $L$)"></a>2. 计算步骤 (逐列求解下三角矩阵 $L$)</h4><p>设 </p>
+<p>$$
+L = \begin{bmatrix} l_{11} & 0 & 0 \\ l_{21} & l_{22} & 0 \\ l_{31} & l_{32} & l_{33} \end{bmatrix}$$</p>，根据 $A = LL^T$ 逐步推导：
+
+<h5 id="第一列计算："><a href="#第一列计算：" class="headerlink" title="第一列计算："></a>第一列计算：</h5><ul>
+<li>$l_{11} &#x3D; \sqrt{a_{11}} &#x3D; \sqrt{4} &#x3D; \mathbf{2}$</li>
+<li>$l_{21} &#x3D; a_{21} &#x2F; l_{11} &#x3D; 12 &#x2F; 2 &#x3D; \mathbf{6}$</li>
+<li>$l_{31} &#x3D; a_{31} &#x2F; l_{11} &#x3D; -16 &#x2F; 2 &#x3D; \mathbf{-8}$</li>
+</ul>
+<h5 id="第二列计算："><a href="#第二列计算：" class="headerlink" title="第二列计算："></a>第二列计算：</h5><ul>
+<li>$l_{22} &#x3D; \sqrt{a_{22} - l_{21}^2} &#x3D; \sqrt{37 - 6^2} &#x3D; \sqrt{1} &#x3D; \mathbf{1}$</li>
+<li>$l_{32} &#x3D; \frac{1}{l_{22}}(a_{32} - l_{31}l_{21}) &#x3D; \frac{1}{1}(-43 - (-8 \times 6)) &#x3D; -43 + 48 &#x3D; \mathbf{5}$</li>
+</ul>
+<h5 id="第三列计算："><a href="#第三列计算：" class="headerlink" title="第三列计算："></a>第三列计算：</h5><ul>
+<li>$l_{33} &#x3D; \sqrt{a_{33} - (l_{31}^2 + l_{32}^2)} &#x3D; \sqrt{98 - ((-8)^2 + 5^2)} &#x3D; \sqrt{98 - (64 + 25)} &#x3D; \sqrt{9} &#x3D; \mathbf{3}$</li>
+</ul>
+<hr>
+<h4 id="3-分解结果"><a href="#3-分解结果" class="headerlink" title="3. 分解结果"></a>3. 分解结果</h4><p>
+$$
+L = \begin{bmatrix} 2 & 0 & 0 \\ 6 & 1 & 0 \\ -8 & 5 & 3 \end{bmatrix}, \quad 
+L^T = \begin{bmatrix} 2 & 6 & -8 \\ 0 & 1 & 5 \\ 0 & 0 & 3 \end{bmatrix}
+$$
+</p>
+
+<blockquote>
+<p>验证计算</p>
+<p>$$
+LL^T = \begin{bmatrix} 2 & 0 & 0 \\ 6 & 1 & 0 \\ -8 & 5 & 3 \end{bmatrix} \begin{bmatrix} 2 & 6 & -8 \\ 0 & 1 & 5 \\ 0 & 0 & 3 \end{bmatrix} = \begin{bmatrix} 4 & 12 & -16 \\ 12 & 37 & -43 \\ -16 & -43 & 98 \end{bmatrix} = A
+$$</p></blockquote>
+<hr>
+<h3 id="3-性质与应用"><a href="#3-性质与应用" class="headerlink" title="3. 性质与应用"></a>3. 性质与应用</h3><blockquote>
+<p> 核心观察</p>
+<ul>
+<li><strong>正定性判定</strong>：在分解过程中，如果根号下的值出现负数，说明原矩阵 $A$ 不是正定矩阵。</li>
+</ul>
+</blockquote>
 <hr>
 <h2 id="矩阵的-SVD-分解-Singular-Value-Decomposition"><a href="#矩阵的-SVD-分解-Singular-Value-Decomposition" class="headerlink" title="矩阵的 SVD 分解 (Singular Value Decomposition)"></a>矩阵的 SVD 分解 (Singular Value Decomposition)</h2><h3 id="1-核心定义"><a href="#1-核心定义" class="headerlink" title="1. 核心定义"></a>1. 核心定义</h3><p>对于任何一个 $m \times n$ 的实矩阵 $A$，都存在如下分解：</p>
 <p>$$
@@ -326,6 +380,41 @@ $$</p>
 <li><strong>$\Sigma$</strong>：奇异值（$\sqrt{\lambda_i}$）。</li>
 <li><strong>$V$</strong>：右奇异向量（$A^TA$ 的特征向量）。</li>
 </ul>
+<p>证明见SVD的随笔</p>
+<hr>
+<h3 id="2-构造关系"><a href="#2-构造关系" class="headerlink" title="2. 构造关系"></a>2. 构造关系</h3><p>SVD 与矩阵特征值分解（EVD）有着深刻的联系：</p>
+<p>
+$$
+\begin{aligned}
+A^T A &= (V \Sigma^T U^T)(U \Sigma V^T) = V (\Sigma^T \Sigma) V^T \\
+A A^T &= (U \Sigma V^T)(V \Sigma^T U^T) = U (\Sigma \Sigma^T) U^T
+\end{aligned}
+$$
+</p>
+
+<blockquote>
+<p>[!info] 结论</p>
+<ul>
+<li><strong>$V$ 的列向量</strong>：是 $A^T A$ 的特征向量。</li>
+<li><strong>$U$ 的列向量</strong>：是 $A A^T$ 的特征向量。</li>
+<li><strong>奇异值 $\sigma_i$</strong>：是 $A^T A$（或 $AA^T$）非零特征值 $\lambda_i$ 的平方根，即 $\sigma_i &#x3D; \sqrt{\lambda_i}$。</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="3-几何意义：线性变换的分解"><a href="#3-几何意义：线性变换的分解" class="headerlink" title="3. 几何意义：线性变换的分解"></a>3. 几何意义：线性变换的分解</h3><p>SVD 将一个复杂的线性变换拆解为三个简单的几何步骤：</p>
+<ol>
+<li><strong>旋转&#x2F;翻转 ($V^T$)</strong>：将输入向量旋转到新的坐标系。</li>
+<li><strong>拉伸 ($\Sigma$)</strong>：沿着新坐标轴的方向进行缩放。</li>
+<li><strong>再次旋转&#x2F;翻转 ($U$)</strong>：将缩放后的向量映射到目标空间的坐标系。</li>
+</ol>
+<hr>
+<h3 id="4-应用场景"><a href="#4-应用场景" class="headerlink" title="4. 应用场景"></a>4. 应用场景</h3><blockquote>
+<p>[!tip] 为什么 SVD 很重要？</p>
+<ul>
+<li><strong>PCA (主成分分析)</strong>：保留前k个奇异值得到秩k最佳近似。</li>
+<li><strong>伪逆计算</strong>：$A^+ &#x3D; V \Sigma^+ U^T$。</li>
+</ul>
+</blockquote>
 <hr>
 <h2 id="矩阵的极分解-Polar-Decomposition"><a href="#矩阵的极分解-Polar-Decomposition" class="headerlink" title="矩阵的极分解 (Polar Decomposition)"></a>矩阵的极分解 (Polar Decomposition)</h2><h3 id="1-核心定理"><a href="#1-核心定理" class="headerlink" title="1. 核心定理"></a>1. 核心定理</h3><p>每个实方阵 $A$ 都可以分解为一个<strong>半正定实对称矩阵</strong>与一个<strong>正交矩阵</strong>的乘积。</p>
 <p>$$
@@ -335,6 +424,24 @@ $$</p>
 <ul>
 <li><strong>$U \Sigma U^T$</strong>：对称变换（拉伸&#x2F;压缩）。</li>
 <li><strong>$U V^T$</strong>：正交变换（旋转&#x2F;镜像）。</li>
+</ul>
+<hr>
+<h3 id="2-变换过程的几何直观"><a href="#2-变换过程的几何直观" class="headerlink" title="2. 变换过程的几何直观"></a>2. 变换过程的几何直观</h3><p>极分解的过程可以看作是基底经历了一系列连续的线性变换：</p>
+<p>
+$$
+(\gamma_1, \dots, \gamma_n) \xrightarrow{\text{正交变换}} (\beta_1, \dots, \beta_n) \xrightarrow{\text{对称变换}} (\sigma_1 \beta_1, \dots, \sigma_n \beta_n)
+$$
+</p>
+
+<blockquote>
+<p>[!tip] 物理类比<br>在连续介质力学中，极分解被用来将物体的<strong>形变</strong>分解为纯粹的<strong>旋转</strong>（Rotation）和纯粹的<strong>伸展</strong>（Stretch）。这类似于复数 $z &#x3D; r e^{i\theta}$ 的极坐标表示，其中 $r$ 对应对称阵的缩放，$e^{i\theta}$ 对应正交阵的旋转。</p>
+</blockquote>
+<hr>
+<h3 id="3-与-SVD-的关系"><a href="#3-与-SVD-的关系" class="headerlink" title="3. 与 SVD 的关系"></a>3. 与 SVD 的关系</h3><p>极分解实际上是奇异值分解（SVD）的一种重新组合方式：</p>
+<ul>
+<li>设 $A &#x3D; U \Sigma V^T$</li>
+<li>则 $A &#x3D; (U \Sigma U^T) (U V^T)$</li>
+<li>这里 $U \Sigma U^T$ 是对称半正定阵，而 $U V^T$ 是正交阵。</li>
 </ul>
 
     </div>
