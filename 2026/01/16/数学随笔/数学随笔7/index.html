@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>凡人修仙法 | Logic の 博客</title>
+    <title>数学随笔7:Vandermonde行列式的意外出现 | Logic の 博客</title>
     <meta name="author" content="Logic" />
     <meta name="description" content="一小块凝固的时间" />
     <meta name="keywords" content="" />
@@ -161,22 +161,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>凡人修仙法</h1>
+        <h1>数学随笔7:Vandermonde行列式的意外出现</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2025/12/2
+            2026/1/16
         </span>
         
         <span class="category">
-            <a href="/categories/%E5%8A%9F%E6%B3%95/">
+            <a href="/categories/%E6%95%B0%E5%AD%A6%E9%9A%8F%E7%AC%94/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                功法
+                数学随笔
             </a>
         </span>
         
@@ -189,8 +189,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E4%BF%AE%E7%82%BC/" style="color: #ffa2c4">
-                    修炼
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ff7d73">
+                    数学
                 </a>
             </span>
             
@@ -199,12 +199,105 @@
     </div>
     
     <div class="content" v-pre>
-        <p>虽说不劝人修行，但听闻有礼物漂流活动时，觉得小法门是个很有趣的礼物，故作信。</p>
+        <p>例如，在证明特征子空间的独立性时，有一种证法就是利用Vandermonde行列式。</p>
 <span id="more"></span>
 
-<p><img src="/../images/MVIMG_20251202_190220.jpg"></p>
-<p>后面的内容就比较偏礼物祝福什么的，放出来也没什么意思，有用点的内容总结就是：<strong>不熬夜，坚持练，自有成效。</strong></p>
+<hr>
+<h2 id="一、特征子空间的独立性证明"><a href="#一、特征子空间的独立性证明" class="headerlink" title="一、特征子空间的独立性证明"></a>一、特征子空间的独立性证明</h2><h3 id="1-直和的定义"><a href="#1-直和的定义" class="headerlink" title="1. 直和的定义"></a>1. 直和的定义</h3><p>设 $V_1, V_2, \dots, V_s$ 是方阵 $A$ 的不同特征子空间，$\alpha_i \in V_i, 1 \le i \le s$。<br>若满足：</p>
+<p>$$\alpha_1 + \alpha_2 + \dots + \alpha_s = \mathbf{0}$$</p>
+则必有：
+<p>$$\alpha_1 = \alpha_2 = \dots = \alpha_s = \mathbf{0}$$</p>
 
+<blockquote>
+<p>[!abstract] 结论<br>这说明不同特征值对应的特征子空间 $V_1, V_2, \dots, V_s$ 的和是<strong>直和</strong>。</p>
+</blockquote>
+<hr>
+<h3 id="2-证明推导过程"><a href="#2-证明推导过程" class="headerlink" title="2. 证明推导过程"></a>2. 证明推导过程</h3><p>设 $V_1, V_2, \dots, V_s$ 对应的特征值分别为 $\lambda_1, \lambda_2, \dots, \lambda_s$（互不相同）。</p>
+<h4 id="第一步：构造线性方程组"><a href="#第一步：构造线性方程组" class="headerlink" title="第一步：构造线性方程组"></a>第一步：构造线性方程组</h4><p>利用 $A\alpha_i &#x3D; \lambda_i\alpha_i$，我们不断用矩阵 $A$ 左乘向量和等式：</p>
+<ol>
+<li>$\alpha_1 + \alpha_2 + \dots + \alpha_s &#x3D; \mathbf{0}$</li>
+<li>$\lambda_1\alpha_1 + \lambda_2\alpha_2 + \dots + \lambda_s\alpha_s &#x3D; \mathbf{0}$</li>
+<li>$\lambda_1^2\alpha_1 + \lambda_2^2\alpha_2 + \dots + \lambda_s^2\alpha_s &#x3D; \mathbf{0}$</li>
+<li>$\dots$</li>
+<li>$\lambda_1^{s-1}\alpha_1 + \lambda_2^{s-1}\alpha_2 + \dots + \lambda_s^{s-1}\alpha_s &#x3D; \mathbf{0}$</li>
+</ol>
+<h4 id="第二步：矩阵化表示"><a href="#第二步：矩阵化表示" class="headerlink" title="第二步：矩阵化表示"></a>第二步：矩阵化表示</h4><p>将上述方程组写成矩阵乘法形式：</p>
+<p>
+$$
+[\alpha_1 \ \alpha_2 \ \cdots \ \alpha_s] 
+\begin{bmatrix}
+1 & \lambda_1 & \lambda_1^2 & \cdots & \lambda_1^{s-1} \\
+1 & \lambda_2 & \lambda_2^2 & \cdots & \lambda_2^{s-1} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & \lambda_s & \lambda_s^2 & \cdots & \lambda_s^{s-1}
+\end{bmatrix} = \mathbf{0}
+$$
+</p>
+
+<h4 id="第三步：利用范德蒙德行列式-Vandermonde"><a href="#第三步：利用范德蒙德行列式-Vandermonde" class="headerlink" title="第三步：利用范德蒙德行列式 (Vandermonde)"></a>第三步：利用范德蒙德行列式 (Vandermonde)</h4><p>右侧的方阵是一个<strong>范德蒙德矩阵</strong>。由于特征值 $\lambda_i$ 互异，该方阵的行列式不为 0，因此<strong>方阵可逆</strong>。</p>
+<p>等式两边同时右乘该方阵的逆矩阵：</p>
+<p>$$\Rightarrow \alpha_1 = \alpha_2 = \dots = \alpha_s = \mathbf{0}$$</p>
+
+<p><strong>由此证明：</strong> 不同特征值的特征向量线性无关，进而不同特征子空间的基合并后依然线性无关。</p>
+<hr>
+<h2 id="二、关于幂零矩阵的证明"><a href="#二、关于幂零矩阵的证明" class="headerlink" title="二、关于幂零矩阵的证明"></a>二、关于幂零矩阵的证明</h2><h3 id="1-命题"><a href="#1-命题" class="headerlink" title="1. 命题"></a>1. 命题</h3><p><strong>例</strong>：若 $n$ 级矩阵 $A$ 满足条件：</p>
+<p>$$\text{tr}(A^k) = 0, \quad k = 1, 2, \dots, n$$</p>
+则 $A^n = 0$。
+
+<h3 id="2-证明过程"><a href="#2-证明过程" class="headerlink" title="2. 证明过程"></a>2. 证明过程</h3><h4 id="Step-1-利用-Schur-引理"><a href="#Step-1-利用-Schur-引理" class="headerlink" title="Step 1: 利用 Schur 引理"></a>Step 1: 利用 Schur 引理</h4><p>证：由 <strong>Schur 引理</strong>，在复数域上，$A$ 相似于一个上三角矩阵：</p>
+<p>
+$$A \sim \begin{bmatrix} 
+\lambda_1 & * & \dots & * \\
+0 & \lambda_2 & & * \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \dots & \lambda_n 
+\end{bmatrix}$$
+</p>
+
+<p>故 $A^k$ 相似于其幂次矩阵，对角线元素为特征值的 $k$ 次方。</p>
+<h4 id="Step-2-迹与特征值的关系"><a href="#Step-2-迹与特征值的关系" class="headerlink" title="Step 2: 迹与特征值的关系"></a>Step 2: 迹与特征值的关系</h4><p>根据迹的性质（相似矩阵迹相等）：</p>
+<p>
+$$\begin{aligned}
+\text{tr}(A) &= \lambda_1 + \lambda_2 + \dots + \lambda_n = 0 \\
+\text{tr}(A^2) &= \lambda_1^2 + \lambda_2^2 + \dots + \lambda_n^2 = 0 \\
+&\dots \dots \\
+\text{tr}(A^n) &= \lambda_1^n + \lambda_2^n + \dots + \lambda_n^n = 0 
+\end{aligned}$$
+</p>
+
+<h4 id="Step-3-合并相同特征值"><a href="#Step-3-合并相同特征值" class="headerlink" title="Step 3: 合并相同特征值"></a>Step 3: 合并相同特征值</h4><p>设 $\lambda_1, \dots, \lambda_s$ 为互异特征值，$k_i$ 为代数重数：</p>
+<p>
+$$\begin{bmatrix} 
+1 & 1 & \dots & 1 \\
+\lambda_1 & \lambda_2 & \dots & \lambda_s \\
+\vdots & \vdots & & \vdots \\
+\lambda_1^{s-1} & \lambda_2^{s-1} & \dots & \lambda_s^{s-1} 
+\end{bmatrix}
+\begin{bmatrix} 
+k_1 \lambda_1 \\
+k_2 \lambda_2 \\
+\vdots \\
+k_s \lambda_s 
+\end{bmatrix} = 
+\begin{bmatrix} 
+0 \\
+0 \\
+\vdots \\
+0 
+\end{bmatrix}$$
+</p>
+
+<p>由于范德蒙德矩阵可逆，解得 $k_i \lambda_i &#x3D; 0 \Rightarrow \lambda_i &#x3D; 0$。</p>
+<h4 id="Step-4-结论"><a href="#Step-4-结论" class="headerlink" title="Step 4: 结论"></a>Step 4: 结论</h4><p>由于所有特征值 $\lambda_i &#x3D; 0$，$A$ 相似于一个主对角线全为 $0$ 的严格上三角矩阵 $B$：</p>
+<p>
+$$A \sim B = \begin{bmatrix} 
+0 & * & \dots & * \\
+0 & 0 & & \vdots \\
+\vdots & \vdots & \ddots & * \\
+0 & 0 & \dots & 0 
+\end{bmatrix}$$
+</p>
+已知 $B^n = 0$，故 **$A^n = 0$**。
     </div>
     
     
