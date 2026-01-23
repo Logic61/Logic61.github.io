@@ -189,14 +189,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #00a596">
+                <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #03a9f4">
                     线代
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #03a9f4">
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00bcd4">
                     数学
                 </a>
             </span>
@@ -233,7 +233,7 @@
 这就完成了证明。如果我们代入一些简单的值就会得到漂亮的等式：
 <p>$$(I_n - BA)^{-1} = I_n + B(I_m - AB)^{-1}A$$</p>
 把矩阵换成向量 $\alpha, \beta^T$：
-<p>$$(I_n - \alpha \beta^T)^{-1} = 1-\beta^T \alpha$$</p>
+<p>$$(I_n - \alpha \beta^T)^{-1} = I_n+\frac{\alpha \beta^T}{1-\beta^T \alpha} (\beta^T \alpha \neq 1)$$</p>
 
 <h5 id="Schur-补"><a href="#Schur-补" class="headerlink" title="Schur 补"></a>Schur 补</h5><p>上面的 $D - CA^{-1}B$ 就被称为 Schur 补。</p>
 <h6 id="Schur-补与判别式"><a href="#Schur-补与判别式" class="headerlink" title="Schur 补与判别式"></a>Schur 补与判别式</h6><p>二次函数 $ax^2 + bx + c$。我们可以把它写成对称矩阵的二次型：</p>
