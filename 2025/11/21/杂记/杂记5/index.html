@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>杂记（5） | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>杂记（5）</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/11/21
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%9D%82%E8%AE%B0/" style="color: #00a596">
+                    杂记
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>忙碌ing，反思反思时间分配&amp;效率问题</p>
+<p>天哪我的杂记变成什么了</p>
+<p>摘要： AI反思  效率反思  勺中粤菜  周末时间计算 （<img src="/../images/ogNYreArEEaKjgAAkSoAmDtCJI8iDOAfgAtFA9~tplv-dy-aweme-images_q75.webp" alt="爱因斯坦.jpg"> 这些唐诗摘要是我手打的）</p>
+<span id="more"></span>
+
+<p>首先，我的效率确有问题。这实在有点坏了，AI应该作为一个last choice而并非首选，我感觉也许AI弱化了我的debug能力以及一定的思考能力，最近写作业深深感觉到了，感觉上了大学以来缺少了连续时间的独立思考，AI有些侵占了我的思考。这实在有点坏，今日起决定专业课作业不到最后一刻不动用AI，至少像计概作业，起码自己debug十五分钟？或者多久，再启用AI。至于线代高数这种，起码多想想，把会写的写完了再用AI，这样就又回到我曾熟悉的模式了，不说有多好，起码比现在好……</p>
+<p>然后，好忙。可能因为作业上了点强度吗，然后效率又被弱化，被夹紧了。开学前两个月我是能每天都写完当天作业来着，还能打游戏刷视频什么的，那会甚至不翘课。嗯，等等，这么一想也许是在宿舍的原因？也许可以试着换个地方学习，不过好冷，我曾经还真会去图书馆、教室、食堂之类的地方学习来着，最近因为太冷只想窝在宿舍，这两天还真做到不怎么被QQ打扰，朝坏一点的方面想，我不打扰别人很多时候别人是不会给我发信息的（真是有点鼠鼠）。不过就算我不会自己打扰自己，舍友玩游戏或者发出高兴的歌声之类的还是有点影响的。或者舍友速速AK了计概作业畅快地发表感言也会让我debug的心寒上几分——到底bug藏在哪啊……</p>
+<p>不过今天还是在勺中好好吃了一顿，舍友有广东人，被粤菜美食节吸引了，于是凑了一桌尝了尝，味道确实不错。点了大约如下：香酥鸡，烤鸭，羊肉，鸭血汤，金银馒头……有点忘了。偶尔放纵一顿。感觉他们对美食都鉴赏颇多，高雅人士鉴赏中.jpg。<img src="/../images/c3993cb576e94f34849f40d6a0ae044c.webp">我只好默默无言听他们高谈阔论。这一吃就是将近两个小时，但再忙，大约现在还没有到分秒必争。现在刚把计概写完，还有线代两道题，高数……十几题吧，也还好，希望不要超过两个小时。然而还有大作业，还有3篇论文……</p>
+<p>就在刚刚发现还有新的力学作业，有点悲伤，而且吧发现有心力场那一块有点遗忘了，算潮汐什么的已经忘得差不多了，还得看看，不过作业倒是看了看似乎还是简单的。力学还得稍微花点时间啊，没pf不就是为了考的漂亮一点吗，期中考试剩了40分钟结果没做到95以上也是神人了。不要这么搞吧，准确率低的吓人，仿佛回到了醉生梦死的高中（）</p>
+<p>那么，可以简单计算如下，线代高数：2h解决作业，计概已经解决，大作业每日分配不要超过1h吧，学学人机怎么写算法。然后力学接近十题，应该有大半水题，但我需要从头推导一遍有心力场，大概2h解决一切？然后国庆接的家教试课昨天跟我约课（，好神奇的跨度，每次联考爆炸然后找我上个课真的有用吗。还得备课，要讲两个小时，起码不知道得备课多久，先定1h吧，我不想从头做一遍题目了，把答案看懂就差不多得了……打算水水地上节课试试，第一次试课没有经验给我备了三四个小时，写了个细致入微的讲义，感觉纯纯浪费时间……好了现在省略号代替了网络热词，不过好像好一点，频率不很高，而且感觉比无意义的水话好。</p>
+<p>这么一看我要掏出9h在周末进行学业、家教，然后还有一个爱乐传习，唉，有3h，那就是10h，周末还想练琴，算上通勤7h，累计到17h了，周末总共48h，我要睡觉18h，吃饭+通勤算每天1h吧，然后每天起码1h用在修炼，还有7h吗，好像很多诶，当然实际行动起来就不好说了。不过权且这样吧。</p>
+<p>现在准备下楼吃个饭，回来大约17:30，乐观估计到18:55做完线代高数（，一下缩减半小时多吗。其实线代高数ddl一个到下周三一个到12.1，倒早得很，但下周还会布置新的……还是得做，而且还要自己学一点内容，不然绝对会被期末考试橄榄。线代老师：我们学校出题的特点就是随便出，下学期的东西拿过来让你证很正常。那能怎么办呢。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>
