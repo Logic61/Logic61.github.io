@@ -189,7 +189,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00a596">
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ffa2c4">
                     数学
                 </a>
             </span>
@@ -199,131 +199,242 @@
     </div>
     
     <div class="content" v-pre>
-        <p>引用 Gilbert 老爷子的话：</p>
+        <p>引用Gilbert老爷子的话：</p>
 <blockquote>
 <p>The Singular Value Decomposition is a highlight of linear algebra.</p>
 </blockquote>
 <span id="more"></span>
 
-<p>奇异值分解，形式上是把一个矩阵  写作 ，其中  是正交阵， 是对角阵。一方面看，我们相当于在输入空间和输出空间同时换基得到一个漂亮的对角阵，也就是把线性映射拆成旋转、拉伸、旋转；另一方面，我们展开  也就得到：</p>
+<p>奇异值分解，形式上是把一个矩阵 $A$ 写作 $A&#x3D;U\Sigma V^T$，其中 $U、V$ 是正交阵，$\Sigma$ 是对角阵。一方面看，我们相当于在输入空间和输出空间同时换基得到一个漂亮的对角阵，也就是把线性映射拆成旋转、拉伸、旋转，另一方面，我们展开 $\Sigma$ 也就得到：</p>
 <p>
-
+$$
+A=\sigma_1u_1v_1^T+\sigma_2u_2v_2^T+……
+$$
 </p>
 
-<p>我们可以把  拆成若干个秩一矩阵的和。如果需要，可以丢掉 （也就是奇异值）较小的那些矩阵，从而得到一个漂亮的近似。我们可以证明，保留前  大的奇异值对应矩阵，是  的最佳秩  近似，这也就是 PCA 定理。</p>
+<p>我们可以把 $A$ 拆成若干个秩一矩阵的和，如果我们需要，可以丢掉 $\sigma$ 也就是奇异值较小的那些矩阵，从而得到一个漂亮的近似，我们可以证明，保留前 $k$ 大的奇异值对应矩阵，是 $A$ 的最佳秩 $k$ 近似，这也就是 $PCA$ 定理。</p>
 <hr>
-<h2 id="任意矩阵都可以这么分解"><a href="#任意矩阵都可以这么分解" class="headerlink" title="任意矩阵都可以这么分解"></a>任意矩阵都可以这么分解</h2><p>我们知道，实对称矩阵可以正交对角化，但一般的矩阵并没有这么好的性质。幸运的是，对称矩阵是易于构造的。Gilbert 老爷子说，关于  的问题，往往可以变成  的问题。</p>
+<h2 id="任意矩阵都可以这么分解"><a href="#任意矩阵都可以这么分解" class="headerlink" title="任意矩阵都可以这么分解"></a>任意矩阵都可以这么分解</h2><p>我们知道，实对称矩阵可以正交对角化，但一般的矩阵并没有这么好的性质。幸运的是，对称矩阵是易于构造的，Gilbert老爷子说，关于 $A$ 的问题，往往可以变成 $A^TA$ 的问题。</p>
 <p>
-
+$$
+A^TA=PDP^T
+$$
 </p>
 
 <p>做移项，暴露出对角阵：</p>
 <p>
-
+$$
+P^TA^TAP=D
+$$
 </p>
 
-<p>这时，我们可以把  看成整体，记为 ，也就有 。这说明  的各列是正交的！因为非对角元（即列向量之间的内积）都是 。那么我们可以得到：</p>
+<p>这时，我们可以把 $AP$ 看成整体，记为 $G$，也就有 $G^T G&#x3D;D$，这说明 $G$ 是一个正交阵！因为非对角元是列向量之间的内积都是 $0$ ，那么我们可以得到：</p>
 <p>
-
+$$
+AP=G
+$$
 </p>
 
-<p>我们设 ，，于是有：</p>
+<p>这是一个正交阵，我们设 $P&#x3D;[\beta_1, \beta_2 … \beta_n]$，$G&#x3D;[\alpha_1, \alpha_2 … \alpha_n]$于是有：</p>
 <p>
-
+$$
+[A\beta_1, A\beta_2 ... A\beta_n]=[\alpha_1, \alpha_2 ... \alpha_n]
+$$
 </p>
 
-<p>利用实对称阵的特征值非负， 我们设为 ，那么也就有 。我们于是可以除以  来构造标准正交基，记 ，于是有：</p>
+<p>利用实对称阵的特征值非负，$D$ 我们设为 $diag (\sigma_1^2 … \sigma_n^2)$，那么也就有 $||\alpha_i||&#x3D;\sigma_i$，我们于是可以除以 $\sigma_i$ 来构造标准正交基，记 $\gamma_i&#x3D;\alpha_i &#x2F; \sigma_i$，于是有：</p>
 <p>
-
+$$
+AP=[\gamma_1, \gamma_2 ... \gamma_n]\begin{pmatrix} \sigma_1 & 0 & 0 & \cdots & 0 \\ 0 & \sigma_2 & 0 & \cdots & 0 \\ 0 & 0 & \sigma_3 & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & 0 & \cdots & \sigma_n \end{pmatrix}
+$$
 </p>
 
-<p>因为  也是正交阵，两边右乘  就得到了我们想要的形式 。</p>
-<p>从这里我们也可以看到，SVD 中的对角阵由  的特征值开根得到。不难知道，同样可以由  的特征值得到。计算上看，我们可以选  和  中形状较小的那个进行计算。</p>
+<p>因为 $P$ 也是正交阵，两边右乘 $P^T$ 就得到了我们想要的形式。<br>从这里我们也可以看到，SVD中的对角阵由 $A^TA$ 的特征值开根得到，不难知道同样可以由 $AA^T$ 的特征值得到，计算上看 $A$ 的形状我们可以选二者中比较小的那个算，会好算一点（</p>
 <hr>
-<h2 id="SVD-与四个基本子空间"><a href="#SVD-与四个基本子空间" class="headerlink" title="SVD 与四个基本子空间"></a>SVD 与四个基本子空间</h2><p>我们按照  的大小依次排列，让  最大， 最小。这样利用  的非负性，我们就知道从第  个奇异值开始  都是 （ 是矩阵的秩）。这样我们也就可以看出：</p>
+<h2 id="SVD与四个基本子空间"><a href="#SVD与四个基本子空间" class="headerlink" title="SVD与四个基本子空间"></a>SVD与四个基本子空间</h2><p>我们按照 $\sigma$ 的大小依次排列，让 $\sigma_1$ 最大， $\sigma_n$ 最小，这样利用 $\sigma$ 的非负性我们就知道从第 $r+1$ 个奇异值开始 $\sigma$ 都是 $0$ ，$r$ 是矩阵的秩。这样我们也就可以看出：</p>
 <p>
-
+$$
+A\beta_{r+1}=...=A\beta_n=0
+$$
 </p>
 
-<p>这说明  构成  的<strong>零空间</strong>。那么前  个  作为后面向量的正交补，构成  的<strong>行空间</strong>。类似的，做转置后可知，前  个  构成  的<strong>列空间</strong>，剩下的  构成  的<strong>左零空间</strong>。</p>
-<p>SVD 直接将  的四个基本子空间暴露在我们眼前。利用 ，我们就得到了行空间和列空间之间的映射。做一个转置：</p>
+<p>这说明 $\beta_{r+1}…\beta_n$ 构成 $A$ 的零空间，那么前 $r$ 个 $\beta$ 是后面向量的正交补，说明前面的向量构成 $A$ 的行空间，类似的做转置我们就知道，前 $r$ 个 $\gamma$ 构成 $A$ 的列空间，剩下的 $\gamma$ 构成 $A$ 的左零空间。SVD直接将 $A$ 的四个基本子空间暴露在我们眼前。那么再利用 $A\beta_i&#x3D;\sigma_i \gamma_i$，我们就得到了行空间和列空间之间的映射，我们可以做一个转置：</p>
 <p>
-
+$$
+A^T=V\Sigma U^T
+$$
 </p>
 
-<p>然后再右乘  就有：</p>
+<p>然后再右乘 $U$ 就有：</p>
 <p>
-
+$$
+A^T \gamma_i=\sigma_i\beta_i
+$$
 </p>
 
-<p>也就是说，行列空间存在双射，这与它们维度相等（均为 ）相吻合。</p>
+<p>也就是说，行列空间存在双射。这与他们维度相等吻合。</p>
 <hr>
-<h2 id="伪逆快速求解"><a href="#伪逆快速求解" class="headerlink" title="伪逆快速求解"></a>伪逆快速求解</h2><p>当一个矩阵  不是方阵，或者它是方阵但不可逆（奇异矩阵）时，我们无法定义标准逆矩阵 。为此，数学家提出了<strong>Moore-Penrose 伪逆</strong>（通常记作 ）。</p>
-<h3 id="1-基于-SVD-的直观定义"><a href="#1-基于-SVD-的直观定义" class="headerlink" title="1. 基于 SVD 的直观定义"></a>1. 基于 SVD 的直观定义</h3><p>假设矩阵  的奇异值分解为 ，那么  的伪逆  定义为：</p>
+<h2 id="伪逆快速求解"><a href="#伪逆快速求解" class="headerlink" title="伪逆快速求解"></a>伪逆快速求解</h2><p>当一个矩阵 $A$ 不是方阵，或者它是方阵但不可逆（奇异矩阵）时，我们无法定义标准逆矩阵 $A^{-1}$。为了解决这个问题，数学家提出了<strong>广义逆</strong>的概念，其中最常用、最精确的一种叫做 <strong>Moore-Penrose 伪逆</strong>（通常记作 $A^+$）。</p>
+<hr>
+<h3 id="1-基于-SVD-的直观定义"><a href="#1-基于-SVD-的直观定义" class="headerlink" title="1. 基于 SVD 的直观定义"></a>1. 基于 SVD 的直观定义</h3><p>这是理解伪逆最简单、最实用的方式。假设矩阵 $A$ 的奇异值分解为：</p>
 <p>
-
+$$
+A = U \Sigma V^T
+$$
 </p>
 
-<p>** 的构造方法：**</p>
+<p>那么 $A$ 的伪逆 $A^+$ 定义为：</p>
+<p>
+$$
+A^+ = V \Sigma^+ U^T
+$$
+</p>
+
+<p><strong>这里的 $\Sigma^+$ 是怎么得到的？</strong></p>
 <ol>
-<li>将  矩阵转置（形状从  变为 ）。</li>
-<li>将对角线上所有<strong>非零</strong>的奇异值取倒数（）。</li>
+<li>将 $\Sigma$ 矩阵转置（形状从 $m \times n$ 变为 $n \times m$）。</li>
+<li>将对角线上所有<strong>非零</strong>的奇异值取倒数 ($\frac{1}{\sigma_i}$)。</li>
 <li>保持所有的 <strong>0</strong> 元素不变。</li>
 </ol>
-<h3 id="2-伪逆满足的四个条件"><a href="#2-伪逆满足的四个条件" class="headerlink" title="2. 伪逆满足的四个条件"></a>2. 伪逆满足的四个条件</h3><p>一个矩阵  要成为  的伪逆，必须满足 Penrose 方程：</p>
-<p>1.<br>2.<br>3.<br>4. </p>
-<p>若要解 ，只要两边同乘伪逆即可得到最小二乘解 。</p>
 <hr>
-<h2 id="主成分分析-PCA-定理与证明"><a href="#主成分分析-PCA-定理与证明" class="headerlink" title="主成分分析 (PCA) 定理与证明"></a>主成分分析 (PCA) 定理与证明</h2><h3 id="1-定理描述"><a href="#1-定理描述" class="headerlink" title="1. 定理描述"></a>1. 定理描述</h3><p>
-
+<h3 id="2-伪逆必须满足的四个条件"><a href="#2-伪逆必须满足的四个条件" class="headerlink" title="2. 伪逆必须满足的四个条件"></a>2. 伪逆必须满足的四个条件</h3><p>一个矩阵 $G$ 要想成为 $A$ 的 Moore-Penrose 伪逆，必须严格满足以下四个 Penrose 方程：</p>
+<ol>
+<li>$AGA &#x3D; A$</li>
+<li>$GAG &#x3D; G$</li>
+<li>$(AG)^H &#x3D; AG$</li>
+<li>$(GA)^H &#x3D; GA$</li>
+</ol>
+<p>容易验证，SVD给出的伪逆符合这四个方程，而且是易求的。<br>这时，若要解 $Ax &#x3D; b$，只要两边同乘伪逆就得到了最小二乘解。</p>
+<hr>
+<h2 id="主成分分析-Principal-Component-Analysis-定理与证明"><a href="#主成分分析-Principal-Component-Analysis-定理与证明" class="headerlink" title="主成分分析 (Principal Component Analysis) 定理与证明"></a>主成分分析 (Principal Component Analysis) 定理与证明</h2><h3 id="1-定理描述"><a href="#1-定理描述" class="headerlink" title="1. 定理描述"></a>1. 定理描述</h3><p><strong>定理 (Principal Component Analysis):</strong></p>
+<p>
+$$
+\min_{\text{dim}V=k} Q(A, V) = Q(A, V_k) = \lambda_{k+1} + \dots + \lambda_m
+$$
 </p>
 
 <blockquote>
-<p>[!abstract] 物理意义<br>在所有  维子空间中，点集到主子空间  的<strong>距离平方和最小</strong>。</p>
+<p>[!abstract] 物理意义<br>即在欧氏空间 $\mathbb{R}^m$ 的所有 $k$ 维子空间中，点 $\alpha_1, \dots, \alpha_n$ 到主子空间 $V_k &#x3D; \langle \beta_1, \dots, \beta_k \rangle$ 的<strong>距离的平方和最小</strong>。</p>
 </blockquote>
-<h3 id="2-证明过程"><a href="#2-证明过程" class="headerlink" title="2. 证明过程"></a>2. 证明过程</h3><p><strong>第一步：子空间投影表示</strong><br>设  的标准正交基为 ，记 。投影表示为：</p>
+<hr>
+<h3 id="2-证明过程"><a href="#2-证明过程" class="headerlink" title="2. 证明过程"></a>2. 证明过程</h3><h4 id="第一步：子空间投影表示"><a href="#第一步：子空间投影表示" class="headerlink" title="第一步：子空间投影表示"></a>第一步：子空间投影表示</h4><p>设 $V$ 是 $\mathbb{R}^m$ 的一个 $k$ 维子空间，$\omega_1, \dots, \omega_k$ 是 $V$ 的一组标准正交基。<br>记 $B &#x3D; [\omega_1 \dots \omega_k]$，则有 $B^T B &#x3D; I_k$。</p>
+<p>$B B^T \alpha_i$ 是 $\alpha_i$ 在子空间 $V$ 上的正交投影：</p>
 <p>
-
+$$
+\begin{aligned}
+& (\alpha_i, \omega_1)\omega_1 + \dots + (\alpha_i, \omega_k)\omega_k \\
+= & \omega_1(\omega_1^T \alpha_i) + \dots + \omega_k(\omega_k^T \alpha_i) \\
+= & (\omega_1 \omega_1^T + \dots + \omega_k \omega_k^T)\alpha_i = B B^T \alpha_i
+\end{aligned}
+$$
 </p>
 
-<p><strong>第二步：目标转化</strong><br>利用勾股定理：</p>
+<h4 id="第二步：勾股定理与目标转化"><a href="#第二步：勾股定理与目标转化" class="headerlink" title="第二步：勾股定理与目标转化"></a>第二步：勾股定理与目标转化</h4><p>对 $\alpha_i (i&#x3D;1, \dots, n)$ 应用勾股定理后求和：</p>
 <p>
-
-</p>
-欲使  最小，只需最大化 。
-
-<p><strong>第三步：矩阵迹的化简</strong></p>
-<p>
-
+$$
+\underbrace{\sum \|\alpha_i\|^2}_{\text{tr}(A^T A) = \lambda_1 + \dots + \lambda_m \text{ (固定)}} = \underbrace{\sum \|B B^T \alpha_i\|^2}_{\text{正交投影平方和}} + \underbrace{\sum \|\alpha_i - B B^T \alpha_i\|^2}_{\text{垂线平方和} = Q(A, V)}
+$$
 </p>
 
-<p><strong>第四步：约束分析</strong><br>记 ，满足 。设  为  第  行元素的平方和，则  且 。</p>
-<p><strong>第五步：结论</strong></p>
+<p>欲使垂线平方和 $Q(A, V)$ 取最小值，只需让<strong>正交投影的平方和取最大</strong>，即最大化：</p>
 <p>
-
+$$
+\sum_{1 \le i \le n} \|B B^T \alpha_i\|^2 = \|B B^T A\|_F^2
+$$
 </p>
-当  时取等。
+
+<h4 id="第三步：矩阵迹的化简"><a href="#第三步：矩阵迹的化简" class="headerlink" title="第三步：矩阵迹的化简"></a>第三步：矩阵迹的化简</h4><p>利用 Frobenius 范数与迹的关系进行推导：</p>
+<p>
+$$
+\begin{aligned}
+\|B B^T A\|_F^2 &= \text{tr}((B B^T A)^T (B B^T A)) \\
+&= \text{tr}(A^T B \underbrace{B^T B}_{I_k} B^T A) \\
+&= \text{tr}(A^T B B^T A) \\
+&= \text{tr}(B^T A A^T B) \\
+&= \text{tr}(B^T P D P^T B) \\
+&= \text{tr}(C^T D C) \\
+&= \text{tr}(C C^T D)
+\end{aligned}
+$$
+</p>
+
+<h4 id="第四步：约束条件分析"><a href="#第四步：约束条件分析" class="headerlink" title="第四步：约束条件分析"></a>第四步：约束条件分析</h4><p>记 $m \times k$ 矩阵 $C &#x3D; P^T B$，由于 $C^T C &#x3D; B^T P P^T B &#x3D; B^T B &#x3D; I_k$。<br>知 $C$ 的 $k$ 列也由两两正交的单位向量组成。<br>故 $C$ 的列组可扩充成 $\mathbb{R}^m$ 的标准正交基，排成一个正交矩阵。<br>故 $C$ 第 $i$ 行元素的平方和 $c_i$ 满足条件 $0 \le c_i \le 1$，且：</p>
+<p>
+$$
+c_1 + \dots + c_m = \text{tr}(C C^T) = \text{tr}(C^T C) = k
+$$
+</p>
+
+<h4 id="第五步：得出结论"><a href="#第五步：得出结论" class="headerlink" title="第五步：得出结论"></a>第五步：得出结论</h4><p>由 $\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_m$ 及排序不等式，得：</p>
+<p>
+$$
+\text{tr}(C C^T D) = c_1 \lambda_1 + \dots + c_m \lambda_m \le \lambda_1 + \lambda_2 + \dots + \lambda_k
+$$
+</p>
+
+<p>等号可在 $C &#x3D; \begin{bmatrix} I_k \ 0 \end{bmatrix}$，$B &#x3D; P C &#x3D; [\beta_1 \dots \beta_k]$，即 $V &#x3D; \langle \beta_1, \dots, \beta_k \rangle &#x3D; V_k$ 时取到。</p>
+<blockquote>
+<p>[!important] 唯一性<br>当 $\lambda_k &gt; \lambda_{k+1}$ 时，等号仅在 $V_k &#x3D; \langle \beta_1, \dots, \beta_k \rangle$ 取到，此时 $k$ 维主子空间唯一。</p>
+</blockquote>
+<hr>
+<h1 id="矩阵的最佳低秩逼近-Best-Low-Rank-Approximation"><a href="#矩阵的最佳低秩逼近-Best-Low-Rank-Approximation" class="headerlink" title="矩阵的最佳低秩逼近 (Best Low-Rank Approximation)"></a>矩阵的最佳低秩逼近 (Best Low-Rank Approximation)</h1><h2 id="1-定理描述-1"><a href="#1-定理描述-1" class="headerlink" title="1. 定理描述"></a>1. 定理描述</h2><p>设 $A &#x3D; P S Q^T &#x3D; [\beta_1 \beta_2 \dots \beta_m] \begin{bmatrix} \sigma_1 &amp; &amp; &amp; \ &amp; \ddots &amp; &amp; \ &amp; &amp; \sigma_r &amp; \ &amp; &amp; &amp; 0 \end{bmatrix} \begin{bmatrix} \gamma_1^T \ \gamma_2^T \ \vdots \ \gamma_n^T \end{bmatrix}$ 是实矩阵 $A \in \mathbb{M}_{m,n}(\mathbb{R})$ 的 <strong>SVD 分解</strong>。</p>
+<p>其中：</p>
+<ul>
+<li>$P, Q$ 分别是 $m$ 级和 $n$ 级正交矩阵。</li>
+<li>$r$ 是矩阵 $A$ 的秩 ($r &#x3D; \text{rank}(A)$)。</li>
+<li>$\sigma_1 \ge \dots \ge \sigma_r &gt; 0$ 是 $A$ 的奇异值。</li>
+</ul>
+<p>记 $B_k &#x3D; [\beta_1 \dots \beta_k], 1 \le k \le r$，定义：</p>
+<p>
+$$
+A_k = \sigma_1 \beta_1 \gamma_1^T + \dots + \sigma_k \beta_k \gamma_k^T = B_k B_k^T A
+$$
+</p>
+
+<blockquote>
+<p>[!tip] <strong>核心结论</strong><br><strong>$A_k$ 是 $A$ 在秩 $k$ 下的最佳逼近：</strong><br>即对任意秩为 $k$ 的矩阵 $M \in \mathbb{M}_{m,n}(\mathbb{R})$，有：</p>
+<p>
+$$
+\|A - M\|_F^2 \ge \|A - A_k\|_F^2 = \sigma_{k+1}^2 + \dots + \sigma_r^2
+$$
+</p></blockquote>
+<hr>
+<h2 id="2-相关定义：Frobenius-范数"><a href="#2-相关定义：Frobenius-范数" class="headerlink" title="2. 相关定义：Frobenius 范数"></a>2. 相关定义：Frobenius 范数</h2><p>这里 $|A|<em>F$ 表示实矩阵 $A &#x3D; [a</em>{ij}]$ 的 <strong>Frobenius 范数</strong>：</p>
+<p>
+$$
+\|A\|_F = \sqrt{\text{tr}(A^T A)} = \sqrt{\text{tr}(A A^T)} = \sqrt{\sum_{\substack{1 \le i \le m \\ 1 \le j \le n}} a_{ij}^2} = \sqrt{\sigma_1^2 + \dots + \sigma_r^2}
+$$
+</p>
 
 <hr>
-<h2 id="矩阵的最佳低秩逼近"><a href="#矩阵的最佳低秩逼近" class="headerlink" title="矩阵的最佳低秩逼近"></a>矩阵的最佳低秩逼近</h2><h3 id="1-定理描述-1"><a href="#1-定理描述-1" class="headerlink" title="1. 定理描述"></a>1. 定理描述</h3><p>设  的 SVD 分解为 。记 。</p>
-<blockquote>
-<p>[!tip] 核心结论<br>对任意秩为  的矩阵 ，有：</p>
-<p>
-
-</p></blockquote>
-<h3 id="2-证明要点"><a href="#2-证明要点" class="headerlink" title="2. 证明要点"></a>2. 证明要点</h3><ol>
-<li><strong>距离不等式</strong>：。</li>
-<li><strong>PCA 支撑</strong>：。</li>
-<li><strong>取等</strong>：当  时，投影误差刚好等于被舍弃的奇异值平方和。</li>
+<h2 id="3-证明要点"><a href="#3-证明要点" class="headerlink" title="3. 证明要点"></a>3. 证明要点</h2><p>记 $A &#x3D; [\alpha_1 \dots \alpha_n]$，$M &#x3D; [\xi_1 \dots \xi_n] \in \mathbb{M}_{m,n}(\mathbb{R})$。<br>设 $V &#x3D; \langle \xi_1, \dots, \xi_n \rangle$ ($\dim V &#x3D; k$) 表示 $M$ 的列空间。</p>
+<ol>
+<li><p><strong>距离不等式</strong>：<br>$|\alpha_i - \xi_i|^2 \ge d(\alpha_i, V)^2, \quad 1 \le i \le n$<br>其中 $d(\alpha, V)$ 表示向量 $\alpha$ 到子空间 $V$ 的欧氏距离。</p>
+</li>
+<li><p><strong>目标函数转化</strong>：<br>$|A - M|<em>F^2 \ge \sum</em>{i&#x3D;1}^n d(\alpha_i, V)^2 &#x3D; Q(A, V)$<br>根据 <strong>PCA 定理</strong>：<br>$Q(A, V) \ge Q(A, V_k) &#x3D; \sigma_{k+1}^2 + \dots + \sigma_r^2$</p>
+</li>
+<li><p><strong>取等条件</strong>：</p>
+<ul>
+<li>这里 $V_k &#x3D; \langle \beta_1, \dots, \beta_k \rangle$ 是 $A$ 列向量分布的主子空间。</li>
+<li>上式中的等号可在 $M &#x3D; A_k &#x3D; B_k B_k^T A$ 时取到。</li>
+<li>此时 $M$ 的列向量 $B_k B_k^T \alpha_i$ 刚好是 $\alpha_i$ 在 $k$ 维主子空间 $V_k$ 上的正交投影。</li>
+</ul>
+</li>
+<li><p><strong>最终结果</strong>：</p>
+<ul>
+<li>$|\alpha_i - B_k B_k^T \alpha_i|^2 &#x3D; d(\alpha_i, V_k)^2, \quad 1 \le i \le n$</li>
+<li>$|A - A_k|<em>F^2 &#x3D; Q(A, V_k) &#x3D; \sigma</em>{k+1}^2 + \dots + \sigma_r^2$</li>
+</ul>
+</li>
 </ol>
 <hr>
-<h2 id="Python-实现图片压缩"><a href="#Python-实现图片压缩" class="headerlink" title="Python 实现图片压缩"></a>Python 实现图片压缩</h2><p>这些结果可以用于图片压缩。以下是利用奇异值分解实现灰度图片压缩的代码示例：</p>
+<p>这些结果可以用于图片压缩，将图片转化为灰度矩阵后保留其前 $k$ 大的奇异值，就达到了压缩图片的效果。以下是一个python利用奇异值分解实现图片压缩的代码：</p>
 <pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 
 # 1. 加载图片并转换为灰度矩阵
-img = Image.open(&#39;your_image_path.png&#39;).convert(&#39;L&#39;)
+img = Image.open(&#39;C:/Users/32372/Desktop/wallpaper/【哲风壁纸】三体-智子.png&#39;).convert(&#39;L&#39;)
 A = np.array(img)
 
 # 2. 进行奇异值分解
@@ -331,7 +442,9 @@ U, s, Vt = np.linalg.svd(A)
 
 # 3. 取前 k 个奇异值进行重构
 def reconstruct(k):
+    # s 是一个一维向量，需要构建成 Sigma 矩阵
     Sigma_k = np.diag(s[:k])
+    # 矩阵相乘：U_k * Sigma_k * V^T_k
     A_k = U[:, :k] @ Sigma_k @ Vt[:k, :]
     return A_k
 
