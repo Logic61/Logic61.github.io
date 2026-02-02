@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>数学随笔11：SVD | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>数学随笔11：SVD</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/2
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%95%B0%E5%AD%A6%E9%9A%8F%E7%AC%94/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                数学随笔
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00a596">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>引用 Gilbert 老爷子的话：</p>
+<blockquote>
+<p>The Singular Value Decomposition is a highlight of linear algebra.</p>
+</blockquote>
+<span id="more"></span>
+
+<p>奇异值分解，形式上是把一个矩阵  写作 ，其中  是正交阵， 是对角阵。一方面看，我们相当于在输入空间和输出空间同时换基得到一个漂亮的对角阵，也就是把线性映射拆成旋转、拉伸、旋转；另一方面，我们展开  也就得到：</p>
+<p>
+
+</p>
+
+<p>我们可以把  拆成若干个秩一矩阵的和。如果需要，可以丢掉 （也就是奇异值）较小的那些矩阵，从而得到一个漂亮的近似。我们可以证明，保留前  大的奇异值对应矩阵，是  的最佳秩  近似，这也就是 PCA 定理。</p>
+<hr>
+<h2 id="任意矩阵都可以这么分解"><a href="#任意矩阵都可以这么分解" class="headerlink" title="任意矩阵都可以这么分解"></a>任意矩阵都可以这么分解</h2><p>我们知道，实对称矩阵可以正交对角化，但一般的矩阵并没有这么好的性质。幸运的是，对称矩阵是易于构造的。Gilbert 老爷子说，关于  的问题，往往可以变成  的问题。</p>
+<p>
+
+</p>
+
+<p>做移项，暴露出对角阵：</p>
+<p>
+
+</p>
+
+<p>这时，我们可以把  看成整体，记为 ，也就有 。这说明  的各列是正交的！因为非对角元（即列向量之间的内积）都是 。那么我们可以得到：</p>
+<p>
+
+</p>
+
+<p>我们设 ，，于是有：</p>
+<p>
+
+</p>
+
+<p>利用实对称阵的特征值非负， 我们设为 ，那么也就有 。我们于是可以除以  来构造标准正交基，记 ，于是有：</p>
+<p>
+
+</p>
+
+<p>因为  也是正交阵，两边右乘  就得到了我们想要的形式 。</p>
+<p>从这里我们也可以看到，SVD 中的对角阵由  的特征值开根得到。不难知道，同样可以由  的特征值得到。计算上看，我们可以选  和  中形状较小的那个进行计算。</p>
+<hr>
+<h2 id="SVD-与四个基本子空间"><a href="#SVD-与四个基本子空间" class="headerlink" title="SVD 与四个基本子空间"></a>SVD 与四个基本子空间</h2><p>我们按照  的大小依次排列，让  最大， 最小。这样利用  的非负性，我们就知道从第  个奇异值开始  都是 （ 是矩阵的秩）。这样我们也就可以看出：</p>
+<p>
+
+</p>
+
+<p>这说明  构成  的<strong>零空间</strong>。那么前  个  作为后面向量的正交补，构成  的<strong>行空间</strong>。类似的，做转置后可知，前  个  构成  的<strong>列空间</strong>，剩下的  构成  的<strong>左零空间</strong>。</p>
+<p>SVD 直接将  的四个基本子空间暴露在我们眼前。利用 ，我们就得到了行空间和列空间之间的映射。做一个转置：</p>
+<p>
+
+</p>
+
+<p>然后再右乘  就有：</p>
+<p>
+
+</p>
+
+<p>也就是说，行列空间存在双射，这与它们维度相等（均为 ）相吻合。</p>
+<hr>
+<h2 id="伪逆快速求解"><a href="#伪逆快速求解" class="headerlink" title="伪逆快速求解"></a>伪逆快速求解</h2><p>当一个矩阵  不是方阵，或者它是方阵但不可逆（奇异矩阵）时，我们无法定义标准逆矩阵 。为此，数学家提出了<strong>Moore-Penrose 伪逆</strong>（通常记作 ）。</p>
+<h3 id="1-基于-SVD-的直观定义"><a href="#1-基于-SVD-的直观定义" class="headerlink" title="1. 基于 SVD 的直观定义"></a>1. 基于 SVD 的直观定义</h3><p>假设矩阵  的奇异值分解为 ，那么  的伪逆  定义为：</p>
+<p>
+
+</p>
+
+<p>** 的构造方法：**</p>
+<ol>
+<li>将  矩阵转置（形状从  变为 ）。</li>
+<li>将对角线上所有<strong>非零</strong>的奇异值取倒数（）。</li>
+<li>保持所有的 <strong>0</strong> 元素不变。</li>
+</ol>
+<h3 id="2-伪逆满足的四个条件"><a href="#2-伪逆满足的四个条件" class="headerlink" title="2. 伪逆满足的四个条件"></a>2. 伪逆满足的四个条件</h3><p>一个矩阵  要成为  的伪逆，必须满足 Penrose 方程：</p>
+<p>1.<br>2.<br>3.<br>4. </p>
+<p>若要解 ，只要两边同乘伪逆即可得到最小二乘解 。</p>
+<hr>
+<h2 id="主成分分析-PCA-定理与证明"><a href="#主成分分析-PCA-定理与证明" class="headerlink" title="主成分分析 (PCA) 定理与证明"></a>主成分分析 (PCA) 定理与证明</h2><h3 id="1-定理描述"><a href="#1-定理描述" class="headerlink" title="1. 定理描述"></a>1. 定理描述</h3><p>
+
+</p>
+
+<blockquote>
+<p>[!abstract] 物理意义<br>在所有  维子空间中，点集到主子空间  的<strong>距离平方和最小</strong>。</p>
+</blockquote>
+<h3 id="2-证明过程"><a href="#2-证明过程" class="headerlink" title="2. 证明过程"></a>2. 证明过程</h3><p><strong>第一步：子空间投影表示</strong><br>设  的标准正交基为 ，记 。投影表示为：</p>
+<p>
+
+</p>
+
+<p><strong>第二步：目标转化</strong><br>利用勾股定理：</p>
+<p>
+
+</p>
+欲使  最小，只需最大化 。
+
+<p><strong>第三步：矩阵迹的化简</strong></p>
+<p>
+
+</p>
+
+<p><strong>第四步：约束分析</strong><br>记 ，满足 。设  为  第  行元素的平方和，则  且 。</p>
+<p><strong>第五步：结论</strong></p>
+<p>
+
+</p>
+当  时取等。
+
+<hr>
+<h2 id="矩阵的最佳低秩逼近"><a href="#矩阵的最佳低秩逼近" class="headerlink" title="矩阵的最佳低秩逼近"></a>矩阵的最佳低秩逼近</h2><h3 id="1-定理描述-1"><a href="#1-定理描述-1" class="headerlink" title="1. 定理描述"></a>1. 定理描述</h3><p>设  的 SVD 分解为 。记 。</p>
+<blockquote>
+<p>[!tip] 核心结论<br>对任意秩为  的矩阵 ，有：</p>
+<p>
+
+</p></blockquote>
+<h3 id="2-证明要点"><a href="#2-证明要点" class="headerlink" title="2. 证明要点"></a>2. 证明要点</h3><ol>
+<li><strong>距离不等式</strong>：。</li>
+<li><strong>PCA 支撑</strong>：。</li>
+<li><strong>取等</strong>：当  时，投影误差刚好等于被舍弃的奇异值平方和。</li>
+</ol>
+<hr>
+<h2 id="Python-实现图片压缩"><a href="#Python-实现图片压缩" class="headerlink" title="Python 实现图片压缩"></a>Python 实现图片压缩</h2><p>这些结果可以用于图片压缩。以下是利用奇异值分解实现灰度图片压缩的代码示例：</p>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
+
+# 1. 加载图片并转换为灰度矩阵
+img = Image.open(&#39;your_image_path.png&#39;).convert(&#39;L&#39;)
+A = np.array(img)
+
+# 2. 进行奇异值分解
+U, s, Vt = np.linalg.svd(A)
+
+# 3. 取前 k 个奇异值进行重构
+def reconstruct(k):
+    Sigma_k = np.diag(s[:k])
+    A_k = U[:, :k] @ Sigma_k @ Vt[:k, :]
+    return A_k
+
+# 4. 可视化对比
+plt.figure(figsize=(12, 4))
+for i, k in enumerate([5, 20, 100]):
+    plt.subplot(1, 3, i+1)
+    plt.imshow(reconstruct(k), cmap=&#39;gray&#39;)
+    plt.title(f&#39;Top {k} Singular Values&#39;)
+plt.show()
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>
