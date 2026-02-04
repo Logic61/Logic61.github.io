@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>数学随笔2：分块矩阵行列式与 Woodbury 矩阵恒等式相关 | Logic の 博客</title>
+    <title>数学随笔12：不变量 | Logic の 博客</title>
     <meta name="author" content="Logic" />
     <meta name="description" content="一小块凝固的时间" />
     <meta name="keywords" content="" />
@@ -161,14 +161,14 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>数学随笔2：分块矩阵行列式与 Woodbury 矩阵恒等式相关</h1>
+        <h1>数学随笔12：不变量</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2026/1/6
+            2026/2/4
         </span>
         
         <span class="category">
@@ -189,14 +189,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E7%BA%BF%E4%BB%A3/" style="color: #ffa2c4">
-                    线代
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #03a9f4">
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ff7d73">
                     数学
                 </a>
             </span>
@@ -206,65 +199,80 @@
     </div>
     
     <div class="content" v-pre>
-        <p>作为一个整理而已，没有太多思想。</p>
+        <p>如果合法操作不会改变系统的某个变量，那么如果初始状态和末状态的不变量不同，就可以断言末状态无法到达。</p>
 <span id="more"></span>
-<h5 id="分块矩阵的行列式"><a href="#分块矩阵的行列式" class="headerlink" title="分块矩阵的行列式"></a>分块矩阵的行列式</h5><p>如果希望求解分块矩阵的行列式，我们通常也像正常行列式那样消元形成三角阵，那也就可以如此操作：</p>
-<p>$$\begin{pmatrix} A & B \\ C & D \end{pmatrix} \xrightarrow{R_1 - BD^{-1}R_2} \begin{pmatrix} A-BD^{-1}C & O \\ C & D \end{pmatrix} $$</p>
-此时就可以得到 <p>$$\det(M) = \det(D) \cdot \det(A - BD^{-1}C)$$</p>
 
-<h5 id="Woodbury-恒等式"><a href="#Woodbury-恒等式" class="headerlink" title="Woodbury 恒等式"></a>Woodbury 恒等式</h5><p>$$(A - BD^{-1}C)^{-1} = A^{-1} + A^{-1}B(D - CA^{-1}B)^{-1}CA^{-1}$$</p>
-证明通过行列变换给出：
-设 $M = \begin{pmatrix} A & B \\ C & D \end{pmatrix}$，假设 $A$ 可逆。
-首先我们可以进行行列变换：
-<p>$$\begin{pmatrix} A & B \\ C & D \end{pmatrix} \xrightarrow{R_1 - BD^{-1}R_2} \begin{pmatrix} A-BD^{-1}C & O \\ C & D \end{pmatrix} $$</p>
-这样就得到了左边出现的 $(A - BD^{-1}C)$，如何求逆呢？
-我们只要求出 $M$ 的逆，他的左上角即为 $A-BD^{-1}C$ 的逆了，那么就只是简单的消元，构造增广矩阵：
-<p>$$\left( \begin{array}{cc|cc} A & B & I & 0 \\ C & D & 0 & I \end{array} \right)$$</p>
-第一行乘 $A^{-1}$：
-<p>$$\left( \begin{array}{cc|cc} I & A^{-1}B & A^{-1} & 0 \\ C & D & 0 & I \end{array} \right)$$</p>
-消去左下角 $C$
-<p>$$\left( \begin{array}{cc|cc} I & A^{-1}B & A^{-1} & 0 \\ 0 & D - CA^{-1}B & -CA^{-1} & I \end{array} \right)$$</p>
-记 $\Delta_A=D - CA^{-1}B$，然后乘上他的逆：
-<p>$$\left( \begin{array}{cc|cc} I & A^{-1}B & A^{-1} & 0 \\ 0 & I & -\Delta_A^{-1}CA^{-1} & \Delta_A^{-1} \end{array} \right)$$</p>
-最后消掉右上角：
-<p>$$\left( \begin{array}{cc|cc} I & 0 & A^{-1} + A^{-1}B\Delta_A^{-1}CA^{-1} & -A^{-1}B\Delta_A^{-1} \\ 0 & I & -\Delta_A^{-1}CA^{-1} & \Delta_A^{-1} \end{array} \right)$$</p>
-代入 $\Delta_A=D - CA^{-1}B$ 我们就得到：
-<p>$$(A - BD^{-1}C)^{-1} = A^{-1} + A^{-1}B(D - CA^{-1}B)^{-1}CA^{-1}$$</p>
-这就完成了证明。如果我们代入一些简单的值就会得到漂亮的等式：
-<p>$$(I_n - BA)^{-1} = I_n + B(I_m - AB)^{-1}A$$</p>
-把矩阵换成向量 $\alpha, \beta^T$：
-<p>$$(I_n - \alpha \beta^T)^{-1} = I_n+\frac{\alpha \beta^T}{1-\beta^T \alpha} (\beta^T \alpha \neq 1)$$</p>
+<h1 id="3×3-华容道不可达性证明"><a href="#3×3-华容道不可达性证明" class="headerlink" title="3×3 华容道不可达性证明"></a>3×3 华容道不可达性证明</h1><blockquote>
+<p>[!ABSTRACT] 命题<br>在 $3 \times 3$ 的方格中，初始排列为 <code>abcdefgh</code>（空格在末尾），不可能通过合法的华容道&#x2F;滑动拼图规则变成 <code>abcdefhg</code>（空格在末尾）。</p>
+</blockquote>
+<hr>
+<h2 id="1-棋盘状态可视化"><a href="#1-棋盘状态可视化" class="headerlink" title="1. 棋盘状态可视化"></a>1. 棋盘状态可视化</h2><p>我们将空格表示为 <code>⬛</code>。</p>
+<h3 id="初始状态-S-start"><a href="#初始状态-S-start" class="headerlink" title="初始状态 $S_{start}$"></a>初始状态 $S_{start}$</h3><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">a</td>
+<td align="center">b</td>
+<td align="center">c</td>
+</tr>
+<tr>
+<td align="center">d</td>
+<td align="center">e</td>
+<td align="center">f</td>
+</tr>
+<tr>
+<td align="center">g</td>
+<td align="center">h</td>
+<td align="center">⬛</td>
+</tr>
+</tbody></table>
+<h3 id="目标状态-S-target"><a href="#目标状态-S-target" class="headerlink" title="目标状态 $S_{target}$"></a>目标状态 $S_{target}$</h3><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">a</td>
+<td align="center">b</td>
+<td align="center">c</td>
+</tr>
+<tr>
+<td align="center">d</td>
+<td align="center">e</td>
+<td align="center">f</td>
+</tr>
+<tr>
+<td align="center"><strong>h</strong></td>
+<td align="center"><strong>g</strong></td>
+<td align="center">⬛</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="2-数学证明：逆序对与奇偶性"><a href="#2-数学证明：逆序对与奇偶性" class="headerlink" title="2. 数学证明：逆序对与奇偶性"></a>2. 数学证明：逆序对与奇偶性</h2><h3 id="2-1-逆序对定义"><a href="#2-1-逆序对定义" class="headerlink" title="2.1 逆序对定义"></a>2.1 逆序对定义</h3><p>对于一个排列，如果一对元素 $(x, y)$ 满足 $x$ 在 $y$ 之前且 $x &gt; y$，则称之为一个<strong>逆序对</strong>。</p>
+<ul>
+<li><strong>状态 A 的序列：</strong> $(a, b, c, d, e, f, g, h)$<ul>
+<li>逆序对数：$N(A) &#x3D; 0$（<strong>偶排列</strong>）</li>
+</ul>
+</li>
+<li><strong>状态 B 的序列：</strong> $(a, b, c, d, e, f, h, g)$<ul>
+<li>逆序对：仅有 $(h, g)$ 一对，因为字母序 $h &gt; g$。</li>
+<li>逆序对数：$N(B) &#x3D; 1$（<strong>奇排列</strong>）</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-移动规则的奇偶变换"><a href="#2-2-移动规则的奇偶变换" class="headerlink" title="2.2 移动规则的奇偶变换"></a>2.2 移动规则的奇偶变换</h3><h4 id="进行行移动时，不会改变排列的逆序对"><a href="#进行行移动时，不会改变排列的逆序对" class="headerlink" title="进行行移动时，不会改变排列的逆序对"></a>进行行移动时，不会改变排列的逆序对</h4><p>proof: Obvious</p>
+<h4 id="进行列移动时，逆序对奇偶性不变"><a href="#进行列移动时，逆序对奇偶性不变" class="headerlink" title="进行列移动时，逆序对奇偶性不变"></a>进行列移动时，逆序对奇偶性不变</h4><p>proof：按从左到右从上到下编号可知，列移动将编号改变3，恰好越过两个字母，枚举可知这会把逆序对+2或-2或不变，故其奇偶性不变</p>
+<h4 id="从而逆序对是不变量"><a href="#从而逆序对是不变量" class="headerlink" title="从而逆序对是不变量"></a>从而逆序对是不变量</h4><h3 id="2-3-完成证明"><a href="#2-3-完成证明" class="headerlink" title="2.3 完成证明"></a>2.3 完成证明</h3><p>两个状态逆序对分别为0和1，奇偶性不同，故不可互相到达。</p>
+<p>严谨地，可以使用数学归纳法。假设进行了 $n$ 步操作，做一步操作已经证明了奇偶性不变。下面设进行 $n&#x3D;k-1$ 步后奇偶性不变。再走一步，同理可知奇偶性不变，从而 $n&#x3D;k$ 时奇偶性也与初始状态相同。故由归纳公理得知奇偶性为不变量。</p>
 
-<h5 id="Schur-补"><a href="#Schur-补" class="headerlink" title="Schur 补"></a>Schur 补</h5><p>上面的 $D - CA^{-1}B$ 就被称为 Schur 补。</p>
-<h6 id="Schur-补与判别式"><a href="#Schur-补与判别式" class="headerlink" title="Schur 补与判别式"></a>Schur 补与判别式</h6><p>二次函数 $ax^2 + bx + c$。我们可以把它写成对称矩阵的二次型：</p>
-<p>$$f(x, 1) = \begin{pmatrix} x & 1 \end{pmatrix} \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix} \begin{pmatrix} x \\ 1 \end{pmatrix}$$</p>
-对于这个 $2 \times 2$ 矩阵，如果我们计算 $a$ 的 Schur 补：
-<p>$$S = c - (b/2)a^{-1}(b/2) = c - \frac{b^2}{4a} = \frac{4ac - b^2}{4a}$$</p>
-你会发现 Schur 补的分子部分正好就是判别式 $\Delta$ 的相反数。
-这实际上可以推广到分块矩阵的正定性。
-对于对称矩阵 $M = \begin{pmatrix} A & B \\ B^T & C \end{pmatrix}$，$M \succ 0$（正定）当且仅当：
-1. $A \succ 0$
-2. $S = C - B^T A^{-1} B \succ 0$
-因为这实际上相当于我们做了一个合同变换把他变成了对角阵：
-<p>$$M' = \begin{pmatrix} A & O \\ O & C-B^TA^{-1}B \end{pmatrix}$$</p>
-从而保正定性，只要 $M'$ 正定就可知 $M$ 正定。
-
-<h6 id="正定加半正定行列式不变小"><a href="#正定加半正定行列式不变小" class="headerlink" title="正定加半正定行列式不变小"></a>正定加半正定行列式不变小</h6><p>假设 $A, B$ 是两个复 $Hermitian$ 矩阵，其中 $A$ 正定，$B$ 半正定，那么有：</p>
-<p>$$\det(A+B) \ge \det(A) $$</p>
-证明：
-我们希望更直观地看到 $A+B$ 与 $A$ 的差别，利用 Schur 补：
-<p>$$\det(A+B)=\det(A) \cdot \det(I+A^{-1}B)$$</p>
-然后我们只需要证明：
-<p>$$\det(I+A^{-1}B) \ge 1$$</p>
-这时利用 $A$ 正定从而 $A^{-1}$ 正定（特征值全部大于 0），就可以拆分：
-<p>$$\det(I+A^{-1/2} \cdot A^{-1/2} \cdot B) $$</p>
-利用$\det(I+AB) = \det(I+BA)$，把后两个矩阵看做一块，和第一个交换乘法顺序：
-<p>$$\det(I+A^{-1/2}BA^{-1/2}) $$</p>
-这相当于对 $B$ 做合同变换，保特征值，可见 $A^{-1/2}BA^{-1/2}$ 半正定，显然这也对称，于是可以把它对角化：
-<p>$$A^{-1/2}BA^{-1/2} = Q \Sigma Q^*$$</p>
-那么 $\Sigma$ 特征值非负，从而原来那个行列式也就等于
-<p>$$\det(I+ \Sigma) \ge \det(I) = 1$$</p>
-也就完成了证明。
     </div>
     
     
