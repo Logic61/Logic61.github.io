@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>数学随笔12：不变量 | Logic の 博客</title>
+    <title>杂记（23） 无可挽回的爱弥斯&amp;返校宣讲 | Logic の 博客</title>
     <meta name="author" content="Logic" />
     <meta name="description" content="一小块凝固的时间" />
     <meta name="keywords" content="" />
@@ -161,22 +161,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>数学随笔12：不变量</h1>
+        <h1>杂记（23） 无可挽回的爱弥斯&amp;返校宣讲</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2026/2/4
+            2026/2/6
         </span>
         
         <span class="category">
-            <a href="/categories/%E6%95%B0%E5%AD%A6%E9%9A%8F%E7%AC%94/">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                数学随笔
+                日记类
             </a>
         </span>
         
@@ -189,8 +189,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ffa2c4">
-                    数学
+                <a href="/tags/%E6%9D%82%E8%AE%B0/" style="color: #03a9f4">
+                    杂记
                 </a>
             </span>
             
@@ -199,79 +199,19 @@
     </div>
     
     <div class="content" v-pre>
-        <p>如果合法操作不会改变系统的某个变量，那么如果初始状态和末状态的不变量不同，就可以断言末状态无法到达。</p>
+        <p>我居然在过完3.1之后马上跑回学校做宣讲吗。</p>
 <span id="more"></span>
 
-<h1 id="3×3-华容道不可达性证明"><a href="#3×3-华容道不可达性证明" class="headerlink" title="3×3 华容道不可达性证明"></a>3×3 华容道不可达性证明</h1><blockquote>
-<p>[!ABSTRACT] 命题<br>在 $3 \times 3$ 的方格中，初始排列为 <code>abcdefgh</code>（空格在末尾），不可能通过合法的华容道&#x2F;滑动拼图规则变成 <code>abcdefhg</code>（空格在末尾）。</p>
-</blockquote>
-<hr>
-<h2 id="1-棋盘状态可视化"><a href="#1-棋盘状态可视化" class="headerlink" title="1. 棋盘状态可视化"></a>1. 棋盘状态可视化</h2><p>我们将空格表示为 <code>⬛</code>。</p>
-<h3 id="初始状态-S-start"><a href="#初始状态-S-start" class="headerlink" title="初始状态 $S_{start}$"></a>初始状态 $S_{start}$</h3><table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">a</td>
-<td align="center">b</td>
-<td align="center">c</td>
-</tr>
-<tr>
-<td align="center">d</td>
-<td align="center">e</td>
-<td align="center">f</td>
-</tr>
-<tr>
-<td align="center">g</td>
-<td align="center">h</td>
-<td align="center">⬛</td>
-</tr>
-</tbody></table>
-<h3 id="目标状态-S-target"><a href="#目标状态-S-target" class="headerlink" title="目标状态 $S_{target}$"></a>目标状态 $S_{target}$</h3><table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">a</td>
-<td align="center">b</td>
-<td align="center">c</td>
-</tr>
-<tr>
-<td align="center">d</td>
-<td align="center">e</td>
-<td align="center">f</td>
-</tr>
-<tr>
-<td align="center"><strong>h</strong></td>
-<td align="center"><strong>g</strong></td>
-<td align="center">⬛</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="2-数学证明：逆序对与奇偶性"><a href="#2-数学证明：逆序对与奇偶性" class="headerlink" title="2. 数学证明：逆序对与奇偶性"></a>2. 数学证明：逆序对与奇偶性</h2><h3 id="2-1-逆序对定义"><a href="#2-1-逆序对定义" class="headerlink" title="2.1 逆序对定义"></a>2.1 逆序对定义</h3><p>对于一个排列，如果一对元素 $(x, y)$ 满足 $x$ 在 $y$ 之前且 $x &gt; y$，则称之为一个<strong>逆序对</strong>。</p>
-<ul>
-<li><strong>状态 A 的序列：</strong> $(a, b, c, d, e, f, g, h)$<ul>
-<li>逆序对数：$N(A) &#x3D; 0$（<strong>偶排列</strong>）</li>
-</ul>
-</li>
-<li><strong>状态 B 的序列：</strong> $(a, b, c, d, e, f, h, g)$<ul>
-<li>逆序对：仅有 $(h, g)$ 一对，因为字母序 $h &gt; g$。</li>
-<li>逆序对数：$N(B) &#x3D; 1$（<strong>奇排列</strong>）</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-2-移动规则的奇偶变换"><a href="#2-2-移动规则的奇偶变换" class="headerlink" title="2.2 移动规则的奇偶变换"></a>2.2 移动规则的奇偶变换</h3><h4 id="进行行移动时，不会改变排列的逆序对"><a href="#进行行移动时，不会改变排列的逆序对" class="headerlink" title="进行行移动时，不会改变排列的逆序对"></a>进行行移动时，不会改变排列的逆序对</h4><p>proof: Obvious</p>
-<h4 id="进行列移动时，逆序对奇偶性不变"><a href="#进行列移动时，逆序对奇偶性不变" class="headerlink" title="进行列移动时，逆序对奇偶性不变"></a>进行列移动时，逆序对奇偶性不变</h4><p>proof：按从左到右从上到下编号可知，列移动将编号改变3，恰好越过两个字母，枚举可知这会把逆序对+2或-2或不变，故其奇偶性不变</p>
-<h4 id="从而逆序对是不变量"><a href="#从而逆序对是不变量" class="headerlink" title="从而逆序对是不变量"></a>从而逆序对是不变量</h4><h3 id="2-3-完成证明"><a href="#2-3-完成证明" class="headerlink" title="2.3 完成证明"></a>2.3 完成证明</h3><p>两个状态逆序对分别为0和1，奇偶性不同，故不可互相到达。</p>
-<p>严谨地，可以使用数学归纳法。假设进行了 $n$ 步操作，做一步操作已经证明了奇偶性不变。下面设进行 $n&#x3D;k-1$ 步后奇偶性不变。再走一步，同理可知奇偶性不变，从而 $n&#x3D;k$ 时奇偶性也与初始状态相同。故由归纳公理得知奇偶性为不变量。</p>
+<p>爱弥斯直接地击中了我。</p>
+<p>3.1毫无疑问是鸣潮的第一个新的巅峰，主角不再是随随便便爆种就能解决一切问题，救回所有人的龙傲天，在爱弥斯面前，他显露出了前所未有的无助、痛苦，是一个有血有肉的人。拯救者也并不全能，也会思念自己的家乡，也会为无可挽回的失去感到悲伤，但此前从没有人触及过这些，此前的漂泊者是优秀的战友，可靠的同伴、前辈，万能的御者。</p>
+<p>但爱弥斯，希望漂泊者能更轻松一些。</p>
+<p>尽管关联性很弱，我忆起了中学在题海中挣扎的图景，我们为着冰冷的分数奋斗着，谁来过问我们快乐与否？却曾有人问过我在学校过的开心吗，但目下她与我却较爱弥斯与漂泊者的分隔还远一些，她与我之间的联结也弱的多，但到底比起他人强上一些，那是蒙昧之中孤独与孤独的相遇，曾予我莫大的安慰。然而分离之时我倒平淡的多，我知道无可挽回，也便没有十分激荡的情绪，只是在日后夜深人静的黑暗里间或地神伤，那是一场连绵的阴雨，不过到底随着时间推移，雨小了些。</p>
+<p>为什么玩二游呢，无非是因为现实不如意，至少现实没办法让我得到如此的体验。消逝之前最后挂念的，不是自己，而是那个人，他会轻松一些么？在最应当放肆的青春，我蜗居在小小的房间里，看着电脑里角色顾盼神飞，我感受到了世界的颜色。世界并不那么无聊，并不那么灰暗，只是我灰暗罢了，这很可安慰一下我，尽管我早知如此，亲眼见到这样美妙的情感，见到这样多彩的神情，见证美丽动人的故事，也足以为我沉寂的灵魂注入生命的活力。</p>
+<p>过完剧情，我到了学校，下一届的学生们缓缓入席，人不多，因为不少去体锻了。换我也许会来，但我某一个同桌铁定不会来，他定是要打球的，他也确实曾这么做了。</p>
+<p>我看着昔日较为内敛的同学也变得落落大方，出色地完成了宣讲，我总有些担心自己不行，甚至有些紧张，我高考或者大学期末考都不会这么紧张。然而坐到那个位置上，看向台下一双双有神的眸子，紧张又烟消云散了，我到底对着ppt念过几回，终于也还算顺利地做完了预先准备的发言，似乎也不那么差。甚至有相当一部分即兴发挥的部分，回头想想也不那么尴尬。这让我感到一阵欣喜，我有无数个瞬间，在回想过去的时候感到无比尴尬与抓狂。也许与人打交道对我也是一件好事，但我不太会，也许我应该在大一就干脆加入学生部，干点杂活，学学怎么在人类社会中正常地表现出一个人类该有的样子。我原先预备加入青协电脑小队的，但那实在草台班子，唉误我啊青协。早知道我随便选个部门加进去试试的啊。或者加进导引队？到底也会有一些社交的内容。再说吧。</p>
+<p>晚上，我乘坐公交车，在海边下了车。天完全地黑着，阴翳的云层屏蔽了月亮和星星，凭着路边的灯，能勉强地看到近处的水面，远处金灿灿的灯光连成一条线，在”邪王真眼”之下，那是不可视境界线。动漫中的场景，实在是易于复刻的，但是那样的人，那样的奇遇，几乎不可能再现，这也是为什么看动漫不是么。</p>
+<p>海风柔和地持续地吹着，我穿的略多，本有些微热，这风来正好叫人十分爽快，所在之处只有零星的人行走，后方的路上倒是有不少穿行的车。一切都是那么的美妙，这里应该有一个女孩与我一同靠在石头垒砌的矮矮的护栏，伊的长发在海风吹拂之下上下摆荡，散布着若有若无的芬芳，我们会一同叹惋月亮的羞涩，指责星辰的失约，在深邃磅礴的海洋面前交换永恒的誓言，在如织的灯火中签订灵魂的契约。</p>
+<p>我独自吹了会风，扭头骑上了自行车回家。静谧的夜晚，不应该在海边独自伤神。</p>
 
     </div>
     
