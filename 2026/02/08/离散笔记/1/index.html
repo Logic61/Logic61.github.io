@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>数论入门 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>数论入门</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/8
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%A6%BB%E6%95%A3%E7%AC%94%E8%AE%B0/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                离散笔记
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #03a9f4">
+                    数学
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%A6%BB%E6%95%A3/" style="color: #00bcd4">
+                    离散
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #03a9f4">
+                    笔记
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>鉴于笨人没怎么学过数论，第一次学有些模糊，记个笔记加深一下印象，没有太多理解，更多是整理。主要内容来自于 $mit$ 的离散数学以及 $Gemini$ 助教，因而也许也作为学习用。</p>
+<span id="more"></span>
+
+<h1 id="裴蜀定理-Bezout’s-Identity"><a href="#裴蜀定理-Bezout’s-Identity" class="headerlink" title="裴蜀定理 (Bézout’s Identity)"></a>裴蜀定理 (Bézout’s Identity)</h1><p>一个 $3$ 加仑的桶和一个 $5$ 加仑的桶能否精准称出 $1$ 加仑的水？假设你能精准地填满桶。<br>可以这样，装满 $3$ 加仑的，往 $5$ 加仑的加，两次，最后倒满 $5$ 加仑的，$3$ 加仑的就还剩 $1$ 加仑。<br>这实际上可以看做一个线性组合：</p>
+<p>
+$$
+1 = 2 \cdot 3 + (-1) \cdot 5
+$$
+</p>
+
+<p>如果抽象一点呢，一个 $a$ 加仑的桶和一个 $b$ 加仑的桶，他们能否得到 $c$ 加仑的水？<br>考虑一个特殊情况，$6, 9$，那么直觉告诉我们，应该只会弄出来 $3$ 的倍数。<br>实际上，这也就是</p>
+<p>
+$$
+ax + by = c
+$$
+</p>
+
+<p>是否有整数解。<br>裴蜀定理即：其充要条件是 $c$ 是 $\gcd(a, b)$ 的倍数，$\gcd$ 表示最大公约数。</p>
+<blockquote>
+<p><strong>证明</strong></p>
+<p>不妨设 $c &gt; 0$，若 $c &lt; 0$ 在两边同时取负号即可，若 $c &#x3D; 0$ 情形是 $trivial$ 的。</p>
+<p>满足条件的 $c$ 是正整数的子集必有下确界 $d$，记符合条件的 $c$ 组成集合 $S$，考虑 $m \neq d \in S$，我们可以写成带余除法的形式：</p>
+<p>
+$$
+m = kd + r
+$$
+</p>
+
+<p>其中 $r &lt; d$ 是余数。移项就得到：</p>
+<p>
+$$
+r = m - kd
+$$
+</p>
+
+<p>从而 $r$ 也可以被 $a, b$ 表出，从而 $r \in S$ 或 $r &#x3D; 0$。前者与 $r &lt; d$ 和 $d$ 是 $S$ 的最小值矛盾，从而只能有 $r &#x3D; 0$，也就是：</p>
+<p>
+$$
+\forall m \in S, m \neq d, \text{ 有 } m = kd
+$$
+</p>
+
+<p>从而所有符合条件的数都是 $d$ 的倍数。</p>
+<p>下面证明 $d &#x3D; \gcd(a, b)$：</p>
+<p>令 $c &#x3D; a$，则有 $(x, y) &#x3D; (1, 0)$ 符合条件，故 $a \in S$，同理 $b \in S$。从而 $d$ 是他们的公约数。下面证明是最大公约数：考虑任意公约数 $g$，有 $g \mid (ax + by)$，从而 $g \mid d$，从而 $g \leq d$。得证。</p>
+<p>综上所述，命题成立。</p>
+</blockquote>
+<p>我们也可以逆向进行一些数学的思考，利用上述，可以反过来给出 $\gcd$ 的性质：</p>
+<p>
+$$
+\gcd(a, b) = ax + by
+$$
+</p>
+
+<p>即其可被 $a, b$ 通过整数系数线性表出。意外的和线代有一点关联。</p>
+<h1 id="辗转相除法（欧几里得算法）"><a href="#辗转相除法（欧几里得算法）" class="headerlink" title="辗转相除法（欧几里得算法）"></a>辗转相除法（欧几里得算法）</h1><p>知道了能整出的水是最大公约数，如何计算呢？利用事实：</p>
+<p>
+$$
+\gcd(a, b) = \gcd(b, a \bmod b)
+$$
+</p>
+
+<p>允许我们辗转相除快速求出最大公约数。</p>
+<blockquote>
+<p><strong>证明</strong></p>
+<p>不妨设 $a \leq b$。设 $a &#x3D; qb + r$，其中 $r &#x3D; a \bmod b$。我们要证明 $\gcd(a, b) &#x3D; \gcd(b, r)$。</p>
+<p>我们考虑证明他们分别整除彼此来说明二者相等。</p>
+<p>先证明左边整除右边。不妨记左边是 $x$ 右边是 $y$，则有 $k_1x &#x3D; q(k_2x) + r$，也就是说 $r &#x3D; (k_1 - qk_2)x$，那么就有 $x \mid r$。又有 $x \mid b$，从而 $x \mid \gcd(b, r)$，即 $x \mid y$。</p>
+<p>接下来证明右边整除左边。如法炮制即可，$a &#x3D; q(k_3y) + k_4y$，从而 $y \mid a$。已知 $y \mid b$，故 $y \mid \gcd(a, b)$，即 $y \mid x$。</p>
+<p>结合两方面得到原命题成立。</p>
+</blockquote>
+<h1 id="一些定义"><a href="#一些定义" class="headerlink" title="一些定义"></a>一些定义</h1><h3 id="互素-relatively-prime"><a href="#互素-relatively-prime" class="headerlink" title="互素 (relatively prime)"></a>互素 (relatively prime)</h3><p>如果 $a$ 和 $b$ 最大公约数为 $1$，即 $\exists x, y \in \mathbb{Z}, \text{ s.t. } ax + by &#x3D; 1$。</p>
+<h3 id="同余-congruent"><a href="#同余-congruent" class="headerlink" title="同余 (congruent)"></a>同余 (congruent)</h3><p>如果 $n \mid (a - b)$。写作 $a \equiv b \pmod n$。</p>
+<h3 id="逆元-inverse"><a href="#逆元-inverse" class="headerlink" title="逆元 (inverse)"></a>逆元 (inverse)</h3><p>如果 $x \cdot x^{-1} \equiv 1 \pmod n$ 且 $x^{-1} \in {1, 2, \dots, n-1}$，那么二者互为模意义的逆元。</p>
+<h5 id="裴蜀定理与逆元"><a href="#裴蜀定理与逆元" class="headerlink" title="裴蜀定理与逆元"></a>裴蜀定理与逆元</h5><p>裴蜀定理给出 $\gcd(a, b) &#x3D; ax + by$，如果 $a, b$ 互素，那么有 $ax + by &#x3D; 1$，从而我们有 $ax \equiv 1 \pmod y$ 或者 $by \equiv 1 \pmod x$。也就是说，我们可以通过此方程得到逆元。</p>
+<h3 id="余数-remainder"><a href="#余数-remainder" class="headerlink" title="余数 (remainder)"></a>余数 (remainder)</h3><p>$m &#x3D; kd + r$，则 $r$ 即为余数，即为 $\text{rem}(m, d)$。不难发现，$\text{rem}(m, d) \equiv m \pmod d$。</p>
+<h1 id="密码学与数论"><a href="#密码学与数论" class="headerlink" title="密码学与数论"></a>密码学与数论</h1><p>尽管计算机计算速度很快，但仍然有限。要计算一个大整数的质因数分解仍然很难，从而可以利用这一点对信息加密。</p>
+<h3 id="加密方法-1"><a href="#加密方法-1" class="headerlink" title="加密方法 1"></a>加密方法 1</h3><p>首先，把信息变成一个整数 $m$。例如，选择一个很大的质数 $k$，加密方式就是 $m’ &#x3D; m \cdot k$。要解密只需要除以 $k$ 即可。</p>
+<p>但设若一个人截获了两条信息 $m_1’ &#x3D; m_1k, m_2’ &#x3D; m_2k$，那么只要计算 $\gcd(m_1’, m_2’)$ 就可能得到了密钥 $k$，这显然很不安全。</p>
+<h3 id="加密方法-2"><a href="#加密方法-2" class="headerlink" title="加密方法 2"></a>加密方法 2</h3><p>这一次，让 $m’ &#x3D; \text{rem}(mk, p)$，$p$ 是质数。<br>解密时利用 $m’ \equiv mk \pmod p$，如果 $k^{-1}$ 存在，那么两边同乘即可得到 $m \equiv m’ \cdot k^{-1} \pmod p$。</p>
+<p>设若一个人同时截获了 $m, m’$，那么他此时也可以破解 $k$：</p>
+<blockquote>
+<p><strong>破解方法</strong></p>
+<p>由于 $p$ 是质数，$m, p$ 互素，从而我们可以得到 $m$ 在模 $p$ 意义下的逆元 $m^{-1}$。<br>由 $m’ \equiv mk \pmod p$ 两边同乘 $m^{-1}$，得到 $k \equiv m’ m^{-1} \pmod p$。</p>
+</blockquote>
+<h2 id="更安全的加密：RSA"><a href="#更安全的加密：RSA" class="headerlink" title="更安全的加密：RSA"></a>更安全的加密：RSA</h2><h3 id="欧拉函数-Euler’s-Totient-Function"><a href="#欧拉函数-Euler’s-Totient-Function" class="headerlink" title="欧拉函数 (Euler’s Totient Function)"></a>欧拉函数 (Euler’s Totient Function)</h3><p>通常记作 $\phi(n)$，表示 ${1, 2, \dots, n-1}$ 中与 $n$ 互素的数字个数。<br>例如 $\phi(12) &#x3D; 4, \phi(15) &#x3D; 8$。</p>
+<h4 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h4><p>
+$$
+\text{如果 } \gcd(n, k) = 1, \text{ 那么 } k^{\phi(n)} \equiv 1 \pmod n
+$$
+</p>
+
+<blockquote>
+<p><strong>引理 1</strong>：如果 $\gcd(n, k) &#x3D; 1$，那么 $ak \equiv bk \pmod n \implies a \equiv b \pmod n$。</p>
+<p><strong>引理 2</strong>：如果 $\gcd(n, k) &#x3D; 1$，记 $r &#x3D; \phi(n)$，设 ${k_1, \dots, k_r}$ 是与 $n$ 互素的集合，则 ${\text{rem}(k_1k, n), \dots, \text{rem}(k_rk, n)} &#x3D; {k_1, \dots, k_r}$。</p>
+<p><strong>证明</strong>：</p>
+<p>利用引理 2，我们将两组集合元素分别相乘：</p>
+<p>
+$$
+\begin{aligned} 
+k_1 \cdot k_2 \cdots k_r &= \text{rem}(k_1k, n) \cdots \text{rem}(k_rk, n) \\ 
+&\equiv (k_1k) \cdot (k_2k) \cdots (k_rk) \pmod n \\ 
+&\equiv (k_1 \cdot k_2 \cdots k_r) \cdot k^r \pmod n
+\end{aligned}
+$$
+</p>
+
+<p>利用引理 1，约去两边的公因子，并代入 $r &#x3D; \phi(n)$，得证：</p>
+<p>
+$$
+k^{\phi(n)} \equiv 1 \pmod n
+$$
+</p></blockquote>
+<h4 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h4><p>令 $p$ 为质数，则 $\phi(p) &#x3D; p - 1$，从而有：</p>
+<p>
+$$
+k^{p-1} \equiv 1 \pmod p
+$$
+</p>
+
+<p>利用此定理可得逆元 $k^{-1} \equiv k^{p-2} \pmod p$。</p>
+<h3 id="RSA-加密流程"><a href="#RSA-加密流程" class="headerlink" title="RSA 加密流程"></a>RSA 加密流程</h3><ol>
+<li><strong>准备</strong>：选两个大质数 $p, q$，计算 $n &#x3D; p \times q$。</li>
+<li><strong>计算</strong>：$\phi(n) &#x3D; (p-1)(q-1)$。</li>
+<li><strong>密钥</strong>：选公钥 $e$ 满足 $\gcd(e, \phi(n)) &#x3D; 1$。计算私钥 $d$，使得 $ed \equiv 1 \pmod{\phi(n)}$。</li>
+<li><strong>加密</strong>：$C &#x3D; M^e \pmod n$。</li>
+<li><strong>解密</strong>：$M &#x3D; C^d \pmod n$。</li>
+</ol>
+<p><strong>原理</strong>：</p>
+<p>
+$$
+C^d = (M^e)^d = M^{ed} = M^{k\phi(n) + 1} = (M^{\phi(n)})^k \cdot M^1 \equiv 1^k \cdot M \equiv M \pmod n
+$$
+</p>
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+</body>
+</html>
