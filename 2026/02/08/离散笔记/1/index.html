@@ -189,21 +189,21 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #03a9f4">
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00bcd4">
                     数学
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E7%A6%BB%E6%95%A3/" style="color: #00bcd4">
+                <a href="/tags/%E7%A6%BB%E6%95%A3/" style="color: #00a596">
                     离散
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #03a9f4">
+                <a href="/tags/%E7%AC%94%E8%AE%B0/" style="color: #ff7d73">
                     笔记
                 </a>
             </span>
@@ -307,7 +307,14 @@ $$
 
 <blockquote>
 <p><strong>引理 1</strong>：如果 $\gcd(n, k) &#x3D; 1$，那么 $ak \equiv bk \pmod n \implies a \equiv b \pmod n$。</p>
+<p><strong>证明</strong>:由于 $n,k$ 互素，利用裴蜀定理，可知在模 $n$ 下 $k^{-1}$ 存在，两侧同乘即得证结果。</p>
+</blockquote>
+<blockquote>
 <p><strong>引理 2</strong>：如果 $\gcd(n, k) &#x3D; 1$，记 $r &#x3D; \phi(n)$，设 ${k_1, \dots, k_r}$ 是与 $n$ 互素的集合，则 ${\text{rem}(k_1k, n), \dots, \text{rem}(k_rk, n)} &#x3D; {k_1, \dots, k_r}$。</p>
+<p><strong>证明</strong>：</p>
+<p>①证明第一个集合也有 $r$ 个元素。<br>设有重复，不妨设 $k_i\neq k_j , rem(k_ik,n)&#x3D;rem(k_jk,n)$ ，则 $k_ik\equiv k_jk \pmod n$ ，由引理 $1$ ，则有 $k_i&#x3D;k_j$ ，矛盾，故假设不成立，即第一个集合有 $r$ 个元素（互异）。<br>②证明第一个集合的每个元素都与 $n$ 互素。<br>考虑任意的 $k_i$ ，有 $rem(k_ik, n)\equiv k_ik \pmod n$ ，由于 $k_i,k$ 都与 $n$ 互素且非零，可知命题成立。<br>综合①②，可知命题成立。</p>
+</blockquote>
+<blockquote>
 <p><strong>证明</strong>：</p>
 <p>利用引理 2，我们将两组集合元素分别相乘：</p>
 <p>
@@ -326,6 +333,7 @@ $$
 k^{\phi(n)} \equiv 1 \pmod n
 $$
 </p></blockquote>
+<p>第二个 $Lemma$ 看似羚羊挂角无迹可寻，实际上可以视作把与 $n$ 互素的 $k_i$ 们乘上 $k$ 仍然互素，但为了限制在 $n$ 里取了个模，形式上就可以写成余数。这样实际上证明的核心在于取模后的数并不重复。然后我们运用“算两次”就得到了神奇的欧拉定理。尽管也很神奇，但这样看上去就至少不那么莫名其妙。<br>据 $Gemini$ ，这实际上是 $Lagrange$ 定理（群论）在模这个群里的特例，但我并不很清楚，也暂时不考虑直奔群论。简记于此。</p>
 <h4 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h4><p>令 $p$ 为质数，则 $\phi(p) &#x3D; p - 1$，从而有：</p>
 <p>
 $$
