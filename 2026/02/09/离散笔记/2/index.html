@@ -189,14 +189,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00bcd4">
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #03a9f4">
                     数学
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/%E7%A6%BB%E6%95%A3/" style="color: #00a596">
+                <a href="/tags/%E7%A6%BB%E6%95%A3/" style="color: #00bcd4">
                     离散
                 </a>
             </span>
@@ -218,15 +218,7 @@
 
 <h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>尽管有点神秘，但如果我们希望研究男女之间的关系，图论是个很好的工具。<br>你认为男性和女性拥有的伴侣数量哪个多？<br>据课程提到的调查而言，$US$ 的调查结果是男性比女性高 $73%$ ，而根据 $BBC$ 的神秘调查，男性比女性高 $233%$ ，每个男性平均 $20$ 个，女性 $6$ 个。<del>（为什么我 $0$ 个）</del><br>在研究之前，先来点数学基础。</p>
 <h1 id="图的定义"><a href="#图的定义" class="headerlink" title="图的定义"></a>图的定义</h1><p>图是集合$(V,E)$的组合(a pair of sets)。其中 $V$ 是非空的顶点（节点）的集合， $E$ 是 $V$ 中顶点对组成的集合，一对 $E$ 中的顶点称为边。</p>
-<pre><code class="language-mermaid">graph TD
-    x1 --- x2
-    x1 --- x3
-    x2 --- x4
-    x3 --- x5
-    x3 --- x6
-    x4 --- x3
-    x5 --- x7
-</code></pre>
+<p><img src="/../../images/%E7%A6%BB%E6%95%A3/1/exported_image.png"></p>
 <p>称节点 $A,B$ <strong>相邻</strong>如果他们之间有一条边。<br>称一条边与其两个端点<strong>关联</strong>。<br>称一个顶点的<strong>度(degree)</strong> 为与其关联的边的数量<br>称一个图是简单的，如果它没有环或者重边。环指两个端点相同的边，重边指某两个点之间存在大于一条边。</p>
 <p>图和伴侣有什么联系呢，已经昭然若揭了。我们可以用顶点表示人，通过是否有边来表示两人是否有伴侣关系。一个人的度也就表示了他的伴侣数量。<br>那么我们可以定义平均节点数来表征平均伴侣个数。<br>设男性节点集合为 $V_M$ ，女性节点集合为 $V_W$ 。定义 $A_M,A_W$ 表示平均度数。</p>
 <p>
@@ -268,62 +260,15 @@ $$
 <p><strong>结论：</strong> 由数学归纳法可知，对于任意 $n$，只要最大度数不超过 $d$，贪心算法至多使用 $d+1$ 种颜色即可完成着色。<strong>证毕。</strong></p>
 </blockquote>
 <p>这给出了贪心的一个上界。实际上他可能做的更好，例如一个辐射状的图，只需要 $2$ 种颜色。这个算法的好坏与排序关系很大，例如考虑这样一个图：</p>
-<pre><code class="language-mermaid">graph LR
-    subgraph Group_A [集合 U]
-        U1((U1)) ~~~ U2((U2)) ~~~ U3((U3))
-    end
-
-    subgraph Group_B [集合 V]
-        V1((V1)) ~~~ V2((V2)) ~~~ V3((V3))
-    end
-
-    U1 --- V2
-    U1 --- V3
-    U2 --- V1
-    U2 --- V3
-    U3 --- V1
-    U3 --- V2
-    
-    linkStyle default marker-end:none
-    linkStyle default interpolate linear
-</code></pre>
+<p><img src="/../../images/%E7%A6%BB%E6%95%A3/1/exported_image%20(1).png"></p>
 <p>这样可以分成两个集合，边总是从一个集合连到另一个集合的图叫做二部图。可以自行尝试，会发现排序会很大地影响上的颜色种类。</p>
 <h1 id="匹配算法"><a href="#匹配算法" class="headerlink" title="匹配算法"></a>匹配算法</h1><p>在情侣之后，便是更为庄重的婚姻了，而婚姻实际上是一个匹配问题（<br><strong>定义</strong>：给定一个图 $G&#x3D;(V,E)$ ，一个匹配是指一个 $G$ 的子图，其中每个节点的度数为 $1$ 。<del>（一夫一妻制）</del><br>若每个节点都匹配，称这个匹配是完美匹配。<br>有时候我们会碰到加权图，每条边都有自己的权重。<strong>定义</strong>一个匹配的<strong>权重</strong>为其所有边权重的和。从而自然也就有了<strong>最小权重完美匹配</strong>。<br>有时候权重并不对称，正如喜欢未必是相互的。$W_{ij} \neq W_{ji}$ 是很常见的事（</p>
-<pre><code class="language-mermaid">graph LR
-    subgraph Group_A [集合 U]
-        U1((U1)) 
-        U2((U2)) 
-    end
-
-    subgraph Group_B [集合 V]
-        V1((V1)) 
-		V2((V2))
-    end
-
-    U1 --- V1
-    U1 --- V2
-    U2 --- V1
-    U2 --- V2
-    
-    linkStyle default marker-end:none
-    linkStyle default interpolate linear
-</code></pre>
+<p><img src="/../../images/%E7%A6%BB%E6%95%A3/1/exported_image%20(2).png"></p>
 <p>例如，U1和V2互相是对方的第一顺位，但U2却把V2看做第一顺位，V1把U1看做第一顺位。<del>好复杂</del> </p>
 <p><strong>定义</strong> 如果在当前的匹配方案中，一对成员互相更看好对方，而不是目前分配给他们的对象，那么他们是一对不稳定对。在大家反应之前，他们会偷偷离开并讨论离散数学到深夜（</p>
 <p><strong>定义</strong> 如果没有不稳定对，那么我们说这是一个稳定的匹配。</p>
 <p>如果我们希望稳定，那么这里我们可以让U1和V2配队，尽管不是每个人都很幸福，但至少这样稳定(?)<br>但现实情况往往复杂得多，也许未必存在稳定的匹配。在比较糟糕的情况下（数学上的糟糕），可能关系并不是一个二部图（</p>
-<pre><code class="language-mermaid">graph LR
-    
-    A --- B
-    B --- C
-    C --- A
-    A --- D
-    B --- D
-	C --- D    
-    
-    linkStyle default marker-end:none
-    linkStyle default interpolate linear
-</code></pre>
+<p><img src="/../../images/%E7%A6%BB%E6%95%A3/1/exported_image%20(3).png"></p>
 <p>按照 $ABC$ 的顺序依次为第一顺位，逆向则依次第二顺位，$D$ 总是第三顺位（<br>这种情形下，<strong>不可能存在稳定匹配</strong>。</p>
 <blockquote>
 <p>[!证明]<br>利用反证法。假设存在稳定匹配，不失一般性，可以设AD匹配，那么因为C更喜欢A，A更喜欢C，就有一对不稳定对。</p>
