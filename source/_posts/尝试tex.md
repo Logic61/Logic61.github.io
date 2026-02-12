@@ -4,7 +4,30 @@ date: 2025/11/14
 categories: ['无意义']
 tags: ['无意义']
 ---
-title: 测试 KaTeX 公式
+$F = ma$$E=mc^2$$$
+\frac{\partial L}{\partial w_{ij}} = \sum_{n=1}^{N} (y_n - \hat{y}_n) \frac{\partial \hat{y}_n}{\partial w_{ij}}
+$$$$
+\int_a^b f(x) dx = f(\xi) · (b - a) , \text{where }  \xi \in (a,b)
+$$$$
+\begin{cases}
+    \nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0} & \text{} \\
+    \nabla \cdot \mathbf{B} = 0 & \text{} \\
+    \nabla \times \mathbf{E} = - \frac{\partial \mathbf{B}}{\partial t} & \text{} \\
+    \nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t} & \text{}
+\end{cases}
+$$
+
+
+$$$$
+\int_a^b f(x) dx = f(\xi) · (b - a) , \text{where }  \xi \in (a,b)
+$$$$
+\begin{cases}
+    \nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0} & \text{} \\
+    \nabla \cdot \mathbf{B} = 0 & \text{} \\
+    \nabla \times \mathbf{E} = - \frac{\partial \mathbf{B}}{\partial t} & \text{} \\
+    \nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t} & \text{}
+\end{cases}
+$$
 
 <!-- more -->
 ---
