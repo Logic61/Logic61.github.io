@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build and Run (cmd)",
+      "type": "shell",
+      "command": "cmd.exe",
+      "args": [
+        "/c",
+        "g++ \"${file}\" -o \"${fileDirname}\\${fileBasenameNoExtension}.exe\" && start cmd.exe /k \"${fileDirname}\\${fileBasenameNoExtension}.exe\""
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true      // ✅ 设置为默认任务
+      },
+      "problemMatcher": "$gcc"
+    }
+  ]
+}
