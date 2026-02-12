@@ -38,9 +38,3 @@ $$
 \begin{cases} \nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0} & \text{} \ \nabla \cdot \mathbf{B} = 0 & \text{} \ \nabla \times \mathbf{E} = - \frac{\partial \mathbf{B}}{\partial t} & \text{} \ \nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t} & \text{} \end{cases}
 $$
 </p>
-
-
-
-(C) 2022 - 2026 Logic の 博客  __ @Logic 
-
-Based on the [Hexo Engine](https://hexo.io) & [ParticleX Theme](https://github.com/theme-particlex/hexo-theme-particlex)

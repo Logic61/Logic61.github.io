@@ -9,7 +9,3 @@ date: 2025/12/2
 
 <!-- more -->
 ---
-
-(C) 2022 - 2026 Logic の 博客  __ @Logic 
-
-Based on the [Hexo Engine](https://hexo.io) & [ParticleX Theme](https://github.com/theme-particlex/hexo-theme-particlex)
