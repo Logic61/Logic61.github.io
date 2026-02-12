@@ -121,3 +121,8 @@ mermaid:
   enable: true
   # 建议使用稳定版 CDN
   version: "11.9.0"
+
+pandoc:
+  math: "--katex"
+  # 或者尝试 --mathjax，对于大多数 Hexo 插件来说，效果是相似的
+  # 它能确保所有 $...$ 内部的内容不被 Pandoc 二次破坏
