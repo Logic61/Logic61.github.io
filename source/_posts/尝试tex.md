@@ -1,6 +1,6 @@
 ---
 title: 测试 KaTeX 公式
-date: 2025-11-14
+date: 2025/11/14
 categories: ['无意义']
 tags: ['无意义']
 ---
