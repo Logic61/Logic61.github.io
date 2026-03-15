@@ -109,20 +109,14 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: particlex
 theme: particlex
-
-# Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy: 
-  type: git
-  repo: git@github.com:Logic61/Logic61.github.io.git
-  branch: master
-
-mermaid:
-  enable: true
-  # 建议使用稳定版 CDN
-  version: "11.9.0"
-
 pandoc:
   math: "--katex"
-  # 或者尝试 --mathjax，对于大多数 Hexo 插件来说，效果是相似的
-  # 它能确保所有 $...$ 内部的内容不被 Pandoc 二次破坏
+  args: 
+    - "--from=markdown+tex_math_dollars+raw_tex"
+    - "--to=html5"
+
+# Deployment
+deploy:
+  type: git
+  repo: git@github.com:logic61/logic61.github.io.git
+  branch: master

@@ -1,0 +1,599 @@
+[33mcommit c5e9a99bc7322a9cb38f941492e754595f724394[m[33m ([m[1;36mHEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: logic <logic.dreemurr@gmail.com>
+Date:   Thu Feb 12 12:19:54 2026 +0800
+
+    recover $ but need to turn _ into \_
+
+[33mcommit cd49db761d840fb18f1e61ef516f5a7d5a9956c6[m
+Author: logic <logic.dreemurr@gmail.com>
+Date:   Thu Feb 12 11:37:30 2026 +0800
+
+    finished besides math
+
+[33mcommit 55854e368757f14a7ec12096eb7b9cfc91354f58[m
+Author: logic <logic.dreemurr@gmail.com>
+Date:   Thu Feb 12 11:20:59 2026 +0800
+
+    recover preview
+
+[33mcommit 50981449e6d3e5fb93198be899eafef3637c4cbe[m
+Author: logic <logic.dreemurr@gmail.com>
+Date:   Thu Feb 12 11:05:19 2026 +0800
+
+    delete extra html endings
+
+[33mcommit 2a922d9c217bcb63419261f8f516faeb97886777[m
+Author: logic <logic.dreemurr@gmail.com>
+Date:   Thu Feb 12 10:56:40 2026 +0800
+
+    recover all dates
+
+[33mcommit 72fbc748fc7b1b5dee83a6947d6355c90e7cb71c[m
+Author: logic <logic.dreemurr@gmail.com>
+Date:   Thu Feb 12 10:19:17 2026 +0800
+
+    After great disaster, rebuild all md
+
+[33mcommit 76d4363891d67ea40910b50525104d3372b78631[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Feb 9 20:32:47 2026 +0800
+
+    Configure GitHub Actions for daily auto deploy
+
+[33mcommit c1573c5b51a7a62e54cd45ccce7bee760d445f00[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Feb 9 17:01:06 2026 +0800
+
+    Site updated: 2026-02-09 17:01:05
+
+[33mcommit 5a74c1dd38190eaf1c5b1a832df2af22dc966323[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Feb 9 16:20:55 2026 +0800
+
+    Site updated: 2026-02-09 16:20:50
+
+[33mcommit afd2369f5c37e8e845f6eb2a70532a2a58b51363[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Feb 9 16:16:31 2026 +0800
+
+    Site updated: 2026-02-09 16:16:30
+
+[33mcommit ecb20a15d1393c94a4e5855706cd51df0c014809[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sun Feb 8 20:56:23 2026 +0800
+
+    Site updated: 2026-02-08 20:56:20
+
+[33mcommit 78a1ee9df8980f7bfc3553abebda784dc1dbfc3f[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sun Feb 8 20:34:51 2026 +0800
+
+    Site updated: 2026-02-08 20:34:49
+
+[33mcommit ebfc68da27bafcbe2fe68981a44dd6085186653e[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Feb 6 22:01:27 2026 +0800
+
+    Site updated: 2026-02-06 22:01:26
+
+[33mcommit d023dcb4a921080ef0e0ebf2f4b365626098e4f0[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Wed Feb 4 19:02:26 2026 +0800
+
+    Site updated: 2026-02-04 19:02:22
+
+[33mcommit e791e8698936be54d3be6851cf8d90279bd269d7[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Feb 2 20:58:49 2026 +0800
+
+    Site updated: 2026-02-02 20:58:48
+
+[33mcommit 9aa625ff085f8cd4fb5d32e3a48494393fe8b5b7[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Feb 2 20:31:51 2026 +0800
+
+    Site updated: 2026-02-02 20:31:48
+
+[33mcommit 20ceb0e72921977ed6f13d4a442cbd12db53379a[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Feb 2 19:49:39 2026 +0800
+
+    Site updated: 2026-02-02 19:49:38
+
+[33mcommit f6040973af5aed2429bf93f4afc61b5ac24beba6[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Jan 31 22:35:41 2026 +0800
+
+    Site updated: 2026-01-31 22:35:39
+
+[33mcommit 31ba8e50d02b3ddb4d4bd81969d0643ca85814f2[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Jan 31 22:31:31 2026 +0800
+
+    Site updated: 2026-01-31 22:31:29
+
+[33mcommit 7340d311fb4847c623fecee520d705084c532989[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Jan 30 17:39:50 2026 +0800
+
+    Site updated: 2026-01-30 17:39:48
+
+[33mcommit ee5f367235e1944dac9bda6996a1bf47e82a2db3[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Thu Jan 29 18:56:51 2026 +0800
+
+    Site updated: 2026-01-29 18:56:48
+
+[33mcommit 1c7a6c83d67f740c35eb21c84b9a7b160985497a[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Wed Jan 28 22:40:11 2026 +0800
+
+    Site updated: 2026-01-28 22:40:08
+
+[33mcommit b4960f1f041f54ee44606f1ab43688bce090801d[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Jan 26 16:31:42 2026 +0800
+
+    Site updated: 2026-01-26 16:31:36
+
+[33mcommit a603f1e76dab6385c2b49c5d728b636cc88cc67a[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Jan 23 15:50:26 2026 +0800
+
+    Site updated: 2026-01-23 15:50:22
+
+[33mcommit 8eca3b82ee941083f7d3994715ada3f4ed0d13c1[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Jan 23 15:46:50 2026 +0800
+
+    Site updated: 2026-01-23 15:46:43
+
+[33mcommit e1f0987e55114b1bdd3749bd7da1f06b702179d8[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Jan 23 15:42:54 2026 +0800
+
+    Site updated: 2026-01-23 15:42:49
+
+[33mcommit 6ac37f56b7832224fed8ca31bfdc19ac199f170c[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Jan 23 15:40:35 2026 +0800
+
+    Site updated: 2026-01-23 15:40:34
+
+[33mcommit 5d5ec10f02769fc281d7d5a35c21599b98bc718f[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sun Jan 18 20:07:59 2026 +0800
+
+    Site updated: 2026-01-18 20:07:58
+
+[33mcommit ce8ad6727e05b6cb842315baca5e09fae92bbcc0[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Jan 17 21:31:22 2026 +0800
+
+    Site updated: 2026-01-17 21:31:21
+
+[33mcommit 372197700822953eb65b2da2325abef5c0602731[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Jan 16 21:11:14 2026 +0800
+
+    Site updated: 2026-01-16 21:11:13
+
+[33mcommit 5873cc4c2b35d523c28e19f964d0070f29fe8772[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Wed Jan 14 22:49:38 2026 +0800
+
+    Site updated: 2026-01-14 22:49:32
+
+[33mcommit 5ba72f272c982f0e6d7810b99c8520487d6a702a[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Wed Jan 14 22:41:56 2026 +0800
+
+    Site updated: 2026-01-14 22:41:49
+
+[33mcommit 748a521c62bc4d86c386ebaa7f64c1bc86e4bd58[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Wed Jan 14 22:40:43 2026 +0800
+
+    Site updated: 2026-01-14 22:40:41
+
+[33mcommit 9f7a522228f70d7d5fe5b8b61aa1eb714ff58202[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Tue Jan 13 19:11:03 2026 +0800
+
+    Site updated: 2026-01-13 19:11:00
+
+[33mcommit 608deb36ce7108b6e6ae4e3bb0ca46f14a5a3d20[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Jan 12 19:18:08 2026 +0800
+
+    Site updated: 2026-01-12 19:18:07
+
+[33mcommit a0c1e3d24db86014483dddf66ec1c170d7c34e03[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Jan 12 19:17:23 2026 +0800
+
+    Site updated: 2026-01-12 19:17:22
+
+[33mcommit effdd7e07c79ae407aa5abd70bd6ff316a749745[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sun Jan 11 18:35:17 2026 +0800
+
+    Site updated: 2026-01-11 18:35:11
+
+[33mcommit c9588e286c52967511b2a9264a4851db6083ac52[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Jan 10 14:20:44 2026 +0800
+
+    Site updated: 2026-01-10 14:20:39
+
+[33mcommit de21af7ba441f26338a1a3d0d1857bea8f4df5fa[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Jan 10 14:19:32 2026 +0800
+
+    Site updated: 2026-01-10 14:19:30
+
+[33mcommit 3dcb09e730e491878e6b5adc25fd8aaabb568c81[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Tue Jan 6 12:26:17 2026 +0800
+
+    Site updated: 2026-01-06 12:26:16
+
+[33mcommit 2251cab669116f4eb82f57cdc90a769cc11c2f30[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Tue Jan 6 12:22:28 2026 +0800
+
+    Site updated: 2026-01-06 12:22:27
+
+[33mcommit d9d1592534a0e4ae3c8ea55dd4e753cdfb873b75[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Jan 5 21:06:01 2026 +0800
+
+    Site updated: 2026-01-05 21:05:59
+
+[33mcommit 92c937a8f89822b1789e553c2ddaad3d232a8865[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Jan 5 21:05:09 2026 +0800
+
+    Site updated: 2026-01-05 21:05:08
+
+[33mcommit a6b077ee6097ad7e88b21d5e576f746c6323893e[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Jan 5 15:47:47 2026 +0800
+
+    Site updated: 2026-01-05 15:47:46
+
+[33mcommit 278776c231be001303668265082e4627e8c73a74[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Jan 5 15:30:07 2026 +0800
+
+    Site updated: 2026-01-05 15:30:06
+
+[33mcommit b526905d58daad57165abebcf361b3fd54aae07e[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Jan 2 15:19:44 2026 +0800
+
+    Site updated: 2026-01-02 15:19:40
+
+[33mcommit 8ad312b9f9a2a457c183fe48e868b677a263dec0[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Wed Dec 31 22:20:54 2025 +0800
+
+    Site updated: 2025-12-31 22:20:53
+
+[33mcommit a47ba3def7468d9215e28e080a06be55d40dc444[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Tue Dec 30 23:04:01 2025 +0800
+
+    Site updated: 2025-12-30 23:03:59
+
+[33mcommit b42a5fd1c2b1fe2f7bd9bcec5424c409ff4e63b1[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Dec 27 20:21:01 2025 +0800
+
+    Site updated: 2025-12-27 20:20:56
+
+[33mcommit 44088006e2f418c4a2bb7494e402f8df2f1f8fa2[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Dec 26 21:42:58 2025 +0800
+
+    Site updated: 2025-12-26 21:42:56
+
+[33mcommit 25c344442b150ef8c6d1353d7145ce5a1bdc21ee[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Dec 26 21:41:56 2025 +0800
+
+    Site updated: 2025-12-26 21:41:53
+
+[33mcommit cdfa8f7b8e085fff28538b9a5c8f1f171eb1d019[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Dec 26 21:36:13 2025 +0800
+
+    Site updated: 2025-12-26 21:36:12
+
+[33mcommit 7b4f864e233a245a835c297797f5eb6c9b411a81[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Thu Dec 25 12:36:51 2025 +0800
+
+    Site updated: 2025-12-25 12:36:49
+
+[33mcommit fdabf7e5df04c7b22065fdbf106b3369fec5cf55[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Tue Dec 23 14:50:09 2025 +0800
+
+    Site updated: 2025-12-23 14:50:08
+
+[33mcommit 584ed63d4b4e02da42e4f60767f5f86500783637[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sun Dec 21 12:30:02 2025 +0800
+
+    Site updated: 2025-12-21 12:29:58
+
+[33mcommit f4ee71355c80637590b44e99c53dd00dda4eef9d[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Dec 20 20:57:21 2025 +0800
+
+    Site updated: 2025-12-20 20:57:17
+
+[33mcommit 2e7f2debca3c2ecf54e3792fc52bb715dcdfdffd[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Dec 20 18:47:37 2025 +0800
+
+    Site updated: 2025-12-20 18:47:35
+
+[33mcommit 80e1d1b3f9112e10703695693564283fe43438b7[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Dec 20 18:46:13 2025 +0800
+
+    Site updated: 2025-12-20 18:46:12
+
+[33mcommit 178df046ae7e2a1a009dc1a1679ab4372fb4ef50[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Thu Dec 18 23:07:39 2025 +0800
+
+    Site updated: 2025-12-18 23:07:36
+
+[33mcommit fc01d1115510b37f8c0b550fbe16eada16ff3260[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Thu Dec 18 21:31:25 2025 +0800
+
+    Site updated: 2025-12-18 21:31:24
+
+[33mcommit 3b290ea5ec4114d5d37d8dc530dc8ed8c78fec7e[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sun Dec 14 23:33:19 2025 +0800
+
+    Site updated: 2025-12-14 23:33:18
+
+[33mcommit c2c4bd29f2ecce0ffb4fb5bda2fab3a2dcbeda75[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sun Dec 14 22:01:13 2025 +0800
+
+    Site updated: 2025-12-14 22:01:11
+
+[33mcommit 9163186d734c9a052766fb70ce21a8a681ef47e2[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sun Dec 14 19:57:17 2025 +0800
+
+    Site updated: 2025-12-14 19:57:16
+
+[33mcommit 268a6fff02c2c175cb3b854a680bf32cb2f59a73[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sun Dec 14 19:26:45 2025 +0800
+
+    Site updated: 2025-12-14 19:26:44
+
+[33mcommit a21ac51ee3fb66d56fa5a03fe308875c18f93814[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sun Dec 14 18:35:43 2025 +0800
+
+    Site updated: 2025-12-14 18:35:42
+
+[33mcommit fe0f5ffeb4ec22ea61be6a1c38b25412c51ed516[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Dec 13 23:12:33 2025 +0800
+
+    Site updated: 2025-12-13 23:12:32
+
+[33mcommit ac247ba3bf6b3642fa35239733f5a7ff35d01fbd[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Dec 13 23:11:08 2025 +0800
+
+    Site updated: 2025-12-13 23:11:05
+
+[33mcommit 07b289e825f162c274957fc2a76b715ad4ec3db2[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Dec 13 23:07:27 2025 +0800
+
+    Site updated: 2025-12-13 23:07:25
+
+[33mcommit 47656d48009dc1af93ec1de9dfb03d701071ff50[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Dec 13 23:04:59 2025 +0800
+
+    Site updated: 2025-12-13 23:04:58
+
+[33mcommit 5de6bd2d3613903601d3940975da7a801e87d45a[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Dec 8 22:52:20 2025 +0800
+
+    Site updated: 2025-12-08 22:52:19
+
+[33mcommit bfb56a31c2518129f63b156e5a2311a48983f3c2[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Dec 6 22:39:03 2025 +0800
+
+    Site updated: 2025-12-06 22:39:02
+
+[33mcommit 07f48ee2ba2e0ef217c990cfd681559c21622d7f[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Tue Dec 2 22:03:19 2025 +0800
+
+    Site updated: 2025-12-02 22:03:18
+
+[33mcommit dedec0e64f09369e0f39c0417e8145aaf38999ce[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Tue Dec 2 19:14:22 2025 +0800
+
+    Site updated: 2025-12-02 19:14:21
+
+[33mcommit 7938203d27b0b17244a124eec6db6de213ff4f00[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sun Nov 30 23:32:19 2025 +0800
+
+    Site updated: 2025-11-30 23:32:18
+
+[33mcommit 9e4dc96b478c8b2037ec59fd3a737c51a95ea4c8[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sun Nov 30 23:22:25 2025 +0800
+
+    Site updated: 2025-11-30 23:22:24
+
+[33mcommit c98fe5074f384dd06ac2dadb6e45a5887876e75b[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Thu Nov 27 20:39:45 2025 +0800
+
+    Site updated: 2025-11-27 20:39:44
+
+[33mcommit 2770113b82f85023b9a826356d5778eca76f739e[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Thu Nov 27 20:37:04 2025 +0800
+
+    Site updated: 2025-11-27 20:37:03
+
+[33mcommit 83d6d306c80e3799f0fe128b512d60a5aa87fda8[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Wed Nov 26 23:42:32 2025 +0800
+
+    Site updated: 2025-11-26 23:42:32
+
+[33mcommit 76e4ca9a9f185cddc4b598c5b528c2088b2fc385[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Wed Nov 26 23:41:57 2025 +0800
+
+    Site updated: 2025-11-26 23:41:56
+
+[33mcommit 4226403a7f9f52f38c954c469985f2538288d053[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Wed Nov 26 23:36:56 2025 +0800
+
+    Site updated: 2025-11-26 23:36:55
+
+[33mcommit 558ff13e29061c6a65aaf0414deba657d7c6c926[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Wed Nov 26 23:36:24 2025 +0800
+
+    Site updated: 2025-11-26 23:36:23
+
+[33mcommit 0286808de87cf50bf79384b158807590137c79b7[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Tue Nov 25 21:44:29 2025 +0800
+
+    Site updated: 2025-11-25 21:44:28
+
+[33mcommit 272f286eef191d59f542dc5215f7979e5d33f9f0[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Nov 24 20:20:18 2025 +0800
+
+    Site updated: 2025-11-24 20:20:17
+
+[33mcommit ce66443dc9494b18077908d727c8877bcdbf0600[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Nov 24 14:09:03 2025 +0800
+
+    Site updated: 2025-11-24 14:09:02
+
+[33mcommit 843ccdfa0ac8eca981d24983e51e0108cbab66b8[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Nov 24 14:01:03 2025 +0800
+
+    Site updated: 2025-11-24 14:01:01
+
+[33mcommit 195afd3827c9b5d717ec646e901de24c9c6f2c66[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Mon Nov 24 13:55:52 2025 +0800
+
+    Site updated: 2025-11-24 13:55:51
+
+[33mcommit 341357aa742747ab0b45f2a7eee6b6c83deb426a[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sun Nov 23 23:31:47 2025 +0800
+
+    Site updated: 2025-11-23 23:31:46
+
+[33mcommit 7ec5172a987af44957717f22f37c994e40823f9e[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Nov 22 23:44:59 2025 +0800
+
+    Site updated: 2025-11-22 23:44:58
+
+[33mcommit d2e98ea058672fe945f83cb248a600aeb04a4a87[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Nov 22 13:24:46 2025 +0800
+
+    Site updated: 2025-11-22 13:24:45
+
+[33mcommit 12cfe6c2b389f71ee4e85df24605deb2b244f722[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Nov 22 13:19:51 2025 +0800
+
+    Site updated: 2025-11-22 13:19:48
+
+[33mcommit a02ace931c695b17574b1e725a0b4cfc8cbb2ca8[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Sat Nov 22 12:39:23 2025 +0800
+
+    Site updated: 2025-11-22 12:39:23
+
+[33mcommit a6ed0b4d0e59fbaf4c26894e4d3c4f45e84134e8[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Nov 21 17:10:48 2025 +0800
+
+    Site updated: 2025-11-21 17:10:48
+
+[33mcommit 7ea72a62e9e10db1f5996feb4e690aa08a8de237[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Nov 21 17:09:07 2025 +0800
+
+    Site updated: 2025-11-21 17:09:06
+
+[33mcommit 01cefc00f614a98b775cd4e2484e8accc5913c37[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Nov 21 17:06:12 2025 +0800
+
+    Site updated: 2025-11-21 17:06:12
+
+[33mcommit 959e14c1179b96c3418dfabf55df3937285e4e9f[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Fri Nov 21 16:58:24 2025 +0800
+
+    Site updated: 2025-11-21 16:58:23
+
+[33mcommit 22f8e4819d5516a5786c32c5ace417d09f3230ea[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Thu Nov 20 23:28:38 2025 +0800
+
+    Site updated: 2025-11-20 23:28:38
+
+[33mcommit d7501046f0122165b85866d893b8a7f93980fdd5[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Wed Nov 19 23:22:40 2025 +0800
+
+    Site updated: 2025-11-19 23:22:39
+
+[33mcommit 8f98f7477cf3bd18b36324a19f4c35325f6b4d6f[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Tue Nov 18 21:36:16 2025 +0800
+
+    Site updated: 2025-11-18 21:36:15
+
+[33mcommit 5e7243f1e48f5e6c74491aeddabd5d049b4f6894[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Tue Nov 18 21:34:51 2025 +0800
+
+    Site updated: 2025-11-18 21:34:50
+
+[33mcommit dd9c15094b8c9eff48b1d4f3356bee4e357bb8ed[m
+Author: Logic <logic.dreemurr@gmail.com>
+Date:   Tue Nov 18 21:34:50 2025 +0800
+
+    First commit
