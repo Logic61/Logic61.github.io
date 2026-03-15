@@ -1,0 +1,37 @@
+name: Hexo Auto Deploy
+
+on:
+  push:
+    branches:
+      - source # 只有当你推送到 source 分支时才触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v3
+        with:
+          submodules: true # 处理你那个调皮的 particlex 主题
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20' # 匹配你本地的环境
+
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm install hexo-cli -g
+
+      - name: Deploy to GitHub Pages
+        env:
+          HEXO_DEPLOY_PRI: ${{ secrets.HEXO_DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$HEXO_DEPLOY_PRI" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.name "Logic"
+          git config --global user.email "logic.dreemurr@gmail.com"
+          hexo clean && hexo g -d
