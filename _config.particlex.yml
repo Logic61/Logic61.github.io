@@ -2,11 +2,11 @@
 # https://github.com/theme-particlex/hexo-theme-particlex
 
 # Avatar image
-avatar: /source/images/avatar.jpg
+avatar: /images/avatar.jpg
 
 # Home page background image
 background:
-    - /source/images/background.jpg
+    - /images/background.jpg
 
 # Loading image
 loading: /images/loading.gif
