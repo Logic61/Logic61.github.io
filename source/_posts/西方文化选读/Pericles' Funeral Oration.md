@@ -2,10 +2,6 @@
 title: "Pericles' Funeral Oration"
 date: 2026-03-10 14:30:51
 pinned: 10
-categories: 西文选
-tags:
-    - 西文选
-    - 笔记
 ---
 
 整理上课听到的部分内容以及自己查阅的相关内容，总之是 $Funeral \ \ Oration$ 的相关话题。
@@ -14,14 +10,17 @@ tags:
 
 文章：
 
-<div style="text-align: center; margin: 20px 0;">
-    <iframe 
-        src="/pdf/01_Pericles演讲注释版-ss(1).pdf" 
-        width="100%" 
-        height="600px" 
-        style="border: none;">
-    </iframe>
-</div>
+    <iframe
+
+        src="/pdf/01_Pericles演讲注释版-ss(1).pdf"
+
+        width="100%"
+
+        height="600px"
+
+        style="border: none;">
+
+    </iframe>
 
 这是 $Pericles$ 在雅典(Athens)的冬日国葬发表的讲话，它不同于一般缅怀逝者的葬礼演讲，洋溢着信心与希望。绝大部分的篇幅并不在于缅怀，而是对雅典的制度以及雅典人的生活、勇气等的夸赞。
 
@@ -69,7 +68,7 @@ tags:
 
 ### **2. 伯罗奔尼撒同盟的戒备**
 
-斯巴达作为传统的希腊霸主，通过**伯罗奔尼撒同盟 (Peloponnesian League)**联合了陆地上的寡头城邦。
+斯巴达作为传统的希腊霸主，通过**伯罗奔尼撒同盟 (Peloponnesian League)** 联合了陆地上的寡头城邦。
 
 - **修昔底德陷阱：** 斯巴达担心雅典的扩张最终会吞并整个希腊。
     
@@ -275,7 +274,11 @@ well-informed on general politics--this is a peculiarity of ours: we do not say 
 man who takes no interest in politics is a man who minds his own business; we say that
 he has no business here at all.
 
-这里有一个小细节，前面说的是 $the \ \ affairs  \ \ of  \ \ the  \ \ state$,后面复述说的是$general\ \ politics$。实际上$politics$的词源是$polis$，指的是城邦。政治原来指的就是城邦中的各种事物，“政治”这个翻译是从日本那来的$fancy$的名字。雅典人的政治也许是饭后散步到$Agora$(广场)，谈谈周五下午也许不应该安排任何课，谈谈下周的考试是不是应该取消（$Pericles$ 的改革直接导向了雅典的极盛，这也是为何他在演讲中那么自豪，敢于说出
+这里有一个小细节，前面说的是 $the \ \ affairs  \ \ of  \ \ the  \ \ state$,后面复述说的是$general\ \ politics$。实际上$politics$的词源是$polis$，指的是城邦。政治原来指的就是城邦中的各种事物，“政治”这个翻译是从日本那来的$fancy$的名字。雅典人的政治也许是饭后散步到$Agora$ (广场)，谈谈周五下午也许不应该安排任何课，谈谈下周的考试是不是应该取消（
+
+雅典人称呼那些“不关心公共事务、只顾私利的人”为 **`idiotes`**。 这个词后来演变成了英文里的 **`idiot` (白痴)**。
+
+ $Pericles$ 的改革直接导向了雅典的极盛，这也是为何他在演讲中那么自豪，敢于说出
 
 > Athens is the school of Hellas.
 
