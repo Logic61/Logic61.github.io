@@ -2,6 +2,7 @@
 title: "Pericles' Funeral Oration"
 date: 2026-03-10 14:30:51
 pinned: 10
+categories: [西方文化选读]
 ---
 
 整理上课听到的部分内容以及自己查阅的相关内容，总之是 $Funeral \ \ Oration$ 的相关话题。
