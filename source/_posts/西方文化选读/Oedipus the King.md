@@ -1,7 +1,7 @@
 ---
 title: "Oedipus the King"
 date: 2026-03-31
-pinned: 10
+pinned: 5
 categories: [西方文化选读]
 ---
 

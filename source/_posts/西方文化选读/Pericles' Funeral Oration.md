@@ -1,7 +1,7 @@
 ---
 title: "Pericles' Funeral Oration"
 date: 2026-03-10 14:30:51
-pinned: 10
+pinned: 8
 categories: [西方文化选读]
 ---
 
