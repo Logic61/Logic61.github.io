@@ -1,7 +1,6 @@
 ---
 title: "The Apology"
 date: 2026-03-19 23:26:38
-pinned: 7
 categories: [西方文化选读]
 ---
 
