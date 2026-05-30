@@ -1,7 +1,6 @@
 ---
 title: "Pericles' Funeral Oration"
 date: 2026-03-10 14:30:51
-categories: [西方文化选读]
 ---
 
 整理上课听到的部分内容以及自己查阅的相关内容，总之是 $Funeral \ \ Oration$ 的相关话题。
@@ -9,6 +8,8 @@ categories: [西方文化选读]
 <!-- more -->
 
 文章：
+
+<div style="text-align: center; margin: 20px 0;">
 
     <iframe
 
@@ -22,6 +23,8 @@ categories: [西方文化选读]
 
     </iframe>
 
+</div>
+
 这是 $Pericles$ 在雅典(Athens)的冬日国葬发表的讲话，它不同于一般缅怀逝者的葬礼演讲，洋溢着信心与希望。绝大部分的篇幅并不在于缅怀，而是对雅典的制度以及雅典人的生活、勇气等的夸赞。
 
 在雅典，冬日国葬（Patrios Nomos）是一个极其庄重的公共仪式：
@@ -32,7 +35,7 @@ categories: [西方文化选读]
     
 - **空的灵柩：** 现场会有一口**空棺材**，象征那些无法找回尸骨的失踪者。这种处理方式体现了雅典对每一位公民个体的极高尊重。
 
-这是什么战争呢，这是雅典领导的 $Delian \ \ League$提洛同盟和斯巴达(Sparta)领导的$Peloponnesian \ \ League$ 伯罗奔尼撒同盟之间爆发的**伯罗奔尼撒战争**。在这场战争开始的第一年，Pericles发表了这篇讲话，此时雅典人坚信自己会取得最终的胜利，实际上的情形，却是雅典黄金时代的终结，雅典拆除长墙，解散同盟，短暂进入“三十僭主”统治时期。长期内耗削弱了所有城邦，底层民众流离失所。这为北方马其顿（亚历山大大帝的父辈）的崛起扫清了障碍。
+这是什么战争呢，这是雅典领导的 $Delian \ \ League$ 提洛同盟和斯巴达(Sparta)领导的 $Peloponnesian \ \ League$ 伯罗奔尼撒同盟之间爆发的**伯罗奔尼撒战争**。在这场战争开始的第一年，Pericles发表了这篇讲话，此时雅典人坚信自己会取得最终的胜利，实际上的情形，却是雅典黄金时代的终结，雅典拆除长墙，解散同盟，短暂进入“三十僭主”统治时期。长期内耗削弱了所有城邦，底层民众流离失所。这为北方马其顿（亚历山大大帝的父辈）的崛起扫清了障碍。
 
 # 伯罗奔尼撒战争
 实际上雅典与斯巴达并不一开始就对立，以下给出简短的梳理。
@@ -105,10 +108,10 @@ categories: [西方文化选读]
     
 - **麦加拉法令（Megarian Decree）：**  $Pericles$ 颁布禁令，禁止麦加拉商人进入雅典及其盟邦的所有港口和市场。这相当于一场**经济封锁**，由于麦加拉是伯罗奔尼撒同盟的成员，斯巴达认为这是对整个同盟的挑衅。
 
-关于麦加拉法令，有这样一个小故事。斯巴达起初也并不很愿意冲突，于是派人调停，希望 $Pericles$去掉禁令。面对斯巴达使节，$Pericles$推托说，雅典有一条法律规定，**严禁取下任何写有法令的木牌**。，调停人却十分聪明，告诉$Pericles$：您可以把牌子翻个面。但还是被拒绝了，$Pericles$ 决意发动战争。
+关于麦加拉法令，有这样一个小故事。斯巴达起初也并不很愿意冲突，于是派人调停，希望 $Pericles$ 去掉禁令。面对斯巴达使节， $Pericles$ 推托说，雅典有一条法律规定，**严禁取下任何写有法令的木牌**。，调停人却十分聪明，告诉 $Pericles$ ：您可以把牌子翻个面。但还是被拒绝了， $Pericles$ 决意发动战争。
 
 ### 背后的原因
-关于战争的发动，有人认为有相当一部分因素是出于 $Pericles$自身的处境。在战争爆发前的公元前430年代后期，$Pericles$ 在雅典的统治遭遇了前所未有的挑战。他的对手不再正面攻击他，而是采取了“剥洋葱”的战术，通过攻击他的亲信来削弱他的威信：
+关于战争的发动，有人认为有相当一部分因素是出于 $Pericles$ 自身的处境。在战争爆发前的公元前430年代后期， $Pericles$ 在雅典的统治遭遇了前所未有的挑战。他的对手不再正面攻击他，而是采取了“剥洋葱”的战术，通过攻击他的亲信来削弱他的威信：
 
 - **菲迪亚斯 (Phidias)：** 负责重建卫城的伟大雕塑家，被控挪用公款。
     
@@ -117,9 +120,9 @@ categories: [西方文化选读]
 - **阿那克萨哥拉 (Anaxagoras)：** 他的哲学导师，被控宣传无神论并被驱逐。
     
 
-这些攻击直接指向 $Pericles$的行政能力和道德权威。普鲁塔克等古代史学家认为，$Pericles$ 深知如果继续保持和平，他可能会成为下一个被弹劾的对象。
+这些攻击直接指向 $Pericles$ 的行政能力和道德权威。普鲁塔克等古代史学家认为， $Pericles$ 深知如果继续保持和平，他可能会成为下一个被弹劾的对象。
 
-阿里斯托芬（Aristophanes）等喜剧作家在当时的戏剧（如《阿卡奈人》和《和平》）中公开嘲讽：** $Pericles$点燃了《麦加拉法令》这团小火苗，是为了制造一场漫天大火，好让大家在浓烟中看不清他的政治丑闻。** 一旦战争开始，人们就会依靠起$Pericles$ 出色的才能。
+阿里斯托芬（Aristophanes）等喜剧作家在当时的戏剧（如《阿卡奈人》和《和平》）中公开嘲讽：** $Pericles$ 点燃了《麦加拉法令》这团小火苗，是为了制造一场漫天大火，好让大家在浓烟中看不清他的政治丑闻。** 一旦战争开始，人们就会依靠起 $Pericles$ 出色的才能。
 
 然而，如果我们看修昔底德的记录， $Pericles$ 表现得像一个极其理性的地缘政治战略家。他认为：
 
@@ -180,7 +183,7 @@ it in him to be of service to the state, is kept in political obscurity because 
     
 - **被取代：** 仅仅三十多年后，他的绝大部分法律（除了关于杀人罪的部分）就被 **梭伦（Solon）** 废除了。
 
-因为 $Draco$的法典过于残酷，后世的英文出现了$Draconic$ 这样一个单词，指冷酷、严苛。
+因为 $Draco$ 的法典过于残酷，后世的英文出现了 $Draconic$ 这样一个单词，指冷酷、严苛。
 
 ---
 
@@ -267,14 +270,16 @@ it in him to be of service to the state, is kept in political obscurity because 
     
 - **目的：** 1. 限制享受公职津贴的人数，减轻财政负担。 2. 增强公民团体的优越感和凝聚力。 3. 防止外国贵族通过联姻干预雅典政治。
 
- $Pericles$在$Funeral\ \  Oration$中说权力属于$the \ \ whole \ \ people$实际上并不尽然，女人和奴隶以及外乡人并不参与。但女性获得权力是$20$世纪的事情了，现在也并没有奴隶，无法参考，或许我们并不应该用太高的标准要求几千年前的$Pericles$。$Pericles$眼中，只有参与政治才是好的公民。否则$we \ say \ that \ he \ has \ no \ business \ here \ at \ all$ 。
+ $Pericles$ 在 $Funeral\ \  Oration$ 中说权力属于 $the \ \ whole \ \ people$ 实际上并不尽然，女人和奴隶以及外乡人并不参与。但女性获得权力是 $20$ 世纪的事情了，现在也并没有奴隶，无法参考，或许我们并不应该用太高的标准要求几千年前的 $Pericles$ 。
+
+ $Pericles$ 眼中，只有参与政治才是好的公民。否则 $we \ say \ that \ he \ has \ no \ business \ here \ at \ all$ 。
 
 >Here each individual is interested not only in his own affairs but in the affairs of the state as well: even those who are mostly occupied with their own business are extremely
 well-informed on general politics--this is a peculiarity of ours: we do not say that a
 man who takes no interest in politics is a man who minds his own business; we say that
 he has no business here at all.
 
-这里有一个小细节，前面说的是 $the \ \ affairs  \ \ of  \ \ the  \ \ state$,后面复述说的是$general\ \ politics$。实际上$politics$的词源是$polis$，指的是城邦。政治原来指的就是城邦中的各种事物，“政治”这个翻译是从日本那来的$fancy$的名字。雅典人的政治也许是饭后散步到$Agora$ (广场)，谈谈周五下午也许不应该安排任何课，谈谈下周的考试是不是应该取消（
+这里有一个小细节，前面说的是 $the \ \ affairs  \ \ of  \ \ the  \ \ state$ ,后面复述说的是 $general\ \ politics$ 。实际上 $politics$ 的词源是 $polis$ ，指的是城邦。政治原来指的就是城邦中的各种事物，“政治”这个翻译是从日本那来的 $fancy$ 的名字。雅典人的政治也许是饭后散步到 $Agora$ (广场)，谈谈周五下午也许不应该安排任何课，谈谈下周的考试是不是应该取消（
 
 雅典人称呼那些“不关心公共事务、只顾私利的人”为 **`idiotes`**。 这个词后来演变成了英文里的 **`idiot` (白痴)**。
 
@@ -427,6 +432,7 @@ do no real harm, still do hurt people's feelings.
 - **芦苇之床：** 他们必须亲手从欧罗塔斯河边折断芦苇铺床，冬天甚至要在芦苇里混入刺草来取暖。
     
 
+
 ### 3. 极端的暴力与服从
 
 - **格斗训练：** 这种 `contest` 在斯巴达没有裁判，只有胜负。
@@ -435,7 +441,7 @@ do no real harm, still do hurt people's feelings.
     
 - **克里普提（Crypteia）：** 训练的最后阶段，最优秀的年轻人会被发配到荒野，只带一把匕首。他们的任务是潜入深夜，猎杀可能造反的黑劳士（Helots，奴隶），以此完成从学生到杀手的蜕变。
 
- $Pericles$在$Funeral\ \  Oration$中自豪地说，雅典人不需要像斯巴达人那样$laboring$ 的训练，就可以拥有比肩乃至胜过斯巴达人的勇气和力量。
+ $Pericles$ 在 $Funeral\ \  Oration$ 中自豪地说，雅典人不需要像斯巴达人那样 $laboring$ 的训练，就可以拥有比肩乃至胜过斯巴达人的勇气和力量。
 
 趣闻：斯巴达人会让女孩公开评价训练的男孩。在斯巴达人看来，羞耻感是比肉体痛苦更强大的动力。这种女性对男性的公开评价主要发生在节日和体育竞赛期间：
 
