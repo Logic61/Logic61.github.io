@@ -1,0 +1,720 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/background.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Logic の 博客</h1>
+                <h3></h3>
+                <h5>一小块凝固的时间</h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2025/11/14/%E6%9D%82%E8%AE%B0/%E6%9D%82%E8%AE%B0/">
+        <h2 class="post-title">杂记（1）</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/11/14
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>建网站的初衷是什么呢，除了简单的好玩二字之外，便是希望记录一下自己的生活吧。摘要：建网站动机 大作业 哈基米南北绿豆浆</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%97%A5%E8%AE%B0%E7%B1%BB/" style="color: #00a596">日记类</a>
+        </span>
+        
+    </div>
+    <a href="/2025/11/14/%E6%9D%82%E8%AE%B0/%E6%9D%82%E8%AE%B0/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2021/06/15/%E5%85%AD%E6%9C%88%E5%8D%81%E4%BA%94%E6%97%A5%E5%A5%87%E6%99%AF/">
+        <h2 class="post-title">六月十五日奇景</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/poem/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                poem
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2021/6/15
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>风拂舞柳浓兴越，冉冉粉纱罩坤乾。</p>
+<p>彩云蝶起向苍宇，素日舟悬往居仙。</p>
+<p>歌蝉亦默何重奏，扰众犹息怎复喧。</p>
+<p>谁人布此绝伦画，幕取青天染云烟。</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/poem/" style="color: #00bcd4">poem</a>
+        </span>
+        
+    </div>
+    <a href="/2021/06/15/%E5%85%AD%E6%9C%88%E5%8D%81%E4%BA%94%E6%97%A5%E5%A5%87%E6%99%AF/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2005/03/10/%E6%9C%AA%E5%91%BD%E5%90%8D/">
+        <h2 class="post-title">未命名</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2005/3/10
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="广义积分"><a href="#广义积分" class="headerlink" title="广义积分"></a>广义积分</h1><hr>
+<h2 id="引子：从-sum-frac-1-n-2-到广义积分"><a href="#引子：从-sum-frac-1-n-2-到广义积分" class="headerlink" title="引子：从 $\sum \frac{1}{n^2}$ 到广义积分"></a>引子：从 $\sum \frac{1}{n^2}$ 到广义积分</h2><p>我们希望求解：$S(1) &#x3D; \sum_{n&#x3D;1}^{+\infty} \frac{1}{n^2} &#x3D; ?$引入辅助幂级数$S(x) &#x3D; \sum_{n&#x3D;1}^{+\infty} \frac{x^n}{n^2}$，收敛半径 $R&#x3D;1$，收敛域 $[-1, 1]$。</p>
+<p><strong>步骤一</strong>：在 $(-1, 1)$ 内逐项求导：</p>
+<p>
+$$
+S'(x) = \sum_{n=1}^{+\infty} \frac{x^{n-1}}{n}
+$$
+</p>
+
+<p><strong>步骤二</strong>：两边同乘 $x$ 再求导：</p>
+<p>
+$$
+(x S'(x))' = \sum_{n=1}^{+\infty} x^{n-1} = \frac{1}{1-x}
+$$
+</p>
+
+<p><strong>步骤三</strong>：积分还原。先积分一次：</p>
+<p>
+$$
+x S'(x) = \int_0^x \frac{1}{1-t} dt = -\ln(1-x) \implies S'(x) = -\frac{1}{x}\ln(1-x)
+$$
+</p>
+
+<p>再积分一次：</p>
+<p>
+$$
+S(x) = \int_0^x -\frac{1}{t}\ln(1-t) dt
+$$
+</p>
+
+<p><strong>步骤四</strong>：由 $S(x)$在$x&#x3D;1$ 处连续，取左极限：</p>
+<p>
+$$
+S(1) = \int_0^1 -\frac{1}{t}\ln(1-t) dt
+$$
+</p>
+
+<p>被积函数在 $t&#x3D;1$ 处趋于无穷，这超出了黎曼积分的范畴——引出了<strong>广义积分</strong>的概念。</p>
+<hr>
+<h2 id="第一部分：广义积分概述"><a href="#第一部分：广义积分概述" class="headerlink" title="第一部分：广义积分概述"></a>第一部分：广义积分概述</h2><h3 id="1-分类"><a href="#1-分类" class="headerlink" title="1. 分类"></a>1. 分类</h3><p>| 类型 | 特征 | 示例 |</p>
+<p>|——|——|——|</p>
+<p>| <strong>无穷积分</strong> | 积分区间为无穷 | $\int_a^{+\infty} f(x) dx$ |</p>
+<p>| <strong>瑕积分</strong> | 区间有限但被积函数在某点趋于无穷 | $\int_0^1 \frac{1}{\sqrt{x}} dx$ |</p>
+<h3 id="2-积分与级数的类比"><a href="#2-积分与级数的类比" class="headerlink" title="2. 积分与级数的类比"></a>2. 积分与级数的类比</h3><p>
+$$
+\begin{aligned}
+
+<p>\int_a^A f(x) dx &amp;\longleftrightarrow \sum_{n&#x3D;1}^{N} a_n \</p>
+<p>\bigg\downarrow A \to +\infty &amp;\qquad\qquad \bigg\downarrow N \to +\infty \</p>
+<p>\int_a^{+\infty} f(x) dx &amp;\longleftrightarrow \sum_{n&#x3D;1}^{+\infty} a_n</p>
+<p>\end{aligned}<br>$$</p>
+</p>
+
+<p>有限定积分对应部分和；上限趋于无穷时，广义积分对应无穷级数的求和。</p>
+<hr>
+<h2 id="第二部分：无穷积分"><a href="#第二部分：无穷积分" class="headerlink" title="第二部分：无穷积分"></a>第二部分：无穷积分</h2><h3 id="1-严格定义"><a href="#1-严格定义" class="headerlink" title="1. 严格定义"></a>1. 严格定义</h3><p>设 $f(x)$在$[a, +\infty)$上有定义，且在任意有限区间$[a, A]$ 上可积。</p>
+<ul>
+<li><p><strong>收敛</strong>：若 $\lim_{A \to +\infty} \int_a^A f(x) dx &#x3D; I$（存在），则定义 $\int_a^{+\infty} f(x) dx &#x3D; I$。</p>
+</li>
+<li><p><strong>发散</strong>：若上述极限不存在，则称发散。</p>
+</li>
+</ul>
+<h3 id="2-计算示例"><a href="#2-计算示例" class="headerlink" title="2. 计算示例"></a>2. 计算示例</h3><p><strong>例 1</strong>：$\int_1^{+\infty} \frac{1}{x^2} dx &#x3D; \lim_{A \to +\infty} \left. -\frac{1}{x} \right|_1^A &#x3D; 1$（收敛）</p>
+<p><strong>例 2</strong>：$\int_0^{+\infty} e^{-x} dx &#x3D; \lim_{A \to +\infty} (1 - e^{-A}) &#x3D; 1$（收敛）</p>
+<h3 id="3-p-积分的收敛性"><a href="#3-p-积分的收敛性" class="headerlink" title="3. $p$-积分的收敛性"></a>3. $p$-积分的收敛性</h3><p>
+$$
+\int_1^{+\infty} \frac{1}{x^p} dx \quad (p > 0)
+$$
+</p>
+
+<p>| $p$ 的范围 | 敛散性 |</p>
+<p>|———–|——–|</p>
+<p>| $0 &lt; p \leq 1$ | 发散 |</p>
+<p>| $p &gt; 1$ | 收敛 |</p>
+<h3 id="4-柯西准则"><a href="#4-柯西准则" class="headerlink" title="4. 柯西准则"></a>4. 柯西准则</h3><p>$\int_a^{+\infty} f(x) dx$收敛的充要条件：$\forall \varepsilon &gt; 0$，$\exists X_\varepsilon \geq a$，使得 $\forall A_1, A_2 &gt; X_\varepsilon$，均有 $\left|\int_{A_1}^{A_2} f(x) dx\right| \leq \varepsilon$。</p>
+<blockquote>
+<p>类比级数柯西准则：$\left|\sum_{k&#x3D;n}^{m} a_k\right| &lt; \varepsilon$。</p>
+</blockquote>
+<h3 id="5-基本性质"><a href="#5-基本性质" class="headerlink" title="5. 基本性质"></a>5. 基本性质</h3><ul>
+<li><p><strong>线性性</strong>：若 $\int_a^{+\infty} f$和$\int_a^{+\infty} g$均收敛，则$\int_a^{+\infty} (c_1 f + c_2 g)$ 亦收敛。</p>
+</li>
+<li><p><strong>误区</strong>：$\int_a^{+\infty} f(x) dx$收敛$\not\Rightarrow \lim_{x \to +\infty} f(x) &#x3D; 0$。反例：构造无数个越来越窄的脉冲尖峰（高度为 1，宽度为 $1&#x2F;2^n$），面积收敛但函数不趋于 0。</p>
+</li>
+</ul>
+<hr>
+<h2 id="第三部分：审敛法"><a href="#第三部分：审敛法" class="headerlink" title="第三部分：审敛法"></a>第三部分：审敛法</h2><h3 id="1-绝对收敛与条件收敛"><a href="#1-绝对收敛与条件收敛" class="headerlink" title="1. 绝对收敛与条件收敛"></a>1. 绝对收敛与条件收敛</h3><ul>
+<li><p><strong>绝对收敛</strong>：$\int_a^{+\infty} |f(x)| dx$收敛$\implies$ $\int_a^{+\infty} f(x) dx$ 绝对收敛。</p>
+</li>
+<li><p><strong>条件收敛</strong>：$\int_a^{+\infty} f(x) dx$收敛，但$\int_a^{+\infty} |f(x)| dx$ 发散。</p>
+</li>
+</ul>
+<h3 id="2-非负函数的有界性定理"><a href="#2-非负函数的有界性定理" class="headerlink" title="2. 非负函数的有界性定理"></a>2. 非负函数的有界性定理</h3><p>设 $f(x) \geq 0$，则 $\int_a^{+\infty} f(x) dx$收敛$\Longleftrightarrow$变上限积分$\int_a^A f(x) dx$ 有上界（$\forall A \geq a$）。</p>
+<blockquote>
+<p>核心：非负函数的变上限积分单调递增，由单调有界原理，上有界即收敛。</p>
+</blockquote>
+<h3 id="3-比较判别法"><a href="#3-比较判别法" class="headerlink" title="3. 比较判别法"></a>3. 比较判别法</h3><p>设 $0 \leq f(x) \leq g(x)$（$x \to +\infty$），或极限形式 $\lim_{x \to +\infty} \frac{f(x)}{g(x)} &#x3D; k$。以基准函数 $g(x)$（通常为 $p$-积分 $1&#x2F;x^p$）的敛散性推断 $f(x)$。</p>
+<p><strong>例 1</strong>：$\int_1^{+\infty} \frac{x^2}{x^4 + \sin^2 x} dx</p>
+<p>
+$$
+$0 \leq \frac{x^2}{x^4 + \sin^2 x} \leq \frac{x^2}{x^4} = \frac{1}{x^2}
+$$
+</p>
+
+<p>$\int_1^{+\infty} \frac{1}{x^2} dx$ 收敛（$p&#x3D;2&gt;1$），故原积分<strong>收敛</strong>。</p>
+<p><strong>例 2</strong>：$\int_0^{+\infty} e^{-x^2} dx$拆分$[0,1]$（连续，定积分存在）和 $[1, +\infty)$。当 $x \geq 1$时$e^{-x^2} \leq e^{-x}$，而 $\int_1^{+\infty} e^{-x} dx$收敛，故原积分<strong>收敛</strong>。（精确值为$\frac{\sqrt{\pi}}{2}$）</p>
+<h3 id="4-阿贝尔判别法"><a href="#4-阿贝尔判别法" class="headerlink" title="4. 阿贝尔判别法"></a>4. 阿贝尔判别法</h3><p><strong>引例</strong>：$\int_1^{+\infty} \frac{\sin x}{x^p} dx$-$p &gt; 1$：$|\frac{\sin x}{x^p}| \leq \frac{1}{x^p}$，<strong>绝对收敛</strong>。</p>
+<ul>
+<li>$0 &lt; p \leq 1$：<strong>条件收敛</strong>（需阿贝尔判别法）。</li>
+</ul>
+<p><strong>定理</strong>：对 $\int_a^{+\infty} f(x)g(x) dx$，若：</p>
+<ol>
+<li><p>$f(x)$在$[a, +\infty)$ 上<strong>单调且有界</strong>；</p>
+</li>
+<li><p>$\int_a^{+\infty} g(x) dx$ <strong>收敛</strong>；</p>
+</li>
+</ol>
+<p>则 $\int_a^{+\infty} f(x)g(x) dx$ <strong>收敛</strong>。</p>
+<p><strong>证明路径 A</strong>（积分第二中值定理 + 柯西准则）：</p>
+<p>由第二中值定理，$\exists \xi \in [A_1, A_2]$：</p>
+<p>
+$$
+\int_{A_1}^{A_2} fg = f(A_1)\int_{A_1}^{\xi} g + f(A_2)\int_{\xi}^{A_2} g
+$$
+</p>
+
+<p>$f$ 有界，$g$ 的积分由柯西准则可任意小，故整体趋于 0。</p>
+<p><strong>证明路径 B</strong>（分部积分法，设 $f$可导且$f’ \leq 0$）：</p>
+<p>令 $G(x) &#x3D; \int_a^x g(t) dt$（有界，$|G| \leq M$）：</p>
+<p>
+$$
+\int_a^A fg = f(A)G(A) - f(a)G(a) - \int_a^A f'(x)G(x) dx
+$$
+</p>
+
+<ul>
+<li><p>$f(A)G(A)$：极限存在（$f$ 单调有界，$G$ 收敛）</p>
+</li>
+<li><p>$\int_a^A |f’ G| \leq M \int_a^A (-f’) &#x3D; M|f(a) - f(A)| \leq \tilde{M}$：上有界，收敛</p>
+</li>
+</ul>
+<h3 id="5-发散示例：-int-1-infty-frac-sin-x-x-p-dx-（-0-p-leq-1-）"><a href="#5-发散示例：-int-1-infty-frac-sin-x-x-p-dx-（-0-p-leq-1-）" class="headerlink" title="5. 发散示例：$\int_1^{+\infty} \frac{|\sin x|}{x^p} dx$（$0 &lt; p \leq 1$）"></a>5. 发散示例：$\int_1^{+\infty} \frac{|\sin x|}{x^p} dx$（$0 &lt; p \leq 1$）</h3><p><strong>步骤</strong>：</p>
+<ol>
+<li><p>取上限 $A &#x3D; N\pi$，缩小区间至 $[\pi, N\pi]$2. 拆分为$\sum_{k&#x3D;1}^{N-1} \int_{k\pi}^{(k+1)\pi} \frac{|\sin x|}{x^p} dx$</p>
+</li>
+<li><p>分母放大：$\geq \sum_{k&#x3D;1}^{N-1} \frac{1}{((k+1)\pi)^p} \int_{k\pi}^{(k+1)\pi} |\sin x| dx$4.$\int_{k\pi}^{(k+1)\pi} |\sin x| dx &#x3D; 2$（半周期面积恒为 2）</p>
+</li>
+</ol>
+<p>
+$$
+= \frac{2}{\pi^p} \sum_{k=1}^{N-1} \frac{1}{(k+1)^p}
+$$
+</p>
+
+<p>当 $0 &lt; p \leq 1$ 时，$p$-级数发散 $\implies$下界趋于$+\infty$ $\implies$ 原积分<strong>发散</strong>。</p>
+<p><strong>结论</strong>：$\int_1^{+\infty} \frac{\sin x}{x^p} dx$在$0 &lt; p \leq 1$ 时为<strong>条件收敛</strong>。</p>
+<h3 id="6-全直线上的广义积分"><a href="#6-全直线上的广义积分" class="headerlink" title="6. 全直线上的广义积分"></a>6. 全直线上的广义积分</h3><p><strong>定义</strong>：$\int_{-\infty}^{+\infty} f(x) dx$收敛$\Longleftrightarrow$ $\int_{-\infty}^0 f(x) dx$和$\int_0^{+\infty} f(x) dx$ <strong>各自独立收敛</strong>。</p>
+<p>
+$$
+\int_{-\infty}^{+\infty} f(x) dx = \int_{-\infty}^0 f(x) dx + \int_0^{+\infty} f(x) dx
+$$
+</p>
+
+<h4 id="柯西主值（P-V-）"><a href="#柯西主值（P-V-）" class="headerlink" title="柯西主值（P.V.）"></a>柯西主值（P.V.）</h4><p>
+$$
+\text{P.V.} \int_{-\infty}^{+\infty} f(x) dx = \lim_{A \to +\infty} \int_{-A}^{A} f(x) dx
+$$
+</p>
+
+<p><strong>关键</strong>：广义积分收敛 $\implies$P.V. 存在，但 <strong>P.V. 存在$\not\Rightarrow$ 广义积分收敛</strong>。</p>
+<p><strong>反例</strong>：$f(x) &#x3D; \frac{x}{1+x^2}$</p>
+<ul>
+<li><p>严格定义：$\int_0^{+\infty} \frac{x}{1+x^2} dx &#x3D; \lim_{A \to +\infty} \frac{1}{2}\ln(1+A^2) &#x3D; +\infty$，<strong>发散</strong>。</p>
+</li>
+<li><p>P.V. 视角：$f(x)$ 为奇函数，$\int_{-A}^{A} f(x) dx &#x3D; 0$，故 $\text{P.V.} &#x3D; 0$。</p>
+</li>
+</ul>
+<blockquote>
+<p>广义积分要求两端”各自为政、独立收敛”；P.V. 允许两端”对称抵消”。</p>
+</blockquote>
+<hr>
+<h2 id="第四部分：瑕积分"><a href="#第四部分：瑕积分" class="headerlink" title="第四部分：瑕积分"></a>第四部分：瑕积分</h2><h3 id="1-严格定义-1"><a href="#1-严格定义-1" class="headerlink" title="1. 严格定义"></a>1. 严格定义</h3><p>设 $f(x)$在$(a, b]$上有定义，且在$x&#x3D;a$的右邻域内<strong>无界</strong>，则$a$ 为<strong>瑕点</strong>。</p>
+<p>若 $f(x)$在任意$[a+\delta, b]$ 上可积，且：</p>
+<p>
+$$
+\lim_{\delta \to 0^+} \int_{a+\delta}^{b} f(x) dx
+$$
+</p>
+
+<p>存在，则称瑕积分 $\int_a^b f(x) dx$ <strong>收敛</strong>；否则<strong>发散</strong>。</p>
+<blockquote>
+<p>几何直观：切掉靠近瑕点的一小段 $\delta$，计算剩余面积，再让 $\delta \to 0^+$ 观察是否稳定。</p>
+</blockquote>
+<h3 id="2-瑕积分与无穷积分的转换（倒数换元）"><a href="#2-瑕积分与无穷积分的转换（倒数换元）" class="headerlink" title="2. 瑕积分与无穷积分的转换（倒数换元）"></a>2. 瑕积分与无穷积分的转换（倒数换元）</h3><p>令 $t &#x3D; \frac{1}{x-a}$，则 $x &#x3D; \frac{1}{t} + a$，$dx &#x3D; -\frac{1}{t^2} dt$：</p>
+<p>
+$$
+\int_a^b f(x) dx = \int_{\frac{1}{b-a}}^{+\infty} f\!\left(\frac{1}{t} + a\right) \frac{1}{t^2} dt
+$$
+</p>
+
+<p>瑕积分 $\Longleftrightarrow$ 无穷限积分。两者在本质上是对偶的。</p>
+<p><strong>几何对称性</strong>：以 $y &#x3D; 1&#x2F;x$为例，沿$y&#x3D;x$ 对调坐标轴，横向无穷（无穷积分）与纵向无穷（瑕积分）互换。</p>
+<h3 id="3-q-瑕积分的敛散性"><a href="#3-q-瑕积分的敛散性" class="headerlink" title="3. $q$-瑕积分的敛散性"></a>3. $q$-瑕积分的敛散性</h3><p>
+$$
+\int_0^1 \frac{1}{x^q} dx \quad (q > 0), \quad x=0 \text{ 为瑕点}
+$$
+</p>
+
+<p>
+$$
+\int_\delta^1 \frac{1}{x^q} dx = \left. \frac{x^{1-q}}{1-q} \right|_\delta^1 = \frac{1 - \delta^{1-q}}{1-q}
+$$
+</p>
+
+<p>| $q$的范围 |$\delta^{1-q}$ 的极限 | 敛散性 |</p>
+<p>|———–|———————|——–|</p>
+<p>| $0 &lt; q &lt; 1$|$\delta^{1-q} \to 0$| <strong>收敛</strong>，值$\frac{1}{1-q}$ |</p>
+<p>| $q &#x3D; 1$|$-\ln\delta \to +\infty$ | <strong>发散</strong> |</p>
+<p>| $q &gt; 1$|$\delta^{1-q} \to +\infty$ | <strong>发散</strong> |</p>
+<h4 id="与无穷-p-积分的镜像对比"><a href="#与无穷-p-积分的镜像对比" class="headerlink" title="与无穷 $p$-积分的镜像对比"></a>与无穷 $p$-积分的镜像对比</h4><p>| 类型 | 收敛条件 | 直觉 |</p>
+<p>|——|———|——|</p>
+<p>| 无穷积分 $\int_1^{+\infty} \frac{1}{x^p} dx$|$p &gt; 1$ | 空间太大，需幂次<strong>足够大</strong>来压低函数 |</p>
+<p>| 瑕积分 $\int_0^1 \frac{1}{x^q} dx$|$q &lt; 1$ | 高度太高，需幂次<strong>足够小</strong>来控制爆炸 |</p>
+<h3 id="4-瑕点的其它情形"><a href="#4-瑕点的其它情形" class="headerlink" title="4. 瑕点的其它情形"></a>4. 瑕点的其它情形</h3><ul>
+<li><strong>右端点为瑕点</strong>：$\int_a^b f(x) dx &#x3D; \lim_{\delta \to 0^+} \int_a^{b-\delta} f(x) dx$- <strong>内部瑕点</strong>$c \in (a, b)$：收敛 $\Longleftrightarrow$ $\int_a^c f$和$\int_c^b f$ <strong>各自独立收敛</strong>：</li>
+</ul>
+<p>
+$$
+\int_a^b f(x) dx = \lim_{\delta \to 0^+} \int_a^{c-\delta} f(x) dx + \lim_{\varepsilon \to 0^+} \int_{c+\varepsilon}^b f(x) dx
+$$
+</p>
+
+<blockquote>
+<p>注意 $\delta$和$\varepsilon$ 是<strong>独立</strong>趋于 0 的。</p>
+</blockquote>
+<h3 id="5-瑕积分的柯西主值"><a href="#5-瑕积分的柯西主值" class="headerlink" title="5. 瑕积分的柯西主值"></a>5. 瑕积分的柯西主值</h3><p>令两侧对称逼近（$\delta &#x3D; \varepsilon$）：</p>
+<p>
+$$
+\text{P.V.} \int_a^b f(x) dx = \lim_{\delta \to 0^+} \left( \int_a^{c-\delta} f(x) dx + \int_{c+\delta}^b f(x) dx \right)
+$$
+</p>
+
+<p><strong>经典实例</strong>：$\int_{-1}^{1} \frac{1}{x} dx$</p>
+<ul>
+<li><p>严格定义：$\int_0^1 \frac{1}{x} dx$ 发散（$q&#x3D;1$），$\int_{-1}^0 \frac{1}{x} dx$亦发散$\implies$ <strong>发散</strong>。</p>
+</li>
+<li><p>P.V. 视角：$\frac{1}{x}$ 为奇函数，对称区间上正负抵消：</p>
+</li>
+</ul>
+<p>
+$$
+\lim_{\delta \to 0^+} \left( \int_{-1}^{-\delta} \frac{1}{x} dx + \int_{\delta}^{1} \frac{1}{x} dx \right) = \lim_{\delta \to 0^+} (-\ln\delta + \ln\delta) = 0
+$$
+</p>
+
+<p>
+$$
+\text{P.V.} \int_{-1}^{1} \frac{1}{x} dx = 0
+$$
+</p>
+
+<hr>
+<h2 id="知识框架总览"><a href="#知识框架总览" class="headerlink" title="知识框架总览"></a>知识框架总览</h2><pre><code>
+广义积分
+
+├── 无穷积分
+
+│   ├── 定义（极限存在性）
+
+│   ├── p-积分（p&gt;1 收敛）
+
+│   ├── 柯西准则
+
+│   └── 审敛法
+
+│       ├── 非负函数：有界性定理、比较判别法
+
+│       ├── 变号函数：绝对/条件收敛
+
+│       └── 阿贝尔判别法（单调有界 × 收敛积分）
+
+│           └── 例：∫ sin(x)/x^p （0&lt;p≤1 条件收敛）
+
+│       └── 全直线积分 &amp; 柯西主值（P.V. 存在 ⇏ 收敛）
+
+│
+
+└── 瑕积分
+
+    ├── 定义（瑕点处无界，极限逼近）
+
+    ├── 倒数换元 ↔ 无穷积分（对偶性）
+
+    ├── q-瑕积分（q&lt;1 收敛，与 p-积分镜像相反）
+
+    ├── 内部瑕点（两侧独立收敛）
+
+    └── 柯西主值（对称逼近 ⇏ 严格收敛）
+
+        └── 例：∫_{-1}^{1} 1/x dx（发散，但 P.V. = 0）
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2005/03/10/%E6%9C%AA%E5%91%BD%E5%90%8D/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <a class="page-num" href="/page/14/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">15</span>
+    
+    
+    
+    
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">Logic</div>
+        <div class="description">
+            <p>冀幸橐龠生光</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://github.com/Logic61">My github</a>
+            </div>
+            
+            <div class="friend-link">
+                <a href="https://logic61.github.io/MyPage">My Page(更为正式的主页)</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://xj.editlife.cn/">JingsXu&#39;s site</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

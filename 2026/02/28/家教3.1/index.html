@@ -1,0 +1,1140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>家教3.1 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>家教3.1</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/28
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>感觉高中那套有点遗忘了（</p>
+<span id="more"></span>
+
+<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>已知函数 $f(x) &#x3D; 3\sin(2x - \frac{\pi}{3}) - 2\cos^2(x - \frac{\pi}{6}) + 1$。把函数 $f(x)$的图像向左平移$\frac{\pi}{6}$个单位长度，得到函数$g(x)$的图像。若$x_1, x_2$是关于$x$的方程$g(x) &#x3D; a$在$[0, \frac{\pi}{2}]$内的两根，则$\cos(x_1 + x_2)$ 的值为 ______</p>
+<p><strong>答案：</strong> $-\frac{\sqrt{10}}{10}$</p>
+<hr>
+<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li><p><strong>二倍角的余弦公式</strong>（降次扩角）</p>
+</li>
+<li><p><strong>辅助角公式</strong> ($a\sin x + b\cos x$)</p>
+</li>
+<li><p><strong>正弦函数的对称性</strong>（对称轴性质）</p>
+</li>
+<li><p><strong>三角函数图像变换</strong>（平移变换）</p>
+</li>
+</ul>
+<hr>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><ol>
+<li><p><strong>化简 $f(x)$：</strong> 利用二倍角公式将平方项降次，再通过辅助角公式合并为单一正弦型函数。</p>
+</li>
+<li><p><strong>求出 $g(x)$：</strong> 根据“左加右减”原则，对自变量 $x$ 进行平移变换。</p>
+</li>
+<li><p><strong>利用对称性：</strong> 方程 $g(x)&#x3D;a$的两根关于正弦曲线的对称轴对称，由此找到$x_1 + x_2$ 与对称轴的关系。</p>
+</li>
+<li><p><strong>求值：</strong> 将所得关系代入余弦公式求解。</p>
+</li>
+</ol>
+<hr>
+<h3 id="详细题解"><a href="#详细题解" class="headerlink" title="详细题解"></a>详细题解</h3><h4 id="第一步：化简-f-x-首先处理二次项，利用公式-2-cos-2-theta-1-cos-2-theta-："><a href="#第一步：化简-f-x-首先处理二次项，利用公式-2-cos-2-theta-1-cos-2-theta-：" class="headerlink" title="第一步：化简 $f(x)$首先处理二次项，利用公式$2\cos^2 \theta &#x3D; 1 + \cos 2\theta$："></a>第一步：化简 $f(x)$首先处理二次项，利用公式$2\cos^2 \theta &#x3D; 1 + \cos 2\theta$：</h4><p>
+$$
+\begin{aligned} f(x) &= 3\sin\left(2x - \frac{\pi}{3}\right) - \left[1 + \cos\left(2x - \frac{\pi}{3}\right)\right] + 1 \\ &= 3\sin\left(2x - \frac{\pi}{3}\right) - \cos\left(2x - \frac{\pi}{3}\right) \end{aligned}
+$$
+</p>
+
+<p>引入辅助角 $\varphi$，令 $f(x) &#x3D; \sqrt{3^2 + (-1)^2} \sin\left(2x - \frac{\pi}{3} - \varphi\right)$：</p>
+<p>
+$$
+f(x) = \sqrt{10}\sin\left(2x - \frac{\pi}{3} - \varphi\right)
+$$
+</p>
+
+<p>其中 $\sin\varphi &#x3D; \frac{1}{\sqrt{10}} &#x3D; \frac{\sqrt{10}}{10}$，$\cos\varphi &#x3D; \frac{3}{\sqrt{10}} &#x3D; \frac{3\sqrt{10}}{10}$，且 $\varphi \in (0, \frac{\pi}{2})$。</p>
+<h4 id="第二步：求-g-x-的解析式"><a href="#第二步：求-g-x-的解析式" class="headerlink" title="第二步：求 $g(x)$ 的解析式"></a>第二步：求 $g(x)$ 的解析式</h4><p>将 $f(x)$向左平移$\frac{\pi}{6}$ 个单位：</p>
+<p>
+$$
+\begin{aligned} g(x) &= f\left(x + \frac{\pi}{6}\right) \\ &= \sqrt{10}\sin\left[2\left(x + \frac{\pi}{6}\right) - \frac{\pi}{3} - \varphi\right] \\ &= \sqrt{10}\sin(2x - \varphi) \end{aligned}
+$$
+</p>
+
+<h4 id="第三步：确定-x-1-x-2-当-x-in-0-frac-pi-2-时，-2x-varphi-in-varphi-pi-varphi-。"><a href="#第三步：确定-x-1-x-2-当-x-in-0-frac-pi-2-时，-2x-varphi-in-varphi-pi-varphi-。" class="headerlink" title="第三步：确定 $x_1 + x_2$当$x \in [0, \frac{\pi}{2}]$ 时，$2x - \varphi \in [-\varphi, \pi - \varphi]$。"></a>第三步：确定 $x_1 + x_2$当$x \in [0, \frac{\pi}{2}]$ 时，$2x - \varphi \in [-\varphi, \pi - \varphi]$。</h4><p>若 $g(x) &#x3D; a$有两个不同的根$x_1, x_2$，根据正弦函数的对称性，其相位 $2x_1 - \varphi$与$2x_2 - \varphi$关于直线$\frac{\pi}{2}$ 对称：</p>
+<p>
+$$
+\frac{(2x_1 - \varphi) + (2x_2 - \varphi)}{2} = \frac{\pi}{2}
+$$
+</p>
+
+<p>解得：</p>
+<p>
+$$
+2x_1 + 2x_2 - 2\varphi = \pi \implies x_1 + x_2 = \frac{\pi}{2} + \varphi
+$$
+</p>
+
+<h4 id="第四步：计算最终结果"><a href="#第四步：计算最终结果" class="headerlink" title="第四步：计算最终结果"></a>第四步：计算最终结果</h4><p>
+$$
+\begin{aligned} \cos(x_1 + x_2) &= \cos\left(\frac{\pi}{2} + \varphi\right) \\ &= -\sin\varphi \\ &= -\frac{\sqrt{10}}{10} \end{aligned}
+$$
+</p>
+
+<blockquote>
+<p>[!tip] 技巧总结</p>
+<p>处理此类问题的关键在于<strong>辅助角 $\varphi$的定义</strong>。不需要求出$\varphi$的具体角度，只需保留其$\sin$和$\cos$ 值，最后通过诱导公式即可精准抵消。</p>
+</blockquote>
+<hr>
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><p>由函数 $g(x)$，$h(x)$相加后得到的函数，具有优美的图像和性质，称为“<strong>优生成函数</strong>”。已知$g(x) &#x3D; 2\sin x$，$h(x) &#x3D; |\sin 2x|$，其生成函数记为 $f(x)$，则（ ）</p>
+<p>A. $f(x)$的图像关于直线$x &#x3D; -\frac{\pi}{2}$ 对称</p>
+<p>B. $f(x)$在区间$(\frac{3\pi}{2}, 2\pi)$ 上先增后减</p>
+<p>C. $f(x)$的值域为$\left[ -2, \frac{3\sqrt{3}}{2} \right]$D.$f(x)$在区间$[0, 10\pi]$ 上有 11 个零点</p>
+<p><strong>正确答案：</strong> <strong>ACD</strong></p>
+<hr>
+<h3 id="知识点-1"><a href="#知识点-1" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li><p><strong>对称性判别：</strong> 利用 $f(a-x) &#x3D; f(a+x)$ 判断对称轴。</p>
+</li>
+<li><p><strong>周期性：</strong> 三角函数复合后的最小正周期。</p>
+</li>
+<li><p><strong>导数应用：</strong> 利用导数研究含绝对值函数的分段单调性与最值。</p>
+</li>
+<li><p><strong>零点分布：</strong> 结合周期性确定闭区间内的零点个数。</p>
+</li>
+</ul>
+<hr>
+<h3 id="详细解析"><a href="#详细解析" class="headerlink" title="详细解析"></a>详细解析</h3><h4 id="1-函数定义与周期性"><a href="#1-函数定义与周期性" class="headerlink" title="1. 函数定义与周期性"></a>1. 函数定义与周期性</h4><p>由题意得：$f(x) &#x3D; 2\sin x + |\sin 2x|$。</p>
+<p>易知 $f(x+2\pi) &#x3D; 2\sin(x+2\pi) + |\sin(2x+4\pi)| &#x3D; 2\sin x + |\sin 2x| &#x3D; f(x)$，故 $2\pi$是$f(x)$ 的周期。</p>
+<h4 id="2-选项-A-校验（对称性）"><a href="#2-选项-A-校验（对称性）" class="headerlink" title="2. 选项 A 校验（对称性）"></a>2. 选项 A 校验（对称性）</h4><p>计算 $f(-\pi - x)$：</p>
+<p>
+$$
+\begin{aligned} f(-\pi - x) &= 2\sin(-\pi - x) + |\sin(-2\pi - 2x)| \\ &= 2\sin x + |\sin 2x| = f(x) \end{aligned}
+$$
+</p>
+
+<p>根据对称轴公式，函数关于 $x &#x3D; \frac{-\pi}{2}$ 对称。故 <strong>A 正确</strong>。</p>
+<h4 id="3-选项-B-校验（单调性）"><a href="#3-选项-B-校验（单调性）" class="headerlink" title="3. 选项 B 校验（单调性）"></a>3. 选项 B 校验（单调性）</h4><p>利用周期性，区间 $(\frac{3\pi}{2}, 2\pi)$的单调性与$(-\frac{\pi}{2}, 0)$ 相同。</p>
+<p>当 $x \in (-\frac{\pi}{2}, 0)$ 时，$\sin 2x &lt; 0$，则 $f(x) &#x3D; 2\sin x - \sin 2x$。</p>
+<p>求导：</p>
+<p>
+$$
+\begin{aligned} f'(x) &= 2\cos x - 2\cos 2x = -4\cos^2 x + 2\cos x + 2 \\ &= -2(\cos x - 1)(2\cos x + 1) \end{aligned}
+$$
+</p>
+
+<p>在此区间内，$f’(x) &gt; 0$，函数单调递增。故 <strong>B 错误</strong>。</p>
+<h4 id="4-选项-C-校验（值域）"><a href="#4-选项-C-校验（值域）" class="headerlink" title="4. 选项 C 校验（值域）"></a>4. 选项 C 校验（值域）</h4><p>由于 $f(x)$关于$x &#x3D; -\frac{\pi}{2}$对称且周期为$2\pi$，只需考察 $x \in [-\frac{\pi}{2}, \frac{\pi}{2}]$：</p>
+<ul>
+<li><p><strong>在 $[-\frac{\pi}{2}, 0]$ 上：</strong> 由 B 项可知单调递增，$f(-\frac{\pi}{2}) &#x3D; -2$，$f(0) &#x3D; 0$。</p>
+</li>
+<li><p><strong>在 $(0, \frac{\pi}{2}]$上：</strong>$f(x) &#x3D; 2\sin x + \sin 2x$。</p>
+<ul>
+<li><p>求导：$f’(x) &#x3D; 2\cos x + 2\cos 2x &#x3D; 2(2\cos x - 1)(\cos x + 1)$。</p>
+</li>
+<li><p>当 $x \in (0, \frac{\pi}{3})$ 时，$f’(x) &gt; 0$（递增）；当 $x \in (\frac{\pi}{3}, \frac{\pi}{2})$ 时，$f’(x) &lt; 0$（递减）。</p>
+</li>
+<li><p>极大值为 $f(\frac{\pi}{3}) &#x3D; 2 \cdot \frac{\sqrt{3}}{2} + \frac{\sqrt{3}}{2} &#x3D; \frac{3\sqrt{3}}{2}$。</p>
+<p>  综上，值域为 $[-2, \frac{3\sqrt{3}}{2}]$。故 <strong>C 正确</strong>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-选项-D-校验（零点）"><a href="#5-选项-D-校验（零点）" class="headerlink" title="5. 选项 D 校验（零点）"></a>5. 选项 D 校验（零点）</h4><p>令 $f(x) &#x3D; 0$，即 $2\sin x + |2\sin x \cos x| &#x3D; 0$。</p>
+<ul>
+<li><p>当 $\sin x \ge 0$ 时：$2\sin x(1 + |\cos x|) &#x3D; 0 \implies \sin x &#x3D; 0 \implies x &#x3D; k\pi$。</p>
+</li>
+<li><p>当 $\sin x &lt; 0$ 时：$2\sin x(1 - |\cos x|) &#x3D; 0 \implies |\cos x| &#x3D; 1 \implies x &#x3D; k\pi$。</p>
+<p>  在 $[0, 10\pi]$区间内，零点为$0, \pi, 2\pi, \dots, 10\pi$，共 11 个。故 <strong>D 正确</strong>。</p>
+</li>
+</ul>
+<p>注意不要遗漏 $0$ ！</p>
+<hr>
+<blockquote>
+<p>[!abstract] 关键点拨</p>
+<p>处理这类含有绝对值的三角函数，<strong>分段讨论</strong>和<strong>导数分析</strong>是核心。利用周期性和对称性可以将复杂的全域问题缩小到局部区间（如 $[-\frac{\pi}{2}, \frac{\pi}{2}]$）来简化计算。</p>
+</blockquote>
+<hr>
+<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>设双曲线 $E: \frac{x^2}{a^2} - \frac{y^2}{b^2} &#x3D; 1 (a&gt;0, b&gt;0)$的左、右焦点分别为$F_1, F_2$。以坐标原点 $O$ 为圆心，$|OF_2|$为半径的圆与$E$的渐近线在第一象限的交点为$M$，直线 $MF_1$与$E$的左支交于点$N$。若 $|\vec{MN}| &#x3D; 2|\vec{NF_1}|$，则 $E$ 的离心率为（ ）</p>
+<p>A. $\sqrt{2}$B.$\frac{\sqrt{10} + 1}{2}$C.$\sqrt{2} + \frac{1}{2}$D.$2\sqrt{2}$</p>
+<p><strong>答案：</strong> <strong>B</strong></p>
+<hr>
+<p><img src="/images/Pasted_image_20260228205947.png"></p>
+<h3 id="详细解析-1"><a href="#详细解析-1" class="headerlink" title="详细解析"></a>详细解析</h3><ol>
+<li><p><strong>确定点 M 的坐标：</strong></p>
+<ul>
+<li><p>圆的方程为 $x^2 + y^2 &#x3D; c^2$。</p>
+</li>
+<li><p>第一象限渐近线方程为 $y &#x3D; \frac{b}{a}x$。</p>
+</li>
+<li><p>联立解得 $M(a, b)$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>确定点 N 的坐标：</strong></p>
+<ul>
+<li><p>已知 $F_1(-c, 0)$，由 $|\vec{MN}| &#x3D; 2|\vec{NF_1}|$且点$N$在线段$MF_1$上，可得向量关系$\vec{MN} &#x3D; 2\vec{NF_1}$。</p>
+</li>
+<li><p>设 $N(x, y)$，由定比分点公式或向量减法可得 $N\left( \frac{a - 2c}{3}, \frac{b}{3} \right)$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>利用点 N 在双曲线上求解：</strong></p>
+<ul>
+<li><p>将 $N$ 点坐标代入双曲线方程：$\frac{(a-2c)^2}{9a^2} - \frac{b^2}{9b^2} &#x3D; 1$。</p>
+</li>
+<li><p>化简得 $(a - 2c)^2 &#x3D; 10a^2$。</p>
+</li>
+<li><p>展开并替换 $c &#x3D; ea$：$a^2 - 4ac + 4c^2 &#x3D; 10a^2 \implies 4e^2 - 4e - 9 &#x3D; 0$。</p>
+</li>
+<li><p>解方程得 $e &#x3D; \frac{4 + \sqrt{16 - 4(4)(-9)}}{2(4)} &#x3D; \frac{4 + \sqrt{160}}{8} &#x3D; \frac{1 + \sqrt{10}}{2}$（舍去负值）。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><p>若 $b &gt; 1$，$a \in \mathbb{R}$，且满足 $\frac{1}{e^a} + 2\ln b &#x3D; a + \frac{1}{b}$，则（ ）</p>
+<p>A. $2a &lt; b$B.$a &gt; 2b$C.$e^a &lt; b^2$D.$e^a &gt; b^2$</p>
+<p><strong>正确答案：</strong> <strong>C</strong></p>
+<hr>
+<h3 id="知识点-2"><a href="#知识点-2" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li><p><strong>指数与对数的互化：</strong> $e^{\ln x} &#x3D; x$。</p>
+</li>
+<li><p><strong>构造函数单调性：</strong> 通过同构变形构造出形如 $f(x) &#x3D; e^x + x$或$g(x) &#x3D; x + \ln x$ 的单调函数。</p>
+</li>
+<li><p><strong>不等式放缩：</strong> 利用已知条件 $b &gt; 1$ 进行合理放缩。</p>
+</li>
+</ul>
+<hr>
+<h3 id="详细题解-1"><a href="#详细题解-1" class="headerlink" title="详细题解"></a>详细题解</h3><h4 id="法一：指数同构法"><a href="#法一：指数同构法" class="headerlink" title="法一：指数同构法"></a>法一：指数同构法</h4><ol>
+<li><p><strong>变形等式：</strong></p>
+<p> 将原式 $\frac{1}{e^a} + 2\ln b &#x3D; a + \frac{1}{b}$ 变形为：</p>
+</li>
+</ol>
+<p>
+$$
+e^{-a} - a = \frac{1}{b} - 2\ln b = \frac{1}{b} + \ln \frac{1}{b^2}
+$$
+</p>
+
+<ol start="2">
+<li><p><strong>利用 $b &gt; 1$ 放缩：</strong></p>
+<p> 因为 $b &gt; 1$，所以 $\frac{1}{b} + \ln \frac{1}{b^2} &gt; \frac{1}{b^2} + \ln \frac{1}{b^2}$。</p>
+<p> 故有：</p>
+</li>
+</ol>
+<p>
+$$
+e^{-a} - a > e^{\ln \frac{1}{b^2}} + \ln \frac{1}{b^2}
+$$
+</p>
+
+<ol start="3">
+<li><p><strong>构造函数：</strong></p>
+<p> 令 $f(x) &#x3D; e^x + x$，易知 $f(x)$在$\mathbb{R}$ 上单调递增。</p>
+<p> 上述不等式可写为：</p>
+</li>
+</ol>
+<p>
+$$
+f(-a) > f\left(\ln \frac{1}{b^2}\right)
+$$
+</p>
+
+<ol start="4">
+<li><p><strong>得出结论：</strong></p>
+<p> 由单调性得 $-a &gt; \ln \frac{1}{b^2}$，即 $-a &gt; -\ln b^2$。</p>
+<p> 进一步化简：$a &lt; \ln b^2 \implies e^a &lt; b^2$。</p>
+</li>
+</ol>
+<hr>
+<h4 id="法二：对数同构法"><a href="#法二：对数同构法" class="headerlink" title="法二：对数同构法"></a>法二：对数同构法</h4><ol>
+<li><p><strong>变形等式：</strong></p>
+<p> 同理可得 $e^{-a} - a &#x3D; \frac{1}{b} + \ln \frac{1}{b^2}$。</p>
+</li>
+<li><p><strong>放缩与转化：</strong></p>
+<p> 因为 $b &gt; 1$，所以 $\frac{1}{b} + \ln \frac{1}{b^2} &gt; \frac{1}{b^2} + \ln \frac{1}{b^2}$。</p>
+<p> 则有 $e^{-a} + \ln e^{-a} &gt; \frac{1}{b^2} + \ln \frac{1}{b^2}$。</p>
+</li>
+<li><p><strong>构造函数：</strong></p>
+<p> 令 $g(x) &#x3D; x + \ln x$，易知 $g(x)$在$(0, +\infty)$ 上单调递增。</p>
+<p> 不等式可写成 $g(e^{-a}) &gt; g\left(\frac{1}{b^2}\right)$。</p>
+</li>
+<li><p><strong>得出结论：</strong></p>
+<p> 由于 $e^{-a} &gt; 0$且$\frac{1}{b^2} &gt; 0$，由单调性得 $e^{-a} &gt; \frac{1}{b^2}$。</p>
+<p> 整理得 $e^a &lt; b^2$。</p>
+</li>
+</ol>
+<hr>
+<blockquote>
+<p>[!tip] 解题关键</p>
+<p>这种题目的核心在于**“凑型”**。观察等式两边，尝试将变量 $a$与$b$整理成结构完全一致的代数式。在本题中，将$a$处理成$-a$是为了配合$e^{-a}$ 的结构，从而成功构造增函数。</p>
+</blockquote>
+<hr>
+<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><p>若函数 $f(x) &#x3D; \ln \frac{x-m}{x} + nx \quad (m, n \in \mathbb{R})$的图像关于点$(1, -1)$对称，则$mn &#x3D;$ ______</p>
+<p><strong>答案：</strong> $-2$</p>
+<hr>
+<h3 id="知识点-3"><a href="#知识点-3" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li><p><strong>中心对称的定义：</strong> 若 $f(x)$关于点$(a, b)$对称，则$f(x) + f(2a-x) &#x3D; 2b$。</p>
+</li>
+<li><p><strong>对数函数定义域：</strong> 对称中心往往与定义域的对称中心一致。</p>
+</li>
+<li><p><strong>待定系数法：</strong> 通过特殊点或恒等式求解参数 $m, n$。</p>
+</li>
+</ul>
+<hr>
+<h3 id="详细题解-2"><a href="#详细题解-2" class="headerlink" title="详细题解"></a>详细题解</h3><h4 id="方法一：对称点公式法（通用解法）"><a href="#方法一：对称点公式法（通用解法）" class="headerlink" title="方法一：对称点公式法（通用解法）"></a>方法一：对称点公式法（通用解法）</h4><ol>
+<li><p><strong>设点求解：</strong></p>
+<p> 设 $P(x_0, y_0)$为$f(x)$图像上任意一点，则其关于点$(1, -1)$的对称点为$Q(2-x_0, -2-y_0)$。</p>
+</li>
+<li><p><strong>列方程组：</strong></p>
+<p> 根据对称性，点 $Q$也在函数$f(x)$ 的图像上：</p>
+</li>
+</ol>
+<p>
+$$
+\begin{cases} y_0 = \ln \frac{x_0-m}{x_0} + nx_0 \\ -2 - y_0 = \ln \frac{2-x_0-m}{2-x_0} + n(2-x_0) \end{cases}
+$$
+</p>
+
+<ol start="3">
+<li><p><strong>相加消元：</strong></p>
+<p> 两式相加得：$-2 &#x3D; \ln \left( \frac{x_0-m}{x_0} \cdot \frac{2-x_0-m}{2-x_0} \right) + 2n$。</p>
+<p> 即 $\ln \frac{(x_0-m)(2-x_0-m)}{x_0(2-x_0)} + 2(n+1) &#x3D; 0$ 恒成立。</p>
+</li>
+<li><p><strong>系数匹配：</strong></p>
+<p> 要使上式对任意 $x_0$ 恒成立，需满足：</p>
+<ul>
+<li><p>$n + 1 &#x3D; 0 \implies n &#x3D; -1$。</p>
+</li>
+<li><p>$\frac{(x_0-m)(2-x_0-m)}{x_0(2-x_0)} &#x3D; 1 \implies m(m-2) &#x3D; 0$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>检验与结论：</strong></p>
+<ul>
+<li><p>若 $m&#x3D;0$，$f(x)&#x3D;-x$（定义域不合），舍去。</p>
+</li>
+<li><p>若 $m&#x3D;2$，$n&#x3D;-1$，符合题意。</p>
+</li>
+<li><p>最终结果：$mn &#x3D; 2 \times (-1) &#x3D; -2$。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="方法二：定义域对称性法（快速解法）"><a href="#方法二：定义域对称性法（快速解法）" class="headerlink" title="方法二：定义域对称性法（快速解法）"></a>方法二：定义域对称性法（快速解法）</h4><ol>
+<li><p><strong>定义域分析：</strong></p>
+<p> 由于 $f(x)$关于$(1, -1)$对称，其定义域$\frac{x-m}{x} &gt; 0$也必须关于$x&#x3D;1$对称。$\frac{x-m}{x} &gt; 0$的解集关于$x&#x3D;1$对称，直接可得$m&#x3D;2$。</p>
+</li>
+<li><p><strong>平移转化：</strong></p>
+<p> 将函数向左平移 $1$个单位，向上平移$1$ 个单位，得到的新函数应为奇函数。</p>
+<p> 令 $g(x) &#x3D; f(x+1) + 1 &#x3D; \ln \frac{x+1-2}{x+1} + n(x+1) + 1 &#x3D; \ln \frac{x-1}{x+1} + nx + (n+1)$。</p>
+</li>
+<li><p><strong>奇函数性质：</strong></p>
+<p> 要使 $g(x)$为奇函数，常数项必须为$0$，即 $n+1&#x3D;0 \implies n&#x3D;-1$。</p>
+<p> 此时 $mn &#x3D; -2$。</p>
+</li>
+</ol>
+<hr>
+<blockquote>
+<p>[!abstract] 核心总结</p>
+<p>函数 $f(x)$关于点$(a, b)$对称的本质是：<strong>自变量之和为$2a$时，函数值之和为$2b$</strong>。在处理对数复合函数时，先观察定义域的对称中心往往能快速锁定参数 $m$。</p>
+</blockquote>
+<hr>
+<h3 id="6"><a href="#6" class="headerlink" title="6"></a>6</h3><p>一种游戏规则如下：投掷一枚质地均匀的骰子（骰子的六个面分别标注的点数为 $1, 2, 3, 4, 5, 6$），若掷出的点数为 $6$，则游戏终止；否则一直进行投掷，直到掷出的点数为 $6$。规定最多投掷 $n$次游戏强制终止。记$X$为投掷骰子的总次数，则$X$的数学期望$E(X) &#x3D;$______（用含$n$ 的式子表示）。</p>
+<p><strong>答案：</strong> $6 - 5 \times \left(\frac{5}{6}\right)^{n-1}$</p>
+<hr>
+<h3 id="知识点-4"><a href="#知识点-4" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li><p><strong>离散型随机变量的期望：</strong> $E(X) &#x3D; \sum p_i x_i$。</p>
+</li>
+<li><p><strong>等比数列求和：</strong> 用于化简期望表达式。</p>
+</li>
+<li><p><strong>错位相减法：</strong> 处理形如“等差 $\times$ 等比”数列求和的标准方法。</p>
+</li>
+</ul>
+<hr>
+<h3 id="详细题解-3"><a href="#详细题解-3" class="headerlink" title="详细题解"></a>详细题解</h3><h4 id="1-概率分布分析"><a href="#1-概率分布分析" class="headerlink" title="1. 概率分布分析"></a>1. 概率分布分析</h4><p>由题意知，每次投掷骰子掷出 $6$点的概率为$p &#x3D; \frac{1}{6}$，未掷出 $6$点的概率为$q &#x3D; \frac{5}{6}$。</p>
+<p>随机变量 $X$的可能取值为$1, 2, \dots, n$。</p>
+<ul>
+<li>当 $1 \le k &lt; n$时，表示前$k-1$次均未掷出$6$，第 $k$次恰好掷出$6$：</li>
+</ul>
+<p>
+$$
+P(X = k) = \left(\frac{5}{6}\right)^{k-1} \times \frac{1}{6}
+$$
+</p>
+
+<ul>
+<li>当 $k &#x3D; n$时，表示前$n-1$次均未掷出$6$（无论第 $n$次是否为$6$ 游戏都必须停止）：</li>
+</ul>
+<p>
+$$
+P(X = n) = \left(\frac{5}{6}\right)^{n-1}
+$$
+</p>
+
+<h4 id="2-列出期望公式"><a href="#2-列出期望公式" class="headerlink" title="2. 列出期望公式"></a>2. 列出期望公式</h4><p>
+$$
+E(X) = \frac{1}{6} \times 1 + \frac{5}{6} \times \frac{1}{6} \times 2 + \left(\frac{5}{6}\right)^2 \times \frac{1}{6} \times 3 + \dots + \left(\frac{5}{6}\right)^{n-2} \times \frac{1}{6} \times (n-1) + \left(\frac{5}{6}\right)^{n-1} \times n
+$$
+</p>
+
+<h4 id="3-错位相减法求和"><a href="#3-错位相减法求和" class="headerlink" title="3. 错位相减法求和"></a>3. 错位相减法求和</h4><p>将上式左右两侧同乘以 $\frac{5}{6}$，得：</p>
+<p>
+$$
+\frac{5}{6}E(X) = \frac{5}{6} \times \frac{1}{6} \times 1 + \left(\frac{5}{6}\right)^2 \times \frac{1}{6} \times 2 + \dots + \left(\frac{5}{6}\right)^{n-1} \times \frac{1}{6} \times (n-1) + \left(\frac{5}{6}\right)^n \times n
+$$
+</p>
+
+<p>两式作差得：</p>
+<p>
+$$
+\frac{1}{6}E(X) = \frac{1}{6} \times \left[ 1 + \frac{5}{6} + \left(\frac{5}{6}\right)^2 + \dots + \left(\frac{5}{6}\right)^{n-2} \right] + \left(\frac{5}{6}\right)^{n-1} \times n - \left(\frac{5}{6}\right)^{n-1} \times \frac{1}{6}(n-1) - \left(\frac{5}{6}\right)^n \times n
+$$
+</p>
+
+<h4 id="4-化简结论"><a href="#4-化简结论" class="headerlink" title="4. 化简结论"></a>4. 化简结论</h4><p>利用等比数列求和公式并整理各项：</p>
+<p>
+$$
+E(X) = 1 + \frac{5}{6} + \left(\frac{5}{6}\right)^2 + \dots + \left(\frac{5}{6}\right)^{n-2} + \left(\frac{5}{6}\right)^{n-1} \times 6n - \left(\frac{5}{6}\right)^{n-1} \times (n-1) - \left(\frac{5}{6}\right)^n \times 6n
+$$
+</p>
+
+<p>最终化简结果为：</p>
+<p>
+$$
+E(X) = 6 - 5 \times \left(\frac{5}{6}\right)^{n-1}
+$$
+</p>
+
+<p>经检验，$n&#x3D;1$时$E(X)&#x3D;1$ 符合上式。</p>
+<hr>
+<h3 id="7"><a href="#7" class="headerlink" title="7"></a>7</h3><p>函数 $f(x, y) &#x3D; \sin x \cdot \sqrt{\cos y} + \cos x \cdot \sqrt{\sin y}$ 的最大值为（ ）</p>
+<p>A. $1$B.$\sqrt[4]{2}$C.$\sqrt{2}$D.$2$</p>
+<p><strong>正确答案：</strong> <strong>B</strong></p>
+<hr>
+<h3 id="知识点-5"><a href="#知识点-5" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li><p><strong>向量的数量积公式：</strong> $\vec{m} \cdot \vec{n} &#x3D; |\vec{m}| \cdot |\vec{n}| \cos \theta$。</p>
+</li>
+<li><p><strong>柯西不等式（向量形式）：</strong> $\vec{m} \cdot \vec{n} \le |\vec{m}| \cdot |\vec{n}|$。</p>
+</li>
+<li><p><strong>辅助角公式：</strong> $a\sin x + b\cos x &#x3D; \sqrt{a^2+b^2}\sin(x+\varphi)$。</p>
+</li>
+</ul>
+<hr>
+<h3 id="详细解析-2"><a href="#详细解析-2" class="headerlink" title="详细解析"></a>详细解析</h3><h4 id="1-构造向量"><a href="#1-构造向量" class="headerlink" title="1. 构造向量"></a>1. 构造向量</h4><p>为了利用向量的数量积性质，我们可以将函数式拆解为两个向量的点积形式。</p>
+<p>设向量：</p>
+<ul>
+<li>$\vec{m} &#x3D; (\cos x, \sin x)$-$\vec{n} &#x3D; (\sqrt{\sin y}, \sqrt{\cos y})$</li>
+</ul>
+<p>则原函数可以表示为：</p>
+<p>
+$$
+f(x, y) = \vec{m} \cdot \vec{n} = \cos x \cdot \sqrt{\sin y} + \sin x \cdot \sqrt{\cos y}
+$$
+</p>
+
+<h4 id="2-利用向量模的不等式"><a href="#2-利用向量模的不等式" class="headerlink" title="2. 利用向量模的不等式"></a>2. 利用向量模的不等式</h4><p>根据向量数量积性质 $\vec{m} \cdot \vec{n} \le |\vec{m}| \cdot |\vec{n}|$，当且仅当两向量共线同向时取得最大值：</p>
+<ul>
+<li><p>首先计算向量的模：</p>
+<ul>
+<li>$|\vec{m}| &#x3D; \sqrt{\cos^2 x + \sin^2 x} &#x3D; 1$-$|\vec{n}| &#x3D; \sqrt{(\sqrt{\sin y})^2 + (\sqrt{\cos y})^2} &#x3D; \sqrt{\sin y + \cos y}$</li>
+</ul>
+</li>
+</ul>
+<p>因此：</p>
+<p>
+$$
+f(x, y) \le 1 \cdot \sqrt{\sin y + \cos y}
+$$
+</p>
+
+<h4 id="3-求解最大值"><a href="#3-求解最大值" class="headerlink" title="3. 求解最大值"></a>3. 求解最大值</h4><p>利用辅助角公式处理 $\sin y + \cos y$：</p>
+<p>
+$$
+\sin y + \cos y = \sqrt{2}\sin(y + \varphi) \le \sqrt{2}
+$$
+</p>
+
+<p>（其中 $\tan \varphi &#x3D; 1$，即 $\varphi &#x3D; \frac{\pi}{4}$）</p>
+<p>将此结果代入前面的不等式中：</p>
+<p>
+$$
+f(x, y) \le \sqrt{\sqrt{2}} = \sqrt[4]{2}
+$$
+</p>
+
+<p>故选 <strong>B</strong>。</p>
+<hr>
+<h4 id="辅助角公式法"><a href="#辅助角公式法" class="headerlink" title="辅助角公式法"></a>辅助角公式法</h4><p><strong>1. 变形函数结构</strong></p>
+<p>我们可以把函数 $f(x, y)$看作关于$x$ 的三角函数合成：</p>
+<p>
+$$
+f(x, y) = (\sqrt{\cos y}) \sin x + (\sqrt{\sin y}) \cos x
+$$
+</p>
+
+<p>这符合 $a \sin x + b \cos x$的形式，其中$a &#x3D; \sqrt{\cos y}$，$b &#x3D; \sqrt{\sin y}$。</p>
+<p><strong>2. 寻找关于 $x$ 的极大值</strong></p>
+<p>根据辅助角公式，对于固定的 $y$，当 $x$ 变化时，$f(x, y)$ 的最大值为：</p>
+<p>
+$$
+\sqrt{a^2 + b^2} = \sqrt{(\sqrt{\cos y})^2 + (\sqrt{\sin y})^2}
+$$
+</p>
+
+<p>简化后得到：</p>
+<p>
+$$
+f(x, y)_{max(x)} = \sqrt{\cos y + \sin y}
+$$
+</p>
+
+<p><strong>3. 求所得表达式的最大值</strong></p>
+<p>现在问题变成了：求 $g(y) &#x3D; \sqrt{\sin y + \cos y}$ 的最大值。</p>
+<p>我们再次对根号内部使用辅助角公式：</p>
+<p>
+$$
+\sin y + \cos y = \sqrt{2} \sin(y + \frac{\pi}{4})
+$$
+</p>
+
+<p>由于 $\sin(y + \frac{\pi}{4})$的最大值是$1$，所以：</p>
+<p>
+$$
+\sin y + \cos y \le \sqrt{2}
+$$
+</p>
+
+<p><strong>4. 得出最终结果</strong></p>
+<p>代入原式，得到函数 $f(x, y)$ 的全局最大值为：</p>
+<p>
+$$
+f(x, y) \le \sqrt{\sqrt{2}} = \sqrt[4]{2}
+$$
+</p>
+
+<hr>
+<h3 id="8"><a href="#8" class="headerlink" title="8"></a>8</h3><p>“东数西算”是一项国家战略工程。某人工智能公司有两种方式租赁算力方案可供选择：</p>
+<ol>
+<li><p><strong>方式一：</strong> 仅根据单位算力支付费用。</p>
+</li>
+<li><p><strong>方式二：</strong> 租用专用超级计算机，然后再根据单位算力支付费用。</p>
+</li>
+</ol>
+<p>下表列出了该公司调查 $A、B、C$ 三个公司在不同算力需求下的整体费用最少租赁方案：</p>
+<table>
+<thead>
+<tr>
+<th><strong>公司</strong></th>
+<th><strong>算力 (PetaFLOPS)</strong></th>
+<th><strong>租赁最少费用</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$A$ 公司</td>
+<td>$2000$</td>
+<td>$120$ 万元</td>
+</tr>
+<tr>
+<td>$B$ 公司</td>
+<td>$4000$</td>
+<td>$180$ 万元</td>
+</tr>
+<tr>
+<td>$C$ 公司</td>
+<td>$6000$</td>
+<td>$220$ 万元</td>
+</tr>
+</tbody></table>
+<p>当该公司有 $8000$ (PetaFLOPS) 算力需求时，最优方案所需费用为（ ）</p>
+<p>A. $240$ 万元</p>
+<p>B. $260$ 万元</p>
+<p>C. $280$ 万元</p>
+<p>D. $300$ 万元</p>
+<p><strong>正确答案：</strong> <strong>B</strong></p>
+<hr>
+<h3 id="知识点-6"><a href="#知识点-6" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li><p><strong>分段函数模型：</strong> 比较线性模型 $y &#x3D; a_1 x$与截距模型$y &#x3D; a_2 x + t$。</p>
+</li>
+<li><p><strong>最优化逻辑：</strong> 通过已知最优解反推各方案的成本系数。</p>
+</li>
+<li><p><strong>逻辑推理能力：</strong> 利用等差数列的矛盾点排除不合理的假设。</p>
+</li>
+</ul>
+<hr>
+<h3 id="详细解析-3"><a href="#详细解析-3" class="headerlink" title="详细解析"></a>详细解析</h3><h4 id="1-建立数学模型"><a href="#1-建立数学模型" class="headerlink" title="1. 建立数学模型"></a>1. 建立数学模型</h4><p>设单位算力费用为 $a_1$万元（方式一），租用超级计算机费用为$t$万元，此时单位算力费用为$a_2$ 万元（方式二）。</p>
+<p>总费用计算公式如下：</p>
+<ul>
+<li><p>方案一：$f_1(x) &#x3D; a_1 x$</p>
+</li>
+<li><p>方案二：$f_2(x) &#x3D; a_2 x + t$最优方案即为$\min{f_1(x), f_2(x)}$。</p>
+</li>
+</ul>
+<h4 id="2-确定租赁组合"><a href="#2-确定租赁组合" class="headerlink" title="2. 确定租赁组合"></a>2. 确定租赁组合</h4><p>根据题目给出的 $A、B、C$ 三家公司数据：</p>
+<table>
+<thead>
+<tr>
+<th><strong>公司</strong></th>
+<th><strong>运算量付费 (f1​)</strong></th>
+<th><strong>租赁方式付费 (f2​)</strong></th>
+<th><strong>租赁最少费用</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>$A$ 公司</strong></td>
+<td>$2000a_1$</td>
+<td>$2000a_2 + t$</td>
+<td><strong>$120$ 万元</strong></td>
+</tr>
+<tr>
+<td><strong>$B$ 公司</strong></td>
+<td>$4000a_1$</td>
+<td>$4000a_2 + t$</td>
+<td><strong>$180$ 万元</strong></td>
+</tr>
+<tr>
+<td><strong>$C$ 公司</strong></td>
+<td>$6000a_1$</td>
+<td>$6000a_2 + t$</td>
+<td><strong>$220$ 万元</strong></td>
+</tr>
+</tbody></table>
+<ul>
+<li><p><strong>逻辑分析：</strong> 若三家公司都选方式一，则总费用应成等差数列（$120, 240, 360$），与题干不符。同理，若都选方式二，总费用也应成等差数列（间隔应一致），但实际间隔为 $60$和$40$，出现矛盾。</p>
+</li>
+<li><p><strong>推断：</strong> 必然有某公司是根据“方式一”付费，而其他公司根据“方式二”付费。<br>  <img src="/images/Pasted_image_20260228212051.png"></p>
+<ul>
+<li><p>经计算排除，若 $A$ 公司采用方式一，$B、C$ 公司采用方式二，逻辑成立：</p>
+<ol>
+<li>$2000a_1 &#x3D; 120 \implies a_1 &#x3D; \frac{6}{100}$2.$4000a_2 + t &#x3D; 180$3.$6000a_2 + t &#x3D; 220$</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-求解参数"><a href="#3-求解参数" class="headerlink" title="3. 求解参数"></a>3. 求解参数</h4><p>联立方程 (2) 和 (3)：</p>
+<ul>
+<li>$(6000a_2 + t) - (4000a_2 + t) &#x3D; 220 - 180 \implies 2000a_2 &#x3D; 40 \implies a_2 &#x3D; \frac{2}{100}$- 代入求得$t &#x3D; 180 - 4000 \times \frac{2}{100} &#x3D; 100$</li>
+</ul>
+<h4 id="4-计算-8000-算力下的最优解"><a href="#4-计算-8000-算力下的最优解" class="headerlink" title="4. 计算 8000 算力下的最优解"></a>4. 计算 8000 算力下的最优解</h4><p>当算力需求 $x &#x3D; 8000$ 时：</p>
+<ul>
+<li><p><strong>方式一：</strong> $8000 \times a_1 &#x3D; 8000 \times \frac{6}{100} &#x3D; 480$ 万元</p>
+</li>
+<li><p><strong>方式二：</strong> $8000 \times a_2 + t &#x3D; 8000 \times \frac{2}{100} + 100 &#x3D; 160 + 100 &#x3D; 260$ 万元</p>
+</li>
+</ul>
+<p><strong>结论：</strong> 最优方案费用为 $\min{480, 260} &#x3D; 260$ 万元。</p>
+<hr>
+<h3 id="9"><a href="#9" class="headerlink" title="9"></a>9</h3><p><img src="/images/Pasted_image_20260228212452.png"><br><img src="/images/Pasted_image_20260228212523.png"></p>
+<h3 id="10"><a href="#10" class="headerlink" title="10"></a>10</h3><p>CBA 季后赛总决赛在甲、乙两支球队间进行，总决赛采用<strong>七局四胜制</strong>（$7$场$4$ 胜），总决赛的主场优势授予常规赛排名更高的球队，采用“$2-2-1-1-1$”的主客场安排（即排名高的球队先打两个主场，然后是对手的两个主场，之后若需要，交替进行一个主场）。</p>
+<p>设甲队<strong>主场取胜</strong>的概率为 $0.6$，<strong>客场取胜</strong>的概率为 $0.5$，且各场比赛结果相互独立。若甲队常规赛排名更高，那么甲队以 $4:2$ 获胜的概率是 ______。</p>
+<p><strong>答案：</strong> $0.171$</p>
+<hr>
+<h3 id="知识点-7"><a href="#知识点-7" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li><p><strong>独立事件的乘法公式：</strong> 用于计算特定比赛序列的概率。</p>
+</li>
+<li><p><strong>互斥事件的加法公式：</strong> 用于合并多种符合条件的获胜情况。</p>
+</li>
+<li><p><strong>$n$局$m$胜制逻辑：</strong> 若甲队以$4:2$获胜，意味着前$5$场比赛中甲队赢了$3$场，且第$6$ 场甲队必胜。</p>
+</li>
+</ul>
+<hr>
+<h3 id="详细解析-4"><a href="#详细解析-4" class="headerlink" title="详细解析"></a>详细解析</h3><h4 id="1-赛程分布分析"><a href="#1-赛程分布分析" class="headerlink" title="1. 赛程分布分析"></a>1. 赛程分布分析</h4><p>根据“$2-2-1-1-1$”的主客场规则，甲队在前 $6$ 场比赛中的主客场分布如下：</p>
+<ul>
+<li><p><strong>第 1, 2, 5 场：</strong> 甲队主场（胜率 $0.6$，负率 $0.4$）。</p>
+</li>
+<li><p><strong>第 3, 4, 6 场：</strong> 甲队客场（胜率 $0.5$，负率 $0.5$）。</p>
+</li>
+</ul>
+<h4 id="2-获胜条件拆解"><a href="#2-获胜条件拆解" class="headerlink" title="2. 获胜条件拆解"></a>2. 获胜条件拆解</h4><p>若甲队以 $4:2$ 获胜，需满足两个核心条件：</p>
+<ol>
+<li><p><strong>前 5 场比赛：</strong> 甲队累计赢下 $3$场，输掉$2$ 场。</p>
+</li>
+<li><p><strong>第 6 场比赛：</strong> 甲队（客场）必须取胜。</p>
+</li>
+</ol>
+<h4 id="3-分情况讨论前-5-场的胜负"><a href="#3-分情况讨论前-5-场的胜负" class="headerlink" title="3. 分情况讨论前 5 场的胜负"></a>3. 分情况讨论前 5 场的胜负</h4><p>前 $5$场中，甲队有$3$个主场和$2$个客场。赢$3$ 场的情况可以细分为以下三类：</p>
+<ul>
+<li><p><strong>情况一：3 个主场全胜，2 个客场全负</strong></p>
+<p>  概率 $P_1 &#x3D; (0.6^3) \times (0.5^2) \times 0.5 &#x3D; 0.216 \times 0.25 \times 0.5 &#x3D; 0.027$。</p>
+</li>
+<li><p><strong>情况二：3 个主场 2 胜 1 负，2 个客场 1 胜 1 负</strong></p>
+<ul>
+<li><p>主场获胜概率：$C_3^2 \times 0.6^2 \times 0.4$</p>
+</li>
+<li><p>客场获胜概率：$C_2^1 \times 0.5^1 \times 0.5^1$</p>
+</li>
+<li><p>第 6 场取胜：$0.5$概率$P_2 &#x3D; (C_3^2 \times 0.6^2 \times 0.4) \times (C_2^1 \times 0.5 \times 0.5) \times 0.5 &#x3D; 0.432 \times 0.5 \times 0.5 &#x3D; 0.108$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>情况三：3 个主场 1 胜 2 负，2 个客场全胜</strong></p>
+<ul>
+<li><p>主场获胜概率：$C_3^1 \times 0.6 \times 0.4^2$</p>
+</li>
+<li><p>客场获胜概率：$0.5^2$</p>
+</li>
+<li><p>第 6 场取胜：$0.5$概率$P_3 &#x3D; (C_3^1 \times 0.6 \times 0.4^2) \times (0.5 \times 0.5) \times 0.5 &#x3D; 0.288 \times 0.25 \times 0.5 &#x3D; 0.036$。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-汇总计算"><a href="#4-汇总计算" class="headerlink" title="4. 汇总计算"></a>4. 汇总计算</h4><p>综上所述，甲队以 $4:2$ 获胜的总概率为：</p>
+<p>
+$$
+P = P_1 + P_2 + P_3 = 0.027 + 0.108 + 0.036 = 0.171
+$$
+</p>
+
+<hr>
+<h3 id="11"><a href="#11" class="headerlink" title="11"></a>11</h3><p>在对称轴为坐标轴的双曲线中，“离心率为 $\sqrt{5}$”是“渐近线方程为 $y &#x3D; \pm 2x$”的（ ）</p>
+<p>A. 充分不必要条件</p>
+<p>B. 必要不充分条件</p>
+<p>C. 充要条件</p>
+<p>D. 既不充分又不必要条件</p>
+<p><strong>正确答案：</strong> <strong>D</strong></p>
+<hr>
+<h3 id="知识点-8"><a href="#知识点-8" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li><p><strong>双曲线标准方程：</strong> 焦点在 $x$轴$\frac{x^2}{a^2} - \frac{y^2}{b^2} &#x3D; 1$与焦点在$y$轴$\frac{y^2}{a^2} - \frac{x^2}{b^2} &#x3D; 1$。</p>
+</li>
+<li><p><strong>渐近线方程：</strong> 焦点在 $x$轴时$y &#x3D; \pm \frac{b}{a}x$；焦点在 $y$轴时$y &#x3D; \pm \frac{a}{b}x$。</p>
+</li>
+<li><p><strong>离心率公式：</strong> $e &#x3D; \frac{c}{a} &#x3D; \sqrt{1 + (\frac{b}{a})^2}$。</p>
+</li>
+<li><p><strong>逻辑用语：</strong> 充分条件与必要条件的判定。</p>
+</li>
+</ul>
+<hr>
+<h3 id="详细解析-5"><a href="#详细解析-5" class="headerlink" title="详细解析"></a>详细解析</h3><h4 id="1-由“渐近线”推“离心率”（判定必要性）"><a href="#1-由“渐近线”推“离心率”（判定必要性）" class="headerlink" title="1. 由“渐近线”推“离心率”（判定必要性）"></a>1. 由“渐近线”推“离心率”（判定必要性）</h4><p>若双曲线的渐近线方程为 $y &#x3D; \pm 2x$：</p>
+<ul>
+<li><p><strong>当焦点在 $x$轴时：</strong>$\frac{b}{a} &#x3D; 2$，则 $e &#x3D; \sqrt{1 + 2^2} &#x3D; \sqrt{5}$。</p>
+</li>
+<li><p><strong>当焦点在 $y$轴时：</strong>$\frac{a}{b} &#x3D; 2 \implies \frac{b}{a} &#x3D; \frac{1}{2}$，则 $e &#x3D; \sqrt{1 + (\frac{1}{2})^2} &#x3D; \frac{\sqrt{5}}{2}$。</p>
+</li>
+<li><p><strong>结论：</strong> 渐近线确定时，离心率有两个可能值值，不能推出离心率必为 $\sqrt{5}$。故<strong>不满足必要性</strong>。</p>
+</li>
+</ul>
+<h4 id="2-由“离心率”推“渐近线”（判定充分性）"><a href="#2-由“离心率”推“渐近线”（判定充分性）" class="headerlink" title="2. 由“离心率”推“渐近线”（判定充分性）"></a>2. 由“离心率”推“渐近线”（判定充分性）</h4><p>若双曲线的离心率 $e &#x3D; \sqrt{5}$：</p>
+<ul>
+<li><p>由 $e^2 &#x3D; 1 + (\frac{b}{a})^2 &#x3D; 5$得$(\frac{b}{a})^2 &#x3D; 4$，即 $\frac{b}{a} &#x3D; 2$。</p>
+</li>
+<li><p><strong>若焦点在 $x$轴：</strong> 渐近线为$y &#x3D; \pm \frac{b}{a}x &#x3D; \pm 2x$。</p>
+</li>
+<li><p><strong>若焦点在 $y$轴：</strong> 渐近线为$y &#x3D; \pm \frac{a}{b}x &#x3D; \pm \frac{1}{2}x$。</p>
+</li>
+<li><p><strong>结论：</strong> 离心率确定时，渐近线方程由于焦点位置不确定也有两种可能，不能推出必为 $y &#x3D; \pm 2x$。故<strong>不满足充分性</strong>。</p>
+</li>
+</ul>
+<h4 id="3-最终判定"><a href="#3-最终判定" class="headerlink" title="3. 最终判定"></a>3. 最终判定</h4><p>因为既不能从左推向右，也不能从右推向左，所以该条件是<strong>既不充分又不必要条件</strong>。</p>
+<hr>
+<blockquote>
+<p>[!warning] 避坑指南</p>
+<p>很多同学会默认双曲线焦点在 $x$轴，从而误选。在处理圆锥曲线题目时，如果没有明确说明焦点位置，<strong>考虑$x$轴和$y$ 轴两种情况</strong>是必须具备的思维习惯。</p>
+</blockquote>
+<hr>
+<h3 id="12"><a href="#12" class="headerlink" title="12"></a>12</h3><p>某 AI（人工智能）机器人进行射门游戏，射中得 $1$分，未射中得$-1$分。当累计得分$X$达到$2$分（获胜）或$-2$分（落败）时游戏结束，否则游戏将一直进行下去。已知该 AI 机器人射门的命中率为$\alpha$ ($\frac{1}{2} \le \alpha &lt; 1$)，各次射门相互独立。</p>
+<ol>
+<li><p>求机器人恰好射门 $4$ 次后获胜的概率；</p>
+</li>
+<li><p>设 $A_n$表示“机器人射门$n$ 次，游戏仍未结束”。</p>
+<p> (i) 若 $\alpha &#x3D; \frac{1}{2}$，求 $P(A_2 | A_1)$和$P(A_{2k+2} | A_{2k+1})$ ($k \in \mathbb{N}^*$)；</p>
+<p> (ii) 若 $P(A_{2k+2} | A_{2k}) &#x3D; \frac{4}{9}$ ($k \in \mathbb{N}^*$)，求游戏结束时 $X$ 的数学期望。</p>
+</li>
+</ol>
+<p><strong>答案：</strong></p>
+<p>(1) $P &#x3D; 2\alpha^3(1-\alpha)$(2) (i)$\frac{1}{2}, \frac{1}{2}$；(ii) $E(X) &#x3D; \frac{6}{5}$</p>
+<hr>
+<h3 id="详细解析-6"><a href="#详细解析-6" class="headerlink" title="详细解析"></a>详细解析</h3><h4 id="1-恰好-4-次获胜的概率"><a href="#1-恰好-4-次获胜的概率" class="headerlink" title="1. 恰好 4 次获胜的概率"></a>1. 恰好 4 次获胜的概率</h4><p>若机器人恰好在第 $4$ 次获胜，则前两次必须是一中一负（顺序不计），且最后两场必须连续射中。</p>
+<ul>
+<li><p>前两次一中一负的概率：$C_2^1 \cdot \alpha \cdot (1-\alpha) &#x3D; 2\alpha(1-\alpha)$</p>
+</li>
+<li><p>后两次连续射中的概率：$\alpha^2$- <strong>计算：</strong>$P &#x3D; 2\alpha(1-\alpha) \cdot \alpha^2 &#x3D; 2\alpha^3(1-\alpha)$</p>
+</li>
+</ul>
+<h4 id="2-条件概率分析-i"><a href="#2-条件概率分析-i" class="headerlink" title="2. 条件概率分析 (i)"></a>2. 条件概率分析 (i)</h4><p>当 $\alpha &#x3D; \frac{1}{2}$ 时：</p>
+<ul>
+<li><p>$P(A_1) &#x3D; 1$（第 $1$次射门无论中否，累计得分必为$1$或$-1$，游戏均未结束）</p>
+</li>
+<li><p>$P(A_2)$表示前两次为一中一负，概率为$2 \cdot \frac{1}{2} \cdot \frac{1}{2} &#x3D; \frac{1}{2}$- <strong>结论：</strong>$P(A_2 | A_1) &#x3D; \frac{P(A_2)}{P(A_1)} &#x3D; \frac{1}{2}$- 同理，若第$2k+1$次游戏未结束，则第$2k+2$次不结束的条件是该次投篮与上一次结果相反，概率仍为$\frac{1}{2}$。</p>
+</li>
+</ul>
+<h4 id="3-数学期望求解-ii"><a href="#3-数学期望求解-ii" class="headerlink" title="3. 数学期望求解 (ii)"></a>3. 数学期望求解 (ii)</h4><p>已知 $P(A_{2k+2} | A_{2k}) &#x3D; \frac{4}{9}$，这意味着每进行两次射门，游戏不结束的概率是 $\frac{4}{9}$。</p>
+<ol>
+<li><p><strong>求命中率 $\alpha$：</strong></p>
+<p> 两次射门后游戏不结束意味着结果为“一中一负”，概率为 $2\alpha(1-\alpha) &#x3D; \frac{4}{9}$。</p>
+<p> 解方程得 $\alpha &#x3D; \frac{2}{3}$（舍去 $\frac{1}{3}$，因 $\alpha \ge \frac{1}{2}$）。</p>
+</li>
+<li><p><strong>求获胜概率 $p &#x3D; P(X&#x3D;2)$：</strong></p>
+<p> 设获胜概率为 $p$。根据全概率公式，第一次射中（概率 $\frac{2}{3}$）后，若第二次再中（概率 $\frac{2}{3}$）则直接获胜；若第二次未中（概率 $\frac{1}{3}$），则回到起始状态。</p>
+</li>
+</ol>
+<p>
+$$
+p = \frac{2}{3}(\frac{2}{3} + \frac{1}{3}p) + \frac{1}{3}(\frac{2}{3}p)
+$$
+</p>
+
+<p>解得 $p &#x3D; \frac{4}{5}$，则落败概率 $P(X&#x3D;-2) &#x3D; \frac{1}{5}$。</p>
+<ol start="3">
+<li><strong>计算期望：</strong></li>
+</ol>
+<p>
+$$
+E(X) = 2 \times \frac{4}{5} + (-2) \times \frac{1}{5} = \frac{8-2}{5} = \frac{6}{5}
+$$
+</p>
+
+<hr>
+<blockquote>
+<p>[!abstract] 深度总结</p>
+<p>本题的难点在于<strong>状态转移的思想</strong>。在求解期望时，并不需要列出无限项的分布列，而是通过建立关于获胜概率 $p$ 的方程（递推关系）来直接锁定最终胜负的分布，这在处理循环或无限过程的概率题中是非常高级且通用的技巧。</p>
+</blockquote>
+<hr>
+<h3 id="13"><a href="#13" class="headerlink" title="13"></a>13</h3><p>已知函数 $f(x) &#x3D; \sin\left(\frac{\pi}{2}x\right) + \ln x - ax$。</p>
+<ol>
+<li><p>若函数 $f(x)$在点$(1, f(1))$处的切线经过点$(-1, 1)$，求 $a$ 的值；</p>
+</li>
+<li><p>若 $a &gt; \frac{1}{2}$，证明：$f(x) &lt; 1$ 恒成立；</p>
+</li>
+<li><p>试求出正整数 $a$的最小值，使$f(x)$ 存在唯一的极值点。</p>
+</li>
+</ol>
+<p><strong>正确答案：</strong></p>
+<p>(1) $a &#x3D; 2$</p>
+<p>(2) 证明见下文</p>
+<p>(3) 最小正整数 $a &#x3D; 2$</p>
+<hr>
+<h3 id="详细解析-7"><a href="#详细解析-7" class="headerlink" title="详细解析"></a>详细解析</h3><h4 id="第一部分：切线方程求参数-a-1-求导函数：-对-f-x-求导得-f’-x-frac-pi-2-cos-left-frac-pi-2-x-right-frac-1-x-a-。"><a href="#第一部分：切线方程求参数-a-1-求导函数：-对-f-x-求导得-f’-x-frac-pi-2-cos-left-frac-pi-2-x-right-frac-1-x-a-。" class="headerlink" title="第一部分：切线方程求参数 $a$1. 求导函数： 对$f(x)$求导得$f’(x) &#x3D; \frac{\pi}{2}\cos\left(\frac{\pi}{2}x\right) + \frac{1}{x} - a$。"></a>第一部分：切线方程求参数 $a$1. <strong>求导函数：</strong> 对$f(x)$求导得$f’(x) &#x3D; \frac{\pi}{2}\cos\left(\frac{\pi}{2}x\right) + \frac{1}{x} - a$。</h4><ol start="2">
+<li><p><strong>计算切点斜率与纵坐标：</strong></p>
+<ul>
+<li><p>当 $x&#x3D;1$时，斜率$k &#x3D; f’(1) &#x3D; \frac{\pi}{2}\cos\frac{\pi}{2} + \frac{1}{1} - a &#x3D; 1 - a$。</p>
+</li>
+<li><p>切点纵坐标 $f(1) &#x3D; \sin\frac{\pi}{2} + \ln 1 - a &#x3D; 1 - a$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>构建切线方程：</strong> 切线方程为 $y - (1-a) &#x3D; (1-a)(x-1)$，化简得 $y &#x3D; (1-a)x$。</p>
+</li>
+<li><p><strong>代入已知点：</strong> 将 $(-1, 1)$代入方程得$1 &#x3D; (1-a)(-1)$，解得 $a &#x3D; 2$。</p>
+</li>
+</ol>
+<hr>
+<h4 id="第二部分：不等式-f-x-1-的证明"><a href="#第二部分：不等式-f-x-1-的证明" class="headerlink" title="第二部分：不等式 $f(x) &lt; 1$ 的证明"></a>第二部分：不等式 $f(x) &lt; 1$ 的证明</h4><ol>
+<li><p><strong>利用放缩法：</strong> 因为 $\sin\left(\frac{\pi}{2}x\right) \le 1$，且已知 $a &gt; \frac{1}{2}$，则 $-ax &lt; -\frac{1}{2}x$。</p>
+</li>
+<li><p><strong>构造辅助函数：</strong> $f(x) &lt; 1 + \ln x - \frac{1}{2}x$。</p>
+<p> 设 $g(x) &#x3D; \ln x - \frac{1}{2}x + 1$。</p>
+</li>
+<li><p><strong>求 $g(x)$ 的最大值：</strong></p>
+<ul>
+<li><p>$g’(x) &#x3D; \frac{1}{x} - \frac{1}{2}$。</p>
+</li>
+<li><p>当 $x \in (0, 2)$ 时，$g’(x) &gt; 0$，函数单调递增；</p>
+</li>
+<li><p>当 $x \in (2, +\infty)$ 时，$g’(x) &lt; 0$，函数单调递减。</p>
+</li>
+<li><p>故 $g(x)_{max} &#x3D; g(2) &#x3D; \ln 2 - 1 + 1 &#x3D; \ln 2$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>结论：</strong> 因为 $\ln 2 &lt; 1$，所以 $f(x) &lt; g(x) \le \ln 2 &lt; 1$，即 $f(x) &lt; 1$ 恒成立。</p>
+</li>
+</ol>
+<hr>
+<h4 id="第三部分：正整数-a-的最小值（极值点唯一性）"><a href="#第三部分：正整数-a-的最小值（极值点唯一性）" class="headerlink" title="第三部分：正整数 $a$ 的最小值（极值点唯一性）"></a>第三部分：正整数 $a$ 的最小值（极值点唯一性）</h4><p>我们需要讨论 $f’(x) &#x3D; \frac{\pi}{2}\cos\left(\frac{\pi}{2}x\right) + \frac{1}{x} - a &#x3D; 0$ 的根（即极值点）的个数。</p>
+<ol>
+<li><p><strong>当 $a &#x3D; 1$ 时：</strong></p>
+<ul>
+<li><p>设 $\varphi(x) &#x3D; f’(x)$。显然 $\varphi(1) &#x3D; \frac{\pi}{2}\cos\frac{\pi}{2} + 1 - 1 &#x3D; 0$，即 $x&#x3D;1$ 是一个极值点。</p>
+</li>
+<li><p>检查其他区间：$\varphi(2) &#x3D; \frac{\pi}{2}(-1) + \frac{1}{2} - 1 &lt; 0$，而 $\varphi(4) &#x3D; \frac{\pi}{2}(1) + \frac{1}{4} - 1 &#x3D; \frac{\pi}{2} - \frac{3}{4} &gt; 0$。</p>
+</li>
+<li><p>根据零点存在性定理，在 $(2, 4)$内必存在另一个零点，此时极值点不唯一。故$a&#x3D;1$ 不符。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>当 $a &#x3D; 2$ 时：</strong></p>
+<ul>
+<li><p><strong>在 $x \in (0, 2]$ 时：</strong></p>
+<ul>
+<li><p>二阶导数 $f’’(x) &#x3D; -\frac{\pi^2}{4}\sin\left(\frac{\pi}{2}x\right) - \frac{1}{x^2}$。</p>
+</li>
+<li><p>当 $x \in (0, 2)$ 时，$\sin\left(\frac{\pi}{2}x\right) &gt; 0$，故 $f’’(x) &lt; 0$ 恒成立，$f’(x)$在$(0, 2]$ 单调递减。</p>
+</li>
+<li><p>又 $f’(\frac{1}{2}) &#x3D; \frac{\sqrt{2}\pi}{4} + 2 - 2 &gt; 0$且$f’(1) &#x3D; 1 - 2 &#x3D; -1 &lt; 0$。</p>
+</li>
+<li><p>所以 $f’(x)$在$(0, 2]$ 内有且仅有一个零点。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>在 $x \in (2, 3]$ 时：</strong></p>
+<ul>
+<li><p>$\pi &lt; \frac{\pi}{2}x \le \frac{3\pi}{2}$，此时 $\cos\left(\frac{\pi}{2}x\right) &lt; 0$。</p>
+</li>
+<li><p>则 $f’(x) &#x3D; \frac{\pi}{2}\cos\left(\frac{\pi}{2}x\right) + \frac{1}{x} - 2 &lt; 0 + \frac{1}{2} - 2 &lt; 0$，无零点。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>在 $x \in (3, +\infty)$ 时：</strong></p>
+<ul>
+<li>$f’(x) \le \frac{\pi}{2} + \frac{1}{3} - 2 &#x3D; \frac{\pi}{2} - \frac{5}{3} &#x3D; \frac{3\pi - 10}{6} &lt; 0$，无零点。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>最终结论：</strong> 当 $a&#x3D;2$时，极值点唯一。正整数$a$的最小值为$2$。</p>
+</li>
+</ol>
+<hr>
+<blockquote>
+<p>[!abstract]</p>
+<p>这类题目的难点在于<strong>区间拆分</strong>。在证明极值点唯一时，不能仅靠直觉，必须通过求导证明某个区间单调（有且仅有一个根），并结合放缩法证明其他区间“绝对无根”。</p>
+</blockquote>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

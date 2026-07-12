@@ -1,0 +1,808 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/background.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Logic の 博客</h1>
+                <h3></h3>
+                <h5>一小块凝固的时间</h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2025/12/02/AEW%E8%AE%BA%E6%96%87%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BF%AE%E6%94%B9/">
+        <h2 class="post-title">AEW论文第一次修改记录</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%AD%A6%E6%9C%AF%E5%9E%83%E5%9C%BE/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                学术垃圾
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/2
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>自己好好改了一遍……AI怎么老是说车轱辘话，还逻辑跑来跑去的，改的好痛苦。</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%AD%A6%E6%9C%AF%E5%9E%83%E5%9C%BE/" style="color: #ffa2c4">学术垃圾</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E8%AE%BA%E6%96%87/" style="color: #03a9f4">论文</a>
+        </span>
+        
+    </div>
+    <a href="/2025/12/02/AEW%E8%AE%BA%E6%96%87%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BF%AE%E6%94%B9/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/12/02/%E5%87%A1%E4%BA%BA%E4%BF%AE%E4%BB%99%E6%B3%95/">
+        <h2 class="post-title">凡人修仙法</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%8A%9F%E6%B3%95/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                功法
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/12/2
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>虽说不劝人修行，但听闻有礼物漂流活动时，觉得小法门是个很有趣的礼物，故作信。</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%8A%9F%E6%B3%95/" style="color: #ffa2c4">功法</a>
+        </span>
+        
+    </div>
+    <a href="/2025/12/02/%E5%87%A1%E4%BA%BA%E4%BF%AE%E4%BB%99%E6%B3%95/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/11/30/%E6%9D%82%E8%AE%B0/%E6%9D%82%E8%AE%B010/">
+        <h2 class="post-title">杂记（10） 所存在的證明</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/11/30
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>事先：關於繁體的使用，完全基於一種也許算是無聊的情調，而由於這整篇雜記都是基於類似的意味，倒也無所謂是否會給讀者造成困難了，因為這有著高度的自娛自樂性質。總之，在過鳴潮新劇情——一段小小的戀愛甜文的時候，動了提筆寫些東西的想法</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%97%A5%E8%AE%B0%E7%B1%BB/" style="color: #ff7d73">日记类</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/emo/" style="color: #03a9f4">emo</a>
+        </span>
+        
+    </div>
+    <a href="/2025/11/30/%E6%9D%82%E8%AE%B0/%E6%9D%82%E8%AE%B010/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/11/27/%E6%9D%82%E8%AE%B0/%E6%9D%82%E8%AE%B09/">
+        <h2 class="post-title">杂记（9）</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/11/27
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>悠闲的一天摘要：黑天鹅遛弯，太极学习</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%97%A5%E8%AE%B0%E7%B1%BB/" style="color: #00bcd4">日记类</a>
+        </span>
+        
+    </div>
+    <a href="/2025/11/27/%E6%9D%82%E8%AE%B0/%E6%9D%82%E8%AE%B09/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/11/26/%E6%9D%82%E8%AE%B0/%E6%9D%82%E8%AE%B08/">
+        <h2 class="post-title">杂记（8）： 略微魔幻的一天</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/11/26
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>突然意识到tag就是让我写关键词的，但tag又能拿来搜索，要不要扔太多呢，感觉会看得眼花缭乱摘要：军理课间签到，找不到快递，助教挂黑板，可乐匹配中</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%97%A5%E8%AE%B0%E7%B1%BB/" style="color: #03a9f4">日记类</a>
+        </span>
+        
+    </div>
+    <a href="/2025/11/26/%E6%9D%82%E8%AE%B0/%E6%9D%82%E8%AE%B08/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/11/25/%E5%A4%A7%E4%BD%9C%E4%B8%9A3/">
+        <h2 class="post-title">大作业开发记（3）</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/11/25
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>有一段时间没写大作业了</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%97%A5%E8%AE%B0%E7%B1%BB/" style="color: #03a9f4">日记类</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%A4%A7%E4%BD%9C%E4%B8%9A/" style="color: #ffa2c4">大作业</a>
+        </span>
+        
+    </div>
+    <a href="/2025/11/25/%E5%A4%A7%E4%BD%9C%E4%B8%9A3/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/11/24/AEW%E8%AE%BA%E6%96%87%E5%88%9D%E7%A8%BF%E8%AE%B0%E5%BD%95/">
+        <h2 class="post-title">AEW论文初稿记录</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%AD%A6%E6%9C%AF%E5%9E%83%E5%9C%BE/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                学术垃圾
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/11/24
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>A paper a day keeps health away仍然鸣谢ChatGPT</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%AD%A6%E6%9C%AF%E5%9E%83%E5%9C%BE/" style="color: #00a596">学术垃圾</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E8%AE%BA%E6%96%87/" style="color: #03a9f4">论文</a>
+        </span>
+        
+    </div>
+    <a href="/2025/11/24/AEW%E8%AE%BA%E6%96%87%E5%88%9D%E7%A8%BF%E8%AE%B0%E5%BD%95/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/11/24/%E6%80%9D%E4%BF%AE%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95/">
+        <h2 class="post-title">思修论文记录</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%AD%A6%E6%9C%AF%E5%9E%83%E5%9C%BE/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                学术垃圾
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/11/24
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>特别鸣谢ChatGPT记录一下生产出来的构式论文</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%AD%A6%E6%9C%AF%E5%9E%83%E5%9C%BE/" style="color: #ffa2c4">学术垃圾</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%80%9D%E4%BF%AE/" style="color: #00a596">思修</a>
+        </span>
+        
+    </div>
+    <a href="/2025/11/24/%E6%80%9D%E4%BF%AE%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/11/23/%E6%9D%82%E8%AE%B0/%E6%9D%82%E8%AE%B07/">
+        <h2 class="post-title">杂记（7）</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/11/23
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>仍然忙</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%97%A5%E8%AE%B0%E7%B1%BB/" style="color: #ffa2c4">日记类</a>
+        </span>
+        
+    </div>
+    <a href="/2025/11/23/%E6%9D%82%E8%AE%B0/%E6%9D%82%E8%AE%B07/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/11/22/%E8%AE%B0%E5%BD%95%E5%AE%B6%E6%95%99%E6%96%87%E4%BB%B6/">
+        <h2 class="post-title">记录家教文件</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%AE%B6%E6%95%99/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                家教
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/11/22
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>AI含辛茹苦养大的21页的latex。</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%AE%B6%E6%95%99/" style="color: #00a596">家教</a>
+        </span>
+        
+    </div>
+    <a href="/2025/11/22/%E8%AE%B0%E5%BD%95%E5%AE%B6%E6%95%99%E6%96%87%E4%BB%B6/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <a class="page-num" href="/page/12/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">13</span>
+    
+    <a class="page-num" href="/page/14">
+        14
+    </a>
+    
+    
+    <a class="page-num" href="/page/15">
+        15
+    </a>
+    
+    
+    
+    <a class="page-num" href="/page/14/">
+        <i class="fa-solid fa-caret-right fa-fw"></i>
+    </a>
+    
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">Logic</div>
+        <div class="description">
+            <p>冀幸橐龠生光</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://github.com/Logic61">My github</a>
+            </div>
+            
+            <div class="friend-link">
+                <a href="https://logic61.github.io/MyPage">My Page(更为正式的主页)</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://xj.editlife.cn/">JingsXu&#39;s site</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

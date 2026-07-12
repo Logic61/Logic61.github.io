@@ -1,0 +1,751 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Picard存在性定理 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Picard存在性定理</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/18
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="系列前言"><a href="#系列前言" class="headerlink" title="系列前言"></a>系列前言</h1><p>高斯对拆掉脚手架后的完美证明感到满意，但读者也只好接受美妙的证明却难以一窥背后的思路。实际上，大部分的证明都是有迹可循的，来源于已有的证明，而非凭空发明的思路，这也正是数学笔记的一大意义，积累足够的素材，于是自然地得到看似天马行空的证明。</p>
+<p>我们总是希望详尽的理解，但教科书或者常见的证明则好像冷酷的传统印象的机械，工序化地一步步证明命题，却并不告诉我们纲要，不告诉我们背后的思路。这于是自然地驱动我们去发掘，为什么数学家会想到这么干。幸而如今 AI 十分超标，指令一下，便可以得到详尽的解释，但又有些不幸，还没到输出能让人直接采纳，于是我做一个中转，整理出得到的，至少我自己接受的一个思路还原。</p>
+<p>第一篇是 Picard 的原因很简单，我看书看破防了。这是一个对我而言有一定长度的证明，教材分了一二三四步，我一步步看下去感觉不知所云。</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>19 世纪初期，数学家面临这样一个困境：求解一阶微分方程</p>
+<p>
+$$
+\frac{dy}{dx} = f(x, y), \quad y(x_0) = y_0
+$$
+</p>
+
+<p>的显式解析解，仅在极其有限的特殊情形下才是可能的（如变量分离方程、恰当方程、线性方程等）。然而，来自物理学的需求却是压倒性的——牛顿力学、天体力学、热传导、流体运动，无一不产生这样的方程。物理学家的直觉告诉他们，给定一个系统的初始状态和演化规律，未来的状态“应当”是确定的。但直觉不是数学证明。<strong>是否存在解？如果存在，是否唯一？</strong> ——这两个问题直接关系到整个经典物理学世界观的可信度。</p>
+<p>在 Cauchy 之前，整个 18 世纪关于微分方程的工作几乎全部聚焦于<strong>求解技术</strong>。Bernoulli 家族、Euler、Lagrange 等大师发展了大量精巧的积分技巧——积分因子、变量代换、幂级数展开等。但这些方法都有一个共同的局限性：它们只能处理能够被“积出来”的方程。对于非线性方程</p>
+<p>
+$$
+\frac{dy}{dx} = x^2 + y^2,
+$$
+</p>
+
+<p>18 世纪的数学家无能为力。这个方程没有初等函数形式的解，但在数学上却完全“合法”。于是，一个深刻的问题浮现了：<strong>一个“合法”提出的微分方程，是否必然拥有解？</strong></p>
+<p>对于今天的我们来说，这不是一个自明的问题。请考虑以下具体例子：</p>
+<p><strong>（Peano 反例）</strong>：考虑初值问题</p>
+<p>
+$$
+\frac{dy}{dx} = 3y^{2/3}, \quad y(0) = 0.
+$$
+</p>
+
+<p>通过观察，可以验证函数 $y(x) \equiv 0$满足该方程。但进一步考察会发现，对于任意$c &gt; 0$，函数</p>
+<p>
+$$
+y(x) =
+\begin{cases}
+0, & x \leq c \\
+(x - c)^3, & x > c
+\end{cases}
+$$
+</p>
+
+<p>同样满足方程。这意味着<strong>从同一个初始点出发，存在无穷多条解曲线</strong>。物理上的决定论——给定初始条件唯一确定未来演化——在这里彻底失效。如果微分方程允许这种多解性，那么整个经典力学的哲学基础都将动摇。这个例子清楚地说明，<strong>解的存在性和唯一性绝非理所当然，而是需要被严格证明的数学性质</strong>。</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><h2 id="转化成积分方程"><a href="#转化成积分方程" class="headerlink" title="转化成积分方程"></a>转化成积分方程</h2><p>面对</p>
+<p>
+$$
+\frac{dy}{dx} = f(x, y), \quad y(x_0) = y_0
+$$
+</p>
+
+<p>时，最朴素、最不需要创造力的念头就是：<strong>两边积分</strong>。</p>
+<p>这不是一个需要灵感的操作。微积分基本定理在 Cauchy 的时代早已是标准工具。对一个方程两边积分是“解微分方程”的最原始本能——就像看到 $a &#x3D; b$会想到$a - b &#x3D; 0$ 一样自然。积分之后得到：</p>
+<p>
+$$
+y(x) - y(x_0) = \int_{x_0}^{x} f(t, y(t)) \, dt
+$$
+</p>
+
+<p>代入初始条件，直接就是：</p>
+<p>
+$$
+y(x) = y_0 + \int_{x_0}^{x} f(t, y(t)) \, dt
+$$
+</p>
+
+<p>从微分方程到积分方程的转换，在形式上只是微积分基本定理的直接应用。数学家之所以会“想到”它，不是因为有什么深刻的洞见，而是因为 <strong>任何试图处理微分方程的人，迟早都会写下这个等式</strong>——它是出发点的自然延伸，不是终点处的巧妙构造。</p>
+<p>写下积分等式是容易的。困难的是 <strong>意识到这个看似同义反复的改写，竟然可以用来证明解的存在性</strong>。这一步才是思想史上真正值得追问的“为什么想到”。</p>
+<p>这个洞察的来源，可以从两个方向追溯：</p>
+<p><strong>方向一：数值逼近的启发（Euler 折线法的反思）</strong></p>
+<p>Euler 折线法在 18 世纪已广为人知。它的构造方式是：从 $x_0$出发，走一小步$h$，用当前斜率 $f(x_0, y_0)$更新$y$。这个过程本质上是在做：</p>
+<p>
+$$
+y_{n+1} = y_n + h f(x_n, y_n)
+$$
+</p>
+
+<p>数学家会自然地追问：当 $h \to 0$ 时，这些折线收敛到什么？如果我们把离散的递推求和写成积分近似的形式，它就是：</p>
+<p>
+$$
+y(x) \approx y_0 + \sum f(x_i, y_i) \Delta x \longrightarrow y_0 + \int_{x_0}^{x} f(t, y(t)) \, dt
+$$
+</p>
+
+<p>也就是说，<strong>Euler 折线法的连续极限天然地暗示了积分方程的形式</strong>。那些试图严格化 Euler 折线法的数学家（如 Cauchy、Peano）在做极限论证时，必须处理的正是这个积分等式。所以，积分方程并非从天上掉下来的灵感，而是 <strong>从离散逼近的极限过程中自动涌现出来的</strong>。</p>
+<p><strong>方向二：积分方程研究的先行经验（Liouville-Neumann 方法）</strong></p>
+<p>在 Picard 之前，积分方程领域已经有了逐次逼近法的成功先例。对于方程</p>
+<p>
+$$
+y(x) = g(x) + \lambda \int_{a}^{x} K(x, t) y(t) \, dt
+$$
+</p>
+
+<p>Liouville 和 Neumann 在 19 世纪中叶发展了一套迭代求解技术：从一个初始猜测出发，反复代入积分号下，得到 Neumann 级数。这种方法在求解 Volterra 积分方程时被证明极为有效。</p>
+<p>Picard 的“想到”很可能是一种 <strong>类比迁移</strong>：他看到常微分方程的初值问题恰好可以写成这种积分方程的形式（右端没有 $y$在积分外的项，或者说$g(x) \equiv y_0$）。既然积分方程那边已经有一套成熟的迭代技术，为什么不直接搬过来用？于是有了 Picard 迭代。</p>
+<p>所以，对 Picard 而言，“换成积分方程”不是原创动作，而是 <strong>为了使用已有的积分方程工具而做的刻意变形</strong>。他看到微分方程，想到的是：“这玩意能写成积分方程吗？如果能，我就能用 Neumann 那一套了。”</p>
+<h2 id="先前的经验之-Neumann-级数"><a href="#先前的经验之-Neumann-级数" class="headerlink" title="先前的经验之 Neumann 级数"></a>先前的经验之 Neumann 级数</h2><p>Neumann 级数是求解积分方程的核心工具。它的核心思想是，通过无穷级数来构造性地表示一个算子的逆。就思想而言，实际上线性代数中也就碰到过，例如求 $A - I$ 的逆。</p>
+<h3 id="1-核心思想：算子版本的“几何级数”"><a href="#1-核心思想：算子版本的“几何级数”" class="headerlink" title="1. 核心思想：算子版本的“几何级数”"></a>1. 核心思想：算子版本的“几何级数”</h3><p>Neumann 级数的灵感直接来源于经典的几何级数公式：</p>
+<p>
+$$
+\frac{1}{1 - r} = 1 + r + r^2 + r^3 + \cdots \quad (\text{当 } |r| < 1)
+$$
+</p>
+
+<p>现在，我们不把 $r$ 看作一个数，而是一个作用在函数上的<strong>线性算子</strong>（或矩阵）$K$。那么，$(I - K)^{-1}$（可以类比为$\frac{1}{1-K}$）的逆，就可以形式地写成：</p>
+<p>
+$$
+(I - K)^{-1} = I + K + K^2 + K^3 + \cdots
+$$
+</p>
+
+<p>这个算子形式的几何级数，就是 <strong>Neumann 级数</strong>。其中，$I$ 是恒等算子，$K^2$表示连续两次应用算子$K$。</p>
+<h3 id="2-在积分方程中的具体应用"><a href="#2-在积分方程中的具体应用" class="headerlink" title="2. 在积分方程中的具体应用"></a>2. 在积分方程中的具体应用</h3><p>Neumann 级数最经典的应用场景是求解<strong>第二类 Fredholm 积分方程</strong>。其形式如下：</p>
+<p>
+$$
+y(x) = f(x) + \lambda \int_{a}^{b} K(x, t) y(t) \, dt
+$$
+</p>
+
+<p>这个方程可以简洁地写成算子形式：</p>
+<p>
+$$
+y = f + \lambda K y
+$$
+</p>
+
+<p>我们的目标是求解未知函数 $y(x)$。对上述算子方程进行整理：</p>
+<p>
+$$
+(I - \lambda K) y = f
+$$
+</p>
+
+<p><strong>关键一步</strong>：形式上解出 $y$，就得到了逆算子的表达式：</p>
+<p>
+$$
+y = (I - \lambda K)^{-1} f
+$$
+</p>
+
+<p>接下来，应用 Neumann 级数将逆算子展开：</p>
+<p>
+$$
+y = (I + \lambda K + \lambda^2 K^2 + \lambda^3 K^3 + \cdots) f
+$$
+</p>
+
+<p>将这个算子级数展开并写回积分形式，我们就得到了解的级数表达式。这个级数由以下各项构成：</p>
+<ul>
+<li><strong>零阶项</strong>: $y_0(x) &#x3D; f(x)$- <strong>一阶项</strong>:$y_1(x) &#x3D; \lambda \int_{a}^{b} K(x, t) f(t) , dt$- <strong>二阶项</strong>:$y_2(x) &#x3D; \lambda^2 \int_{a}^{b} K(x, t) \left[ \int_{a}^{b} K(t, t_1) f(t_1) , dt_1 \right] dt$</li>
+<li>……以此类推。</li>
+</ul>
+<p>这个构造过程被称为“逐次逼近法”，而得到的级数正是 Neumann 级数。</p>
+<h3 id="3-历史脉络：从-Carl-Neumann-到-Picard"><a href="#3-历史脉络：从-Carl-Neumann-到-Picard" class="headerlink" title="3. 历史脉络：从 Carl Neumann 到 Picard"></a>3. 历史脉络：从 Carl Neumann 到 Picard</h3><ul>
+<li><strong>Carl Neumann (1870s)</strong>: 德国数学家 Carl Neumann 在研究位势理论中的 Dirichlet 问题时，发展了这一方法。他于 1870 年首次对严格凸区域上的 Dirichlet 问题给出了解的存在性证明，其核心在于证明相应积分算子的 Neumann 级数是收敛的。</li>
+<li><strong>Picard 的继承 (1890s)</strong>: Émile Picard 直接继承了 Neumann 的成果。他将 Neumann 级数和逐次逼近法从积分方程“移植”到常微分方程领域，用来证明解的存在唯一性，这就是我们熟知的 <strong>Picard 迭代法</strong>。可以说，Neumann 级数为 Picard 的工作提供了直接的技术蓝图。</li>
+</ul>
+<h2 id="试图还原-Picard-的想法"><a href="#试图还原-Picard-的想法" class="headerlink" title="试图还原 Picard 的想法"></a>试图还原 Picard 的想法</h2><p>有了上述，实际上也就可以试着还原了。叠甲：下面所有类似 Picard 的思考都是意淫。</p>
+<h3 id="证明的完整还原"><a href="#证明的完整还原" class="headerlink" title="证明的完整还原"></a>证明的完整还原</h3><h4 id="问题设定"><a href="#问题设定" class="headerlink" title="问题设定"></a>问题设定</h4><p><strong>研究对象</strong>：一阶常微分方程的初值问题</p>
+<p>
+$$
+\frac{dy}{dx} = f(x, y), \quad y(x_0) = y_0
+$$
+</p>
+
+<p><strong>已知条件</strong>：</p>
+<ol>
+<li>函数 $f(x, y)$在某个包含点$(x_0, y_0)$ 的闭矩形区域</li>
+</ol>
+<p>
+$$
+R = \{ (x, y) \in \mathbb{R}^2 : |x - x_0| \leq a, |y - y_0| \leq b \}
+$$
+</p>
+
+<p>上连续。因此，根据闭区间上连续函数的性质，$f$在$R$上有界，即存在常数$M &gt; 0$，使得对所有 $(x, y) \in R$，有 $|f(x, y)| \leq M$。</p>
+<ol start="2">
+<li>函数 $f(x, y)$在$R$上关于变量$y$满足 <strong>Lipschitz 条件</strong>：存在常数$L &gt; 0$，使得对于任意 $(x, y_1) \in R$和$(x, y_2) \in R$，都有</li>
+</ol>
+<p>
+$$
+|f(x, y_1) - f(x, y_2)| \leq L |y_1 - y_2|
+$$
+</p>
+
+<p><strong>目标</strong>：证明在上述条件下，存在唯一的函数 $y &#x3D; \phi(x)$，定义在某个包含 $x_0$的区间$I$ 上，满足该微分方程及初始条件。</p>
+<h4 id="第一步：转化为积分方程"><a href="#第一步：转化为积分方程" class="headerlink" title="第一步：转化为积分方程"></a>第一步：转化为积分方程</h4><p><strong>推导</strong>：<br>对微分方程 $\frac{dy}{dt} &#x3D; f(t, y(t))$两边在区间$[x_0, x]$ 上积分：</p>
+<p>
+$$
+\int_{x_0}^{x} \frac{dy}{dt} \, dt = \int_{x_0}^{x} f(t, y(t)) \, dt
+$$
+</p>
+
+<p>根据微积分基本定理，左边等于 $y(x) - y(x_0)$。代入初始条件 $y(x_0) &#x3D; y_0$，得到：</p>
+<p>
+$$
+y(x) - y_0 = \int_{x_0}^{x} f(t, y(t)) \, dt
+$$
+</p>
+
+<p>移项得到<strong>等价的积分方程</strong>：</p>
+<p>
+$$
+y(x) = y_0 + \int_{x_0}^{x} f(t, y(t)) \, dt
+$$
+</p>
+
+<p><strong>观察</strong>：<br>现在问题变了。我不需要找一个可导的函数，只需要找一个<strong>连续函数</strong> $y(x)$满足这个积分方程。一旦找到，由$f$的连续性，右边作为$x$的函数是可导的，从而$y(x)$ 自动是可导的，并且满足原微分方程和初始条件。这个转化的好处是：积分运算对函数的“光滑性”要求比求导低，它把连续函数映射为连续函数。这让我可以在连续函数空间这个更“宽敞”也更“结实”的框架里工作。</p>
+<h4 id="第二步：构造-Picard-迭代序列"><a href="#第二步：构造-Picard-迭代序列" class="headerlink" title="第二步：构造 Picard 迭代序列"></a>第二步：构造 Picard 迭代序列</h4><p><strong>推导</strong>：<br>构造一个函数序列 ${\phi_n(x)}_{n&#x3D;0}^{\infty}$ 如下：</p>
+<ol>
+<li>取初始猜测为常值函数：$\phi_0(x) \equiv y_0$。这是最自然的起点，因为我们唯一确定的信息就是在 $x_0$ 处的值。</li>
+<li>递归定义：</li>
+</ol>
+<p>
+$$
+\phi_{n+1}(x) = y_0 + \int_{x_0}^{x} f(t, \phi_n(t)) \, dt, \quad n = 0, 1, 2, \dots
+$$
+</p>
+
+<p>现在，整个证明的核心就变成了：<strong>证明这个序列 ${\phi_n(x)}$在某种意义下收敛，且其极限函数$\phi(x)$ 恰好满足那个积分方程。</strong></p>
+<h4 id="第三步：确定迭代的有效区间"><a href="#第三步：确定迭代的有效区间" class="headerlink" title="第三步：确定迭代的有效区间"></a>第三步：确定迭代的有效区间</h4><p><strong>推导</strong>：<br>我需要确定一个最大允许的区间半径 $h &gt; 0$，使得只要 $|x - x_0| \leq h$，就能保证所有迭代函数的值都满足 $|\phi_n(x) - y_0| \leq b$。</p>
+<p>让我们用归纳法来寻找这个 $h$。</p>
+<ul>
+<li>假设对于某个 $n$和所有满足$|x - x_0| \leq h$的$x$，都有 $|\phi_n(x) - y_0| \leq b$。</li>
+<li>那么对于下一步迭代，</li>
+</ul>
+<p>
+$$
+|\phi_{n+1}(x) - y_0| = \left| \int_{x_0}^{x} f(t, \phi_n(t)) \, dt \right| \leq \left| \int_{x_0}^{x} |f(t, \phi_n(t))| \, dt \right| \leq M |x - x_0|
+$$
+</p>
+
+<ul>
+<li>为了保证 $|\phi_{n+1}(x) - y_0| \leq b$，只要 $M |x - x_0| \leq b$ 即可。</li>
+</ul>
+<p>因此，我只需要选择 $h$满足$Mh \leq b$。同时，为了不超出 $R$的水平边界，我还需要$h \leq a$。</p>
+<p><strong>结论</strong>：<br>取 $h &#x3D; \min\left(a, \frac{b}{M}\right)$。在区间 $I &#x3D; [x_0 - h, x_0 + h]$上，所有迭代函数$\phi_n(x)$的定义都是良性的，且其图像始终保持在矩形区域$R$ 内。</p>
+<h4 id="第四步：估计相邻迭代之差"><a href="#第四步：估计相邻迭代之差" class="headerlink" title="第四步：估计相邻迭代之差"></a>第四步：估计相邻迭代之差</h4><p><strong>推导</strong>：<br>从 $n&#x3D;1$ 开始：</p>
+<p>
+$$
+|\phi_1(x) - \phi_0(x)| = \left| \int_{x_0}^{x} f(t, y_0) \, dt \right| \leq M |x - x_0|
+$$
+</p>
+
+<p>对于一般的 $n \geq 1$，利用迭代定义和 Lipschitz 条件，</p>
+<p>
+$$
+\begin{aligned}
+|\phi_{n+1}(x) - \phi_n(x)| &= \left| \int_{x_0}^{x} [f(t, \phi_n(t)) - f(t, \phi_{n-1}(t))] \, dt \right| \\
+&\leq \left| \int_{x_0}^{x} |f(t, \phi_n(t)) - f(t, \phi_{n-1}(t))| \, dt \right|
+\end{aligned}
+$$
+</p>
+
+<p><strong>关键点</strong>：这里用到了 Lipschitz 条件。它允许我将关于 $f$的差的估计转化为关于$\phi$ 的差的估计，这是整个证明能够进行下去的基石。</p>
+<p>
+$$
+\leq L \left| \int_{x_0}^{x} |\phi_n(t) - \phi_{n-1}(t)| \, dt \right|
+$$
+</p>
+
+<h4 id="第五步：递推估计与阶乘因子的出现"><a href="#第五步：递推估计与阶乘因子的出现" class="headerlink" title="第五步：递推估计与阶乘因子的出现"></a>第五步：递推估计与阶乘因子的出现</h4><p><strong>推导</strong>：<br>让我们尝试计算前几项来寻找规律。</p>
+<ul>
+<li>已知：$|\phi_1(x) - \phi_0(x)| \leq M |x - x_0|$- 计算$|\phi_2(x) - \phi_1(x)|$：</li>
+</ul>
+<p>
+$$
+|\phi_2(x) - \phi_1(x)| \leq L \left| \int_{x_0}^{x} M |t - x_0| \, dt \right| = M L \frac{|x - x_0|^2}{2}
+$$
+</p>
+
+<ul>
+<li>计算 $|\phi_3(x) - \phi_2(x)|$：</li>
+</ul>
+<p>
+$$
+|\phi_3(x) - \phi_2(x)| \leq L \left| \int_{x_0}^{x} M L \frac{|t - x_0|^2}{2} \, dt \right| = M L^2 \frac{|x - x_0|^3}{3!}
+$$
+</p>
+
+<p><strong>一般公式</strong>：<br>规律已经非常明显了。我可以断言，对于所有 $n \geq 1$和$x \in I$，有以下估计成立：</p>
+<p>
+$$
+|\phi_n(x) - \phi_{n-1}(x)| \leq \frac{M L^{n-1}}{n!} |x - x_0|^n \leq \frac{M L^{n-1}}{n!} h^n
+$$
+</p>
+
+<p><strong>Picard 的洞察</strong>：<br>这个估计的美妙之处在于分母上的阶乘 $n!$。它增长得如此之快，以至于无论常数 $M, L, h$的具体值是多少，只要它们是有限的，级数$\sum_{n&#x3D;1}^{\infty} \frac{M L^{n-1}}{n!} h^n$ 都必然收敛。这正是我需要的收敛性的保证。</p>
+<h4 id="第六步：证明序列的一致收敛"><a href="#第六步：证明序列的一致收敛" class="headerlink" title="第六步：证明序列的一致收敛"></a>第六步：证明序列的一致收敛</h4><p><strong>推导</strong>：<br>考虑级数</p>
+<p>
+$$
+\sum_{n=1}^{\infty} \max_{x \in I} |\phi_n(x) - \phi_{n-1}(x)|
+$$
+</p>
+
+<p>根据第五步的估计，这个级数的每一项都被 $\frac{M L^{n-1}}{n!} h^n$ 所控制。</p>
+<p>考虑数值级数 $\sum_{n&#x3D;1}^{\infty} \frac{M L^{n-1}}{n!} h^n$。我们可以用比值判别法来检验其收敛性：</p>
+<p>
+$$
+\lim_{n \to \infty} \frac{\frac{M L^n}{(n+1)!} h^{n+1}}{\frac{M L^{n-1}}{n!} h^n} = \lim_{n \to \infty} \frac{L h}{n+1} = 0
+$$
+</p>
+
+<p>由于极限为 0（小于 1），该数值级数收敛。</p>
+<p>根据 <strong>Weierstrass M-判别法</strong>，由于函数项级数的每一项在区间 $I$上的绝对值都被一个收敛的正项级数的对应项所控制，因此该函数项级数在$I$ 上<strong>一致收敛</strong>。</p>
+<p><strong>结论</strong>：<br>这意味着 Picard 迭代序列 ${\phi_n(x)}$在区间$I$上一致收敛于一个极限函数，记作$\phi(x)$。由于每个 $\phi_n$都是连续的，且收敛是一致的，极限函数$\phi(x)$ 也是连续的。</p>
+<h4 id="第七步：证明极限函数是解"><a href="#第七步：证明极限函数是解" class="headerlink" title="第七步：证明极限函数是解"></a>第七步：证明极限函数是解</h4><p><strong>推导</strong>：<br>回忆迭代公式：</p>
+<p>
+$$
+\phi_{n+1}(x) = y_0 + \int_{x_0}^{x} f(t, \phi_n(t)) \, dt
+$$
+</p>
+
+<p>我想对等式两边取极限 $n \to \infty$。<br>左边直接趋于 $\phi(x)$。<br>对于右边，我需要将极限号移入积分号内，即证明：</p>
+<p>
+$$
+\lim_{n \to \infty} \int_{x_0}^{x} f(t, \phi_n(t)) \, dt = \int_{x_0}^{x} \lim_{n \to \infty} f(t, \phi_n(t)) \, dt = \int_{x_0}^{x} f(t, \phi(t)) \, dt
+$$
+</p>
+
+<p><strong>合法性验证</strong>：</p>
+<ol>
+<li>我已经知道函数序列 ${\phi_n(t)}$在$I$上一致收敛于$\phi(t)$。</li>
+<li>函数 $f$在闭矩形$R$上是连续的，因此在$R$ 上是一致连续的。</li>
+<li>根据一致连续的性质，对于任意给定的 $\varepsilon &gt; 0$，存在 $\delta &gt; 0$，只要 $|\phi_n(t) - \phi(t)| &lt; \delta$，就有 $|f(t, \phi_n(t)) - f(t, \phi(t))| &lt; \varepsilon$。</li>
+<li>由于 ${\phi_n(t)}$一致收敛，对于这个$\delta$，存在 $N$，当 $n &gt; N$时，对所有$t \in I$都有$|\phi_n(t) - \phi(t)| &lt; \delta$。</li>
+<li>因此，当 $n &gt; N$时，对所有$t \in I$都有$|f(t, \phi_n(t)) - f(t, \phi(t))| &lt; \varepsilon$。这意味着函数序列 ${f(t, \phi_n(t))}$在$I$上<strong>一致收敛</strong>于$f(t, \phi(t))$。</li>
+<li>对于一致收敛的函数序列，积分和极限可以交换。</li>
+</ol>
+<p><strong>结论</strong>：<br>因此，取极限是合法的，我得到：</p>
+<p>
+$$
+\phi(x) = y_0 + \int_{x_0}^{x} f(t, \phi(t)) \, dt
+$$
+</p>
+
+<p>这说明 $\phi(x)$ 满足积分方程，从而是初值问题的一个解。存在性得证。</p>
+<h4 id="第八步：证明唯一性"><a href="#第八步：证明唯一性" class="headerlink" title="第八步：证明唯一性"></a>第八步：证明唯一性</h4><p><strong>推导</strong>：<br>假设存在另一个函数 $\psi(x)$ 也满足积分方程：</p>
+<p>
+$$
+\psi(x) = y_0 + \int_{x_0}^{x} f(t, \psi(t)) \, dt
+$$
+</p>
+
+<p>考虑两个解之差的绝对值 $u(x) &#x3D; |\phi(x) - \psi(x)|$。将两者满足的积分方程相减并取绝对值：</p>
+<p>
+$$
+u(x) = \left| \int_{x_0}^{x} [f(t, \phi(t)) - f(t, \psi(t))] \, dt \right| \leq \left| \int_{x_0}^{x} |f(t, \phi(t)) - f(t, \psi(t))| \, dt \right|
+$$
+</p>
+
+<p>再次应用 Lipschitz 条件：</p>
+<p>
+$$
+u(x) \leq L \left| \int_{x_0}^{x} |\phi(t) - \psi(t)| \, dt \right| = L \left| \int_{x_0}^{x} u(t) \, dt \right|
+$$
+</p>
+
+<p>现在我需要从这个积分不等式推导出 $u(x) \equiv 0$。不失一般性，考虑 $x \geq x_0$的情况。定义$U(x) &#x3D; \int_{x_0}^{x} u(t) , dt$。那么 $U’(x) &#x3D; u(x)$。上述不等式变为：</p>
+<p>
+$$
+U'(x) \leq L \cdot U(x)
+$$
+</p>
+
+<p>移项得 $U’(x) - L U(x) \leq 0$。两边乘以积分因子 $e^{-Lx}$：</p>
+<p>
+$$
+\frac{d}{dx} \left( e^{-Lx} U(x) \right) \leq 0
+$$
+</p>
+
+<p>这说明函数 $e^{-Lx} U(x)$在$x \geq x_0$上是单调不增的。在$x &#x3D; x_0$ 处，$U(x_0) &#x3D; \int_{x_0}^{x_0} u(t) , dt &#x3D; 0$。因此，对于所有 $x \geq x_0$，有 $e^{-Lx} U(x) \leq 0$。但由于 $e^{-Lx} &gt; 0$且$U(x) &#x3D; \int_{x_0}^{x} u(t) , dt \geq 0$，我们得出 $U(x) \leq 0$且$U(x) \geq 0$，故 $U(x) &#x3D; 0$。</p>
+<p>由于 $U(x) &#x3D; 0$，其导数 $u(x) &#x3D; U’(x)$也必然为 0（此处$u$是连续的）。所以$u(x) \equiv 0$，即 $\phi(x) &#x3D; \psi(x)$对所有$x \geq x_0$成立。对于$x \leq x_0$ 的情况，论证类似。</p>
+<p><strong>结论</strong>：唯一性得证。</p>
+<h3 id="证明完成"><a href="#证明完成" class="headerlink" title="证明完成"></a>证明完成</h3><p>综合以上八个步骤，Picard 完整地证明了在连续性和 Lipschitz 条件下，初值问题在某个局部区间上存在且唯一解。他不仅证明了存在性，而且提供了一种构造性的算法（Picard 迭代）以及误差估计（通过阶乘级数的余项），这在当时是关于微分方程理论基础的一项重大突破。</p>
+<p>通过这样，所谓的 $h$ 的形式也就很自然。</p>
+<h2 id="证明结构总结"><a href="#证明结构总结" class="headerlink" title="证明结构总结"></a>证明结构总结</h2><p>Picard 的证明可以浓缩为以下几个技术节点：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>核心操作</th>
+<th>关键条件</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>转化为积分方程</td>
+<td>微积分基本定理</td>
+<td>降低光滑性要求，嵌入初始条件</td>
+</tr>
+<tr>
+<td>2</td>
+<td>构造迭代序列</td>
+<td>$f$ 连续</td>
+<td>生成候选逼近序列</td>
+</tr>
+<tr>
+<td>3</td>
+<td>确定有效区间</td>
+<td>$f$ 在紧集上有界</td>
+<td>保证迭代良定义</td>
+</tr>
+<tr>
+<td>4</td>
+<td>估计相邻差</td>
+<td>Lipschitz 条件</td>
+<td>控制误差传递</td>
+</tr>
+<tr>
+<td>5</td>
+<td>递推得阶乘估计</td>
+<td>数学归纳法</td>
+<td>获得显式收敛速率</td>
+</tr>
+<tr>
+<td>6</td>
+<td>证明一致收敛</td>
+<td>Weierstrass M-判别法</td>
+<td>确立极限函数存在</td>
+</tr>
+<tr>
+<td>7</td>
+<td>取极限得解</td>
+<td>一致连续 + 一致收敛</td>
+<td>验证极限函数是解</td>
+</tr>
+<tr>
+<td>8</td>
+<td>唯一性证明</td>
+<td>Lipschitz 条件 + Gronwall</td>
+<td>排除多解可能性</td>
+</tr>
+</tbody></table>
+<h2 id="Picard-迭代与-Neumann-级数的对应关系"><a href="#Picard-迭代与-Neumann-级数的对应关系" class="headerlink" title="Picard 迭代与 Neumann 级数的对应关系"></a>Picard 迭代与 Neumann 级数的对应关系</h2><p>最后，也许读起来还是会让人有些跳跃的部分还是这个联系，我们再做一点点补充：</p>
+<p>这个问题的答案，不在于 Picard 盯着微分方程本身想出了什么妙招，而在于他<strong>把目光从微分方程移开，投向了另一个已经成熟的数学领域</strong>。</p>
+<h3 id="1-真正的灵感来源：积分方程中的“现成工具”"><a href="#1-真正的灵感来源：积分方程中的“现成工具”" class="headerlink" title="1. 真正的灵感来源：积分方程中的“现成工具”"></a>1. 真正的灵感来源：积分方程中的“现成工具”</h3><p>在 Picard 着手研究微分方程存在性的 1890 年代之前，数学界在另一个领域已经发展出了一套完整的、被称为“逐次逼近法”的技术。这个领域就是<strong>积分方程</strong>。</p>
+<p>具体来说，研究第二类 Volterra 积分方程（形如 $y(x) &#x3D; g(x) + \int_a^x K(x, t) y(t) , dt$）的数学家，比如 Liouville 和 Neumann，面临的问题和 Picard 其实是一样的：<strong>解不出来显式，但需要证明它存在</strong>。</p>
+<p>他们是怎么做的？他们注意到，如果把整个积分运算看作一个算子 $T$，方程就是 $y &#x3D; g + Ty$。一个非常自然的想法是：先猜 $y_0 &#x3D; g$，代入右边得到 $y_1 &#x3D; g + Tg$。但这显然不是解，因为 $y_1$和$g$不一样。那如果把$y_1$再代进去呢？就得到了$y_2 &#x3D; g + Ty_1 &#x3D; g + Tg + T^2g$。一直继续下去，就得到了一个无穷级数：</p>
+<p>
+$$
+y = g + Tg + T^2g + T^3g + \cdots
+$$
+</p>
+
+<p>这就是 <strong>Neumann 级数</strong>。他们证明了，只要核 $K(x, t)$ 满足一定的有界条件，这个级数就是收敛的，并且收敛到的函数就是原积分方程的解。这个方法在 Picard 的时代已经是积分方程领域的<strong>标准工具</strong>，不是秘密，不是猜想，而是已经被写进论文和教科书里的成熟方法。</p>
+<h3 id="2-Picard-的“为什么”：一次天才的类比移植"><a href="#2-Picard-的“为什么”：一次天才的类比移植" class="headerlink" title="2. Picard 的“为什么”：一次天才的类比移植"></a>2. Picard 的“为什么”：一次天才的类比移植</h3><p>现在，让我们把镜头转向 Picard。他面对的是微分方程初值问题：</p>
+<p>
+$$
+\frac{dy}{dx} = f(x, y), \quad y(x_0) = y_0
+$$
+</p>
+
+<p>他做的第一步——也是所有 19 世纪数学家都会做的本能动作——就是把它两边积分，变成：</p>
+<p>
+$$
+y(x) = y_0 + \int_{x_0}^x f(t, y(t)) \, dt
+$$
+</p>
+
+<p>此时，Picard 的脑子里发生了什么？他看到这个等式，并不是像我们今天的学生一样，仅仅把它看作“微分方程的等价形式”。他看到的是另一副面孔：</p>
+<p><strong>这个等式，不就是一个积分方程吗？</strong></p>
+<p>具体来说，如果定义算子 $T$为$(Ty)(x) &#x3D; \int_{x_0}^x f(t, y(t)) , dt$，那么这个方程就是：</p>
+<p>
+$$
+y = y_0 + Ty
+$$
+</p>
+
+<p>这和 Volterra 积分方程 $y &#x3D; g + Ty$在<strong>结构上完全一致</strong>！唯一的区别是，这里的$T$依赖于未知函数$y$的非线性方式（通过$f$），而经典的积分方程中 $T$是线性的（即$Ty &#x3D; \int K(x, t) y(t) , dt$）。但形式上的相似性是如此强烈，以至于任何一个熟悉积分方程文献的人都会产生一个念头：</p>
+<p><strong>既然积分方程那边用“反复代入”的方法（Neumann 级数）能够成功构造出解，那么对于这个方程，我能不能也试试同样的套路？</strong></p>
+<p>这就是 Picard 的“为什么”。<strong>他不是在发明一个新的哲学，他是在套用一个已知的、在相邻领域被证明极其有效的算法模板。</strong></p>
+<p>这个思维的跳跃，本质上是一次<strong>类比</strong>：</p>
+<ul>
+<li><strong>源领域</strong>：线性积分方程（已知：Neumann 级数有效）</li>
+<li><strong>目标领域</strong>：非线性微分方程的积分形式（未知：是否有效？）</li>
+<li><strong>相似性</strong>：方程都具有 $y &#x3D; g + Ty$ 的抽象形式</li>
+<li><strong>行动</strong>：将源领域的解法（迭代）直接搬用到目标领域</li>
+</ul>
+<p>Picard 的贡献，并不是凭空想出了“反复代入”这个动作，而是<strong>勇敢地将这个动作从线性积分方程迁移到了非线性的情境下，并成功地证明了它在 Lipschitz 条件下依然收敛</strong>。他的天才体现在“迁移的胆识”和“收敛证明的构造”（用阶乘估计代替 Neumann 的几何级数），而不是迭代动作本身的原创。</p>
+<h3 id="3-证据与旁证"><a href="#3-证据与旁证" class="headerlink" title="3. 证据与旁证"></a>3. 证据与旁证</h3><p>这个解释不是事后合理化的猜测。从历史文献中我们可以看到清晰的脉络：</p>
+<ul>
+<li><strong>Carl Neumann 在 1870 年代</strong>发表的关于位势理论的工作中，明确使用了级数展开法（即后来的 Neumann 级数）来求解边界积分方程。</li>
+<li><strong>Émile Picard 在 1890 年的论文</strong>中，明确引用了 Neumann 的工作，并指出他是将类似的方法应用于更一般的（非线性）情形。事实上，Picard 在 1890 年正是利用 Neumann 的结果发展了他的逐次逼近法。</li>
+<li>Picard 迭代在现代泛函分析教材中，经常被作为 <strong>Banach 不动点定理的前身和特例</strong>来介绍，而 Banach 不动点定理的另一直接前身，正是积分方程中 Neumann 级数的抽象化。</li>
+</ul>
+<p>因此，历史的链条是清晰的：<strong>积分方程中的 Neumann 级数 → Picard 的类比移植 → 微分方程中的 Picard 迭代 → Banach 的抽象不动点定理</strong>。</p>
+<h3 id="4-结论：为什么-Picard-会想到？"><a href="#4-结论：为什么-Picard-会想到？" class="headerlink" title="4. 结论：为什么 Picard 会想到？"></a>4. 结论：为什么 Picard 会想到？</h3><p>您问“为什么想到”，答案是：</p>
+<p><strong>因为他认出了微分方程在积分形式下，和他已经知道如何用迭代法求解的那类积分方程，长得一模一样。</strong></p>
+<p>对于 Picard 来说，“反复代入”根本不是一个需要灵感去凭空发明的动作。它是一个<strong>已知算法</strong>。他面对的问题不是“我应该用什么方法来逼近解？”，而是“我已知的这个叫 Neumann 级数的方法，换到这个新方程上还能不能用？”</p>
+<p>这就好比一个现代的程序员，面对一个新的数据处理任务，发现它可以被写成一个递归结构。他不会去思考“我为什么会想到用递归？”，因为“递归”是他工具箱里已经有的一个标准工具。他思考的是：“这个任务适合用递归吗？如果适合，我该怎么改写和证明它的正确性？”</p>
+<p>Picard 就是这样一位数学家。他手中的工具箱里，放着积分方程前辈们传下来的“逐次逼近法”。当他看到初值问题的积分形式时，他立刻意识到工具箱里的这个工具可能有戏。他试了，他证明了，于是他成功了。</p>
+<p>这就是“为什么”的最终答案：<strong>不是灵感的火花，而是工具的自然迁移。</strong></p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

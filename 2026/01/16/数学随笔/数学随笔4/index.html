@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>数学随笔4 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>数学随笔4</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/1/16
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%95%B0%E5%AD%A6%E9%9A%8F%E7%AC%94/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                数学随笔
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #03a9f4">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>伴随矩阵相关整理。</p>
+<span id="more"></span> 
+
+<p>代数余子式的正交性让我们在求矩阵的逆的时候得到了伴随矩阵：</p>
+<p>
+$$
+A^*A = det(A) \cdot I
+$$
+</p>
+
+<p>也就是说，我们可以如此求出A的逆：</p>
+<p>
+$$
+A^{-1} = \frac{1}{det(A)} \cdot A^*
+$$
+</p>
+
+<p>或者，也可以反过来求伴随矩阵：</p>
+<p>
+$$
+A^* = det(A) \cdot A^{-1}
+$$
+</p>
+
+<p>那我们就可以基于此研究研究伴随矩阵的性质，比如他的行列式：</p>
+<p>
+$$
+det(A^*) = det(A)^n \cdot det(A^{-1}) = det(A)^{n-1}
+$$
+</p>
+
+<p>套娃，伴随矩阵的伴随矩阵：</p>
+<p>
+$$
+(A^*)^* = det(A^*) \cdot (A^*)^{-1}
+$$
+</p>
+
+<p>不难发现$A \cdot \frac{1}{det(A)}$就是$(A^*)^{-1}$,代入得到：</p>
+<p>
+$$
+(A^*)^* = det(A)^{n-2} \cdot A
+$$
+</p>
+
+<p>是件有趣的事情。<br>伴随矩阵可以用来<strong>证明Cayley-Hamilton定理</strong>，尽管有点神秘：<br>设 $A$是$n$ 阶方阵，其特征多项式为：</p>
+<p>
+$$
+p(\lambda) = \det(\lambda I - A) = \lambda^n + c_{n-1}\lambda^{n-1} + \dots + c_1\lambda + c_0
+$$
+</p>
+
+<p>定理断言：若将矩阵 $A$ 代入该多项式，结果为零矩阵，即：</p>
+<p>
+$$
+p(A) = A^n + c_{n-1}A^{n-1} + \dots + c_1A + c_0I = O
+$$
+</p>
+
+<p>证明：为了联系起矩阵和特征多项式，我们也许会想到伴随矩阵，对于矩阵 $M &#x3D; \lambda I - A$，有：</p>
+<p>
+$$
+(\lambda I - A) \cdot (\lambda I - A)^* = \det(\lambda I - A) \cdot I
+$$
+</p>
+
+<p>伴随矩阵显然是$\lambda$不超过$n-1$阶的多项式：</p>
+<p>
+$$
+(\lambda I - A)^* = B_{n-1}\lambda^{n-1} + B_{n-2}\lambda^{n-2} + \dots + B_1\lambda + B_0
+$$
+</p>
+
+<p>将展开式代入恒等式：</p>
+<p>
+$$
+(\lambda I - A)(B_{n-1}\lambda^{n-1} + B_{n-2}\lambda^{n-2} + \dots + B_0) = (\lambda^n + c_{n-1}\lambda^{n-1} + \dots + c_0)I
+$$
+</p>
+
+<p>展开左侧并按 $\lambda$ 的幂次排列：</p>
+<p>
+$$
+B_{n-1}\lambda^n + (B_{n-2} - AB_{n-1})\lambda^{n-1} + (B_{n-3} - AB_{n-2})\lambda^{n-2} + \dots + (B_0 - AB_1)\lambda - AB_0
+$$
+</p>
+
+<p>对比左右两边相同幂次的系数矩阵：</p>
+<ul>
+<li><p>$\lambda^n: B_{n-1} &#x3D; I$-$\lambda^{n-1}: B_{n-2} - AB_{n-1} &#x3D; c_{n-1}I$-$\lambda^{n-2}: B_{n-3} - AB_{n-2} &#x3D; c_{n-2}I$</p>
+</li>
+<li><p>…</p>
+</li>
+<li><p>$\lambda^1: B_0 - AB_1 &#x3D; c_1I$-$\lambda^0: -AB_0 &#x3D; c_0I$为了构造$p(A)$，我们将上述等式依次左乘 $A^n, A^{n-1}, \dots, A, I$：</p>
+</li>
+<li><p>$A^n(B_{n-1}) &#x3D; A^n$-$A^{n-1}(B_{n-2} - AB_{n-1}) &#x3D; c_{n-1}A^{n-1}$-$A^{n-2}(B_{n-3} - AB_{n-2}) &#x3D; c_{n-2}A^{n-2}$</p>
+</li>
+<li><p>…</p>
+</li>
+<li><p>$A(B_0 - AB_1) &#x3D; c_1A$-$I(-AB_0) &#x3D; c_0I$将这$n+1$个等式全部相加。你会惊喜地发现，左边所有的$B_i$项都形成了消去项（例如$A^{n-1}B_{n-2}$与下一项中的$-A \cdot A^{n-2}B_{n-2}$ 抵消）。</p>
+</li>
+</ul>
+<p>最后左边结果为 $O$，右边恰好是 $p(A)$：</p>
+<p>
+$$
+O = A^n + c_{n-1}A^{n-1} + \dots + c_1A + c_0I
+$$
+</p>
+
+<p>证毕。<br>虽然和伴随矩阵无关，我们还是给出另一种证明，稍微自然一点：<br>我们知道，复矩阵总可以相似于一个上三角阵，这可以归纳得到。于是我们设其相似于$U$，那么我们只需要证明：</p>
+<p>
+$$
+\prod_{i=1}^n (\lambda_i I - U) = (\lambda_1 I - U)(\lambda_2 I - U)\cdots(\lambda_n I - U) = O
+$$
+</p>
+
+<p>首先，显然$n&#x3D;1$时成立，那么假设对$n-1$阶成立，我们有：</p>
+<p>
+$$
+\underbrace{\begin{pmatrix} 0 & x \\ \mathbf{0} & X \end{pmatrix}}_{\text{第 } 1 \text{ 个因子 }(U- \lambda_1 I) } \times \underbrace{\begin{pmatrix} \lambda_1 & y \\ 0 & O \end{pmatrix}}_{\text{其他因子的乘积 } } = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}
+$$
+</p>
+
+<p>这就证明了结论，简短美丽得多。另有一种证明，可见[[数学随笔10#<strong>证明：Cayley-Hamilton 定理（连续性方法）</strong>]]  。 另外，有一种证明直接从结构出发，但是需要更多的前置知识，见[[笔记6.线性变换 II——从不变子空间到 Hamilton Cayley 到主分解定理]]。</p>
+<p>神秘小公式：</p>
+<p>
+$$
+\frac{d}{da_{ij}}(ln(detA))=\frac{1}{detA}\cdot A_{ij}
+$$
+</p>
+
+<p>从而：</p>
+<p>
+$$
+\frac{d}{dA}(ln(detA))=\frac{1}{detA} \cdot A^*=A^{-T}
+$$
+</p>
+
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

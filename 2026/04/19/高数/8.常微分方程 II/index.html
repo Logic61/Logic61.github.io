@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>8.常微分方程 II | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>8.常微分方程 II</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/19
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="解的唯一性和存在性"><a href="#解的唯一性和存在性" class="headerlink" title="解的唯一性和存在性"></a>解的唯一性和存在性</h2><p>一阶常微分方程的初值问题</p>
+<p>
+$$
+\frac{dy}{dx} = f(x, y), \quad y(x_0) = y_0
+$$
+</p>
+
+<p><strong>已知条件</strong>：</p>
+<ol>
+<li>函数 $f(x, y)$在某个包含点$(x_0, y_0)$ 的闭矩形区域</li>
+</ol>
+<p>
+$$
+R = \{ (x, y) \in \mathbb{R}^2 : |x - x_0| \leq a, |y - y_0| \leq b \}
+$$
+</p>
+
+<p>上连续。因此，根据闭区间上连续函数的性质，$f$在$R$上有界，即存在常数$M &gt; 0$，使得对所有 $(x, y) \in R$，有 $|f(x, y)| \leq M$。</p>
+<ol start="2">
+<li>函数 $f(x, y)$在$R$上关于变量$y$满足 <strong>Lipschitz 条件</strong>：存在常数$L &gt; 0$，使得对于任意 $(x, y_1) \in R$和$(x, y_2) \in R$，都有</li>
+</ol>
+<p>
+$$
+|f(x, y_1) - f(x, y_2)| \leq L |y_1 - y_2|
+$$
+</p>
+
+<p>在上述条件下，存在唯一的函数 $y &#x3D; \phi(x)$，定义在某个包含 $x_0$的区间$I$ 上，满足该微分方程及初始条件。</p>
+<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>朴素地，我们考虑两边积分，得到：</p>
+<p>
+$$
+y=y_0+\int_{x_0}^x f(t,y)dt
+$$
+</p>
+
+<p>这就转化为一个所谓积分方程，如何进一步求解呢？利用 Neumann 方法的思想，想到通过迭代或许可以逼近解。先随便猜一个解，例如常值函数 $\phi_0(x)\equiv y_0$ ，这是唯一确定的值，尽管不满足微分方程，我们可以用方程修正结果，我们考虑这样的迭代：</p>
+<p>
+$$
+\phi_{n+1}(x) = y_0 + \int_{x_0}^{x} f(t, \phi_n(t)) \, dt, \quad n = 0, 1, 2, \dots
+$$
+</p>
+
+<p>这样，如果序列 $\phi_n$ 收敛，那么这个极限也就满足积分方程，从而满足微分方程，这样就可做了。</p>
+<h3 id="确保良定义"><a href="#确保良定义" class="headerlink" title="确保良定义"></a>确保良定义</h3><p>那么首先，我们知道的约束是 $|x-x_0|\le a$，以及$|\phi_n(x)-y_0|\le b$，那么通过归纳法寻找$h$。假设对$n$ 及之前都满足约束，下一步：</p>
+<p>
+$$
+|\phi_{n+1}(x)-y_0|=| \int_{x_0}^x f(t,\phi_n(x))dt | \le \int_{x_0}^x|f(t,\phi_n(x))|dt\le M|x-x_0|
+$$
+</p>
+
+<p>那么，为了让 $\phi_{n+1}(x)-y_0\le b$，只要$M|x-x_0|\le b$即可，那么只要选择$Mh\le b$，也就是$h\le b&#x2F;M$。同时$h$也要满足$h\le a$，那么综合就得到$h&#x3D;min(a,\frac{b}{M})$。从而在$[x_0-h,x_0+h]$ 上定义都是良的，且图像保持在矩形区域内。</p>
+<h3 id="估计相邻迭代"><a href="#估计相邻迭代" class="headerlink" title="估计相邻迭代"></a>估计相邻迭代</h3><p>从 $n&#x3D;1$ 开始：</p>
+<p>
+$$
+|\phi_1(x) - \phi_0(x)| = \left| \int_{x_0}^{x} f(t, y_0) \, dt \right| \leq M |x - x_0|
+$$
+</p>
+
+<p>对于一般的 $n \geq 1$，利用迭代定义和 Lipschitz 条件，</p>
+<p>
+$$
+\begin{aligned}
+|\phi_{n+1}(x) - \phi_n(x)| &= \left| \int_{x_0}^{x} [f(t, \phi_n(t)) - f(t, \phi_{n-1}(t))] \, dt \right| \\
+&\leq  \int_{x_0}^{x} |f(t, \phi_n(t)) - f(t, \phi_{n-1}(t))| \, dt 
+\end{aligned}
+$$
+</p>
+
+<p>利用 Lipschitz 条件：</p>
+<p>
+$$
+\leq L \left| \int_{x_0}^{x} |\phi_n(t) - \phi_{n-1}(t)| \, dt \right|
+$$
+</p>
+
+<p><strong>推导</strong>：<br>让我们尝试计算前几项来寻找规律。</p>
+<ul>
+<li>已知：$|\phi_1(x) - \phi_0(x)| \leq M |x - x_0|$- 计算$|\phi_2(x) - \phi_1(x)|$：</li>
+</ul>
+<p>
+$$
+|\phi_2(x) - \phi_1(x)| \leq L \left| \int_{x_0}^{x} M |t - x_0| \, dt \right| = M L \frac{|x - x_0|^2}{2}
+$$
+</p>
+
+<ul>
+<li>计算 $|\phi_3(x) - \phi_2(x)|$：</li>
+</ul>
+<p>
+$$
+|\phi_3(x) - \phi_2(x)| \leq L \left| \int_{x_0}^{x} M L \frac{|t - x_0|^2}{2} \, dt \right| = M L^2 \frac{|x - x_0|^3}{3!}
+$$
+</p>
+
+<p>对于所有 $n \geq 1$和$x \in I$，有以下估计成立：</p>
+<p>
+$$
+|\phi_n(x) - \phi_{n-1}(x)| \leq \frac{M L^{n-1}}{n!} |x - x_0|^n \leq \frac{M L^{n-1}}{n!} h^n
+$$
+</p>
+
+<h3 id="证明存在性"><a href="#证明存在性" class="headerlink" title="证明存在性"></a>证明存在性</h3><p>考虑级数</p>
+<p>
+$$
+\sum_{n=1}^{\infty} \max_{x \in I} |\phi_n(x) - \phi_{n-1}(x)|
+$$
+</p>
+
+<p>根据估计，这个级数的每一项都被 $\frac{M L^{n-1}}{n!} h^n$ 所控制。</p>
+<p>考虑数值级数 $\sum_{n&#x3D;1}^{\infty} \frac{M L^{n-1}}{n!} h^n$。我们可以用比值判别法来检验其收敛性：</p>
+<p>
+$$
+\lim_{n \to \infty} \frac{\frac{M L^n}{(n+1)!} h^{n+1}}{\frac{M L^{n-1}}{n!} h^n} = \lim_{n \to \infty} \frac{L h}{n+1} = 0
+$$
+</p>
+
+<p>由于极限为 0（小于 1），该数值级数收敛。</p>
+<p>根据 <strong>Weierstrass M-判别法</strong>，由于函数项级数的每一项在区间 $I$上的绝对值都被一个收敛的正项级数的对应项所控制，因此该函数项级数在$I$ 上<strong>一致收敛</strong>。</p>
+<p><strong>结论</strong>：<br>这意味着 Picard 迭代序列 ${\phi_n(x)}$在区间$I$上一致收敛于一个极限函数，记作$\phi(x)$。由于每个 $\phi_n$都是连续的，且收敛是一致的，极限函数$\phi(x)$ 也是连续的。</p>
+<p>回忆迭代公式：</p>
+<p>
+$$
+\phi_{n+1}(x) = y_0 + \int_{x_0}^{x} f(t, \phi_n(t)) \, dt
+$$
+</p>
+
+<p>对等式两边取极限 $n \to \infty$。<br>左边直接趋于 $\phi(x)$。<br>对于右边，将极限号移入积分号内，即：</p>
+<p>
+$$
+\lim_{n \to \infty} \int_{x_0}^{x} f(t, \phi_n(t)) \, dt = \int_{x_0}^{x} \lim_{n \to \infty} f(t, \phi_n(t)) \, dt = \int_{x_0}^{x} f(t, \phi(t)) \, dt
+$$
+</p>
+
+<p>这说明 $\phi(x)$ 满足积分方程，从而是初值问题的一个解。存在性得证。</p>
+<h3 id="证明唯一性"><a href="#证明唯一性" class="headerlink" title="证明唯一性"></a>证明唯一性</h3><p><strong>推导</strong>：<br>假设存在另一个函数 $\psi(x)$ 也满足积分方程：</p>
+<p>
+$$
+\psi(x) = y_0 + \int_{x_0}^{x} f(t, \psi(t)) \, dt
+$$
+</p>
+
+<p>考虑两个解之差的绝对值 $u(x) &#x3D; |\phi(x) - \psi(x)|$。将两者满足的积分方程相减并取绝对值：</p>
+<p>
+$$
+u(x) = \left| \int_{x_0}^{x} [f(t, \phi(t)) - f(t, \psi(t))] \, dt \right| \leq \left| \int_{x_0}^{x} |f(t, \phi(t)) - f(t, \psi(t))| \, dt \right|
+$$
+</p>
+
+<p>再次应用 Lipschitz 条件：</p>
+<p>
+$$
+u(x) \leq L \left| \int_{x_0}^{x} |\phi(t) - \psi(t)| \, dt \right| = L \left| \int_{x_0}^{x} u(t) \, dt \right|
+$$
+</p>
+
+<p>现在我需要从这个积分不等式推导出 $u(x) \equiv 0$。不失一般性，考虑 $x \geq x_0$的情况。定义$U(x) &#x3D; \int_{x_0}^{x} u(t) , dt$。那么 $U’(x) &#x3D; u(x)$。上述不等式变为：</p>
+<p>
+$$
+U'(x) \leq L \cdot U(x)
+$$
+</p>
+
+<p>移项得 $U’(x) - L U(x) \leq 0$。两边乘以积分因子 $e^{-Lx}$：</p>
+<p>
+$$
+\frac{d}{dx} \left( e^{-Lx} U(x) \right) \leq 0
+$$
+</p>
+
+<p>这说明函数 $e^{-Lx} U(x)$在$x \geq x_0$上是单调不增的。在$x &#x3D; x_0$ 处，$U(x_0) &#x3D; \int_{x_0}^{x_0} u(t) , dt &#x3D; 0$。因此，对于所有 $x \geq x_0$，有 $e^{-Lx} U(x) \leq 0$。但由于 $e^{-Lx} &gt; 0$且$U(x) &#x3D; \int_{x_0}^{x} u(t) , dt \geq 0$，我们得出 $U(x) \leq 0$且$U(x) \geq 0$，故 $U(x) &#x3D; 0$。</p>
+<p>由于 $U(x) &#x3D; 0$，其导数 $u(x) &#x3D; U’(x)$也必然为 0（此处$u$是连续的）。所以$u(x) \equiv 0$，即 $\phi(x) &#x3D; \psi(x)$对所有$x \geq x_0$成立。对于$x \leq x_0$ 的情况，论证类似。</p>
+<p><strong>结论</strong>：唯一性得证。</p>
+<p>如果从高阶的视角来看，我们可以采用所谓 $Banach$ 不动点定理，简单理解就是一个压缩映射在所谓完备度量空间存在唯一不动点。压缩映射指的是映射值的差小于原来的差，也就是映射后两个点距离变小了。完备度量空间是什么且不管。这样的话，也可以清楚地梳理整个证明。</p>
+<p>先转化为积分方程，选取合适的区间长度(足够小)，让积分方程对应的映射是一个压缩映射(就如上面选一个 $h$ )，然后就可以应用不动点定理。</p>
+<h2 id="n-阶线性常微分方程的解结构"><a href="#n-阶线性常微分方程的解结构" class="headerlink" title="n 阶线性常微分方程的解结构"></a>n 阶线性常微分方程的解结构</h2><p>这部分确立了线性方程解的基本框架。</p>
+<ul>
+<li><p><strong>n 阶线性齐次 ODE</strong>：指出若存在 $n$个线性无关的特解$\psi_1, \dots, \psi_n$，则通解可表示为它们的线性组合 $y &#x3D; C_1\psi_1 + \dots + C_n\psi_n$。此类方程<strong>无奇解</strong>。</p>
+</li>
+<li><p><strong>n 阶非齐次线性 ODE</strong>：其通解结构为 $y &#x3D; \psi^* + C_1\psi_1 + \dots + C_n\psi_n$，其中 $\psi^*$ 是非齐次方程的一个特解。</p>
+</li>
+<li><p><strong>核心工具预告</strong>： <strong>Wronski 行列式 (Wronskian)</strong>，用于判定函数组的线性相关性。</p>
+</li>
+</ul>
+<h3 id="二阶线性-ODE-与存在唯一性定理"><a href="#二阶线性-ODE-与存在唯一性定理" class="headerlink" title="二阶线性 ODE 与存在唯一性定理"></a>二阶线性 ODE 与存在唯一性定理</h3><p>将讨论具体化到二阶情形。</p>
+<ul>
+<li><p><strong>标准形式</strong>：</p>
+<ul>
+<li><p>非齐次：$y’’ + p(x)y’ + q(x)y &#x3D; f(x)$</p>
+</li>
+<li><p>齐次：$y’’ + p(x)y’ + q(x)y &#x3D; 0$</p>
+</li>
+</ul>
+</li>
+<li><p><strong>解的存在唯一性定理</strong>：</p>
+<p>  若系数 $p(x), q(x)$及$f(x)$在区间$[a, b]$ 上连续，则对于初值问题（$x_0 \in [a, b]$），方程在区间上存在且仅有一个唯一的解。</p>
+</li>
+</ul>
+<h3 id="Wronski-行列式的定义与判定"><a href="#Wronski-行列式的定义与判定" class="headerlink" title="Wronski 行列式的定义与判定"></a>Wronski 行列式的定义与判定</h3><p>开始推导判定解是否线性无关的数学判据。</p>
+<ul>
+<li><strong>定义</strong>：对于两个解 $\psi_1, \psi_2$，定义其 Wronski 行列式为：</li>
+</ul>
+<p>
+$$
+W(x) = \begin{vmatrix} \psi_1 & \psi_2 \\ \psi_1' & \psi_2' \end{vmatrix}
+$$
+</p>
+
+<ul>
+<li><strong>定理核心</strong>：$\psi_1, \psi_2$在$(a, b)$上线性无关的充要条件是$W(x) \neq 0$（对于区间内任意 $x$）。</li>
+</ul>
+<h4 id="线性相关性的逻辑证明"><a href="#线性相关性的逻辑证明" class="headerlink" title="线性相关性的逻辑证明"></a>线性相关性的逻辑证明</h4><p>板书展示了必要性与充分性的证明思路。</p>
+<ul>
+<li><p><strong>反证法&#x2F;直接推导</strong>：</p>
+<ul>
+<li><p>若 $\psi_1, \psi_2$线性相关，则存在不全为零的常数$k_1, k_2$使得$k_1\psi_1 + k_2\psi_2 \equiv 0$。</p>
+</li>
+<li><p>求导得到方程组，由线性代数基础可知，其系数行列式 $W(x)$ 必然恒等于 0。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>引申</strong>：探讨了 $W(x) \equiv 0$ 与解的线性相关性之间的必然联系。</p>
+</li>
+</ul>
+<h4 id="结论的收束与验证"><a href="#结论的收束与验证" class="headerlink" title="结论的收束与验证"></a>结论的收束与验证</h4><p>利用初值问题的唯一性完成最后的逻辑闭环。</p>
+<ul>
+<li><p><strong>唯一性应用</strong>：</p>
+<ul>
+<li><p>构造一个函数 $Y(x) &#x3D; C_1\psi_1(x) + C_2\psi_2(x)$。</p>
+</li>
+<li><p>若 $W(x_0) &#x3D; 0$，则可以找到一组不全为零的 $C_1, C_2$使得在某点$x_0$ 处的初值为 0。</p>
+</li>
+<li><p>根据唯一性定理，如果初值为 0 且满足齐次方程，该解在整个区间内必然恒等于 0（$Y(x) \equiv 0$）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>最终判定</strong>：由此证明了在 ODE 框架下，只要在一点处 $W(x_0) &#x3D; 0$，则解组必然线性相关；反之若线性无关，则 $W(x)$ 在区间内处处不为 0。</p>
+</li>
+</ul>
+<p>上面的推导中，我们发现只是假定一个点 $W(x)$为$0$就会得到处处为$0$ ，这实际上对线性微分方程都成立。</p>
+<h3 id="Wronskian行列式"><a href="#Wronskian行列式" class="headerlink" title="Wronskian行列式"></a>Wronskian行列式</h3><h4 id="1-核心背景"><a href="#1-核心背景" class="headerlink" title="1. 核心背景"></a>1. 核心背景</h4><p>设有一个二阶齐次线性微分方程：</p>
+<p>
+$$
+y'' + P(x)y' + Q(x)y = 0
+$$
+</p>
+
+<p>假设 $\varphi_1, \varphi_2$ 是该方程的两个解。</p>
+<h4 id="2-推导逻辑拆解"><a href="#2-推导逻辑拆解" class="headerlink" title="2. 推导逻辑拆解"></a>2. 推导逻辑拆解</h4><ul>
+<li><p><strong>朗斯基行列式的定义</strong></p>
+<p>  首先定义 $W(x)$ 为这两个解的行列式：</p>
+</li>
+</ul>
+<p>
+$$
+W(x) = \begin{vmatrix} \varphi_1 & \varphi_2 \\ \varphi_1' & \varphi_2' \end{vmatrix} = \varphi_1 \varphi_2' - \varphi_2 \varphi_1'
+$$
+</p>
+
+<ul>
+<li><p><strong>对 $W(x)$ 求导</strong></p>
+<p>  利用导数的乘法法则（或行列式求导法则）：</p>
+</li>
+</ul>
+<p>
+$$
+W'(x) = (\varphi_1 \varphi_2'' + \varphi_1' \varphi_2') - (\varphi_2 \varphi_1'' + \varphi_2' \varphi_1') = \varphi_1 \varphi_2'' - \varphi_2 \varphi_1''
+$$
+</p>
+
+<ul>
+<li><p><strong>利用原方程进行代换</strong></p>
+<p>  因为 $\varphi_1, \varphi_2$满足原方程，可以提取出二阶导数项：$\varphi_i’’ &#x3D; -P(x)\varphi_i’ - Q(x)\varphi_i$代入后，包含$Q(x)$ 的项会互相抵消，剩下：</p>
+</li>
+</ul>
+<p>
+$$
+W'(x) = \varphi_1 (-P \varphi_2' - Q \varphi_2) - \varphi_2 (-P \varphi_1' - Q \varphi_1) = -P(x) (\varphi_1 \varphi_2' - \varphi_2 \varphi_1')
+$$
+</p>
+
+<p>即：</p>
+<p>
+$$
+W'(x) = -P(x)W(x)
+$$
+</p>
+
+<ul>
+<li><p><strong>求解一阶线性方程</strong></p>
+<p>  这是一个典型的一阶可分离变量微分方程，整理得 $W’(x) + P(x)W(x) &#x3D; 0$。</p>
+<p>  通过积分因子法或分离变量法得到通解：</p>
+</li>
+</ul>
+<p>
+$$
+W(x) = C e^{-\int P(x) dx}
+$$
+</p>
+
+<p>若给定初始点 $x_0$，则表达式为：</p>
+<p>
+$$
+W(x) = W(x_0) e^{-\int_{x_0}^x P(t) dt}
+$$
+</p>
+
+<hr>
+<h4 id="3-关键结论与直觉"><a href="#3-关键结论与直觉" class="headerlink" title="3. 关键结论与直觉"></a>3. 关键结论与直觉</h4><p>“<strong>$W$ 不变号</strong>”是这个理论在定性分析上的核心价值。</p>
+<ul>
+<li><p><strong>定号性：</strong> 由于指数函数 $e^{f(x)}$永远大于零，因此$W(x)$的正负完全取决于初始值$W(x_0)$。</p>
+</li>
+<li><p><strong>线性无关性的保持：</strong> 只要在某一点 $x_0$处两个解线性无关（即$W(x_0) \neq 0$），那么在 $P(x)$ 连续的区间内，它们在任何点都线性无关。反之，如果一点为零，则处处为零。</p>
+</li>
+</ul>
+<h3 id="通解结构定理"><a href="#通解结构定理" class="headerlink" title="通解结构定理"></a>通解结构定理</h3><ul>
+<li><p><strong>核心结论：</strong> 若 $\varphi_1, \varphi_2$线性无关，则它们的线性组合$y &#x3D; C_1\varphi_1 + C_2\varphi_2$ <strong>包含所有解</strong>。</p>
+</li>
+<li><p>这意味着这组解构成了解空间的<strong>一组基</strong>，方程的通解空间是一个二维向量空间。</p>
+</li>
+</ul>
+<hr>
+<h4 id="逻辑推导"><a href="#逻辑推导" class="headerlink" title="逻辑推导"></a>逻辑推导</h4><p>为什么上述线性组合能覆盖所有解：</p>
+<ol>
+<li><p><strong>构造初值问题：</strong> 假设方程 $(\star)$有一个任意解$u(x)$。在某点 $x_0$，它满足初值 $y(x_0) &#x3D; u(x_0)$和$y’(x_0) &#x3D; u’(x_0)$。</p>
+</li>
+<li><p><strong>确定系数：</strong> 考虑线性代数方程组：</p>
+</li>
+</ol>
+<p>
+$$
+\begin{cases} C_1\varphi_1(x_0) + C_2\varphi_2(x_0) = u(x_0) \\ C_1\varphi_1'(x_0) + C_2\varphi_2'(x_0) = u'(x_0) \end{cases}
+$$
+</p>
+
+<p>因为 $\varphi_1, \varphi_2$线性无关，所以该方程组的行列式（即$W(x_0)$）不为零。根据克莱姆法则，<strong>必然存在唯一的一组解</strong> $(C_1^<em>, C_2^</em>)$。</p>
+<ol start="3">
+<li><p><strong>唯一性收网：</strong> * 令 $y(x) &#x3D; C_1^<em>\varphi_1(x) + C_2^</em>\varphi_2(x)$，它显然也是原方程的解。</p>
+<ul>
+<li>由于 $y(x)$和$u(x)$在$x_0$ 点的初值完全相同，根据微分方程解的<strong>唯一性定理</strong>，必然有 <strong>$u(x) \equiv y(x)$</strong>。</li>
+</ul>
+</li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

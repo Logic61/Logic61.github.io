@@ -1,0 +1,696 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>10.级数 I —— 定义与正项级数 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>10.级数 I —— 定义与正项级数</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/5/6
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>我们熟悉的</p>
+<p>
+$$
+\sum_{k=0}^\infty q^k=\frac{1}{1-q},|q|<1
+$$
+</p>
+
+<p>有一个名字叫做所谓几何级数。级数是什么呢，实际上就是无穷多个数的求和。那么这样的求和是不是有限的值呢？自然就会想到收敛这个概念。我们定义</p>
+<p>
+$$
+S_n=\sum_{k=1}^na_k
+$$
+</p>
+
+<p>为部分和，即截取前 $n$项的和。那么$S_n$ 是否收敛也即级数是否收敛。</p>
+<p>对于和的极限，我们想到柯西收敛定理，那么级数收敛的充要条件也就是：</p>
+<p>
+$$
+\forall \epsilon>0,\exists N,x>N时,\forall p,|\sum_{k=x}^{x+p}a_k|<\epsilon
+$$
+</p>
+
+<p>换句话说，也就是较大下标的部分和之差是否收敛。极端一点，考虑两个相邻的部分和的差，也就是通项，那么就得到通项要趋于 $0$ 级数才可能收敛。</p>
+<p>判断收敛实际上回到了放缩，阶估算那些东西。</p>
+<p>例如，我们考虑 $1&#x2F;n^2$的求和，利用裂项就得到，从$n$开始的一个求和小于$\frac{1}{n}$ ，收敛，从而级数收敛。</p>
+<p>相应的，对于 $1&#x2F;n$，我们可以往小了放，放到$p$个$\frac{1}{n+p}$，那么选取$p&gt;n$就得到部分和$&gt;\frac{1}{2}$ ，从而级数不收敛。</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><h3 id="收敛级数的线性组合也收敛"><a href="#收敛级数的线性组合也收敛" class="headerlink" title="收敛级数的线性组合也收敛"></a>收敛级数的线性组合也收敛</h3><p>利用柯西收敛定理以及极限的线性性质可知，且线性组合的极限也就是对应的极限的线性组合。</p>
+<h3 id="改变有限项不影响收敛"><a href="#改变有限项不影响收敛" class="headerlink" title="改变有限项不影响收敛"></a>改变有限项不影响收敛</h3><p>收敛的级数改变有限项仍然收敛，但是和会改变。</p>
+<p>和显然会改变，利用柯西收敛定理，我们跳过有限项的最后一项也就能找到 $N$ 。</p>
+<h3 id="收敛级数任意加括号形成的级数也收敛"><a href="#收敛级数任意加括号形成的级数也收敛" class="headerlink" title="收敛级数任意加括号形成的级数也收敛"></a>收敛级数任意加括号形成的级数也收敛</h3><p>设级数 $\sum_{n&#x3D;1}^{\infty} u_n$收敛于和$S$，其部分和序列为 ${S_n}$。将其项任意加括号后所成的级数为：</p>
+<p>
+$$
+(u_1 + \cdots + u_{i_1}) + (u_{i_1+1} + \cdots + u_{i_2}) + \cdots + (u_{i_{n-1}+1} + \cdots + u_{i_n}) + \cdots = \sum_{k=1}^{\infty} v_k \quad (10.1)
+$$
+</p>
+
+<p>其中 $v_k &#x3D; u_{i_{k-1}+1} + \cdots + u_{i_k}$，并规定 $i_0 &#x3D; 0$。设级数 (10.1) 的部分和序列为 ${\sigma_n}$。不难看出有关系式：</p>
+<p>
+$$
+\sigma_n = S_{i_n}
+$$
+</p>
+
+<p>即 ${\sigma_n}$是${S_n}$的一个子序列。因而若原级数收敛于$S$时，也即$S_n \to S (n \to \infty)$，就有 $\sigma_n \to S (n \to \infty)$。证毕。</p>
+<p>但要注意反向并不成立：若对一个级数中的项添加括号后收敛，该级数本身未必收敛。一个最明显的例子是 $\sum_{n&#x3D;0}^{\infty} (-1)^n$。它是发散的，但适当添加括号后可以变成收敛的。</p>
+<p>这看起来像废话，有什么用呢？实际上它在反证法中是有一定作用的。</p>
+<p>例如</p>
+<h4 id="证明：调和级数-sum-n-1-infty-frac-1-n-发散"><a href="#证明：调和级数-sum-n-1-infty-frac-1-n-发散" class="headerlink" title="证明：调和级数 $\sum_{n&#x3D;1}^{\infty} \frac{1}{n}$ 发散"></a>证明：调和级数 $\sum_{n&#x3D;1}^{\infty} \frac{1}{n}$ 发散</h4><p><strong>例：</strong> 考察级数 $\sum_{n&#x3D;1}^{\infty} \frac{1}{n}$，其中通项 $a_n &#x3D; \frac{1}{n}$。</p>
+<p><strong>证：</strong> （反证法）</p>
+<p>假设该级数<strong>收敛</strong>，并设其和为 $S$。</p>
+<ol>
+<li><p><strong>构造新级数 $b_n$：</strong></p>
+<p> 我们将原级数的项每两项两项结合，令：</p>
+</li>
+</ol>
+<p>
+$$
+b_n = a_{2n-1} + a_{2n} = \frac{1}{2n-1} + \frac{1}{2n}
+$$
+</p>
+
+<p>由于 $\frac{1}{2n-1} &gt; \frac{1}{2n}$，显然有：</p>
+<p>
+$$
+b_n = \frac{1}{2n-1} + \frac{1}{2n} > \frac{1}{2n} + \frac{1}{2n} = \frac{1}{n} = a_n
+$$
+</p>
+
+<p>即 $b_n &gt; a_n$。</p>
+<ol start="2">
+<li><p><strong>定义部分和：</strong></p>
+<ul>
+<li><p>记级数 $\sum b_k$的部分和为$B_n &#x3D; \sum_{k&#x3D;1}^{n} b_k$。</p>
+</li>
+<li><p>记级数 $\sum a_k$的部分和为$A_n &#x3D; \sum_{k&#x3D;1}^{n} a_k$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>推导矛盾：</strong></p>
+<p> 根据级数的结合律，如果 $\sum a_n$收敛于$S$，那么对其任意加括号后的级数 $\sum b_n$也必然收敛于同一个和$S$。这意味着：</p>
+<p> 当 $n \to \infty$ 时，$B_n \to S$且$A_n \to S$。</p>
+<p> 然而，考察两者的差值：</p>
+</li>
+</ol>
+<p>
+$$
+B_n - A_n = \sum_{k=1}^{n} (b_k - a_k)
+$$
+</p>
+
+<p>由于每一个 $b_k - a_k &gt; 0$，该差值序列是单调递增的，因此：</p>
+<p>
+$$
+B_n - A_n \geq B_1 - A_1 = b_1 - a_1 = \left(\frac{1}{1} + \frac{1}{2}\right) - 1 = \frac{1}{2}
+$$
+</p>
+
+<p>如果令 $n \to \infty$，左边将趋于 $S - S &#x3D; 0$，由此得到：</p>
+<p>
+$$
+0 \geq \frac{1}{2}
+$$
+</p>
+
+<p>这显然是一个<strong>矛盾</strong>。</p>
+<p><strong>结论：</strong> 原假设不成立，调和级数 $\sum_{n&#x3D;1}^{\infty} \frac{1}{n}$ 发散。</p>
+<h1 id="正项级数的收敛判别法"><a href="#正项级数的收敛判别法" class="headerlink" title="正项级数的收敛判别法"></a>正项级数的收敛判别法</h1><p>如果级数通项都是正的，那么利用单调有界定理，我们只需要说明 $S_n$ 有一致上界就知道级数收敛。</p>
+<p>此外，有个自然的想法，如果通项每一项都大，那求和自然应该大。</p>
+<h2 id="比较判别法"><a href="#比较判别法" class="headerlink" title="比较判别法"></a>比较判别法</h2><p>设两个正项级数 $\sum_{n&#x3D;1}^{\infty} u_n$与$\sum_{n&#x3D;1}^{\infty} v_n$的一般项满足$u_n \leqslant v_n \quad (n&#x3D;1, 2, \cdots)$，则：</p>
+<ol>
+<li><p>若级数 $\sum_{n&#x3D;1}^{\infty} v_n$<strong>收敛</strong>，则级数$\sum_{n&#x3D;1}^{\infty} u_n$ 也收敛；</p>
+</li>
+<li><p>若级数 $\sum_{n&#x3D;1}^{\infty} u_n$<strong>发散</strong>，则级数$\sum_{n&#x3D;1}^{\infty} v_n$ 也发散。</p>
+</li>
+</ol>
+<hr>
+<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p><strong>对于结论 (1)：</strong></p>
+<ul>
+<li><p>设 $\sum_{n&#x3D;1}^{\infty} u_n$与$\sum_{n&#x3D;1}^{\infty} v_n$的部分和序列分别为${S_n}$与${T_n}$。</p>
+</li>
+<li><p>由假设条件 $u_n \leqslant v_n$ 可得：$0 \leqslant S_n \leqslant T_n \quad (n&#x3D;1, 2, \cdots)$。</p>
+</li>
+<li><p>设 $\sum_{n&#x3D;1}^{\infty} v_n$收敛，根据单调有界原理（命题 1），其部分和序列${T_n}$ 必有上界。</p>
+</li>
+<li><p>即存在常数 $M$，使得 $T_n \leqslant M \quad (n&#x3D;1, 2, \cdots)$。</p>
+</li>
+<li><p>由不等式传递性得 $S_n \leqslant M \quad (n&#x3D;1, 2, \cdots)$，说明 ${S_n}$ 也有上界。</p>
+</li>
+<li><p>再次引用单调有界原理，得知级数 $\sum_{n&#x3D;1}^{\infty} u_n$ 收敛。</p>
+</li>
+</ul>
+<p><strong>对于结论 (2)：</strong></p>
+<ul>
+<li><p>采用<strong>反证法</strong>。</p>
+</li>
+<li><p>假设 $\sum_{n&#x3D;1}^{\infty} v_n$收敛，则由结论 (1) 推得$\sum_{n&#x3D;1}^{\infty} u_n$ 也收敛。</p>
+</li>
+<li><p>这与已知条件“$\sum_{n&#x3D;1}^{\infty} u_n$ 发散”相矛盾。</p>
+</li>
+<li><p>因此，$\sum_{n&#x3D;1}^{\infty} v_n$ 必发散。证毕。</p>
+</li>
+</ul>
+<hr>
+<h3 id="推论（更一般的形式）"><a href="#推论（更一般的形式）" class="headerlink" title="推论（更一般的形式）"></a>推论（更一般的形式）</h3><p>注意到删去级数开头的有限项不影响级数的收敛性，可得如下推论：</p>
+<p>若存在常数 $N(\geqslant 1)$及$c(&gt;0)$，使得当 $n \geqslant N$ 时，有：</p>
+<p>
+$$
+0 \leqslant u_n \leqslant c v_n
+$$
+</p>
+
+<p>则：</p>
+<ul>
+<li><p>当 $\sum_{n&#x3D;1}^{\infty} v_n$ 收敛时，$\sum_{n&#x3D;1}^{\infty} u_n$ 也收敛；</p>
+</li>
+<li><p>当 $\sum_{n&#x3D;1}^{\infty} u_n$ 发散时，$\sum_{n&#x3D;1}^{\infty} v_n$ 也发散。</p>
+</li>
+</ul>
+<p>这有点像夹逼定理。</p>
+<h4 id="p-级数的敛散性"><a href="#p-级数的敛散性" class="headerlink" title="p-级数的敛散性"></a>p-级数的敛散性</h4><p>例如我们知道调和级数 $a_n&#x3D;1&#x2F;n$发散，就可以考虑所谓 p-级数$1&#x2F;n^p$的求和。那么$0&lt;p&lt;1$ 时，就知道也发散。</p>
+<p>设 $p &gt; 1$。下面给出一个不用积分判别的，非常神秘的做法。用积分判别十分显然，就不说了。积分判别将在后面提到。</p>
+<h5 id="1-利用微分中值定理建立不等式"><a href="#1-利用微分中值定理建立不等式" class="headerlink" title="1. 利用微分中值定理建立不等式"></a>1. 利用微分中值定理建立不等式</h5><p>考虑函数 $f(x) &#x3D; \frac{1}{x^{p-1}}$在区间$[n-1, n]$ 上的增量。根据<strong>拉格朗日中值定理</strong>：</p>
+<p>
+$$
+\frac{1}{(n-1)^{p-1}} - \frac{1}{n^{p-1}} = (p-1) \frac{1}{(n-\eta)^p}, \quad \eta \in (0, 1)
+$$
+</p>
+
+<p>由于 $n-\eta &lt; n$，则 $\frac{1}{(n-\eta)^p} &gt; \frac{1}{n^p}$。</p>
+<p>由此得到关键不等式：</p>
+<p>
+$$
+\frac{1}{(n-1)^{p-1}} - \frac{1}{n^{p-1}} \geq (p-1) \frac{1}{n^p}
+$$
+</p>
+
+<p>整理得：</p>
+<p>
+$$
+\frac{1}{n^p} \leq \frac{1}{p-1} \left( \frac{1}{(n-1)^{p-1}} - \frac{1}{n^{p-1}} \right)
+$$
+</p>
+
+<hr>
+<h5 id="2-估计部分和-S-N-设级数的部分和为-S-N-sum-n-1-N-frac-1-n-p-。我们将第一项（-n-1-）单独提出，对剩余项使用上述不等式："><a href="#2-估计部分和-S-N-设级数的部分和为-S-N-sum-n-1-N-frac-1-n-p-。我们将第一项（-n-1-）单独提出，对剩余项使用上述不等式：" class="headerlink" title="2. 估计部分和 $S_N$设级数的部分和为$S_N &#x3D; \sum_{n&#x3D;1}^{N} \frac{1}{n^p}$。我们将第一项（$n&#x3D;1$）单独提出，对剩余项使用上述不等式："></a>2. 估计部分和 $S_N$设级数的部分和为$S_N &#x3D; \sum_{n&#x3D;1}^{N} \frac{1}{n^p}$。我们将第一项（$n&#x3D;1$）单独提出，对剩余项使用上述不等式：</h5><p>
+$$
+\begin{aligned} S_N &= 1 + \sum_{n=2}^{N} \frac{1}{n^p} \\ &\leq 1 + \frac{1}{p-1} \sum_{n=2}^{N} \left( \frac{1}{(n-1)^{p-1}} - \frac{1}{n^{p-1}} \right) \end{aligned}
+$$
+</p>
+
+<p>这是一个<strong>裂项相消级数</strong>，求和后中间项全部消去：</p>
+<p>
+$$
+\begin{aligned} S_N &\leq 1 + \frac{1}{p-1} \left( 1 - \frac{1}{N^{p-1}} \right) \\ &< 1 + \frac{1}{p-1} \quad (\text{因为 } \frac{1}{N^{p-1}} > 0) \\ &= \frac{p-1+1}{p-1} = \frac{p}{p-1} \end{aligned}
+$$
+</p>
+
+<hr>
+<h5 id="3-结论"><a href="#3-结论" class="headerlink" title="3. 结论"></a>3. 结论</h5><p>由上述推导可知，部分和序列 ${S_N}$是<strong>单调递增</strong>且<strong>上有界</strong>的（上界为$\frac{p}{p-1}$）。</p>
+<p>根据<strong>单调有界原理</strong>：</p>
+<p>
+$$
+\Rightarrow \sum_{n=1}^{\infty} \frac{1}{n^p} \text{ 收敛}
+$$
+</p>
+
+<p>技巧性就比较强。</p>
+<h2 id="比较判别法的极限形式"><a href="#比较判别法的极限形式" class="headerlink" title="比较判别法的极限形式"></a>比较判别法的极限形式</h2><p>设有三个正项级数 $\sum_{n&#x3D;1}^{\infty} u_n$与$\sum_{n&#x3D;1}^{\infty} v_n$，且有：</p>
+<p>
+$$
+\lim_{n \to \infty} \frac{u_n}{v_n} = h
+$$
+</p>
+
+<p>其中 $h$为有限数或$+\infty$。则有下述结论：</p>
+<ol>
+<li><p><strong>当 $0 \leqslant h &lt; +\infty$时</strong>：若级数$\sum_{n&#x3D;1}^{\infty} v_n$收敛，则级数$\sum_{n&#x3D;1}^{\infty} u_n$ 也收敛；</p>
+</li>
+<li><p><strong>当 $0 &lt; h \leqslant +\infty$时</strong>：若级数$\sum_{n&#x3D;1}^{\infty} v_n$发散，则级数$\sum_{n&#x3D;1}^{\infty} u_n$ 也发散。</p>
+</li>
+</ol>
+<p><strong>特别地</strong>：当 $0 &lt; h &lt; +\infty$ 时，两个无穷级数<strong>同时收敛或同时发散</strong>。<br>这实际上就是在做阶估算。同阶同敛散。</p>
+<hr>
+<h3 id="证明-1"><a href="#证明-1" class="headerlink" title="证明"></a>证明</h3><p><strong>结论 (1) 的证明：</strong></p>
+<ul>
+<li>当 $0 \leqslant h &lt; +\infty$时，根据极限的定义，存在一个自然数$N$，使得当 $n &gt; N$ 时：</li>
+</ul>
+<p>
+$$
+\frac{u_n}{v_n} < h + 1
+$$
+</p>
+
+<ul>
+<li><p>也即 $u_n &lt; (h + 1)v_n$。</p>
+</li>
+<li><p>由比较判别法（基本形式）可知，从 $\sum_{n&#x3D;1}^{\infty} v_n$的收敛性可推出$\sum_{n&#x3D;1}^{\infty} u_n$ 的收敛性。</p>
+</li>
+</ul>
+<p><strong>结论 (2) 的证明：</strong></p>
+<ul>
+<li>当 $0 &lt; h \leqslant +\infty$ 时，我们考虑比值的倒数：</li>
+</ul>
+<p>
+$$
+\lim_{n \to \infty} \frac{v_n}{u_n} = \frac{1}{h}
+$$
+</p>
+
+<ul>
+<li><p>约定当 $h &#x3D; +\infty$ 时，$\frac{1}{h} &#x3D; 0$。</p>
+</li>
+<li><p>同理，对于充分大的 $n$，$v_n &lt; \left(\frac{1}{h} + 1\right)u_n$。</p>
+</li>
+<li><p>这证明了结论 (2)。证毕。</p>
+</li>
+</ul>
+<h2 id="达朗贝尔判别法-Ratio-Test"><a href="#达朗贝尔判别法-Ratio-Test" class="headerlink" title="达朗贝尔判别法 (Ratio Test)"></a>达朗贝尔判别法 (Ratio Test)</h2><p>一般地，我们如何运用等比级数去判断一个级数的敛散性呢，就用到所谓达朗贝尔判别法。</p>
+<p><strong>已知条件：</strong></p>
+<p>给定正项级数 $\sum u_n$，其中 $u_n &gt; 0$。</p>
+<p>设相邻两项比值的极限为：</p>
+<p>
+$$
+\lim_{n \to +\infty} \frac{u_{n+1}}{u_n} = l
+$$
+</p>
+
+<p><strong>判定结论：</strong></p>
+<ol>
+<li><p>若 $l &lt; 1$，级数<strong>收敛</strong>；</p>
+</li>
+<li><p>若 $l &gt; 1$（或 $l &#x3D; +\infty$），级数<strong>发散</strong>；</p>
+</li>
+<li><p>若 $l &#x3D; 1$，判别法失效，级数可能收敛也可能发散，需另行判定。</p>
+</li>
+</ol>
+<hr>
+<h3 id="证明逻辑：为什么-l-1-时级数收敛"><a href="#证明逻辑：为什么-l-1-时级数收敛" class="headerlink" title="证明逻辑：为什么 $l &lt; 1$ 时级数收敛"></a>证明逻辑：为什么 $l &lt; 1$ 时级数收敛</h3><p><strong>证明思路：</strong> 利用比较判别法，将原级数与收敛的几何级数（等比级数）进行比较。</p>
+<ol>
+<li><p><strong>寻找公比 $q$：</strong></p>
+<p> 由于 $\lim_{n \to +\infty} \frac{u_{n+1}}{u_n} &#x3D; l &lt; 1$，根据极限的性质，一定存在一个常数 $q$，使得 $l &lt; q &lt; 1$。</p>
+</li>
+<li><p><strong>确定范围：</strong></p>
+<p> 存在充分大的正整数 $N$，使得当 $n \geq N$时，恒有$\frac{u_{n+1}}{u_n} &lt; q$。</p>
+</li>
+<li><p><strong>逐项放大：</strong></p>
+<ul>
+<li><p>$u_{N+1} &lt; q u_N$-$u_{N+2} &lt; q u_{N+1} &lt; q^2 u_N$</p>
+</li>
+<li><p>推广得：$u_n &lt; q^{n-N} u_N &#x3D; q^n \cdot \frac{u_N}{q^N}$</p>
+</li>
+</ul>
+</li>
+<li><p><strong>得出结论：</strong></p>
+<p> 记常数 $C_N &#x3D; \frac{u_N}{q^N}$，则对于所有 $n \geq N$，有 $u_n &lt; C_N q^n$。</p>
+<p> 因为 $0 &lt; q &lt; 1$，几何级数 $\sum q^n$是收敛的。由<strong>比较判别法</strong>可知，级数$\sum u_n$ 必定收敛。</p>
+</li>
+</ol>
+<p>对于另一侧，改个符号即可同理推出。</p>
+<hr>
+<h3 id="案例：为什么-l-1-时判定失效？"><a href="#案例：为什么-l-1-时判定失效？" class="headerlink" title="案例：为什么 $l &#x3D; 1$ 时判定失效？"></a>案例：为什么 $l &#x3D; 1$ 时判定失效？</h3><p>给出两个 $l&#x3D;1$ 但敛散性截然不同的例子：</p>
+<ul>
+<li><p><strong>例子 1（发散）：</strong> 调和级数 $\sum \frac{1}{n}$ $\frac{u_{n+1}}{u_n} &#x3D; \frac{n}{n+1} \to 1$，但该级数<strong>发散</strong>。</p>
+</li>
+<li><p><strong>例子 2（收敛）：</strong> $p&#x3D;2$的$p$-级数 $\sum \frac{1}{n^2}$ $\frac{u_{n+1}}{u_n} &#x3D; \left(\frac{n}{n+1}\right)^2 \to 1$，但该级数<strong>收敛</strong>。</p>
+</li>
+</ul>
+<h2 id="柯西判别法"><a href="#柯西判别法" class="headerlink" title="柯西判别法"></a>柯西判别法</h2><p>观察上面，我们发现我们实际上通过做比值，然后通过比值的极限去构造了等比数列。那实际上我们也可以一步到位，直接考虑 $u^{\frac{1}{n}}$的极限$l$ 。然后完全类似地得到和达朗贝尔判别一样的结果。</p>
+<p><strong>判定结论：</strong></p>
+<ol>
+<li><p>若 $l &lt; 1$，级数<strong>收敛</strong>；</p>
+</li>
+<li><p>若 $l &gt; 1$（或 $l &#x3D; +\infty$），级数<strong>发散</strong>；</p>
+</li>
+<li><p>若 $l &#x3D; 1$，判别法失效，级数可能收敛也可能发散，需另行判定。</p>
+</li>
+</ol>
+<hr>
+<h2 id="拉阿伯判别法-Raabe’s-Test"><a href="#拉阿伯判别法-Raabe’s-Test" class="headerlink" title="拉阿伯判别法 (Raabe’s Test)"></a>拉阿伯判别法 (Raabe’s Test)</h2><p>前面我们是利用等比级数做一个判定，但是等比级数并不那么强大，我们先前谈论的 $p$-级数是否也能拿来判断敛散性呢？答案是肯定的。</p>
+<p><strong>已知条件：</strong> 给定正项级数 $\sum u_n$，其中 $u_n &gt; 0$。 设其相邻项比值的变形极限为：</p>
+<p>
+$$
+\lim_{n \to \infty} n \left( \frac{u_n}{u_{n+1}} - 1 \right) = R
+$$
+</p>
+
+<p><strong>判定结论：</strong></p>
+<ol>
+<li><p><strong>若 $R &gt; 1$</strong>：级数<strong>收敛</strong>；</p>
+</li>
+<li><p><strong>若 $R &lt; 1$</strong>：级数<strong>发散</strong>；</p>
+</li>
+<li><p><strong>若 $R &#x3D; 1$</strong>：判别法<strong>失效</strong>，需采用更精细的判别法（如 Gauss 判别法）。</p>
+</li>
+</ol>
+<hr>
+<h3 id="证明要点与逻辑推导"><a href="#证明要点与逻辑推导" class="headerlink" title="证明要点与逻辑推导"></a>证明要点与逻辑推导</h3><p>核心思想是将其与已知的 <strong>p-级数</strong> 进行比较。</p>
+<h4 id="1-辅助级数的性质"><a href="#1-辅助级数的性质" class="headerlink" title="1. 辅助级数的性质"></a>1. 辅助级数的性质</h4><p>选取 $p$-级数 $v_n &#x3D; \frac{1}{n^p}$。对其进行同样的极限运算：</p>
+<p>
+$$
+n \left( \frac{v_n}{v_{n+1}} - 1 \right) = n \left( \frac{(n+1)^p}{n^p} - 1 \right) = n \left( (1 + \frac{1}{n})^p - 1 \right)
+$$
+</p>
+
+<p>利用二项式展开或泰勒展开 $(1+x)^p &#x3D; 1 + px + O(x^2)$：</p>
+<p>
+$$
+\approx n \left( 1 + \frac{p}{n} + O(\frac{1}{n^2}) - 1 \right) \to p
+$$
+</p>
+
+<p>这说明对于 $p$-级数，该极限值正好等于其幂次 $p$。</p>
+<h4 id="2-利用比较判别法证明-R-1-的收敛性"><a href="#2-利用比较判别法证明-R-1-的收敛性" class="headerlink" title="2. 利用比较判别法证明 $R &gt; 1$ 的收敛性"></a>2. 利用比较判别法证明 $R &gt; 1$ 的收敛性</h4><ul>
+<li><p><strong>寻找中介值</strong>：若 $R &gt; 1$，则一定存在一个数 $p$，使得 $R &gt; p &gt; 1$。</p>
+</li>
+<li><p><strong>建立不等式</strong>：由于 $\lim_{n \to \infty} n \left( \frac{u_n}{u_{n+1}} - 1 \right) &#x3D; R &gt; p$，则存在充分大的 $N$，使得当 $n \geq N$ 时：</p>
+</li>
+</ul>
+<p>
+$$
+n \left( \frac{u_n}{u_{n+1}} - 1 \right) > n \left( \frac{(n+1)^p}{n^p} - 1 \right)
+$$
+</p>
+
+<ul>
+<li><strong>化简不等式</strong>：</li>
+</ul>
+<p>
+$$
+\frac{u_n}{u_{n+1}} > \frac{(n+1)^p}{n^p} \Rightarrow (n+1)^p u_{n+1} < n^p u_n
+$$
+</p>
+
+<ul>
+<li><strong>递推放大</strong>： 这说明序列 ${n^p u_n}$在$n \geq N$ 后是单调递减的。因此：</li>
+</ul>
+<p>
+$$
+(n+1)^p u_{n+1} < n^p u_n < \dots < N^p u_N = C_N
+$$
+</p>
+
+<p>从而得出 $u_{n+1} &lt; \frac{C_N}{(n+1)^p}$。</p>
+<ul>
+<li><strong>结论</strong>：由于 $p &gt; 1$，由 <strong>p-级数收敛判定</strong> 和<strong>比较判别法</strong> 可知，级数 $\sum u_n$ <strong>收敛</strong>。</li>
+</ul>
+<h2 id="积分判别法"><a href="#积分判别法" class="headerlink" title="积分判别法"></a>积分判别法</h2><p> 在[[7.求和#积分估计]]中我们实际上讨论过积分估计求和。</p>
+<h3 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h3><p><strong>1. 定理</strong></p>
+<p>设 $\sum_{n&#x3D;1}^{\infty} u_n$ 为正项级数（$u_n \geq 0$）。若存在单调不增的非负函数 $f(x)$使得$f(n) &#x3D; u_n$，则：</p>
+<p>
+$$
+\sum_{n=1}^{\infty} u_n \text{ 收敛} \iff \int_{1}^{+\infty} f(x) dx \text{ 收敛}
+$$
+</p>
+
+<p>**2. 核心等价关系</p>
+<p>通过有界性原理（正项级数&#x2F;非负函数增加的特性）不难得到如下链条：</p>
+<ul>
+<li><p><strong>级数收敛</strong> $\iff$部分和序列${S_n}$ <strong>有上界</strong>。</p>
+</li>
+<li><p><strong>积分存在</strong> $\iff$变上限积分$\int_{1}^{A} f(x) dx$ <strong>有上界</strong>。</p>
+</li>
+</ul>
+<hr>
+<h3 id="证明思路"><a href="#证明思路" class="headerlink" title="证明思路"></a>证明思路</h3><p>通过比较单位区间上的矩形面积与曲线下积分面积，可以得出以下两个关键不等式：</p>
+<h4 id="A-证明“级数收敛-Rightarrow-积分收敛”"><a href="#A-证明“级数收敛-Rightarrow-积分收敛”" class="headerlink" title="A. 证明“级数收敛 $\Rightarrow$ 积分收敛”"></a>A. 证明“级数收敛 $\Rightarrow$ 积分收敛”</h4><p>利用左矩形法（或右移比较）：</p>
+<p>
+$$
+\int_{1}^{n} f(x) dx \leq \sum_{k=1}^{n-1} u_k = S_{n-1}
+$$
+</p>
+
+<ul>
+<li><strong>逻辑推演</strong>：若级数收敛，则 ${S_{n-1}}$有上界，从而导致$\int_{1}^{n} f(x) dx$也有上界。根据单调有界原理，当$n \to \infty$时，积分$\int_{1}^{+\infty} f(x) dx$ 必定存在。</li>
+</ul>
+<h4 id="B-证明“积分收敛-Rightarrow-级数收敛”"><a href="#B-证明“积分收敛-Rightarrow-级数收敛”" class="headerlink" title="B. 证明“积分收敛 $\Rightarrow$ 级数收敛”"></a>B. 证明“积分收敛 $\Rightarrow$ 级数收敛”</h4><p>利用右矩形法：</p>
+<p>
+$$
+S_n = \sum_{k=1}^{n} u_k = u_1 + \sum_{k=2}^{n} u_k \leq u_1 + \int_{1}^{n} f(x) dx
+$$
+</p>
+
+<ul>
+<li><strong>逻辑推演</strong>：若反常积分收敛，则其变上限积分 $\int_{1}^{n} f(x) dx$有上界，从而推导出${S_n}$也有上界。因此，正项级数$\sum u_n$ 必定收敛。</li>
+</ul>
+<p>综合两方面就得到原命题成立。</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>积分判别法可以处理前述判别法得到极限为 $1$ 而无法处理的情形，例如</p>
+<p>
+$$
+\sum \frac{1}{nlnn}
+$$
+</p>
+
+<p>这应用 Raabe’s test 或者 Cauchy’s test 都行不通，但是一积分得到原函数 $lnlnn$就知道发散，相应地如果改成$\frac{1}{n(lnn)^2}$ 就知道收敛。</p>
+<p>尽管威力强大，但是需要能积出来，就对形式有一定要求，并不能一招吃遍。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

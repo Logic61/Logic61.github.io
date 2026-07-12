@@ -1,0 +1,719 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>1.重积分 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>1.重积分</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/19
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>在单变量的微积分中，我们通过黎曼和定义了定积分，那同样，我们可以通过它定义多重积分：</p>
+<p><strong>二重积分的黎曼和定义：</strong></p>
+<p>
+$$
+\iint_D f(x,y)\,dA
+=\lim_{\max \Delta S_{ij}\to 0}
+\sum_{i,j} f(\xi_{ij},\eta_{ij})\,\Delta S_{ij}
+$$
+</p>
+
+<p><strong>三重积分：</strong></p>
+<p>
+$$
+\iiint_\Omega f(x,y,z)\,dV
+=\lim_{\max \Delta V_{ijk}\to 0}
+\sum_{i,j,k} f(\xi_{ijk},\eta_{ijk},\zeta_{ijk})\,\Delta V_{ijk}
+$$
+</p>
+
+<hr>
+<p>特征都差不多，同样是把一块区域划分成小块，从而化曲为直便于计算，也同样要求分割“直径”趋于0。</p>
+<h2 id="重积分的基本性质"><a href="#重积分的基本性质" class="headerlink" title="重积分的基本性质"></a>重积分的基本性质</h2><p>这部分可以飞速浏览，几乎完全符合直觉（）</p>
+<p>设 $f,g$在区域$D$（或 $\Omega$）上可积，$\lambda,\mu \in \mathbb{R}$。</p>
+<hr>
+<h3 id="1-线性（Linearity）"><a href="#1-线性（Linearity）" class="headerlink" title="1. 线性（Linearity）"></a>1. 线性（Linearity）</h3><p>
+$$
+\iint_D (\lambda f + \mu g)\,dA
+=
+\lambda \iint_D f\,dA
++
+\mu \iint_D g\,dA
+$$
+</p>
+
+<p>三重积分同理：</p>
+<p>
+$$
+\iiint_\Omega (\lambda f + \mu g)\,dV
+=
+\lambda \iiint_\Omega f\,dV
++
+\mu \iiint_\Omega g\,dV
+$$
+</p>
+
+<blockquote>
+<p>本质：积分是“极限下的加权求和”，线性来自求和的线性。</p>
+</blockquote>
+<hr>
+<h3 id="2-区域可加性（Additivity-over-domain）"><a href="#2-区域可加性（Additivity-over-domain）" class="headerlink" title="2. 区域可加性（Additivity over domain）"></a>2. 区域可加性（Additivity over domain）</h3><p>若 $D &#x3D; D_1 \cup D_2$且$D_1,D_2$ 内部不重叠，则</p>
+<p>
+$$
+\iint_D f\,dA
+=
+\iint_{D_1} f\,dA
++
+\iint_{D_2} f\,dA
+$$
+</p>
+
+<p>更一般：</p>
+<p>
+$$
+D = \bigcup_{k=1}^n D_k \quad (\text{两两内部不交})
+\Rightarrow
+\iint_D f\,dA = \sum_{k=1}^n \iint_{D_k} f\,dA
+$$
+</p>
+
+<blockquote>
+<p>本质：黎曼和可以拆块。</p>
+</blockquote>
+<hr>
+<h3 id="3-保序性（Monotonicity）"><a href="#3-保序性（Monotonicity）" class="headerlink" title="3. 保序性（Monotonicity）"></a>3. 保序性（Monotonicity）</h3><p>若 $f(x,y) \le g(x,y)$，则</p>
+<p>
+$$
+\iint_D f\,dA \le \iint_D g\,dA
+$$
+</p>
+
+<p>特别地：</p>
+<p>
+$$
+f(x,y) \ge 0 \Rightarrow \iint_D f\,dA \ge 0
+$$
+</p>
+
+<blockquote>
+<p>本质：每个小块上都不超过，总和自然不超过。</p>
+</blockquote>
+<hr>
+<h3 id="4-估计（Bounding）"><a href="#4-估计（Bounding）" class="headerlink" title="4. 估计（Bounding）"></a>4. 估计（Bounding）</h3><p>若</p>
+<p>
+$$
+m \le f(x,y) \le M
+$$
+</p>
+
+<p>则</p>
+<p>
+$$
+m \cdot |D|
+\le
+\iint_D f\,dA
+\le
+M \cdot |D|
+$$
+</p>
+
+<p>其中 $|D|$ 表示区域面积。</p>
+<p>三维对应：</p>
+<p>
+$$
+m|\Omega| \le \iiint_\Omega f\,dV \le M|\Omega|
+$$
+</p>
+
+<blockquote>
+<p>本质：函数被夹住 ⇒ 积分被夹住。</p>
+</blockquote>
+<hr>
+<h3 id="5-绝对值不等式"><a href="#5-绝对值不等式" class="headerlink" title="5. 绝对值不等式"></a>5. 绝对值不等式</h3><p>
+$$
+\left| \iint_D f\,dA \right|
+\le
+\iint_D |f|\,dA
+$$
+</p>
+
+<blockquote>
+<p>本质：积分不会比“把每块都取绝对值再加”更大。</p>
+</blockquote>
+<hr>
+<h3 id="6-积分中值定理（Integral-Mean-Value-Theorem）"><a href="#6-积分中值定理（Integral-Mean-Value-Theorem）" class="headerlink" title="6. 积分中值定理（Integral Mean Value Theorem）"></a>6. 积分中值定理（Integral Mean Value Theorem）</h3><p>若 $f$在有界闭区域$D$上连续，则存在$(\xi,\eta)\in D$ 使得</p>
+<p>
+$$
+\iint_D f(x,y)\,dA
+=
+f(\xi,\eta)\cdot |D|
+$$
+</p>
+
+<p>三维：</p>
+<p>
+$$
+\iiint_\Omega f\,dV
+=
+f(\xi,\eta,\zeta)\cdot |\Omega|
+$$
+</p>
+
+<blockquote>
+<p>本质：积分 &#x3D; “某个代表值 × 体积”。</p>
+</blockquote>
+<hr>
+<h3 id="7-与常数函数的关系"><a href="#7-与常数函数的关系" class="headerlink" title="7. 与常数函数的关系"></a>7. 与常数函数的关系</h3><p>
+$$
+\iint_D 1\,dA = |D|
+$$
+</p>
+
+<p>
+$$
+\iiint_\Omega 1\,dV = |\Omega|
+$$
+</p>
+
+<blockquote>
+<p>本质：积分统一了“面积&#x2F;体积”的概念。</p>
+</blockquote>
+<hr>
+<p>那么如何计算呢？我们先看看二维。</p>
+<h1 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h1><p>我们会算的也就是一重积分，所以自然想到能不能把二重积分变成一重积分，这也就是所谓累次积分：</p>
+<p><strong>Fubini 定理（基本形式）：</strong></p>
+<p>
+$$
+\iint_D f(x,y)\,dA
+=
+\int_a^b \left(\int_{c(x)}^{d(x)} f(x,y)\,dy\right)\,dx
+$$
+</p>
+
+<p>或</p>
+<p>
+$$
+\iint_D f(x,y)\,dA
+=
+\int_c^d \left(\int_{a(y)}^{b(y)} f(x,y)\,dx\right)\,dy
+$$
+</p>
+
+<hr>
+<h3 id="分割"><a href="#分割" class="headerlink" title="分割"></a>分割</h3><p>不过与一维情形不同，多个变量之间互相制约，所以积分上下限可能包含其他变量，这很多时候也是形式复杂的源头。</p>
+<p>我们应该划分好区域，让变量上下界秩序分明：</p>
+<p><strong>I 型区域（竖切）：</strong></p>
+<p>
+$$
+D=\{(x,y)\mid a\le x\le b,\ c(x)\le y\le d(x)\}
+$$
+</p>
+
+<p>对应</p>
+<p>
+$$
+\iint_D f(x,y)\,dA
+=
+\int_a^b \int_{c(x)}^{d(x)} f(x,y)\,dy\,dx
+$$
+</p>
+
+<p><strong>II 型区域（横切）：</strong></p>
+<p>
+$$
+D=\{(x,y)\mid c\le y\le d,\ a(y)\le x\le b(y)\}
+$$
+</p>
+
+<p>对应</p>
+<p>
+$$
+\iint_D f(x,y)\,dA
+=
+\int_c^d \int_{a(y)}^{b(y)} f(x,y)\,dx\,dy
+$$
+</p>
+
+<p><strong>变量依赖关系（本质约束）：</strong></p>
+<p>
+$$
+\text{内层积分变量的上下限可以含外层变量，但反之不行}
+$$
+</p>
+
+<hr>
+<p>这样，再运用一次次定积分也就解决了所有问题。三维，乃至高维，也只是重复多次。</p>
+<p><strong>三重积分累次积分形式：</strong></p>
+<p>
+$$
+\iiint_\Omega f(x,y,z)\,dV
+=
+\int_a^b \int_{c(x)}^{d(x)} \int_{e(x,y)}^{g(x,y)} f(x,y,z)\,dz\,dy\,dx
+$$
+</p>
+
+<hr>
+<h3 id="换元"><a href="#换元" class="headerlink" title="换元"></a>换元</h3><p>那么，我们也可以利用换元来简化积分。在一维中：</p>
+<p><strong>一维换元公式：</strong></p>
+<p>
+$$
+\int f(x)\,dx = \int f(x(t))\,x'(t)\,dt
+$$
+</p>
+
+<p>那么 $dxdy$ 怎么换呢？</p>
+<p>设参数变换：</p>
+<p>
+$$
+(x,y) = (x(u,v),\,y(u,v))
+$$
+</p>
+
+<p>考虑微元变化：</p>
+<p>
+$$
+\mathbf r(u+du,v)\approx \mathbf r + \mathbf r_u\,du
+$$
+</p>
+
+<p>
+$$
+\mathbf r(u,v+dv)\approx \mathbf r + \mathbf r_v\,dv
+$$
+</p>
+
+<p>则面积元为：</p>
+<p><strong>面积元（叉积形式）：</strong></p>
+<p>
+$$
+dA = |\mathbf r_u \times \mathbf r_v|\,dudv
+$$
+</p>
+
+<p>计算可得，这正是雅可比行列式：</p>
+<p><strong>雅可比行列式（二维）：</strong></p>
+<p>
+$$
+\frac{\partial(x,y)}{\partial(u,v)}
+=
+\begin{vmatrix}
+\frac{\partial x}{\partial u} & \frac{\partial x}{\partial v}\\
+\frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
+\end{vmatrix}
+$$
+</p>
+
+<p>于是得到：</p>
+<p><strong>二重积分换元公式：</strong></p>
+<p>
+$$
+\iint_D f(x,y)\,dxdy
+=
+\iint_{D'} f(x(u,v),y(u,v))
+\left|\frac{\partial(x,y)}{\partial(u,v)}\right|
+\,dudv
+$$
+</p>
+
+<hr>
+<p>在三维中，我们则变成混合积：</p>
+<p>
+$$
+V = |\mathbf{A} \cdot (\mathbf{B} \times \mathbf{C})|
+$$
+</p>
+
+<p>从而换元变成：</p>
+<p>
+$$
+\begin{aligned} dV' &= |(\mathbf{r}_u du) \cdot ((\mathbf{r}_v dv) \times (\mathbf{r}_w dw))| \\ &= |\mathbf{r}_u \cdot (\mathbf{r}_v \times \mathbf{r}_w)| \cdot du dv dw \end{aligned}
+$$
+</p>
+
+<p>恰好也是雅可比行列式：</p>
+<p>
+$$
+\mathbf{r}_u \cdot (\mathbf{r}_v \times \mathbf{r}_w) = \det \begin{pmatrix} \frac{\partial x}{\partial u} & \frac{\partial y}{\partial u} & \frac{\partial z}{\partial u} \\ \frac{\partial x}{\partial v} & \frac{\partial y}{\partial v} & \frac{\partial z}{\partial v} \\ \frac{\partial x}{\partial w} & \frac{\partial y}{\partial w} & \frac{\partial z}{\partial w} \end{pmatrix}
+$$
+</p>
+
+<p><strong>三维雅可比行列式：</strong></p>
+<p>
+$$
+\frac{\partial(x,y,z)}{\partial(u,v,w)}
+=
+\begin{vmatrix}
+x_u & x_v & x_w\\
+y_u & y_v & y_w\\
+z_u & z_v & z_w
+\end{vmatrix}
+$$
+</p>
+
+<p><strong>三重积分换元公式：</strong></p>
+<p>
+$$
+\iiint_\Omega f(x,y,z)\,dV
+=
+\iiint_{\Omega'} f(x(u,v,w),y(u,v,w),z(u,v,w))
+\left|\frac{\partial(x,y,z)}{\partial(u,v,w)}\right|
+\,dudvdw
+$$
+</p>
+
+<hr>
+<p>我们可以计算常见坐标变换：</p>
+<p><strong>极坐标：</strong></p>
+<p>
+$$
+x=r\cos\theta,\quad y=r\sin\theta
+$$
+</p>
+
+<p>
+$$
+dxdy = r\,dr\,d\theta
+$$
+</p>
+
+<hr>
+<p><strong>柱坐标：</strong></p>
+<p>
+$$
+x=r\cos\theta,\quad y=r\sin\theta,\quad z=z
+$$
+</p>
+
+<p>
+$$
+dV = r\,dr\,d\theta\,dz
+$$
+</p>
+
+<hr>
+<p><strong>球坐标：</strong></p>
+<p>
+$$
+x=\rho\sin\varphi\cos\theta,\quad
+y=\rho\sin\varphi\sin\theta,\quad
+z=\rho\cos\varphi
+$$
+</p>
+
+<p>
+$$
+dV = \rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta
+$$
+</p>
+
+<hr>
+<p> 一般维度也是雅可比行列式吗，我们可以这样看：</p>
+<p>
+$$
+\begin{pmatrix} dx \\ dy \end{pmatrix} \approx \begin{pmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \end{pmatrix} \begin{pmatrix} du \\ dv \end{pmatrix}
+$$
+</p>
+
+<p>联系线性代数，我们知道行列式代表着体积，所以确实，对于一般的情形，直接上行列式就好了！</p>
+<h1 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h1><p>那么我们便可以小结一下：</p>
+<p>1.考虑对称，换元</p>
+<p>2.划分变量区域</p>
+<p>3.积分</p>
+<p>我们来实操一下。</p>
+<p><img src="/images/Pasted_image_20260402140342.png"></p>
+<h3 id="1-考虑对称，简化被积函数"><a href="#1-考虑对称，简化被积函数" class="headerlink" title="1. 考虑对称，简化被积函数"></a>1. 考虑对称，简化被积函数</h3><p>观察被积函数的分子 $(x+y+z)^2 &#x3D; x^2+y^2+z^2 + 2xy + 2yz + 2zx$。</p>
+<p>由于积分区域 $\Omega$关于$Oyz$、$Oxz$和$Oxy$ 三个坐标面均具有对称性，根据<strong>奇函数在对称区域上的积分为零</strong>：</p>
+<ul>
+<li>交叉项 $\iiint_{\Omega} 2xy , dV &#x3D; \iiint_{\Omega} 2yz , dV &#x3D; \iiint_{\Omega} 2zx , dV &#x3D; 0$。</li>
+</ul>
+<p>因此，复杂的分子被“脱壳”简化为径向平方和：</p>
+<p>
+$$
+f(x,y,z) = \frac{x^2+y^2+z^2}{(x^2+y^2+z^2)^2} = \frac{1}{x^2+y^2+z^2}
+$$
+</p>
+
+<hr>
+<h3 id="2-换元，划分变量区域"><a href="#2-换元，划分变量区域" class="headerlink" title="2. 换元，划分变量区域"></a>2. 换元，划分变量区域</h3><p>为了处理分母中的 $r^2$ 和区域的旋转对称性，引入球坐标换元：</p>
+<ul>
+<li><strong>球面：</strong> $\rho &#x3D; 2$- <strong>抛物面：</strong>$z &#x3D; \frac{1}{3}(x^2+y^2) \implies \rho \cos\phi &#x3D; \frac{1}{3}\rho^2 \sin^2\phi \implies \rho &#x3D; \frac{3\cos\phi}{\sin^2\phi}$通过联立方程$2 &#x3D; \frac{3\cos\phi}{\sin^2\phi}$，解得交线处的临界角 <strong>$\phi &#x3D; \frac{\pi}{3}$</strong>。</li>
+</ul>
+<p>据此，我们将积分区域 $\Omega$在$\phi$ 方向上划分为秩序分明的两部分：</p>
+<ul>
+<li><p><strong>区域 I ($0 \le \phi \le \frac{\pi}{3}$):</strong> 径向受限于球面，$0 \le \rho \le 2$。</p>
+</li>
+<li><p><strong>区域 II ($\frac{\pi}{3} &lt; \phi \le \frac{\pi}{2}$):</strong> 径向受限于抛物面，$0 \le \rho \le \frac{3\cos\phi}{\sin^2\phi}$。</p>
+</li>
+</ul>
+<hr>
+<h3 id="3-积分计算（Jacobi-抵消与分段累加）"><a href="#3-积分计算（Jacobi-抵消与分段累加）" class="headerlink" title="3. 积分计算（Jacobi 抵消与分段累加）"></a>3. 积分计算（Jacobi 抵消与分段累加）</h3><p>利用球坐标体积元 $dV &#x3D; \rho^2 \sin\phi , d\rho d\phi d\theta$，被积函数中的 $1&#x2F;\rho^2$与 Jacobi 因子抵消，积分简化为对$\sin\phi$ 的分段累次积分：</p>
+<p>
+$$
+I = \int_{0}^{2\pi} d\theta \left[ \int_{0}^{\frac{\pi}{3}} d\phi \int_{0}^{2} \sin\phi \, d\rho + \int_{\frac{\pi}{3}}^{\frac{\pi}{2}} d\phi \int_{0}^{\frac{3\cos\phi}{\sin^2\phi}} \sin\phi \, d\rho \right]
+$$
+</p>
+
+<p><strong>分步求解：</strong></p>
+<ul>
+<li><p><strong>第一部分：</strong> $2\pi \int_{0}^{\frac{\pi}{3}} 2\sin\phi , d\phi &#x3D; 4\pi [-\cos\phi]<em>{0}^{\frac{\pi}{3}} &#x3D; 4\pi (\frac{1}{2}) &#x3D; 2\pi$- <strong>第二部分：</strong>$2\pi \int</em>{\frac{\pi}{3}}^{\frac{\pi}{2}} \sin\phi \cdot \frac{3\cos\phi}{\sin^2\phi} , d\phi &#x3D; 6\pi \int_{\frac{\pi}{3}}^{\frac{\pi}{2}} \frac{\cos\phi}{\sin\phi} , d\phi &#x3D; 6\pi [\ln(\sin\phi)]_{\frac{\pi}{3}}^{\frac{\pi}{2}}$</p>
+<p>  代入得：$6\pi (\ln 1 - \ln \frac{\sqrt{3}}{2}) &#x3D; -6\pi \ln \frac{\sqrt{3}}{2}$</p>
+</li>
+</ul>
+<p><strong>最终结果：</strong></p>
+<p>
+$$
+I = 2\pi - 6\pi \ln \frac{\sqrt{3}}{2} = 2\pi \left( 1 - 3\ln\frac{\sqrt{3}}{2} \right)
+$$
+</p>
+
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

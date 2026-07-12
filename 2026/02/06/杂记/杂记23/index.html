@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>杂记（23） 无可挽回的爱弥斯&amp;返校宣讲 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>杂记（23） 无可挽回的爱弥斯&amp;返校宣讲</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/6
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%97%A5%E8%AE%B0%E7%B1%BB/" style="color: #00bcd4">
+                    日记类
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>我居然在过完3.1之后马上跑回学校做宣讲吗。</p>
+<span id="more"></span>
+<hr>
+<p>爱弥斯直接地击中了我。</p>
+<p>3.1毫无疑问是鸣潮的第一个新的巅峰，主角不再是随随便便爆种就能解决一切问题，救回所有人的龙傲天，在爱弥斯面前，他显露出了前所未有的无助、痛苦，是一个有血有肉的人。拯救者也并不全能，也会思念自己的家乡，也会为无可挽回的失去感到悲伤，但此前从没有人触及过这些，此前的漂泊者是优秀的战友，可靠的同伴、前辈，万能的御者。</p>
+<p>但爱弥斯，希望漂泊者能更轻松一些。</p>
+<p>尽管关联性很弱，我忆起了中学在题海中挣扎的图景，我们为着冰冷的分数奋斗着，谁来过问我们快乐与否？却曾有人问过我在学校过的开心吗，但目下她与我却较爱弥斯与漂泊者的分隔还远一些，她与我之间的联结也弱的多，但到底比起他人强上一些，那是蒙昧之中孤独与孤独的相遇，曾予我莫大的安慰。然而分离之时我倒平淡的多，我知道无可挽回，也便没有十分激荡的情绪，只是在日后夜深人静的黑暗里间或地神伤，那是一场连绵的阴雨，不过到底随着时间推移，雨小了些。</p>
+<p>为什么玩二游呢，无非是因为现实不如意，至少现实没办法让我得到如此的体验。消逝之前最后挂念的，不是自己，而是那个人，他会轻松一些么？在最应当放肆的青春，我蜗居在小小的房间里，看着电脑里角色顾盼神飞，我感受到了世界的颜色。世界并不那么无聊，并不那么灰暗，只是我灰暗罢了，这很可安慰一下我，尽管我早知如此，亲眼见到这样美妙的情感，见到这样多彩的神情，见证美丽动人的故事，也足以为我沉寂的灵魂注入生命的活力。</p>
+<p>过完剧情，我到了学校，下一届的学生们缓缓入席，人不多，因为不少去体锻了。换我也许会来，但我某一个同桌铁定不会来，他定是要打球的，他也确实曾这么做了。</p>
+<p>我看着昔日较为内敛的同学也变得落落大方，出色地完成了宣讲，我总有些担心自己不行，甚至有些紧张，我高考或者大学期末考都不会这么紧张。然而坐到那个位置上，看向台下一双双有神的眸子，紧张又烟消云散了，我到底对着ppt念过几回，终于也还算顺利地做完了预先准备的发言，似乎也不那么差。甚至有相当一部分即兴发挥的部分，回头想想也不那么尴尬。这让我感到一阵欣喜，我有无数个瞬间，在回想过去的时候感到无比尴尬与抓狂。也许与人打交道对我也是一件好事，但我不太会，也许我应该在大一就干脆加入学生部，干点杂活，学学怎么在人类社会中正常地表现出一个人类该有的样子。我原先预备加入青协电脑小队的，但那实在草台班子，唉误我啊青协。早知道我随便选个部门加进去试试的啊。或者加进导引队？到底也会有一些社交的内容。再说吧。</p>
+<p>晚上，我乘坐公交车，在海边下了车。天完全地黑着，阴翳的云层屏蔽了月亮和星星，凭着路边的灯，能勉强地看到近处的水面，远处金灿灿的灯光连成一条线，在”邪王真眼”之下，那是不可视境界线。动漫中的场景，实在是易于复刻的，但是那样的人，那样的奇遇，几乎不可能再现，这也是为什么看动漫不是么。</p>
+<p>海风柔和地持续地吹着，我穿的略多，本有些微热，这风来正好叫人十分爽快，所在之处只有零星的人行走，后方的路上倒是有不少穿行的车。一切都是那么的美妙，这里应该有一个女孩与我一同靠在石头垒砌的矮矮的护栏，伊的长发在海风吹拂之下上下摆荡，散布着若有若无的芬芳，我们会一同叹惋月亮的羞涩，指责星辰的失约，在深邃磅礴的海洋面前交换永恒的誓言，在如织的灯火中签订灵魂的契约。</p>
+<p>我独自吹了会风，扭头骑上了自行车回家。静谧的夜晚，不应该在海边独自伤神。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

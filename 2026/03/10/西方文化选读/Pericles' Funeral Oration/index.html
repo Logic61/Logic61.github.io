@@ -1,0 +1,657 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Pericles&#39; Funeral Oration | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Pericles&#39; Funeral Oration</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/3/10
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E8%A5%BF%E6%96%B9%E6%96%87%E5%8C%96%E9%80%89%E8%AF%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                西方文化选读
+            </a>
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>整理上课听到的部分内容以及自己查阅的相关内容，总之是 $Funeral \ \ Oration$ 的相关话题。</p>
+<span id="more"></span>
+
+<p>文章：</p>
+<p>    &lt;iframe</p>
+<p>        src&#x3D;”&#x2F;pdf&#x2F;01_Pericles演讲注释版-ss(1).pdf”</p>
+<p>        width&#x3D;”100%”</p>
+<p>        height&#x3D;”600px”</p>
+<p>        style&#x3D;”border: none;”&gt;</p>
+<p>    </iframe></p>
+<p>这是 $Pericles$ 在雅典(Athens)的冬日国葬发表的讲话，它不同于一般缅怀逝者的葬礼演讲，洋溢着信心与希望。绝大部分的篇幅并不在于缅怀，而是对雅典的制度以及雅典人的生活、勇气等的夸赞。</p>
+<p>在雅典，冬日国葬（Patrios Nomos）是一个极其庄重的公共仪式：</p>
+<ul>
+<li><p><strong>时间：</strong> 战争第一年结束后的冬天。</p>
+</li>
+<li><p><strong>流程：</strong> 阵亡者的遗骸会被安置在帐篷内供人瞻仰。葬礼当天，十口柏木棺材（代表雅典的十个部落）由马车运往城外的<strong>公墓（Kerameikos）</strong>。</p>
+</li>
+<li><p><strong>空的灵柩：</strong> 现场会有一口<strong>空棺材</strong>，象征那些无法找回尸骨的失踪者。这种处理方式体现了雅典对每一位公民个体的极高尊重。</p>
+</li>
+</ul>
+<p>这是什么战争呢，这是雅典领导的 $Delian \ \ League$提洛同盟和斯巴达(Sparta)领导的$Peloponnesian \ \ League$ 伯罗奔尼撒同盟之间爆发的<strong>伯罗奔尼撒战争</strong>。在这场战争开始的第一年，Pericles发表了这篇讲话，此时雅典人坚信自己会取得最终的胜利，实际上的情形，却是雅典黄金时代的终结，雅典拆除长墙，解散同盟，短暂进入“三十僭主”统治时期。长期内耗削弱了所有城邦，底层民众流离失所。这为北方马其顿（亚历山大大帝的父辈）的崛起扫清了障碍。</p>
+<h1 id="伯罗奔尼撒战争"><a href="#伯罗奔尼撒战争" class="headerlink" title="伯罗奔尼撒战争"></a>伯罗奔尼撒战争</h1><p>实际上雅典与斯巴达并不一开始就对立，以下给出简短的梳理。</p>
+<h2 id="第一阶段：并肩协作，共御波斯-499-BC-–-479-BC"><a href="#第一阶段：并肩协作，共御波斯-499-BC-–-479-BC" class="headerlink" title="第一阶段：并肩协作，共御波斯 (499 BC – 479 BC)"></a>第一阶段：并肩协作，共御波斯 (499 BC – 479 BC)</h2><p>面对庞大的波斯帝国($Persian\ \  Empire$)扩张，雅典和斯巴达放下隔阂，组成了<strong>全希腊同盟</strong>。</p>
+<ul>
+<li><p><strong>分工明确：</strong> 斯巴达拥有无敌的陆军，出任同盟统帅；雅典则凭借其强大的海军成为海上支柱。</p>
+</li>
+<li><p><strong>标志性战役：</strong> * <strong>马拉松战役 (490 BC)：</strong> 雅典人证明了希腊重步兵能够击败波斯军队。</p>
+<ul>
+<li><p><strong>温泉关战役 (480 BC)：</strong> 斯巴达三百勇士阻击波斯大军，为希腊争取了撤离时间。</p>
+</li>
+<li><p><strong>萨拉米斯海战 (480 BC)：</strong> 雅典海军决定性地摧毁了波斯舰队，扭转战局。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>结果：</strong> 希腊人成功保卫了自由，但胜利也种下了竞争的种子。</p>
+</li>
+</ul>
+<hr>
+<h2 id="第二阶段：帝国的崛起与冷战对峙-478-BC-–-432-BC"><a href="#第二阶段：帝国的崛起与冷战对峙-478-BC-–-432-BC" class="headerlink" title="第二阶段：帝国的崛起与冷战对峙 (478 BC – 432 BC)"></a>第二阶段：帝国的崛起与冷战对峙 (478 BC – 432 BC)</h2><p>战后，希腊世界分裂成了两大阵营，这种权力的两极化直接导致了关系的恶化。</p>
+<h3 id="1-提洛同盟与雅典霸权"><a href="#1-提洛同盟与雅典霸权" class="headerlink" title="1. 提洛同盟与雅典霸权"></a><strong>1. 提洛同盟与雅典霸权</strong></h3><p>雅典为了继续清扫波斯残余势力，组建了<strong>提洛同盟 (Delian League)</strong>。</p>
+<ul>
+<li><p><strong>从盟友到臣民：</strong> 雅典逐渐控制了同盟的财政，将总部从提洛岛搬到雅典。盟友变成了纳贡的臣民。</p>
+</li>
+<li><p><strong>$Pericles$ 时代的自信：</strong> 雅典利用同盟的资金重建卫城。这种财富和海军实力的急剧扩张引起了斯巴达的警觉。</p>
+</li>
+</ul>
+<h3 id="2-伯罗奔尼撒同盟的戒备"><a href="#2-伯罗奔尼撒同盟的戒备" class="headerlink" title="2. 伯罗奔尼撒同盟的戒备"></a><strong>2. 伯罗奔尼撒同盟的戒备</strong></h3><p>斯巴达作为传统的希腊霸主，通过<strong>伯罗奔尼撒同盟 (Peloponnesian League)</strong> 联合了陆地上的寡头城邦。</p>
+<ul>
+<li><strong>修昔底德陷阱：</strong> 斯巴达担心雅典的扩张最终会吞并整个希腊。</li>
+</ul>
+<hr>
+<h2 id="第三阶段：伯罗奔尼撒战争与内部崩塌-431-BC-–-404-BC"><a href="#第三阶段：伯罗奔尼撒战争与内部崩塌-431-BC-–-404-BC" class="headerlink" title="第三阶段：伯罗奔尼撒战争与内部崩塌 (431 BC – 404 BC)"></a>第三阶段：伯罗奔尼撒战争与内部崩塌 (431 BC – 404 BC)</h2><p>由于利益冲突和意识形态（民主制 vs. 寡头制）的不可调和，内斗爆发。</p>
+<ul>
+<li><p><strong>僵局时期：</strong> 斯巴达在陆上焚毁庄稼，雅典通过海军封锁补给。双方都无法给对方致命一击。</p>
+</li>
+<li><p><strong>转折与激进化：</strong> 随着 $Pericles$ 因瘟疫去世，雅典的政治变得激进且混乱。西西里远征的惨败让雅典元气大伤。</p>
+</li>
+<li><p><strong>引狼入室：</strong> 斯巴达为了赢得胜利，最终竟然接受了昔日死敌——<strong>波斯帝国</strong>的资助，组建海军在海上击败了雅典。</p>
+</li>
+</ul>
+<p>伯罗奔尼撒战争不可避免的真正原因是雅典实力的增长，以及由此引起斯巴达的恐惧($By\ \ Thucydides$)。希波战争后，雅典通过“提洛同盟”将爱琴海变成了自己的内湖，财富和海军实力呈指数级增长，斯巴达作为一个保守的陆路强权，眼看着雅典的民主意识形态和海上霸权不断扩张，感到自身的领导地位和生存安全受到了直接威胁。</p>
+<p>实际上，二者的冲突有内蕴的原因。双方在社会根基上也是完全对立的：</p>
+<ul>
+<li><p><strong>民主 vs. 寡头：</strong> 雅典输出民主制，鼓励底层民众参政；斯巴达支持寡头政治，担心雅典的激进思想会引发其国内“黑劳士”（Heliots，奴隶阶层）的暴动。</p>
+</li>
+<li><p><strong>扩张 vs. 保守：</strong> 雅典是贸易立国，必须不断扩张以获取资源和市场；斯巴达是农业立国，倾向于维持现状和半岛内部的稳定。</p>
+</li>
+<li><p><strong>海军 vs. 陆军：</strong> 这种不对称的军事结构意味着双方都觉得自己无法在短期内彻底击败对方，从而导致了战略上的误判和对长期战争的心理准备。</p>
+</li>
+</ul>
+<h2 id="战争原因的简析"><a href="#战争原因的简析" class="headerlink" title="战争原因的简析"></a>战争原因的简析</h2><h3 id="直接诱因：三大外交冲突-The-Immediate-Pretexts"><a href="#直接诱因：三大外交冲突-The-Immediate-Pretexts" class="headerlink" title="直接诱因：三大外交冲突 (The Immediate Pretexts)"></a>直接诱因：三大外交冲突 (The Immediate Pretexts)</h3><p>在战争爆发前的几年里，一系列局部摩擦充当了引信：</p>
+<ul>
+<li><p><strong>克基拉（Corcyra）争端：</strong> 雅典干预了科林斯（斯巴达的盟友）与其殖民地克基拉之间的战争。雅典海军的介入直接激怒了科林斯。</p>
+</li>
+<li><p><strong>波提狄亚（Potidaea）围困：</strong> 这是一个属于提洛同盟但与科林斯关系密切的城邦。雅典要求其拆除城墙并驱逐官员，引发了武装反抗，斯巴达的盟友秘密参与了防御。</p>
+</li>
+<li><p><strong>麦加拉法令（Megarian Decree）：</strong>  $Pericles$ 颁布禁令，禁止麦加拉商人进入雅典及其盟邦的所有港口和市场。这相当于一场<strong>经济封锁</strong>，由于麦加拉是伯罗奔尼撒同盟的成员，斯巴达认为这是对整个同盟的挑衅。</p>
+</li>
+</ul>
+<p>关于麦加拉法令，有这样一个小故事。斯巴达起初也并不很愿意冲突，于是派人调停，希望 $Pericles$去掉禁令。面对斯巴达使节，$Pericles$推托说，雅典有一条法律规定，<strong>严禁取下任何写有法令的木牌</strong>。，调停人却十分聪明，告诉$Pericles$：您可以把牌子翻个面。但还是被拒绝了，$Pericles$ 决意发动战争。</p>
+<h3 id="背后的原因"><a href="#背后的原因" class="headerlink" title="背后的原因"></a>背后的原因</h3><p>关于战争的发动，有人认为有相当一部分因素是出于 $Pericles$自身的处境。在战争爆发前的公元前430年代后期，$Pericles$ 在雅典的统治遭遇了前所未有的挑战。他的对手不再正面攻击他，而是采取了“剥洋葱”的战术，通过攻击他的亲信来削弱他的威信：</p>
+<ul>
+<li><p><strong>菲迪亚斯 (Phidias)：</strong> 负责重建卫城的伟大雕塑家，被控挪用公款。</p>
+</li>
+<li><p><strong>阿斯帕齐娅 (Aspasia)：</strong>  $Pericles$ 聪慧过人的伴侣，被控“不敬神”和“拉皮条”。</p>
+</li>
+<li><p><strong>阿那克萨哥拉 (Anaxagoras)：</strong> 他的哲学导师，被控宣传无神论并被驱逐。</p>
+</li>
+</ul>
+<p>这些攻击直接指向 $Pericles$的行政能力和道德权威。普鲁塔克等古代史学家认为，$Pericles$ 深知如果继续保持和平，他可能会成为下一个被弹劾的对象。</p>
+<p>阿里斯托芬（Aristophanes）等喜剧作家在当时的戏剧（如《阿卡奈人》和《和平》）中公开嘲讽：** $Pericles$点燃了《麦加拉法令》这团小火苗，是为了制造一场漫天大火，好让大家在浓烟中看不清他的政治丑闻。** 一旦战争开始，人们就会依靠起$Pericles$ 出色的才能。</p>
+<p>然而，如果我们看修昔底德的记录， $Pericles$ 表现得像一个极其理性的地缘政治战略家。他认为：</p>
+<ul>
+<li><p><strong>不可避免性：</strong> 战争迟早要打。既然雅典现在处于巅峰（海军最强、资金最足），不如现在就打，而不是等斯巴达准备得更充分。</p>
+</li>
+<li><p><strong>帝国的生存：</strong> 雅典已经走上了一条“霸权之路”，如果不通过战争确立威慑力，盟友的叛变会像多米诺骨牌一样击垮雅典的财政。</p>
+</li>
+</ul>
+<p> $Pericles$ 的情况更像是 <strong>“顺势而为”</strong>：</p>
+<ol>
+<li><p><strong>国家层面：</strong> 雅典和斯巴达的结构性矛盾已经饱和（修昔底德陷阱）。</p>
+</li>
+<li><p><strong>个人层面：</strong>  $Pericles$ 正身陷政治泥潭。</p>
+</li>
+</ol>
+<p>对他而言，战争是一个 <strong>“一石二鸟”</strong> 的方案：既解决了雅典的海上霸权之争，又解救了自己的政治生命。</p>
+<p> $Pericles$ 的计划虽然在短期内转移了矛盾，但战争第一年爆发的<strong>大瘟疫</strong>彻底摧毁了他的威信。雅典人最终还是弹劾了他并处以罚款。他短暂复出后不久便死于瘟疫，没能看到这场他亲自开启的战争的结局。</p>
+<h1 id="雅典的民主"><a href="#雅典的民主" class="headerlink" title="雅典的民主"></a>雅典的民主</h1><blockquote>
+<p>Our constitution is called a democracy because power is in the hands not<br>of a minority but of the whole people. When it is a question of settling private disputes,<br>everyone is equal before the law; when it is a question of putting one person before<br>another in positions of public responsibility, what counts is not membership of a<br>particular class, but the actual ability which the man possess. No one, so long as he has<br>it in him to be of service to the state, is kept in political obscurity because of poverty.</p>
+</blockquote>
+<p>这是 $Pericles$ 对于雅典的民主的阐述，这看上去在当代也算是相当理想的情形。雅典人如何在几千年前建立起这样的制度的呢？</p>
+<h2 id="1-德拉古改革-Draco-约公元前621年-：法律的成文化"><a href="#1-德拉古改革-Draco-约公元前621年-：法律的成文化" class="headerlink" title="1. 德拉古改革 (Draco, 约公元前621年)：法律的成文化"></a>1. 德拉古改革 (Draco, 约公元前621年)：法律的成文化</h2><p>在德拉古之前，法律只存在于贵族的脑子里，他们可以随意解释法律来欺压平民。<br>公元前7世纪末，雅典正处于崩溃边缘。当时社会极其动荡：</p>
+<ul>
+<li><p><strong>贵族内斗：</strong> 比如之前的“基伦暴动”（Cylonian Conspiracy），贵族们为了争权夺利陷入混战。</p>
+</li>
+<li><p><strong>阶级对立：</strong> 贵族依靠不成文的习惯法随意审判，平民对此极度不满，私仇和血亲复仇（Vendetta）泛滥。</p>
+</li>
+</ul>
+<p>为了阻止城邦滑向内战，雅典政府（执政官们）授权德拉古制定一套<strong>成文法</strong>，其初衷是 <strong>“用统一、明确的规则来终结混乱”</strong>。</p>
+<ul>
+<li><p><strong>首次成文法：</strong> 德拉古受命将法律写在木板上公之于众。这标志着贵族失去了对法律的“解释垄断权”。</p>
+</li>
+<li><p><strong>严酷的代价：</strong> 他的法律极其严苛，几乎任何罪行（甚至是偷个苹果）都会处以死刑。当时的人评价说：“德拉古的法律不是用墨水写的，而是用鲜血写的。”</p>
+</li>
+<li><p><strong>民主意义：</strong> 尽管残酷，但它确立了 <strong>“法律面前人人平等”</strong> 的初步概念——无论贵族还是平民，犯了罪都要按写下来的条文受罚。</p>
+</li>
+</ul>
+<p>虽然他的法律因残酷被称为“血色法典”，但德拉古确实完成了他的使命，主要体现在两个方面：</p>
+<ul>
+<li><p><strong>从私刑到公理：</strong> 在他之前，如果你杀了人，对方家庭会找你全家复仇。德拉古规定，杀人案必须由法庭（如战神山议事会）审理。这实际上是将<strong>暴力权从私人手中收回，转交给了国家</strong>。</p>
+</li>
+<li><p><strong>区分杀人罪：</strong> 他首次在法律上区分了“蓄意谋杀”和“过失杀人”。这在法律史上是非常了不起的进步。</p>
+</li>
+</ul>
+<p>德拉古虽然按要求完成了任务，但由于他只关注“惩罚”而忽略了“社会公正”：</p>
+<ul>
+<li><p><strong>激化矛盾：</strong> 严酷的死刑和债务奴隶制让平民生存空间更窄。</p>
+</li>
+<li><p><strong>被取代：</strong> 仅仅三十多年后，他的绝大部分法律（除了关于杀人罪的部分）就被 <strong>梭伦（Solon）</strong> 废除了。</p>
+</li>
+</ul>
+<p>因为 $Draco$的法典过于残酷，后世的英文出现了$Draconic$ 这样一个单词，指冷酷、严苛。</p>
+<hr>
+<h2 id="2-梭伦改革-Solon-594-BC-：社会结构的重组"><a href="#2-梭伦改革-Solon-594-BC-：社会结构的重组" class="headerlink" title="2. 梭伦改革 (Solon, 594 BC)：社会结构的重组"></a>2. 梭伦改革 (Solon, 594 BC)：社会结构的重组</h2><p>德拉古的严法没能解决贫富差距导致的社会动荡，于是梭伦登场进行“和平调停”。</p>
+<ul>
+<li><p><strong>经济解放：</strong> 颁布“解负令”，废除债务奴隶制，让因欠债沦为奴隶的雅典人恢复自由公民身份。</p>
+</li>
+<li><p><strong>财产等级制：</strong> <strong>废除血缘特权</strong>，改按<strong>财产收益</strong>将公民分为四个等级。这让有钱的平民（如商人）也能进入决策层。</p>
+</li>
+<li><p><strong>机构雏形：</strong> 建立了“四百人议事会”和陪审法庭，普通平民开始拥有司法参与权。</p>
+</li>
+</ul>
+<p>梭伦大幅度降低了惩罚的烈度：</p>
+<ul>
+<li><p><strong>罚金取代死刑：</strong> 除了极少数背叛国家或谋杀的罪行外，大部分针对财产和人身的侵害改用<strong>罚金</strong>（通常以公牛或货币计价）。</p>
+</li>
+<li><p><strong>引入“公诉权”：</strong> 这是一个巨大的进步。在此之前，只有受害者本人能起诉。梭伦规定：<strong>任何公民</strong>如果看到不公正的事发生，都有权代受害者提起诉讼。这在法律逻辑上意味着，犯罪不仅是对个人的伤害，也是对<strong>城邦秩序（System）</strong> 的破坏。</p>
+</li>
+</ul>
+<p>梭伦为了强迫公民参与政治，甚至立过一条非常有意思的法律：</p>
+<ul>
+<li><p><strong>中立罪：</strong> 在城邦发生内讧或党派斗争时，如果不加入任何一方，就会被剥夺公民权。</p>
+</li>
+<li><p><strong>设计意图：</strong> 他认为对公共事务的冷漠（Apathy）是城邦最大的敌人。他希望通过法律，强制每个人都成为政治系统中的一个“活跃节点”。</p>
+</li>
+</ul>
+<h3 id="1-积极意义"><a href="#1-积极意义" class="headerlink" title="1. 积极意义"></a>1. 积极意义</h3><ul>
+<li><p><strong>奠定民主基础：</strong> 通过将权利与财产挂钩而非血缘，他为后来克里斯提尼的改革铺平了道路。</p>
+</li>
+<li><p><strong>保护公民权：</strong> 债务奴隶制的废除确立了“公民自由”的基本原则，使得雅典公民成为一个相对团结的政治群体。</p>
+</li>
+</ul>
+<h3 id="2-局限性（“中庸之道”）"><a href="#2-局限性（“中庸之道”）" class="headerlink" title="2. 局限性（“中庸之道”）"></a>2. 局限性（“中庸之道”）</h3><p>梭伦自视为平衡者，他的口号是“不偏不倚”。</p>
+<ul>
+<li><p><strong>贵族不满：</strong> 失去了债务收益和世袭特权。</p>
+</li>
+<li><p><strong>平民失望：</strong> 没能实现平民最期待的“重新分配土地”。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>名言：</strong> “我拿着一只大盾，护在两个阵营的前面，不让任何一方不公正地占据优势。”</p>
+</blockquote>
+<p>梭伦改革虽然在当时没能完全消弭冲突，甚至随后导致了僭主政治的出现，但他确立的<strong>法治概念</strong>和<strong>公民参与意识</strong>，使其成为了“希腊七贤”之一。</p>
+<p>梭伦在完成他在雅典的立法改革后，为了确保法律的稳定性并避免陷入权力的漩涡，选择了<strong>自我流放（Self-exile）</strong> 十年。</p>
+<hr>
+<h2 id="3-克利斯提尼改革-Cleisthenes-508-BC-：民主体制的确立"><a href="#3-克利斯提尼改革-Cleisthenes-508-BC-：民主体制的确立" class="headerlink" title="3. 克利斯提尼改革 (Cleisthenes, 508 BC)：民主体制的确立"></a>3. 克利斯提尼改革 (Cleisthenes, 508 BC)：民主体制的确立</h2><p>在经历了一段“僭主政治”（独裁）的过渡后，克利斯提尼彻底粉碎了旧贵族的势力。</p>
+<ul>
+<li><p><strong>十部落制：</strong> 按照<strong>居住区域</strong>（行政区）而非血缘家族重新划分部落。这让贵族在自己领地上的影响力归零，邻居之间不看姓氏，只看公民身份。</p>
+</li>
+<li><p><strong>五百人议事会：</strong> 每个部落通过<strong>抽签</strong>产生 50 名代表，负责处理公民大会的日常事务，准备议案。由于是抽签产生且任期限制，这极大地增加了普通公民参与高层政治的机会。同时采用<strong>轮值主席制（Prytany）：</strong> 每年分为 10 个时段，每个部落的 50 人轮流担任常务委员，确保权力不会长期滞留在某一群体手中。</p>
+</li>
+<li><p><strong>陶片放逐法：</strong> 为了防止再次出现僭主（独裁者），克里斯提尼创立了这一特殊的防御机制：</p>
+</li>
+</ul>
+<ol>
+<li><p><strong>投票：</strong> 每年公民大会投票决定是否需要进行放逐。</p>
+</li>
+<li><p><strong>过程：</strong> 如果需要，公民在陶片上写下他们认为对城邦民主威胁最大的人名。</p>
+</li>
+<li><p><strong>结果：</strong> 只要票数超过 6000 张，得票最高者必须放逐国外 <strong>10 年</strong>。</p>
+</li>
+<li><p><strong>特点：</strong> 这不是一种刑事处罚，不没收财产，不伤害家人。其本质是一种<strong>政治隔离</strong>，用以保护民主制度的稳定。</p>
+</li>
+</ol>
+<hr>
+<h2 id="4-Pericles-时代-Pericles-461–429-BC-：民主的黄金时刻"><a href="#4-Pericles-时代-Pericles-461–429-BC-：民主的黄金时刻" class="headerlink" title="4.  $Pericles$ 时代 (Pericles, 461–429 BC)：民主的黄金时刻"></a>4.  $Pericles$ 时代 (Pericles, 461–429 BC)：民主的黄金时刻</h2><p>这是雅典民主最为激进、也最为完善的阶段。</p>
+<ul>
+<li><p><strong>全面抽签：</strong> 绝大多数公职不再看财产或名望，而是通过抽签产生，确保每个公民都有机会治理国家。除了将军（十将军委员会）等需要专业军事技能的职位外，几乎所有的行政官职都改为<strong>抽签产生</strong>。</p>
+</li>
+<li><p><strong>公职津贴：</strong> 给参加政治活动的公民发工资。这至关重要，因为它解决了贫困公民“因生计无法从政”的问题。在此之前，虽然穷人有权从政，但因为需要劳作养家，他们无法离开农田或作坊去参加会议或当法官。</p>
+</li>
+<li><p><strong>公民大会主权：</strong>  $Pericles$ （与其盟友埃菲阿尔特）剥夺了旧贵族最后的堡垒——<strong>战神山议事会</strong>对法律的监察权和审判权。所有的国家大事（开战、结盟、预算）都由全体公民在广场上举手表决。</p>
+</li>
+</ul>
+<p>在扩大内部民主的同时， $Pericles$ 在公元前 451 年通过了严苛的 <strong>《公民身份法》</strong>。</p>
+<ul>
+<li><p><strong>要求：</strong> 只有父母双方<strong>皆为雅典公民</strong>的成年男子，才能获得雅典公民权。</p>
+</li>
+<li><p><strong>目的：</strong> 1. 限制享受公职津贴的人数，减轻财政负担。 2. 增强公民团体的优越感和凝聚力。 3. 防止外国贵族通过联姻干预雅典政治。</p>
+</li>
+</ul>
+<p> $Pericles$在$Funeral\ \  Oration$中说权力属于$the \ \ whole \ \ people$实际上并不尽然，女人和奴隶以及外乡人并不参与。但女性获得权力是$20$世纪的事情了，现在也并没有奴隶，无法参考，或许我们并不应该用太高的标准要求几千年前的$Pericles$。$Pericles$眼中，只有参与政治才是好的公民。否则$we \ say \ that \ he \ has \ no \ business \ here \ at \ all$ 。</p>
+<blockquote>
+<p>Here each individual is interested not only in his own affairs but in the affairs of the state as well: even those who are mostly occupied with their own business are extremely<br>well-informed on general politics–this is a peculiarity of ours: we do not say that a<br>man who takes no interest in politics is a man who minds his own business; we say that<br>he has no business here at all.</p>
+</blockquote>
+<p>这里有一个小细节，前面说的是 $the \ \ affairs  \ \ of  \ \ the  \ \ state$,后面复述说的是$general\ \ politics$。实际上$politics$的词源是$polis$，指的是城邦。政治原来指的就是城邦中的各种事物，“政治”这个翻译是从日本那来的$fancy$的名字。雅典人的政治也许是饭后散步到$Agora$ (广场)，谈谈周五下午也许不应该安排任何课，谈谈下周的考试是不是应该取消（</p>
+<p>雅典人称呼那些“不关心公共事务、只顾私利的人”为 <strong><code>idiotes</code></strong>。 这个词后来演变成了英文里的 <strong><code>idiot</code> (白痴)</strong>。</p>
+<p> $Pericles$ 的改革直接导向了雅典的极盛，这也是为何他在演讲中那么自豪，敢于说出</p>
+<blockquote>
+<p>Athens is the school of Hellas.</p>
+</blockquote>
+<h3 id="关于津贴的思考"><a href="#关于津贴的思考" class="headerlink" title="关于津贴的思考"></a>关于津贴的思考</h3><h4 id="1-它是民主制度的“燃料”"><a href="#1-它是民主制度的“燃料”" class="headerlink" title="1. 它是民主制度的“燃料”"></a>1. 它是民主制度的“燃料”</h4><p>在梭伦和克里斯提尼时代，民主在法律上是开放的，但在经济上是排外的。一个住得远的农民如果去参加公民大会，就意味着全家可能要饿一天肚子。</p>
+<ul>
+<li><p><strong>逻辑转变：</strong>  $Pericles$ 意识到，没有经济补偿的民主只是“富人的点缀”。津贴制度将参政从一种“昂贵的义务”变成了“受偿的职业”。</p>
+</li>
+<li><p><strong>结果：</strong> 它真正激活了第四等级（雇工）的政治热情，使雅典民主从“形式民主”走向了“深度民主”。</p>
+</li>
+</ul>
+<h4 id="2-它是雅典霸权的附属品"><a href="#2-它是雅典霸权的附属品" class="headerlink" title="2. 它是雅典霸权的附属品"></a>2. 它是雅典霸权的附属品</h4><p>一个经常被忽视的事实是：雅典哪来这么多钱发工资？</p>
+<ul>
+<li><p><strong>提洛同盟的贡献：</strong> 津贴的主要资金来源并非雅典本土税收，而是盟友缴纳的贡金。</p>
+</li>
+<li><p><strong>争议性：</strong> 这种民主带有强烈的“帝国主义”色彩。雅典公民享受的民主红利，很大程度上是建立在压榨其他希腊城邦的基础之上的。这导致了内部极其民主，外部极其霸道的矛盾局面。</p>
+</li>
+</ul>
+<h4 id="3-反对的声音"><a href="#3-反对的声音" class="headerlink" title="3. 反对的声音"></a>3. 反对的声音</h4><p>当时的批评者（如柏拉图和亚里士多德）对津贴制持强烈的怀疑态度：</p>
+<ul>
+<li><p><strong>道德批判：</strong> 苏格拉底派认为津贴使公民变得“懒惰、胆小、贪婪”，参政不再是出于对城邦的责任感，而是为了那两三个奥波尔（古希腊币值）。</p>
+</li>
+<li><p><strong>平庸政治：</strong> 当所有人都能通过抽签和领工资来治理国家时，专业的决策往往会被激进的情绪取代。伯罗奔尼撒战争中雅典的数次盲目决策，常被归咎于这种“拿钱办事的民粹民主”。</p>
+</li>
+</ul>
+<h1 id="雅典人的生活"><a href="#雅典人的生活" class="headerlink" title="雅典人的生活"></a>雅典人的生活</h1><blockquote>
+<p>And, just as our political life is free and open, so is our day-to-day life in our relations with each other. We do not get into a state with our next-door neighbour if he enjoys<br>himself in his own way, nor do we give him the kind of black looks which, though they<br>do no real harm, still do hurt people’s feelings.</p>
+</blockquote>
+<p>雅典人的日常生活就如政治生活一样自由而开放。并不因为他人的生活方式不同便给别人坏脸色。</p>
+<blockquote>
+<p>When our work is over, we are in a position to enjoy all kinds of recreation for our spirits. There are various kinds of contests and sacrifices regularly throughout the year; in our own homes we find a beauty and a good taste which delight us every day and which drive away our cares.</p>
+</blockquote>
+<p>雅典的 $contests$ 十分丰富：</p>
+<h3 id="1-体育竞技-Gymnic-Contests"><a href="#1-体育竞技-Gymnic-Contests" class="headerlink" title="1. 体育竞技 (Gymnic Contests)"></a>1. 体育竞技 (Gymnic Contests)</h3><p>这是最接近现代运动会的项目，主要在 <strong>泛雅典娜节（Panathenaic Games）</strong> 期间举行：</p>
+<ul>
+<li><p><strong>赛跑 (Stadion &amp; Diaulos)：</strong> 包括约 192 米的短跑和往返跑。最特别的是 <strong>Hoplitodromos</strong>（武装赛跑），参赛者要穿戴头盔、护腿并手持盾牌奔跑。</p>
+</li>
+<li><p><strong>五项全能 (Pentathlon)：</strong> 包括跳远、标枪、铁饼、短跑和摔跤，被认为是展现男性身体完美比例的巅峰。</p>
+</li>
+<li><p><strong>格斗 (Combat Sports)：</strong> 包括摔跤（Wrestling）、拳击（Boxing）以及极其暴力的<strong>大格斗（Pankration）</strong>——除了挖眼和咬人，几乎没有任何规则限制。</p>
+</li>
+<li><p><strong>赛马与战车 (Equestrian)：</strong> 雅典富裕阶层的竞技场，场面宏大且极其危险。</p>
+</li>
+</ul>
+<h3 id="2-艺术与戏剧竞技-Musical-Dramatic-Contests"><a href="#2-艺术与戏剧竞技-Musical-Dramatic-Contests" class="headerlink" title="2. 艺术与戏剧竞技 (Musical &amp; Dramatic Contests)"></a>2. 艺术与戏剧竞技 (Musical &amp; Dramatic Contests)</h3><p>对雅典人来说，这比体育竞技更具精神吸引力，主要在 <strong>大狄俄尼索斯节（Great Dionysia）</strong> 举行：</p>
+<ul>
+<li><p><strong>悲剧竞赛 (Tragedy)：</strong> 每年有三位剧作家入选，每人提交三出悲剧和一出羊人剧。像索福克勒斯、欧里庇得斯等大师都是在这种竞技中脱颖而出的。</p>
+</li>
+<li><p><strong>喜剧竞赛 (Comedy)：</strong> 充满讽刺和幽默，评委由公民随机抽选，优胜者能获得极高的社会地位。</p>
+</li>
+<li><p><strong>酒神赞歌 (Dithyramb)：</strong> 由雅典各个部落（Tribes）派出 50 人的男声或童声合唱团进行比赛，这是城邦集体荣誉的体现。</p>
+</li>
+<li><p><strong>器乐与朗诵：</strong> 包括**里拉琴（Lyre）**演奏、**奥洛斯管（Aulos）**吹奏，以及《荷马史诗》的职业朗诵比赛。</p>
+</li>
+</ul>
+<p><strong>公元前 429 年左右，索福克勒斯的《俄狄浦斯王》（Oedipus Rex）在狄俄尼索斯大剧院首演，结果仅获得了二等奖。</strong></p>
+<p>获得当年头奖的是菲洛克勒斯（Philocles），他是悲剧大家埃斯库罗斯的侄子。</p>
+<p>我们可以从雅典戏剧节的<strong>底层运作逻辑</strong>来看看，为什么这部完美的杰作在当时“屈居亚军”：</p>
+<hr>
+<h4 id="一、-评选机制：随机性与“抽签”"><a href="#一、-评选机制：随机性与“抽签”" class="headerlink" title="一、 评选机制：随机性与“抽签”"></a>一、 评选机制：随机性与“抽签”</h4><p>雅典民主的核心是<strong>抽签</strong>，戏剧节也不例外。</p>
+<ul>
+<li><p><strong>流程：</strong> 十个部落各选出一名评委，将名字投入罐中。演出结束后，每个评委在木板上写下排名。</p>
+</li>
+<li><p><strong>随机丢弃：</strong> 执政官从罐中随机抽出 5 个人的投票结果作为最终成绩。</p>
+</li>
+<li><p><strong>结论：</strong> 这种算法设计是为了防止贿赂和宗派操纵，但也引入了巨大的<strong>随机噪声</strong>。即使大部分评委倾向于索福克勒斯，如果被抽出的 5 张票刚好偏向他人，结果就会反转。</p>
+</li>
+</ul>
+<h4 id="二、-时代背景：伯罗奔尼撒战争与瘟疫"><a href="#二、-时代背景：伯罗奔尼撒战争与瘟疫" class="headerlink" title="二、 时代背景：伯罗奔尼撒战争与瘟疫"></a>二、 时代背景：伯罗奔尼撒战争与瘟疫</h4><p>《俄狄浦斯王》的开篇就是底比斯城惨遭<strong>瘟疫</strong>袭击。</p>
+<ul>
+<li><p><strong>现实映射：</strong> 公元前 430-429 年，雅典正经历一场毁灭性的瘟疫， $Pericles$ 也因此丧生。</p>
+</li>
+<li><p><strong>心理防线：</strong> 对于当时的雅典观众来说，剧场本该是宣泄和寻求安慰的地方。索福克勒斯却把极其惨烈、近乎绝望的瘟疫场面直接搬上舞台，这种“过于真实的硬核模拟”可能让身处灾难中的评委感到生理和心理上的双重不适。</p>
+</li>
+</ul>
+<h4 id="三、-审美取向：保守-vs-创新"><a href="#三、-审美取向：保守-vs-创新" class="headerlink" title="三、 审美取向：保守 vs. 创新"></a>三、 审美取向：保守 vs. 创新</h4><ul>
+<li><p><strong>菲洛克勒斯（头奖获得者）：</strong> 他的风格被认为继承了其叔父埃斯库罗斯的庄严与传统。</p>
+</li>
+<li><p><strong>索福克勒斯：</strong> 虽然他是雅典的宠儿（一生获过约 20 次头奖），但《俄狄浦斯王》在结构上极其严密、冷酷，像一个精密的逻辑推导过程。评委可能觉得他的作品虽然技术完美，但在当时的政治动荡下，不如菲洛克勒斯的作品那样符合传统的“宗教仪式感”。</p>
+</li>
+</ul>
+<p>雅典的戏剧文化十分丰富，也有着记录历史的功效。例如前述的法律的改变，就曾在埃斯库罗斯的悲剧三部曲 <strong>《奥瑞斯特亚》（Oresteia）</strong> 出现。儿子杀了母亲，于是复仇女神要找儿子麻烦，可是儿子说是因为母亲杀了父亲，他要报仇。再看母亲呢，母亲是因为父亲杀了女儿，所以她要替女儿复仇。那父亲怎么回事呢，父亲杀女儿是要祭祀神明。那要不要给儿子死罪呢？儿子逃到雅典请求庇护。雅典娜并没有直接动用神力宣判，而是：</p>
+<ol>
+<li><p><strong>组建陪审团：</strong> 挑选了 12 名雅典公民组成法庭（这是雅典陪审制的文学投射）。</p>
+</li>
+<li><p><strong>进行辩论：</strong> 阿波罗担任辩护人，复仇女神担任公诉人。</p>
+</li>
+<li><p><strong>投票表决：</strong> 结果是 6 比 6 平。</p>
+</li>
+<li><p><strong>雅典娜的投石：</strong> 雅典娜投下了关键的“无罪票”（Athena’s Vote），确立了“疑罪从无”或“平局即无罪”的原则。</p>
+</li>
+</ol>
+<h3 id="3-智力与公民竞技-Civic-Intellectual-Contests"><a href="#3-智力与公民竞技-Civic-Intellectual-Contests" class="headerlink" title="3. 智力与公民竞技 (Civic &amp; Intellectual Contests)"></a>3. 智力与公民竞技 (Civic &amp; Intellectual Contests)</h3><p>这体现了雅典作为“全希腊学校”的独特之处：</p>
+<ul>
+<li><p><strong>修辞与演说：</strong> 在法庭（Heliaia）或公民大会（Ekklesia）上，辩论本质上就是一种智力竞技。雅典人以此为乐，甚至会给表现卓越的演讲者戴上金冠。</p>
+</li>
+<li><p><strong>选美竞赛 (Euandria)：</strong> 这不是看脸，而是评选各部落中身体素质最强健、纪律性最好的男子群体，带有强烈的军事色彩。</p>
+</li>
+<li><p><strong>火炬接力 (Lampadedromia)：</strong> 结合了速度与团队协作，终点通常在祭坛，优胜者负责点燃祭火。</p>
+</li>
+</ul>
+<h2 id="斯巴达的训练"><a href="#斯巴达的训练" class="headerlink" title="斯巴达的训练"></a>斯巴达的训练</h2><p>反观斯巴达，他们教育体系核心目标只有一个：将男孩锻造成杀人机器，将城邦利益置于个人意志之上。</p>
+<h3 id="1-淘汰从出生开始"><a href="#1-淘汰从出生开始" class="headerlink" title="1. 淘汰从出生开始"></a>1. 淘汰从出生开始</h3><p>在斯巴达，孩子不属于父母，而属于城邦。</p>
+<ul>
+<li><p><strong>弃婴检查：</strong> 婴儿出生后，由长老进行体格检查。体弱或畸形的孩子会被丢弃在泰格特斯山的遗弃处（Apothetae）。</p>
+</li>
+<li><p><strong>初步筛选：</strong> 传说斯巴达人用烈酒给婴儿洗澡，以此测试他们的体质和神经反应。</p>
+</li>
+</ul>
+<h3 id="2-七岁：进入-Agoge-体系"><a href="#2-七岁：进入-Agoge-体系" class="headerlink" title="2. 七岁：进入 Agoge 体系"></a>2. 七岁：进入 Agoge 体系</h3><p>男孩从 7 岁起就离开家庭，住进集体的兵营。</p>
+<ul>
+<li><p><strong>饥饿营销：</strong> 教官故意不给孩子足够的食物，强迫他们去<strong>偷窃</strong>。</p>
+<ul>
+<li><p><strong>逻辑：</strong> 并不是鼓励犯罪，而是训练他们的潜行、胆量和观察力。</p>
+</li>
+<li><p><strong>惩罚：</strong> 如果偷窃被抓，惩罚不是因为“偷”，而是因为“笨到被发现”。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>赤足与单衣：</strong> 无论冬夏，孩子们只能穿一件薄斗篷（Chiton），且必须赤脚走路，以磨炼皮肤的韧性和耐寒能力。</p>
+</li>
+<li><p><strong>芦苇之床：</strong> 他们必须亲手从欧罗塔斯河边折断芦苇铺床，冬天甚至要在芦苇里混入刺草来取暖。</p>
+</li>
+</ul>
+<h3 id="3-极端的暴力与服从"><a href="#3-极端的暴力与服从" class="headerlink" title="3. 极端的暴力与服从"></a>3. 极端的暴力与服从</h3><ul>
+<li><p><strong>格斗训练：</strong> 这种 <code>contest</code> 在斯巴达没有裁判，只有胜负。</p>
+</li>
+<li><p><strong>鞭笞节（Diamastigosis）：</strong> 在阿尔忒弥斯神庙前，少年们接受鞭笞且不准发出声音。这既是宗教祭祀，也是忍耐力的终极测试。</p>
+</li>
+<li><p><strong>克里普提（Crypteia）：</strong> 训练的最后阶段，最优秀的年轻人会被发配到荒野，只带一把匕首。他们的任务是潜入深夜，猎杀可能造反的黑劳士（Helots，奴隶），以此完成从学生到杀手的蜕变。</p>
+</li>
+</ul>
+<p> $Pericles$在$Funeral\ \  Oration$中自豪地说，雅典人不需要像斯巴达人那样$laboring$ 的训练，就可以拥有比肩乃至胜过斯巴达人的勇气和力量。</p>
+<p>趣闻：斯巴达人会让女孩公开评价训练的男孩。在斯巴达人看来，羞耻感是比肉体痛苦更强大的动力。这种女性对男性的公开评价主要发生在节日和体育竞赛期间：</p>
+<ul>
+<li><p><strong>激励竞争：</strong> 当男孩在训练中表现懈怠或在竞技中落败时，女孩们会被组织起来编写讽刺的歌谣，在公开场合唱出来羞辱他们。</p>
+</li>
+<li><p><strong>塑造集体荣誉感：</strong> 为了不被同龄女性（未来的配偶）嘲笑，男孩们会拼命训练。</p>
+</li>
+<li><p><strong>反向赞美：</strong> 同样地，表现优异的男孩会得到女孩们的歌颂，这种巨大的荣誉感是斯巴达勇士精神的核心。</p>
+</li>
+</ul>
+<p>在女性权益方面，斯巴达倒是比雅典好得多。<br>斯巴达女性最实质的权力来自于<strong>土地所有权</strong>。</p>
+<ul>
+<li><p><strong>继承权：</strong> 斯巴达法律允许女性继承土地。如果一个家庭没有男性继承人，女儿将获得全部遗产。</p>
+</li>
+<li><p><strong>财富集中：</strong> 到了公元前4世纪，亚里士多德曾惊叹地记录道，<strong>斯巴达近 40% 的土地掌握在女性手中</strong>。</p>
+</li>
+<li><p><strong>管理权：</strong> 男子从7岁起进入军营，终生忙于征战和训练。家中的田产、奴隶（黑劳士）以及财务支出，全部由妻子一人裁决。她们是事实上的“家庭CEO”。</p>
+</li>
+</ul>
+<p>在其他城邦，女性的优美标准是白皙、柔弱；但在斯巴达，<strong>强壮是女性的义务</strong>。</p>
+<ul>
+<li><p><strong>国家级训练：</strong> 斯巴达女孩和男孩一样，由国家出资进行体育培训。她们练习赛跑、摔跤、掷标枪和铁饼。</p>
+</li>
+<li><p><strong>逻辑闭环：</strong> 斯巴达人有一个朴素的生物学观点——只有强壮的父母才能生出强壮的战士。</p>
+</li>
+<li><p><strong>着装自由：</strong> 为了方便运动，斯巴达女性穿着开衩到大腿的短裙（被称为 <em>Peplos</em>），这在当时被其他希腊人戏称为“露腿族”，但也反映了她们对身体束缚的蔑视。</p>
+</li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

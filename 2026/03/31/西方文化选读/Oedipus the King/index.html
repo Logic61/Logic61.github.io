@@ -1,0 +1,405 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Oedipus the King | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>Oedipus the King</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/3/31
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E8%A5%BF%E6%96%B9%E6%96%87%E5%8C%96%E9%80%89%E8%AF%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                西方文化选读
+            </a>
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>是命运的嘲弄，还是自由意志导向的必然悲剧？</p>
+<span id="more"></span>
+
+<p>该篇并不很有可补充的史实云云，故集中于剧情的讨论。如希望阅读本文，建议先阅读俄狄浦斯王的故事。</p>
+<p>我们可以思考这样一个问题：<br>根据俄狄浦斯王的故事，如何给 $Fate$ 一个简洁有力的定义？</p>
+<h1 id="命运"><a href="#命运" class="headerlink" title="命运"></a>命运</h1><p>命运，作为一个恒久的话题，已被讨论无数次。有相当多的说法，但我们局限于剧本即止吧。<br>一般来说，我们最容易想到的比较单一的说法就是，命定如此，或是咎由自取。</p>
+<h2 id="1-天命派-The-Determinists"><a href="#1-天命派-The-Determinists" class="headerlink" title="1. 天命派 (The Determinists)"></a>1. 天命派 (The Determinists)</h2><p>天命派认为，世界是一个已经编译完成的 <code>.exe</code> 文件，所有的输入和输出早已被预设。</p>
+<ul>
+<li><p><strong>核心逻辑：</strong> <strong>必然性（Portion&#x2F;Moira）</strong>。神谕和天平决定了份额。</p>
+</li>
+<li><p><strong>在俄狄浦斯中的表现：</strong> 无论俄狄浦斯多么努力（无论是物理上的逃离科林斯，还是智力上的解谜），他最后还是落入了命运预设的牢笼。</p>
+</li>
+<li><p><strong>本质：</strong> 这种观点下，人类只是<strong>逻辑路径的执行者</strong>。</p>
+</li>
+<li><p><strong>思考：</strong> 它的优势在于解释了宇宙的秩序感，但劣势在于它抹杀了道德责任——如果一切都是注定的，那俄狄浦斯何罪之有？</p>
+</li>
+</ul>
+<hr>
+<h2 id="2-自由意志派-The-Free-Will-Advocates"><a href="#2-自由意志派-The-Free-Will-Advocates" class="headerlink" title="2. 自由意志派 (The Free Will Advocates)"></a>2. 自由意志派 (The Free Will Advocates)</h2><p>这一派强调个体选择的独立性，认为人不是剧本的木偶，而是实时生成的算力。</p>
+<ul>
+<li><p><strong>核心逻辑：</strong> <strong>选择的尊严（Prohairesis）</strong>。</p>
+</li>
+<li><p><strong>在俄狄浦斯中的表现：</strong> 注意，神谕只说了“你会弑父娶母”，但并没有规定俄狄浦斯<strong>必须</strong>去查真相，也没有规定他<strong>必须</strong>刺瞎双眼。</p>
+</li>
+<li><p><strong>本质：</strong> 俄狄浦斯在剧末的选择（自我惩罚、承担责任）是完全自由的。这种意志不改变“既定事实”，但它改写了“事实的意义”。</p>
+</li>
+<li><p><strong>思考：</strong> 这种观点给了人类尊严，但在面对那种严丝合缝的巧合时，显得有些无力反抗，尽管我们也可以认为，俄狄浦斯所做完全基于自由意志，只是恰巧符合了预言。但作为一个剧本，这样设定好的巧合也并非不可解释。不过这就陷入了完全无法验证的地步了，无法讨论。</p>
+</li>
+</ul>
+<hr>
+<h2 id="3-兼而有之"><a href="#3-兼而有之" class="headerlink" title="3.兼而有之"></a>3.兼而有之</h2><p>就 $Oedipus$ 而言，我们也许可以这么说：</p>
+<p>俄狄浦斯的命运，是他在逃避预言的过程中，通过自由意志亲手完成的逻辑必然。</p>
+<p>我更倾向于，预言诱导了俄狄浦斯完成预言，如此看来，这样的预言本身，而不是什么神谕，决定了俄狄浦斯的命运。只要改一改轨道，火车自己就会沿着不同的方向行驶而去。预言让俄狄浦斯逃离养父母，从而因为路怒杀了父亲，后来成为王迎娶母亲。设若没有预言，我们可以设想并不会如此，俄狄浦斯只会待在养父母身边，而不会杀父娶母。但相应的，如果我们相信命运，那么即或俄狄浦斯不信预言，并不动身离开，也会有其他的因素导致他杀父娶母，但就当今唯物横行的时代，这样的可能性大约并不很会被接受。</p>
+<p>而且预言也并没有创造事实层面的必然性，反而是俄狄浦斯的性格导致了一切的发生。明明只是路上一个小小的争执，他便要杀了所有人。设若他性格温和，杀父便不会发生。</p>
+<h3 id="1-行为的”自指性”（Self-referentiality）"><a href="#1-行为的”自指性”（Self-referentiality）" class="headerlink" title="1. 行为的”自指性”（Self-referentiality）"></a>1. 行为的”自指性”（Self-referentiality）</h3><p>在剧本中，$Fate$ 不是一个被动等待发生的”事件”，而是一个<strong>递归函数</strong>。</p>
+<p>| 事件 | 动机 | 结果 |</p>
+<p>|——|——|——|</p>
+<p>| 拉伊俄斯因害怕预言而丢弃婴儿 | 逃避预言 | 俄狄浦斯在不知道生父身份的情况下长大 |</p>
+<p>| 俄狄浦斯因害怕预言而离开科林斯 | 逃避预言 | 直接导致他走上通往忒拜并与生父相遇的死路 |</p>
+<p>| 俄狄浦斯坚持查出真凶 | 追求真理 | 自我发现、自我毁灭 |</p>
+<p><strong>核心洞察：</strong> 你的每一个”Debug”行为，其实都是在运行这个 Bug 本身。逃避命运的每一次尝试，都成了完成命运的一个步骤。</p>
+<h3 id="2-自由意志与宿命的”纠缠态”"><a href="#2-自由意志与宿命的”纠缠态”" class="headerlink" title="2. 自由意志与宿命的”纠缠态”"></a>2. 自由意志与宿命的”纠缠态”</h3><p>最讽刺的地方在于，俄狄浦斯并不是一个提线木偶。相反，他<strong>极具智慧、正直、果敢</strong>。</p>
+<ul>
+<li><p>如果他是个懦夫，就不会勇敢地去解斯芬克斯的谜题，也就不会被立为忒拜的国王。</p>
+</li>
+<li><p>如果他是个庸才，就不会有道德勇气坚持查出杀害前王的真凶。</p>
+</li>
+<li><p>如果他缺乏理性，就不会通过逻辑推理一步步逼近真相。</p>
+</li>
+</ul>
+<p><strong>关键认识：</strong> 命运恰恰是利用了他的作为催化剂。正是因为他努力想做一个”好人”和”智者”，才完美地闭合了那个毁灭性的逻辑环。</p>
+<p>在这个意义上，俄狄浦斯并非被动的受害者，而是<strong>主动的共谋者</strong>。他的行为某种意义上不是在抵抗命运，而是在执行命运。</p>
+<h3 id="3-观测者效应与预言的反讽（The-Observer-Effect）"><a href="#3-观测者效应与预言的反讽（The-Observer-Effect）" class="headerlink" title="3. 观测者效应与预言的反讽（The Observer Effect）"></a>3. 观测者效应与预言的反讽（The Observer Effect）</h3><p>预言本身就是命运的一部分。这并非多余的美学装饰，而是整个结构的必要基础。</p>
+<ul>
+<li><p>如果没有那个阿波罗的神谕，大家都会按部就班地生活。</p>
+</li>
+<li><p>正是因为被”观测”到了未来，角色才开始了”逃避”。</p>
+</li>
+<li><p>而逃避本身，就成为了预言得以实现的机制。</p>
+</li>
+</ul>
+<p>因此可以说：</p>
+<p>
+$$
+Fate = Prophecy \times Evasive \ Behavior
+$$
+</p>
+
+<p>预言不仅仅是一个关于未来的陈述，它是一个<strong>自指的系统</strong>，它改变了人们行动的轨迹，而这改变本身就导向了预言描述的结果。</p>
+<p>当然，也可能如前所述，即使没有这个预言，也会有神秘的大手完成整件事。</p>
+<hr>
+<p>为什么剧作家要写这样一步作品呢，我们可以简单揣测。</p>
+<h1 id="索福克勒斯的创作意图"><a href="#索福克勒斯的创作意图" class="headerlink" title="索福克勒斯的创作意图"></a>索福克勒斯的创作意图</h1><h2 id="一、揭示”知识”与”真理”的断裂"><a href="#一、揭示”知识”与”真理”的断裂" class="headerlink" title="一、揭示”知识”与”真理”的断裂"></a>一、揭示”知识”与”真理”的断裂</h2><p>俄狄浦斯是破解斯芬克斯之谜的天才，代表了<strong>人类理性的最高水平</strong>。但这正是悖论的所在：</p>
+<p>他解开了斯芬克斯的谜题，却始终无法看透自己的身份。</p>
+<p>相比之下，剧中的双目失明的先知<strong>提瑞西阿斯（Tiresias）</strong> 看清了一切，却无力改变什么。这种对比可谓是古典戏剧中最深刻的讽刺。</p>
+<p>结合苏格拉底的事情，也许我们会有更深的洞见。具体可参考 $The\ Apology$ 的笔记。</p>
+<h2 id="二、秩序的重塑与净化（Catharsis）"><a href="#二、秩序的重塑与净化（Catharsis）" class="headerlink" title="二、秩序的重塑与净化（Catharsis）"></a>二、秩序的重塑与净化（Catharsis）</h2><h3 id="历史背景：公元前429年的雅典"><a href="#历史背景：公元前429年的雅典" class="headerlink" title="历史背景：公元前429年的雅典"></a>历史背景：公元前429年的雅典</h3><p>索福克勒斯创作这部剧的时代，恰好是：</p>
+<ul>
+<li><p><strong>伯罗奔尼撒战争初期（431-404 BC）</strong></p>
+</li>
+<li><p><strong>雅典大瘟疫爆发（430 BC）</strong>，夺走了约四分之一的人口</p>
+</li>
+<li><p><strong>伯里克利之死</strong>，雅典精英阶层信心动摇</p>
+</li>
+</ul>
+<p>剧本一开头呈现的正是忒拜城遭受的<strong>瘟疫灾难</strong>。这并非单纯的文学想象，而是透过神话向雅典当下投射的现实比喻。</p>
+<h3 id="作者的警示"><a href="#作者的警示" class="headerlink" title="作者的警示"></a>作者的警示</h3><p>| 维度 | 伯里克利&#x2F;俄狄浦斯 | 共性 |</p>
+<p>|——|——————-|——|</p>
+<p>| 身份 | 权力的最高掌握者、理性的象征 | 自信于自己的智慧 |</p>
+<p>| 转折 | 瘟疫(自然的无常)袭来 | 被迫面对自身无法控制的力量 |</p>
+<p>| 结果 | 迷信”人定胜天”的理性逻辑反而成为毁灭的根源 | 理性本身并非救赎 |</p>
+<p>索福克勒斯也许在警告雅典的精英阶层——那些迷信权力、迷信理性、迷信自己能够掌控历史进程的人。你们引以为傲的<strong>理性逻辑</strong>，在面对<strong>宇宙中超越人类理解的法则</strong>时，可能正是导致毁灭的根源。</p>
+<p>通过引发观众的”<strong>怜悯与恐惧</strong>“（Pity and Fear），索福克勒斯实现了<strong>情感的净化</strong>（Catharsis）。他试图提醒每一位城邦公民：<strong>敬畏秩序（$Dike$）是维持文明稳定的前提</strong>。</p>
+<hr>
+<p>伊利亚特中，阿基里斯在默默无闻和战死沙场但芳名远扬中选择了后者。不过他完全知道自己的选择对应着如何的结果，俄狄浦斯却在一次次看似自由的选择中走向悲剧。</p>
+<h1 id="俄狄浦斯-vs-伊利亚特中的阿基里斯"><a href="#俄狄浦斯-vs-伊利亚特中的阿基里斯" class="headerlink" title="俄狄浦斯 vs 伊利亚特中的阿基里斯"></a>俄狄浦斯 vs 伊利亚特中的阿基里斯</h1><p>同样涉及命运，但两部古典作品对 $Fate$ 的理解截然不同：</p>
+<p>| 维度 | 《俄狄浦斯王》| 《伊利亚特》 |</p>
+<p>|——|—————|————|</p>
+<p>| <strong>命运形态</strong> | 逻辑闭环（$Logical \ Closure$） | 份额制（$Moira$as$Portion$） |</p>
+<p>| <strong>外在表现</strong> | 宙斯的金天平，决定谁生谁死 | 神灵也要服从这种约束 |</p>
+<p>| <strong>核心冲突</strong> | 知性 vs 盲目 | 荣耀 vs 死亡 |</p>
+<p>| <strong>英雄选择</strong> | 不知道自己在做什么，却坚持追寻真相 | 在价值选择中主动走向毁灭以换取永恒荣耀 |</p>
+<p>| <strong>最终结局</strong> | 刺瞎双眼，获得精神上的清醒 | 战死沙场，留下不朽的名声 |</p>
+<p><strong>核心差异：</strong></p>
+<ul>
+<li><p><strong>俄狄浦斯是”想逃却逃不掉”</strong> — 他试图改写代码，却发现自己已经被编译进了不可修改的 Read-only 脚本中。</p>
+</li>
+<li><p><strong>阿基里斯是”明知必死，却主动走进去”</strong> — 他拥有选择权，却选择了通向毁灭的路径。</p>
+</li>
+</ul>
+<p>俄狄浦斯强调的是**”逻辑的无可奈何”<strong>，而阿基里斯强调的是</strong>“意志的英雄气概”**。</p>
+<hr>
+<h1 id="提瑞西阿斯：真理的”逆反对称性”"><a href="#提瑞西阿斯：真理的”逆反对称性”" class="headerlink" title="提瑞西阿斯：真理的”逆反对称性”"></a>提瑞西阿斯：真理的”逆反对称性”</h1><h2 id="失明与全知的隐喻"><a href="#失明与全知的隐喻" class="headerlink" title="失明与全知的隐喻"></a>失明与全知的隐喻</h2><p>在《俄狄浦斯王》中，提瑞西阿斯身上有这样一对矛盾：</p>
+<ul>
+<li><p><strong>物理层（Physical）：</strong> 他看不见眼前的物质世界（Matter）。</p>
+</li>
+<li><p><strong>信息层（Information）：</strong> 他拥有对时间流（Time Stream）的全局访问权限。</p>
+</li>
+</ul>
+<p>在俄狄浦斯逼问他时，他说道：</p>
+<blockquote>
+<p>唉，当清醒带来痛苦时，清醒是多么可怕啊！</p>
+</blockquote>
+<p>全知对于他而言，只会徒劳增加他的痛苦。</p>
+<p>提瑞西阿斯知道所有的 Bug，但系统规则禁止他直接修复。他只能眼睁睁看着程序崩溃。他的全知伴随着无力——这种无力正是他悲剧性的本质。</p>
+<h2 id="两种”盲目”的对话"><a href="#两种”盲目”的对话" class="headerlink" title="两种”盲目”的对话"></a>两种”盲目”的对话</h2><p>| 特性 | 提瑞西阿斯 | 俄狄浦斯 |</p>
+<p>|——|———–|———|</p>
+<p>| <strong>视觉状态</strong> | 肉体失明，精神全知 | 肉体明亮，精神盲目 |</p>
+<p>| <strong>思维模型</strong> | 经验与神启（Top-down） | 逻辑与推理（Bottom-up） |</p>
+<p>| <strong>对命运的态度</strong> | 顺应与敬畏 | 挑战与改写 |</p>
+<p>| <strong>最终获得</strong> | 保持沉默与清醒 | 刺瞎双眼，获得清醒 |</p>
+<p><strong>深刻的意味：</strong> 俄狄浦斯在最后<strong>向提瑞西阿斯”进化”</strong>。他发现通过肉眼看世界只会导致误判，于是他选择了提瑞西阿斯的方式——毁掉生理视觉，去换取精神上的真相。</p>
+<hr>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>不论如何，俄狄浦斯确确实实落入了命运编织的蛛网，在预言与自身性格等多重因素的加持下，杀父娶母，既是天下“第一人”，也是神明口中的污点。</p>
+<p>但俄狄浦斯选择了<strong>面对真相</strong>，而不是逃避真相。这才是整部悲剧中最闪耀的人性光芒。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

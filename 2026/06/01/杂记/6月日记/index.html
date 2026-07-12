@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>6月日记 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>6月日记</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/6/1
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%97%A5%E8%AE%B0%E7%B1%BB/" style="color: #ffa2c4">
+                    日记类
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>June—-</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="6-17"><a href="#6-17" class="headerlink" title="6.17"></a>6.17</h2><p>发现还是图书馆自习比较靠谱，今天近似学了10h+吧，把ztf讲义的复习题扫完了，感觉还行，稍微计算，发现大约花了3天学高数下半学期，2天从头推导级数和积分所有东西，然后1天做题，如是而已，那我之前都干什么了呢（，也许是之前薄弱的学习铺垫了后面的速通吗，暑假试着速通概统试试，如果成功就说明，自己摸鱼好久了（）</p>
+<p>甫一出门，深蓝的天空攫取了我的目光。昨夜方下过雨，此时万里乌云，日既西倾，而远天犹有余晖。设若在开阔之处看去，天空大约是渐变的。但高耸的树与建筑遮掩了视野，于是目光中只有一片，至纯至蓝的天空。北京兴许污染过重，星子一颗也见不着，于是只有天空，一片纯粹的蓝。心底，隐约地，有一根弦被拨弄。然而业已，总之，活过了不少时日，虽然有些触动，到底没能十分热烈，只是隐隐地感到心弦的拨弄。</p>
+<p>向宿舍走去，过一个拐角，一轮新月刻入眼帘，肉眼看去，月牙细而锐，银色光亮清冷而有些尖，仿佛一道伤疤，一道剑痕，设若有这样弧度颇大的剑法。金星的光亮，凭着距离的优势，还十分地闪耀，而正好位于月牙圆弧重心，沿着月牙对称轴延伸的方向。若仍把月亮看做剑痕，似乎金星正是剑气发出的地方，一道耀眼的银色光波自那发出，而我们正看着它运行，它是那么大，以至于哪怕正在飞速前进，我们也觉得仿若静止，然而它在一点一点，向着宇宙深处飞去。</p>
+<p>月牙，如犬齿般的锋利，却也以其曼妙的弧度，似乎可以与女子的蛾眉相较量。找AI问有没有类似的语句，AI借了韦庄的诗词放在前头背书，随后自己编了一句，那人别后，长是月牙时。意外感觉很有意思，离别之后，月亮似乎总是缺了大半，此外，蛾眉总是蹙起，正如那月牙，虽则出自AI，倒还蛮有意思。对镜画蛾眉，罢了，忆起未归之人，抬头，月如钩，正似微蹙蛾眉。</p>
+<p>昨日花了一整日复习英语备考，从 Aeneid 读到 Divine Comedy，似乎也被英语的语言习惯影响，喜欢把副词什么的单列，又写一些不伦不类的语句结构，不过回头看还怪有意思的，这句尤为明显：”心底，隐约地，有一根弦被拨弄。然而业已，总之，活过了不少时日，虽然有些触动，到底没能十分热烈，只是隐隐地感到心弦的拨弄。”这以后三年，我便不会修英语课了，也许不止三年。而英语课大多小班上课，也并不好蹭，也许此后我都不会上英语课了。</p>
+<h2 id="6-27"><a href="#6-27" class="headerlink" title="6.27"></a>6.27</h2><p>一转眼学期就结束了呢，已经回到了家中。感觉一年过去仍然没能摆脱空虚，考完最后一门的当晚在雀魂打了打日麻，打了两个多小时，上了两颗星。今天返程路上看了几小时的小说，回了家以后刷了刷社媒……感到虚无。</p>
+<p>那么如何才能不虚无呢，学习的时候，不论是数学课，抑或专业课，虽然不很清楚自己究竟目标是什么，想干什么，但是不觉得虚无，这也许和所谓优绩主义有所关联。然而这样的短暂的满足到底是无源之水，不过在没有找到泉源之前，也确实只能得到如此短暂的满足。至少在推导时能得到乐趣，并且可以告诉自己，我在提升自己的能力，这让人感到没那么空虚。</p>
+<p>但是我并没有启动学习的动力，也没有持续学习的动力，设若没有ddl，没有考试。我愿意学，但是没法启动，没法持续，这就难办。那么我能启动什么呢，游戏我实际上也会懒得启动，但是更容易长久地玩。最容易启动的，大约还是社媒，QQ,VX，小红书，或者同花顺（？）甚至小说，我也需要点开软件，然后点击书库，再选一本点开，社媒一点进软件，各种各样的信息便一览无余，但是虽然易于启动，到底没什么意思，所以也不能长久地刷，久了便乏味。但是乏味并不会长久，于是我在厌烦后，也许看两眼ppt，看两眼书，看到有些艰深的部分，便刷一刷，我知道我在分散我的注意力，在打断我在困难之中增长知识，但是我无力反抗，我有什么动力前行呢？我不知道有什么拒绝短期的诱惑的理由，因为我看不到未来。</p>
+<p>以史为镜，大约是很好的选择。高中我确实能做到全天候的学习，一则前面所说的动力是非常有的，考个好大学，甚至简单一点，比同学考得高（）再则，大家都在学，氛围十分好。此外呢，要说分散我注意力的东西，启动成本也有一些，与学习的启动成本呢差不太多，大约就是看看杂志，写点小说写点文章什么的。</p>
+<p>那么我能效仿什么呢？动力我找不到，也不知道怎么找。氛围，这个倒是确实可以学习，我也的确实践过，在图书馆学习，我几乎可以学一天，然后晚上回去打打游戏，我觉得这完全够用了。只是没有像高中那样的同学，能和我一同学习交流，舍友感觉都各卷各的，只有考完试我们偶尔吐槽吐槽，也没什么平时交流的想法。平常学高数线代碰到神秘东西，我仍然倾向于找高中同学吐槽，但是接下来学专业课，大约没有熟悉的高中同学让我吐槽了。至于限制自己的诱惑，也确实可以通过开勿扰模式之类的实现，确实也有一定的效果。</p>
+<p>但是动力，我感觉仍然是最根本的东西。我于是只好开始尝试，这学期申请了一个项目，意外的通过了。有一件比较明确的事情做，有清晰的要求，明确的验收标准，其实和考试ddl有着类似的效果，虽然有些好笑，但这种东西可以督促我干点实事。具体是通过声纹和姿态识别犬类的意图，也确实是比较有意思的事情吧。AI也给出了很明确的先分开训练再多模态融合的路子，照着学照着做就行了，感觉是个不错的项目。</p>
+<p>如此一看我也确实在行动，那么什么驱使我感到极大的空虚呢？我回顾一下，动手写这记录之前，我看了看小红书，刷了刷QQ，看了看频道，在干什么呢，在找交友。回了家，我登上老电脑的QQ，一看我实际上做了不少尝试：加了若干群聊，但是不敢水（真是好笑）。加了十几个网友，但大多聊几句就死了。在某date平台的寻友匹配了若干人，但都当天聊了不出几句就从此静默。说起来，最成功的社交，也许是社团，可以和若干人认出彼此，这已经是我最成功的社交了，天哪。这还是靠我每周去活动训练的结果，而不是靠切实的社交，有的人来个几次就已经打成一片了，我是在呆了两学期，才能够互相叫得出名字对的上号，真是……</p>
+<p>线下失败的社交已经不少了，线上也不少，但是总比线下容易。然而交友交友，到底能聊些什么呢，设若只是盲目地加个好友。哪怕我把**date匹配的，已经做好了仅加个好友扩个列的准备，每次聊了几句便长久地静默，我仍然感到无奈。我不知道能聊些什么，分享生活吗，会不会怪怪的；分享一道数学题吗，这太神秘了……而且说起来，我已经有能够分享生活的网友，也有能分享数学题的高中同学，但是仍然感到缺位，我到底需要什么呢？我不知道，也许是更亲密的关系，灵魂的契合？我不知道，但也许是吧。</p>
+<p>说起来我在这一学期几乎不感到空虚了，但一回家又感到虚无。一想，大约我把自己安排的满满当当。白天便在分神中学习，晚上就高高兴兴打游戏。睡前好好地练习凝神，晨起便晨练一番。这并没有给我留下过多的，供我迷茫的时间。但是客观上，我仍然迷茫，仍然缺少一些深入的交流。一回家，得到极大的空闲，便统统爆发了。</p>
+<p>我也难以再用类似的手段避开虚无，在家里毕竟不同。在学校我周围是学子们，在家呢，我几乎只有我自己。家庭对我几乎没有引力，我感到巨大的代际差异。我与父母似乎生存在同一个世界的两面，而与小我10岁的妹妹，也生活在世界的两面，她净日吵吵嚷嚷，这倒是合理的孩童的天性，但是她吵吵嚷嚷的内容是，网络的烂梗……我们难以有有效深入的沟通，没有什么共同话题。我的一切兴趣爱好都与他们的正交。或者说，我几乎不知道他们有什么兴趣爱好，生活似乎占满了他们的全部。解决生存必须的劳动之外，便是刷手机，看剧，又一面憧憬着能够富足。我无意批判，我只是迷茫，感到原子化。大学提供了原子化的所有条件，我没有刻意选择，便已经落入原子化的境地，在迷茫中挣扎。我试图挣脱，试着社交，但是不知所措，e人们则已经有了一万个朋友。</p>
+<p>也许应该去到另一所学校，在集体主义中继续熟悉的生活么？不清楚，总之已经不可能。也许只会在集体活动中孤零零的迷茫呢，也未可知。我也不是没参加过集体活动，最后只要在场人数&gt;&#x3D;3，我就能有效隐身，真是出奇强大的被动技能。</p>
+<p>总之，总之，我已经有所进步。能够自然地和别人打招呼了，能够不怯场地做pre什么的……虽然似乎是非常基本的技能，但是已经是我在很多次尝试中才得到的了。哎呀，说起来自己真像问题儿童，只是已经不是儿童了。</p>
+<p>时候不早了，已经到了我熟悉的，晚上开玩的点了。没有什么特别明确的晚上非干不可的事，先农两把再说。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

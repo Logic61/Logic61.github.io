@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>骑行 &amp; 园博苑 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>骑行 &amp; 园博苑</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/7/8
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%97%A5%E8%AE%B0%E7%B1%BB/" style="color: #00a596">
+                    日记类
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>复活中</p>
+<span id="more"></span>
+
+<hr>
+<p>今天到了下午，兴许受了昨天出游的攒动，也干脆出去兜兜风。一看时间业已3点多，想说或许便不去园博苑了，随便逛逛便是。</p>
+<p>便沿着海边一路骑。先是到了一处公园，主体是湖，边上是高耸着的富丽堂皇的酒店</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E5%9B%AD%E5%8D%9A%E8%8B%917.8/651a7f495df17760f7656fa67b716670_720.jpg" alt="alt text"></p>
+<p>这酒店选址颇有品位，这个角度看去十分好。当然，在酒店上大约也有很好的风光，湖对岸是马路，再过去便是海</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E5%9B%AD%E5%8D%9A%E8%8B%917.8/ead7352a8aacf0852fc34ab1bcf9c778.jpg" alt="alt text"></p>
+<p>天地之辽阔，真让人心胸一荡。沿湖骑着，忽而树丛边稀稀疏疏一阵响，飞出几只白鹭</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E5%9B%AD%E5%8D%9A%E8%8B%917.8/18c159cdcb3583a019a9932a7085fe59.jpeg" alt="alt text"></p>
+<p>白鹭洲之名，也算不愧对。似乎处处都能见到白鹭。</p>
+<p>继续向前骑，又碰上一座金碧辉煌的酒店。</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E5%9B%AD%E5%8D%9A%E8%8B%917.8/d830c6dfed02702ce378c270b42bc8ac.jpg" alt="alt text"></p>
+<p>风光着实好，这酒店说是酒店，看上去并不比城堡差，气派得很。这是在天桥上拍的，过了天桥我便去海边的路上</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E5%9B%AD%E5%8D%9A%E8%8B%917.8/810af426080aa0a908a54f13c0d74c58.jpeg" alt="alt text"></p>
+<p>沿海有一条宽敞的自行车道，此刻大约因为是工作日，路上人不多。宽敞的道路，上好的晴天，温和的海风，我的心于是轻飘飘的，领受到一种美好的满足。</p>
+<p>骑行不久，自行车道一拐，一下从海边的宽敞，到了高架桥底下似乎略狭窄的地方。周围绿化十分足，就连高架桥上都布着绿植。我忽而感觉这是一个很好的机位，便停下来拍了一张。</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E5%9B%AD%E5%8D%9A%E8%8B%917.8/92c6b67ecc89d3e825daecf18cb1d3d7.jpeg" alt="alt text"></p>
+<p>骑着骑着，好像意外地就到了原先想过去的园博苑附近，索性就去转了转。实际上，在我读小学时，我被领着去过数次，但我一回想，竟然什么记忆都不剩，只有一个粗浅的印象，告诉我这里没什么意思。但是我一进去，就不由地赞叹这里的美好，小孩子懂什么hh。</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E5%9B%AD%E5%8D%9A%E8%8B%917.8/322f1b04f8ae9a4d0718256f47864e2c.jpeg" alt="alt text"></p>
+<p>甫一进门，便是宽敞的湖，倒映着碧蓝的天，这颜色都相当漂亮。往里走走，我便对着导航准备去江南园林看看，我在小红书上先前刷到过，主要就是想看看这个。江南水乡，小桥流水，亭台楼阁，配上细柳、荷花，黑白配色的并不高的房屋，真是再温柔不过的景色了。我在网上看过不少江南的视频，也由此生出了很浓的向往。</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E5%9B%AD%E5%8D%9A%E8%8B%917.8/162732a10ad744093c5c5f919e3dcd34.jpg" alt="alt text"></p>
+<p>园博苑也并没有让我失望，江南园林的景色还蛮符合我的印象，我看牌子，似乎是江浙一带的政府捐赠的。但这朵巨大的人工造的荷花，我以为有些糟糕。<br>一进门，实际上先会看到左侧的小院</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E5%9B%AD%E5%8D%9A%E8%8B%917.8/965c052d82e87d9d073735b11e9493b3.jpeg" alt="alt text"></p>
+<p>建筑也颇有味道，门后是小院里边，有修长的竹与树。越过小院往前走，便是水乡那种水道纵横般的布置</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E5%9B%AD%E5%8D%9A%E8%8B%917.8/279e8f8eea904d2bcfb53c1aea953f67.jpeg" alt="alt text"></p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E5%9B%AD%E5%8D%9A%E8%8B%917.8/3505679112ac2fe48f75508c7b34c128.jpeg" alt="alt text"></p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E5%9B%AD%E5%8D%9A%E8%8B%917.8/96bb023d4ad3ab8cb4cdcb7a8cf5068f.jpeg" alt="alt text"></p>
+<p>为了视觉效果，河道中还有喷雾</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E5%9B%AD%E5%8D%9A%E8%8B%917.8/fa740d70db43444ef366573d6875837c.jpeg" alt="alt text"></p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E5%9B%AD%E5%8D%9A%E8%8B%917.8/5d55c2d86f53c3369462e74577d2ece3.jpeg" alt="alt text"></p>
+<p>日光照射下，白雾似乎呈现出一定的丁达尔效应，出现一些可见的光束，漂浮在荷叶上，恍似仙境。可惜荷花尚未到时候，否则应该更美。</p>
+<p>此外还有一些相当好的园林，我还看到了一处瀑布，但并没有拍。江南园林占据了我心头的大半，看罢我稍微转悠转悠也便离开了，预备下次再好好逛逛，毕竟时候也不早了。</p>
+<p>回来之后似乎整个人更活了，肖邦的奏鸣曲忽而涌上心头，似乎在撺掇我去开谱玩玩，但那太难，还是算了。不过勾的我打算好好地练练谐谑曲了。总之，是让我苏生出了不少生机，让我想去做一些事情。这就很好，相较于此前浑浑噩噩的时候，这已经是极大的进步了。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

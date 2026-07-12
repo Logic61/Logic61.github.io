@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>4.奇点 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>4.奇点</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/19
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>考虑向量场 $\vec{F} &#x3D; \left( \frac{-y}{x^2+y^2}, \frac{x}{x^2+y^2} \right)$：</p>
+<ul>
+<li><p><strong>数学陷阱</strong>：计算可知 $\frac{\partial Q}{\partial x} &#x3D; \frac{\partial P}{\partial y} &#x3D; \frac{y^2-x^2}{(x^2+y^2)^2}$，看起来场是“无旋”的。</p>
+</li>
+<li><p><strong>直觉误区</strong>：如果直接套用格林公式，结论似乎应该是环流量为 $0$。</p>
+</li>
+<li><p><strong>事实</strong>：但在原点 $(0,0)$处，函数分母为$0$，场不存在。如果闭合曲线包围了原点，实际积分为 $2\pi$而非$0$。当然，如果不包含原点，积分便恒为 $0$ 。</p>
+</li>
+</ul>
+<hr>
+<h3 id="处理策略：“挖洞”法-Excising-the-Singularity"><a href="#处理策略：“挖洞”法-Excising-the-Singularity" class="headerlink" title="处理策略：“挖洞”法 (Excising the Singularity)"></a>处理策略：“挖洞”法 (Excising the Singularity)</h3><p>当区域 $D$内包含奇点时，格林公式的前提（函数在区域内$C^1$ 连续）不再满足。此时需要手动构造一个<strong>多连通区域</strong>：</p>
+<ol>
+<li><p><strong>构造内边界</strong>：以奇点为圆心，取一个极小的半径 $\epsilon$，构造一个闭合圆周 $\Gamma_{\epsilon}$ 将奇点“挖掉”。</p>
+</li>
+<li><p><strong>应用公式</strong>：在剩下的区域 $D \setminus D_{\epsilon}$ 内，场是处处连续的，可以应用格林公式：</p>
+</li>
+</ol>
+<p>
+$$
+\iint_{D \setminus D_{\epsilon}} (Q_x - P_y) \, dA = \oint_{L^+} \vec{F} \cdot d\vec{r} + \oint_{\Gamma_{\epsilon}^-} \vec{F} \cdot d\vec{r} = 0
+$$
+</p>
+
+<ol>
+<li><strong>结果转化</strong>：这说明外部大环的积分等于内部小圆周的积分（换了一下 $\Gamma$ 的环流方向）：</li>
+</ol>
+<p>
+$$
+\oint_{L^+} Pdx+Qdy = \oint_{\Gamma_{\epsilon}^+} Pdx+Qdy
+$$
+</p>
+
+<hr>
+<h3 id="计算：参数化极限"><a href="#计算：参数化极限" class="headerlink" title="计算：参数化极限"></a>计算：参数化极限</h3><p>对于上述圆形小边界 $\Gamma_{\epsilon}$，利用极坐标极易计算：</p>
+<ul>
+<li><p>令 $x &#x3D; \epsilon \cos\theta, y &#x3D; \epsilon \sin\theta$。</p>
+</li>
+<li><p>代入积分式：$\int_0^{2\pi} \frac{-\epsilon \sin\theta (-\epsilon \sin\theta) + \epsilon \cos\theta (\epsilon \cos\theta)}{\epsilon^2} d\theta &#x3D; \int_0^{2\pi} 1 , d\theta &#x3D; 2\pi$。</p>
+</li>
+<li><p><strong>结论</strong>：只要曲线包围了该奇点，无论曲线形状如何，积分值永远是 $2\pi$。</p>
+</li>
+</ul>
+<p>那如果曲线只包含了半个奇点呢？如果只包含了四分之一个奇点呢？<br>直觉上，把积分上限变一下就好了（</p>
+<p><img src="/images/Pasted_image_20260402123906.png"></p>
+<p><strong>半覆盖或特定角度（$\alpha$）—— 分段积分或不完全环绕</strong>。</p>
+<ul>
+<li><p><strong>$\pi$的情况</strong>：如果路径仅在半个平面内围绕奇点旋转（例如从极角$0$到$\pi$），线积分的结果往往对应于张角的弧度值。</p>
+</li>
+<li><p><strong>$\alpha$的情况</strong>：在更一般的情况下，如果边界曲线在奇点处张开的角度为$\alpha$，积分结果将直接正比于这个<strong>局部几何角</strong>。</p>
+</li>
+</ul>
+<p>虽然说不清楚严谨过程，但这是对的（</p>
+<h2 id="Maxwell-方程其一"><a href="#Maxwell-方程其一" class="headerlink" title="Maxwell 方程其一"></a>Maxwell 方程其一</h2><p>格林公式会碰到奇点，高斯公式呢？</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>光明 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>光明</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2021/9/18
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E9%9A%8F%E7%AC%94/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                随笔
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E9%9A%8F%E7%AC%94/" style="color: #ffa2c4">
+                    随笔
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>仍然和徐志摩有点关系，不过没有很大，原来没有最后那一小段说理，但忘了为什么加了，好像有点糖（</p>
+<span id="more"></span>
+<hr>
+<blockquote>
+<p>我从苦海脱身，破了虚妄</p>
+<p>尽管黑暗依然盘踞着穹苍</p>
+<p>但我知道那是光明与希望</p>
+<p>——题记</p>
+</blockquote>
+<hr>
+<p>迷迷惘惘，冷冷幽幽，阴阴暗暗，沉沉淡淡。</p>
+<p>我的世界，便是此般。<br>简单——只是黑暗。</p>
+<p>那份自幼时，看着动画片时就隐隐生根的夜啊，疯狂地，如脱缰之野马，断索之飞鸟，急促促，密沉沉，袭卷了来。</p>
+<p>黑暗无边的潮水铺起大浪，一个劲儿地，打过来，打过来，打过来……</p>
+<p>我脚下寸大的岛，已早是难堪重负，只在此时，趁着潮水的劲儿，一气崩碎，沉水，消隐。我便就此跌下，沉下，坠下，堕入了无边的苦海——我真将那幻梦看做了幻梦，可又奈何——这黑暗透不出丝毫光明。</p>
+<hr>
+<p>黑暗会蚕食人的心智，总是，致人迷失。</p>
+<p>潮水里，我急匆匆寻着能救命补灵之物。一节枯木，便引我奔波苦苦。哪怕依着先前的经验，那东西动辄作了古。</p>
+<p>只是难禁心中狂热，去追寻这缥缈的希望——便是这幻想被击破，也并不有什么损害，那便试一试，试一试。</p>
+<p>不知几多次，只是一次，一次，又一次。</p>
+<p>而可悲的是，各类的物破碎的姿态却是完全一致：<br>裂一点，再裂一点，次后来，全然断裂。</p>
+<p>毫无新意，不是吗？<br>可那就是伤人至极。</p>
+<p>你可能想想，一次次一番番怀揣着希望的火苗，去触碰黑暗的狂潮，稍时，那稚弱的火苗就被黑暗的潮水拍住，灭了，散了，不复明了。</p>
+<p>那死神的风息，只要稍稍沾染，那火苗就熄了，去了，再难见着了，成了黑暗的一份养料了。</p>
+<p>那黑暗虽然无形，可我似见它的狞笑！</p>
+<p>唉。</p>
+<p>这黑暗铺天盖地，在我，它比之大洪水也有过之而无不及，何其可悲！<br>这世界灭却了光明，黑暗盘踞着苍穹，这无边的苦海。</p>
+<hr>
+<p>阴翳着，阴翳着。</p>
+<p>我于是换上了面纱，成了似乎那黑暗的一部分，在黑暗里<strong>淈其泥而扬其波</strong> 。</p>
+<p>这处的水起了呵，那面具便一笑；<br>那里的舟翻了呵，那面具便鼓掌。</p>
+<p>这黑暗里可怜可笑的长歌啊，蚕食着人——<br>便融了这黑暗吧，至少有些无妄的趣。</p>
+<p>是，无妄的趣。</p>
+<p>戏弄黑暗里惊慌的游鱼，看它四窜逃逸。<br>欢愉，片刻或能堆积成长久。</p>
+<p>那余下的光阴便任他苦痛，<br>我就要哪怕短暂的欢愉——<br>欢愉，可怜无谓的慰安。</p>
+<hr>
+<p>看，那又是一节木，尽管看似不枯。</p>
+<p>可安知那内部，又是怎样一番景——<br>看似实木，实则枯木，也不是头一回见着了。</p>
+<p>奢望？有。<br>但，总无用。</p>
+<p>凭着经验可以推理，哪怕它仿佛附着着一缕光明的残片将我触动，但无用，常无用。</p>
+<p>光明的残片，易碎，<br>比之枯草还脆弱，<br>一经黑暗之火的烧，便作了灰。</p>
+<p>可你知道的，这片刻的欢愉，也是难得的。</p>
+<p>罢，再贪那片刻吧。</p>
+<hr>
+<p>我于是伸手去触那光明。</p>
+<p>不是残片。</p>
+<p><strong>那是完整的光明。</strong><br><strong>是有灵的光明。</strong></p>
+<p>真正的光明固然有灵，可我从未奢求能碰着过真正的光明。<br>可碰着了，这可不就叫人惊喜！</p>
+<p>那光明一经触碰就荡开，将黑暗从我身边驱开，将无边的苦海扫荡开。</p>
+<p>呜呼！<br>我这笨重的文字如何能叙述我当时万分之一的心态。</p>
+<p>那久旱后的甘霖所带来的，焉是这粗糙的语句所能述清的。</p>
+<p>只是觉得像：</p>
+<ul>
+<li>渴了许多天的人突然发现了闪烁光明的水</li>
+<li>累了一天的人终于躺上了软软的床铺</li>
+<li>饿了不知多久的人吃上了热腾腾的饭菜</li>
+</ul>
+<p>原已不抱任何的希望，<br>可这希望偏偏与你撞了个满怀。</p>
+<p>便是无神论者，也不免痴痴地叹一声：</p>
+<blockquote>
+<p>“感谢上帝。”</p>
+</blockquote>
+<hr>
+<p>欣喜之余，惊慌复起。</p>
+<p>这类的光明并不是从未遇见过。<br>只是先前的或存在一天两天，最远者不过三两个星期，便荡然无存。</p>
+<p>我一面沉浸在光明的沐浴里，一面忧虑着。</p>
+<p>一周。<br>两周。<br>时光跑过。</p>
+<p>她还未散。<br>她还在。</p>
+<p>一月。<br>两个月。</p>
+<p>她仍驻足在我身边。</p>
+<p>我渐渐放下了心底的防备与担忧，<br>我似乎能确定——<br>这便是真真正正的永恒的光明了。</p>
+<hr>
+<p>蓦然。</p>
+<p>那光明黯淡了些。</p>
+<p>她黯淡一点，<br>再黯淡一点，<br>次后来——全然黯却。</p>
+<p>那死神又来了。<br>一样的手法，一样的景象。<br>数百数万倍的痛苦！</p>
+<p>啊！</p>
+<p>既然我不能一直拥有，<br>为何要予我这二月的时间？</p>
+<p>什么确信，什么笃定，什么永恒，<br>何其可笑！</p>
+<hr>
+<p>黑暗的声音在我脑中炸响：</p>
+<blockquote>
+<p>“你错了。”</p>
+</blockquote>
+<p>死神的声音在我脑中炸响：</p>
+<blockquote>
+<p>“你错了。”</p>
+</blockquote>
+<p>光明的声音在我脑中炸响：</p>
+<blockquote>
+<p>“你错了。”</p>
+</blockquote>
+<p>我只有无限的惊愕：</p>
+<blockquote>
+<p>“为何？”</p>
+</blockquote>
+<p>三者一齐言语：</p>
+<blockquote>
+<p>“我们在，一直在。”</p>
+</blockquote>
+<hr>
+<p>我于是看见了我心底，三色交相辉映。</p>
+<p><strong>黑暗。</strong><br><strong>死亡。</strong><br><strong>光明。</strong></p>
+<p>诡异地融合，发着亮。</p>
+<p>我于是无比惊异——<br>莫非三者？</p>
+<p>三者随即答道：</p>
+<blockquote>
+<p><strong>“我们是一体。”</strong></p>
+</blockquote>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

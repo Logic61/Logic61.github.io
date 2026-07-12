@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>3.图论(II) | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>3.图论(II)</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/3
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%A6%BB%E6%95%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                离散
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00bcd4">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>由于看的课的中文是机翻，下面对 $walk,path$ 等词语在可能混淆的情形下使用英文。<br>由于画图的麻烦性，并没有画图，建议自行作画。</p>
+<span id="more"></span>
+
+<p><strong>途径(walk)</strong> 是由由边链接的顶点的序列，允许顶点和边的重复。经过的边的数量 $k$ 称为路径长度。<br><strong>路径(path)</strong> 不允许边或顶点的重复的 $walk$ 。</p>
+<h4 id="Lemma-1-path的存在性"><a href="#Lemma-1-path的存在性" class="headerlink" title="Lemma 1 path的存在性"></a>Lemma 1 path的存在性</h4><p>如果存在从节点 $u$到$v$的$walk$那么就存在$u$到$v$的$path$ 。</p>
+<blockquote>
+<p>[!证明]<br>存在 $walk$从$u$到$v$，根据良序定理，存在一个长度最小的$walk$。下面证明这就是一条$path$ 。<br>如果长度等于 $0,1$ ，显然成立。<br>如果长度 $k \geq 2$ ：<br>使用反证法，如果不是 $path$，那么就有重复的顶点，设$v_i&#x3D;v_j$，则路径$u&#x3D;v_0-&gt;…-&gt;v_i&#x3D;v_j-&gt;…-&gt;v&#x3D;v_k$是一条更短的路(砍掉了$v_i-&gt;v_j$的部分)。这就出现了矛盾。所以$Lemma$ 成立。</p>
+</blockquote>
+<p><strong>连通性</strong> ：如果有一条从 $u$到$v$的$walk$ ，那么他们连通。如果一个图的每个顶点都连通，那么称该图连通，或称为<strong>连通图</strong>。</p>
+<p><strong>闭途径(closed walk)</strong> 是指一个起点和终点相同的 $walk$ 。<br><strong>环(cycle)</strong> 是指不重复经过顶点的 $closed\ \ walk$ 。</p>
+<p><strong>树</strong> ：连通无环图。<br><strong>叶</strong> ：树中 $degree$为$1$ 的节点。</p>
+<h4 id="Lemma-2-树的连通子图还是树"><a href="#Lemma-2-树的连通子图还是树" class="headerlink" title="Lemma 2 树的连通子图还是树"></a>Lemma 2 树的连通子图还是树</h4><blockquote>
+<p>[!证明]<br>反证法。子图已经连通，假设子图有环，则原图有环，则不是树，矛盾，故子图无环(显然如此)。</p>
+</blockquote>
+<h4 id="Lemma-3-树的边数"><a href="#Lemma-3-树的边数" class="headerlink" title="Lemma 3 树的边数"></a>Lemma 3 树的边数</h4><p>节点为 $n$的树有$n-1$ 条边。</p>
+<p>为证明此，先说明叶子的存在性。</p>
+<h5 id="证明：在任何-n-ge-2-的树中，至少存在两个叶子节点"><a href="#证明：在任何-n-ge-2-的树中，至少存在两个叶子节点" class="headerlink" title="证明：在任何 $n \ge 2$ 的树中，至少存在两个叶子节点"></a>证明：在任何 $n \ge 2$ 的树中，至少存在两个叶子节点</h5><p><strong>证明步骤：</strong></p>
+<ol>
+<li><p><strong>取最长路径：</strong></p>
+<p> 在树 $T$中，由于节点数有限且无环，一定存在一条<strong>最长路径</strong>（Path，点不重复），我们将其记为$P &#x3D; (v_0, v_1, v_2, \dots, v_k)$。</p>
+</li>
+<li><p><strong>考察端点 $v_0$：</strong></p>
+<p> 考虑与起点 $v_0$相连的节点。除了路径上的邻居$v_1$ 之外，$v_0$ 还能有其他的邻居吗？</p>
+<ul>
+<li><p><strong>情况 A：</strong> 如果 $v_0$与路径之外的某个点$u$相连，那么我们可以把路径延长为$(u, v_0, v_1, \dots, v_k)$。这与 $P$ 是“最长路径”的假设矛盾。</p>
+</li>
+<li><p><strong>情况 B：</strong> 如果 $v_0$与路径上已有的某个点（比如$v_i$，其中 $i &gt; 1$）相连，由于 $v_0$和$v_i$ 之间已经有一条路径，这条新边会形成一个<strong>环</strong>。这与树“无环”的定义矛盾。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>得出结论：</strong></p>
+<p> 因此，$v_0$只能与$v_1$ 这一个点相连。也就是说，<strong>$v_0$的度数$\deg(v_0) &#x3D; 1$</strong>。</p>
+</li>
+<li><p><strong>同理推导：</strong></p>
+<p> 同样的逻辑也适用于路径的另一个端点 $v_k$，它的度数也必然为 1。</p>
+</li>
+</ol>
+<p><strong>结果：</strong> 路径 $P$的两个端点$v_0$和$v_k$ 都是叶子节点。证毕。</p>
+<blockquote>
+<p>[!证明Lemma 3]<br>归纳法。<br>$n&#x3D;1,2$ 时显然成立。<br>若 $n&#x3D;k$时成立，$n&#x3D;k+1$时： 删掉一个叶子，那么创造了一个连通子图，根据$Lemma$ $2$这就是$n&#x3D;k$的树，那么满足有$k-1$条边，加上这个叶子，那么也只会加上一条边，那么此时就恰好有$k$ 条边。</p>
+</blockquote>
+<p><strong>生成树(Spanning tree,ST)</strong> ：一个连通图的子图，该子图是一个包含所有节点的树。<br>生成树是包含所有顶点最小连通子图的解。</p>
+<h4 id="Theorem-每个连通图都有生成树"><a href="#Theorem-每个连通图都有生成树" class="headerlink" title="Theorem 每个连通图都有生成树"></a>Theorem 每个连通图都有生成树</h4><blockquote>
+<p>[!证明]<br>假设有一个连通图 $G$没有生成树。让$T$作为满足是$G$的一个连通子图，拥有$G$ 的全部顶点的子图中有最小边数的子图。<br>那么根据假设，$T$有环，那么删去环上的一条边，边数变短了，但仍然是连通图，这与$T$ 边数最小矛盾，所以原命题成立。</p>
+<p>仍然连通的说明：考虑任意两个顶点 $x,y$，若连接他们的$walk$不包含删去的边$e$，那么当然不会破坏他们的连通性；反之，由环的定义，除了边$e$之外，$e$的顶点$u$和$v$之间一定存在另一条$path$  $P_{uv}$，那么$x,y$之间就存在路线$(x, \dots, u) + P_{uv} + (v, \dots, y)$ ，可见仍然是连通的。</p>
+</blockquote>
+<p><strong>最小生成树(MST)</strong> ：对于有权重的连通图，权值和最小的生成树。</p>
+<h4 id="Kruskal-算法（加边法）"><a href="#Kruskal-算法（加边法）" class="headerlink" title="Kruskal 算法（加边法）"></a>Kruskal 算法（加边法）</h4><p>每次选择权重最小的边，只要不形成圈就行，直到变成生成树。就变成了最小生成树。</p>
+<blockquote>
+<p>[!Lemma]<br>$\forall G$，让$S$为包含了按照算法选择的其前$m$条边的集合。则存在最小生成树$T&#x3D;(V,E)$，使得$S \in E$。  </p>
+<p>证明：<br>使用归纳法。归纳假设 $P$ 即命题。</p>
+<p>$m&#x3D;0$ 时，$S$ 是空集，显然成立。</p>
+<p>设 $P(m)$成立，设$e$是第$m+1$步添加的边，让$S$表示已选择的前$m$条边，根据归纳假设，存在最小生成树$T^<em>&#x3D;(V,E^</em>)$使得$S\in E^*$ 。</p>
+<p>如果 $e\in E^<em>$ ，那么显然成立，<br>反之，由于 $T^</em>$是生成树，顶点已连通，再加边则会生成环，由$e$和连接其顶点$u,v$ 的路径组成。<br>由于 $S$按照算法选无环，这个环上必定有不属于$S$的边$e’$。由于算法先选$e$再选$e’$，可知$w(e) \leq w(e’)$ 。<br>构造新树 $T^{<strong>}$，为$T^*$删去$e’$加上$e$， 此时图依然连通无环，故$T^{</strong>}$也是生成树，且$w(T^{<strong>})&#x3D;w(T^*)-w(T^{</strong>}) &#x3D; w(T^<em>) - w(e’) + w(e) \leq w(T^</em>)$，因为$T^*$已经是最小生成树，只能取等，所以$T^{<strong>}$也是最小生成树。而显然这个新的$S’\in E^{</strong>}$ 。成立。</p>
+<p>综合以上，归纳得证原命题成立。</p>
+</blockquote>
+<blockquote>
+<p>[!]<br>设连通图 $G$的顶点集合为$V$，有$n$个顶点，先证明能选出$n-1$ 条边。<br>根据 $Lemma$，存在最小生成树的边集$E$包含$S$，所以总可以选取$E$中有$S$中没有的边继续进行下去，而由于$E$是最小生成树的边集，显然会生成没有环的子图，直至有$n-1$ 条边。<br>.<br>选出之后，此时有 $S\in E$，同时他们元素个数相等，从而$S&#x3D;E$ ，也就是说，算法生成了最小生成树。</p>
+</blockquote>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,437 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>8.求和与渐近 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>8.求和与渐近</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/7
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%A6%BB%E6%95%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                离散
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00a596">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>求和和渐近符号的介绍。</p>
+<span id="more"></span>
+
+<h1 id="调和级数"><a href="#调和级数" class="headerlink" title="调和级数"></a>调和级数</h1><p>一些木块通过堆叠能超出桌子多长？一种处理方法是贪心法，从最上方开始，移动直到不能移动为止。</p>
+<p>记末状态第 $k$块距离桌子边缘的距离为$r_k$，贪心下上面$k-1$块质心应该恰好在第$k$ 块的边缘。$c_k&#x3D;r_{k+1}$ 。那么利用质心的定义，有：</p>
+<p>
+$$
+c_k=\frac{(k-1)c_{k-1}+1\cdot (r_k-\frac{1}{2})}{k}
+$$
+</p>
+
+<p>代入 $c_k&#x3D;r_{k+1}$ 得到：</p>
+<p>
+$$
+r_{k+1}=r_k-\frac{1}{2k}
+$$
+</p>
+
+<p>也就是说第 $k$块比第$k+1$块多了$\frac{1}{2k}$。那么利用$r_{n+1}&#x3D;0$ 就有：</p>
+<p>
+$$
+r_1=\sum_{i=1}^n \frac{1}{2i}
+$$
+</p>
+
+<p>实际上，求和</p>
+<p>
+$$
+H_n=\sum_{i=1}^n \frac{1}{i}
+$$
+</p>
+
+<p>被称为调和级数。他是发散的，因为 $\frac{1}{i}$从$k$加到$2k$一定大于$\frac{1}{2}$。 如果注意力涣散注意不到这一点，我们可以使用积分估计。由于$f(1)&#x3D;1,f(n)&#x3D;\frac{1}{n}$ ，并计算</p>
+<p>
+$$
+\int_1^n \frac{dx}{x}dx=ln(n)
+$$
+</p>
+
+<p>那么就得到</p>
+<p>
+$$
+\frac{1}{n}+ln(n)\leq H_n\leq 1+ln(n)
+$$
+</p>
+
+<p>也就是说，$H_n\sim ln(n)$，这也给出了$H_n$ 发散的证据。同时，他们的差是收敛的，也就是欧拉常数：</p>
+<p>
+$$
+\gamma = \lim_{n \to \infty} \left( \sum_{k=1}^{n} \frac{1}{k} - \ln(n) \right)
+$$
+</p>
+
+<h1 id="阶乘"><a href="#阶乘" class="headerlink" title="阶乘"></a>阶乘</h1><p>我们熟知的</p>
+<p>
+$$
+n!=\prod_{i=1}^ni
+$$
+</p>
+
+<p>并不能很好地看出 $n!$ 有多大，一种简单的想法是取对数得到</p>
+<p>
+$$
+ln(n!)=\sum_{i+1}^nln(i)
+$$
+</p>
+
+<p>然后我们运用积分估计，$f(x)&#x3D;ln(x)$ ，计算</p>
+<p>
+$$
+\int_1^nlnxdx=(xln(x)-x)\bigg|_1^n=nln(n)-n+1
+$$
+</p>
+
+<p>那么就是</p>
+<p>
+$$
+nln(n)-n+1\leq ln(n!)\leq ln(n)+nln(n)-n+1
+$$
+</p>
+
+<p>还原成阶乘就得到</p>
+<p>
+$$
+\frac{n^n}{e^{n-1}}\leq n!\leq \frac{n^{n+1}}{e^{n-1}}
+$$
+</p>
+
+<p>这就清楚多了。但实际上可以更加精确。</p>
+<h2 id="斯特林公式-Stirling’s-Formula"><a href="#斯特林公式-Stirling’s-Formula" class="headerlink" title="斯特林公式(Stirling’s Formula)"></a>斯特林公式(Stirling’s Formula)</h2><p>
+$$
+n!=(\frac{n}{e})^n\cdot \sqrt{2\pi n}\cdot e^{\epsilon(n)}
+$$
+</p>
+
+<p>其中 $\frac{1}{12n+1}\leq \epsilon(n)\leq \frac{1}{12n}$，从而$n$较大的时候$e^{\epsilon(n)}$ 几乎可以忽略。那么就有</p>
+<p>
+$$
+n!\sim\sqrt{2\pi n}(\frac{n}{e})^n
+$$
+</p>
+
+<h1 id="渐近记号"><a href="#渐近记号" class="headerlink" title="渐近记号"></a>渐近记号</h1><p>我们已经熟悉了</p>
+<h4 id="波浪号-tilde"><a href="#波浪号-tilde" class="headerlink" title="波浪号(tilde)"></a>波浪号(tilde)</h4><p>
+$$
+f(x)\sim g(x)\ \ \text{if } \lim_{x\to \infty} \frac{f(x)}{g(x)}=1
+$$
+</p>
+
+<h4 id="大-O-记号"><a href="#大-O-记号" class="headerlink" title="大 $O$ 记号"></a>大 $O$ 记号</h4><p>
+$$
+f(x)=O(g(x))\ \ \text{ if} \lim_{x\to \infty}|\frac{f(x)}{g(x)}|<\alpha \ \ \text{(finite)}
+$$
+</p>
+
+<p>就是说 $f(x)$增长得没有$g(x)$快。记号可能是$f(x)\leq O(g(x))$(但不会写大于)或者$f(x)\ \text{is  } O(g(x))$或者$f(x)\in O(g(x))$ 。要证明，只要考虑比值极限是否有限即可。</p>
+<p>例如， $10^i x^2&#x3D;O(x^2)$ ，$x^i&#x3D;O(e^x)$ ，$10&#x3D;O(1)$，其中$i$ 是常数。 </p>
+<h4 id="Omega-记号"><a href="#Omega-记号" class="headerlink" title="$\Omega$ 记号"></a>$\Omega$ 记号</h4><p>
+$$
+f(x)=\Omega (g(x))\ \ \text{ if} \lim_{x\to \infty}|\frac{f(x)}{g(x)}|>0
+$$
+</p>
+
+<p>与大 $O$对应，表示了增长的下界。所以对应的可以说$f(x)\geq \Omega(g(x))$ 。<br><strong>Thm</strong> : $f(x)&#x3D;O(g(x)) \text{ 当且仅当 } g(x)&#x3D;\Omega(f(x))$ .</p>
+<h4 id="Theta-记号-f-x-Theta-g-x-如果既有-O-又有-Omega-，也就是比值的极限大于-0-而且有限。"><a href="#Theta-记号-f-x-Theta-g-x-如果既有-O-又有-Omega-，也就是比值的极限大于-0-而且有限。" class="headerlink" title="$\Theta$记号$f(x)&#x3D;\Theta(g(x))$如果既有$O$又有$\Omega$，也就是比值的极限大于$0$ 而且有限。"></a>$\Theta$记号$f(x)&#x3D;\Theta(g(x))$如果既有$O$又有$\Omega$，也就是比值的极限大于$0$ 而且有限。</h4><p>
+$$
+\begin{aligned} \text{总结: } & \text{忽略常数，可以简单类比：} \\ O & \text{ means } \le \\ \Omega & \text{ means } \ge \\ \Theta & \text{ means } = \end{aligned}
+$$
+</p>
+
+<p>那么自然就会想到还有小于号和大于号。对应就是 $o$和$\omega$ 。</p>
+<h4 id="o-记号"><a href="#o-记号" class="headerlink" title="$o$ 记号"></a>$o$ 记号</h4><p>
+$$
+f(x)=o(g(x))\ \ \text{if } \frac{f(x)}{g(x)}=0
+$$
+</p>
+
+<h4 id="omega-记号"><a href="#omega-记号" class="headerlink" title="$\omega$ 记号"></a>$\omega$ 记号</h4><p>
+$$
+f(x)=\omega(g(x))\ \ \text{if } \frac{f(x)}{g(x)}=\infty
+$$
+</p>
+
+<p>一个神秘的证明：</p>
+<p>设 $f(n)&#x3D;\sum_{i&#x3D;1}^n i$，那么$f(n)&#x3D;O(n)$ 。</p>
+<blockquote>
+<p>[!证明]<br>利用归纳法。<br>归纳假设为 $P(n): f(n)&#x3D;O(n)$ 。</p>
+<p>奠基步：$f(1)&#x3D;O(1)$ 显然成立。</p>
+<p>归纳步：假设 $P(k)$ 成立，$f(k+1)&#x3D;f(k)+k+1&#x3D;O(n)+O(n)&#x3D;O(n)$<br>从而由归纳公理，命题成立。</p>
+</blockquote>
+<p>归纳假设假定了 $n$ ，这实际上是不合理的。 </p>
+<p>所以尽量不要在归纳法中运用渐近记号。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

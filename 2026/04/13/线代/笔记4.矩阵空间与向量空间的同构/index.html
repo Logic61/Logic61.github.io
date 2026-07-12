@@ -1,0 +1,609 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>笔记4.矩阵空间与向量空间的同构 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>笔记4.矩阵空间与向量空间的同构</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/13
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%BA%BF%E4%BB%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                线代
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00a596">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>对一个向量，我们把它看做 $n$个坐标，构建从向量到$n$ 个坐标的同构。<br>矩阵实际上也就是向量的堆叠，那类似的我们把它看做 $n$ 个向量，也可以构建同构。</p>
+<h2 id="矩阵的展开-Matrix-Vectorization"><a href="#矩阵的展开-Matrix-Vectorization" class="headerlink" title="矩阵的展开 (Matrix Vectorization)"></a>矩阵的展开 (Matrix Vectorization)</h2><ul>
+<li><p><strong>列展开 $\text{cs}(A)$</strong>：将 $m \times n$矩阵$A$的元素自左向右、一列一列地排列成一个$mn$ 维列向量。</p>
+<ul>
+<li><strong>示例</strong>：若 $A &#x3D; \begin{pmatrix} 1 &amp; 4 \ 2 &amp; 5 \ 3 &amp; 6 \end{pmatrix}$，则 $\text{cs}(A) &#x3D; [1, 2, 3, 4, 5, 6]^T$。</li>
+</ul>
+</li>
+<li><p><strong>行展开 $\text{rs}(A)$</strong>：类似地，将矩阵按行顺序排列成一个行向量。</p>
+<ul>
+<li><strong>示例</strong>：对于上述矩阵，$rs(A) &#x3D; [1, 4, 2, 5, 3, 6]$。</li>
+</ul>
+</li>
+</ul>
+<p>这显然是同构，也就是说，我们完全可以把矩阵看成一个超级向量。</p>
+<hr>
+<h2 id="Kronecker-积-Kronecker-Product"><a href="#Kronecker-积-Kronecker-Product" class="headerlink" title="Kronecker 积 (Kronecker Product)"></a>Kronecker 积 (Kronecker Product)</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>设矩阵 $A &#x3D; [a_{ij}] \in M_{m,n}(K)$，矩阵 $B \in M_{p,q}(K)$。它们的 Kronecker 积（也称张量积）记为 $A \otimes B$，是一个 $mp \times nq$ 的分块矩阵：</p>
+<p>
+$$
+A \otimes B = \begin{pmatrix} a_{11}B & \dots & a_{1n}B \\ \vdots & \ddots & \vdots \\ a_{m1}B & \dots & a_{mn}B \end{pmatrix}
+$$
+</p>
+
+<p>即用 $A$的每个元素$a_{ij}$乘以矩阵$B$ 得到的分块矩阵。</p>
+<h3 id="关键性质"><a href="#关键性质" class="headerlink" title="关键性质"></a>关键性质</h3><ul>
+<li><p><strong>非交换性</strong>：一般情况下，$A \otimes B \neq B \otimes A$。</p>
+</li>
+<li><p><strong>结合律</strong>：$(A \otimes B) \otimes C &#x3D; A \otimes (B \otimes C)$。</p>
+</li>
+<li><p><strong>特殊情形</strong>：当 $A$为列向量且$C$为行向量时（或反之），在特定维度下可能满足$A \otimes C &#x3D; C \otimes A &#x3D; AC$。</p>
+</li>
+</ul>
+<hr>
+<h2 id="运算示例"><a href="#运算示例" class="headerlink" title="运算示例"></a>运算示例</h2><h3 id="基础计算"><a href="#基础计算" class="headerlink" title="基础计算"></a>基础计算</h3><p>若 $A &#x3D; \begin{pmatrix} 1 &amp; 2 &amp; 3 \ 4 &amp; 5 &amp; 6 \end{pmatrix}$，$B &#x3D; \begin{pmatrix} a &amp; b \ c &amp; d \end{pmatrix}$，则：</p>
+<p>
+$$
+A \otimes B = \begin{pmatrix} B & 2B & 3B \\ 4B & 5B & 6B \end{pmatrix} = \begin{pmatrix} a & b & 2a & 2b & 3a & 3b \\ c & d & 2c & 2d & 3c & 3d \\ 4a & 4b & 5a & 5b & 6a & 6b \\ 4c & 4d & 5c & 5d & 6c & 6d \end{pmatrix}
+$$
+</p>
+
+<h3 id="向量间的积"><a href="#向量间的积" class="headerlink" title="向量间的积"></a>向量间的积</h3><p>若 $A &#x3D; [1, 2, 3]^T$，$B &#x3D; [a, b]^T$，则：</p>
+<ul>
+<li><p>$A \otimes B &#x3D; [a, b, 2a, 2b, 3a, 3b]^T$-$B \otimes A &#x3D; [a, 2a, 3a, b, 2b, 3b]^T$</p>
+<p>  （此处直观展示了顺序不同导致的结果差异）</p>
+</li>
+</ul>
+<hr>
+<h2 id="4-混合乘积公式-Mixed-Product-Property"><a href="#4-混合乘积公式-Mixed-Product-Property" class="headerlink" title="4. 混合乘积公式 (Mixed-Product Property)"></a>4. 混合乘积公式 (Mixed-Product Property)</h2><p>这是 Kronecker 积最重要的性质之一，联系了普通矩阵乘法与张量积：</p>
+<p>
+$$
+(A \otimes B)(C \otimes D) = (AC) \otimes (BD)
+$$
+</p>
+
+<ul>
+<li><p><strong>前提条件</strong>：矩阵乘法 $AC$和$BD$必须有意义（即$A$的列数等于$C$ 的行数，$B$的列数等于$D$ 的行数）。</p>
+</li>
+<li><p><strong>推导逻辑</strong>：通过分块矩阵乘法规律可以证明，左侧展开后的子块项 $\sum a_{ik} c_{kj} B D$正好对应右侧$(AC) \otimes (BD)$ 的构造。</p>
+</li>
+</ul>
+<h2 id="Kronecker-积的核心性质"><a href="#Kronecker-积的核心性质" class="headerlink" title="Kronecker 积的核心性质"></a>Kronecker 积的核心性质</h2><ul>
+<li><p><strong>结合律</strong>：$(A \otimes B) \otimes C &#x3D; A \otimes (B \otimes C)$</p>
+</li>
+<li><p><strong>混合乘积公式</strong>：$(A \otimes B)(C \otimes D) &#x3D; AC \otimes BD$</p>
+</li>
+<li><p><strong>逆矩阵</strong>：$(A \otimes B)^{-1} &#x3D; A^{-1} \otimes B^{-1}$</p>
+</li>
+<li><p><strong>转置</strong>：$(A \otimes B)^T &#x3D; A^T \otimes B^T$- <strong>正交性保持</strong>：若$A, B$是正交矩阵，则$A \otimes B$ 也是正交矩阵。</p>
+</li>
+</ul>
+<hr>
+<h2 id="代数特征（秩、行列式、特征值）"><a href="#代数特征（秩、行列式、特征值）" class="headerlink" title="代数特征（秩、行列式、特征值）"></a>代数特征（秩、行列式、特征值）</h2><ol>
+<li><p><strong>秩</strong>：$\text{rank}(A \otimes B) &#x3D; \text{rank}(A) \cdot \text{rank}(B)$2. <strong>行列式</strong>：设$A$为$m$ 阶方阵，$B$为$n$阶方阵，则$|A \otimes B| &#x3D; |A|^n |B|^m$</p>
+</li>
+<li><p><strong>特征值</strong>：</p>
+<ul>
+<li><p>设 $A$的特征值为$\lambda_i$，$B$的特征值为$\mu_j$。</p>
+</li>
+<li><p>$A \otimes B$的特征值为$\lambda_i \mu_j$。</p>
+</li>
+<li><p><strong>Kronecker 和</strong> $A \otimes I_n + I_m \otimes B$的特征值为$\lambda_i + \mu_j$。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="特殊实例：Hadamard-矩阵的构造"><a href="#特殊实例：Hadamard-矩阵的构造" class="headerlink" title="特殊实例：Hadamard 矩阵的构造"></a>特殊实例：Hadamard 矩阵的构造</h2><p>利用 Kronecker 积可以递归构造特殊的正交矩阵（如 Hadamard 矩阵）：</p>
+<ul>
+<li>$A_2 &#x3D; \frac{1}{\sqrt{2}} \begin{pmatrix} 1 &amp; 1 \ 1 &amp; -1 \end{pmatrix}$-$A_4 &#x3D; A_2 \otimes A_2 &#x3D; \frac{1}{2} \begin{pmatrix} A_2 &amp; A_2 \ A_2 &amp; -A_2 \end{pmatrix}$-$A_8 &#x3D; A_2 \otimes A_4$ … 以此类推。</li>
+</ul>
+<hr>
+<h2 id="矩阵列展开的核心定理"><a href="#矩阵列展开的核心定理" class="headerlink" title="矩阵列展开的核心定理"></a>矩阵列展开的核心定理</h2><p>这是连接矩阵方程与线性方程组的桥梁：</p>
+<h3 id="定理：-text-cs-AXB-B-T-otimes-A-text-cs-X"><a href="#定理：-text-cs-AXB-B-T-otimes-A-text-cs-X" class="headerlink" title="定理：$\text{cs}(AXB) &#x3D; (B^T \otimes A) \text{cs}(X)$"></a><strong>定理：$\text{cs}(AXB) &#x3D; (B^T \otimes A) \text{cs}(X)$</strong></h3><h4 id="证明逻辑拆解："><a href="#证明逻辑拆解：" class="headerlink" title="证明逻辑拆解："></a>证明逻辑拆解：</h4><ol>
+<li><p><strong>左乘变换</strong>：$\text{cs}(AX) &#x3D; (I_n \otimes A) \text{cs}(X)$。这说明 $A$对$X$ 的左乘对应于列展开后的块对角阵相乘。<br><img src="/images/Pasted_image_20260413160037.png"></p>
+</li>
+<li><p><strong>右乘变换</strong>：$\text{cs}(XB) &#x3D; (B^T \otimes I_m) \text{cs}(X)$。注意此处 $B$ 需要转置。<br> <img src="/images/Pasted_image_20260413160048.png"></p>
+</li>
+<li><p><strong>合成结论</strong>：通过结合律 $\text{cs}(A(XB)) &#x3D; (I_n \otimes A) \text{cs}(XB) &#x3D; (I_n \otimes A)(B^T \otimes I_m) \text{cs}(X)$，利用混合乘积公式化简为 $(B^T \otimes A) \text{cs}(X)$。<br><img src="/images/Pasted_image_20260413160059.png"></p>
+</li>
+</ol>
+<hr>
+<h2 id="线性变换的矩阵表示"><a href="#线性变换的矩阵表示" class="headerlink" title="线性变换的矩阵表示"></a>线性变换的矩阵表示</h2><p>设 $\mathcal{A}: X \mapsto AXB$是矩阵空间$M_{m,n}(K)$ 上的线性变换：</p>
+<ul>
+<li><p>在标准基 $E_{1,1}, E_{2,1}, \dots, E_{m,n}$（即按列展开排序）下，该线性变换对应的矩阵正是 <strong>$B^T \otimes A$</strong>。</p>
+</li>
+<li><p><strong>直观理解</strong>：</p>
+<ul>
+<li><p>$A$作用于$X$ 的<strong>行变换</strong>。</p>
+</li>
+<li><p>$B$作用于$X$ 的<strong>列变换</strong>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="线性矩阵方程的向量化求解"><a href="#线性矩阵方程的向量化求解" class="headerlink" title="线性矩阵方程的向量化求解"></a>线性矩阵方程的向量化求解</h2><p>基于前文的列展开性质，可以将复杂的矩阵方程转化为标准的线性方程组形式。</p>
+<ul>
+<li><strong>推论</strong>：$X \in M_{m,n}(K)$是矩阵方程$\sum_{j&#x3D;1}^{s} A_j X B_j &#x3D; C$的解，<strong>当且仅当</strong>其列展开$\text{cs}(X)$ 满足：</li>
+</ul>
+<p>
+$$
+\left( \sum_{j=1}^{s} B_j^T \otimes A_j \right) \text{cs}(X) = \text{cs}(C)
+$$
+</p>
+
+<p>其中 $A_j, B_j$分别为$m, n$ 级方阵，$C \in M_{m,n}(K)$。</p>
+<ul>
+<li><strong>本质</strong>：这利用了 Kronecker 积将矩阵算子“拉直”为算子矩阵，使得我们能用经典的线性代数工具（如高斯消元法）来处理矩阵方程。</li>
+</ul>
+<hr>
+<h2 id="张量积空间-Tensor-Product-Space"><a href="#张量积空间-Tensor-Product-Space" class="headerlink" title="张量积空间 (Tensor Product Space)"></a>张量积空间 (Tensor Product Space)</h2><p>将张量积从矩阵运算上升到线性空间的构造。</p>
+<ul>
+<li><strong>定义</strong>：设 $U &#x3D; R^m, V &#x3D; R^n$ 是两个线性空间，集合</li>
+</ul>
+<p>
+$$
+T = \left\{ \sum_{i=1}^{k} \alpha_i \otimes \beta_i \mid \alpha_i \in U, \beta_i \in V, k \geq 1 \right\}
+$$
+</p>
+
+<p>构成一个线性空间，称为 $U$与$V$的<strong>张量积空间</strong>，记为$U \otimes V$。</p>
+<ul>
+<li><p><strong>基与维数</strong>：</p>
+<ul>
+<li><p>若 $\alpha_1, \dots, \alpha_m$是$U$ 的基，$\beta_1, \dots, \beta_n$是$V$ 的基。</p>
+</li>
+<li><p>则所有可能的组合 ${\alpha_i \otimes \beta_j}$构成$U \otimes V$ 的一组基。</p>
+</li>
+<li><p><strong>结论</strong>：$U \otimes V \cong R^{mn}$，即张量积空间的维数是原空间维数的乘积。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="线性变换的张量积"><a href="#线性变换的张量积" class="headerlink" title="线性变换的张量积"></a>线性变换的张量积</h2><p>这是张量积在算子层面的推广。</p>
+<ul>
+<li><strong>定义</strong>：设 $\mathcal{A} \in \text{Hom}(U), \mathcal{B} \in \text{Hom}(V)$，定义线性变换 $\mathcal{A} \otimes \mathcal{B}: U \otimes V \to U \otimes V$ 为：</li>
+</ul>
+<p>
+$$
+\mathcal{A} \otimes \mathcal{B} (\alpha \otimes \beta) = (\mathcal{A}\alpha) \otimes (\mathcal{B}\beta)
+$$
+</p>
+
+<p>该变换称为变换 $\mathcal{A}$与$\mathcal{B}$ 的张量积。</p>
+<ul>
+<li><p><strong>矩阵表示</strong>：</p>
+<p>  若 $\mathcal{A}$在基${\alpha_i}$下的矩阵为$A$，$\mathcal{B}$在基${\beta_j}$下的矩阵为$B$，则线性变换 $\mathcal{A} \otimes \mathcal{B}$在$U \otimes V$的基${\alpha_i \otimes \beta_j}$ 下的矩阵恰好就是 <strong>$A \otimes B$</strong>。</p>
+</li>
+</ul>
+<p>这些东西实际上是可以简化结构，让我们更清楚地看到矩阵的，例如我们可以看一些问题：</p>
+<hr>
+<h3 id="题目：矩阵方程解空间的性质证明"><a href="#题目：矩阵方程解空间的性质证明" class="headerlink" title="题目：矩阵方程解空间的性质证明"></a>题目：矩阵方程解空间的性质证明</h3><p>设 $A, B$分别是$m, n$级方阵，且$\text{rank}(A) &#x3D; r$，$\text{rank}(B) &#x3D; s$。证明：</p>
+<p>
+$$
+W = \{ X \in M_{m,n}(K) \mid AXB = 0 \}
+$$
+</p>
+
+<p>是矩阵空间 $M_{m,n}(K)$的子空间，且$\dim W &#x3D; mn - rs$。</p>
+<hr>
+<h3 id="1-证明-W-是子空间"><a href="#1-证明-W-是子空间" class="headerlink" title="1. 证明 $W$ 是子空间"></a>1. 证明 $W$ 是子空间</h3><p>根据子空间的定义，需验证对加法和数乘的封闭性：</p>
+<ul>
+<li><strong>加法封闭性</strong>：设 $X, Y \in W$，则有 $AXB &#x3D; 0$且$AYB &#x3D; 0$。</li>
+</ul>
+<p>
+$$
+A(X + Y)B = AXB + AYB = 0 + 0 = 0
+$$
+</p>
+
+<p>故 $X + Y \in W$。</p>
+<ul>
+<li><strong>数乘封闭性</strong>：设 $X \in W, k \in K$，则：</li>
+</ul>
+<p>
+$$
+A(kX)B = k(AXB) = k \cdot 0 = 0
+$$
+</p>
+
+<p>故 $kX \in W$。</p>
+<pre><code>由此可知，$W$是$M_{m,n}(K)$ 的子空间。
+</code></pre>
+<hr>
+<h3 id="2-证明-dim-W-mn-rs"><a href="#2-证明-dim-W-mn-rs" class="headerlink" title="2. 证明 $\dim W &#x3D; mn - rs$"></a>2. 证明 $\dim W &#x3D; mn - rs$</h3><p>这里使用了**列展开（Vectorization）**和 <strong>Kronecker 积</strong> 的性质将矩阵问题转化为线性方程组问题。</p>
+<h4 id="1-方程转化"><a href="#1-方程转化" class="headerlink" title="(1) 方程转化"></a>(1) 方程转化</h4><p>利用恒等式 $\text{cs}(AXB) &#x3D; (B^T \otimes A) \text{cs}(X)$，原矩阵方程 $AXB &#x3D; 0$ 等价于线性方程组：</p>
+<p>
+$$
+(B^T \otimes A) \cdot \text{cs}(X) = \mathbf{0}
+$$
+</p>
+
+<p>其中，$\text{cs}(X)$是一个$mn$维的列向量，系数矩阵为$M &#x3D; B^T \otimes A$，其规模为 $mn \times mn$。</p>
+<h4 id="2-确定系数矩阵的秩"><a href="#2-确定系数矩阵的秩" class="headerlink" title="(2) 确定系数矩阵的秩"></a>(2) 确定系数矩阵的秩</h4><p>根据 Kronecker 积关于秩的性质：</p>
+<p>
+$$
+\text{rank}(B^T \otimes A) = \text{rank}(B^T) \cdot \text{rank}(A)
+$$
+</p>
+
+<p>由于矩阵转置不改变秩，且已知 $\text{rank}(A) &#x3D; r, \text{rank}(B) &#x3D; s$，则：</p>
+<p>
+$$
+\text{rank}(B^T \otimes A) = s \cdot r = rs
+$$
+</p>
+
+<h4 id="3-利用维数公式"><a href="#3-利用维数公式" class="headerlink" title="(3) 利用维数公式"></a>(3) 利用维数公式</h4><p>子空间 $W$ 的维数等价于上述齐次线性方程组解空间的维数。根据线性方程组解空间的维数公式（$n$ 维空间减去系数矩阵的秩）：</p>
+<p>
+$$
+\dim W = \dim (\text{解空间}) = mn - \text{rank}(B^T \otimes A) = mn - rs
+$$
+</p>
+
+<p><strong>证毕。</strong></p>
+<h3 id="题目：矩阵变换-mathcal-S-的特征值与对角化证明"><a href="#题目：矩阵变换-mathcal-S-的特征值与对角化证明" class="headerlink" title="题目：矩阵变换 $\mathcal{S}$ 的特征值与对角化证明"></a>题目：矩阵变换 $\mathcal{S}$ 的特征值与对角化证明</h3><p>设 $A, B$分别是$m, n$阶复矩阵，其特征值分别为${\lambda_1, \dots, \lambda_m}$与${\mu_1, \dots, \mu_n}$。</p>
+<p>定义映射 $\mathcal{S}: M_{m,n}(\mathbb{C}) \to M_{m,n}(\mathbb{C})$：</p>
+<p>
+$$
+\mathcal{S}(X) = AX - XB + AXB^2
+$$
+</p>
+
+<hr>
+<h3 id="1-证明-mathcal-S-是线性变换"><a href="#1-证明-mathcal-S-是线性变换" class="headerlink" title="1. 证明 $\mathcal{S}$ 是线性变换"></a>1. 证明 $\mathcal{S}$ 是线性变换</h3><p>根据线性变换的定义，需满足加法与数乘的齐次性：</p>
+<ul>
+<li><strong>线性度验证</strong>：利用矩阵乘法的分配律与结合律：</li>
+</ul>
+<p>
+$$
+\mathcal{S}(k_1 X + k_2 Y) = A(k_1 X + k_2 Y) - (k_1 X + k_2 Y)B + A(k_1 X + k_2 Y)B^2
+$$
+</p>
+
+<p>
+$$
+= k_1(AX - XB + AXB^2) + k_2(AY - YB + AYB^2) = k_1 \mathcal{S}(X) + k_2 \mathcal{S}(Y)
+$$
+</p>
+
+<p>故 $\mathcal{S}$是$M_{m,n}(\mathbb{C})$ 上的线性变换。</p>
+<hr>
+<h3 id="2-求变换-mathcal-S-的所有特征值"><a href="#2-求变换-mathcal-S-的所有特征值" class="headerlink" title="2. 求变换 $\mathcal{S}$ 的所有特征值"></a>2. 求变换 $\mathcal{S}$ 的所有特征值</h3><p>利用<strong>列展开（Vectorization）</strong>，我们将 $\mathcal{S}(X)$ 转换为向量形式：</p>
+<p>
+$$
+\text{cs}(\mathcal{S}(X)) = \text{cs}(AXI_n - I_m XB + AXB^2)
+$$
+</p>
+
+<p>根据公式 $\text{cs}(AXB) &#x3D; (B^T \otimes A) \text{cs}(X)$，提取 $\text{cs}(X)$得到变换矩阵$M$：</p>
+<p>
+$$
+M = (I_n \otimes A) - (B^T \otimes I_m) + ((B^2)^T \otimes A)
+$$
+</p>
+
+<ul>
+<li><p><strong>特征值计算</strong>：</p>
+<p>  已知 $A$的特征值为$\lambda_i$，$B$（及 $B^T$）的特征值为 $\mu_j$。</p>
+<p>  根据 Kronecker 积的性质，特征值的对应关系为：</p>
+<ul>
+<li>$I_n \otimes A$的特征值为$1 \cdot \lambda_i &#x3D; \lambda_i$-$B^T \otimes I_m$的特征值为$\mu_j \cdot 1 &#x3D; \mu_j$-$(B^T)^2 \otimes A$的特征值为$\mu_j^2 \cdot \lambda_i$由于这些项在同一组基（由$A$和$B^T$的特征向量构成的张量积基）下可以同时三角化，因此变换$\mathcal{S}$ 的特征值为：</li>
+</ul>
+</li>
+</ul>
+<p>
+$$
+\lambda'_{ij} = \lambda_i - \mu_j + \lambda_i \mu_j^2, \quad (i=1,\dots,m; \ j=1,\dots,n)
+$$
+</p>
+
+<hr>
+<h3 id="3-对角化证明与特征向量"><a href="#3-对角化证明与特征向量" class="headerlink" title="3. 对角化证明与特征向量"></a>3. 对角化证明与特征向量</h3><p><strong>证明：</strong></p>
+<ol>
+<li><p><strong>前提条件</strong>：已知 $A$和$B$可对角化。这意味着$A$有$m$个线性无关的特征向量$\alpha_i$， $B^T$有$n$个线性无关的特征向量$\gamma_j$（注意 $B$可对角化则$B^T$ 亦然，且特征值相同）。</p>
+</li>
+<li><p><strong>构造变换 $\mathcal{S}$ 的特征向量</strong>：</p>
+<p> 在张量积空间 $M_{m,n}(\mathbb{C})$中，变换$\mathcal{S}$ 的特征向量对应的“矩阵形式”为：</p>
+</li>
+</ol>
+<p>
+$$
+X_{ij} = \alpha_i \beta_j^H \quad (\text{或更简单地记为 } \alpha_i \text{ 与 } B \text{ 的左特征向量的积})
+$$
+</p>
+
+<p>更严谨地说，若 $A\alpha_i &#x3D; \lambda_i \alpha_i$，且 $\beta_j$是$B$的特征向量（满足$B\beta_j &#x3D; \mu_j \beta_j$并不直观，这里通常看作$X \beta_j$ 的映射关系）。</p>
+<ol start="3">
+<li><p><strong>结论</strong>：</p>
+<p> 由于我们能构造出 $m \times n$个形如$E_{ij} &#x3D; \alpha_i \otimes \gamma_j$的线性无关特征向量，而空间$M_{m,n}(\mathbb{C})$的维数恰好也是$mn$，特征向量集构成了空间的一组基。</p>
+<p> <strong>故 $\mathcal{S}$ 可对角化。</strong></p>
+</li>
+</ol>
+<ul>
+<li><p><strong>$\mathcal{S}$ 的特征向量（矩阵形式）</strong>：</p>
+<p>  即满足 $\mathcal{S}(X) &#x3D; \lambda’_{ij} X$的矩阵。若$A \alpha_i &#x3D; \lambda_i \alpha_i$且$\beta_j^T B &#x3D; \mu_j \beta_j^T$（即 $\beta_j^T$是$B$ 的左特征向量），则：</p>
+</li>
+</ul>
+<p>
+$$
+X_{ij} = \alpha_i \beta_j^T
+$$
+</p>
+
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

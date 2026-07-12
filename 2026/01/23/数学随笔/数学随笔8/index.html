@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>数学随笔8 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>数学随笔8</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/1/23
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%95%B0%E5%AD%A6%E9%9A%8F%E7%AC%94/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                数学随笔
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ff7d73">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>归纳法在线性代数。</p>
+<span id="more"></span>
+
+<h2 id="实对称矩阵可以相似对角化"><a href="#实对称矩阵可以相似对角化" class="headerlink" title="实对称矩阵可以相似对角化"></a>实对称矩阵可以相似对角化</h2><h3 id="1-定理描述"><a href="#1-定理描述" class="headerlink" title="1. 定理描述"></a>1. 定理描述</h3><p>实对称矩阵 $A$必可写成$A &#x3D; PDP^{-1} &#x3D; PDP^T$，其中 $P$ 是正交矩阵，$D$ 是实对角矩阵。 </p>
+<h3 id="2-数学归纳法证明逻辑"><a href="#2-数学归纳法证明逻辑" class="headerlink" title="2. 数学归纳法证明逻辑"></a>2. 数学归纳法证明逻辑</h3><p><strong>假设</strong>：$n-1$阶实对称矩阵均可正交对角化。 <strong>考察$n$阶实对称矩阵$A$：</strong> </p>
+<ol>
+<li><strong>构造基底</strong>：设 $\lambda_1$是$A$ 的一个实特征值，$\alpha_1$是其对应的单位特征向量。将$\alpha_1$扩充为$\mathbb{R}^n$的一组基，经正交化、单位化得到标准正交基$\alpha_1, \alpha_2, \dots, \alpha_n$，组成正交矩阵 $P &#x3D; [\alpha_1 \quad \alpha_2 \dots \alpha_n]$。 </li>
+<li><strong>矩阵变换</strong>：</li>
+</ol>
+<p>
+$$
+A [\alpha_1 \quad \alpha_2 \dots \alpha_n] = [\lambda_1 \alpha_1 \quad A\alpha_2 \dots A\alpha_n]
+$$
+</p>
+
+<p>变换为块矩阵形式：</p>
+<p>
+$$
+P^T A P = \begin{bmatrix} \lambda_1 & \mathbf{0} \\ \mathbf{0} & B \end{bmatrix}
+$$
+</p>
+
+<p>(由于 $P^T A P$仍为对称矩阵，故第一行其余元素必为$0$)<br>3. <strong>套用归纳假设</strong>：对于 $n-1$阶实对称矩阵$B$，存在正交阵 $P_1$使得$P_1^T B P_1 &#x3D; D_1$。 4. <strong>最终对角化</strong>：</p>
+<p>
+$$
+A = P \begin{bmatrix} 1 & \mathbf{0} \\ \mathbf{0} & P_1 \end{bmatrix} \begin{bmatrix} \lambda_1 & \mathbf{0} \\ \mathbf{0} & D_1 \end{bmatrix} \left( P \begin{bmatrix} 1 & \mathbf{0} \\ \mathbf{0} & P_1 \end{bmatrix} \right)^T
+$$
+</p>
+
+<hr>
+<h2 id="复矩阵的-Schur-分解-Schur-Decomposition"><a href="#复矩阵的-Schur-分解-Schur-Decomposition" class="headerlink" title="复矩阵的 Schur 分解 (Schur Decomposition)"></a>复矩阵的 Schur 分解 (Schur Decomposition)</h2><h3 id="1-定理描述-1"><a href="#1-定理描述-1" class="headerlink" title="1. 定理描述"></a>1. 定理描述</h3><p><strong>定理</strong>：设 $A$为$n$阶复方阵，则必存在一个 <strong>酉矩阵 (Unitary Matrix)</strong>$U$（满足 $U^H U &#x3D; I$），使得：</p>
+<p>
+$$
+U^H A U = T
+$$
+</p>
+
+<p>其中 $T$是一个<strong>上三角矩阵</strong>，其对角线元素即为$A$ 的特征值。</p>
+<hr>
+<h3 id="2-数学归纳法证明过程"><a href="#2-数学归纳法证明过程" class="headerlink" title="2. 数学归纳法证明过程"></a>2. 数学归纳法证明过程</h3><p>该证明逻辑与实对称矩阵的正交对角化非常相似，但在复数域内进行。</p>
+<p><strong>A. 基础步骤 ($n&#x3D;1$)</strong><br>$1 \times 1$ 矩阵本身就是上三角阵，结论显然成立。</p>
+<p><strong>B. 归纳假设</strong><br>假设所有 $n-1$ 阶复矩阵都可以通过酉变换化为上三角阵。</p>
+<p><strong>C. 归纳步骤 ($n-1 \to n$)</strong></p>
+<ol>
+<li><strong>寻找特征对</strong>：由于是在复数域 $\mathbb{C}$中，由代数基本定理可知$A$至少有一个特征值$\lambda_1$及其单位特征向量$u_1$。</li>
+<li><strong>构造酉阵</strong>：将 $u_1$扩充为$\mathbb{C}^n$的一组标准正交基，构造酉矩阵$U_1 &#x3D; [u_1, u_2, \dots, u_n]$。</li>
+<li><strong>块变换</strong>：</li>
+</ol>
+<p>
+$$
+U_1^H A U_1 = \begin{bmatrix} \lambda_1 & \mathbf{w}^H \\ \mathbf{0} & A_{n-1} \end{bmatrix}
+$$
+</p>
+
+<p>这里 $A_{n-1}$是一个$n-1$阶复矩阵。<em>注意：由于$A$不一定是对称&#x2F;厄米矩阵，右上角$\mathbf{w}^H$ 通常不为零。</em><br>4. <strong>嵌套归纳</strong>：根据假设，存在 $n-1$阶酉阵$V$，使得 $V^H A_{n-1} V &#x3D; T_{n-1}$ 为上三角阵。<br>5. <strong>最终合成</strong>：令 $U &#x3D; U_1 \begin{bmatrix} 1 &amp; \mathbf{0} \ \mathbf{0} &amp; V \end{bmatrix}$，则 $U^H A U$ 为上三角矩阵。</p>
+<h2 id="正规矩阵-Normal-Matrix-的谱定理"><a href="#正规矩阵-Normal-Matrix-的谱定理" class="headerlink" title="正规矩阵 (Normal Matrix) 的谱定理"></a>正规矩阵 (Normal Matrix) 的谱定理</h2><p><strong>命题</strong>：$A$是正规矩阵（即$AA^H &#x3D; A^HA$）的充分必要条件是 $A$ 酉相似于对角阵。</p>
+<blockquote>
+<p>[!abstract] 归纳法逻辑</p>
+<ul>
+<li><strong>基础</strong>：$n&#x3D;1$ 显然。</li>
+<li><strong>归纳</strong>：<ol>
+<li>取 $A$的一个特征值及其单位特征向量$u_1$。</li>
+<li>构造酉阵 $U &#x3D; [u_1, u_2, \dots, u_n]$。</li>
+<li>计算 $U^H A U &#x3D; \begin{bmatrix} \lambda_1 &amp; \mathbf{w}^H \ \mathbf{0} &amp; A_{n-1} \end{bmatrix}$。</li>
+<li><strong>关键点</strong>：利用 $A$是正规矩阵，证明$\mathbf{w}^H &#x3D; \mathbf{0}$，且 $A_{n-1}$ 仍为正规矩阵。</li>
+<li>对 $A_{n-1}$ 使用归纳假设。</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="厄米矩阵-Hermitian-Matrix-的对角化"><a href="#厄米矩阵-Hermitian-Matrix-的对角化" class="headerlink" title="厄米矩阵 (Hermitian Matrix) 的对角化"></a>厄米矩阵 (Hermitian Matrix) 的对角化</h2><p><strong>命题</strong>：复数域下的实对称矩阵版本——厄米矩阵（$A &#x3D; A^H$）必可酉对角化，且特征值均为实数。</p>
+<ul>
+<li><strong>证明差异</strong>：逻辑与实对称矩阵完全一致，只需将“转置 $T$”改为“共轭转置 $H$”，将“正交矩阵”改为“酉矩阵”即可。</li>
+</ul>
+<hr>
+<h3 id="奇异值分解-SVD-的存在性证明"><a href="#奇异值分解-SVD-的存在性证明" class="headerlink" title="奇异值分解 (SVD) 的存在性证明"></a>奇异值分解 (SVD) 的存在性证明</h3><p><strong>命题</strong>：对任意 $m \times n$矩阵$A$，存在 $A &#x3D; U\Sigma V^H$。</p>
+<blockquote>
+<p>[!abstract] 归纳法逻辑</p>
+<ul>
+<li><strong>步骤</strong>：<ol>
+<li>选取 $A^HA$的最大特征值$\sigma_1^2$及其对应单位特征向量$v_1$。</li>
+<li>令 $u_1 &#x3D; \frac{Av_1}{\sigma_1}$。</li>
+<li>分别扩充 $u_1$和$v_1$为$U_1$和$V_1$ 酉矩阵。</li>
+<li>构造 $U_1^H A V_1 &#x3D; \begin{bmatrix} \sigma_1 &amp; \mathbf{0} \ \mathbf{0} &amp; A_{n-1} \end{bmatrix}$。</li>
+<li>对剩余块 $A_{n-1}$ 进行归纳。</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<hr>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

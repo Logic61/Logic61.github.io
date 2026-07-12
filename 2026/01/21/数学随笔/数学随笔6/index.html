@@ -1,0 +1,602 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>数学随笔6 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>数学随笔6</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/1/21
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%95%B0%E5%AD%A6%E9%9A%8F%E7%AC%94/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                数学随笔
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00bcd4">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>高度AI化，因为只是作为整理，马上考线代了，我真的懒得自己整了。</p>
+<span id="more"></span>
+
+<h2 id="矩阵的LU分解"><a href="#矩阵的LU分解" class="headerlink" title="矩阵的LU分解"></a>矩阵的LU分解</h2><p>最实用的方法是基于<strong>高斯消元法</strong>的变形，我们在消元的过程中同时构造 $L$和$U$。</p>
+<h4 id="步骤-1：通过消元构造-U-将矩阵-A-通过初等行变换（只能使用“将某行的倍数加到另一行”这一种变换）转化为上三角矩阵。"><a href="#步骤-1：通过消元构造-U-将矩阵-A-通过初等行变换（只能使用“将某行的倍数加到另一行”这一种变换）转化为上三角矩阵。" class="headerlink" title="步骤 1：通过消元构造 $U$将矩阵$A$ 通过初等行变换（只能使用“将某行的倍数加到另一行”这一种变换）转化为上三角矩阵。"></a>步骤 1：通过消元构造 $U$将矩阵$A$ 通过初等行变换（只能使用“将某行的倍数加到另一行”这一种变换）转化为上三角矩阵。</h4><ul>
+<li><p>这个最终得到的上三角矩阵就是 <strong>$U$</strong>。</p>
+</li>
+<li><p><strong>注意：</strong> 在标准 LU 分解中，不允许进行行交换。如果必须交换行，则需要引入置换矩阵 $P$，变为 $PA&#x3D;LU$。</p>
+</li>
+<li><p>如果把 $U$的对角线元素都改成$1$，把 $U$写成$DU$，就得到 $LDU$分解，这里的$D$是对角阵，$U$是对角线为1的上三角阵。对于对称矩阵，就变成了$LDL^T$ 。</p>
+</li>
+</ul>
+<h4 id="步骤-2：通过消元系数构造-L"><a href="#步骤-2：通过消元系数构造-L" class="headerlink" title="步骤 2：通过消元系数构造 $L$"></a>步骤 2：通过消元系数构造 $L$</h4><p>在进行消元时，如果你使用了操作：$R_i \leftarrow R_i - k \cdot R_j$（将第 $j$行的$k$倍从第$i$行减去），那么这个系数$k$就填在矩阵$L$的第$i$行、第$j$ 列的位置。</p>
+<ul>
+<li><p>$L$的对角线默认为$1$。</p>
+</li>
+<li><p>$L$的其余位置（上三角部分）全为$0$。</p>
+</li>
+</ul>
+<hr>
+<h4 id="算例-3×3-矩阵"><a href="#算例-3×3-矩阵" class="headerlink" title="算例 (3×3 矩阵)"></a>算例 (3×3 矩阵)</h4><p>假设我们要分解矩阵：</p>
+<p>
+$$
+A = \begin{pmatrix} 2 & 1 & 1 \\ 4 & 3 & 3 \\ 8 & 7 & 9 \end{pmatrix}
+$$
+</p>
+
+<h5 id="1-消第一列："><a href="#1-消第一列：" class="headerlink" title="1. 消第一列："></a>1. 消第一列：</h5><ul>
+<li><p>$R_2 \leftarrow R_2 - \mathbf{2}R_1$，得到第二行新元素 $[0, 1, 1]$。系数 $L_{21} &#x3D; 2$。</p>
+</li>
+<li><p>$R_3 \leftarrow R_3 - \mathbf{4}R_1$，得到第三行新元素 $[0, 3, 5]$。系数 $L_{31} &#x3D; 4$。</p>
+</li>
+</ul>
+<h5 id="2-消第二列："><a href="#2-消第二列：" class="headerlink" title="2. 消第二列："></a>2. 消第二列：</h5><ul>
+<li><p>此时矩阵变为 $\begin{pmatrix} 2 &amp; 1 &amp; 1 \ 0 &amp; 1 &amp; 1 \ 0 &amp; 3 &amp; 5 \end{pmatrix}$。</p>
+</li>
+<li><p>$R_3 \leftarrow R_3 - \mathbf{3}R_2$，得到第三行新元素 $[0, 0, 2]$。系数 $L_{32} &#x3D; 3$。</p>
+</li>
+</ul>
+<h5 id="3-得到结果："><a href="#3-得到结果：" class="headerlink" title="3. 得到结果："></a>3. 得到结果：</h5><ul>
+<li>上三角矩阵 $U$ (消元后的结果):</li>
+</ul>
+<p>
+$$
+U = \begin{pmatrix} 2 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 2 \end{pmatrix}
+$$
+</p>
+
+<ul>
+<li>下三角矩阵 $L$ (填入系数和对角线1):</li>
+</ul>
+<p>
+$$
+L = \begin{pmatrix} 1 & 0 & 0 \\ \mathbf{2} & 1 & 0 \\ \mathbf{4} & \mathbf{3} & 1 \end{pmatrix}
+$$
+</p>
+
+<h2 id="矩阵的-QR-分解-QR-Decomposition"><a href="#矩阵的-QR-分解-QR-Decomposition" class="headerlink" title="矩阵的 QR 分解 (QR Decomposition)"></a>矩阵的 QR 分解 (QR Decomposition)</h2><h3 id="1-施密特正交化过程-Gram-Schmidt-Process"><a href="#1-施密特正交化过程-Gram-Schmidt-Process" class="headerlink" title="1. 施密特正交化过程 (Gram-Schmidt Process)"></a>1. 施密特正交化过程 (Gram-Schmidt Process)</h3><p>这是将一组基 ${\alpha_1, \alpha_2, \alpha_3}$转化为正交基${\beta_1, \beta_2, \beta_3}$ 的过程：</p>
+<p>
+$$
+\begin{aligned}
+\alpha_1 &= \beta_1 \\
+\alpha_2 &= \frac{(\alpha_2, \beta_1)}{\|\beta_1\|^2}\beta_1 + \beta_2 \\
+\alpha_3 &= \frac{(\alpha_3, \beta_1)}{\|\beta_1\|^2}\beta_1 + \frac{(\alpha_3, \beta_2)}{\|\beta_2\|^2}\beta_2 + \beta_3
+\end{aligned}
+$$
+</p>
+
+<blockquote>
+<p>[!info] 复杂度说明<br>该算法的时间复杂度通常为 <strong>$O(n^3)$ 次乘法</strong>。</p>
+</blockquote>
+<hr>
+<h3 id="2-QR-分解表示法法"><a href="#2-QR-分解表示法法" class="headerlink" title="2. QR 分解表示法法"></a>2. QR 分解表示法法</h3><p>矩阵 $A$ 可以分解为一个<strong>正交矩阵 (Q)</strong> 与一个<strong>上三角矩阵 (R)</strong> 的乘积：</p>
+<p>
+$$
+\begin{aligned}
+A &= [\alpha_1 \quad \alpha_2 \quad \alpha_3] \\
+&= \underbrace{\left[ \frac{\beta_1}{\|\beta_1\|} \quad \frac{\beta_2}{\|\beta_2\|} \quad \frac{\beta_3}{\|\beta_3\|} \right]}_{\text{正交矩阵 } Q} \underbrace{\begin{bmatrix}
+\|\beta_1\| & \frac{(\alpha_2, \beta_1)}{\|\beta_1\|} & \frac{(\alpha_3, \beta_1)}{\|\beta_1\|} \\
+0 & \|\beta_2\| & \frac{(\alpha_3, \beta_2)}{\|\beta_2\|} \\
+0 & 0 & \|\beta_3\|
+\end{bmatrix}}_{\text{上三角矩阵 } R}
+\end{aligned}
+$$
+</p>
+
+<hr>
+<h3 id="QR-分解具体算例-Gram-Schmidt"><a href="#QR-分解具体算例-Gram-Schmidt" class="headerlink" title="QR 分解具体算例 (Gram-Schmidt)"></a>QR 分解具体算例 (Gram-Schmidt)</h3><h4 id="1-待分解矩阵-A-设矩阵-A-的列向量为-alpha-1-alpha-2-alpha-3-："><a href="#1-待分解矩阵-A-设矩阵-A-的列向量为-alpha-1-alpha-2-alpha-3-：" class="headerlink" title="1. 待分解矩阵 $A$设矩阵$A$的列向量为$\alpha_1, \alpha_2, \alpha_3$："></a>1. 待分解矩阵 $A$设矩阵$A$的列向量为$\alpha_1, \alpha_2, \alpha_3$：</h4><p>
+$$
+A = \begin{bmatrix} 1 & 2 & -1 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \end{bmatrix}
+$$
+</p>
+
+<hr>
+<h4 id="2-施密特正交化步骤-求-beta-i"><a href="#2-施密特正交化步骤-求-beta-i" class="headerlink" title="2. 施密特正交化步骤 (求 $\beta_i$)"></a>2. 施密特正交化步骤 (求 $\beta_i$)</h4><ol>
+<li><strong>计算 $\beta_1$</strong>：</li>
+</ol>
+<p>
+$$
+\beta_1 = \alpha_1 = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}, \quad \|\beta_1\| = \sqrt{2}
+$$
+</p>
+
+<ol start="2">
+<li><strong>计算 $\beta_2$</strong>：</li>
+</ol>
+<p>
+$$
+\beta_2 = \alpha_2 - \frac{(\alpha_2, \beta_1)}{\|\beta_1\|^2}\beta_1 = \begin{bmatrix} 2 \\ 0 \\ 1 \end{bmatrix} - \frac{2}{2}\begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 1 \\ -1 \\ 1 \end{bmatrix}, \quad \|\beta_2\| = \sqrt{3}
+$$
+</p>
+
+<ol start="3">
+<li><strong>计算 $\beta_3$</strong>：</li>
+</ol>
+<p>
+$$
+\beta_3 = \alpha_3 - \frac{(\alpha_3, \beta_1)}{\|\beta_1\|^2}\beta_1 - \frac{(\alpha_3, \beta_2)}{\|\beta_2\|^2}\beta_2 = \begin{bmatrix} -1 \\ 1 \\ 1 \end{bmatrix} - \frac{0}{2}\beta_1 - \frac{-1}{3}\begin{bmatrix} 1 \\ -1 \\ 1 \end{bmatrix} = \begin{bmatrix} -2/3 \\ 2/3 \\ 4/3 \end{bmatrix}, \quad \|\beta_3\| = \sqrt{\frac{24}{9}} = \frac{2\sqrt{6}}{3}
+$$
+</p>
+
+<hr>
+<h4 id="3-分解结果：-A-QR-正交矩阵-Q-单位化后的基"><a href="#3-分解结果：-A-QR-正交矩阵-Q-单位化后的基" class="headerlink" title="3. 分解结果：$A &#x3D; QR$#### 正交矩阵$Q$ (单位化后的基)"></a>3. 分解结果：$A &#x3D; QR$#### 正交矩阵$Q$ (单位化后的基)</h4><p>
+$$
+Q = \begin{bmatrix} 
+1/\sqrt{2} & 1/\sqrt{3} & -1/\sqrt{6} \\ 
+1/\sqrt{2} & -1/\sqrt{3} & 1/\sqrt{6} \\ 
+0 & 1/\sqrt{3} & 2/\sqrt{6} 
+\end{bmatrix}
+$$
+</p>
+
+<h4 id="上三角矩阵-R"><a href="#上三角矩阵-R" class="headerlink" title="上三角矩阵 $R"></a>上三角矩阵 $R</h4><p>
+$$
+$R = \begin{bmatrix} 
+\|\beta_1\| & \frac{(\alpha_2, \beta_1)}{\|\beta_1\|} & \frac{(\alpha_3, \beta_1)}{\|\beta_1\|} \\ 
+0 & \|\beta_2\| & \frac{(\alpha_3, \beta_2)}{\|\beta_2\|} \\ 
+0 & 0 & \|\beta_3\| 
+\end{bmatrix} = \begin{bmatrix} 
+\sqrt{2} & \sqrt{2} & 0 \\ 
+0 & \sqrt{3} & -1/\sqrt{3} \\ 
+0 & 0 & 2\sqrt{6}/3 
+\end{bmatrix}
+$$
+</p>
+
+<blockquote>
+<p>[!check] 几何意义验证</p>
+<ul>
+<li>$R_{11} &#x3D; \sqrt{2}$是第一个向量$\alpha_1$ 的长度。</li>
+<li>$R_{12} &#x3D; \sqrt{2}$是$\alpha_2$在$\alpha_1$ 方向上的投影分量。</li>
+<li>$R_{33} &#x3D; 2\sqrt{6}&#x2F;3$是$\alpha_3$到平面$\text{span}{\alpha_1, \alpha_2}$ 的垂直距离。</li>
+</ul>
+</blockquote>
+<h2 id="矩阵的-LL-T-分解-Cholesky-Decomposition"><a href="#矩阵的-LL-T-分解-Cholesky-Decomposition" class="headerlink" title="矩阵的 $LL^T$ 分解 (Cholesky Decomposition)"></a>矩阵的 $LL^T$ 分解 (Cholesky Decomposition)</h2><h3 id="1-定义与前提"><a href="#1-定义与前提" class="headerlink" title="1. 定义与前提"></a>1. 定义与前提</h3><p>如果矩阵 $A$是一个<strong>对称正定矩阵</strong> (Symmetric Positive Definite)，则它可以唯一地分解为一个下三角矩阵$L$ 及其转置的乘积：</p>
+<p>
+$$
+A = LL^T
+$$
+</p>
+
+<p>其中 $L$ 是一个对角线元素皆为正数的<strong>下三角矩阵</strong>：</p>
+<p>
+$$
+\begin{bmatrix}
+a_{11} & a_{12} & \dots \\
+a_{21} & a_{22} & \dots \\
+\vdots & \vdots & \ddots
+\end{bmatrix} = 
+\underbrace{\begin{bmatrix}
+l_{11} & 0 & 0 \\
+l_{21} & l_{22} & 0 \\
+l_{31} & l_{32} & l_{33}
+\end{bmatrix}}_{L}
+\underbrace{\begin{bmatrix}
+l_{11} & l_{21} & l_{31} \\
+0 & l_{22} & l_{32} \\
+0 & 0 & l_{33}
+\end{bmatrix}}_{L^T}
+$$
+</p>
+
+<p><img src="/images/Pasted_image_20260106144502.png"><br><img src="/images/Pasted_image_20260106144553.png"></p>
+<hr>
+<h3 id="2-计算公式-逐列求解"><a href="#2-计算公式-逐列求解" class="headerlink" title="2. 计算公式 (逐列求解)"></a>2. 计算公式 (逐列求解)</h3><p>通过矩阵乘法对应元素相等，可以推导出 $L$ 矩阵元素的计算方法：</p>
+<p>
+$$
+\begin{aligned}
+l_{jj} &= \sqrt{a_{jj} - \sum_{k=1}^{j-1} l_{jk}^2} \\
+l_{ij} &= \frac{1}{l_{jj}} \left( a_{ij} - \sum_{k=1}^{j-1} l_{ik}l_{jk} \right), \quad i > j
+\end{aligned}
+$$
+</p>
+
+<blockquote>
+<p>[!info] 复杂度说明<br>Cholesky 分解的时间复杂度约为 <strong>$\frac{1}{3}n^3$次乘法</strong>，效率是普通 LU 分解的两倍，且存储空间减半（仅需存储$L$）。</p>
+</blockquote>
+<h3 id="Cholesky-分解-LL-T-具体算例"><a href="#Cholesky-分解-LL-T-具体算例" class="headerlink" title="Cholesky 分解 ($LL^T$) 具体算例"></a>Cholesky 分解 ($LL^T$) 具体算例</h3><h4 id="1-待分解矩阵-A-设-A-是一个对称正定矩阵："><a href="#1-待分解矩阵-A-设-A-是一个对称正定矩阵：" class="headerlink" title="1. 待分解矩阵 $A$设$A$ 是一个对称正定矩阵："></a>1. 待分解矩阵 $A$设$A$ 是一个对称正定矩阵：</h4><p>
+$$
+A = \begin{bmatrix} 4 & 12 & -16 \\ 12 & 37 & -43 \\ -16 & -43 & 98 \end{bmatrix}
+$$
+</p>
+
+<hr>
+<h4 id="2-计算步骤-逐列求解下三角矩阵-L"><a href="#2-计算步骤-逐列求解下三角矩阵-L" class="headerlink" title="2. 计算步骤 (逐列求解下三角矩阵 $L$)"></a>2. 计算步骤 (逐列求解下三角矩阵 $L$)</h4><p>设 $L &#x3D; \begin{bmatrix} l_{11} &amp; 0 &amp; 0 \ l_{21} &amp; l_{22} &amp; 0 \ l_{31} &amp; l_{32} &amp; l_{33} \end{bmatrix}$，根据 $A &#x3D; LL^T$ 逐步推导：</p>
+<h5 id="第一列计算："><a href="#第一列计算：" class="headerlink" title="第一列计算："></a>第一列计算：</h5><ul>
+<li>$l_{11} &#x3D; \sqrt{a_{11}} &#x3D; \sqrt{4} &#x3D; \mathbf{2}$<em>$l_{21} &#x3D; a_{21} &#x2F; l_{11} &#x3D; 12 &#x2F; 2 &#x3D; \mathbf{6}$</em>$l_{31} &#x3D; a_{31} &#x2F; l_{11} &#x3D; -16 &#x2F; 2 &#x3D; \mathbf{-8}$</li>
+</ul>
+<h5 id="第二列计算："><a href="#第二列计算：" class="headerlink" title="第二列计算："></a>第二列计算：</h5><ul>
+<li>$l_{22} &#x3D; \sqrt{a_{22} - l_{21}^2} &#x3D; \sqrt{37 - 6^2} &#x3D; \sqrt{1} &#x3D; \mathbf{1}$*$l_{32} &#x3D; \frac{1}{l_{22}}(a_{32} - l_{31}l_{21}) &#x3D; \frac{1}{1}(-43 - (-8 \times 6)) &#x3D; -43 + 48 &#x3D; \mathbf{5}$</li>
+</ul>
+<h5 id="第三列计算："><a href="#第三列计算：" class="headerlink" title="第三列计算："></a>第三列计算：</h5><ul>
+<li>$l_{33} &#x3D; \sqrt{a_{33} - (l_{31}^2 + l_{32}^2)} &#x3D; \sqrt{98 - ((-8)^2 + 5^2)} &#x3D; \sqrt{98 - (64 + 25)} &#x3D; \sqrt{9} &#x3D; \mathbf{3}$</li>
+</ul>
+<hr>
+<h4 id="3-分解结果"><a href="#3-分解结果" class="headerlink" title="3. 分解结果"></a>3. 分解结果</h4><p>
+$$
+L = \begin{bmatrix} 2 & 0 & 0 \\ 6 & 1 & 0 \\ -8 & 5 & 3 \end{bmatrix}, \quad 
+L^T = \begin{bmatrix} 2 & 6 & -8 \\ 0 & 1 & 5 \\ 0 & 0 & 3 \end{bmatrix}
+$$
+</p>
+
+<blockquote>
+<p>[!check] 验证计算</p>
+</blockquote>
+<p>
+$$
+> LL^T = \begin{bmatrix} 2 & 0 & 0 \\ 6 & 1 & 0 \\ -8 & 5 & 3 \end{bmatrix} \begin{bmatrix} 2 & 6 & -8 \\ 0 & 1 & 5 \\ 0 & 0 & 3 \end{bmatrix} = \begin{bmatrix} 4 & 12 & -16 \\ 12 & 37 & -43 \\ -16 & -43 & 98 \end{bmatrix} = A
+>
+$$
+</p>
+
+<hr>
+<h3 id="3-性质与应用"><a href="#3-性质与应用" class="headerlink" title="3. 性质与应用"></a>3. 性质与应用</h3><blockquote>
+<p>[!tip] 核心观察</p>
+<ul>
+<li><strong>正定性判定</strong>：在分解过程中，如果根号下的值出现负数，说明原矩阵 $A$ 不是正定矩阵。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="矩阵的-SVD-分解-Singular-Value-Decomposition"><a href="#矩阵的-SVD-分解-Singular-Value-Decomposition" class="headerlink" title="矩阵的 SVD 分解 (Singular Value Decomposition)"></a>矩阵的 SVD 分解 (Singular Value Decomposition)</h2><h3 id="1-核心定义"><a href="#1-核心定义" class="headerlink" title="1. 核心定义"></a>1. 核心定义</h3><p>对于任何一个 $m \times n$的实矩阵$A$，都存在如下分解：</p>
+<p>
+$$
+A = U \Sigma V^T
+$$
+</p>
+
+<p>其中各部分的维度与性质如下：</p>
+<ul>
+<li><strong>$U$</strong>：$m \times m$ 阶<strong>正交矩阵</strong>，其列向量称为左奇异向量。</li>
+<li><strong>$\Sigma$</strong>：$m \times n$阶<strong>对角矩阵</strong>，对角线元素$\sigma_i \ge 0$ 称为<strong>奇异值</strong>（通常按降序排列）。</li>
+<li><strong>$V^T$</strong>：$n \times n$ 阶<strong>正交矩阵</strong>的转置，其列向量称为右奇异向量。</li>
+</ul>
+<p>证明见SVD的随笔[[数学随笔11]]</p>
+<hr>
+<h3 id="2-构造关系"><a href="#2-构造关系" class="headerlink" title="2. 构造关系"></a>2. 构造关系</h3><p>SVD 与矩阵特征值分解（EVD）有着深刻的联系：</p>
+<p>
+$$
+\begin{aligned}
+A^T A &= (V \Sigma^T U^T)(U \Sigma V^T) = V (\Sigma^T \Sigma) V^T \\
+A A^T &= (U \Sigma V^T)(V \Sigma^T U^T) = U (\Sigma \Sigma^T) U^T
+\end{aligned}
+$$
+</p>
+
+<blockquote>
+<p>[!info] 结论</p>
+<ul>
+<li><strong>$V$的列向量</strong>：是$A^T A$ 的特征向量。</li>
+<li><strong>$U$的列向量</strong>：是$A A^T$ 的特征向量。</li>
+<li><strong>奇异值 $\sigma_i$</strong>：是 $A^T A$（或 $AA^T$）非零特征值 $\lambda_i$的平方根，即$\sigma_i &#x3D; \sqrt{\lambda_i}$。</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="3-几何意义：线性变换的分解"><a href="#3-几何意义：线性变换的分解" class="headerlink" title="3. 几何意义：线性变换的分解"></a>3. 几何意义：线性变换的分解</h3><p>SVD 将一个复杂的线性变换拆解为三个简单的几何步骤：</p>
+<ol>
+<li><strong>旋转&#x2F;翻转 ($V^T$)</strong>：将输入向量旋转到新的坐标系。</li>
+<li><strong>拉伸 ($\Sigma$)</strong>：沿着新坐标轴的方向进行缩放。</li>
+<li><strong>再次旋转&#x2F;翻转 ($U$)</strong>：将缩放后的向量映射到目标空间的坐标系。</li>
+</ol>
+<hr>
+<h3 id="4-应用场景"><a href="#4-应用场景" class="headerlink" title="4. 应用场景"></a>4. 应用场景</h3><blockquote>
+<p>[!tip] 为什么 SVD 很重要？</p>
+<ul>
+<li><strong>PCA (主成分分析)</strong>：保留前k个奇异值得到秩k最佳近似。</li>
+<li><strong>伪逆计算</strong>：$A^+ &#x3D; V \Sigma^+ U^T$。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="矩阵的极分解-Polar-Decomposition"><a href="#矩阵的极分解-Polar-Decomposition" class="headerlink" title="矩阵的极分解 (Polar Decomposition)"></a>矩阵的极分解 (Polar Decomposition)</h2><h3 id="1-核心定理"><a href="#1-核心定理" class="headerlink" title="1. 核心定理"></a>1. 核心定理</h3><p>每个实方阵 $A$ 都可以分解为一个<strong>半正定实对称矩阵</strong>与一个<strong>正交矩阵</strong>的乘积。</p>
+<p>
+$$
+A = P S Q^T = (P S P^T) (P Q^T)
+$$
+</p>
+
+<p>其中：</p>
+<ul>
+<li>$\underbrace{(P S P^T)}_{\text{实对称半正定}}$：代表<strong>对称变换</strong>（对空间进行拉伸或压缩）。</li>
+<li>$\underbrace{(P Q^T)}_{\text{正交矩阵}}$：代表<strong>正交变换</strong>（对空间进行旋转或镜像翻转）。</li>
+</ul>
+<hr>
+<h3 id="2-变换过程的几何直观"><a href="#2-变换过程的几何直观" class="headerlink" title="2. 变换过程的几何直观"></a>2. 变换过程的几何直观</h3><p>极分解的过程可以看作是基底经历了一系列连续的线性变换：</p>
+<p>
+$$
+(\gamma_1, \dots, \gamma_n) \xrightarrow{\text{正交变换}} (\beta_1, \dots, \beta_n) \xrightarrow{\text{对称变换}} (\sigma_1 \beta_1, \dots, \sigma_n \beta_n)
+$$
+</p>
+
+<blockquote>
+<p>[!tip] 物理类比<br>在连续介质力学中，极分解被用来将物体的<strong>形变</strong>分解为纯粹的<strong>旋转</strong>（Rotation）和纯粹的<strong>伸展</strong>（Stretch）。这类似于复数 $z &#x3D; r e^{i\theta}$的极坐标表示，其中$r$ 对应对称阵的缩放，$e^{i\theta}$ 对应正交阵的旋转。</p>
+</blockquote>
+<hr>
+<h3 id="3-与-SVD-的关系"><a href="#3-与-SVD-的关系" class="headerlink" title="3. 与 SVD 的关系"></a>3. 与 SVD 的关系</h3><p>极分解实际上是奇异值分解（SVD）的一种重新组合方式：</p>
+<ul>
+<li>设 $A &#x3D; U \Sigma V^T$* 则$A &#x3D; (U \Sigma U^T) (U V^T)$* 这里$U \Sigma U^T$是对称半正定阵，而$U V^T$ 是正交阵。</li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

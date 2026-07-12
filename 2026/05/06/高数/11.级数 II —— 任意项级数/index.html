@@ -1,0 +1,752 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>11.级数 II —— 任意项级数 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>11.级数 II —— 任意项级数</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/5/6
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="任意项级数"><a href="#任意项级数" class="headerlink" title="任意项级数"></a>任意项级数</h1><p>下面讨论有正有负的级数，例如曾讨论过的 $(-1)^n$和$(-1)^n \cdot \frac{1}{n}$ ，我们首先研究这样交错的级数。</p>
+<h3 id="交错级数的收敛之莱布尼茨判别法-Leibniz’s-Test"><a href="#交错级数的收敛之莱布尼茨判别法-Leibniz’s-Test" class="headerlink" title="交错级数的收敛之莱布尼茨判别法 (Leibniz’s Test)"></a>交错级数的收敛之莱布尼茨判别法 (Leibniz’s Test)</h3><p><strong>1. 定理内容 (Theorem)</strong></p>
+<p>若级数 $\sum_{n&#x3D;1}^{\infty} (-1)^{n-1} u_n$ 满足以下三个条件：</p>
+<ol>
+<li><p><strong>正项性</strong>：$u_n \geq 0$</p>
+</li>
+<li><p><strong>单调性</strong>：${u_n}$单调递减，即$u_{n+1} \leq u_n$</p>
+</li>
+<li><p><strong>趋于零</strong>：$\lim_{n \to \infty} u_n &#x3D; 0$</p>
+</li>
+</ol>
+<p>则该交错级数 <strong>收敛</strong>。</p>
+<hr>
+<h4 id="证明逻辑拆解-Proof-Sketch"><a href="#证明逻辑拆解-Proof-Sketch" class="headerlink" title="证明逻辑拆解 (Proof Sketch)"></a>证明逻辑拆解 (Proof Sketch)</h4><p>由于负一次方的周期性，自然想到通过分析<strong>奇数项部分和</strong>与<strong>偶数项部分和</strong>的单调性与有界性，那么就可以利用单调有界原理完成证明。</p>
+<h4 id="A-部分和的单调性分析"><a href="#A-部分和的单调性分析" class="headerlink" title="A. 部分和的单调性分析"></a>A. 部分和的单调性分析</h4><ul>
+<li><strong>奇数项部分和 ${S_{2k+1}}$</strong>：</li>
+</ul>
+<p>
+$$
+S_{2k+1} - S_{2k-1} = -u_{2k} + u_{2k+1} \leq 0
+$$
+</p>
+
+<p>由此可知，奇数项部分和序列是<strong>单调递减</strong>的。</p>
+<ul>
+<li><strong>偶数项部分和 ${S_{2k}}$</strong>：</li>
+</ul>
+<p>
+$$
+S_{2k} - S_{2k-2} = u_{2k-1} - u_{2k} \geq 0
+$$
+</p>
+
+<p>由此可知，偶数项部分和序列是<strong>单调递增</strong>的。</p>
+<h4 id="B-序列的有界性与极限存在性"><a href="#B-序列的有界性与极限存在性" class="headerlink" title="B. 序列的有界性与极限存在性"></a>B. 序列的有界性与极限存在性</h4><p>通过观察可知：$S_2 \leq S_{2k} &lt; S_{2k+1} \leq S_1$。</p>
+<ul>
+<li><p><strong>偶数项序列 ${S_{2k}}$</strong>：单调递增且有上界（如 $S_1$），根据单调有界原理，极限存在，记为 $S_{even}$。</p>
+</li>
+<li><p><strong>奇数项序列 ${S_{2k+1}}$</strong>：单调递减且有下界（如 $S_2$），极限存在，记为 $S_{odd}$。</p>
+</li>
+</ul>
+<h4 id="C-夹逼与统一极限"><a href="#C-夹逼与统一极限" class="headerlink" title="C. 夹逼与统一极限"></a>C. 夹逼与统一极限</h4><p>利用条件 $\lim_{n \to \infty} u_n &#x3D; 0$：</p>
+<p>
+$$
+S_{2k+1} - S_{2k} = u_{2k+1}
+$$
+</p>
+
+<p>取极限得：</p>
+<p>
+$$
+S_{odd} - S_{even} = \lim_{k \to \infty} u_{2k+1} = 0
+$$
+</p>
+
+<p>即 $S_{odd} &#x3D; S_{even}$。奇偶子序列极限相等，说明原级数的部分和序列 ${S_n}$ 收敛。</p>
+<h4 id="应用示例"><a href="#应用示例" class="headerlink" title="应用示例"></a>应用示例</h4><p>那么，$(-1)^n\cdot \frac{1}{n}$ 的收敛就显然了。我们考虑一个变种：</p>
+<p>
+$$
+1+\frac{1}{2}+\frac{1}{3}-\frac{1}{4}-\frac{1}{5}-\frac{1}{6}+...
+$$
+</p>
+
+<p>那么每三项的和看做一个新通项，不难验证新级数收敛，那么 $S_{3n}$收敛，不难验证剩下两个剩余类与$S_{3n}$极限相同，因为差是形如$\frac{1}{n}$ 的一项。</p>
+<h2 id="绝对收敛与条件收敛-Absolute-and-Conditional-Convergence"><a href="#绝对收敛与条件收敛-Absolute-and-Conditional-Convergence" class="headerlink" title="绝对收敛与条件收敛 (Absolute and Conditional Convergence)"></a>绝对收敛与条件收敛 (Absolute and Conditional Convergence)</h2><p>对于任意项级数 $\sum_{n&#x3D;1}^{\infty} a_n$：</p>
+<p><strong>定义 (Definitions)</strong></p>
+<ul>
+<li><p><strong>绝对收敛 (Absolute Convergence)</strong>：若取绝对值后的正项级数 $\sum_{n&#x3D;1}^{\infty} |a_n|$收敛，则称原级数$\sum_{n&#x3D;1}^{\infty} a_n$ 为绝对收敛。</p>
+</li>
+<li><p><strong>条件收敛 (Conditional Convergence)</strong>：若 $\sum_{n&#x3D;1}^{\infty} |a_n|$发散，但原级数$\sum_{n&#x3D;1}^{\infty} a_n$ 本身收敛，则称原级数为条件收敛。</p>
+</li>
+</ul>
+<hr>
+<h4 id="相关定理"><a href="#相关定理" class="headerlink" title="相关定理"></a>相关定理</h4><p><strong>定理：</strong> 若级数 $\sum a_n$ 绝对收敛，则该级数一定收敛。</p>
+<p><strong>证明思路 (使用柯西收敛准则)：</strong></p>
+<p>根据级数收敛的<strong>柯西准则 (Cauchy Criterion)</strong>，级数收敛当且仅当对于任意 $\varepsilon &gt; 0$，存在 $N_\varepsilon$，使得当 $n &gt; N_\varepsilon$时，对于任意正整数$p$，都有：</p>
+<p>
+$$
+|\sum_{k=n+1}^{n+p} a_k| < \varepsilon
+$$
+</p>
+
+<p><strong>推导过程：</strong></p>
+<ol>
+<li>由于级数绝对收敛，即 $\sum |a_n|$ 收敛，由柯西准则可知：</li>
+</ol>
+<p>
+$$
+\sum_{k=n+1}^{n+p} |a_k| < \varepsilon, \quad \forall n > N_\varepsilon, p \in \mathbb{Z}^+
+$$
+</p>
+
+<ol start="2">
+<li>利用<strong>三角不等式 (Triangle Inequality)</strong>：</li>
+</ol>
+<p>
+$$
+|\sum_{k=n+1}^{n+p} a_k| \leq \sum_{k=n+1}^{n+p} |a_k|
+$$
+</p>
+
+<ol start="3">
+<li><p>结合以上两点：</p>
+<p> 因为右边 $\sum |a_k| &lt; \varepsilon$，所以左边 $|\sum a_k| &lt; \varepsilon$ 必然成立。</p>
+</li>
+</ol>
+<p>由此证明了原级数 $\sum a_n$ 也满足柯西准则，故其必定收敛。</p>
+<h4 id="一、-级数项的正部与负部拆分"><a href="#一、-级数项的正部与负部拆分" class="headerlink" title="一、 级数项的正部与负部拆分"></a>一、 级数项的正部与负部拆分</h4><p>为了研究任意项级数 $\sum a_n$，我们将其每一项拆分为两个非负部分：</p>
+<ul>
+<li><p><strong>定义 (Definitions)</strong>：</p>
+<ul>
+<li><p>$b_n &#x3D; \frac{1}{2}(|a_n| + a_n)$：这是$a_n$的<strong>正部</strong>。若$a_n &gt; 0$，则 $b_n &#x3D; a_n$；若 $a_n \leq 0$，则 $b_n &#x3D; 0$。</p>
+</li>
+<li><p>$c_n &#x3D; \frac{1}{2}(|a_n| - a_n)$：这是$a_n$的<strong>负部</strong>。若$a_n &lt; 0$，则 $c_n &#x3D; |a_n|$；若 $a_n \geq 0$，则 $c_n &#x3D; 0$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>性质</strong>：</p>
+<ul>
+<li><p>$b_n, c_n \geq 0$（均为非负项），且对于每一项 $n$，两者中至少有一个为 $0$。</p>
+</li>
+<li><p><strong>$b_n + c_n &#x3D; |a_n|$</strong> ：两部分之和等于原项的绝对值。</p>
+</li>
+<li><p><strong>$b_n - c_n &#x3D; a_n$</strong> ：两部分之差还原为原级数项。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="二、-收敛性的等价关系"><a href="#二、-收敛性的等价关系" class="headerlink" title="二、 收敛性的等价关系"></a>二、 收敛性的等价关系</h4><p>基于上述拆分，可以得出关于级数敛散性的重要判定：</p>
+<h5 id="1-绝对收敛的充要条件"><a href="#1-绝对收敛的充要条件" class="headerlink" title="1. 绝对收敛的充要条件"></a>1. 绝对收敛的充要条件</h5><p><strong>定理</strong>：级数 $\sum a_n$<strong>绝对收敛</strong>$\iff$级数$\sum b_n$与$\sum c_n$ <strong>均收敛</strong>。</p>
+<ul>
+<li><p><strong>推导逻辑</strong>：</p>
+<ul>
+<li><p>$\sum |a_n|$收敛$\iff$部分和$\sum_{k&#x3D;1}^n |a_k|$ 有上界。</p>
+</li>
+<li><p>由于 $b_n, c_n \leq |a_n|$，若 $\sum |a_n|$有上界，则正项级数$\sum b_n$和$\sum c_n$ 必然也都有上界且收敛。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>结论</strong>：在此情况下，原级数可以表示为两个收敛级数的差：</p>
+</li>
+</ul>
+<p>
+$$
+\sum_{n=1}^\infty a_n = \sum_{n=1}^\infty b_n - \sum_{n=1}^\infty c_n
+$$
+</p>
+
+<h5 id="2-条件收敛的本质"><a href="#2-条件收敛的本质" class="headerlink" title="2. 条件收敛的本质"></a>2. 条件收敛的本质</h5><p><strong>定理</strong>：若级数 $\sum a_n$<strong>条件收敛</strong>$\iff$级数$\sum b_n$与$\sum c_n$ <strong>均发散</strong>。</p>
+<ul>
+<li><p><strong>直观理解</strong>：</p>
+<ul>
+<li><p>因为级数收敛，所以 $a_n$必须趋于$0$。</p>
+</li>
+<li><p>但因为不是绝对收敛（$\sum |a_n| &#x3D; \sum (b_n + c_n)$ 发散），说明正项部分之和与负项部分之和都是无穷大。</p>
+</li>
+<li><p><strong>条件收敛的奥秘</strong>就在于：虽然正部之和是 $+\infty$，负部之和也是 $+\infty$，但它们相减时通过巧妙的抵消，最终达到了一个有限的极限值。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>这两种收敛会带来什么结果呢，我们考虑重排。</p>
+<h2 id="重排现象"><a href="#重排现象" class="headerlink" title="重排现象"></a>重排现象</h2><p>**1. 定义：什么是重排？</p>
+<ul>
+<li><p><strong>原始下标序列</strong>：${1, 2, 3, \dots, n, \dots}$</p>
+</li>
+<li><p><strong>重排下标序列</strong>：${n_1, n_2, n_3, \dots, n_k, \dots}$，这是自然数集合到自身的一个一一映射（双射）。</p>
+</li>
+<li><p><strong>定义</strong>：给定级数 $\sum a_n$，称级数 $\sum a_{n_k}$ 为其一个<strong>重排级数</strong>。</p>
+</li>
+</ul>
+<hr>
+<p><strong>2. 核心定理 (Theorem)</strong></p>
+<p>若级数 $\sum a_n$<strong>绝对收敛</strong>，则对于它的<strong>任意重排</strong>级数$\sum a_{n_k}$：</p>
+<ol>
+<li><p>重排级数 $\sum a_{n_k}$ 也<strong>绝对收敛</strong>。</p>
+</li>
+<li><p>重排级数的和与原级数的和相等，即 $\sum a_{n_k} &#x3D; \sum a_n$。</p>
+</li>
+</ol>
+<hr>
+<p><strong>3. 证明思路推导 (Proof Sketch)</strong></p>
+<h4 id="A-证明重排后依然绝对收敛"><a href="#A-证明重排后依然绝对收敛" class="headerlink" title="A. 证明重排后依然绝对收敛"></a>A. 证明重排后依然绝对收敛</h4><ul>
+<li><p>已知 $\sum |a_n|$收敛，其部分和序列$\sum_{i&#x3D;1}^k |a_i|$ <strong>有界</strong>。</p>
+</li>
+<li><p>对于重排级数的任意前 $k$项$|a_{n_1}|, |a_{n_2}|, \dots, |a_{n_k}|$，由于这 $k$个下标必然包含在某个足够大的自然数集合${1, 2, \dots, m}$ 中。</p>
+</li>
+<li><p>因此有不等式：</p>
+</li>
+</ul>
+<p>
+$$
+\sum_{j=1}^k |a_{n_j}| \leq \sum_{i=1}^m |a_i|
+$$
+</p>
+
+<ul>
+<li>因为右侧有界，所以重排级数的绝对值部分和序列也<strong>有界</strong>，从而得出重排级数 $\sum a_{n_k}$ <strong>绝对收敛</strong>。又反过来，右侧也是左侧的重排，所以改换上标后，不等号反向也成立，从而取极限二者只有相等。故重排不改变正项级数的和。</li>
+</ul>
+<h4 id="B-证明级数之和不变"><a href="#B-证明级数之和不变" class="headerlink" title="B. 证明级数之和不变"></a>B. 证明级数之和不变</h4><p>利用正项级数的性质以及级数项的正部（$b_n$）与负部（$c_n$）拆分：</p>
+<ul>
+<li><p><strong>绝对值之和相等</strong>：对于正项级数，重排不改变其和，故 $\sum |a_n| &#x3D; \sum |a_{n_k}|$。</p>
+</li>
+<li><p><strong>分部求和</strong>：由于绝对收敛，可以将级数拆分为正部 $b_n$和负部$c_n$ 的差：</p>
+<ul>
+<li>$\sum b_n &#x3D; \sum b_{n_k}$-$\sum c_n &#x3D; \sum c_{n_k}$</li>
+</ul>
+</li>
+<li><p><strong>最终等式</strong>：</p>
+</li>
+</ul>
+<p>
+$$
+\sum a_n = \sum (b_n - c_n) = \sum b_n - \sum c_n = \sum b_{n_k} - \sum c_{n_k} = \sum (b_{n_k} - c_{n_k}) = \sum a_{n_k}
+$$
+</p>
+
+<hr>
+<h3 id="黎曼重排定理-Riemann-Rearrangement-Theorem"><a href="#黎曼重排定理-Riemann-Rearrangement-Theorem" class="headerlink" title="黎曼重排定理 (Riemann Rearrangement Theorem)"></a>黎曼重排定理 (Riemann Rearrangement Theorem)</h3><p><strong>1. 定理描述</strong></p>
+<p>设级数 $\sum a_n$是一个<strong>条件收敛</strong>级数。则对于任意实数$A \in \mathbb{R}$（或 $\pm \infty$），都存在原级数的一个<strong>重排</strong> $\sum a_{n_k}$，使得该重排级数的和恰好等于 $A$：</p>
+<p>
+$$
+\sum_{k=1}^{\infty} a_{n_k} = A
+$$
+</p>
+
+<p><strong>2. 核心原理</strong></p>
+<ul>
+<li><p><strong>正负部发散</strong>：对于条件收敛级数，其正部 $b_n$和负部$c_n$分别组成的级数$\sum b_n$和$\sum c_n$ 都是发散的。</p>
+</li>
+<li><p><strong>动态调整</strong>：由于正项和负项都有“无限多”且能求出“无限大”的和，我们可以先取足够多的正项使和超过 $A$，再取足够多的负项使和低于 $A$，不断往复。随着项趋于零，这种摆动最终会收敛于目标值 $A$。</p>
+</li>
+</ul>
+<hr>
+<h3 id="经典实例：交错调和级数的重排"><a href="#经典实例：交错调和级数的重排" class="headerlink" title="经典实例：交错调和级数的重排"></a>经典实例：交错调和级数的重排</h3><p><strong>1. 标准级数</strong></p>
+<p>设交错调和级数的和为 $S$：</p>
+<p>
+$$
+a_n: 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \frac{1}{5} - \frac{1}{6} + \dots = S
+$$
+</p>
+
+<p><em>(注：实际上 $S &#x3D; \ln 2$)</em></p>
+<p><strong>2. 重排级数（1个正项 + 2个负项）</strong></p>
+<p>我们将项按照“一正二负”的规律重排：</p>
+<p>
+$$
+a_{n_k}: \underbrace{1 - \frac{1}{2} - \frac{1}{4}} + \underbrace{\frac{1}{3} - \frac{1}{6} - \frac{1}{8}} + \underbrace{\frac{1}{5} - \frac{1}{10} - \frac{1}{12}} + \dots
+$$
+</p>
+
+<p><strong>3. 计算推导</strong></p>
+<ul>
+<li><p>对每一组进行合并计算：</p>
+<ul>
+<li>$1 - \frac{1}{2} &#x3D; \frac{1}{2}$-$\frac{1}{3} - \frac{1}{6} &#x3D; \frac{1}{6}$-$\frac{1}{5} - \frac{1}{10} &#x3D; \frac{1}{10}$</li>
+</ul>
+</li>
+<li><p>重排后的级数变为：</p>
+</li>
+</ul>
+<p>
+$$
+\frac{1}{2} - \frac{1}{4} + \frac{1}{6} - \frac{1}{8} + \frac{1}{10} - \frac{1}{12} + \dots
+$$
+</p>
+
+<ul>
+<li>提取公因子 $\frac{1}{2}$：</li>
+</ul>
+<p>
+$$
+= \frac{1}{2} \left( 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \dots \right)
+$$
+</p>
+
+<ul>
+<li><strong>结论</strong>：重排后的级数和变成了原级数和的一半：</li>
+</ul>
+<p>
+$$
+\sum a_{n_k} = \frac{1}{2} S
+$$
+</p>
+
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>该定理揭示了<strong>条件收敛</strong>与<strong>绝对收敛</strong>的本质区别：</p>
+<ul>
+<li><p><strong>绝对收敛级数</strong>：具有“交换律”，重排不改变和。</p>
+</li>
+<li><p><strong>条件收敛级数</strong>：不满足交换律，其和取决于项的排列顺序。</p>
+</li>
+</ul>
+<p>那么我们有什么手段判别条件收敛呢？</p>
+<hr>
+<h2 id="阿贝尔变换-Abel’s-Transformation"><a href="#阿贝尔变换-Abel’s-Transformation" class="headerlink" title="阿贝尔变换 (Abel’s Transformation)"></a>阿贝尔变换 (Abel’s Transformation)</h2><h3 id="核心公式"><a href="#核心公式" class="headerlink" title="核心公式"></a>核心公式</h3><p>设 ${\alpha_k}$和${\beta_k}$是两个数列，令$B_n &#x3D; \sum_{k&#x3D;1}^{n} \beta_k$为${\beta_k}$的前$n$项和，并规定$B_0 &#x3D; 0$。则有：</p>
+<p>
+$$
+\sum_{k=1}^{n} \alpha_k \beta_k = \alpha_n B_n - \sum_{k=1}^{n-1} (\alpha_{k+1} - \alpha_k) B_k
+$$
+</p>
+
+<hr>
+<h3 id="“离散分部积分”？"><a href="#“离散分部积分”？" class="headerlink" title="“离散分部积分”？"></a>“离散分部积分”？</h3><p>考虑分部积分：</p>
+<p>
+$$
+\int_{0}^{1} f g' \, dx = \left. fg \right|_0^1 - \int_{0}^{1} f' g \, dx
+$$
+</p>
+
+<p>我们可以发现阿贝尔变换与它有极强的<strong>对称性</strong>：</p>
+<ul>
+<li><p><strong>累加 vs. 积分</strong>：$\sum \beta_k$对应$\int g’ dx &#x3D; g$（$B_k$相当于$g$）。</p>
+</li>
+<li><p><strong>差分 vs. 导数</strong>：$(\alpha_{k+1} - \alpha_k)$对应$f’$。</p>
+</li>
+<li><p><strong>边界项</strong>：$\alpha_n B_n$对应$f(1)g(1)$。由于 $B_0&#x3D;0$ ，另一个边界项隐去。</p>
+</li>
+</ul>
+<h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><p>其核心思想是将数列 $\beta_k$写成部分和的差分形式，即利用$\beta_k &#x3D; B_k - B_{k-1}$（定义 $B_0 &#x3D; 0$）。</p>
+<h4 id="1-展开原级数"><a href="#1-展开原级数" class="headerlink" title="1. 展开原级数"></a>1. 展开原级数</h4><p>将 $\beta_k$替换为$(B_k - B_{k-1})$，并将求和式展开：</p>
+<p>
+$$
+\sum_{k=1}^n \alpha_k \beta_k = \alpha_1(B_1 - B_0) + \alpha_2(B_2 - B_1) + \alpha_3(B_3 - B_2) + \dots + \alpha_n(B_n - B_{n-1})
+$$
+</p>
+
+<h4 id="2-重新组合-Regrouping"><a href="#2-重新组合-Regrouping" class="headerlink" title="2. 重新组合 (Regrouping)"></a>2. 重新组合 (Regrouping)</h4><p>观察展开后的每一项，按照相同的 $B_k$进行合并。例如，包含$B_1$的项有$\alpha_1 B_1$和$-\alpha_2 B_1$，合并后得到 $(\alpha_1 - \alpha_2)B_1$：</p>
+<p>
+$$
+= (\alpha_1 - \alpha_2)B_1 + (\alpha_2 - \alpha_3)B_2 + \dots + (\alpha_{n-1} - \alpha_n)B_{n-1} + \alpha_n B_n
+$$
+</p>
+
+<blockquote>
+<p><strong>注意</strong>：由于 $B_0 &#x3D; 0$，第一项中的 $\alpha_1 B_0$消失了；而最后一项$\alpha_n B_n$ 没有对应的项与之抵消，因此保留。</p>
+</blockquote>
+<h4 id="3-归纳为求和形式"><a href="#3-归纳为求和形式" class="headerlink" title="3. 归纳为求和形式"></a>3. 归纳为求和形式</h4><p>将中间的差分项提取负号，写回 $\sum$ 符号：</p>
+<p>
+$$
+= -\sum_{k=1}^{n-1} (\alpha_{k+1} - \alpha_k) B_k + \alpha_n B_n
+$$
+</p>
+
+<p>这个变换可以帮助我们讨论任意项级数的敛散性。</p>
+<h3 id="阿贝尔引理（Abel’s-Lemma）的估计推导"><a href="#阿贝尔引理（Abel’s-Lemma）的估计推导" class="headerlink" title="阿贝尔引理（Abel’s Lemma）的估计推导"></a>阿贝尔引理（Abel’s Lemma）的估计推导</h3><h4 id="1-前置条件-Assumptions"><a href="#1-前置条件-Assumptions" class="headerlink" title="1. 前置条件 (Assumptions)"></a>1. 前置条件 (Assumptions)</h4><ul>
+<li><p><strong>单调性</strong>：设 ${\alpha_n}$ 是<strong>单调</strong>数列（Monotonic sequence）。</p>
+</li>
+<li><p><strong>有界性</strong>：设 ${\beta_n}$的部分和$B_n &#x3D; \sum_{k&#x3D;1}^n \beta_k$有界，即存在$M &gt; 0$，使得对所有 $n$，都有 $|B_n| \leq M$。</p>
+</li>
+</ul>
+<h4 id="2-核心结论-The-Conclusion"><a href="#2-核心结论-The-Conclusion" class="headerlink" title="2. 核心结论 (The Conclusion)"></a>2. 核心结论 (The Conclusion)</h4><p>
+$$
+\left| \sum_{k=1}^n \alpha_k \beta_k \right| \leq M (|\alpha_1| + 2|\alpha_n|)
+$$
+</p>
+
+<hr>
+<h3 id="3-逐步推导过程-Step-by-Step-Derivation"><a href="#3-逐步推导过程-Step-by-Step-Derivation" class="headerlink" title="3. 逐步推导过程 (Step-by-Step Derivation)"></a>3. 逐步推导过程 (Step-by-Step Derivation)</h3><p><strong>第一步：套用阿贝尔变换</strong></p>
+<p>利用前面推导的公式，将原式展开：</p>
+<p>
+$$
+\left| \sum_{k=1}^n \alpha_k \beta_k \right| = \left| \sum_{k=1}^{n-1} (\alpha_k - \alpha_{k+1}) B_k + \alpha_n B_n \right|
+$$
+</p>
+
+<p><strong>第二步：三角不等式放大</strong></p>
+<p>利用 $|a+b| \leq |a| + |b|$以及$|B_k| \leq M$：</p>
+<p>
+$$
+\leq \left( \sum_{k=1}^{n-1} |\alpha_k - \alpha_{k+1}| + |\alpha_n| \right) M
+$$
+</p>
+
+<p><strong>第三步：利用单调性脱去绝对值</strong></p>
+<p>这是最关键的一步。因为 ${\alpha_n}$是单调的，所以所有的差分项$(\alpha_k - \alpha_{k+1})$ 符号相同。这意味着<strong>绝对值的和等于和的绝对值</strong>（即裂项相消）：</p>
+<p>
+$$
+\sum_{k=1}^{n-1} |\alpha_k - \alpha_{k+1}| = \left| \sum_{k=1}^{n-1} (\alpha_k - \alpha_{k+1}) \right| = |\alpha_1 - \alpha_n|
+$$
+</p>
+
+<p><strong>第四步：最终整理</strong></p>
+<p>将结果代回估计式：</p>
+<p>
+$$
+= (|\alpha_1 - \alpha_n| + |\alpha_n|) M
+$$
+</p>
+
+<p>再利用一次三角不等式 $|\alpha_1 - \alpha_n| \leq |\alpha_1| + |\alpha_n|$，得到最终的上界：</p>
+<p>
+$$
+\leq (|\alpha_1| + 2|\alpha_n|) M
+$$
+</p>
+
+<h3 id="狄利克雷判别法"><a href="#狄利克雷判别法" class="headerlink" title="狄利克雷判别法"></a>狄利克雷判别法</h3><h4 id="1-定理描述-Theorem-Statement"><a href="#1-定理描述-Theorem-Statement" class="headerlink" title="1. 定理描述 (Theorem Statement)"></a><strong>1. 定理描述 (Theorem Statement)</strong></h4><p>对于级数 $\sum_{n&#x3D;1}^{\infty} a_n b_n$，如果满足以下两个条件：</p>
+<ol>
+<li><p>数列 ${a_n}$<strong>单调</strong> (Monotonic)，且其极限为 0，即$\lim_{n \to \infty} a_n &#x3D; 0$。</p>
+</li>
+<li><p>级数 $\sum b_n$的<strong>部分和数列有界</strong>。也就是说，存在一个常数$M &gt; 0$，使得对于所有的 $n$，都有：</p>
+</li>
+</ol>
+<p>
+$$
+\left| \sum_{k=1}^{n} b_k \right| < M
+$$
+</p>
+
+<p>则级数 $\sum_{n&#x3D;1}^{\infty} a_n b_n$ <strong>收敛</strong> (Convergent)。</p>
+<hr>
+<h4 id="2-证明思路-Outline-of-Proof"><a href="#2-证明思路-Outline-of-Proof" class="headerlink" title="2. 证明思路 (Outline of Proof)"></a><strong>2. 证明思路 (Outline of Proof)</strong></h4><p>利用 <strong>Cauchy 收敛准则</strong> 进行控制放大：</p>
+<ul>
+<li><p><strong>目标：</strong> 控制余项 $\left| \sum_{k&#x3D;n+1}^{n+p} a_k b_k \right|$，使其在 $n \to \infty$ 时趋于 0。</p>
+</li>
+<li><p><strong>已知条件的应用：</strong></p>
+<p>  由于 $\left| \sum_{k&#x3D;1}^{n} b_k \right| &lt; M$，那么对于任意的 $n, p$：</p>
+</li>
+</ul>
+<p>
+$$
+\left| \sum_{k=n+1}^{n+p} b_k \right| = \left| \sum_{k=1}^{n+p} b_k - \sum_{k=1}^{n} b_k \right| \leq \left| \sum_{k=1}^{n+p} b_k \right| + \left| \sum_{k=1}^{n} b_k \right| \leq 2M
+$$
+</p>
+
+<ul>
+<li><p><strong>阿贝尔变换 (Abel Transformation) 的核心步骤：</strong></p>
+<p>  利用阿贝尔引理进行放大：</p>
+</li>
+</ul>
+<p>
+$$
+\left| \sum_{k=n+1}^{n+p} a_k b_k \right| \leq 2M (|a_{n+1}| + 2|a_{n+p}|) \leq 6M \cdot |a_{n+1}|
+$$
+</p>
+
+<p>随着 $n \to \infty$，由于已知 $\lim_{n \to \infty} a_n &#x3D; 0$，所以 $6M \cdot |a_{n+1}| \to 0$。</p>
+<ul>
+<li><strong>结论：</strong> 根据 Cauchy 准则，该级数收敛。</li>
+</ul>
+<h4 id="与莱布尼茨判别法"><a href="#与莱布尼茨判别法" class="headerlink" title="与莱布尼茨判别法"></a>与莱布尼茨判别法</h4><p>取 $b_n$为$(-1)^n$ ，就发现莱布尼茨判别法实际上是狄利克雷判别法的特例。</p>
+<h3 id="阿贝尔判别法-Abel’s-Test"><a href="#阿贝尔判别法-Abel’s-Test" class="headerlink" title="阿贝尔判别法 (Abel’s Test)"></a>阿贝尔判别法 (Abel’s Test)</h3><h4 id="1-定理内容"><a href="#1-定理内容" class="headerlink" title="1. 定理内容"></a>1. 定理内容</h4><p>若级数满足以下两个条件：</p>
+<ol>
+<li><p>数列 ${a_n}$ <strong>单调且有界</strong>；</p>
+</li>
+<li><p>级数 $\sum_{n&#x3D;1}^{\infty} b_n$ <strong>收敛</strong>；</p>
+</li>
+</ol>
+<p>则级数 $\sum_{n&#x3D;1}^{\infty} a_n b_n$ <strong>收敛</strong>。</p>
+<hr>
+<h4 id="2-证明思路"><a href="#2-证明思路" class="headerlink" title="2. 证明思路"></a>2. 证明思路</h4><p>通过构造辅助数列，将阿贝尔判别法转化为狄利克雷判别法（Dirichlet’s Test）：</p>
+<ul>
+<li><p><strong>设定极限</strong>：</p>
+<p>  由于 ${a_n}$单调有界，根据单调有界准则，数列必有极限。设$\lim_{n \to \infty} a_n &#x3D; A$。</p>
+</li>
+<li><p><strong>构造新数列</strong>：</p>
+<p>  令 $\tilde{a}_n &#x3D; a_n - A$。</p>
+<p>  显然，数列 ${\tilde{a}_n}$依然保持<strong>单调</strong>性，且当$n \to \infty$ 时，$\tilde{a}_n \to 0$。</p>
+</li>
+<li><p><strong>级数拆分</strong>：</p>
+<p>  利用线性性质将原级数展开：</p>
+</li>
+</ul>
+<p>
+$$
+\sum a_n b_n = \sum (\tilde{a}_n + A) b_n = \sum \tilde{a}_n b_n + \sum A b_n
+$$
+</p>
+
+<ul>
+<li><p><strong>收敛性分析</strong>：</p>
+<ul>
+<li><p><strong>项 $\sum A b_n$</strong>：因为 $\sum b_n$收敛，由级数性质可知常数倍级数$A \sum b_n$ 必然收敛。</p>
+</li>
+<li><p><strong>项 $\sum \tilde{a}_n b_n$</strong>：</p>
+<ul>
+<li><p>${\tilde{a}_n}$单调且趋于$0$；</p>
+</li>
+<li><p>$\sum b_n$收敛，意味着其部分和数列$S_n &#x3D; \sum_{k&#x3D;1}^{n} b_k$ 有界。</p>
+</li>
+<li><p>根据<strong>狄利克雷判别法</strong>，这两者结合保证了 $\sum \tilde{a}_n b_n$ 收敛。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>结论</strong>：两个收敛级数之和依然收敛，故 <strong>$\sum a_n b_n$ 收敛</strong>。</p>
+<p>当然也可以不用狄利克雷判别法，直接利用阿贝尔引理说明。读者自证不难（</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,1407 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>7.常微分方程 I | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>7.常微分方程 I</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/19
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>微分方程实际上对学过物理的人而言，是相当熟悉的事情，但如何严格化则还应归属于数学，尽管就应用而言，直觉可以解决大部分问题（</p>
+<h2 id="从场论到微分方程"><a href="#从场论到微分方程" class="headerlink" title="从场论到微分方程"></a>从场论到微分方程</h2><p>在场论中，我们讨论了所谓散度无旋，旋度无源：</p>
+<p>
+$$
+\nabla\times(\nabla u)=0,\ \nabla \cdot (\nabla \times G)=0
+$$
+</p>
+
+<p>以及一个函数可以漂亮地分解成某个散度和某个旋度：</p>
+<p>
+$$
+F=\nabla u+\nabla \times G
+$$
+</p>
+
+<h3 id="Maxwell-方程"><a href="#Maxwell-方程" class="headerlink" title="Maxwell 方程"></a>Maxwell 方程</h3><p>如雷贯耳的$Maxwell$方程组的微分形式，实际上就是用$\nabla$ 的语言写成的。这也在场论中提到过。</p>
+<p>
+$$
+\begin{cases}
+\nabla \cdot E = \rho \\
+\nabla \cdot B = 0 \\
+\nabla \times E = -B_t \\
+\nabla \times B = J + E_t
+\end{cases}
+$$
+</p>
+
+<p>正如上面所说，我们可以试着把 $E$ 拆解：</p>
+<p>
+$$
+E = \nabla (-U) + \nabla \times\int B\, dt
+$$
+</p>
+
+<p>物理上，大概就是静电场和涡旋电场，分别由电势的梯度和变化的磁场产生。<br>能不能消掉 $B$，得到一个只含$E$ 的方程呢？</p>
+<h4 id="波动方程的推导-Derivation-of-Wave-Equation"><a href="#波动方程的推导-Derivation-of-Wave-Equation" class="headerlink" title="波动方程的推导 (Derivation of Wave Equation)"></a>波动方程的推导 (Derivation of Wave Equation)</h4><h5 id="1-基础方程"><a href="#1-基础方程" class="headerlink" title="1. 基础方程"></a>1. 基础方程</h5><p>推导始于真空（或无源项 $J&#x3D;0, \rho&#x3D;0$）中的麦克斯韦方程组：</p>
+<ul>
+<li><strong>法拉第感应定律：</strong> $\nabla \times E &#x3D; -B_t$- <strong>安培-麦克斯韦定律：</strong>$\nabla \times B &#x3D; E_t$（注：此处简化了系数，并假设无源$J&#x3D;0$）</li>
+</ul>
+<h5 id="2-数学推导步骤"><a href="#2-数学推导步骤" class="headerlink" title="2. 数学推导步骤"></a>2. 数学推导步骤</h5><p>对法拉第定律两边同时取<strong>旋度（Curl）</strong>：</p>
+<p>
+$$
+\nabla \times (\nabla \times E) = -(\nabla \times B)_t
+$$
+</p>
+
+<p><strong>左侧（利用矢量算子恒等式）：</strong></p>
+<p>
+$$
+\nabla \times (\nabla \times E) = \nabla(\nabla \cdot E) - \Delta E
+$$
+</p>
+
+<blockquote>
+<p><strong>关键点：</strong> 在无源区域（真空），由于 $\nabla \cdot E &#x3D; 0$（由高斯定律得出），左侧简化为 <strong>$-\Delta E$</strong>。</p>
+</blockquote>
+<p><strong>右侧（代入安培定律）：</strong></p>
+<p>
+$$
+-(\nabla \times B)_t = -(E_t)_t = -E_{tt}
+$$
+</p>
+
+<h5 id="3-最终结论：波动方程"><a href="#3-最终结论：波动方程" class="headerlink" title="3. 最终结论：波动方程"></a>3. 最终结论：波动方程</h5><p>将左右两项合并并消去负号，得到电磁波在空间的演化规律：</p>
+<p>
+$$
+E_{tt} = \Delta E
+$$
+</p>
+
+<p>展开即为：</p>
+<p>
+$$
+E_{tt} = E_{xx} + E_{yy} + E_{zz}
+$$
+</p>
+
+<blockquote>
+<p><strong>物理意义：</strong> 这正是一个典型的<strong>波动方程</strong>（Wave Equation）。它表明电场（和磁场）不需要介质，可以通过自身场的变化在空间中以波的形式传播。</p>
+</blockquote>
+<p>可以看到，这样一个方程全是 $E$ 的导数所满足的方程，也就是物理直觉上的微分方程。数学上如何描述呢，我们先从简单的情形开始——常微分方程，即不带偏导数的微分方程。</p>
+<h1 id="常微分方程-ODE"><a href="#常微分方程-ODE" class="headerlink" title="常微分方程 (ODE)"></a>常微分方程 (ODE)</h1><h2 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h2><p>设定 $x$ 为一个自变量，$y$为因变量，以及$y$的各阶导数$y’, y’’, \dots, y^{(n)}$。</p>
+<p><strong>定义（$n$ 阶 ODE）：</strong></p>
+<p>
+$$
+F(x, y, y', \dots, y^{(n)}) = 0 \quad (\star)
+$$
+</p>
+
+<p>满足该等式的方程称为一个 <strong>$n$ 阶常微分方程</strong>。</p>
+<p><strong>定义（解）：</strong></p>
+<p>若函数 $y(x)$在区间$[a, b]$上满足方程$(\star)$，则称 $y(x)$为该方程在区间$[a, b]$ 上的一个<strong>解</strong>。</p>
+<hr>
+<h2 id="2-示例"><a href="#2-示例" class="headerlink" title="2. 示例"></a>2. 示例</h2><h3 id="一阶模型：指数衰减"><a href="#一阶模型：指数衰减" class="headerlink" title="一阶模型：指数衰减"></a>一阶模型：指数衰减</h3><p>
+$$
+m'(t) = -a m(t)
+$$
+</p>
+
+<ul>
+<li><strong>解的形式：</strong> $m(t) &#x3D; C e^{-at} \quad (\forall C \in \mathbb{R})$- <strong>特性：</strong> 解存在且不唯一（取决于常数$C$）。</li>
+</ul>
+<h3 id="二阶模型：简谐振动"><a href="#二阶模型：简谐振动" class="headerlink" title="二阶模型：简谐振动"></a>二阶模型：简谐振动</h3><p>
+$$
+x''(t) = -k x(t)
+$$
+</p>
+
+<ul>
+<li><strong>也许可以注意到的解：</strong> $x(t) &#x3D; \sin(t)$或$x(t) &#x3D; \cos(t)$- <strong>注意到方程的线性，于是找到比较一般的解：</strong>$x(t) &#x3D; C_1 \cos(t) + C_2 \sin(t) \quad (\forall C_1, C_2 \in \mathbb{R})$</li>
+</ul>
+<p>这个比较一般的解，我们称为通解。</p>
+<h2 id="通解-General-Solution-的定义"><a href="#通解-General-Solution-的定义" class="headerlink" title="通解 (General Solution) 的定义"></a>通解 (General Solution) 的定义</h2><p>对于含有 $n$个相互独立的任意常数$C_1, C_2, \dots, C_n$的解函数组$y(x; C_1, C_2, \dots, C_n)$，若满足以下两个条件：</p>
+<ol>
+<li><p><strong>独立性：</strong> 常数 $C_1, C_2, \dots, C_n$在区间$x \in [a, b]$ 上是<strong>相互独立</strong>的。</p>
+</li>
+<li><p><strong>有效性：</strong> 对于每一组固定的 $C_1, \dots, C_n$，函数 $y(x, C_1, \dots, C_n)$在$[a, b]$上均满足方程$(\star)$。</p>
+</li>
+</ol>
+<p>则称 $y(x; C_1, \dots, C_n)$为方程$(\star)$ 的一个 <strong>通解</strong>。<br>固定常数后的函数也就被称为特解，例如简谐振动示例中的 $\sin(t)$就是取常数为$0,1$ 。</p>
+<hr>
+<h2 id="常数独立性-Wronskian-行列式"><a href="#常数独立性-Wronskian-行列式" class="headerlink" title="常数独立性 (Wronskian 行列式)"></a>常数独立性 (Wronskian 行列式)</h2><p>为了判断一组解是否能构成通解，需要引入线性无关性的判定：</p>
+<p><strong>定义（常数独立性）：</strong></p>
+<p>对于函数组 $\psi(x, C_1, C_2, \dots, C_n)$，若 $C_1, \dots, C_n$在$x \in [a, b]$ 上线性独立，其充要条件通常涉及 <strong>Wronskian 行列式</strong>不为零：</p>
+<p>
+$$
+\left| \frac{\partial(\psi, \psi', \psi'', \dots, \psi^{(n-1)})}{\partial(C_1, C_2, C_3, \dots, C_n)} \right| \neq 0, \quad x \in [a, b]
+$$
+</p>
+
+<blockquote>
+<p><strong>逻辑闭环：</strong></p>
+<ul>
+<li><p><strong>一阶方程</strong>有一个待定常数 $C$。</p>
+</li>
+<li><p><strong>二阶方程</strong>有两个相互独立的待定常数 $C_1, C_2$。</p>
+</li>
+<li><p><strong>n 阶方程</strong>则需要 $n$ 个线性独立的解来构造通解。</p>
+</li>
+</ul>
+</blockquote>
+<p>我们可以验证一下简谐振动的解是不是符合常数独立性。</p>
+<h3 id="验证：通解中常数的独立性"><a href="#验证：通解中常数的独立性" class="headerlink" title="验证：通解中常数的独立性"></a>验证：通解中常数的独立性</h3><p><strong>1. 设定函数形式</strong></p>
+<p>已知二阶方程的解函数族为：</p>
+<p>
+$$
+x(t, C_1, C_2) = C_1 \cos(t) + C_2 \sin(t), \quad \forall C_1, C_2 \in \mathbb{R}
+$$
+</p>
+
+<p>对其求一阶导数（关于时间 $t$）：</p>
+<p>
+$$
+x'(t, C_1, C_2) = -C_1 \sin(t) + C_2 \cos(t)
+$$
+</p>
+
+<p><strong>2. 构造行列式 (Wronskian 思想的变形)</strong></p>
+<p>为了验证 $C_1, C_2$ 的独立性，计算函数向量对常数向量的偏导数行列式：</p>
+<p>
+$$
+\left| \frac{D(x, x')}{D(C_1, C_2)} \right| = \begin{vmatrix} \frac{\partial x}{\partial C_1} & \frac{\partial x}{\partial C_2} \\ \frac{\partial x'}{\partial C_1} & \frac{\partial x'}{\partial C_2} \end{vmatrix}
+$$
+</p>
+
+<p><strong>3. 代入计算</strong></p>
+<p>将偏导数结果代入矩阵：</p>
+<p>
+$$
+= \begin{vmatrix} \cos(t) & \sin(t) \\ -\sin(t) & \cos(t) \end{vmatrix}
+$$
+</p>
+
+<p>利用行列式计算规则 $ad - bc$：</p>
+<p>
+$$
+= \cos^2(t) - (-\sin^2(t))
+$$
+</p>
+
+<p>
+$$
+= \cos^2(t) + \sin^2(t)
+$$
+</p>
+
+<p>
+$$
+= 1 \neq 0
+$$
+</p>
+
+<hr>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>由于该行列式的值为 <strong>1</strong>（恒不为零），根据判定准则，常数 $C_1$与$C_2$ 在解空间中是<strong>相互独立</strong>的。</p>
+<p>这证明了 $x(t) &#x3D; C_1 \cos(t) + C_2 \sin(t)$ 确实是该二阶微分方程的<strong>通解</strong></p>
+<hr>
+<p>一般的方程的解，我们也可以看成函数，那么也就有所谓隐函数，相应的，这里有所谓通积分。</p>
+<h2 id="通积分-General-Integral"><a href="#通积分-General-Integral" class="headerlink" title="通积分 (General Integral)"></a>通积分 (General Integral)</h2><h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h3><p>对于 $n$阶常微分方程$F(x, y, y’, \dots, y^{(n)}) &#x3D; 0 \quad (\star)$，如果其通解是由一个隐函数方程给出的：</p>
+<p>
+$$
+\Phi(x, y; C_1, C_2, \dots, C_n) = 0
+$$
+</p>
+
+<p>若该等式在满足常数独立性的前提下，能够通过对 $x$求导等代数运算还原为原方程$(\star)$，则称该隐式方程为原方程的 <strong>通积分</strong>。</p>
+<blockquote>
+<p><strong>核心区别：</strong></p>
+<ul>
+<li><p><strong>通解</strong>：通常指显式函数形式 $y &#x3D; f(x, C_1, \dots, C_n)$。</p>
+</li>
+<li><p><strong>通积分</strong>：指隐式方程形式，不一定能轻易解出显式的 $y$。</p>
+</li>
+</ul>
+</blockquote>
+<p>实际上，也就是消除了 $y$ 的导数的影响，也就是解掉了微分。</p>
+<hr>
+<h3 id="2-案例演示：圆族与微分方程"><a href="#2-案例演示：圆族与微分方程" class="headerlink" title="2. 案例演示：圆族与微分方程"></a>2. 案例演示：圆族与微分方程</h3><p>板书通过一个几何例子展示了通积分与微分方程的转换逻辑：</p>
+<ul>
+<li><strong>微分方程：</strong> $x + y \cdot y’ &#x3D; 0$- <strong>通积分猜测：</strong>$x^2 + y^2 &#x3D; C$ （这是一个以原点为圆心的圆族）</li>
+</ul>
+<p><strong>验证过程：</strong></p>
+<p>对隐式方程 $x^2 + y^2 &#x3D; C$关于$x$ 求导：</p>
+<ol>
+<li><p>$\frac{d}{dx}(x^2) + \frac{d}{dx}(y^2) &#x3D; \frac{d}{dx}(C)$2.$2x + 2y \cdot y’ &#x3D; 0$</p>
+</li>
+<li><p>化简得：$x + y \cdot y’ &#x3D; 0$</p>
+</li>
+</ol>
+<p><strong>结论：</strong></p>
+<p>隐式方程 $x^2 + y^2 &#x3D; C$是微分方程$x + y \cdot y’ &#x3D; 0$ 的通积分。如果写成显式通解，则为：</p>
+<p>
+$$
+y = \pm \sqrt{C - x^2}
+$$
+</p>
+
+<hr>
+<h3 id="3-几何直观"><a href="#3-几何直观" class="headerlink" title="3. 几何直观"></a>3. 几何直观</h3><p>在坐标系中，这个通积分代表了一系列同心圆。微分方程 $y’ &#x3D; -\frac{x}{y}$ 实际上描述了圆上任意一点的切线斜率必须与该点到原点的连线（半径）垂直。</p>
+<hr>
+<p>会不会有解落在通解之外呢，或者说遍历通解中的常数也取不到某个解？</p>
+<h2 id="定义：奇解-Singular-Solution"><a href="#定义：奇解-Singular-Solution" class="headerlink" title="定义：奇解 (Singular Solution)"></a>定义：奇解 (Singular Solution)</h2><p>若函数 $y(x)$满足原方程$(\star)$，但它<strong>不包含在通解中</strong>（即无法通过给通解中的任意常数 $C$ 赋值来得到），则称其为方程的一个<strong>奇解</strong>。</p>
+<h3 id="典型案例分析：-y-2-y’-2-1"><a href="#典型案例分析：-y-2-y’-2-1" class="headerlink" title="典型案例分析：$y^2 + (y’)^2 &#x3D; 1$"></a>典型案例分析：$y^2 + (y’)^2 &#x3D; 1$</h3><h4 id="1-通解及其验证"><a href="#1-通解及其验证" class="headerlink" title="1. 通解及其验证"></a>1. 通解及其验证</h4><p>给定微分方程：</p>
+<p>
+$$
+y(x)^2 + (y'(x))^2 = 1
+$$
+</p>
+
+<p>其<strong>通解</strong>形式为：</p>
+<p>
+$$
+y(x) = \sin(x-c), \quad c \in \mathbb{R}
+$$
+</p>
+
+<p><strong>常数独立性验证：</strong></p>
+<p>通过对常数 $c$ 求偏导来判断其是否提供了一个有效的自由度：</p>
+<p>
+$$
+\partial_c y = -\cos(x-c) \not\equiv 0
+$$
+</p>
+
+<blockquote>
+<p><strong>核心逻辑：</strong> 虽然在某些特定点该偏导数为零，但在区间内它<strong>不恒等于零</strong>，因此常数 $c$ 是独立的。</p>
+</blockquote>
+<hr>
+<h4 id="2-奇解-Singular-Solutions"><a href="#2-奇解-Singular-Solutions" class="headerlink" title="2. 奇解 (Singular Solutions)"></a>2. 奇解 (Singular Solutions)</h4><p>观察方程结构，可以发现两个不包含在上述通解族中的特殊恒等解：</p>
+<ul>
+<li><p><strong>$y(x) \equiv 1$</strong></p>
+</li>
+<li><p><strong>$y(x) \equiv -1$</strong></p>
+</li>
+</ul>
+<p><strong>验证：</strong> 若 $y &#x3D; \pm 1$，则 $y’ &#x3D; 0$。代入原方程：$(\pm 1)^2 + 0^2 &#x3D; 1$，等式成立。</p>
+<p>由于这两个解无法通过给通解中的 $c$ 赋值得到（$\sin$ 函数无法恒等于 1），它们被定义为该方程的<strong>奇解</strong>。</p>
+<hr>
+<h4 id="包络与奇解-Envelope-and-Singular-Solution"><a href="#包络与奇解-Envelope-and-Singular-Solution" class="headerlink" title="包络与奇解 (Envelope and Singular Solution)"></a>包络与奇解 (Envelope and Singular Solution)</h4><h5 id="核心定义"><a href="#核心定义" class="headerlink" title="核心定义"></a>核心定义</h5><p>针对 <strong>一阶常微分方程 (1st Order ODE)</strong>：</p>
+<p>若某个函数 $y(x)$ 在其曲线上：</p>
+<ul>
+<li><p><strong>每一点</strong> 都与该方程通解族中的 <strong>某一个解</strong> 相切；</p>
+</li>
+<li><p>且 $y(x)$ 本身也满足该微分方程。</p>
+</li>
+</ul>
+<p>则 $y(x)$ 为该方程的一个 <strong>奇解</strong>。</p>
+<hr>
+<h5 id="为什么“相切”意味着“唯一性失效”？"><a href="#为什么“相切”意味着“唯一性失效”？" class="headerlink" title="为什么“相切”意味着“唯一性失效”？"></a>为什么“相切”意味着“唯一性失效”？</h5><p>从几何角度来看，包络线具有一种奇特的“重合”属性：</p>
+<ol>
+<li><p><strong>坐标相同：</strong> 在切点处，包络线与通解曲线的 $y$ 值一致。</p>
+</li>
+<li><p><strong>斜率相同：</strong> 由于相切，它们的导数 $y’$ 也完全一致。</p>
+</li>
+</ol>
+<p><strong>推论：</strong></p>
+<p>对于同一个初值点 $(x_0, y_0)$，现在出现了两条不同的积分曲线（包络线本身和穿过该点的通解曲线），它们在该点具有相同的斜率。这说明在该轨迹上，微分方程解的<strong>存在唯一性定理</strong> 遭到了破坏。</p>
+<hr>
+<h5 id="判别逻辑"><a href="#判别逻辑" class="headerlink" title="判别逻辑"></a>判别逻辑</h5><ul>
+<li><strong>通解族：</strong> $\Phi(x, y, C) &#x3D; 0$- <strong>包络线方程：</strong> 通常通过联立以下方程组并消去参数$C$ 获得：</li>
+</ul>
+<p>
+$$
+\begin{cases} \Phi(x, y, C) = 0 \\ \frac{\partial \Phi}{\partial C} = 0 \end{cases}
+$$
+</p>
+
+<ul>
+<li><strong>验证：</strong> 求出的包络线方程如果代入原 ODE 成立，且无法通过给 $C$ 赋值得到，则它就是奇解。</li>
+</ul>
+<p>实际上奇解有无穷多个，就上面的例子而言，我们可以在 $y&#x3D;-1$走一段，然后沿着三角函数走到$y&#x3D;1$ ，然后再随便走……也许正如，当你看到一只蟑螂，屋子里已经满是蟑螂了（？）从另一个视角来看，通解甚至只是解的一小部分（</p>
+<hr>
+<h2 id="初值问题-Cauchy-问题"><a href="#初值问题-Cauchy-问题" class="headerlink" title="初值问题 (Cauchy 问题)"></a>初值问题 (Cauchy 问题)</h2><p>对于一个 $n$ 阶常微分方程，如何通过初始条件锁定唯一轨迹。</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>对于 $n$ 阶 ODE：$F(x, y, y’, \dots, y^{(n)}) &#x3D; 0$，寻找一个特解 $y(x)$使其满足如下$n$ 个初始条件：</p>
+<p>
+$$
+\begin{cases} y(0) = y_0 \\ y'(0) = y_1 \\ \dots \\ y^{(n-1)}(0) = y_{n-1} \end{cases}
+$$
+</p>
+
+<p>其中 $y_0, y_1, \dots, y_{n-1}$ 为<strong>给定的初值</strong>。</p>
+<h3 id="研究核心"><a href="#研究核心" class="headerlink" title="研究核心"></a>研究核心</h3><p>对于 Cauchy 问题，数学家和物理学家最关心的三个维度：</p>
+<ol>
+<li><p><strong>存在性 (Existence)：</strong> 是否真的能找到这样一个解？</p>
+</li>
+<li><p><strong>唯一性 (Uniqueness)：</strong> 是否有且仅有一个解？（对应了刚才讨论的“包络线&#x2F;奇解”是否会破坏唯一性）。</p>
+</li>
+<li><p><strong>长期行为 (Long-term Behavior)：</strong> 随着自变量 $x$（通常是时间 $t$）的增加，解是趋于稳定、发散还是进入混沌状态？</p>
+</li>
+</ol>
+<p>怎么看存在性呢？</p>
+<h3 id="通解常数的独立性与逆映射-Independence-Inverse-Mapping"><a href="#通解常数的独立性与逆映射-Independence-Inverse-Mapping" class="headerlink" title="通解常数的独立性与逆映射 (Independence &amp; Inverse Mapping)"></a>通解常数的独立性与逆映射 (Independence &amp; Inverse Mapping)</h3><h4 id="1-初值条件的方程组形式"><a href="#1-初值条件的方程组形式" class="headerlink" title="1. 初值条件的方程组形式"></a>1. 初值条件的方程组形式</h4><p>对于一个包含 $n$个待定常数$C_1, \dots, C_n$的通解$y(x, C_1, \dots, C_n)$，给定初值 $(y_0, y_1, \dots, y_{n-1})$，我们可以建立如下方程组：</p>
+<p>
+$$
+\begin{cases} y(0, C_1, \dots, C_n) = y_0 \\ y'(0, C_1, \dots, C_n) = y_1 \\ \dots \\ y^{(n-1)}(0, C_1, \dots, C_n) = y_{n-1} \end{cases}
+$$
+</p>
+
+<h4 id="2-核心判定：Jacobi-行列式"><a href="#2-核心判定：Jacobi-行列式" class="headerlink" title="2. 核心判定：Jacobi 行列式"></a>2. 核心判定：Jacobi 行列式</h4><p>要使上述初值能够<strong>唯一地</strong>锁定一组常数 $(C_1, \dots, C_n)$，必须保证该映射在局部是可逆的。其判定条件为 Jacobi 行列式不为零：</p>
+<p>
+$$
+\left| \frac{D(y, y', \dots, y^{(n-1)})}{D(C_1, C_2, \dots, C_n)} \right| \neq 0
+$$
+</p>
+
+<ul>
+<li><p><strong>数学含义：</strong> 这一条件等价于常数的 <strong>独立性 (Independence)</strong>。</p>
+</li>
+<li><p><strong>几何直观：</strong> 它保证了从“常数空间”到“初值空间”的映射是一个<strong>局部微分同胚</strong>。即对于每一组合理的初值，我们都能反向找到唯一对应的常数解。</p>
+</li>
+</ul>
+<h4 id="3-逆映射定理的视角"><a href="#3-逆映射定理的视角" class="headerlink" title="3. 逆映射定理的视角"></a>3. 逆映射定理的视角</h4><p>更抽象的映射描述：</p>
+<ul>
+<li><p>设映射 $g(\vec{C}) &#x3D; \vec{u}$，其中 $\vec{C}$ 是常数向量，$\vec{u}$ 是初值向量。</p>
+</li>
+<li><p>若 Jacobi 行列式非零，则根据 <strong>逆映射定理 (Inverse Function Theorem)</strong>，存在逆映射：</p>
+</li>
+</ul>
+<p>
+$$
+\vec{C} = g^{-1}(\vec{u})
+$$
+</p>
+
+<ul>
+<li>这意味着：<strong>通解之所以能通过初值确定特解，本质上是因为常数的独立性保证了映射的可逆性。</strong></li>
+</ul>
+<h4 id="通解的局限性"><a href="#通解的局限性" class="headerlink" title="通解的局限性"></a>通解的局限性</h4><p>通解只是我们预期的一般的规律，除了上述的奇解之外，我们可以考虑：</p>
+<p>
+$$
+F(x,y,y')=0和G(x,y,y')=0
+$$
+</p>
+
+<p>我们把两个方程相乘就得到一个新的微分方程，这两个方程可以风马牛不相及，但是他们的通解都是新的方程通解，有两个通解？！</p>
+<h1 id="具体计算"><a href="#具体计算" class="headerlink" title="具体计算"></a>具体计算</h1><h2 id="变量分离法-Separable-Variables"><a href="#变量分离法-Separable-Variables" class="headerlink" title="变量分离法 (Separable Variables)"></a>变量分离法 (Separable Variables)</h2><h3 id="1-基本形式"><a href="#1-基本形式" class="headerlink" title="1. 基本形式"></a>1. 基本形式</h3><p>对于一阶常微分方程（First-order ODE），若其形式如下：</p>
+<p>
+$$
+y'(x) = f(x) \cdot g(y)
+$$
+</p>
+
+<h3 id="2-解题步骤"><a href="#2-解题步骤" class="headerlink" title="2. 解题步骤"></a>2. 解题步骤</h3><ul>
+<li><p><strong>寻找常数解（平衡解）：</strong></p>
+<p>  观察 $g(y)$是否有零点。即若存在常数$c_0$使得$g(c_0) &#x3D; 0$，则 <strong>$y(x) &#x3D; c_0$ 是原方程的一个解</strong>。</p>
+</li>
+<li><p><strong>变量分离：</strong></p>
+<p>  若在某个区间上 $g(y) \neq 0$，则可将方程改写为：</p>
+</li>
+</ul>
+<p>
+$$
+\frac{y'}{g(y)} = f(x)
+$$
+</p>
+
+<h3 id="3-原理解析"><a href="#3-原理解析" class="headerlink" title="3. 原理解析"></a>3. 原理解析</h3><p>设 $F’(x) &#x3D; f(x)$，$G’(y) &#x3D; \frac{1}{g(y)}$（假设 $g(y) \neq 0$）。</p>
+<p>对上述分离后的方程两边关于 $x$ 求导&#x2F;积分，可得隐式解：</p>
+<p>
+$$
+G(y(x)) = F(x) + C
+$$
+</p>
+
+<p>若 $G$ 存在逆函数，则显式解为：</p>
+<p>
+$$
+y(x) = G^{-1}(F(x) + C)
+$$
+</p>
+
+<p><strong>验证：</strong></p>
+<p>利用复合函数求导法则：</p>
+<p>
+$$
+y'(x) = (G^{-1})'(F(x) + C) \cdot F'(x) = \frac{1}{G'(G^{-1}(F(x)+C))} \cdot f(x) = g(y) \cdot f(x)
+$$
+</p>
+
+<hr>
+<h2 id="例题演示"><a href="#例题演示" class="headerlink" title="例题演示"></a>例题演示</h2><p><strong>方程：</strong> $y’ &#x3D; -xy$这里$f(x) &#x3D; -x$，$g(y) &#x3D; y$。</p>
+<ol>
+<li><p><strong>检查零点：</strong></p>
+<p> 令 $g(y) &#x3D; y &#x3D; 0$，得到 <strong>$y \equiv 0$ 是方程的一个特解</strong>。</p>
+</li>
+<li><p><strong>分离变量（假设 $y \neq 0$）：</strong></p>
+</li>
+</ol>
+<p>
+$$
+\frac{y'}{y} = -x
+$$
+</p>
+
+<ol start="3">
+<li><strong>两边积分：</strong></li>
+</ol>
+<p>
+$$
+\int \frac{1}{y} dy = \int -x dx
+$$
+</p>
+
+<p>
+$$
+\ln|y| = -\frac{1}{2}x^2 + C
+$$
+</p>
+
+<p>为了解出 $y$，对等式两边取指数：</p>
+<p>
+$$
+|y| = e^{-\frac{1}{2}x^2 + C} = e^C \cdot e^{-\frac{1}{2}x^2}
+$$
+</p>
+
+<p>令 $\tilde{C} &#x3D; e^C$（由于 $e^C &gt; 0$，故 $\tilde{C} &gt; 0$），则有：</p>
+<p>
+$$
+|y| = \tilde{C} e^{-\frac{1}{2}x^2}
+$$
+</p>
+
+<p>去掉左边的绝对值符号，右边引入正负号：</p>
+<p>
+$$
+y = \pm \tilde{C} e^{-\frac{1}{2}x^2}
+$$
+</p>
+
+<p>此时，系数 $\pm \tilde{C}$ 可以取遍所有非零实数。</p>
+<p>注意到我们在步骤 ① 中发现的常数解 <strong>$y \equiv 0$</strong>。</p>
+<ul>
+<li><p>如果我们允许上述式子中的系数取 <strong>0</strong>，那么这个式子就能涵盖 $y \equiv 0$。</p>
+</li>
+<li><p>重新定义一个新的任意常数 $\hat{C}$，使其包含正数、负数以及零（$\hat{C} \in \mathbb{R}$）。</p>
+</li>
+</ul>
+<p>最终，方程的**通解（General Solution）**写为：</p>
+<p>
+$$
+\mathbf{y(x) = \hat{C} e^{-\frac{1}{2}x^2}}
+$$
+</p>
+
+<h2 id="变量替换（Variable-Substitution）"><a href="#变量替换（Variable-Substitution）" class="headerlink" title="变量替换（Variable Substitution）"></a>变量替换（Variable Substitution）</h2><h3 id="一"><a href="#一" class="headerlink" title="一"></a>一</h3><p><strong>基本模型：</strong></p>
+<p>对于形如 $y’ &#x3D; f(ax + by + c)$ 的微分方程：</p>
+<ol>
+<li><strong>令：</strong> $z &#x3D; ax + by + c$2. <strong>求导：</strong>$z’ &#x3D; a + b \cdot y’ &#x3D; a + b \cdot f(z)$3. <strong>转化：</strong> 得到关于$z$ 的可分离变量方程：$z’ &#x3D; a + b f(z)$</li>
+</ol>
+<hr>
+<h4 id="典型例题"><a href="#典型例题" class="headerlink" title="典型例题"></a>典型例题</h4><p><strong>方程：</strong> $y’ &#x3D; \sin(x + y + 1)$</p>
+<p><strong>1. 变量替换</strong></p>
+<p>令 $z &#x3D; x + y + 1$，则有 $z’ &#x3D; 1 + y’$。</p>
+<p>代入原方程得：</p>
+<p>
+$$
+z' = 1 + \sin(z)
+$$
+</p>
+
+<p><strong>2. 寻找奇异解（Equilibrium Solutions）</strong></p>
+<p>考察 $1 + \sin(z) &#x3D; 0$ 的情况：</p>
+<p>当 $z &#x3D; 2k\pi + \frac{3}{2}\pi$ ($k \in \mathbb{Z}$) 时，$z’ &#x3D; 0$。</p>
+<p>反代回原变量，得到一组<strong>直线解</strong>：</p>
+<p><strong>$y(x) &#x3D; 2k\pi + \frac{3}{2}\pi - x - 1$</strong></p>
+<p><strong>3. 通解计算（分离变量法）</strong></p>
+<p>当 $1 + \sin(z) \neq 0$ 时，进行积分：</p>
+<p>
+$$
+\int \frac{dz}{1 + \sin(z)} = \int 1 dx
+$$
+</p>
+
+<ul>
+<li><p><strong>左侧积分推导：</strong></p>
+<p>  利用三角恒等式变换，积分为：</p>
+</li>
+</ul>
+<p>
+$$
+-\frac{\cos(z)}{1 + \sin(z)} = \tan\left(\frac{z}{2} - \frac{\pi}{4}\right)
+$$
+</p>
+
+<p><em>(注：利用了半角公式进行简化)</em></p>
+<ul>
+<li><strong>得出结果：</strong></li>
+</ul>
+<p>
+$$
+\tan\left(\frac{x + y + 1}{2} - \frac{\pi}{4}\right) = x + C
+$$
+</p>
+
+<p>进一步整理得：</p>
+<pre><code>**$y = 2 \arctan(x + C) + \frac{\pi}{2} - x - 1$**
+</code></pre>
+<p>注意到，$y$可以加上$2k\pi$ 而不影响方程成立，所以实际上的通解为：</p>
+<p>
+$$
+y = 2 \arctan(x + C) + \frac{\pi}{2} - x - 1+2k\pi
+$$
+</p>
+
+<hr>
+<h4 id="关于解"><a href="#关于解" class="headerlink" title="关于解"></a>关于解</h4><p>该方程解的族群分布：</p>
+<ul>
+<li><p><strong>特征：</strong> 解曲线被一系列斜率为 $-1$的平行直线（即奇异解$y &#x3D; -x - 1 + 2k\pi + \frac{3}{2}\pi$）所分割。</p>
+</li>
+<li><p><strong>趋势：</strong> 在这些“隔离带”之间，通解曲线呈现出周期性的波动形态。当 $x \to \infty$ 时，解会无限趋近于这些特定的直线。</p>
+</li>
+</ul>
+<hr>
+<h3 id="二，齐次"><a href="#二，齐次" class="headerlink" title="二，齐次"></a>二，齐次</h3><p><strong>1. 识别模型</strong></p>
+<p>当微分方程可以表示为自变量与因变量比值的函数时：</p>
+<p>
+$$
+y' = f(x, y) = h\left(\frac{y}{x}\right)
+$$
+</p>
+
+<p><strong>2. 引入中间变量</strong></p>
+<p>令：</p>
+<p>
+$$
+u = \frac{y}{x} \implies y = x \cdot u
+$$
+</p>
+
+<p><strong>3. 求导变换</strong></p>
+<p>对 $y &#x3D; xu$关于$x$ 求导（应用乘积法则）：</p>
+<p>
+$$
+y' = (xu)' = x \cdot u' + u
+$$
+</p>
+
+<p><strong>4. 建立新方程</strong></p>
+<p>将上述结果代入原方程 $y’ &#x3D; h(u)$：</p>
+<p>
+$$
+xu' + u = h(u)
+$$
+</p>
+
+<p>整理得：</p>
+<p>
+$$
+u' = \frac{h(u) - u}{x}
+$$
+</p>
+
+<hr>
+<h4 id="逻辑拆解"><a href="#逻辑拆解" class="headerlink" title="逻辑拆解"></a>逻辑拆解</h4><ul>
+<li><strong>本质：</strong> 这种变换的精髓在于通过“比例化”将一个二元函数 $f(x, y)$塌缩为一元函数$h(u)$，从而将方程转化为<strong>可分离变量</strong>的形式：</li>
+</ul>
+<p>
+$$
+\frac{du}{h(u) - u} = \frac{dx}{x}
+$$
+</p>
+
+<ul>
+<li><p><strong>适用场景：</strong> 如果方程中 $x$和$y$的每一项次数相同（齐次），那么它一定能化为$h(y&#x2F;x)$ 的形式。</p>
+</li>
+<li><p><strong>潜在风险：</strong> 在后续积分过程中，需额外注意分母 $h(u) - u &#x3D; 0$ 的情况，这通常对应于解空间中的射线（即平衡解）。</p>
+</li>
+</ul>
+<hr>
+<h3 id="三，分式线性组合"><a href="#三，分式线性组合" class="headerlink" title="三，分式线性组合"></a>三，分式线性组合</h3><h4 id="一、-核心模型"><a href="#一、-核心模型" class="headerlink" title="一、 核心模型"></a>一、 核心模型</h4><p>方程形式为：</p>
+<p>
+$$
+y' = f\left( \frac{a_1 x + b_1 y + c_1}{a_2 x + b_2 y + c_2} \right)
+$$
+</p>
+
+<p>这种方程的处理方式取决于分子、分母所代表的两条直线的几何关系，即行列式 $D &#x3D; \begin{vmatrix} a_1 &amp; b_1 \ a_2 &amp; b_2 \end{vmatrix}$ 是否为零。</p>
+<hr>
+<h4 id="二、-情况-a-：相交直线（-D-neq-0-）"><a href="#二、-情况-a-：相交直线（-D-neq-0-）" class="headerlink" title="二、 情况 (a)：相交直线（$D \neq 0$）"></a>二、 情况 (a)：相交直线（$D \neq 0$）</h4><p>当两条直线相交时，可以通过<strong>平移坐标原点</strong>到交点来消除常数项 $c_1$和$c_2$。</p>
+<ol>
+<li><p><strong>求交点：</strong> 解线性方程组 $\begin{cases} a_1 x + b_1 y + c_1 &#x3D; 0 \ a_2 x + b_2 y + c_2 &#x3D; 0 \end{cases}$，得到唯一解 $(x_0, y_0)$。</p>
+</li>
+<li><p><strong>坐标平移：</strong> 令 $u &#x3D; x - x_0, v &#x3D; y - y_0$。</p>
+</li>
+<li><p><strong>方程转化：</strong> 代入原方程后，常数项消失，方程变为：</p>
+</li>
+</ol>
+<p>
+$$
+v'(u) = f\left( \frac{a_1 u + b_1 v}{a_2 u + b_2 v} \right) = f\left( \frac{a_1 + b_1(v/u)}{a_2 + b_2(v/u)} \right)
+$$
+</p>
+
+<p>此时，方程转化为了标准的<strong>齐次方程</strong>，可用 $w &#x3D; v&#x2F;u$ 进一步求解。</p>
+<hr>
+<h4 id="三、-情况-b-：平行直线（-D-0-）"><a href="#三、-情况-b-：平行直线（-D-0-）" class="headerlink" title="三、 情况 (b)：平行直线（$D &#x3D; 0$）"></a>三、 情况 (b)：平行直线（$D &#x3D; 0$）</h4><p>当两条直线平行时，意味着系数成比例：$(a_1, b_1) &#x3D; \lambda(a_2, b_2)$。</p>
+<ol>
+<li><strong>比例简化：</strong> 此时分子和分母的线性部分是相关的。</li>
+</ol>
+<p>
+$$
+y' = f\left( \frac{(a x + b y) + c_1}{\lambda(a x + b y) + c_2} \right) = g(ax + by)
+$$
+</p>
+
+<ol start="2">
+<li><p><strong>变量替换：</strong> 此时回到最简单的模式，令 <strong>$z &#x3D; ax + by$</strong>。</p>
+</li>
+<li><p><strong>结果：</strong> 转化为可分离变量的方程进行计算。</p>
+</li>
+</ol>
+<hr>
+<h4 id="总结与观察"><a href="#总结与观察" class="headerlink" title="总结与观察"></a>总结与观察</h4><p>这展示了数学处理中“<strong>化归</strong>”的思想：</p>
+<ul>
+<li><p>如果<strong>有交点</strong>，就通过“平移”消除常数项，化归为<strong>齐次方程</strong>。</p>
+</li>
+<li><p>如果<strong>无交点</strong>（平行），就通过“整体替换”化归为<strong>一元函数方程</strong>。</p>
+</li>
+</ul>
+<p>至此，我们已经完整收集了一阶微分方程变量替换法的三大招式：</p>
+<ol>
+<li><p><strong>$y’ &#x3D; f(ax+by+c)$</strong>（整体替换）</p>
+</li>
+<li><p><strong>$y’ &#x3D; h(y&#x2F;x)$</strong>（齐次化替换）</p>
+</li>
+<li><p><strong>$y’ &#x3D; f(\frac{L_1}{L_2})$</strong>（坐标平移&#x2F;平行替换）</p>
+</li>
+</ol>
+<h2 id="一阶线性-ODE（关于-y-y’-线性）"><a href="#一阶线性-ODE（关于-y-y’-线性）" class="headerlink" title="一阶线性 ODE（关于 $y, y’$ 线性）"></a>一阶线性 ODE（关于 $y, y’$ 线性）</h2><p><strong>1. 基本定义与分类</strong></p>
+<p>方程的标准形式为：</p>
+<ul>
+<li><strong>非齐次方程：</strong> $y’ + P(x)y &#x3D; Q(x)$—— 记作$(*)$- <strong>齐次方程：</strong>$y’ + P(x)y &#x3D; 0$—— 记作$(**)$</li>
+</ul>
+<p><strong>2. 解的结构理论</strong></p>
+<p>线性方程最迷人的地方在于其解的可叠加性：</p>
+<ul>
+<li><p><strong>齐次解的线性性质：</strong> 若 $y_1, y_2$为$(<strong>)$的两个解，则其线性组合$C_1y_1 + C_2y_2$亦为解。其通解具有$C\varphi(x)$ 的形式，且</strong>没有奇异解**。这不难验证，代入即可。</p>
+</li>
+<li><p><strong>通解结构公式：</strong></p>
+<p>  若 $\hat{y}$是非齐次方程$(<em>)$ 的一个*<em>特解</em></em>，$\varphi$是对应齐次方程$(<strong>)$的一个</strong>非零解**，则$(*)$ 的<strong>通解</strong>可表示为：</p>
+</li>
+</ul>
+<p>
+$$
+y = \hat{y} + C\varphi
+$$
+</p>
+
+<blockquote>
+<p><strong>直观理解：</strong> 这与线性代数中“非齐次线性方程组的通解 &#x3D; 特解 + 齐次方程组通解”的逻辑完全一致。</p>
+</blockquote>
+<hr>
+<h3 id="齐次方程-的求解推导"><a href="#齐次方程-的求解推导" class="headerlink" title="齐次方程 $(**)$ 的求解推导"></a>齐次方程 $(**)$ 的求解推导</h3><p>利用<strong>积分因子法</strong>求解齐次方程的过程：</p>
+<ol>
+<li><p><strong>构造原函数：</strong> 令 $F(x)$满足$F’(x) &#x3D; P(x)$，即 $F(x) &#x3D; \int P(x)dx$。</p>
+</li>
+<li><p><strong>引入积分因子：</strong> 在方程 $(**)$两端同时乘以$e^{F(x)}$（显然 $e^{F(x)} \neq 0$）：</p>
+</li>
+</ol>
+<p>
+$$
+y'e^F + yF'e^F = 0
+$$
+</p>
+
+<ol start="3">
+<li><strong>逆用乘积导数法则：</strong></li>
+</ol>
+<p>
+$$
+(ye^F)' = 0
+$$
+</p>
+
+<ol start="4">
+<li><strong>积分得出结论：</strong></li>
+</ol>
+<p>
+$$
+ye^F = C \implies y(x) = Ce^{-F(x)}
+$$
+</p>
+
+<p>即齐次方程的通解为：<strong>$y(x) &#x3D; C e^{-\int P(x)dx}$</strong></p>
+<p>这实际上很符合直觉，正如 $y’+y&#x3D;0$我们会猜解$y&#x3D;e^{-x}$ 。 我们利用了指数求导不变来构造微分。又由于实际上每一步都是等价变换，所以没有奇解。</p>
+<h3 id="非齐次方程的求解——常数变易法-Variation-of-Parameters"><a href="#非齐次方程的求解——常数变易法-Variation-of-Parameters" class="headerlink" title="非齐次方程的求解——常数变易法 (Variation of Parameters)"></a>非齐次方程的求解——常数变易法 (Variation of Parameters)</h3><p><strong>1. 核心思想</strong></p>
+<p>对于齐次方程 $(**)$的通解$y &#x3D; Ce^{-F(x)}$，我们大胆假设非齐次方程 $(*)$的通解具有相同的形式，但将常数$C$替换为待定函数$C(x)$：</p>
+<p>
+$$
+y = C(x)e^{-F(x)}
+$$
+</p>
+
+<p><strong>2. 求解过程</strong></p>
+<p>继续沿用<strong>积分因子 $e^{F(x)}$</strong>：</p>
+<ul>
+<li><strong>原方程：</strong> $y’ + P(x)y &#x3D; Q(x)$——$(*)$- <strong>乘积分因子：</strong> 左右同乘$e^{F(x)}$，其中 $F’(x) &#x3D; P(x)$：</li>
+</ul>
+<p>
+$$
+y'e^F + yP(x)e^F = Q(x)e^F
+$$
+</p>
+
+<ul>
+<li><strong>合并左端：</strong> 根据导数乘积法则的逆过程：</li>
+</ul>
+<p>
+$$
+(ye^F)' = Q(x)e^F
+$$
+</p>
+
+<ul>
+<li><strong>两端积分：</strong></li>
+</ul>
+<p>
+$$
+ye^{F(x)} = \int_{x_0}^x Q(\tilde{x})e^{F(\tilde{x})}d\tilde{x} + C
+$$
+</p>
+
+<hr>
+<h3 id="二、-一阶线性-ODE-的通用公式"><a href="#二、-一阶线性-ODE-的通用公式" class="headerlink" title="二、 一阶线性 ODE 的通用公式"></a>二、 一阶线性 ODE 的通用公式</h3><p>通过上述推导，也就得到了最终的<strong>通解公式</strong>：</p>
+<p>
+$$
+y(x) = \left( \int_{x_0}^x Q(\tilde{x})e^{F(\tilde{x})} d\tilde{x} + C \right) e^{-F(x)}
+$$
+</p>
+
+<p><strong>结构拆解：</strong></p>
+<ol>
+<li><strong>特解部分：</strong> $e^{-F(x)} \int Q(x)e^{F(x)}dx$2. <strong>齐次解部分：</strong>$Ce^{-F(x)}$</li>
+</ol>
+<p>这同样步步等价，所以这并没有奇解，这是线性方程的优良性质。</p>
+<hr>
+<h3 id="示例：RL电路"><a href="#示例：RL电路" class="headerlink" title="示例：RL电路"></a>示例：RL电路</h3><p><strong>1. 电路构成</strong></p>
+<ul>
+<li><strong>电源电动势：</strong> $E$- <strong>电感：</strong>$L$- <strong>电阻：</strong>$R$</li>
+</ul>
+<p><strong>2. 建立方程</strong></p>
+<p>根据基尔霍夫电压定律（KVL），电路的电压平衡方程为：</p>
+<p>
+$$
+L \cdot I'(t) + R \cdot I(t) = E
+$$
+</p>
+
+<p>设定初始条件：$I(0) &#x3D; 0$（即电路在 $t&#x3D;0$ 时刻接通，初始电流为零）。</p>
+<hr>
+<h4 id="数学转化与求解"><a href="#数学转化与求解" class="headerlink" title="数学转化与求解"></a>数学转化与求解</h4><p><strong>1. 标准化处理</strong></p>
+<p>为了套用一阶线性 ODE 的公式，将方程两端同除以 $L$：</p>
+<p>
+$$
+I' + \frac{R}{L}I = \frac{E}{L}
+$$
+</p>
+
+<p>令常数 $P &#x3D; \frac{R}{L}$，$Q &#x3D; \frac{E}{L}$，方程简化为标准型：</p>
+<p>
+$$
+I' + PI = Q
+$$
+</p>
+
+<p><strong>2. 积分因子法求解</strong></p>
+<ul>
+<li><strong>积分因子：</strong> $e^{Pt}$- <strong>变换：</strong>$(I \cdot e^{Pt})’ &#x3D; Q e^{Pt}$- <strong>积分：</strong>$I \cdot e^{Pt} &#x3D; \frac{Q}{P} e^{Pt} + C$- <strong>通解公式：</strong>$I(t) &#x3D; \frac{Q}{P} + C e^{-Pt}$</li>
+</ul>
+<hr>
+<h4 id="带入物理量与初始条件"><a href="#带入物理量与初始条件" class="headerlink" title="带入物理量与初始条件"></a>带入物理量与初始条件</h4><p><strong>1. 代回物理参数</strong></p>
+<p>由于 $\frac{Q}{P} &#x3D; \frac{E&#x2F;L}{R&#x2F;L} &#x3D; \frac{E}{R}$，通解写为：</p>
+<p>
+$$
+I(t) = \frac{E}{R} + C e^{-\frac{R}{L}t}
+$$
+</p>
+
+<p><strong>2. 确定待定常数</strong></p>
+<p>代入初始条件 $I(0) &#x3D; 0$：</p>
+<p>
+$$
+0 = \frac{E}{R} + C \implies C = -\frac{E}{R}
+$$
+</p>
+
+<p><strong>3. 最终特解</strong></p>
+<p>
+$$
+I(t) = \frac{E}{R} \left( 1 - e^{-\frac{R}{L}t} \right)
+$$
+</p>
+
+<hr>
+<h4 id="物理意义评估"><a href="#物理意义评估" class="headerlink" title="物理意义评估"></a>物理意义评估</h4><ul>
+<li><p><strong>暂态响应：</strong> 指数项 $e^{-\frac{R}{L}t}$描述了电流从零开始增长的过程。电感$L$ 的存在产生了“反电动势”，阻碍了电流的突变。</p>
+</li>
+<li><p><strong>稳态电流：</strong> 当 $t \to \infty$时，指数项趋于$0$，电流趋于稳定值：</p>
+</li>
+</ul>
+<p>
+$$
+I_{\text{steady}} = \frac{E}{R}
+$$
+</p>
+
+<p>此时电感相当于短路，遵循基本的欧姆定律。</p>
+<hr>
+<h2 id="积分因子"><a href="#积分因子" class="headerlink" title="积分因子"></a>积分因子</h2><h3 id="一、-问题的引入：全微分方程"><a href="#一、-问题的引入：全微分方程" class="headerlink" title="一、 问题的引入：全微分方程"></a>一、 问题的引入：全微分方程</h3><p><strong>1. 基本形式</strong></p>
+<p>将微分方程写成对称形式：</p>
+<p>
+$$
+P(x, y)dx + Q(x, y)dy = 0
+$$
+</p>
+
+<p><strong>2. 判定条件（恰当性检验）</strong></p>
+<p>如果存在一个函数 $u(x, y)$使得$du &#x3D; P dx + Q dy &#x3D; 0$，那么该方程称为<strong>全微分方程</strong>（或恰当方程）。其通解直接为：</p>
+<p>
+$$
+u(x, y) = C
+$$
+</p>
+
+<p>根据全微分的性质，这要求满足：</p>
+<p>
+$$
+Q_x = P_y
+$$
+</p>
+
+<p>（即 $\frac{\partial Q}{\partial x} &#x3D; \frac{\partial P}{\partial y}$）</p>
+<hr>
+<h3 id="二、-非全微分方程与积分因子"><a href="#二、-非全微分方程与积分因子" class="headerlink" title="二、 非全微分方程与积分因子"></a>二、 非全微分方程与积分因子</h3><p>如果 $N_x \neq M_y$，方程就不是全微分的。此时，我们寻找一个非零函数 $\mu(x, y)$，使得乘以它之后方程变得“恰当”：</p>
+<p>
+$$
+\mu M dx + \mu N dy = 0 \implies (\mu N)_x = (\mu M)_y
+$$
+</p>
+
+<p>这里的 $\mu$ 被称为<strong>积分因子</strong>。</p>
+<hr>
+<h3 id="三、-积分因子的求解推导（以一元因子为例）"><a href="#三、-积分因子的求解推导（以一元因子为例）" class="headerlink" title="三、 积分因子的求解推导（以一元因子为例）"></a>三、 积分因子的求解推导（以一元因子为例）</h3><p>寻找通用的 $\mu(x, y)$通常涉及偏微分方程，非常困难。寻找<strong>一元积分因子</strong>（仅与$x$或$y$ 有关）的捷径：</p>
+<p><strong>1. 展开判定式：</strong></p>
+<p>根据乘积求导法则，$(\mu N)_x &#x3D; (\mu M)_y$ 展开为：</p>
+<p>
+$$
+\mu N_x + \mu_x N = \mu M_y + \mu_y M
+$$
+</p>
+
+<p>整理得：</p>
+<p>
+$$
+\mu(N_x - M_y) = -\mu_x N + \mu_y M
+$$
+</p>
+
+<p><strong>2. 假设 $\mu &#x3D; \mu(x)$：</strong></p>
+<p>此时 $\mu_y &#x3D; 0$，方程简化为：</p>
+<p>
+$$
+\mu(N_x - M_y) = -\mu_x N
+$$
+</p>
+
+<p>变形得到关于 $\mu$ 的可分离变量方程：</p>
+<p>
+$$
+\frac{\mu_x}{\mu} = -\frac{N_x - M_y}{N}
+$$
+</p>
+
+<p><strong>3. 求解结论：</strong></p>
+<p>如果右端项 $\frac{M_y - N_x}{N}$<strong>仅是$x$的函数</strong>，记为$F(x)$，那么积分因子为：</p>
+<p>
+$$
+\mu(x) = e^{\int F(x) dx}
+$$
+</p>
+
+<hr>
+<h3 id="补充情况：-mu-mu-y-的判定"><a href="#补充情况：-mu-mu-y-的判定" class="headerlink" title="补充情况：$\mu &#x3D; \mu(y)$ 的判定"></a>补充情况：$\mu &#x3D; \mu(y)$ 的判定</h3><p>如果积分因子仅是 $y$的函数，推导过程与$x$ 对称：</p>
+<ol>
+<li><p><strong>判定条件：</strong> 考察表达式 $\frac{N_x - M_y}{M}$。</p>
+</li>
+<li><p><strong>结论：</strong> 若该式<strong>仅与 $y$有关</strong>，记为$G(y)$，则有：</p>
+</li>
+</ol>
+<p>
+$$
+\frac{\mu_y}{\mu} = \frac{N_x - M_y}{M} = G(y)
+$$
+</p>
+
+<ol start="3">
+<li><strong>积分因子公式：</strong></li>
+</ol>
+<p>
+$$
+\mu(y) = e^{\int G(y) dy}
+$$
+</p>
+
+<hr>
+<h3 id="二、-综合例题演练"><a href="#二、-综合例题演练" class="headerlink" title="二、 综合例题演练"></a>二、 综合例题演练</h3><p><strong>方程：</strong> $(2xy^2 - y)dx + (x + 3y^3)dy &#x3D; 0$其中$M &#x3D; 2xy^2 - y$，$N &#x3D; x + 3y^3$。</p>
+<p><strong>1. 恰当性检查</strong></p>
+<ul>
+<li>$M_y &#x3D; 4xy - 1$-$N_x &#x3D; 1$显然$M_y \neq N_x$，方程<strong>不是</strong>全微分方程。</li>
+</ul>
+<p><strong>2. 寻找积分因子（试错过程）</strong></p>
+<ul>
+<li><p><strong>尝试 $\mu(x)$：</strong></p>
+<p>  计算 $\frac{N_x - M_y}{N} &#x3D; \frac{1 - (4xy - 1)}{x + 3y^3} &#x3D; \frac{2 - 4xy}{x + 3y^3}$。</p>
+<p>  结果含有 $y$，说明不存在仅与 $x$ 有关的积分因子。</p>
+</li>
+<li><p><strong>尝试 $\mu(y)$：</strong></p>
+<p>  计算 $\frac{N_x - M_y}{M} &#x3D; \frac{1 - (4xy - 1)}{2xy^2 - y} &#x3D; \frac{2(1 - 2xy)}{y(2xy - 1)} &#x3D; -\frac{2}{y}$。</p>
+<p>  结果<strong>仅与 $y$有关</strong>！满足条件，令$G(y) &#x3D; -\frac{2}{y}$。</p>
+</li>
+</ul>
+<p><strong>3. 计算积分因子</strong></p>
+<p>
+$$
+\mu(y) = e^{\int -\frac{2}{y} dy} = e^{-2\ln|y|} = \frac{1}{y^2}
+$$
+</p>
+
+<p><strong>4. 转化与求解</strong></p>
+<p>方程两端同乘 $\frac{1}{y^2}$，得到新方程：</p>
+<p>
+$$
+\frac{2xy^2 - y}{y^2}dx + \frac{x + 3y^3}{y^2}dy = 0
+$$
+</p>
+
+<p>简化为：</p>
+<p>
+$$
+\left( 2x - \frac{1}{y} \right)dx + \left( \frac{x}{y^2} + 3y \right)dy = 0
+$$
+</p>
+
+<p>验证可知，此时 $P_y &#x3D; \frac{1}{y^2}$，$Q_x &#x3D; \frac{1}{y^2}$，已变为全微分方程。</p>
+<p><strong>5. 最终通解</strong></p>
+<p>对 $P$关于$x$积分，对$Q$关于$y$ 积分并合并（注意去重）：</p>
+<p>
+$$
+u(x, y) = x^2 - \frac{x}{y} + \frac{3}{2}y^2 = C
+$$
+</p>
+
+<p>另外，注意到 $y \equiv 0$ 时，$M&#x3D;0$同时$dy&#x3D;0$ ，那么这时候方程也成立。</p>
+<h3 id="齐次方程的特殊积分因子"><a href="#齐次方程的特殊积分因子" class="headerlink" title="齐次方程的特殊积分因子"></a>齐次方程的特殊积分因子</h3><p><strong>核心定理：</strong></p>
+<p>对于齐次微分方程 $M(x, y)dx + N(x, y)dy &#x3D; 0$（即 $M, N$为同次数的齐次函数），如果$xM + yN \neq 0$，则该方程的一个积分因子为：</p>
+<p>
+$$
+\mu(x, y) = \frac{1}{xM + yN}
+$$
+</p>
+
+<p>证明：</p>
+<h4 id="1-核心工具：欧拉齐次函数定理"><a href="#1-核心工具：欧拉齐次函数定理" class="headerlink" title="1. 核心工具：欧拉齐次函数定理"></a>1. 核心工具：欧拉齐次函数定理</h4><p>根据齐次函数的性质，若 $f(x, y)$是$n$ 次齐次的，则满足：</p>
+<p>
+$$
+x \frac{\partial f}{\partial x} + y \frac{\partial f}{\partial y} = n f
+$$
+</p>
+
+<p>具体到我们的函数：</p>
+<ul>
+<li>(1) $x M_x + y M_y &#x3D; n M$- (2)$x N_x + y N_y &#x3D; n N$</li>
+</ul>
+<hr>
+<h4 id="2-判定目标"><a href="#2-判定目标" class="headerlink" title="2. 判定目标"></a>2. 判定目标</h4><p>我们需要证明，乘以 $\mu$后的方程$\frac{M}{xM+yN}dx + \frac{N}{xM+yN}dy &#x3D; 0$ 满足全微分条件：</p>
+<p>
+$$
+\frac{\partial}{\partial y} \left( \frac{M}{xM + yN} \right) = \frac{\partial}{\partial x} \left( \frac{N}{xM + yN} \right)
+$$
+</p>
+
+<hr>
+<h4 id="3-分步求偏导"><a href="#3-分步求偏导" class="headerlink" title="3. 分步求偏导"></a>3. 分步求偏导</h4><p><strong>左侧（对 $y$ 求偏导）：</strong></p>
+<p>应用商法则 $\left(\frac{u}{v}\right)’ &#x3D; \frac{u’v - uv’}{v^2}$，设分母 $D &#x3D; xM + yN$：</p>
+<p>
+$$
+\frac{\partial}{\partial y} \left( \frac{M}{D} \right) = \frac{M_y (xM + yN) - M \frac{\partial}{\partial y}(xM + yN)}{D^2}
+$$
+</p>
+
+<p>展开分母的偏导项 $\frac{\partial D}{\partial y} &#x3D; x M_y + N + y N_y$：</p>
+<p>
+$$
+\text{分子} = M_y(xM + yN) - M(x M_y + N + y N_y)
+$$
+</p>
+
+<p>
+$$
+= x M M_y + y M_y N - x M M_y - MN - y M N_y
+$$
+</p>
+
+<p>消去 $x M M_y$，得到：</p>
+<p>
+$$
+\text{分子}_L = y M_y N - MN - y M N_y \quad \dots (\alpha)
+$$
+</p>
+
+<p><strong>右侧（对 $x$ 求偏导）：</strong></p>
+<p>同样应用商法则：</p>
+<p>
+$$
+\frac{\partial}{\partial x} \left( \frac{N}{D} \right) = \frac{N_x (xM + yN) - N \frac{\partial}{\partial x}(xM + yN)}{D^2}
+$$
+</p>
+
+<p>展开分母的偏导项 $\frac{\partial D}{\partial x} &#x3D; M + x M_x + y N_x$：</p>
+<p>
+$$
+\text{分子} = N_x(xM + yN) - N(M + x M_x + y N_x)
+$$
+</p>
+
+<p>
+$$
+= x M N_x + y N N_x - MN - x N M_x - y N N_x
+$$
+</p>
+
+<p>消去 $y N N_x$：</p>
+<p>
+$$
+\text{分子}_R = x M N_x - MN - x N M_x \quad \dots (\beta)
+$$
+</p>
+
+<hr>
+<h4 id="4-利用欧拉定理进行等价变换"><a href="#4-利用欧拉定理进行等价变换" class="headerlink" title="4. 利用欧拉定理进行等价变换"></a>4. 利用欧拉定理进行等价变换</h4><p>现在我们要证明 $(\alpha) &#x3D; (\beta)$。将两式写在一起观察：</p>
+<p>
+$$
+y M_y N - MN - y M N_y \overset{?}{=} x M N_x - MN - x N M_x
+$$
+</p>
+
+<p>消去两边的 $-MN$，整理得：</p>
+<p>
+$$
+N(y M_y + x M_x) \overset{?}{=} M(y N_y + x N_x)
+$$
+</p>
+
+<p>此时，代入<strong>欧拉齐次函数定理</strong>：</p>
+<ul>
+<li>左边 $&#x3D; N \cdot (n M) &#x3D; n MN$- 右边$&#x3D; M \cdot (n N) &#x3D; n MN$</li>
+</ul>
+<p><strong>左右相等！</strong></p>
+<hr>
+<h3 id="二、-典型例题演练"><a href="#二、-典型例题演练" class="headerlink" title="二、 典型例题演练"></a>二、 典型例题演练</h3><p><strong>方程：</strong> $(x - y)dx + (x + y)dy &#x3D; 0$其中$M &#x3D; x - y, N &#x3D; x + y$，均为一阶齐次函数。</p>
+<p><strong>1. 恰当性检查</strong></p>
+<p>$N_x &#x3D; 1, M_y &#x3D; -1$。由于 $N_x \neq M_y$，方程不是全微分方程。</p>
+<p><strong>2. 解法视角一：齐次化替换（回顾）</strong></p>
+<p>可以将方程写为：</p>
+<p>
+$$
+\frac{dy}{dx} = -\frac{x - y}{x + y} = -\frac{1 - y/x}{1 + y/x}
+$$
+</p>
+
+<p>这是典型的 $h(y&#x2F;x)$形式，可用$u &#x3D; y&#x2F;x$ 求解。</p>
+<p><strong>3. 解法视角二：构造特殊积分因子</strong></p>
+<p>利用板书右侧的公式：</p>
+<ul>
+<li><p><strong>分母计算：</strong> $xM + yN &#x3D; x(x - y) + y(x + y) &#x3D; x^2 - xy + xy + y^2 &#x3D; x^2 + y^2$</p>
+</li>
+<li><p><strong>锁定因子：</strong> <strong>$\mu &#x3D; \frac{1}{x^2 + y^2}$</strong></p>
+</li>
+</ul>
+<p><strong>4. 转化与积分</strong></p>
+<p>将 $\mu$ 乘回原方程：</p>
+<p>
+$$
+\frac{x - y}{x^2 + y^2}dx + \frac{x + y}{x^2 + y^2}dy = 0
+$$
+</p>
+
+<p>拆分项：</p>
+<p>
+$$
+\left( \frac{x}{x^2 + y^2}dx + \frac{y}{x^2 + y^2}dy \right) + \left( \frac{x dy - y dx}{x^2 + y^2} \right) = 0
+$$
+</p>
+
+<p><strong>5. 最终通解</strong></p>
+<ul>
+<li><p>第一部分是 $\frac{1}{2}d(\ln(x^2 + y^2))$- 第二部分是$d(\arctan\frac{y}{x})$</p>
+<p>  合并得出：</p>
+</li>
+</ul>
+<p>
+$$
+u(x, y) = \frac{1}{2}\ln(x^2 + y^2) + \arctan\frac{y}{x} = C
+$$
+</p>
+
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

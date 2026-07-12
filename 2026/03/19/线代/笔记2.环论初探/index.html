@@ -1,0 +1,901 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>笔记2.环论初探 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>笔记2.环论初探</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/3/19
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%BA%BF%E4%BB%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                线代
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ffa2c4">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>意外在习题课被灌注了环论，那就稍微整整（</p>
+<span id="more"></span>
+
+<p>我们可以在开篇给出大概的内容，只需要一行：</p>
+<p><strong>域 (Field) $\subset$ED$\subset$PID$\subset$UFD$\subset$ 整环 (Integral Domain)</strong></p>
+<p>接下来，让我们 $copy$ 上一篇笔记环的定义：</p>
+<h2 id="形式定义："><a href="#形式定义：" class="headerlink" title="形式定义："></a>形式定义：</h2><p>设 $R$是一个非空集合，在其上定义了两个二元运算：<strong>加法</strong>（记作$+$）和<strong>乘法</strong>（记作 $\cdot$）。如果满足以下三个条件，则称 $(R, +, \cdot)$ 为一个环：</p>
+<h3 id="I-加法成交换群（阿贝尔群）"><a href="#I-加法成交换群（阿贝尔群）" class="headerlink" title="I. 加法成交换群（阿贝尔群）"></a>I. 加法成交换群（阿贝尔群）</h3><ol>
+<li><p><strong>结合律</strong>：$(a + b) + c &#x3D; a + (b + c)$</p>
+</li>
+<li><p><strong>交换律</strong>：$a + b &#x3D; b + a$3. <strong>单位元（零元）</strong>：存在$0 \in R$，使得对任何 $a \in R$，有 $0 + a &#x3D; a$。</p>
+</li>
+<li><p><strong>逆元（负元）</strong>：对任何 $a \in R$，存在 $-a \in R$，使得 $a + (-a) &#x3D; 0$。</p>
+</li>
+</ol>
+<h3 id="II-乘法成半群"><a href="#II-乘法成半群" class="headerlink" title="II. 乘法成半群"></a>II. 乘法成半群</h3><ol>
+<li><strong>结合律</strong>：$(a \cdot b) \cdot c &#x3D; a \cdot (b \cdot c)$<em>注意：基础环的定义并不强制要求乘法满足交换律，也不强制要求有乘法单位元（单位元$1$）。</em></li>
+</ol>
+<h3 id="III-分配律"><a href="#III-分配律" class="headerlink" title="III. 分配律"></a>III. 分配律</h3><p>乘法对加法满足左、右分配律：</p>
+<ol>
+<li>$a \cdot (b + c) &#x3D; (a \cdot b) + (a \cdot c)$2.$(a + b) \cdot c &#x3D; (a \cdot c) + (b \cdot c)$</li>
+</ol>
+<p>我们不难对整数和多项式验证如上的性质。但是我们发现他们有一些更加美妙的性质，例如乘法的交换律，对于这样的环，称为<strong>交换环</strong>。尽管不知所以然，我们看到加法有<strong>单位元</strong>，乘法并没有要求，但是整数和多项式都有单位元，这样的环叫做<strong>幺环</strong>，因为单位元也可以叫<strong>幺元</strong>。</p>
+<p>在整数和多项式环我们还有<strong>消去律</strong>，如果 $ab&#x3D;ac$并且大家都非零，那么有$b&#x3D;c$。但是这并不总是成立，就像矩阵，两个非零的矩阵也可以乘出零。我们定义<strong>零因子</strong>，如果存在一个非零的$b$使得$ab&#x3D;0$，则称$a$是一个<strong>左零因子</strong>，类似有<strong>右零因子</strong>。在我们通常讨论的<strong>交换环</strong>中，左零因子和右零因子是一回事，统称为<strong>零因子</strong>。根据标准定义，<strong>零元素$0$ 本身通常不被讨论为零因子</strong>（或者在某些体系中被称为“平凡零因子”）。如果没有零因子，那么我们就可以放心地使用消去律。</p>
+<p>如果一个环同时是交换环，幺环，并没有非平凡零因子，我们就称是一个<strong>整环(Integral Domain)</strong>,也许正是因为他们拥有类似整数的性质。</p>
+<p>那对应的素数呢，我们定义<strong>可逆元</strong>为有逆元的元素，这也被称为<strong>单位(unit)</strong>。</p>
+<p><strong>Irreducible (不可约元)：</strong> </p>
+<p>一个非零、非 Unit 的元素 $p$ 被称为<strong>不可约元</strong>，如果它满足：</p>
+<p><strong>如果 $p &#x3D; ab$，那么 $a$和$b$ 中必有一个是 Unit。</strong></p>
+<p>看看<strong>多项式环 $F[x]$</strong> 的例子：</p>
+<ul>
+<li><p><strong>$5$(非零常数)</strong>：是 <strong>Unit</strong>（因为在域里有逆元$1&#x2F;5$）。</p>
+</li>
+<li><p><strong>$x + 1$</strong>：是 <strong>不可约元</strong>。</p>
+</li>
+<li><p><strong>$x^2 - 1$</strong>：是 <strong>可约元</strong>，因为它能拆成 $(x+1)(x-1)$，且这两个因子都不是 Unit。</p>
+</li>
+</ul>
+<p>为了处理 Unit 带来的干扰，我们引入了“相伴”： 如果 $a &#x3D; u \cdot b$（$u$是 Unit），我们称$a$和$b$<strong>相伴</strong>。 在不可约分解时，我们认为相伴的元素是“同一种砖块”。比如在$\mathbb{Z}$ 里，$2$和$-2$是一回事；在$\mathbb{Q}[x]$ 里，$x+1$和$2x+2$ 也是一回事。</p>
+<p>此外，我们还有<strong>素元</strong>。</p>
+<p>在一个整环 $R$中，一个非零、非 Unit 的元素$p$被称为 <strong>素元 (Prime)</strong>，如果它满足以下条件： <strong>若$p$整除两个元素的乘积$ab$（即 $p \mid ab$），则必有 $p \mid a$或$p \mid b$</strong></p>
+<p>这和不可约元非常像啊，区别在哪呢。</p>
+<ul>
+<li><p><strong>不可约元</strong> 关注的是 <strong>“能不能拆分”</strong>（原子的视角）。</p>
+</li>
+<li><p><strong>素元</strong> 关注的是 <strong>“能不能整除”</strong>（传播的视角）。</p>
+</li>
+<li><p><strong>在任何整环里：素元 $\implies$ 不可约元。</strong></p>
+<ul>
+<li><em>证明思路</em>：如果素元 $p&#x3D;ab$，那么根据定义 $p \mid ab \implies p \mid a$或$p \mid b$。假设 $p \mid a$，由于 $a$也是$p$ 的因子（$a \mid p$），你会发现 $a$和$p$只能是相伴关系，这意味着$b$必须是个 Unit。所以$p$ 不可约。</li>
+</ul>
+</li>
+<li><p><strong>反之不然！</strong> 存在某些诡异的整环，里面的元素<strong>不可约，但不是素元</strong>。</p>
+</li>
+</ul>
+<p>考虑 $\mathbb{Z}[\sqrt{-5}]$，即整数加上$\sqrt{-5}$ 。</p>
+<p>在这个环里，数字 $6$ 有两种分解方式：</p>
+<p>
+$$
+6 = 2 \times 3 = (1 + \sqrt{-5})(1 - \sqrt{-5})
+$$
+</p>
+
+<ul>
+<li><p>这里 $2$ 是<strong>不可约</strong>的（你没法把它拆成更小的“整数”）。</p>
+</li>
+<li><p>但 $2$ <strong>不是素元</strong>！</p>
+</li>
+<li><p>为什么？因为 $2 \mid (1 + \sqrt{-5})(1 - \sqrt{-5})$，但你会发现 $2$既不能整除$1 + \sqrt{-5}$，也不能整除 $1 - \sqrt{-5}$。</p>
+</li>
+</ul>
+<p>那能不能进一步构造出我们熟悉的有理数，实数呢，这对应<strong>分式域</strong>和<strong>数域</strong>。</p>
+<h2 id="域"><a href="#域" class="headerlink" title="域"></a>域</h2><h3 id="A-加法群结构"><a href="#A-加法群结构" class="headerlink" title="A. 加法群结构"></a>A. 加法群结构</h3><p>$(F, +)$ 是一个<strong>阿贝尔群</strong>。也就是说：</p>
+<ul>
+<li><p>加法结合律、交换律成立。</p>
+</li>
+<li><p>存在单位元 $0$。</p>
+</li>
+<li><p>每个元素 $a$都有负元素$-a$。</p>
+</li>
+</ul>
+<h3 id="B-乘法群结构（关键区别！）"><a href="#B-乘法群结构（关键区别！）" class="headerlink" title="B. 乘法群结构（关键区别！）"></a>B. 乘法群结构（关键区别！）</h3><p>_<em>去掉零元素后的集合 $F &#x3D; F \setminus {0}$ 对乘法构成一个阿贝尔群</em>*。</p>
+<p>这意味着：</p>
+<ul>
+<li><p>乘法结合律、交换律成立。</p>
+</li>
+<li><p>存在单位元 $1$ ($1 \neq 0$)。</p>
+</li>
+<li><p><strong>核心：</strong> 每个非零元 $a$都有逆元$a^{-1}$，使得 $a \cdot a^{-1} &#x3D; 1$。</p>
+</li>
+</ul>
+<h3 id="C-分配律"><a href="#C-分配律" class="headerlink" title="C. 分配律"></a>C. 分配律</h3><p>乘法对加法满足分配律：$a(b+c) &#x3D; ab + ac$。</p>
+<blockquote>
+<p><strong>简洁定义</strong>：域就是一个<strong>每一个非零元都可逆的交换环</strong>。或者说，域是一个<strong>非平凡的整环，且每个非零元都有逆元</strong>。</p>
+</blockquote>
+<p>可以看到，域就和实数很像了。对于中间的有理数，我们定义分式域。</p>
+<p>想要把整环 $D$变成域$F$，本质上是要给每一个非零元素 $a \in D$强行定义一个逆元$a^{-1}$。</p>
+<h2 id="分式域"><a href="#分式域" class="headerlink" title="分式域"></a>分式域</h2><h3 id="第一步：定义集合"><a href="#第一步：定义集合" class="headerlink" title="第一步：定义集合"></a>第一步：定义集合</h3><p>我们考虑所有形如 $(a, b)$的二元组，其中$a, b \in D$且$b \neq 0$。你可以把它直观地理解为分数 $\frac{a}{b}$。</p>
+<h3 id="第二步：定义等价关系"><a href="#第二步：定义等价关系" class="headerlink" title="第二步：定义等价关系"></a>第二步：定义等价关系</h3><p>为什么 $\frac{1}{2}$和$\frac{2}{4}$是同一个数？因为$1 \times 4 &#x3D; 2 \times 2$。</p>
+<p>所以在整环里，我们规定：$(a, b) \sim (c, d)$ 当且仅当 <strong>$ad &#x3D; bc$</strong>。</p>
+<blockquote>
+<p><strong>注意</strong>：这里必须是整环！如果是普通交换环，这个等价关系可能不满足传递性。</p>
+</blockquote>
+<h3 id="第三步：定义运算"><a href="#第三步：定义运算" class="headerlink" title="第三步：定义运算"></a>第三步：定义运算</h3><ul>
+<li><p><strong>加法</strong>：$\frac{a}{b} + \frac{c}{d} &#x3D; \frac{ad + bc}{bd}$</p>
+</li>
+<li><p><strong>乘法</strong>：$\frac{a}{b} \cdot \frac{c}{d} &#x3D; \frac{ac}{bd}$由于整环没有零因子，所以$b \neq 0, d \neq 0 \implies bd \neq 0$，这保证了运算是封闭且良定义的。</p>
+</li>
+</ul>
+<p>那接下来，无理数怎么办，我们从环开始扩张，加入无理数。</p>
+<h2 id="扩环"><a href="#扩环" class="headerlink" title="扩环"></a>扩环</h2><p>设 $R$是一个环。如果存在另一个环$S$，满足以下两个条件，我们就称 <strong>$S$是$R$的一个扩环</strong>（或者说$R$是$S$ 的一个<strong>子环</strong>）：</p>
+<ol>
+<li><p><strong>包含关系</strong>：$R$作为集合是$S$的一个子集（即$R \subseteq S$）。</p>
+</li>
+<li><p><strong>运算一致性</strong>：$R$里的加法和乘法运算，必须和$S$ 里的加法和乘法运算完全一致。</p>
+</li>
+<li><p><strong>单位元一致性</strong>（通常要求）：如果 $R$有单位元$1_R$，那么 $S$的单位元$1_S$必须满足$1_S &#x3D; 1_R$。</p>
+</li>
+</ol>
+<p>通常我们将这种扩张关系记作 <strong>$S&#x2F;R$</strong> 。<br>扩环常见的有下面三种情况。</p>
+<h3 id="A-伴随扩张-Adjunction"><a href="#A-伴随扩张-Adjunction" class="headerlink" title="A. 伴随扩张 (Adjunction)"></a>A. 伴随扩张 (Adjunction)</h3><p>在 $R$里随便找个它原本没有的元素$\alpha$（比如在 $\mathbb{Z}$里加个$\sqrt{2}$），然后构造包含 $R$和$\alpha$ 的最小的环，记作 <strong>$R[\alpha]$</strong>。</p>
+<ul>
+<li><strong>例子</strong>：$\mathbb{Z}[\sqrt{2}] &#x3D; { a + b\sqrt{2} \mid a, b \in \mathbb{Z} }$。</li>
+</ul>
+<h3 id="B-多项式扩张"><a href="#B-多项式扩张" class="headerlink" title="B. 多项式扩张"></a>B. 多项式扩张</h3><p>给环 $R$加上一个不确定变元$x$，构造多项式环 <strong>$R[x]$</strong>。这是一个巨大的扩环，里面装满了所有以 $R$ 为系数的多项式，喵。</p>
+<h3 id="C-商扩环"><a href="#C-商扩环" class="headerlink" title="C. 商扩环"></a>C. 商扩环</h3><p>先构造一个多项式环 $R[x]$，然后再商掉一个理想 $I$。至于什么是商、理想，一会说。</p>
+<p>现在我们准备开始做一些研究了，正如笔记1所言，大概的主线是因数分解，Bezout定理，带余除法。</p>
+<p>先定义一些东西（</p>
+<h2 id="理想"><a href="#理想" class="headerlink" title="理想"></a>理想</h2><p>记 $R$ 是一个整环。<br>称 $J\in R$是一个<strong>理想(ideal)</strong>，若$J$是$R$的子环，且$\forall a \in R, b\in J, ab\in J$。也就是$J$有吸收性，$R$的元素和$J$的元素一乘就进$J$了，同时$J$的元素运算封闭在$J$中。$J$ 像个黑洞（</p>
+<p>也有一个集合生成的理想。 $S\in  R$是一个集合，称$(S)$为$S$ 生成的理想，这里</p>
+<p>
+$$
+(S)=\bigcap_{J是理想，S\subset J} J
+$$
+</p>
+
+<p>可以把它想象成一个以 $S$ 为“种子”进行扩张，直到满足理想所有封闭性条件的最小容器。</p>
+<h3 id="命题"><a href="#命题" class="headerlink" title="命题"></a>命题</h3><p>如果 $R$ 是一个交换环，$S$是$R$的一个子集，那么由$S$生成的理想$\langle S \rangle$ 定义为：</p>
+<p>
+$$
+\langle S \rangle = \left\{ \sum_{i=1}^{n} r_i s_i \mid n \in \mathbb{N}, r_i \in R, s_i \in S \right\}
+$$
+</p>
+
+<p>也就是说，它是 $S$中元素的<strong>有限线性组合</strong>，其中系数$r_i$来自环$R$。<br>为什么？</p>
+<h4 id="逻辑推演：为了“理想化”我们必须做什么？"><a href="#逻辑推演：为了“理想化”我们必须做什么？" class="headerlink" title="逻辑推演：为了“理想化”我们必须做什么？"></a>逻辑推演：为了“理想化”我们必须做什么？</h4><h5 id="第一步：为了满足“吸入性”"><a href="#第一步：为了满足“吸入性”" class="headerlink" title="第一步：为了满足“吸入性”"></a>第一步：为了满足“吸入性”</h5><p>既然 $I$要包含$S$里的每个元素$s_i$，那么根据理想的乘法吸入性，对于任何 $r \in R$，产品 <strong>$r \cdot s_i$</strong> 就<strong>必须</strong>也在这个理想里。</p>
+<blockquote>
+<p>这一步产生了所有形如 $rs$ 的项。</p>
+</blockquote>
+<h5 id="第二步：为了满足“加法封闭性”"><a href="#第二步：为了满足“加法封闭性”" class="headerlink" title="第二步：为了满足“加法封闭性”"></a>第二步：为了满足“加法封闭性”</h5><p>既然所有的 $r_i s_i$ 都已经被迫进到理想里了，那么根据加法封闭性，把它们<strong>加起来</strong>的结果也<strong>必须</strong>在里面。</p>
+<blockquote>
+<p>于是，所有的有限和 $\sum r_i s_i$ 就被强行纳入了范围。</p>
+</blockquote>
+<h5 id="第三步：验证完备性"><a href="#第三步：验证完备性" class="headerlink" title="第三步：验证完备性"></a>第三步：验证完备性</h5><p>你会发现，如果你把两个这样的线性组合加起来，结果还是这种形式；如果你拿一个 $r \in R$ 去乘这样一个线性组合，结果（根据分配律）依然是这种形式。</p>
+<blockquote>
+<p>这说明，这个集合已经<strong>自洽</strong>了。它就是包含 $S$ 的那个“最小黑洞”。</p>
+</blockquote>
+<h4 id="特殊情况：主理想"><a href="#特殊情况：主理想" class="headerlink" title="特殊情况：主理想"></a>特殊情况：主理想</h4><p>如果集合 $S$只有一个元素${a}$，那么生成的理想就变成了：</p>
+<p>
+$$
+\langle a \rangle = \{ r \cdot a \mid r \in R \}
+$$
+</p>
+
+<h2 id="商环"><a href="#商环" class="headerlink" title="商环"></a>商环</h2><p>设 $R$ 是一个环，$I$是$R$的一个<strong>理想 (Ideal)</strong>。我们定义$R$对$I$的<strong>商环</strong>，记作$R&#x2F;I$，它是满足以下条件的代数结构：</p>
+<h3 id="A-集合构成"><a href="#A-集合构成" class="headerlink" title="A. 集合构成"></a>A. 集合构成</h3><p>$R&#x2F;I$作为集合，是$R$关于加法子群$I$ 的所有<strong>陪集 (Coset)</strong> 的集合：</p>
+<p>
+$$
+R/I = \{ a + I \mid a \in R \}
+$$
+</p>
+
+<p>这里 $a+I$表示集合${ a + i \mid i \in I }$。可以把它理解为：在 $R&#x2F;I$的世界里，所有和$a$ 相差一个理想元素的数，都被看作是<strong>同一个点</strong>。</p>
+<h3 id="B-运算定义"><a href="#B-运算定义" class="headerlink" title="B. 运算定义"></a>B. 运算定义</h3><p>为了让这个集合也变成一个“环”，我们必须定义它的加法和乘法：</p>
+<ol>
+<li><p><strong>加法</strong>：$(a + I) + (b + I) &#x3D; (a + b) + I$</p>
+</li>
+<li><p><strong>乘法</strong>：$(a + I) \cdot (b + I) &#x3D; (ab) + I$&gt; <strong>核心逻辑</strong>：之所以这两个运算是“良定义的”（Well-defined），完全是因为$I$ 是一个理想。无论你选谁当代表元，算出来的余数类都是唯一的。</p>
+</li>
+</ol>
+<hr>
+<h3 id="商环在干什么？"><a href="#商环在干什么？" class="headerlink" title="商环在干什么？"></a>商环在干什么？</h3><p><strong>商环 &#x3D; 原环 + “强行规定 $I$ 里的东西都是零”</strong>。</p>
+<p>在 $R&#x2F;I$ 中：</p>
+<ul>
+<li><p><strong>零元</strong>是 $0 + I$（也就是理想 $I$ 本身）。</p>
+</li>
+<li><p><strong>单位元</strong>是 $1 + I$。</p>
+</li>
+<li><p>如果 $a \in I$，那么在商环里 $a + I &#x3D; 0 + I$。也就是说，<strong>$I$ 里的所有元素都在商环里坍缩成了一个点——零点</strong>，喵。</p>
+</li>
+</ul>
+<p>一个类比是模运算，商环就是代数里的 <strong>“模运算”高级版</strong>。它把一个无限的、复杂的环，按照理想 $I$ 的规则进行分类，最后剩下的就是这个环最核心的骨架。</p>
+<p>想象你在处理<strong>小时钟（模 12 运算）</strong>。</p>
+<p>在整数环 $\mathbb{Z}$里，如果我们取理想$I &#x3D; 12\mathbb{Z}$（所有 12 的倍数）。</p>
+<p>那么 $1 + I$是什么？$1 + I &#x3D; { \dots, -11, 1, 13, 25, \dots }$</p>
+<p>在这个集合里，装的都是“除以 12 余 1”的数。</p>
+<p>在商环 $\mathbb{Z}&#x2F;12\mathbb{Z}$ 里：</p>
+<ul>
+<li><p>我们不再关心 1 和 13 是不同的数。</p>
+</li>
+<li><p>我们直接把这整个集合 $1 + I$ 叫做“1”。</p>
+</li>
+<li><p>如果你拿 $13$去算，它属于$13 + I$。但你会发现 $13+I$和$1 + I$ 其实是<strong>同一个集合</strong>。</p>
+</li>
+</ul>
+<h3 id="商环能干什么"><a href="#商环能干什么" class="headerlink" title="商环能干什么"></a>商环能干什么</h3><p>例如</p>
+<p><strong>构造域</strong>：</p>
+<p>如果你想要一个有 $\sqrt{-1}$的域，你只需要拿多项式环$\mathbb{R}[x]$商掉理想$\langle x^2+1 \rangle$。</p>
+<p>
+$$
+\mathbb{C} \cong \mathbb{R}[x] / \langle x^2+1 \rangle
+$$
+</p>
+
+<p>在这个商环里，$x^2+1$变成了零，所以$x^2 &#x3D; -1$，虚数 $i$ 就这样诞生了（<br>类似地可以扩张环。</p>
+<h1 id="唯一分解整环-UFD-——因数分解"><a href="#唯一分解整环-UFD-——因数分解" class="headerlink" title="唯一分解整环(UFD)——因数分解"></a>唯一分解整环(UFD)——因数分解</h1><h2 id="UFD-的定义"><a href="#UFD-的定义" class="headerlink" title="UFD 的定义"></a>UFD 的定义</h2><p>一个整环 $R$ 被称为 <strong>唯一分解整环</strong>，如果它满足以下两个条件：</p>
+<ol>
+<li><p><strong>分解存在性</strong>：</p>
+<p> 每一个非零、非可逆元（non-unit）的元素 $a$，都可以写成有限个不可约元（irreducible）的乘积：</p>
+</li>
+</ol>
+<p>
+$$
+a = p_1 p_2 \dots p_n
+$$
+</p>
+
+<ol start="2">
+<li><p>**分解唯一性：</p>
+<p> 如果同一个元素有另一种分解方式 $a &#x3D; q_1 q_2 \dots q_m$，那么必有 $n &#x3D; m$，且经过适当的重排后，每一个 $p_i$都与对应的$q_i$ <strong>相伴 (Associate)</strong>。</p>
+</li>
+</ol>
+<blockquote>
+<p>所谓“相伴”，就是差一个 Unit（比如 1 或 -1）。在 UFD 里，$6 &#x3D; 2 \times 3$和$6 &#x3D; (-2) \times (-3)$ 被视为同一种分解。</p>
+</blockquote>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><h3 id="不可约元推导素元-Irreducible-implies-Prime"><a href="#不可约元推导素元-Irreducible-implies-Prime" class="headerlink" title="不可约元推导素元 (Irreducible $\implies$ Prime)"></a>不可约元推导素元 (Irreducible $\implies$ Prime)</h3><p>在一般的整环中，“素元 $\implies$不可约元”始终成立，但反之（不可约元$\implies$ 素元）通常不成立。但在 <strong>UFD</strong> 中，这两者是等价的。</p>
+<h4 id="证明思路"><a href="#证明思路" class="headerlink" title="证明思路"></a>证明思路</h4><p>设 $p \in R$是一个不可约元。我们要证明：若$p \mid ab$，则 $p \mid a$或$p \mid b$。</p>
+<ol>
+<li><p>假设 $p \mid ab$，则存在 $c \in R$使得$ab &#x3D; pc$。</p>
+</li>
+<li><p>由于 $R$是 UFD，我们可以将$a, b, c$ 分别写成不可约元的乘积形式：</p>
+<ul>
+<li>$a &#x3D; a_1 a_2 \dots a_n$-$b &#x3D; b_1 b_2 \dots b_m$-$c &#x3D; c_1 c_2 \dots c_k$</li>
+</ul>
+</li>
+<li><p>代入等式得：$(a_1 \dots a_n)(b_1 \dots b_m) &#x3D; p(c_1 \dots c_k)$。</p>
+</li>
+<li><p>根据 UFD 的<strong>唯一性</strong>，等式左侧的所有不可约因子在相伴（associate）意义下必须等于等号右侧的因子。</p>
+</li>
+<li><p>由于 $p$是右侧的一个不可约因子，它必然与左侧的某个$a_i$或$b_j$ 相伴。</p>
+</li>
+<li><p>如果 $p \sim a_i$，则 $p \mid a$；如果 $p \sim b_j$，则 $p \mid b$。</p>
+</li>
+<li><p>因此，$p$ 是素元。</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>结论：</strong> 在 UFD 中，元素是否能被分解只取决于它是否为素元，这消除了不可约元与素元之间的界限。</p>
+</blockquote>
+<hr>
+<h3 id="2-最大公因数-GCD-的存在性"><a href="#2-最大公因数-GCD-的存在性" class="headerlink" title="2. 最大公因数 (GCD) 的存在性"></a>2. 最大公因数 (GCD) 的存在性</h3><p>在 UFD 中，任意两个非零元素 $a, b$ 的 <strong>GCD 总是存在</strong>的（在相伴意义下唯一）。</p>
+<h4 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h4><p>利用 UFD 的分解特性，我们可以通过“指数取极小值”的方法找到 GCD：</p>
+<ol>
+<li><p>列出 $a$和$b$分解式中出现的所有非相伴的素元（不可约元）集合${p_1, p_2, \dots, p_k}$。</p>
+</li>
+<li><p>将 $a$和$b$ 写成统一形式：</p>
+</li>
+</ol>
+<p>
+$$
+a = u \cdot p_1^{e_1} p_2^{e_2} \dots p_k^{e_k}
+$$
+</p>
+
+<p>
+$$
+b = v \cdot p_1^{f_1} p_2^{f_2} \dots p_k^{f_k}
+$$
+</p>
+
+<p>（其中 $u, v$ 是单位，$e_i, f_i \ge 0$）</p>
+<ol start="3">
+<li><p>定义 $d &#x3D; p_1^{\min(e_1, f_1)} p_2^{\min(e_2, f_2)} \dots p_k^{\min(e_k, f_k)}$。</p>
+</li>
+<li><p>这个 $d$即为$a$和$b$的最大公因数，记作$\gcd(a, b)$。</p>
+</li>
+</ol>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li><p><strong>不一定能写成线性组合：</strong> 虽然 GCD 在 UFD 中存在，但<strong>裴蜀等式</strong>（即存在 $x, y$使得$ax + by &#x3D; d$）在 UFD 中<strong>不一定成立</strong>。</p>
+</li>
+<li><p>裴蜀等式成立的充要条件是该环为 <strong>PID（主理想整环）</strong>。例如在 UFD $\mathbb{Z}[x]$ 中，$\gcd(2, x) &#x3D; 1$，但你找不到多项式 $f(x), g(x)$满足$2f(x) + xg(x) &#x3D; 1$。</p>
+</li>
+</ul>
+<h3 id="3-高斯引理"><a href="#3-高斯引理" class="headerlink" title="3.高斯引理"></a>3.高斯引理</h3><p>若 $R$是一个唯一分解整环（UFD），则其多项式环$R[x]$ 也是一个 UFD。<br>这需要用到笔记1末尾证明的高斯引理：两个本原多项式的积还是本原多项式。</p>
+<h4 id="1-分式域-F-的介入"><a href="#1-分式域-F-的介入" class="headerlink" title="1. 分式域 $F$ 的介入"></a>1. 分式域 $F$ 的介入</h4><p>我们要证明 $R[x]$是 UFD，但直接在$R[x]$ 里搞很难受。</p>
+<ol>
+<li><p>设 $F$是$R$的<strong>分式域</strong>（比如$\mathbb{Z}$对应的$\mathbb{Q}$）。</p>
+</li>
+<li><p>我们知道 $F$是一个域，从而$F[x]$ 必然是 <strong>UFD</strong>。</p>
+</li>
+<li><p><strong>核心思路</strong>：把 $R[x]$里的多项式丢到$F[x]$里去分解，然后再利用高斯引理拉回到$R[x]$ 里！</p>
+</li>
+</ol>
+<hr>
+<h4 id="2-分解的存在性"><a href="#2-分解的存在性" class="headerlink" title="2. 分解的存在性"></a>2. 分解的存在性</h4><p>我们要证明 $R[x]$里的任何非零、非可逆元$f(x)$ 都能拆成不可约元的积。</p>
+<ol>
+<li><p><strong>提取内容 (Content)</strong>：$f(x) &#x3D; c \cdot f_1(x)$，其中 $c \in R$ 是系数的最大公约数，$f_1(x)$ 是本原多项式。</p>
+</li>
+<li><p><strong>分解 $c$</strong>：因为 $R$是 UFD，所以常数$c$可以唯一分解为$R$ 里的不可约元乘积。</p>
+</li>
+<li><p><strong>分解 $f_1(x)$</strong>：</p>
+<ul>
+<li><p>把 $f_1(x)$看作$F[x]$里的元素。因为$F[x]$是 UFD，它能分解成$F[x]$ 里的不可约元：$f_1(x) &#x3D; q_1(x) \dots q_k(x)$。</p>
+</li>
+<li><p>通过清理分母和提取常数，我们可以把每个 $q_i(x)$变成$R[x]$里的本原多项式$p_i(x)$。</p>
+</li>
+<li><p>此时 $f_1(x) &#x3D; u \cdot p_1(x) \dots p_k(x)$，其中 $u \in F$。</p>
+</li>
+<li><p><strong>关键点</strong>：由于 $f_1$和所有$p_i$都是本原的，根据高斯引理，它们的积也是本原的。这意味着那个系数$u$必须是$R$ 里的一个 <strong>Unit</strong>。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>结论</strong>：存在性得证！</p>
+</li>
+</ol>
+<hr>
+<h4 id="3-分解的唯一性"><a href="#3-分解的唯一性" class="headerlink" title="3. 分解的唯一性"></a>3. 分解的唯一性</h4><p>这是最体现“素元”价值的地方。在 UFD 里，证明唯一性的等价条件是证明：<strong>“不可约元一定是素元”</strong>。</p>
+<p>我们需要证明 $R[x]$中的不可约元$p(x)$ 是素元。分两种情况：</p>
+<ul>
+<li><p><strong>情况 A</strong>：$p(x) &#x3D; p$是$R$ 中的不可约元。</p>
+<p>  利用商环法：$R[x] &#x2F; \langle p \rangle \cong (R&#x2F;\langle p \rangle)[x]$。因为 $R$是 UFD，所以$p$在$R$里是素元，从而$R&#x2F;\langle p \rangle$是整环，进一步多项式环也是整环。所以$p$在$R[x]$ 里是素元。</p>
+</li>
+<li><p><strong>情况 B</strong>：$p(x)$是次数$\ge 1$ 的本原不可约多项式。</p>
+<p>  利用高斯引理：如果 $p(x) \mid g(x)h(x)$，通过高斯引理可以推导出在 $F[x]$中$p(x)$也是不可约的（也就是素元）。那么在$F[x]$中$p(x)$必整除$g(x)$或$h(x)$。再利用一次高斯引理拉回 $R[x]$，证明它在 $R[x]$ 里也整除其中之一。</p>
+</li>
+</ul>
+<h1 id="主理想整环-PID-——Bezout定理"><a href="#主理想整环-PID-——Bezout定理" class="headerlink" title="主理想整环(PID)——Bezout定理"></a>主理想整环(PID)——Bezout定理</h1><h2 id="PID-的定义"><a href="#PID-的定义" class="headerlink" title="PID 的定义"></a>PID 的定义</h2><p>一个整环 $R$ 被称为<strong>主理想整环</strong>，如果它满足：</p>
+<p><strong>$R$中的每一个理想$I$ 都是主理想。</strong></p>
+<p>也就是说，对于任何理想 $I \subseteq R$，你总能找到一个元素 $a \in I$，使得：</p>
+<p>
+$$
+I = \langle a \rangle = \{ ra \mid r \in R \}
+$$
+</p>
+
+<blockquote>
+<p>AI的神秘比喻：想象一下，一个理想本来可以包含奇奇怪怪的一大堆生成元，但在 PID 里，这些乌合之众总能被一个“带头大哥”给代表了。这种极其简约的结构，让很多复杂的命题变得易如反掌，喵！</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><strong>环 R</strong></th>
+<th><strong>是否为 PID</strong></th>
+<th><strong>理由</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>整数环 $\mathbb{Z}$</strong></td>
+<td><strong>是</strong></td>
+<td>每个理想都是 $n\mathbb{Z}$ 这种形式。</td>
+</tr>
+<tr>
+<td><strong>域上的多项式环 $F[x]$</strong></td>
+<td><strong>是</strong></td>
+<td>只要系数在域里，你可以用带余除法找到那个唯一的生成元。</td>
+</tr>
+<tr>
+<td><strong>高斯整数 $\mathbb{Z}[i]$</strong></td>
+<td><strong>是</strong></td>
+<td>它是 ED，而 ED 必然是 PID。</td>
+</tr>
+<tr>
+<td><strong>多项式环 $\mathbb{Z}[x]$</strong></td>
+<td><strong>不是！</strong></td>
+<td>理想 $\langle 2, x \rangle$需要两个生成元，你找不到一个多项式能同时生成 2 和$x$</td>
+</tr>
+</tbody></table>
+<h2 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h2><h3 id="Bezout定理"><a href="#Bezout定理" class="headerlink" title="Bezout定理"></a>Bezout定理</h3><h4 id="证明步骤：构造理想"><a href="#证明步骤：构造理想" class="headerlink" title="证明步骤：构造理想"></a>证明步骤：构造理想</h4><p>我们要证明：对于 $R \in \text{PID}$中的任意非零元素$a, b$，存在 $u, v \in R$使得$ua + vb &#x3D; \gcd(a, b)$。</p>
+<h5 id="第一步：构造一个理想-I-考虑集合-I-ra-sb-mid-r-s-in-R-。"><a href="#第一步：构造一个理想-I-考虑集合-I-ra-sb-mid-r-s-in-R-。" class="headerlink" title="第一步：构造一个理想 $I$考虑集合$I &#x3D; { ra + sb \mid r, s \in R }$。"></a>第一步：构造一个理想 $I$考虑集合$I &#x3D; { ra + sb \mid r, s \in R }$。</h5><ul>
+<li><p><strong>验证理想性质</strong>：</p>
+<ol>
+<li><p><strong>加法封闭</strong>：$(r_1 a + s_1 b) + (r_2 a + s_2 b) &#x3D; (r_1+r_2)a + (s_1+s_2)b$，仍在 $I$ 中。</p>
+</li>
+<li><p><strong>乘法吸入</strong>：对于任何 $k \in R$，$k(ra + sb) &#x3D; (kr)a + (ks)b$，也在 $I$ 中。</p>
+</li>
+</ol>
+</li>
+<li><p>所以，$I$是环$R$ 的一个理想，喵。</p>
+</li>
+</ul>
+<h5 id="第二步：利用-PID-的定义"><a href="#第二步：利用-PID-的定义" class="headerlink" title="第二步：利用 PID 的定义"></a>第二步：利用 PID 的定义</h5><p>因为 $R$是 <strong>PID</strong>，所以理想$I$ 必须是由<strong>单个元素</strong>生成的。</p>
+<p>这意味着存在某个 $d \in R$，使得：</p>
+<p>
+$$
+I = \langle d \rangle
+$$
+</p>
+
+<p>既然 $d \in I$，根据 $I$的构造定义，它<strong>一定</strong>可以写成$a$和$b$ 的某种线性组合：</p>
+<p>
+$$
+d = ua + vb \quad (\text{对于某些 } u, v \in R)
+$$
+</p>
+
+<h5 id="第三步：证明这个-d-就是-GCD"><a href="#第三步：证明这个-d-就是-GCD" class="headerlink" title="第三步：证明这个 $d$ 就是 GCD"></a>第三步：证明这个 $d$ 就是 GCD</h5><ol>
+<li><p><strong>$d$ 是公约数</strong>：</p>
+<p> 由于 $a &#x3D; 1 \cdot a + 0 \cdot b \in I$且$b &#x3D; 0 \cdot a + 1 \cdot b \in I$，而 $I &#x3D; \langle d \rangle$，这意味着 $a$和$b$都是$d$ 的倍数。即 <strong>$d \mid a$</strong> 且 <strong>$d \mid b$</strong>。</p>
+</li>
+<li><p><strong>$d$ 是“最大”的</strong>：</p>
+<p> 设 $c$是$a, b$的任意一个公约数（即$c \mid a$且$c \mid b$）。</p>
+<p> 那么 $c$必然能整除它们的任何线性组合。既然$d &#x3D; ua + vb$，那么 <strong>$c \mid d$</strong>。</p>
+<p> 在代数里，能被所有公约数整除的那个公约数，就是<strong>最大公约数 (GCD)</strong>！</p>
+</li>
+</ol>
+<h1 id="欧几里得整环-ED"><a href="#欧几里得整环-ED" class="headerlink" title="欧几里得整环(ED)"></a>欧几里得整环(ED)</h1><p>并不是那个ED（</p>
+<p>习题课飞快地告诉了我们结论，并证明了0件事，所以整篇笔记可以说骨架由助教给出，但它的血肉基本都约等于我自己看的(和AI交互所得)，但是功利地，感觉没什么用，主要是而且还有其他ddl，故不多花时间在ED。</p>
+<p>以下几乎纯AI，但我感觉质量还行。</p>
+<h2 id="ED-的定义"><a href="#ED-的定义" class="headerlink" title="ED 的定义"></a>ED 的定义</h2><p>一个整环 $R$被称为<strong>欧几里得整环</strong>，如果它上面定义了一个“规模函数”$d: R \setminus {0} \to \mathbb{N}$（通常称为欧几里得范数），且满足以下两个硬指标：</p>
+<ol>
+<li><p><strong>单调性</strong>：对于任意非零 $a, b \in R$，有 $d(a) \le d(ab)$。</p>
+</li>
+<li><p><strong>带余除法</strong>：对于 $R$中的任何$a$和非零$b$，一定存在 $q, r \in R$（商和余数），使得：</p>
+</li>
+</ol>
+<p>
+$$
+a = bq + r
+$$
+</p>
+
+<p>其中，要么 $r &#x3D; 0$，要么 <strong>$d(r) &lt; d(b)$</strong>。</p>
+<blockquote>
+<p>ED 的灵魂就在于这个 $d(r) &lt; d(b)$。它保证了当你不断做除法时，余数的“规模”会不断减小，最终必然会停在零上。这就是为什么在 ED 里我们可以玩<strong>辗转相除法</strong>。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><strong>环的级别</strong></th>
+<th><strong>核心能力</strong></th>
+<th><strong>缺失的遗憾</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>UFD</strong></td>
+<td>分解唯一性</td>
+<td>理想可能很杂乱，没有 Bezout 定理。</td>
+</tr>
+<tr>
+<td><strong>PID</strong></td>
+<td><strong>UFD + Bezout</strong></td>
+<td>虽然理想整齐，但做除法不一定有余数。</td>
+</tr>
+<tr>
+<td><strong>ED</strong></td>
+<td><strong>PID + 带余除法</strong></td>
+<td>几乎完美，是计算代数的顶峰。</td>
+</tr>
+</tbody></table>
+<h2 id="ED推PID"><a href="#ED推PID" class="headerlink" title="ED推PID"></a>ED推PID</h2><blockquote>
+<p><strong>ED ⇒ PID 的本质：用“最小余数”选出理想生成元。</strong></p>
+</blockquote>
+<h4 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h4><p>设 $R$是一个 ED，取任意一个非零理想$I \subseteq R$。</p>
+<p>我们要证明：$I$ 是主理想。</p>
+<hr>
+<h5 id="第一步：选“最小元素”"><a href="#第一步：选“最小元素”" class="headerlink" title="第一步：选“最小元素”"></a>第一步：选“最小元素”</h5><p>由于 $I \neq {0}$，且欧几里得函数 $d$取值在$\mathbb{N}$，可以在 $I \setminus {0}$中选一个元素$a$，使得：</p>
+<p>
+$$
+d(a)=min⁡\{d(x)∣x∈I,x≠0\}
+$$
+</p>
+
+<p>👉 这是整个证明的核心：<strong>用“大小”把理想钉住。</strong></p>
+<hr>
+<h5 id="第二步：证明-I-langle-a-rangle"><a href="#第二步：证明-I-langle-a-rangle" class="headerlink" title="第二步：证明 $I &#x3D; \langle a \rangle$"></a>第二步：证明 $I &#x3D; \langle a \rangle$</h5><p>我们要证明两个包含：</p>
+<h6 id="1-langle-a-rangle-subseteq-I-显然成立，因为-a-in-I-，而理想对乘法吸收。"><a href="#1-langle-a-rangle-subseteq-I-显然成立，因为-a-in-I-，而理想对乘法吸收。" class="headerlink" title="(1) $\langle a \rangle \subseteq I$显然成立，因为$a \in I$，而理想对乘法吸收。"></a>(1) $\langle a \rangle \subseteq I$显然成立，因为$a \in I$，而理想对乘法吸收。</h6><hr>
+<h6 id="2-I-subseteq-langle-a-rangle-任取-b-in-I-，用-ED-的带余除法："><a href="#2-I-subseteq-langle-a-rangle-任取-b-in-I-，用-ED-的带余除法：" class="headerlink" title="(2) $I \subseteq \langle a \rangle$任取$b \in I$，用 ED 的带余除法："></a>(2) $I \subseteq \langle a \rangle$任取$b \in I$，用 ED 的带余除法：</h6><p>$b&#x3D;aq+r$,其中$r&#x3D;0$或$d(r)&lt;d(a)b &#x3D; aq + r$, </p>
+<p>注意：</p>
+<ul>
+<li>$b \in I$-$aq \in I$（理想吸收）</li>
+</ul>
+<p>所以：</p>
+<p>$r&#x3D;b−aq∈I$</p>
+<hr>
+<h5 id="第三步：用“最小性”杀掉余数"><a href="#第三步：用“最小性”杀掉余数" class="headerlink" title="第三步：用“最小性”杀掉余数"></a>第三步：用“最小性”杀掉余数</h5><p>如果 $r \neq 0$，那么：</p>
+<p>$d(r)&lt;d(a)$但这和$a$ 的最小性矛盾。</p>
+<p>所以只能有：</p>
+<p>$r&#x3D;0$也就是说：$b&#x3D;aq∈⟨a⟩$</p>
+<hr>
+<h5 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h5><p>$I&#x3D;⟨a⟩$</p>
+<hr>
+<h4 id="一句话总结"><a href="#一句话总结" class="headerlink" title="一句话总结"></a>一句话总结</h4><blockquote>
+<p><strong>ED 之所以强，是因为它允许你对理想做“辗转相除”，最终压缩成一个生成元。</strong></p>
+</blockquote>
+<hr>
+<h2 id="中国剩余定理（CRT）"><a href="#中国剩余定理（CRT）" class="headerlink" title="中国剩余定理（CRT）"></a>中国剩余定理（CRT）</h2><p>现在我们进入一个非常漂亮的结构性结果：</p>
+<blockquote>
+<p><strong>CRT &#x3D; 把一个环拆成若干“互不干扰”的部分。</strong></p>
+</blockquote>
+<hr>
+<h3 id="基本版本（两个理想）"><a href="#基本版本（两个理想）" class="headerlink" title="基本版本（两个理想）"></a>基本版本（两个理想）</h3><p>设 $R$ 是一个交换环，$I, J$是两个理想，且满足：$I+J&#x3D;R$</p>
+<p>（称为<strong>互素理想</strong>）</p>
+<p>那么有：</p>
+<p>$R&#x2F;(I∩J)≅R&#x2F;I×R&#x2F;J$</p>
+<hr>
+<h3 id="在整数里的直观版本"><a href="#在整数里的直观版本" class="headerlink" title="在整数里的直观版本"></a>在整数里的直观版本</h3><p>取 $R &#x3D; \mathbb{Z}$，$I &#x3D; (m)$，$J &#x3D; (n)$。</p>
+<p>若 $\gcd(m,n)&#x3D;1$，那么：</p>
+<p>$Z&#x2F;mnZ≅Z&#x2F;mZ×Z&#x2F;nZ$</p>
+<hr>
+<h3 id="映射是怎么来的？"><a href="#映射是怎么来的？" class="headerlink" title="映射是怎么来的？"></a>映射是怎么来的？</h3><p>定义：</p>
+<p>$φ:R→R&#x2F;I×R&#x2F;J$</p>
+<p>$φ(a)&#x3D;(amodI, amodJ)$</p>
+<p>👉 就是“同时看两个模”。</p>
+<hr>
+<h3 id="核心问题：它为什么是同构？"><a href="#核心问题：它为什么是同构？" class="headerlink" title="核心问题：它为什么是同构？"></a>核心问题：它为什么是同构？</h3><p>我们分三步看：</p>
+<hr>
+<h4 id="1-同态性（显然）"><a href="#1-同态性（显然）" class="headerlink" title="1. 同态性（显然）"></a>1. 同态性（显然）</h4><p>加法、乘法都逐分量成立。</p>
+<hr>
+<h4 id="2-核（kernel）"><a href="#2-核（kernel）" class="headerlink" title="2. 核（kernel）"></a>2. 核（kernel）</h4><p>$kerφ&#x3D;{a∣a∈I 且 a∈J}&#x3D;I∩J$</p>
+<hr>
+<h4 id="3-满射（最关键）"><a href="#3-满射（最关键）" class="headerlink" title="3. 满射（最关键）"></a>3. 满射（最关键）</h4><p>我们要证明：</p>
+<blockquote>
+<p>给定 $(a \bmod I,\ b \bmod J)$，存在 $x \in R$ 同时满足：</p>
+<p>$x≡a (modI),x≡b (modJ)$</p>
+</blockquote>
+<hr>
+<h5 id="构造解（灵魂步骤）"><a href="#构造解（灵魂步骤）" class="headerlink" title="构造解（灵魂步骤）"></a>构造解（灵魂步骤）</h5><p>因为 $I + J &#x3D; R$，存在：</p>
+<p>$u∈I, v∈J,u+v&#x3D;1$构造：$x&#x3D;av+bu$</p>
+<p>检查：</p>
+<ul>
+<li>模 $I$：<br>  $u \in I \Rightarrow bu \equiv 0$，<br>  $v \equiv 1$⇒$x \equiv a$- 模$J$：<br>  同理 $x \equiv b$</li>
+</ul>
+<hr>
+<h4 id="结论-1"><a href="#结论-1" class="headerlink" title="结论"></a>结论</h4><p>$R&#x2F;(I∩J)≅R&#x2F;I×R&#x2F;J$</p>
+<hr>
+<h2 id="CRT-的本质理解"><a href="#CRT-的本质理解" class="headerlink" title="CRT 的本质理解"></a>CRT 的本质理解</h2><blockquote>
+<p>CRT 说的不是“解方程”，而是：</p>
+<p><strong>当两个理想互素时，它们彼此“看不见对方”。</strong></p>
+</blockquote>
+<p>换句话说：</p>
+<ul>
+<li>在 $R&#x2F;I$ 里，$J$ 已经“塌缩成 0”</li>
+<li>在 $R&#x2F;J$ 里，$I$ 也“消失了”</li>
+</ul>
+<p>所以整个结构可以拆成两个<strong>独立世界</strong>。</p>
+<hr>
+<h2 id="和分解的关系（呼应-UFD）"><a href="#和分解的关系（呼应-UFD）" class="headerlink" title="和分解的关系（呼应 UFD）"></a>和分解的关系（呼应 UFD）</h2><p>如果你在 $\mathbb{Z}$里：$n&#x3D;p_1^{e1​_​}⋯p_k^{e_k}​​$那么：$Z&#x2F;nZ≅∏Z&#x2F;p_i^{e_i​​}Z$</p>
+<p>👉 这就是：</p>
+<blockquote>
+<p><strong>“整数的素因子分解” ⇔ “模环的直积分解”</strong></p>
+</blockquote>
+<p>在 UFD 中，我们把元素拆成素因子；<br>在 CRT 中，我们把结构拆成独立分量。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li><p><strong>整环 → UFD</strong><br>  加的是：<br>  👉 <strong>分解的秩序（唯一分解）</strong></p>
+</li>
+<li><p><strong>UFD → PID</strong><br>  加的是：<br>  👉 <strong>理想的极简结构（一个生成元就够）</strong></p>
+</li>
+<li><p><strong>PID → ED</strong><br>  加的是：<br>  👉 <strong>算法性（带余除法 → 可计算）</strong></p>
+</li>
+<li><p><strong>ED → Field</strong><br>  加的是：<br>  👉 <strong>所有非零元素都可逆（彻底消灭分母问题）</strong></p>
+</li>
+<li><p>从 <strong>Field → ED</strong>：<br>  你开始失去“所有元素可逆”，但还保留“可以做除法（带余）”。</p>
+</li>
+<li><p>从 <strong>ED → PID</strong>：<br>  你可能失去“除法算法”，但理想仍然很干净。</p>
+</li>
+<li><p>从 <strong>PID → UFD</strong>：<br>  你失去“理想的单生成性”，但分解还唯一。</p>
+</li>
+<li><p>从 <strong>UFD → Integral Domain</strong>：<br>  连唯一分解都没了，世界开始变混乱（比如 $\mathbb{Z}[\sqrt{-5}]$）。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>控制方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整环</td>
+<td>没有零因子（最基本秩序）</td>
+</tr>
+<tr>
+<td>UFD</td>
+<td>用“不可约分解”控制</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>用“理想生成元”控制</td>
+</tr>
+<tr>
+<td>ED</td>
+<td>用“算法（除法）”控制</td>
+</tr>
+<tr>
+<td>域</td>
+<td>直接让一切可逆（完全控制）</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>“分解问题”与“理想问题”是同一个问题的两种语言。</strong></p>
+</blockquote>
+<p>具体对应：</p>
+<ul>
+<li>元素分解 → 不可约 &#x2F; 素元</li>
+<li>理想结构 → 主理想 &#x2F; 极大理想 &#x2F; 素理想</li>
+<li>整除关系 → 理想包含关系</li>
+</ul>
+<p>比如：</p>
+<ul>
+<li>$p$ 是素元<br>  ⇔ $\langle p \rangle$ 是<strong>素理想</strong></li>
+<li>$R$ 是 PID<br>  ⇔ 所有理想都“可控”（一个生成元）</li>
+</ul>
+<p>这其实是在说：</p>
+<blockquote>
+<p><strong>元素世界的“因数分解”，在理想世界里变成“结构分解”。</strong></p>
+</blockquote>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

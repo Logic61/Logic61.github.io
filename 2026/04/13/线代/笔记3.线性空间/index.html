@@ -1,0 +1,1048 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>笔记3.线性空间 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>笔记3.线性空间</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/13
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%BA%BF%E4%BB%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                线代
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ffa2c4">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>尽管可能显得欠缺一定的连续性，先论述线性空间是合理的，尔后再从多项式延展到空间分解才更为自然，或许不妨看做两个分支，从线性空间和多项式环合并而导回线性代数的主分支。</p>
+<p>仍然给出一坨定义：</p>
+<h1 id="线性空间的结构"><a href="#线性空间的结构" class="headerlink" title="线性空间的结构"></a>线性空间的结构</h1><h2 id="线性空间的定义与公理体系"><a href="#线性空间的定义与公理体系" class="headerlink" title="线性空间的定义与公理体系"></a>线性空间的定义与公理体系</h2><p>线性空间是一个非空集合 $V$（其中的元素称为<strong>抽象向量</strong>），建立在数域 $K$ 之上，并定义了两种运算：<strong>加法</strong>与<strong>数乘</strong>。</p>
+<h3 id="核心运算与封闭性"><a href="#核心运算与封闭性" class="headerlink" title="核心运算与封闭性"></a>核心运算与封闭性</h3><ol>
+<li><p><strong>加法 (Vector Addition)</strong>：</p>
+<ul>
+<li><p>定义：$V \times V \to V$</p>
+</li>
+<li><p>映射：$(\alpha, \beta) \mapsto \alpha + \beta$- 本质：集合$V$ 对加法运算封闭。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>数乘 (Scalar Multiplication)</strong>：</p>
+<ul>
+<li><p>定义：$K \times V \to V$</p>
+</li>
+<li><p>映射：$(k, \alpha) \mapsto k\alpha$- 本质：数域$K$中的标量与向量结合，结果仍留在$V$ 中。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="八条公理-The-8-Axioms"><a href="#八条公理-The-8-Axioms" class="headerlink" title="八条公理 (The 8 Axioms)"></a>八条公理 (The 8 Axioms)</h3><p>这八条准则共同构成了线性空间的骨架。前四条确立了 $V$ 在加法下的<strong>交换群</strong>（阿贝尔群）地位，后四条规定了数乘与加法的兼容性。</p>
+<h4 id="1-加法性质（交换群）"><a href="#1-加法性质（交换群）" class="headerlink" title="1. 加法性质（交换群）"></a>1. 加法性质（交换群）</h4><ul>
+<li><p><strong>(1) 交换律：</strong> $\alpha + \beta &#x3D; \beta + \alpha$- <strong>(2) 结合律：</strong>$\alpha + (\beta + \gamma) &#x3D; (\alpha + \beta) + \gamma$- <strong>(3) 存在单位元（零元素）：</strong> 存在元素$0 \in V$，使得 $0 + \alpha &#x3D; \alpha + 0 &#x3D; \alpha, \forall \alpha \in V$- <strong>(4) 存在逆元（负元素）：</strong> 对任何$\alpha$，都有 $-\alpha \in V$，使得 $\alpha + (-\alpha) &#x3D; (-\alpha) + \alpha &#x3D; 0$</p>
+<blockquote>
+<p><strong>推论：</strong> 零元素与负元素在给定空间中是<strong>唯一</strong>的。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-数乘性质"><a href="#2-数乘性质" class="headerlink" title="2. 数乘性质"></a>2. 数乘性质</h4><p>对 $\forall \alpha, \beta \in V$以及$\forall k, l \in K$：</p>
+<ul>
+<li><strong>(5) 数乘单位元：</strong> $1 \cdot \alpha &#x3D; \alpha$- <strong>(6) 数乘结合律：</strong>$k(l\alpha) &#x3D; (kl)\alpha$- <strong>(7) 左分配律：</strong>$(k + l)\alpha &#x3D; k\alpha + l\alpha$- <strong>(8) 右分配律：</strong>$k(\alpha + \beta) &#x3D; k\alpha + k\beta$</li>
+</ul>
+<hr>
+<p><strong>$V$是能与$K$ 作数乘的交换群。</strong></p>
+<h3 id="与环的对比"><a href="#与环的对比" class="headerlink" title="与环的对比"></a>与环的对比</h3><p>如果把代数结构比作某种构建规则，线性空间强调的是<strong>层次间的互动</strong>，而环强调的是<strong>内部的自我演化</strong>。</p>
+<ul>
+<li><p><strong>环（Ring）</strong> 是一个 <strong>“自给自足”</strong> 的单集结构。它在一个集合 $R$ 上定义了两种二元运算：加法和乘法。所有的操作（$a+b$或$a \cdot b$）都发生在 $R$ 内部。你可以把它想象成一个封闭的黑盒，里面的元素通过两种规则自我碰撞。</p>
+</li>
+<li><p><strong>线性空间（Vector Space）</strong> 是一个 <strong>“双集联动”</strong> 的结构。它涉及两个集合：一个向量集 $V$和一个数域$K$（标量）。加法是 $V$内部的互动，但乘法（数乘）是<strong>跨界</strong>的——由域$K$中的“外部力量”作用于$V$ 中的元素。</p>
+</li>
+</ul>
+<p>这部分讲义将讨论的重心从线性空间的“定义”转向了它的<strong>结构度量</strong>。如果说公理是空间的“宪法”，那么<strong>基（Basis）</strong> 与<strong>维数（Dimension）</strong> 就是它的“骨架”与“尺度”。</p>
+<hr>
+<p>类似我们熟悉的向量组的讨论，线性空间也可以完全类似地定义基、维数等，事实上我们将看到线性映射和矩阵是同构的。</p>
+<h2 id="基、维数与同构"><a href="#基、维数与同构" class="headerlink" title="基、维数与同构"></a>基、维数与同构</h2><h3 id="向量组的秩与极大无关组"><a href="#向量组的秩与极大无关组" class="headerlink" title="向量组的秩与极大无关组"></a>向量组的秩与极大无关组</h3><ul>
+<li><p><strong>极大无关组</strong>：向量组可以有许多不同的极大无关组，但它们包含的向量个数必然相同。</p>
+</li>
+<li><p><strong>秩（Rank）</strong>：极大无关组所含向量的个数称为该向量组的秩。</p>
+</li>
+</ul>
+<h3 id="基底与维数"><a href="#基底与维数" class="headerlink" title="基底与维数"></a>基底与维数</h3><p>对于线性空间 $V$的子集$S$：</p>
+<ol>
+<li><p><strong>线性表出</strong>：若 $V$中每个向量都能表示为$S$中有限个向量的线性组合，称$S$能线性表出$V$。</p>
+</li>
+<li><p><strong>线性无关</strong>：若 $S$的任意有限子集都线性无关，则称$S$ 线性无关。</p>
+</li>
+</ol>
+<p><strong>基底（Basis）的定义</strong>：</p>
+<p>若子集 $S$ 同时满足：</p>
+<ol>
+<li><p>$S$ 线性无关；</p>
+</li>
+<li><p>$S$能线性表出$V$；</p>
+<p> 则称 $S$是$V$ 的一组<strong>基</strong>。</p>
+</li>
+</ol>
+<ul>
+<li><p><strong>维数（Dimension）</strong>：</p>
+<ul>
+<li><p>若 $S$是有限集，则称$V$ 为<strong>有限维线性空间</strong>。</p>
+</li>
+<li><p>$V$的任意两组基包含的向量个数相同，这个常数称为$V$的维数，记为$\dim V$。</p>
+</li>
+<li><p>规定零空间 ${0}$的维数为$0$。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="引理与推论"><a href="#引理与推论" class="headerlink" title="引理与推论"></a>引理与推论</h3><ul>
+<li><p><strong>引理</strong>：设 $\alpha_1, \dots, \alpha_s$线性无关，则$\alpha_1, \dots, \alpha_s, \beta$线性相关$\iff \beta$能被$\alpha_1, \dots, \alpha_s$ 线性表出。</p>
+</li>
+<li><p><strong>扩充定理（推论）</strong>：在有限维线性空间 $V$中，任何线性无关的向量组$\alpha_1, \dots, \alpha_s$都能扩充为$V$ 的一组基。</p>
+</li>
+</ul>
+<hr>
+<h3 id="基底的判定定理"><a href="#基底的判定定理" class="headerlink" title="基底的判定定理"></a>基底的判定定理</h3><p>设 $S$是有限维线性空间$V$的子集，以下三个条件中只要有<strong>两个</strong>成立，则三个条件都成立（即$S$构成$V$ 的基）：</p>
+<ol>
+<li><p>$S$ 线性无关；</p>
+</li>
+<li><p>$S$能线性表出$V$；</p>
+</li>
+<li><p>$|S| &#x3D; \dim V$（向量个数等于空间维数）。</p>
+</li>
+</ol>
+<hr>
+<h3 id="坐标同构-V-cong-K-n-一旦在线性空间-V-中取定了一组基-alpha-1-alpha-2-dots-alpha-n-，那么-V-中的每一个元素-alpha-都可以唯一地表示为："><a href="#坐标同构-V-cong-K-n-一旦在线性空间-V-中取定了一组基-alpha-1-alpha-2-dots-alpha-n-，那么-V-中的每一个元素-alpha-都可以唯一地表示为：" class="headerlink" title="坐标同构 $V \cong K^n$一旦在线性空间$V$中取定了一组基$\alpha_1, \alpha_2, \dots, \alpha_n$，那么 $V$中的每一个元素$\alpha$ 都可以唯一地表示为："></a>坐标同构 $V \cong K^n$一旦在线性空间$V$中取定了一组基$\alpha_1, \alpha_2, \dots, \alpha_n$，那么 $V$中的每一个元素$\alpha$ 都可以唯一地表示为：</h3><p>
+$$
+\alpha = k_1\alpha_1 + k_2\alpha_2 + \dots + k_n\alpha_n
+$$
+</p>
+
+<ul>
+<li><p><strong>坐标</strong>：列向量 $[k_1, k_2, \dots, k_n]^T \in K^n$称为$\alpha$ 在该基下的坐标。</p>
+</li>
+<li><p><strong>本质</strong>：这种一一对应关系保持了加法和数乘运算。这意味着，<strong>任何 $n$维线性空间在代数结构上都与$K^n$ 是一模一样的（同构）</strong>。</p>
+</li>
+</ul>
+<p>关于基、换基等操作，可以在数学随笔3.基底思想阅读。</p>
+<hr>
+<h1 id="子空间的运算"><a href="#子空间的运算" class="headerlink" title="子空间的运算"></a>子空间的运算</h1><h3 id="线性子空间的定义"><a href="#线性子空间的定义" class="headerlink" title="线性子空间的定义"></a>线性子空间的定义</h3><p>若线性空间 $V$的子集$W$满足以下三条性质，则称$W$是$V$ 的<strong>子空间</strong>：</p>
+<ol>
+<li><strong>非空性&#x2F;包含零向量</strong>：$0 \in W$2. <strong>加法封闭性</strong>：若$\alpha, \beta \in W$，则 $\alpha + \beta \in W$3. <strong>数乘封闭性</strong>：若$k \in K, \beta \in W$，则 $k\beta \in W$</li>
+</ol>
+<blockquote>
+<p><strong>本质</strong>：$W$在$V$ 原有的运算下也构成一个完备的线性空间，自动满足八条公理。</p>
+</blockquote>
+<hr>
+<h3 id="子空间的性质与构造"><a href="#子空间的性质与构造" class="headerlink" title="子空间的性质与构造"></a>子空间的性质与构造</h3><ul>
+<li><p><strong>定理（基扩张与维数）</strong>：</p>
+<ul>
+<li><p>子空间 $W$的基都能扩充成全空间$V$ 的基。</p>
+</li>
+<li><p><strong>维数不等式</strong>：$\dim W \le \dim V$。</p>
+</li>
+<li><p><strong>等号成立条件</strong>：$\dim W &#x3D; \dim V \iff W &#x3D; V$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>给出子空间的几种方式</strong>：</p>
+<ol>
+<li><p><strong>生成元方式</strong>：由一组向量生成的张成空间 $W &#x3D; \langle \alpha_1, \dots, \alpha_s \rangle$。</p>
+</li>
+<li><p><strong>解空间方式</strong>：作为齐次线性方程组 $Ax &#x3D; 0$ 的解集。</p>
+</li>
+<li><p><strong>运算构造方式</strong>：通过交、和、正交补（内积空间中）等运算得到。</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="子空间的运算：交与和"><a href="#子空间的运算：交与和" class="headerlink" title="子空间的运算：交与和"></a>子空间的运算：交与和</h3><h4 id="1-子空间的交-Intersection"><a href="#1-子空间的交-Intersection" class="headerlink" title="1. 子空间的交 (Intersection)"></a>1. 子空间的交 (Intersection)</h4><ul>
+<li><p><strong>定理</strong>：若 $V_1, V_2$是$V$的子空间，则其交集$V_1 \cap V_2$也是$V$ 的子空间。</p>
+</li>
+<li><p><strong>注意</strong>：并集 $V_1 \cup V_2$<strong>一般不是</strong>子空间，除非其中一个包含另一个（即$V_1 \supseteq V_2$或$V_1 \subseteq V_2$）。</p>
+</li>
+</ul>
+<h4 id="2-子空间的和-Sum"><a href="#2-子空间的和-Sum" class="headerlink" title="2. 子空间的和 (Sum)"></a>2. 子空间的和 (Sum)</h4><ul>
+<li><p><strong>定义</strong>：若 $V_1, V_2$是$V$的子空间，集合${ \alpha_1 + \alpha_2 \mid \alpha_1 \in V_1, \alpha_2 \in V_2 }$称为$V_1$与$V_2$ 的和，记为 <strong>$V_1 + V_2$</strong>。</p>
+</li>
+<li><p><strong>性质</strong>：$V_1 + V_2$也是$V$ 的子空间。</p>
+</li>
+<li><p><strong>生成元表示</strong>：</p>
+<p>  若 $V_1 &#x3D; \langle \alpha_1, \dots, \alpha_r \rangle$，$V_2 &#x3D; \langle \beta_1, \dots, \beta_s \rangle$，</p>
+<p>  则 $V_1 + V_2 &#x3D; \langle \alpha_1, \dots, \alpha_r, \beta_1, \dots, \beta_s \rangle$。</p>
+</li>
+</ul>
+<p>相比于并，和更能体现线性空间的味道，例如两条直线的并是两条直线作为一个整体，但是和则是铺成一个平面，带有了线性运算。同时，和可以直接构造子空间，并则不太容易。</p>
+<h3 id="维数公式"><a href="#维数公式" class="headerlink" title="维数公式"></a>维数公式</h3><h4 id="一、-定理内容"><a href="#一、-定理内容" class="headerlink" title="一、 定理内容"></a>一、 定理内容</h4><p>若 $V_1, V_2$是线性空间$V$ 的子空间，则它们的和空间与交空间的维数满足以下关系：</p>
+<p>
+$$
+\dim(V_1 + V_2) + \dim(V_1 \cap V_2) = \dim V_1 + \dim V_2
+$$
+</p>
+
+<blockquote>
+<p><strong>直观理解</strong>：两个空间的合并维数，等于各自维数之和减去重复计算的交集部分维数。这与集合论中的容斥原理极其相似。</p>
+</blockquote>
+<hr>
+<h4 id="二、-证明概要"><a href="#二、-证明概要" class="headerlink" title="二、 证明概要"></a>二、 证明概要</h4><p>证明的核心在于通过<strong>基的扩充</strong>构造出一组能张成 $V_1 + V_2$ 的线性无关组。实际上在数学随笔3之基底思想已经干过完全一样的证明了。</p>
+<ol>
+<li><p><strong>取交空间的基</strong>：设 $V_1 \cap V_2$的一组基为$\alpha_1, \dots, \alpha_r$。此时 $\dim(V_1 \cap V_2) &#x3D; r$。</p>
+</li>
+<li><p><strong>向两侧扩充</strong>：</p>
+<ul>
+<li><p>将其扩充为 $V_1$ 的基：$\alpha_1, \dots, \alpha_r, \beta_1, \dots, \beta_m$。则 $\dim V_1 &#x3D; r + m$。</p>
+</li>
+<li><p>将其扩充为 $V_2$ 的基：$\alpha_1, \dots, \alpha_r, \gamma_1, \dots, \gamma_s$。则 $\dim V_2 &#x3D; r + s$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>构造和空间的基</strong>：证明 $\beta_1, \dots, \beta_m, \alpha_1, \dots, \alpha_r, \gamma_1, \dots, \gamma_s$线性无关且张成$V_1 + V_2$。</p>
+<ul>
+<li><p>若线性组合为零：$k_1\beta_1 + \dots + l_1\gamma_1 + \dots &#x3D; 0$。</p>
+</li>
+<li><p>变形得：$k_i\beta_i$的组合属于$V_2$，因此必然落在交集 $V_1 \cap V_2$ 中。</p>
+</li>
+<li><p>利用交空间的基表出并结合线性无关性，推出所有系数全为 $0$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>结论</strong>：$\dim(V_1 + V_2) &#x3D; m + r + s$。</p>
+<ul>
+<li>代入等式：$(m + r + s) + r &#x3D; (r + m) + (r + s)$，公式成立。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="线性无关、直和与唯一性表示"><a href="#线性无关、直和与唯一性表示" class="headerlink" title="线性无关、直和与唯一性表示"></a>线性无关、直和与唯一性表示</h3><h4 id="一、-线性无关-iff-表出唯一"><a href="#一、-线性无关-iff-表出唯一" class="headerlink" title="一、 线性无关 $\iff$ 表出唯一"></a>一、 线性无关 $\iff$ 表出唯一</h4><p>对于向量组 $\alpha_1, \dots, \alpha_s$：</p>
+<ul>
+<li><strong>核心逻辑</strong>：如果该向量组表示零向量的方式是唯一的，那么它表示任何能表出的向量的方式都是唯一的。</li>
+</ul>
+<p>若满足表达零向量唯一，则设有两种方法表示 $\beta$ ，作差就得到两种方法的系数必须一样，那也就实际上只有一种方法。</p>
+<hr>
+<h4 id="二、-子空间的直和-Direct-Sum"><a href="#二、-子空间的直和-Direct-Sum" class="headerlink" title="二、 子空间的直和 (Direct Sum)"></a>二、 子空间的直和 (Direct Sum)</h4><p>当我们将讨论的对象从“单个向量”提升到“子空间”时，唯一性依然是判定结构的核心。</p>
+<h5 id="1-表示方式的定义"><a href="#1-表示方式的定义" class="headerlink" title="1. 表示方式的定义"></a>1. 表示方式的定义</h5><p>设 $V_1, \dots, V_s$是$V$的子空间。对于和空间$V_1 + \dots + V_s$中的任意向量$\beta$，其表示方式为：</p>
+<p>
+$$
+\beta = \alpha_1 + \alpha_2 + \dots + \alpha_s, \quad (\alpha_i \in V_i)
+$$
+</p>
+
+<p>有序组 $(\alpha_1, \dots, \alpha_s)$称为$\beta$ 的一种表示。</p>
+<h5 id="2-直和的判定：零向量的唯一性"><a href="#2-直和的判定：零向量的唯一性" class="headerlink" title="2. 直和的判定：零向量的唯一性"></a>2. 直和的判定：零向量的唯一性</h5><ul>
+<li><p><strong>定理</strong>：表示零向量的方式唯一 $\iff$ 表示任何向量的方式都唯一。</p>
+</li>
+<li><p><strong>直和的定义</strong>：若 $V_1 + \dots + V_s$ 中任何元素的表示方式都唯一，则称该和为<strong>直和</strong>，记为：</p>
+</li>
+</ul>
+<p>
+$$
+V_1 \oplus V_2 \oplus \dots \oplus V_s
+$$
+</p>
+
+<ul>
+<li><p><strong>推导过程</strong>：</p>
+<ul>
+<li><p>如果表示零向量的方式不唯一（存在非零向量之和为 $0$），则通过加法叠加，任何向量的表示都会有无数种组合。</p>
+</li>
+<li><p>反之，若表示 $0$的方式唯一（即$\sum \alpha_i &#x3D; 0 \implies \alpha_i &#x3D; 0$），则由 $\beta$ 的两种表示作差，立得两种表示完全一致。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>直和的本质是子空间之间“不重叠”（除零向量外）。</p>
+<ul>
+<li><p><strong>非直和情形</strong>：若 $V_1 \cap V_2 \neq {0}$，则存在非零向量 $\alpha \in V_1 \cap V_2$。此时零向量可以有非平凡表示：$0 &#x3D; \alpha + (-\alpha)$。几何上表现为两个平面（或线）交于一条线。</p>
+</li>
+<li><p><strong>直和情形</strong>：若 $V_1 \cap V_2 &#x3D; {0}$，则 $\alpha_1 + \alpha_2 &#x3D; 0 \implies \alpha_1 &#x3D; -\alpha_2 \in V_1 \cap V_2 &#x3D; {0}$。这意味着分解方式唯一。几何上表现为两个空间仅交于原点。</p>
+</li>
+</ul>
+<p>当涉及多个子空间 $V_1, \dots, V_s$ 时，两两交为零是不够的，必须满足更强的条件。</p>
+<p><strong>定理：</strong></p>
+<p>$V_1 + \dots + V_s$是直和，当且仅当对每一个$k$ ($1 \le k \le s$)，第 $k$ 个子空间与它前面所有子空间之和的交集仅含零向量：</p>
+<p>
+$$
+V_k \cap (V_1 + \dots + V_{k-1}) = \{0\}
+$$
+</p>
+
+<ul>
+<li><p><strong>证明要点</strong>：</p>
+<ul>
+<li><p><strong>充分性</strong>：设 $\sum \alpha_i &#x3D; 0$。取最后一个非零向量 $\alpha_k$，则 $\alpha_k &#x3D; -(\alpha_1 + \dots + \alpha_{k-1})$。这导致 $\alpha_k$落在$V_k$ 与前面子空间和的交集中，与条件矛盾。</p>
+</li>
+<li><p><strong>必要性</strong>：若交集不为零，则存在非零向量能被前面的向量组表出，导致零向量的表示不唯一。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="三、-等价命题定理"><a href="#三、-等价命题定理" class="headerlink" title="三、 等价命题定理"></a>三、 等价命题定理</h4><p>以下命题对于判定子空间是否构成直和是等价的：</p>
+<ul>
+<li><p><strong>表示唯一性</strong>：$V_1 + \dots + V_s$是直和（即表示$0$ 的方式唯一）。</p>
+</li>
+<li><p><strong>基的保持性</strong>：分别取子空间 $V_1, \dots, V_s$ 的基，将这些基向量合并后，得到的向量组在全空间中<strong>依然线性无关</strong>。</p>
+<ul>
+<li>换句话说，这些基向量合并后构成了和空间 $V_1 \oplus \dots \oplus V_s$ 的一组基.。</li>
+</ul>
+</li>
+<li><p><strong>维数和</strong>：$dim(V_1+…+V_s)&#x3D;dim(V_1)+…+dim(V_s)$当$\dim(V_1 \cap V_2) &#x3D; 0$（即 $V_1 \cap V_2 &#x3D; {0}$）时，维数公式简化为：</p>
+</li>
+</ul>
+<p>
+$$
+\dim(V_1 + V_2) = \dim V_1 + \dim V_2
+$$
+</p>
+
+<p>此时的和称为<strong>直和</strong>，记作 $V_1 \oplus V_2$。这意味着和空间中的每一个向量都可以<strong>唯一地</strong>表示为 $V_1$和$V_2$ 中向量的和。</p>
+<p>我们看一个定理，这实际上在数学随笔之范德蒙德行列式的意外出现有提到过，讨论的就是直和。</p>
+<p><strong>定理：</strong></p>
+<p>设 $V_1, V_2, \dots, V_s$是方阵$A$对应于不同特征值$\lambda_1, \lambda_2, \dots, \lambda_s$ 的<strong>特征子空间</strong>，则它们的和是<strong>直和</strong>。</p>
+<ul>
+<li><p><strong>证明思路（范德蒙德法）</strong>：</p>
+<ol>
+<li><p>设 $\alpha_1 + \alpha_2 + \dots + \alpha_s &#x3D; 0$，其中 $\alpha_i \in V_i$。</p>
+</li>
+<li><p>利用 $A$左乘该式$s-1$次，根据$A\alpha_i &#x3D; \lambda_i \alpha_i$，得到一系列线性方程：</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>
+$$
+\begin{cases} \alpha_1 + \dots + \alpha_s = 0 \\ \lambda_1 \alpha_1 + \dots + \lambda_s \alpha_s = 0 \\ \vdots \\ \lambda_1^{s-1} \alpha_1 + \dots + \lambda_s^{s-1} \alpha_s = 0 \end{cases}
+$$
+</p>
+
+<ol start="3">
+<li>由于特征值 $\lambda_i$两两不同，对应的<strong>范德蒙德行列式</strong>不为零，从而推导出每个分量$\alpha_i$必须全为$0$。</li>
+</ol>
+<p>还可以更进一步，考虑所谓广义特征子空间。</p>
+<h3 id="广义特征子空间的直和与多项式分解"><a href="#广义特征子空间的直和与多项式分解" class="headerlink" title="广义特征子空间的直和与多项式分解"></a>广义特征子空间的直和与多项式分解</h3><h4 id="一、-广义特征子空间的直和性"><a href="#一、-广义特征子空间的直和性" class="headerlink" title="一、 广义特征子空间的直和性"></a>一、 广义特征子空间的直和性</h4><p><strong>定理</strong>：</p>
+<p>设 $\lambda_1, \dots, \lambda_s \in K$是矩阵$A \in M_n(K)$ 的互异特征值，$r_1, \dots, r_s &gt; 0$ 为对应的幂次，则其广义特征子空间之和是直和：</p>
+<p>
+$$
+\text{Ker}(A - \lambda_1 I)^{r_1} \oplus \dots \oplus \text{Ker}(A - \lambda_s I)^{r_s}
+$$
+</p>
+
+<ul>
+<li><p><strong>证明逻辑（构造性矛盾法）</strong>：</p>
+<ol>
+<li><p>假设存在非零向量之和为零：$\alpha_1 + \dots + \alpha_s &#x3D; 0$。</p>
+</li>
+<li><p>对 $\alpha_1$，寻找使其“退化”到特征向量层级的最小指数 $t$，定义 $\beta_1 &#x3D; (A - \lambda_1 I)^{t-1} \alpha_1 \neq 0$。此时 $\beta_1$是属于$\lambda_1$ 的特征向量($A-\lambda I$作用$\beta$是$0$ )。</p>
+</li>
+<li><p>利用算子 $(A - \lambda_1 I)^{t-1} \prod_{j \neq 1} (A - \lambda_j I)^{r_j}$ 左乘原式。</p>
+</li>
+<li><p>除了第一项，其余项均会因落在 $\text{Ker}$中而消解为$0$。</p>
+</li>
+<li><p>最终导出 $(\lambda_1 - \lambda_2)^{r_2} \dots (\lambda_1 - \lambda_s)^{r_s} \beta_1 &#x3D; 0$。由于特征值互异且 $\beta_1 \neq 0$，产生矛盾，从而证明各分量必为零。</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<p>那之前大费周章学了那么多多项式的内容有什么用呢？实际上利用多项式我们可以给出空间的分解：</p>
+<h2 id="核空间分解定理的详细证明"><a href="#核空间分解定理的详细证明" class="headerlink" title="核空间分解定理的详细证明"></a>核空间分解定理的详细证明</h2><h3 id="一、-定理"><a href="#一、-定理" class="headerlink" title="一、 定理"></a>一、 定理</h3><p>设 $f_1(x), \dots, f_s(x) \in K[x]$两两互素。记$f(x) &#x3D; \prod_{i&#x3D;1}^s f_i(x)$。对于 $A \in M_n(K)$，有：</p>
+<p>
+$$
+\text{Ker } f(A) = \text{Ker } f_1(A) \oplus \text{Ker } f_2(A) \oplus \dots \oplus \text{Ker } f_s(A)
+$$
+</p>
+
+<hr>
+<h3 id="二、-证明步骤拆解"><a href="#二、-证明步骤拆解" class="headerlink" title="二、 证明步骤拆解"></a>二、 证明步骤拆解</h3><h4 id="1-证明和是“直和”"><a href="#1-证明和是“直和”" class="headerlink" title="1. 证明和是“直和”"></a>1. 证明和是“直和”</h4><p>要证直和，只需证 $V_i \cap (\sum_{j \neq i} V_j) &#x3D; {0}$，其中 $V_i &#x3D; \text{Ker } f_i(A)$。</p>
+<ul>
+<li><p><strong>构造辅助多项式</strong>：记 $F_i(x) &#x3D; \frac{f(x)}{f_i(x)}$，即除去 $f_i$ 后其余多项式的乘积。</p>
+</li>
+<li><p><strong>利用互素性</strong>：由于 $(f_i(x), f_j(x)) &#x3D; 1$（对所有 $j \neq i$），推导出 $f_i(x)$与$F_i(x)$互素，即$(f_i, F_i) &#x3D; 1$。</p>
+</li>
+<li><p><strong>裴蜀等式 (Bézout’s Identity)</strong>：存在 $u(x), v(x)$使得$u(x)f_i(x) + v(x)F_i(x) &#x3D; 1$。</p>
+</li>
+<li><p><strong>算子化</strong>：将 $x$换成矩阵$A$，作用于任意向量 $\alpha \in V_i \cap (\sum_{j \neq i} V_j)$：</p>
+<ul>
+<li><p>$\alpha &#x3D; u(A)f_i(A)\alpha + v(A)F_i(A)\alpha$- 因为$\alpha \in \text{Ker } f_i(A)$，故 $f_i(A)\alpha &#x3D; 0$。</p>
+</li>
+<li><p>因为 $\alpha$在其余核空间的和中，而$F_i(A)$包含所有其余因子，故$F_i(A)\alpha &#x3D; 0$。</p>
+</li>
+<li><p><strong>结论</strong>：$\alpha &#x3D; 0$，故和为直和。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-证明核空间的包含关系"><a href="#2-证明核空间的包含关系" class="headerlink" title="2. 证明核空间的包含关系"></a>2. 证明核空间的包含关系</h4><p>需证 $\sum \text{Ker } f_i(A) &#x3D; \text{Ker } f(A)$。</p>
+<ul>
+<li><p><strong>以 $s&#x3D;2$为例</strong>：已知$(f_1, f_2) &#x3D; 1$，则 $u(A)f_1(A) + v(A)f_2(A) &#x3D; I$。</p>
+</li>
+<li><p>对于 $\forall \alpha \in \text{Ker } f(A)$：</p>
+</li>
+</ul>
+<p>
+$$
+\alpha = I\alpha = \underbrace{u(A)f_1(A)\alpha}_{\in \text{Ker } f_2(A)} + \underbrace{v(A)f_2(A)\alpha}_{\in \text{Ker } f_1(A)}
+$$
+</p>
+
+<p>（注：$f_2(A) \cdot [u(A)f_1(A)\alpha] &#x3D; u(A)f(A)\alpha &#x3D; 0$）</p>
+<ul>
+<li><strong>推广到一般情形</strong>：利用归纳法，将 $f(x)$视为$f_1(x)$与$(f_2 \dots f_s)(x)$ 的积，层层剥离。</li>
+</ul>
+<p>综合两方面证明就完成了。也就是说，从一个多项式的分解，我们可以得到一个空间的分解，这是非常美妙的。</p>
+<p>如果我们想分解整个空间，要考虑什么多项式呢？</p>
+<h3 id="零化多项式与空间分解"><a href="#零化多项式与空间分解" class="headerlink" title="零化多项式与空间分解"></a>零化多项式与空间分解</h3><h4 id="一、-零化多项式-Annihilating-Polynomial"><a href="#一、-零化多项式-Annihilating-Polynomial" class="headerlink" title="一、 零化多项式 (Annihilating Polynomial)"></a>一、 零化多项式 (Annihilating Polynomial)</h4><ul>
+<li><p><strong>定义</strong>：设 $A \in M_n(K)$，若存在多项式 $f(x) \in K[x]$使得$f(A) &#x3D; 0$，则称 $f(x)$为$A$ 的一个<strong>零化多项式</strong>。</p>
+</li>
+<li><p><strong>经典示例</strong>：</p>
+<ul>
+<li><p><strong>幂等变换（投影）</strong>：$x^2 - x$是其零化多项式（因为$A^2 &#x3D; A$）。</p>
+</li>
+<li><p><strong>对合变换（镜像）</strong>：$x^2 - 1$是其零化多项式（因为$A^2 &#x3D; I$）。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="二、-零化多项式驱动的空间全分解"><a href="#二、-零化多项式驱动的空间全分解" class="headerlink" title="二、 零化多项式驱动的空间全分解"></a>二、 零化多项式驱动的空间全分解</h4><p><strong>核心定理</strong>：</p>
+<p>若矩阵 $A$的零化多项式$f(x)$在域$K$上可分解为两两互素的因子乘积$f(x) &#x3D; f_1(x) \dots f_s(x)$，则全空间 $V$ 具有直和分解：</p>
+<p>
+$$
+V = \text{Ker } f_1(A) \oplus \dots \oplus \text{Ker } f_s(A)
+$$
+</p>
+
+<blockquote>
+<p><strong>逻辑跃迁</strong>：这里因为 $f(A)&#x3D;0$，所以 $\text{Ker } f(A)$直接就是整个空间$V$。</p>
+</blockquote>
+<hr>
+<h4 id="三、-可对角化的充分必要条件"><a href="#三、-可对角化的充分必要条件" class="headerlink" title="三、 可对角化的充分必要条件"></a>三、 可对角化的充分必要条件</h4><p>这是线性代数中最优雅的结论之一：</p>
+<p><strong>矩阵 $A$在域$K$上可对角化，当且仅当$A$有一个零化多项式能在$K$ 上分解成互异的一次因式的乘积：</strong></p>
+<p>
+$$
+f(x) = (x - \mu_1)(x - \mu_2) \dots (x - \mu_s), \quad \mu_i \in K \text{ 且互异}
+$$
+</p>
+
+<ul>
+<li><p><strong>必要性推导</strong>：若 $A$可对角化，则全空间是特征子空间的直和。作用算子$(A - \lambda_1 I)\dots(A - \lambda_s I)$于任何向量都会得到$0$，说明该乘积即为零化多项式。</p>
+</li>
+<li><p><strong>充分性推导</strong>：若存在此类零化多项式，由核空间分解定理，全空间 $V$ 会分解为各个特征子空间（或零空间）的直和：</p>
+</li>
+</ul>
+<p>
+$$
+V = \bigoplus_{i=1}^s \text{Ker}(A - \mu_i I)
+$$
+</p>
+
+<p>这意味着 $V$有一组由特征向量构成的基，即$A$ 可对角化。</p>
+<hr>
+<h4 id="四、-案例应用：对合变换的分解"><a href="#四、-案例应用：对合变换的分解" class="headerlink" title="四、 案例应用：对合变换的分解"></a>四、 案例应用：对合变换的分解</h4><p><strong>场景</strong>：设 $V &#x3D; M_n(K)$，考虑转置变换 $T: A \to A^T$。</p>
+<ol>
+<li><p><strong>特征方程</strong>：显然 $T^2 &#x3D; I$，故零化多项式为 $f(x) &#x3D; x^2 - 1 &#x3D; (x - 1)(x + 1)$。</p>
+</li>
+<li><p><strong>空间直和</strong>：由于 $1$与$-1$互异，空间$V$ 可分解为：</p>
+</li>
+</ol>
+<p>
+$$
+V = \text{Ker}(T - I) \oplus \text{Ker}(T + I)
+$$
+</p>
+
+<ol start="3">
+<li><p><strong>几何意义</strong>：</p>
+<ul>
+<li><p>$\text{Ker}(T - I)$是所有满足$A^T &#x3D; A$的矩阵（<strong>对称矩阵</strong>$V_1$）。</p>
+</li>
+<li><p>$\text{Ker}(T + I)$是所有满足$A^T &#x3D; -A$的矩阵（<strong>反对称矩阵</strong>$V_2$）。</p>
+</li>
+<li><p><strong>结论</strong>：任何方阵都能唯一地分解为一个对称矩阵与一个反对称矩阵之和：$A &#x3D; \frac{A+A^T}{2} + \frac{A-A^T}{2}$。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="补空间与外直和"><a href="#补空间与外直和" class="headerlink" title="补空间与外直和"></a>补空间与外直和</h2><h3 id="一、-补空间-Complementary-Subspace"><a href="#一、-补空间-Complementary-Subspace" class="headerlink" title="一、 补空间 (Complementary Subspace)"></a>一、 补空间 (Complementary Subspace)</h3><p>如果说子空间是空间的一部分，那么补空间就是“剩下那部分”的完美补充。</p>
+<ul>
+<li><p><strong>定义</strong>：设 $W, W’$是$V$的子空间。若满足$V &#x3D; W \oplus W’$（即 $V$是它们的直和），则称$W$与$W’$ <strong>互为补空间</strong>。</p>
+</li>
+<li><p><strong>存在性定理</strong>：任何线性子空间都有补空间。</p>
+</li>
+<li><p><strong>构造逻辑</strong>：</p>
+<ol>
+<li><p>取 $W$的一组基$\alpha_1, \dots, \alpha_r$。</p>
+</li>
+<li><p>将其扩充为全空间 $V$的一组基$\alpha_1, \dots, \alpha_r, \alpha_{r+1}, \dots, \alpha_n$。</p>
+</li>
+<li><p>由扩充出来的向量 $\langle \alpha_{r+1}, \dots, \alpha_n \rangle$张成的子空间即为$W$ 的一个补空间。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>注意</strong>：补空间通常<strong>不唯一</strong>。扩充基底的方式不同，得到的补空间在空间中的“姿态”也不同。</p>
+</li>
+</ul>
+<hr>
+<h3 id="二、-外直和-External-Direct-Sum"><a href="#二、-外直和-External-Direct-Sum" class="headerlink" title="二、 外直和 (External Direct Sum)"></a>二、 外直和 (External Direct Sum)</h3><p>当我们手里有几个独立的线性空间，想要把它们合成一个更大的空间时，就需要用到外直和。</p>
+<ul>
+<li><strong>定义</strong>：设 $V_1, \dots, V_s$是数域$K$ 上的线性空间，其外直和定义为笛卡尔积集合：</li>
+</ul>
+<p>
+$$
+V_1 \oplus \dots \oplus V_s = \{ (\alpha_1, \dots, \alpha_s) \mid \alpha_i \in V_i \}
+$$
+</p>
+
+<ul>
+<li><p><strong>运算规则</strong>：</p>
+<ul>
+<li><p><strong>加法</strong>：分量对位相加，$(\alpha_1, \dots) + (\beta_1, \dots) &#x3D; (\alpha_1 + \beta_1, \dots)$。</p>
+</li>
+<li><p><strong>数乘</strong>：标量作用于每个分量，$k(\alpha_1, \dots) &#x3D; (k\alpha_1, \dots)$。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="三、-外直和与内直和的统一"><a href="#三、-外直和与内直和的统一" class="headerlink" title="三、 外直和与内直和的统一"></a>三、 外直和与内直和的统一</h3><p>虽然“外直和”是从多个集合构建新集合，但它本质上可以看作“内直和”。</p>
+<ul>
+<li><p><strong>嵌入与同构</strong>：</p>
+<p>  构造 $V$的子空间$V_i’$，使得 $V_i’$中的元素仅在第$i$个位置有非零向量，其余位置全为$0$：</p>
+</li>
+</ul>
+<p>
+$$
+V_i' = \{ (0, \dots, \alpha_i, \dots, 0) \mid \alpha_i \in V_i \}
+$$
+</p>
+
+<ul>
+<li><p><strong>结论</strong>：</p>
+<ol>
+<li><p>$V_i’ \cong V_i$（每个 $V_i’$都同构于原空间$V_i$）。</p>
+</li>
+<li><p>整个外直和空间 $V$恰好是这些子空间$V_i’$ 的<strong>内直和</strong>：</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>
+$$
+V = V_1' \oplus \dots \oplus V_s'
+$$
+</p>
+
+<hr>
+<h1 id="线性空间的同构"><a href="#线性空间的同构" class="headerlink" title="线性空间的同构"></a>线性空间的同构</h1><h3 id="线性映射与同构的定义"><a href="#线性映射与同构的定义" class="headerlink" title="线性映射与同构的定义"></a>线性映射与同构的定义</h3><p>设 $U, V$是域$K$上的两个线性空间。若映射$\mathcal{A}: U \to V$ 满足：</p>
+<ol>
+<li><p><strong>加法齐次性</strong>：$\mathcal{A}(\alpha + \beta) &#x3D; \mathcal{A}\alpha + \mathcal{A}\beta, \quad \forall \alpha, \beta \in U$</p>
+</li>
+<li><p><strong>数乘齐次性</strong>：$\mathcal{A}(k\alpha) &#x3D; k\mathcal{A}\alpha, \quad \forall k \in K$则称$\mathcal{A}$是$U$到$V$ 的<strong>线性映射</strong>。</p>
+</li>
+</ol>
+<p>若 $\mathcal{A}$是<strong>双射</strong>（既是单射又是满射），则称$\mathcal{A}$是$U$到$V$的<strong>线性同构</strong>，记作$U \cong V$。</p>
+<hr>
+<h3 id="2-同构的关键判定与定理"><a href="#2-同构的关键判定与定理" class="headerlink" title="2. 同构的关键判定与定理"></a>2. 同构的关键判定与定理</h3><ul>
+<li><p><strong>推论</strong>：设 $\mathcal{A}: U \to V$ 是线性映射，$\alpha_1, \dots, \alpha_n$是$U$的一组基。$\mathcal{A}$是$U$与$V$的线性同构$\iff \mathcal{A}\alpha_1, \dots, \mathcal{A}\alpha_n$是$V$ 的一组基。</p>
+</li>
+<li><p><strong>基础定理</strong>：有限维 $K$-线性空间 $U$与$V$ 同构的充要条件是它们的维数相等：</p>
+</li>
+</ul>
+<p>
+$$
+U \cong V \iff \dim U = \dim V
+$$
+</p>
+
+<hr>
+<h3 id="3-性质证明要点"><a href="#3-性质证明要点" class="headerlink" title="3. 性质证明要点"></a>3. 性质证明要点</h3><ul>
+<li><p><strong>满射判定</strong>：$\mathcal{A}$是满射$\iff \mathcal{A}\alpha_1, \dots, \mathcal{A}\alpha_n$张成$V$。</p>
+<p>  即 $V$中任意向量均可表示为$\mathcal{A}\alpha_i$ 的线性组合：$\text{Im} \mathcal{A} &#x3D; L(\mathcal{A}\alpha_1, \dots, \mathcal{A}\alpha_n)$。</p>
+</li>
+<li><p><strong>单射判定</strong>：$\mathcal{A}$是单射$\iff \mathcal{A}\alpha_1, \dots, \mathcal{A}\alpha_n$ 线性无关。</p>
+<p>  证明思路：由 $\sum k_i \mathcal{A}\alpha_i &#x3D; 0$推导出$\mathcal{A}(\sum k_i \alpha_i) &#x3D; 0$，若 $\mathcal{A}$为单射则核为空，进而利用$\alpha_i$的无关性证得$k_i &#x3D; 0$。</p>
+</li>
+</ul>
+<hr>
+<h3 id="4-坐标同构-Coordinate-Isomorphism"><a href="#4-坐标同构-Coordinate-Isomorphism" class="headerlink" title="4. 坐标同构 (Coordinate Isomorphism)"></a>4. 坐标同构 (Coordinate Isomorphism)</h3><p>在 $n$维线性空间$V$中取定一组基$\alpha_1, \dots, \alpha_n$ 后，$V$中的每个元素$\alpha &#x3D; \sum k_i \alpha_i$与其坐标向量$[k_1, \dots, k_n]^T \in K^n$ 之间建立了一一对应关系。</p>
+<p><strong>结论</strong>：这种对应保持了向量的加法与数乘运算，即 $V$与向量空间$K^n$ 线性同构。</p>
+<hr>
+<h3 id="5-同构关系的性质"><a href="#5-同构关系的性质" class="headerlink" title="5. 同构关系的性质"></a>5. 同构关系的性质</h3><p>线性空间的同构关系满足：</p>
+<ul>
+<li><p><strong>自反性</strong>：$V \cong V$- <strong>交换性</strong>：若$U \cong V$，则 $V \cong U$- <strong>传递性</strong>：若$U \cong V$且$V \cong W$，则 $U \cong W$</p>
+<p>  因此，同构是线性空间集合上的一个<strong>等价关系</strong>。</p>
+</li>
+</ul>
+<hr>
+<h3 id="6-实例与应用"><a href="#6-实例与应用" class="headerlink" title="6. 实例与应用"></a>6. 实例与应用</h3><ul>
+<li><p><strong>矩阵秩的性质</strong>：</p>
+<p>  设矩阵 $A &#x3D; [\alpha_1, \dots, \alpha_n]$列满秩，则映射$X \mapsto AX$是$K^n$到$A$ 的列空间的线性同构。</p>
+</li>
+<li><p><strong>矩阵分解应用</strong>：</p>
+<p>  若 $B &#x3D; AC &#x3D; [\alpha_1, \dots, \alpha_n] [\gamma_1, \dots, \gamma_s]$，则：</p>
+<ol>
+<li><p>$B$的秩$&#x3D; C$ 的秩。</p>
+</li>
+<li><p>$B$的解空间$&#x3D; C$ 的解空间。</p>
+</li>
+<li><p>$\gamma_1, \dots, \gamma_s$是$\beta_1, \dots, \beta_s$在基$\alpha_1, \dots, \alpha_n$ 下的坐标。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>思考题</strong>：矩阵 $A$ 的行空间与列空间同构吗？</p>
+<p>  <strong>提示</strong>：由于行秩等于列秩，即维数相等，根据定理它们必然同构。</p>
+</li>
+</ul>
+<h1 id="商空间与线性映射基本定理"><a href="#商空间与线性映射基本定理" class="headerlink" title="商空间与线性映射基本定理"></a>商空间与线性映射基本定理</h1><p>商空间听起来很高级，实际上动机是简单的，我们知道重力势能可以简单地写为 $mgh$ ，那么水平方向如何运动便可以置之不顾了，那么我们略去三维中的两维，只看高度这一个坐标即可，商空间干的事其实也就是这样。</p>
+<h2 id="核心动机：忽略不相关的细节"><a href="#核心动机：忽略不相关的细节" class="headerlink" title="核心动机：忽略不相关的细节"></a>核心动机：忽略不相关的细节</h2><p>在处理复杂事物时，我们往往只关注某些特定的“层面”。</p>
+<ul>
+<li><p><strong>数学直观</strong>：如果我们对子空间 $W$ 方向的差异不感兴趣，就希望通过某种方式将其“抹去”或“淡化”。</p>
+</li>
+<li><p><strong>几何想象</strong>：将高维空间沿 $W$方向“压扁”，使得落在同一个与$W$ 平行的平面（陪集）上的所有点，在商空间视角下被视为同一个“元素”。</p>
+</li>
+</ul>
+<h2 id="W-陪集（Coset）"><a href="#W-陪集（Coset）" class="headerlink" title="$W$-陪集（Coset）"></a>$W$-陪集（Coset）</h2><p>陪集是将空间 $V$按照子空间$W$进行划分的基本单位。简单来说就是让$W&#x3D;0$。按照之前的重力势能的比喻，就是说在同一个高度的坐标我们就看做一个陪集，认为他们都相等，这里就可以把$W$看做$x,y$ 坐标，即被弃置不顾的东西。</p>
+<ul>
+<li><p><strong>等价关系</strong>：定义 $\alpha \sim \beta \iff \alpha - \beta \in W$。</p>
+</li>
+<li><p><strong>定义</strong>：对于 $V$中的向量$\beta$，其所在的等价类称为 <strong>$\beta$的$W$-陪集</strong>，记作 $\beta + W &#x3D; { \beta + \gamma \mid \gamma \in W }$。</p>
+</li>
+<li><p><strong>代表元</strong>：陪集中的任何向量都可以作为该陪集的代表。只要 $\alpha - \beta \in W$，则 $\alpha + W &#x3D; \beta + W$。</p>
+</li>
+</ul>
+<h2 id="商空间-V-W-的代数结构"><a href="#商空间-V-W-的代数结构" class="headerlink" title="商空间 $V&#x2F;W$ 的代数结构"></a>商空间 $V&#x2F;W$ 的代数结构</h2><p>全体 $W$-陪集的集合记为 $V&#x2F;W$。为了使其成为线性空间，定义了如下运算：</p>
+<ul>
+<li><p><strong>加法</strong>：$(\alpha + W) + (\beta + W) &#x3D; (\alpha + \beta) + W$</p>
+</li>
+<li><p><strong>数乘</strong>：$k(\alpha + W) &#x3D; k\alpha + W$</p>
+</li>
+<li><p><strong>良定义性</strong>：运算结果不依赖于陪集代表元的选取（需验证）。作差即可验证。</p>
+</li>
+<li><p><strong>结论</strong>：在此运算下，$V&#x2F;W$ 构成线性空间，称为 <strong>$V$模$W$ 的商空间</strong>。</p>
+</li>
+</ul>
+<h2 id="基与维度（Basis-and-Dimension）"><a href="#基与维度（Basis-and-Dimension）" class="headerlink" title="基与维度（Basis and Dimension）"></a>基与维度（Basis and Dimension）</h2><p>这是将商空间具体化的关键。</p>
+<ul>
+<li><p><strong>定理</strong>：设 $W$的一组基为$\alpha_1, \dots, \alpha_s$，将其扩充为 $V$的一组基$\alpha_1, \dots, \alpha_s, \beta_1, \dots, \beta_r$。</p>
+</li>
+<li><p><strong>结论</strong>：剩余的向量所形成的陪集 ${\beta_1 + W, \dots, \beta_r + W}$构成了商空间$V&#x2F;W$ 的一组<strong>基</strong>。</p>
+</li>
+<li><p><strong>维数公式</strong>：</p>
+</li>
+</ul>
+<p>
+$$
+\dim(V/W) = \dim V - \dim W
+$$
+</p>
+
+<p>证明：</p>
+<ul>
+<li><p><strong>证明能表出（Spanning）</strong>：</p>
+<p>  对于 $V&#x2F;W$中任意元素$\alpha + W$，将 $\alpha$用$V$的全基线性表示。由于$\alpha_i$部分全部落在$W$中，在商运算（模$W$）下，属于 $W$的分量会自动坍缩为零元（即$0 + W$）。</p>
+</li>
+</ul>
+<p>
+$$
+\alpha + W = (\sum k_i \alpha_i + \sum l_j \beta_j) + W = (\sum l_j \beta_j) + W
+$$
+</p>
+
+<p>这说明 $\beta_j + W$ 足以覆盖整个商空间。</p>
+<ul>
+<li><p><strong>证明线性无关（Linear Independence）</strong>：</p>
+<p>  设定线性组合为零元：$\sum l_j (\beta_j + W) &#x3D; 0 + W$。</p>
+<p>  这意味着向量 $\sum l_j \beta_j$必须落在子空间$W$ 内。</p>
+<p>  根据基底的唯一定义，若一个仅由 $\beta_j$组成的向量属于$\text{span}{\alpha_i}$，由于全基 ${\alpha_i, \beta_j}$是线性无关的，所有系数$l_j$必须全为$0$。</p>
+</li>
+</ul>
+<h2 id="线性映射的核心：核与像"><a href="#线性映射的核心：核与像" class="headerlink" title="线性映射的核心：核与像"></a>线性映射的核心：核与像</h2><p>对于任何线性映射 $\mathcal{A}: U \to V$，都有两个关键的子空间：</p>
+<ul>
+<li><p><strong>像空间 $\text{Im},\mathcal{A}$</strong>：$V$ 中所有能被映射到的向量集合。它反映了映射的“广度”。</p>
+</li>
+<li><p><strong>核空间 $\text{Ker},\mathcal{A}$</strong>：$U$中所有被映射到$0$ 的向量集合。它反映了映射丢失的“信息量”。</p>
+</li>
+<li><p><strong>典范映射</strong>：特例情况下，映射 $\mathcal{A}: V \to V&#x2F;W$将向量映为其陪集$\alpha + W$，此时 $\text{Ker},\mathcal{A} &#x3D; W$，$\text{Im},\mathcal{A} &#x3D; V&#x2F;W$。</p>
+</li>
+</ul>
+<h2 id="线性映射基本定理"><a href="#线性映射基本定理" class="headerlink" title="线性映射基本定理"></a>线性映射基本定理</h2><p>这是线性代数的高光时刻。定理指出：<strong>任何线性映射都可以被“分解”为一个同构映射。</strong></p>
+<ul>
+<li><strong>同构关系</strong>：</li>
+</ul>
+<p>
+$$
+U/\text{Ker}\,\mathcal{A} \cong \text{Im}\,\mathcal{A}
+$$
+</p>
+
+<ul>
+<li><p><strong>直观理解</strong>：</p>
+<p>  如果我们把定义域 $U$中那些映射到同一个点的向量“打包”在一起（即作商空间，模掉$\text{Ker},\mathcal{A}$），那么这个“包”的集合与像空间之间就是一一对应的。</p>
+</li>
+<li><p><strong>性质</strong>：映射 $\varphi: \alpha + \text{Ker},\mathcal{A} \mapsto \mathcal{A}\alpha$ 是良定义的，且既是单射又是满射。</p>
+</li>
+</ul>
+<h4 id="1-诱导映射的构造"><a href="#1-诱导映射的构造" class="headerlink" title="1. 诱导映射的构造"></a>1. 诱导映射的构造</h4><p>定义映射 $\varphi: U&#x2F;\text{Ker},\mathcal{A} \to \text{Im},\mathcal{A}$，其规则为：</p>
+<p>
+$$
+\varphi(\alpha + \text{Ker}\,\mathcal{A}) = \mathcal{A}\alpha
+$$
+</p>
+
+<ul>
+<li><p><strong>代数上的相容性</strong>：$\varphi$ 完美保持了向量的加法与数乘运算。</p>
+</li>
+<li><p><strong>几何上的映射关系</strong>：原本在 $U$中所有映射到同一个像点$\beta$的向量（它们构成一个$\text{Ker},\mathcal{A}$ 的陪集），现在被视为商空间中的一个整体。这意味着映射从“多对一”变成了一对一的<strong>线性同构</strong>。</p>
+</li>
+</ul>
+<p>具体的验证比较容易，就不打出来了。</p>
+<h4 id="2-维度守恒：秩-零化度定理"><a href="#2-维度守恒：秩-零化度定理" class="headerlink" title="2. 维度守恒：秩-零化度定理"></a>2. 维度守恒：秩-零化度定理</h4><p>基于 $U&#x2F;\text{Ker},\mathcal{A} \cong \text{Im},\mathcal{A}$ 的同构关系，我们必然得到维度的平衡：</p>
+<p>
+$$
+\dim U = \dim(\text{Ker}\,\mathcal{A}) + \dim(\text{Im}\,\mathcal{A})
+$$
+</p>
+
+<p>这可以看作是定义域空间的“能量守恒”：一部分维度坍缩到了零点（核空间），剩下的维度则铺开了映射的像（像空间）。</p>
+<hr>
+<h3 id="矩阵视角的具象化：方程组与空间的映射"><a href="#矩阵视角的具象化：方程组与空间的映射" class="headerlink" title="矩阵视角的具象化：方程组与空间的映射"></a>矩阵视角的具象化：方程组与空间的映射</h3><p>当我们将上述理论落地到矩阵 $A \in K^{m \times n}$ 时，抽象的符号变成了直观的线性方程组特性：</p>
+<table>
+<thead>
+<tr>
+<th><strong>抽象概念</strong></th>
+<th><strong>矩阵具象</strong></th>
+<th><strong>物理&#x2F;几何意义</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>像空间 $\text{Im},\mathcal{A}$</strong></td>
+<td><strong>列空间 (Column Space)</strong></td>
+<td>矩阵各列向量线性组合所能张成的空间。</td>
+</tr>
+<tr>
+<td><strong>核空间 $\text{Ker},\mathcal{A}$</strong></td>
+<td><strong>解空间 (Null Space)</strong></td>
+<td>齐次线性方程组 $A\mathbf{x} &#x3D; \mathbf{0}$ 的全体解。</td>
+</tr>
+<tr>
+<td><strong>同构关系</strong></td>
+<td>$K^n &#x2F; \text{Null}(A) \cong \text{Col}(A)$</td>
+<td>剔除解空间后的输入，与输出空间达成一一对应。</td>
+</tr>
+</tbody></table>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>由基本定理可直接导出矩阵论的基石：</p>
+<p><strong>矩阵的秩（列空间的维数） + 解空间的维数 &#x3D; 矩阵的列数。</strong></p>
+<p>这意味着，非齐次线性方程组 $A\mathbf{x} &#x3D; \mathbf{b}$ 的解集之所以呈现出“特解 + 齐次核”的形态，本质上是因为它就是商空间中某一个特定的陪集。</p>
+<h3 id="商空间的使用方法：构造满射，模去核空间，得到同构"><a href="#商空间的使用方法：构造满射，模去核空间，得到同构" class="headerlink" title="商空间的使用方法：构造满射，模去核空间，得到同构"></a><strong>商空间的使用方法：构造满射，模去核空间，得到同构</strong></h3><p><strong>例：设 $U, W$是线性空间$V$ 的子空间。证明：</strong></p>
+<p>
+$$
+U / U \cap W \cong (U + W) / W
+$$
+</p>
+
+<p><strong>证：映射</strong> $\mathcal{A} : U \to (U + W) &#x2F; W</p>
+<p>
+$$
+$\alpha \mapsto \alpha + W
+$$
+</p>
+
+<p>是线性映射。</p>
+<p>$\mathcal{A}$显然是满射 且$\text{Ker} \mathcal{A} &#x3D; U \cap W$。</p>
+<p>由线性映射基本定理即得到结论。</p>
+<hr>
+<p> <strong>$\mathbf{W}$的补空间$\cong$模$\mathbf{W}$ 的商空间</strong></p>
+<p><strong>定理：</strong></p>
+<p>设 $\mathbf{V}$的子空间$\mathbf{W}$的有一个补空间$\mathbf{U}$，即 $\mathbf{W} \oplus \mathbf{U} &#x3D; \mathbf{V}$。则映射</p>
+<p>
+$$
+\sigma : \mathbf{U} \to \mathbf{V} / \mathbf{W}
+$$
+</p>
+
+<p>
+$$
+\alpha \mapsto \alpha + \mathbf{W}
+$$
+</p>
+
+<p>是 $\mathbf{W}$的补空间$\mathbf{U}$到商空间$\mathbf{V} &#x2F; \mathbf{W}$ 的同构。</p>
+<hr>
+<p><strong>定理</strong>：</p>
+<p>
+$$
+\text{Im}\mathcal{A} \big/ (\text{Im}\mathcal{A} \cap \text{Ker}\mathcal{B}) \cong \text{Im}(\mathcal{BA})
+$$
+</p>
+
+<p>首先，考虑把 $B$限制在$ImA$上，有$Ker(A|_W)&#x3D;KerA\cap ImB$，从而$ImA&#x2F;KerB \cap ImA\cong Im(BA)$。$\mathbf{W} \oplus \mathbf{U} &#x3D; \mathbf{V} \implies \mathbf{U} \cong \mathbf{V} &#x2F; \mathbf{W}$</p>
+<p>$\beta + \alpha &#x3D; \gamma \mapsto \alpha + \mathbf{W} &#x3D; \gamma + \mathbf{W}$</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

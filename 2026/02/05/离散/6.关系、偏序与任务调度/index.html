@@ -1,0 +1,442 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>6.关系、偏序与任务调度 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>6.关系、偏序与任务调度</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/5
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%A6%BB%E6%95%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                离散
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00bcd4">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>介绍如题的内容。</p>
+<span id="more"></span>
+
+<h1 id="Relations"><a href="#Relations" class="headerlink" title="Relations"></a>Relations</h1><p><strong>Relations</strong> : A relation from a set $A$to a set$B$is a subset$R\subseteq A \times B$ .</p>
+<p>Ex : $R&#x3D;{(a,b),\text{student  a is taking class b}}$Symbol:$(a,b)\in R, aRb$A relation on$A$is a subset$R\subseteq A\times A$ .<br>Ex: $A&#x3D;\mathcal{Z}: xRy \text{ iff } x\equiv y \pmod 5$Set$A$together with$R$is a directed graph$G&#x3D;(V,E)$, with$V&#x3D;A,E&#x3D;R$ .</p>
+<h2 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h2><p>A relation $R$on$A$ is:<br><strong>reflexive</strong> : if $xRx$for all$x\in A$<strong>symmetric</strong> : if$xRy\implies yRx$for all$x,y\in A$<strong>antisymmetric</strong>: if$xRy \wedge yRx\implies x&#x3D;y$<strong>transitive</strong>: if$xRy\wedge yRz\implies xRz$</p>
+<table>
+<thead>
+<tr>
+<th><strong>例子 (Ex)</strong></th>
+<th><strong>自反 (Refl)</strong></th>
+<th><strong>对称 (Sym)</strong></th>
+<th><strong>反对称 (Anti-Sym)</strong></th>
+<th><strong>传递 (Transitive)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$x \equiv y \pmod 5$</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>$x \mid y$ (整除)</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>$x \subseteq y$ (包含)</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+</tbody></table>
+<h2 id="Equivalence-relation"><a href="#Equivalence-relation" class="headerlink" title="Equivalence relation"></a>Equivalence relation</h2><p>An <strong>equivalence relation</strong> is reflective, symmetric and transitive.</p>
+<p>Ex : equality(&#x3D;) itself, $x\equiv y \pmod n$ .</p>
+<p>The <strong>equivalence class</strong> of $x\in A$is the set of all elements in$A$that related to$x$by$R$, denoted$[x]$ .</p>
+<p>Ex :  $x\equiv y \pmod 5$,$[7]&#x3D;5k+2, k\in \mathbb{Z}$ .</p>
+<p>A <strong>partition</strong> of $A$is a collection of disjoint non-empty sets$A_1,…,A_m \in A$, whose union is $A$ .</p>
+<p>Ex : $[1],[2],[3],[4],[0]$ </p>
+<h4 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h4><p>The equivalence class of an equivalence relation on a set $A$form a partition of$A$.</p>
+<blockquote>
+<p>[!Proof]<br>1.$\bigcup_{a \in A} [a] \subseteq A$。<br>Since $R$is reflexive, every element a is contained in its own equivalence class$[a]$. Thus, the union of all equivalence classes covers $A$.<br>At the same time, every equivalence class shall be the subset of $A$. Thus, $\bigcup_{a \in A} [a] \subseteq A$。<br>From above, $\bigcup_{a \in A} [a] &#x3D; A$。</p>
+<p>2.$[a] \neq \phi$&gt;Since$R$is reflexive,$[a]$has at least one element$a$.</p>
+<p>3.Disjointness<br>If $[a] \cap [b] \neq \emptyset$, let$c \in [a] \cap [b]$.By definition,$cRa \wedge cRb$.By symmetry,$aRc$. By transitivity and$aRc \wedge cRb$,$aRb$. So$\forall x \in [a], xRb$. This way,$x\in [b]$. Thus, $[a]\subseteq[b]$ . By symmetry, we also have [b] ⊆ [a], hence [a] &#x3D; [b].</p>
+</blockquote>
+<p>A relation is a (weak) <strong>partial order</strong> if it is (reflexive), antisymmetric and transitive. It is denoted by $\preccurlyeq$ $\succcurlyeq$</p>
+<p>$(A,\preccurlyeq)$ is called a <strong>partially order set or poset</strong>.</p>
+<p>A poset is a directed graph with vertex set $A$and edge set$\preccurlyeq$ .</p>
+<h4 id="Hasse-Diagram"><a href="#Hasse-Diagram" class="headerlink" title="Hasse Diagram"></a>Hasse Diagram</h4><p>A <strong>Hasse Diagram</strong> for a poset $(A,\preccurlyeq)$is a directed graph with vertex set$A$and the edge set$\preccurlyeq$ excluding</p>
+<ul>
+<li>all self-loops</li>
+<li>all the edges implied by transitivity</li>
+</ul>
+<h4 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem"></a>Theorem</h4><p>A poset has no directed cycles other than self-loops.</p>
+<blockquote>
+<p>[!Proof]<br>By contradiction.<br>Suppose $\exists n \ge 2, \text{distinct elements  } a_1,…,a_n;a_1\preccurlyeq…\preccurlyeq a_n\preccurlyeq a_1$. By transitivity and obvious induction, we have$a_1 \preccurlyeq a_n$. Thus by antisymmetry $a_1&#x3D;a_n$ . That is a contradiction. So the original statement is right.</p>
+</blockquote>
+<p>So after deleting self-loops from a poset, we get a DAG(directed acyclic graph).</p>
+<p>In poset, there could be $a,b$that are incomparable when$\neg a \preccurlyeq b \wedge \neg b \preccurlyeq a$.</p>
+<p>A <strong>total order</strong> is a partial order in which every pair of elements are comparable. It could give a straight line.</p>
+<p>A total order consistent with a partial order is called a <strong>topological sort</strong>. A topological sort of a poset is formally defined as a total order $(A,\preccurlyeq_T)$such that$\preccurlyeq \in \preccurlyeq_T$ .</p>
+<h4 id="Theorem-2"><a href="#Theorem-2" class="headerlink" title="Theorem"></a>Theorem</h4><p>Every finite poset has a topological sort.</p>
+<p>def:<br>$x\in A \text{ is minimal if } \neg \exists \text{  }y \in A, y\neq x \text{  } s.t. \text{  }y \preccurlyeq x$<br>$x\in A \text{ is maximal if } \neg \exists \text{  }y \in A, y\neq x \text{  } s.t. \text{  }x \preccurlyeq y$</p>
+<blockquote>
+<p>[!Lemma]<br>Every finite poset has a minimal element.</p>
+<p>def: <strong>chain</strong> is a sequence of distinct elements such that $a_1\preccurlyeq …\preccurlyeq a_t$,where$t$ is the length of the chain.</p>
+<p>proof:</p>
+<p>Let $a_1\preccurlyeq … \preccurlyeq a_n$be a max length chain. Then$a_1$should be the minimal. Suppose$\exists a\preccurlyeq a_1$ :<br>case 1: if $a\not \in$the chain, then let$a$ be the first one we create a longer chain. That’s a contradiction.<br>case 2: $a\in$ the chain. Then we could create a cycle, which could not exist according to the theorem we just proved. So that’s a contradiction.<br>Thus, the original proposition holds.</p>
+</blockquote>
+<blockquote>
+<p>[!Proof]<br>By strong induction.<br>Let $(A,≼)$be a finite poset with$∣A∣&#x3D;n$. Let $P(k)$be the proposition itself for all integers less than$k$ .</p>
+<p>Base Case: $n&#x3D;1$, $A&#x3D;{a}$ is already a topological sort.</p>
+<p>Inductive step: Assume $P(k)$&gt;By lemma,$A$with$n$elements has minimal$m$. Consider$A$${m}$ $&#x3D;A’$. Restrict$≼$on$A’\times A’$:$≼’&#x3D;≼ \cap A’\times A’$. By$P(k)$,$(A’,≼’)$has a topological sort$a_2,…a_{k-1}$ .<br>Now we shall prove $m,a_2,…,a_{k-1}$is a topological sort for$A$. Consider a pair $(x,y)\in A$that$x≼y$ .<br>Since $\not \exists k \in A\text{ , s.t. , } k ≼ m$, if$x&#x3D;m$, it follows the definition of topological sort, and$y$could not be$m$. If $x\neq m \wedge y\neq m$,by$P(k)$it  follows the definition of topological sort. So$m,a_2,…,a_{k-1}$is a topological sort for$A$.</p>
+<p>Finally we find a topological sort for $A$. So the proposition holds. In practice, we just select $m$ with zero indegree as the minimal and do it recursively.</p>
+</blockquote>
+<hr>
+<p>手动翻译：</p>
+<h1 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h1><p><strong>关系</strong> ： 一个从集合 $A$到集合$B$的关系是指$A,B$笛卡尔积的一个子集$R\subseteq A \times B$ 。</p>
+<p>例如 : $R&#x3D;{(a,b),\text{student  a is taking class b}}$符号:$(a,b)\in R, aRb$一个$A$上的关系则是$A\times A$的子集$R$。这可以用有向图来表示。 $G&#x3D;(V,E)$, with$V&#x3D;A,E&#x3D;R$ .</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><p><strong>自反性</strong> ： 如果 $xRx$对每个$x\in A$ 都成立。<br><strong>对称性</strong> ： 如果 $xRy\implies yRx$对所有$x,y\in A$ 都成立<br><strong>反对称性</strong>: 如果 $xRy \wedge yRx\implies x&#x3D;y$对所有$x,y\in A$ 都成立<br><strong>传递性</strong>: 如果 $xRy\wedge yRz\implies xRz$对所有$x,y,z\in A$ 都成立</p>
+<table>
+<thead>
+<tr>
+<th><strong>例子 (Ex)</strong></th>
+<th><strong>自反 (Refl)</strong></th>
+<th><strong>对称 (Sym)</strong></th>
+<th><strong>反对称 (Anti-Sym)</strong></th>
+<th><strong>传递 (Transitive)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$x \equiv y \pmod 5$</td>
+<td>Y</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>$x \mid y$ (整除)</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>$x \subseteq y$ (包含)</td>
+<td>Y</td>
+<td>N</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+</tbody></table>
+<h2 id="等价关系"><a href="#等价关系" class="headerlink" title="等价关系"></a>等价关系</h2><p>一个<strong>等价关系</strong>是自反的，对称的，传递的。例如等号、同余。</p>
+<p>一个 $x\in A$的<strong>等价类</strong>是指所有与$x$有等价关系的元素组成的集合，记作$[x]$。</p>
+<p>Ex :  $x\equiv y \pmod 5$,$[7]&#x3D;5k+2, k\in \mathcal{Z}$ .</p>
+<p>一个 $A$的<strong>划分</strong>是指一些非空非交的集合$A_1,…,A_m \in A$，他们的并是$A$ 。</p>
+<p>Ex : $[1],[2],[3],[4],[5]$ </p>
+<h3 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h3><p>等价类构成 $A$ 的划分。</p>
+<blockquote>
+<p>[!证明]<br>1.$\bigcup_{a \in A} [a] \subseteq A$。等价类并是 $A$ ：<br>由自反性, 对 $a\in A$有$aRa$. 所以每个元素都有他们自己的等价类，因此$A \subseteq \bigcup_{a \in A} [a]$&gt;同时每个等价类都是$A$的子集，所以$\bigcup_{a \in A} [a] \subseteq A$。<br>由上 $\bigcup_{a \in A} [a] &#x3D; A$。</p>
+<p>2.$[a] \neq \phi$&gt;因为$R$自反,$[a]$至少有元素$a$.</p>
+<p>3.不交<br>如果 $[a] \cap [b] \neq \emptyset$, 设$c \in [a] \cap [b]$.由定义,$cRa \wedge cRb$.由对称性,$aRc$. 由传递性和$aRc \wedge cRb$,$aRb$ . 所以$\forall x \in [a], xRb$. 从而$x\in [b]$. 那么 $[a]\subseteq[b]$. 同理$[b]\subseteq[a]$.综上有$[a]&#x3D;[b]$.</p>
+</blockquote>
+<p>一个关系是偏序关系如果他是自反、反对称、传递的。用 $\preccurlyeq$表示。$(A,\preccurlyeq)$ 叫做 <strong>偏序集</strong>.</p>
+<p>一个偏序集是有着顶点集 $A$和边集$\preccurlyeq$ 的有向图 .</p>
+<h4 id="哈斯图"><a href="#哈斯图" class="headerlink" title="哈斯图"></a>哈斯图</h4><p><strong>哈斯图</strong> 是偏序集 $(A,\preccurlyeq)$是顶点集$A$ 和边集$\preccurlyeq$ 去掉</p>
+<ul>
+<li>所有自环</li>
+<li>所有传递性推出来的边</li>
+</ul>
+<h4 id="定理-1"><a href="#定理-1" class="headerlink" title="定理"></a>定理</h4><p>偏序集对应的有向图除了自环无环。</p>
+<blockquote>
+<p>[!证明]<br>用反证法。<br>设 $\exists n \ge 2, \text{不同元素  } a_1,…,a_n;a_1\preccurlyeq…\preccurlyeq a_n\preccurlyeq a_1$. 利用传递性和简单的归纳, 有$a_1 \preccurlyeq a_n$. 从而由传递性 $a_1&#x3D;a_n$ . 矛盾，故原命题成立。</p>
+</blockquote>
+<p>故去掉自环后，他就成了有向无环图(DAG)。</p>
+<p>偏序集中可能有不可比较的 $a,b$，就是说$\neg a \preccurlyeq b \wedge \neg b \preccurlyeq a$.</p>
+<p><strong>全序</strong> 是所有元素都可以比较的偏序，对应一条直线。</p>
+<p>和偏序相一致的全序叫做 <strong>拓扑排序</strong>. 偏序集的拓扑排序的正式定义由全序给出： $(A,\preccurlyeq_T)$such that$\preccurlyeq \in \preccurlyeq_T$ .</p>
+<h4 id="定理-2"><a href="#定理-2" class="headerlink" title="定理"></a>定理</h4><p>任意有限偏序集都有拓扑排序。</p>
+<p>定义:<br>$x\in A \text{ 是最小值如果 } \neg \exists \text{  }y \in A, y\neq x \text{  } s.t. \text{  }y \preccurlyeq x$<br>$x\in A \text{ 是最大值如果 } \neg \exists \text{  }y \in A, y\neq x \text{  } s.t. \text{  }x \preccurlyeq y$</p>
+<blockquote>
+<p>[!引理]<br>任意有限偏序集都有最小值。</p>
+<p>定义: <strong>链</strong> 是不同元素的序列使得 $a_1\preccurlyeq …\preccurlyeq a_t$,其中$t$ 是链的长度。</p>
+<p>证明:</p>
+<p>设 $a_1\preccurlyeq … \preccurlyeq a_n$是最长的链. 那么$a_1$将是最小值. 设$\exists a\preccurlyeq a_1$ :<br>case 1: 如果 $a\not \in$链, 让$a$ 是第一个顶点那么就构造了更长的链. 矛盾.<br>case 2: $a\in$ 链. 那么会出现环，这与前面证明的定理矛盾。<br>综合可知引理成立。</p>
+</blockquote>
+<blockquote>
+<p>[!证明]<br>使用加强的归纳法。<br>设 $(A,≼)$是满足$∣A∣&#x3D;n$的有限偏序集. 设$P(k)$是命题对所有$k$ 以下的正整数都成立.</p>
+<p>奠基步: $n&#x3D;1$, $A&#x3D;{a}$ 已经是一个拓扑排序。</p>
+<p>归纳步: 设 $P(k)$ 成立。<br>利用引理, $A$有最小值$m$. 考虑$A$${m}$ $&#x3D;A’$. 限制$≼$在$A’\times A’$:$≼’&#x3D;≼ \cap A’\times A’$. 由$P(k)$,$(A’,≼’)$有拓扑排序$a_2,…a_{k-1}$ .<br>下面说明 $m,a_2,…,a_{k-1}$是$A$的拓扑排序. 考虑一对$(x,y)\in A$满足$x≼y$ .<br>因为 $\not \exists k \in A\text{ , s.t. , } k ≼ m$, 如果$x&#x3D;m$, 符合拓扑排序定义, 而且$y$不能是$m$. 如果 $x\neq m \wedge y\neq m$,由y$P(k)$他们也符合拓扑排序定义. 所以$m,a_2,…,a_{k-1}$是$A$ 的拓扑排序.</p>
+<p>我们找到了 $A$的拓扑排序. 所以命题成立. 实际操作上，我们选择入度为$0$的$m$即为最小值了，然后删去$m$ 重复该过程即可。</p>
+</blockquote>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

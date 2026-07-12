@@ -1,0 +1,736 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>数学随笔3 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>数学随笔3</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/1/15
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%95%B0%E5%AD%A6%E9%9A%8F%E7%AC%94/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                数学随笔
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00a596">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>高中学习向量时，便常听老师说要有基底思想，要学会用一组基表示所有向量。<br>到了学习线代，基底仍然是非常好的化抽象为具象的手段。一个抽象的线性映射往往让人无从下手，设出基底，我们才能看到一个个的可感的对象。<br>通常的处理方法是取一组基，扩充到全空间，然后分析。对于多个空间的情形，我们往往设出最小的空间，然后逐个扩大，这样通常是易于叙述的。</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="准备：基扩充定理"><a href="#准备：基扩充定理" class="headerlink" title="准备：基扩充定理"></a>准备：基扩充定理</h2><p>设 $V$ 是一个有限维向量空间，$n &#x3D; \dim(V)$。</p>
+<p>若向量组 ${\alpha_1, \alpha_2, \dots, \alpha_m}$是$V$ 中的一个线性无关组，则：</p>
+<ol>
+<li><p>必有 $m \le n$；</p>
+</li>
+<li><p>若 $m &lt; n$，则必存在 $n-m$个向量$\alpha_{m+1}, \dots, \alpha_n \in V$，使得向量组 ${\alpha_1, \dots, \alpha_m, \alpha_{m+1}, \dots, \alpha_n}$构成$V$ 的一个<strong>基</strong>。</p>
+</li>
+</ol>
+<p>证明：<br>设初始线性无关组为 $S_m &#x3D; {\alpha_1, \dots, \alpha_m}$。</p>
+<ul>
+<li><p>如果 $S_m$已经能张成$V$（即 $\text{span}(S_m) &#x3D; V$），那么根据定义，$S_m$就是$V$ 的一个基，此时扩充过程结束。</p>
+</li>
+<li><p>如果 $S_m$不能张成$V$，则必然存在一个向量 $\beta \in V$，使得 $\beta \notin \text{span}(S_m)$。</p>
+</li>
+</ul>
+<p>从而我们可以把 $\beta$加入$S_m$构成一个新的线性无关的向量组，下面只需证明这个过程可以通过有限步张成全空间，也就是只要证明一个$n$维空间至多有$n$ 个无关向量。<br>使用反证法，设 $V$有$n+1$ 个无关向量，考虑</p>
+<p>
+$$
+\sum_{i=1}^{n} \lambda_i \alpha_i + \lambda_{n+1} \beta=0
+$$
+</p>
+
+<p>那么方程数多于未知数， $\lambda$有一组非零解，若$\lambda_{n+1}&#x3D;0$，则与 $S_m$线性无关矛盾，故$\lambda_{n+1} \neq 0$，从而移项可知 $\beta$可以被$S_m$ 表出，矛盾。<br>从而知道一个 $n$维空间至多有$n$ 个线性无关的向量，故过程只需要有限步。<br>从而原命题成立。</p>
+<hr>
+<h2 id="扩充示例1：秩-零化度定理"><a href="#扩充示例1：秩-零化度定理" class="headerlink" title="扩充示例1：秩-零化度定理"></a>扩充示例1：秩-零化度定理</h2><p>考虑一个线性映射 $\mathcal{A} : V \to W$，我们总有：</p>
+<p>
+$$
+dim(Im(\mathcal{A}))+dim(Ker(\mathcal{A}))=dim(V)
+$$
+</p>
+
+<p>证明：<br>我们取 $Ker(\mathcal{A})$的一组基${\alpha_1, \alpha_2 … \alpha_k}$，将其扩充为 $V$的一组基${\alpha_1, \alpha_2 … \alpha_k, \alpha_{k+1}, \alpha_{n}}$，接下来用$\mathcal{A}$ 作用这组基，得到：</p>
+<p>
+$$
+\mathcal{A}({\alpha_1, \alpha_2 ... \alpha_k, \alpha_{k+1}, \alpha_{n}})=(0,0...0, \mathcal{A}\alpha_{k+1}, \mathcal{A}\alpha_{n})
+$$
+</p>
+
+<p>我们要证明原定理，也只要证明后面的 $n-k$个向量能构成$\mathcal{A}$ 的像空间的基。<br>首先，$\forall \beta \in V$，由于${\alpha_1, \alpha_2 … \alpha_k, \alpha_{k+1}, \alpha_{n}}$是$V$ 的基，我们有：</p>
+<p>
+$$
+\beta=\sum_{i=1}^n \lambda_i\alpha_i
+$$
+</p>
+
+<p>用 $\mathcal{A}$ 作用在两侧，得到：</p>
+<p>
+$$
+\mathcal{A}\beta=\sum_{i=k+1}^n \lambda_i\mathcal{A}\alpha_i
+$$
+</p>
+
+<p>也就是，对于 $\forall \mathcal{A}\beta \in V$其都可以被$\mathcal{A}\alpha_{k+1},…, \mathcal{A}\alpha_{n}$表出，只需证$\mathcal{A}\alpha_{k+1},…, \mathcal{A}\alpha_{n}$线性无关即可说明他们构成 $Im\mathcal{A}$ 的基，我们考虑：</p>
+<p>
+$$
+\sum_{i=k+1}^n \lambda_i\mathcal{A}\alpha_i=0
+$$
+</p>
+
+<p>利用线性，可以提出 $\mathcal{A}</p>
+<p>
+$$
+$\sum_{i=k+1}^n \lambda_i\mathcal{A}\alpha_i=\mathcal{A}\sum_{i=k+1}^n \lambda_i\alpha_i=0
+$$
+</p>
+
+<p>这说明</p>
+<p>
+$$
+\sum_{i=k+1}^n \lambda_i\alpha_i \in Ker(A)
+$$
+</p>
+
+<p>也就是说，这可以被 $Ker(A)$ 的基表出：</p>
+<p>
+$$
+\sum_{i=k+1}^n \lambda_i\alpha_i=\sum_{i=1}^k \lambda_i\alpha_i
+$$
+</p>
+
+<p>移项得到：</p>
+<p>
+$$
+\sum_{i=k+1}^n \lambda_i\alpha_i-\sum_{i=1}^k \lambda_i\alpha_i=0
+$$
+</p>
+
+<p>利用 $V$中基的线性无关性知，上式成立当且仅当$\forall i, \lambda_i&#x3D;0$，这正是 $\mathcal{A}\alpha_{k+1},…, \mathcal{A}\alpha_{n}$ 线性无关的等价条件。从而我们就完成了证明。</p>
+<hr>
+<h2 id="扩充示例2：矩阵乘积秩的维数定理证明"><a href="#扩充示例2：矩阵乘积秩的维数定理证明" class="headerlink" title="扩充示例2：矩阵乘积秩的维数定理证明"></a>扩充示例2：矩阵乘积秩的维数定理证明</h2><h3 id="定理表述"><a href="#定理表述" class="headerlink" title="定理表述"></a>定理表述</h3><p>设矩阵 $A$的列数等于矩阵$B$的行数。记$B$的列空间为$V$，$A$的解空间（零空间）为$W$。则有：</p>
+<p>
+$$
+\text{rank}(B) = \text{rank}(AB) + \dim(V \cap W)
+$$
+</p>
+
+<hr>
+<h3 id="证明过程"><a href="#证明过程" class="headerlink" title="证明过程"></a>证明过程</h3><h3 id="1-构造基向量"><a href="#1-构造基向量" class="headerlink" title="1. 构造基向量"></a>1. 构造基向量</h3><p>将 $V \cap W$的一组基$\alpha_1, \cdots, \alpha_r$扩充成$B$的列空间$V$ 的一组基：</p>
+<p>
+$$
+\alpha_1, \cdots, \alpha_r, \beta_1, \cdots, \beta_s
+$$
+</p>
+
+<p>显然，此时有：</p>
+<ul>
+<li>$\dim(V \cap W) &#x3D; r$<em>$\text{rank}(B) &#x3D; \dim(V) &#x3D; r + s$</em> 我们目标是证明$\text{rank}(AB) &#x3D; s$### 2. 确定$AB$ 列空间的生成组<br>由于 $B$的列组与$\alpha_1, \cdots, \alpha_r, \beta_1, \cdots, \beta_s$ 等价，根据矩阵乘法性质，$AB$的列组与$A\alpha_1, \cdots, A\alpha_r, A\beta_1, \cdots, A\beta_s$ 等价。<br>又因为 $\alpha_i \in W$（$A$的解空间），故有$A\alpha_1 &#x3D; \cdots &#x3D; A\alpha_r &#x3D; \mathbf{0}$。<br>因此，$AB$ 的列空间可由剩余向量生成：</li>
+</ul>
+<p>
+$$
+\text{Range}(AB) = \text{span}\{ A\beta_1, \cdots, A\beta_s \}
+$$
+</p>
+
+<h3 id="3-证明-A-beta-1-cdots-A-beta-s-线性无关"><a href="#3-证明-A-beta-1-cdots-A-beta-s-线性无关" class="headerlink" title="3. 证明 $A\beta_1, \cdots, A\beta_s$ 线性无关"></a>3. 证明 $A\beta_1, \cdots, A\beta_s$ 线性无关</h3><p>设有线性组合：</p>
+<p>
+$$
+k_1 A\beta_1 + \cdots + k_s A\beta_s = \mathbf{0}
+$$
+</p>
+
+<p>根据线性映射性质，可得：</p>
+<p>
+$$
+A(k_1 \beta_1 + \cdots + k_s \beta_s) = \mathbf{0}
+$$
+</p>
+
+<p>这说明向量 $\sum_{i&#x3D;1}^s k_i \beta_i$既在$A$的解空间$W$中，又在$B$的列空间$V$ 中。<br>因此，它属于交集 $V \cap W$，可由其基向量 $\alpha_1, \cdots, \alpha_r$ 线性表示：</p>
+<p>
+$$
+k_1 \beta_1 + \cdots + k_s \beta_s = l_1 \alpha_1 + \cdots + l_r \alpha_r
+$$
+</p>
+
+<p>移项得：</p>
+<p>
+$$
+k_1 \beta_1 + \cdots + k_s \beta_s - l_1 \alpha_1 - \cdots - l_r \alpha_r = \mathbf{0}
+$$
+</p>
+
+<p>注意到 $\alpha_1, \cdots, \alpha_r, \beta_1, \cdots, \beta_s$是$V$ 的基（线性无关），故其系数必全为 0：</p>
+<p>
+$$
+k_1 = \cdots = k_s = 0
+$$
+</p>
+
+<p>由此得 $A\beta_1, \cdots, A\beta_s$ 线性无关。</p>
+<h3 id="4-结论"><a href="#4-结论" class="headerlink" title="4. 结论"></a>4. 结论</h3><p>既然 $A\beta_1, \cdots, A\beta_s$线性无关且生成$AB$的列空间，则它们构成$AB$ 列空间的基。故：</p>
+<p>
+$$
+\text{rank}(AB) = s
+$$
+</p>
+
+<p>代入之前的等式：</p>
+<p>
+$$
+\text{rank}(B) = r + s = \dim(V \cap W) + \text{rank}(AB)
+$$
+</p>
+
+<p>移项得：</p>
+<p>
+$$
+\text{rank}(AB) = \text{rank}(B) - \dim(V \cap W) \quad
+$$
+</p>
+
+<hr>
+<h2 id="扩充示例3：和空间的维度公式"><a href="#扩充示例3：和空间的维度公式" class="headerlink" title="扩充示例3：和空间的维度公式"></a>扩充示例3：和空间的维度公式</h2><p>
+$$
+dim(V)+dim(W)=dim(V\cap W)+dim(V+ W)
+$$
+</p>
+
+<p>其中 $V + W &#x3D; {v + w \mid v \in V, w \in W}$是包含$V$和$W$ 的最小向量空间。</p>
+<h3 id="证明步骤"><a href="#证明步骤" class="headerlink" title="证明步骤"></a>证明步骤</h3><ol>
+<li><p><strong>设定交集的基</strong>：<br>设 $\dim(V \cap W) &#x3D; k$，取其基为 ${u_1, \dots, u_k}$。</p>
+</li>
+<li><p><strong>扩张基空间</strong>：</p>
+<ul>
+<li>扩张为 $V$ 的基：${u_1, \dots, u_k, v_1, \dots, v_m}$，则 $\dim(V) &#x3D; k + m$。</li>
+<li>扩张为 $W$ 的基：${u_1, \dots, u_k, w_1, \dots, w_n}$，则 $\dim(W) &#x3D; k + n$。</li>
+</ul>
+</li>
+<li><p><strong>确定和空间的基</strong>：<br>证明集合 $B &#x3D; {u_1, \dots, u_k, v_1, \dots, v_m, w_1, \dots, w_n}$是$V+W$ 的基。</p>
+</li>
+</ol>
+<ul>
+<li><p><strong>生成性</strong>：显然 $V+W$中的任意元素都能被$B$ 线性表示。</p>
+</li>
+<li><p>线性无关性：设</p>
+</li>
+</ul>
+<p>
+$$
+\sum a_i u_i + \sum b_j v_j + \sum c_l w_l = 0
+$$
+</p>
+
+<p>变形得：$\sum c_l w_l &#x3D; -(\sum a_i u_i + \sum b_j v_j)$。</p>
+<pre><code>等式左边属于 $W$，右边属于 $V$，因此该向量属于 $V \cap W$。
+
+这意味着左边的 $\sum c_l w_l$必须能被$\{u_1, \dots, u_k\}$线性表示。由于$\{u_i, w_l\}$是$W$的基，是线性无关的，所以所有的$c_l$必须为$0$。以此类推，所有系数均为 $0$。
+</code></pre>
+<ol start="4">
+<li><strong>代数等式验证</strong>：</li>
+</ol>
+<p>
+$$
+\begin{aligned}
+   \dim(V) + \dim(W) &= (k + m) + (k + n) \\
+   &= k + (k + m + n) \\
+   &= \dim(V \cap W) + \dim(V + W)
+   \end{aligned}
+$$
+</p>
+
+<hr>
+<h2 id="扩充示例4：特征值代数重数-ge-几何重数"><a href="#扩充示例4：特征值代数重数-ge-几何重数" class="headerlink" title="扩充示例4：特征值代数重数$\ge$几何重数"></a>扩充示例4：特征值代数重数$\ge$几何重数</h2><p>我们设 $\lambda$是矩阵$A$的一个特征值，代数重数即$\det(A-\lambda I)&#x3D;0$中$\lambda$的重根数，几何重数即满足$(A-\lambda I)\alpha&#x3D;0$的$\alpha$个数。我们总有代数重数$\ge$ 几何重数。</p>
+<p>证明：<br>取出 $\lambda$对应的特征子空间的一组基,$\alpha_1,…,\alpha_k$，$k$ 即几何重数，把基扩充到全空间，得到$\alpha_1,…,\alpha_n$。我们用 $A$ 作用：</p>
+<p>
+$$
+A(\alpha_1,...,\alpha_n)=(\alpha_1,...,\alpha_n)\begin{pmatrix} \lambda I_k & B \\ O & C \end{pmatrix}
+$$
+</p>
+
+<p>从而 $A$相似于$\begin{pmatrix} \lambda I_k &amp; B \ O &amp; C \end{pmatrix}$，从而他们特征多项式相同，考虑其特征多项式：</p>
+<p>
+$$
+det\begin{pmatrix} (\lambda-x) I_k & B \\ O & C \end{pmatrix}
+$$
+</p>
+
+<p>展开即知至少有 $\lambda$的$k$次方项，结合未知的$C$即知，有代数重数$\ge$ 几何重数。</p>
+<h2 id="换基与过渡矩阵"><a href="#换基与过渡矩阵" class="headerlink" title="换基与过渡矩阵"></a>换基与过渡矩阵</h2><h3 id="1-过渡矩阵的定义"><a href="#1-过渡矩阵的定义" class="headerlink" title="1. 过渡矩阵的定义"></a>1. 过渡矩阵的定义</h3><p>设 $\alpha_1, \alpha_2, \dots, \alpha_n$与$\beta_1, \beta_2, \dots, \beta_n$是线性空间$V$ 的两组基。<br>若基 $\beta$可以由基$\alpha$ 线性表示：</p>
+<p>
+$$
+\begin{cases}
+\beta_1 = b_{11}\alpha_1 + b_{12}\alpha_2 + \dots + b_{1n}\alpha_n \\
+\beta_2 = b_{21}\alpha_1 + b_{22}\alpha_2 + \dots + b_{2n}\alpha_n \\
+\quad \dots \quad \dots \\
+\beta_n = b_{n1}\alpha_1 + b_{n2}\alpha_2 + \dots + b_{nn}\alpha_n
+\end{cases}
+$$
+</p>
+
+<p>则从基 ${\alpha_i}$到基${\beta_i}$的<strong>过渡矩阵</strong>$B$ 定义为：</p>
+<p>
+$$
+(\beta_1 \dots \beta_n) = (\alpha_1 \dots \alpha_n) 
+\underbrace{\begin{bmatrix}
+b_{11} & b_{21} & \dots & b_{n1} \\
+b_{12} & b_{22} & \dots & b_{n2} \\
+\vdots & \vdots & B & \vdots \\
+b_{1n} & b_{2n} & \dots & b_{nn}
+\end{bmatrix}}_{B}
+$$
+</p>
+
+<blockquote>
+<p>[!cite] 注意<br>过渡矩阵 $B$的第$j$列是新基$\beta_j$在旧基$\alpha$ 下的坐标。</p>
+</blockquote>
+<p><strong>双向转换关系</strong><br>如果从 $\alpha$到$\beta$的过渡矩阵是$B$，从 $\beta$到$\alpha$的过渡矩阵是$A$，则：</p>
+<ul>
+<li>$(\alpha_1 \dots \alpha_n) &#x3D; (\beta_1 \dots \beta_n) A$* 结合$(\beta_1 \dots \beta_n) &#x3D; (\alpha_1 \dots \alpha_n) B$</li>
+<li>可得：$(\alpha_1 \dots \alpha_n) &#x3D; (\alpha_1 \dots \alpha_n) BA \implies BA &#x3D; I_n$</li>
+<li>因此：**$A &#x3D; B^{-1}$</li>
+</ul>
+<hr>
+<h3 id="2-坐标变换公式"><a href="#2-坐标变换公式" class="headerlink" title="2. 坐标变换公式"></a>2. 坐标变换公式</h3><p><strong>定理：</strong> 若向量 $\alpha$在基$\alpha_1, \dots, \alpha_n$下的坐标为$X$，从旧基到新基 $\beta_1, \dots, \beta_n$的过渡矩阵为$B$，则 $\alpha$在新基下的坐标为$B^{-1}X$。</p>
+<p><strong>推导过程：</strong></p>
+<p>
+$$
+\begin{aligned}
+\alpha &= [\alpha_1 \dots \alpha_n] X \\
+&= ([\beta_1 \dots \beta_n] B^{-1}) X \\
+&= [\beta_1 \dots \beta_n] (B^{-1}X)
+\end{aligned}
+$$
+</p>
+
+<hr>
+<h3 id="3-基的判定定理"><a href="#3-基的判定定理" class="headerlink" title="3. 基的判定定理"></a>3. 基的判定定理</h3><p><strong>定理：</strong> 设 $\alpha_1, \dots, \alpha_n$是线性空间$V$ 的一组基，$B$是$n$ 阶方阵。<br>令：</p>
+<p>
+$$
+(\beta_1 \dots \beta_n) = (\alpha_1 \dots \alpha_n) B
+$$
+</p>
+
+<p>则：</p>
+<blockquote>
+<p>[!important] 结论<br>$\beta_1, \dots, \beta_n$是$V$的基$\iff$ $B$ 可逆</p>
+</blockquote>
+<p> 充分性：右乘 $B^{-1}$即知，必要性：从而向量组$\beta_i$表出基$\alpha_i$，利用1中双向转换关系即知。</p>
+<hr>
+<h2 id="线性映射、矩阵与基"><a href="#线性映射、矩阵与基" class="headerlink" title="线性映射、矩阵与基"></a>线性映射、矩阵与基</h2><h3 id="研究一个线性映射，只要看基的像"><a href="#研究一个线性映射，只要看基的像" class="headerlink" title="研究一个线性映射，只要看基的像"></a>研究一个线性映射，只要看基的像</h3><p>考虑线性映射 $\mathcal{A} : V \to M$，我们要考虑一个任意的 $\beta \in V$的映射结果，可以先用基底表示：</p>
+<p>
+$$
+\beta = \sum \lambda_i\alpha_i
+$$
+</p>
+
+<p>然后在两边用 $\mathcal{A}$ 作用，得到：</p>
+<p>
+$$
+\mathcal{A}\beta=\sum\lambda_i(\mathcal{A}\alpha_i)
+$$
+</p>
+
+<p>从而我们只要知道基的像，也就可以确定任意 $\beta \in V$ 的像。</p>
+<h3 id="线性映射可以用矩阵表示"><a href="#线性映射可以用矩阵表示" class="headerlink" title="线性映射可以用矩阵表示"></a>线性映射可以用矩阵表示</h3><p>在线性空间 $V$中，同一个线性映射$\mathcal{A}$，在不同的基下会对应不同的矩阵。</p>
+<p>设 $\alpha_1, \dots, \alpha_n$是$V$的一组基。线性映射$\mathcal{A}$ 对基向量的作用可以表示为：</p>
+<p>
+$$
+\mathcal{A}(\alpha_j) = \sum_{i=1}^n a_{ij}\alpha_i
+$$
+</p>
+
+<p>写成矩阵形式：</p>
+<p>
+$$
+\mathcal{A}(\alpha_1, \dots, \alpha_n) = (\alpha_1, \dots, \alpha_n) A
+$$
+</p>
+
+<p>这里的 $A$就是映射$\mathcal{A}$在基${\alpha_i}$ 下的矩阵。<br>矩阵 $A$的第$j$列，就是第$j$个基向量的像$\mathcal{A}(\alpha_j)$ 在原基底下的坐标。<br>线性映射之间的“逻辑运算”可以完美转化为矩阵之间的“代数运算”。这使得复杂的几何研究可以变成简单的算术：</p>
+<p>设 $\mathcal{A}, \mathcal{B}$是$V$上的线性变换，在基$\alpha$下的矩阵分别为$A, B$，则：</p>
+<ul>
+<li><p><strong>线性组合：</strong> $k\mathcal{A} + m\mathcal{B}$对应的矩阵是$kA + mB$。</p>
+</li>
+<li><p><strong>复合映射：</strong> $\mathcal{A} \circ \mathcal{B}$（先做 $\mathcal{B}$再做$\mathcal{A}$）对应的矩阵是 <strong>$AB$</strong>。</p>
+<ul>
+<li><em>注意：</em> 矩阵乘法的顺序与映射复合的顺序一致，这正是矩阵乘法定义得如此“奇怪”的根本原因。</li>
+</ul>
+</li>
+<li><p><strong>逆映射：</strong> 若 $\mathcal{A}$可逆，其逆映射$\mathcal{A}^{-1}$对应的矩阵是$A^{-1}$。</p>
+</li>
+</ul>
+<h3 id="相似矩阵的由来：换基公式"><a href="#相似矩阵的由来：换基公式" class="headerlink" title="相似矩阵的由来：换基公式"></a>相似矩阵的由来：换基公式</h3><p>定理：设线性映射 $\mathcal{A}$在基${\alpha_i}$下的矩阵为$A$，在基 ${\beta_i}$下的矩阵为$A’$。如果从 ${\alpha_i}$到${\beta_i}$的过渡矩阵是$B$，那么：</p>
+<p>
+$$
+A' = B^{-1}AB
+$$
+</p>
+
+<p>想象你要计算 $\mathcal{A}$对一个向量的作用，但你手里只有新基下的坐标$X’$：</p>
+<ol>
+<li><p><strong>$B X’$</strong>：先将新坐标还原回旧基坐标（因为 $A$ 只认旧基）。</p>
+</li>
+<li><p><strong>$A (B X’)$</strong>：在旧基下执行线性映射的操作。</p>
+</li>
+<li><p><strong>$B^{-1} (A B X’)$</strong>：将操作后的结果重新转换回新基下的坐标。</p>
+</li>
+</ol>
+<p>这就是为什么<strong>矩阵相似</strong> 的定义是 $A’ &#x3D; P^{-1}AP$。所谓相似矩阵，其实就是<strong>同一个线性映射在不同基下的不同“化身”</strong>。<br>既然同一映射在不同基下矩阵不同，我们自然会问：<strong>能否找到一组基，使得矩阵 $A’$ 尽可能简单？</strong></p>
+<ul>
+<li><p><strong>对角化：</strong> 如果能找到一组基，使得 $A’$ 是对角矩阵，那么这组基就是<strong>特征向量</strong>基。</p>
+</li>
+<li><p><strong>若尔当形（Jordan Form）：</strong> 如果不能对角化，这组基就是广义特征向量基。</p>
+</li>
+</ul>
+<p>同时，在连续函数方面，我们同样可以选取漂亮的基。</p>
+<h3 id="傅里叶多项式、勒让德多项式与切比雪夫多项式"><a href="#傅里叶多项式、勒让德多项式与切比雪夫多项式" class="headerlink" title="傅里叶多项式、勒让德多项式与切比雪夫多项式"></a>傅里叶多项式、勒让德多项式与切比雪夫多项式</h3><p>我们定义对于函数的内积：</p>
+<p>
+$$
+(f(x),g(x))=\int_{-1}^1 f(x)g(x)dx
+$$
+</p>
+
+<p>那么我们同样可以进行类似向量的操作，只不过现在是无穷维向量（定义域内有无穷多值），于是我们一个自然的想法是能不能用 $1,x,x^2…x^n..$来作为一组基，但实际上这个基对应于$Hilbert$ 矩阵，并不是一个好矩阵。如同对向量那样，如果我们选取正交基，是非常美妙的，对应的系数只要做内积就可以得到。</p>
+<h4 id="傅里叶多项式"><a href="#傅里叶多项式" class="headerlink" title="傅里叶多项式"></a>傅里叶多项式</h4><p>对于周期函数，我们便可以选取 $sinx, cosx, sin2x, cos2x…$ 作为基，可以验证这是一组正交基，那么便可以做投影：</p>
+<p>
+$$
+f(x)=c_{1}sinx+c_{2}cosx+c_{3}sin2x+c_4cos2x+...
+$$
+</p>
+
+<p>我们要求解系数，只需要两边做内积，例如：</p>
+<p>
+$$
+c_1=\frac{\int_{-1}^1f(x)\cdot sinxdx}{\int_{-1}^1sinx \cdot sinxdx}
+$$
+</p>
+
+<p>这样就求出了对应的系数，还是很方便的。</p>
+<h4 id="勒让德多项式"><a href="#勒让德多项式" class="headerlink" title="勒让德多项式"></a>勒让德多项式</h4><p>如果我们想要正交基，我们通常从已有的基底做施密特正交化，我们在函数这里同样这么干：</p>
+<h5 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h5><ul>
+<li><p><strong>定义区间</strong>：通常选取 $[-1, 1]$（在这个区间上得到的称为标准勒让德多项式）。</p>
+</li>
+<li><p><strong>定义内积</strong>：$\langle f, g \rangle &#x3D; \int_{-1}^{1} f(x)g(x) dx$。</p>
+</li>
+<li><p><strong>原始基向量</strong>：$v_0 &#x3D; 1, v_1 &#x3D; x, v_2 &#x3D; x^2, \dots$</p>
+</li>
+</ul>
+<hr>
+<h5 id="2-施密特正交化步骤"><a href="#2-施密特正交化步骤" class="headerlink" title="2. 施密特正交化步骤"></a>2. 施密特正交化步骤</h5><h6 id="第一步：确定第一个基-P-0-直接取-P-0-x-v-0-1-。"><a href="#第一步：确定第一个基-P-0-直接取-P-0-x-v-0-1-。" class="headerlink" title="第一步：确定第一个基 $P_0$直接取$P_0(x) &#x3D; v_0 &#x3D; 1$。"></a>第一步：确定第一个基 $P_0$直接取$P_0(x) &#x3D; v_0 &#x3D; 1$。</h6><h6 id="第二步：构造-P-1-我们需要从-v-1-x-中减去它在-P-0-方向上的投影："><a href="#第二步：构造-P-1-我们需要从-v-1-x-中减去它在-P-0-方向上的投影：" class="headerlink" title="第二步：构造 $P_1$我们需要从$v_1 &#x3D; x$中减去它在$P_0$ 方向上的投影："></a>第二步：构造 $P_1$我们需要从$v_1 &#x3D; x$中减去它在$P_0$ 方向上的投影：</h6><p>
+$$
+P_1(x) = x - \frac{\langle x, P_0 \rangle}{\langle P_0, P_0 \rangle} P_0
+$$
+</p>
+
+<ul>
+<li><p>计算内积：$\langle x, 1 \rangle &#x3D; \int_{-1}^{1} x dx &#x3D; 0$（奇函数在对称区间积分为 0）。</p>
+</li>
+<li><p>结论：<strong>$P_1(x) &#x3D; x$</strong>。</p>
+</li>
+</ul>
+<h6 id="第三步：构造-P-2-我们需要从-v-2-x-2-中减去它在-P-0-和-P-1-方向上的投影："><a href="#第三步：构造-P-2-我们需要从-v-2-x-2-中减去它在-P-0-和-P-1-方向上的投影：" class="headerlink" title="第三步：构造 $P_2$我们需要从$v_2 &#x3D; x^2$中减去它在$P_0$和$P_1$ 方向上的投影："></a>第三步：构造 $P_2$我们需要从$v_2 &#x3D; x^2$中减去它在$P_0$和$P_1$ 方向上的投影：</h6><p>
+$$
+P_2(x) = x^2 - \frac{\langle x^2, P_0 \rangle}{\langle P_0, P_0 \rangle} P_0 - \frac{\langle x^2, P_1 \rangle}{\langle P_1, P_1 \rangle} P_1
+$$
+</p>
+
+<ol>
+<li><p>$\langle x^2, P_0 \rangle &#x3D; \int_{-1}^{1} x^2 \cdot 1 dx &#x3D; \left[ \frac{1}{3}x^3 \right]<em>{-1}^{1} &#x3D; \frac{2}{3}$2.$\langle P_0, P_0 \rangle &#x3D; \int</em>{-1}^{1} 1 \cdot 1 dx &#x3D; 2$3.$\langle x^2, P_1 \rangle &#x3D; \int_{-1}^{1} x^2 \cdot x dx &#x3D; 0$（奇函数积分为 0）</p>
+</li>
+<li><p>代入公式：$P_2(x) &#x3D; x^2 - \frac{2&#x2F;3}{2}(1) - 0 &#x3D; \mathbf{x^2 - \frac{1}{3}}$</p>
+</li>
+</ol>
+<hr>
+<h5 id="3-归一化与标准形式"><a href="#3-归一化与标准形式" class="headerlink" title="3. 归一化与标准形式"></a>3. 归一化与标准形式</h5><p>数学家为了方便（让 $P_n(1) &#x3D; 1$），通常会对结果进行缩放。</p>
+<ul>
+<li>对于 $P_2(x) &#x3D; x^2 - \frac{1}{3}$，乘以 $\frac{3}{2}$ 得到：$\mathbf{P_2(x) &#x3D; \frac{1}{2}(3x^2 - 1)}$。</li>
+</ul>
+<p>以此类推，你会得到：</p>
+<ul>
+<li>$P_0(x) &#x3D; 1$-$P_1(x) &#x3D; x$-$P_2(x) &#x3D; \frac{1}{2}(3x^2 - 1)$-$P_3(x) &#x3D; \frac{1}{2}(5x^3 - 3x)$</li>
+</ul>
+<p>这就得到了勒让德多项式，这时做投影就仍然只需要做内积就行，方便得多。</p>
+<h4 id="切比雪夫多项式"><a href="#切比雪夫多项式" class="headerlink" title="切比雪夫多项式"></a>切比雪夫多项式</h4><p>
+$$
+T_n(\cos \theta) = \cos(n\theta)
+$$
+</p>
+
+<p>简单来说，就是 $n$ 倍角公式对应的多项式，由于三角函数的正交性，这同样是正交基：</p>
+<p>
+$$
+\int_{0}^{\pi} \cos(m\theta) \cos(n\theta) d\theta = 0 \quad (m \neq n)
+$$
+</p>
+
+<p>同时，切比雪夫在数值分析中优于勒让德，因为我们可以利用 $FFT$ 大幅优化计算速度。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

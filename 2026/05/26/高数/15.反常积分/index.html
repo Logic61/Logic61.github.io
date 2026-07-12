@@ -1,0 +1,829 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>15.反常积分 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>15.反常积分</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/5/26
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>我们希望求解无穷级数：</p>
+<p>
+$$
+S(1) = \sum_{n=1}^{+\infty} \frac{1}{n^2} = ?
+$$
+</p>
+
+<p>为了解决它，引入一个辅助幂级数（Power Series）函数 $S(x)$：</p>
+<p>
+$$
+S(x) = \sum_{n=1}^{+\infty} \frac{x^n}{n^2}
+$$
+</p>
+
+<ul>
+<li><p><strong>收敛半径（Radius of convergence）</strong>：$R &#x3D; 1$</p>
+</li>
+<li><p><strong>收敛域（Domain of convergence）</strong>：$[-1, 1]$在开区间$(-1, 1)$内，对$S(x)$ 进行逐项求导：</p>
+</li>
+</ul>
+<p>
+$$
+S'(x) = \sum_{n=1}^{+\infty} \frac{n x^{n-1}}{n^2} = \sum_{n=1}^{+\infty} \frac{x^{n-1}}{n}, \quad x \in (-1, 1)
+$$
+</p>
+
+<p>为了方便消除分母中的 $n$，给两边同乘以 $x$：</p>
+<p>
+$$
+x S'(x) = \sum_{n=1}^{+\infty} \frac{x^n}{n}, \quad x \in (-1, 1)
+$$
+</p>
+
+<p>再次对两边关于 $x$ 求导：</p>
+<p>
+$$
+(x S'(x))' = \sum_{n=1}^{+\infty} \frac{n x^{n-1}}{n} = \sum_{n=1}^{+\infty} x^{n-1}
+$$
+</p>
+
+<p>注意到右边是一个首项为 $1$、公比为 $x$的无穷几何级数（等比级数），在$|x| &lt; 1$ 时收敛：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} x^{n-1} = \sum_{n=0}^{+\infty} x^n = \frac{1}{1-x}
+$$
+</p>
+
+<p>由此得到闭式方程：</p>
+<p>
+$$
+(x S'(x))' = \frac{1}{1-x}
+$$
+</p>
+
+<p>现在我们需要通过积分，从 $(x S’(x))’$一步步还原出$S(x)$。<br>对上式两边从 $0$到$x$ 进行定积分：</p>
+<p>
+$$
+x S'(x) = \int_{0}^{x} \frac{1}{1-t} \, dt
+$$
+</p>
+
+<p>利用换元法（令 $u &#x3D; 1-t, , du &#x3D; -dt$）可得：</p>
+<p>
+$$
+x S'(x) = \Big[ -\ln(1-t) \Big]_{0}^{x} = -\ln(1-x), \quad x \in (-1, 1)
+$$
+</p>
+
+<p>将 $x$ 除到右边：</p>
+<p>
+$$
+S'(x) = -\frac{1}{x} \ln(1-x)
+$$
+</p>
+
+<p>再次从 $0$到$x$积分以还原函数$S(x)$：</p>
+<p>
+$$
+S(x) = \int_{0}^{x} -\frac{1}{t} \ln(1-t) \, dt
+$$
+</p>
+
+<p>因为 $S(x)$在$x&#x3D;1$处是连续的，所以可以通过从左侧逼近$1$（左极限）来求得 $S(1)$ 的值：</p>
+<p>
+$$
+\lim_{x \to 1^-} S(x) = \lim_{x \to 1^-} \int_{0}^{x} -\frac{1}{t} \ln(1-t) \, dt
+$$
+</p>
+
+<p>
+$$
+S(1) = \int_{0}^{1} -\frac{1}{t} \ln(1-t) \, dt
+$$
+</p>
+
+<p>但是这个积分我们可以看到，在 $1$ 这个点的函数值是往无穷跑的，这和我们熟悉的黎曼积分就相悖了，被称为所谓广义积分。</p>
+<h1 id="广义积分"><a href="#广义积分" class="headerlink" title="广义积分"></a>广义积分</h1><h3 id="广义积分的分类"><a href="#广义积分的分类" class="headerlink" title="广义积分的分类"></a>广义积分的分类</h3><p>广义积分（又称反常积分）主要分为两大类：</p>
+<ul>
+<li><p><strong>无穷积分（积分区域 $\infty$）</strong>：积分区间为无穷区间（例如 $[a, +\infty)$、$(-\infty, b]$或$(-\infty, +\infty)$）。</p>
+</li>
+<li><p><strong>瑕积分（函数 $\infty$）</strong>：积分区间虽然有限，但被积函数在区间内的某些点（瑕点）附近趋于无穷大。</p>
+</li>
+</ul>
+<h3 id="积分与级数的类比关系"><a href="#积分与级数的类比关系" class="headerlink" title="积分与级数的类比关系"></a>积分与级数的类比关系</h3><p>定积分&#x2F;广义积分与数项级数之间的直观对应纽带：</p>
+<p>
+$$
+\begin{aligned} \int_{a}^{A} f(x) \, dx \quad &\longleftrightarrow \quad \sum_{n=1}^{N} a_n \\ \bigg\downarrow A \to +\infty, \ x \longleftrightarrow n \quad & \qquad\quad \bigg\downarrow N \to +\infty \\ \int_{a}^{+\infty} f(x) \, dx \quad &\longleftrightarrow \quad \sum_{n=1}^{+\infty} a_n \quad (S_n \to S) \end{aligned}
+$$
+</p>
+
+<blockquote>
+<p><strong>直观理解</strong>：有限区间的定积分对应级数的有限部分和 $S_n$；当上限趋于无穷时，无穷限广义积分在本质上就对应着无穷级数的求和与收敛性。</p>
+</blockquote>
+<h1 id="无穷积分"><a href="#无穷积分" class="headerlink" title="无穷积分"></a>无穷积分</h1><h3 id="无穷限积分的严格定义"><a href="#无穷限积分的严格定义" class="headerlink" title="无穷限积分的严格定义"></a>无穷限积分的严格定义</h3><h4 id="1-前提条件"><a href="#1-前提条件" class="headerlink" title="1. 前提条件"></a>1. 前提条件</h4><p>设函数 $f(x)$在区间$[a, +\infty)$上有定义，并且在任意有限区间$[a, A]$ 上都是可积的。</p>
+<h4 id="2-收敛与定义"><a href="#2-收敛与定义" class="headerlink" title="2. 收敛与定义"></a>2. 收敛与定义</h4><p>若极限</p>
+<p>
+$$
+\lim_{A \to +\infty} \int_{a}^{A} f(x) \, dx
+$$
+</p>
+
+<p>存在（设其值为 $I$），则称广义积分 $\int_{a}^{+\infty} f(x) , dx$ <strong>收敛</strong>。</p>
+<p>此时，定义该广义积分的值为这个极限值：</p>
+<p>
+$$
+\int_{a}^{+\infty} f(x) \, dx = I
+$$
+</p>
+
+<h4 id="3-发散"><a href="#3-发散" class="headerlink" title="3. 发散"></a>3. 发散</h4><p>若上述极限不存在，则称广义积分 $\int_{a}^{+\infty} f(x) , dx$ <strong>发散</strong>。</p>
+<h3 id="计算示例"><a href="#计算示例" class="headerlink" title="计算示例"></a>计算示例</h3><h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1"></a>示例 1</h4><p>求广义积分 $\int_{1}^{+\infty} \frac{1}{x^2} , dx$ 的收敛性及值。</p>
+<p>
+$$
+\lim_{A \to +\infty} \int_{1}^{A} \frac{1}{x^2} \, dx = \lim_{A \to +\infty} \left. -\frac{1}{x} \right|_{1}^{A} = \lim_{A \to +\infty} \left( 1 - \frac{1}{A} \right) = 1
+$$
+</p>
+
+<p><strong>结论</strong>：该广义积分<strong>收敛</strong>，其值为 $1$。</p>
+<h4 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2"></a>示例 2</h4><p>求广义积分 $\int_{0}^{+\infty} e^{-x} , dx$ 的收敛性及值。</p>
+<p>
+$$
+\int_{0}^{A} e^{-x} \, dx = \left. -e^{-x} \right|_{0}^{A} = 1 - e^{-A} \xrightarrow{A \to +\infty} 1
+$$
+</p>
+
+<p><strong>结论</strong>：该广义积分<strong>收敛</strong>，其值为 $1$。</p>
+<h4 id="p-广义积分的收敛性"><a href="#p-广义积分的收敛性" class="headerlink" title="$p$-广义积分的收敛性"></a>$p$-广义积分的收敛性</h4><p>讨论积分 $\int_{1}^{+\infty} \frac{1}{x^p} , dx \quad (p \in (0, +\infty))$ 的收敛性：</p>
+<ol>
+<li><p>当 $p \in (0, 1]$ 时，该广义积分<strong>发散</strong>。</p>
+</li>
+<li><p>当 $p &gt; 1$ 时，该广义积分<strong>收敛</strong>。</p>
+</li>
+</ol>
+<h3 id="广义积分收敛的柯西准则（Cauchy-Criterion）"><a href="#广义积分收敛的柯西准则（Cauchy-Criterion）" class="headerlink" title="广义积分收敛的柯西准则（Cauchy Criterion）"></a>广义积分收敛的柯西准则（Cauchy Criterion）</h3><p><strong>定理（柯西准则）</strong>：</p>
+<p>广义积分 $\int_{a}^{+\infty} f(x) , dx$收敛的充要条件是：$\forall \varepsilon &gt; 0$，$\exists X_{\varepsilon} \ge a$，使得对于任意的 $A_1, A_2 &gt; X_{\varepsilon}$，均有：</p>
+<p>
+$$
+\left| \int_{A_1}^{A_2} f(x) \, dx \right| \le \varepsilon
+$$
+</p>
+
+<blockquote>
+<p><strong>级数类比</strong>：这完美对应了数项级数收敛的柯西准则 $\left| \sum_{k&#x3D;n}^{m} a_k \right| &lt; \varepsilon$。当区间足够远时，尾部的积分贡献可以忽略不计。</p>
+</blockquote>
+<h3 id="广义积分的性质与误区"><a href="#广义积分的性质与误区" class="headerlink" title="广义积分的性质与误区"></a>广义积分的性质与误区</h3><h4 id="1-线性性质"><a href="#1-线性性质" class="headerlink" title="1. 线性性质"></a>1. 线性性质</h4><p>若 $\int_{a}^{+\infty} f(x) , dx$收敛，且$\int_{a}^{+\infty} g(x) , dx$收敛，则对于任意常数$c_1, c_2$：</p>
+<p>
+$$
+\int_{a}^{+\infty} (c_1 f(x) + c_2 g(x)) \, dx \quad \text{亦收敛}
+$$
+</p>
+
+<h4 id="2-关于“被积函数趋于-0-”的直观误区"><a href="#2-关于“被积函数趋于-0-”的直观误区" class="headerlink" title="2. 关于“被积函数趋于 $0$”的直观误区"></a>2. 关于“被积函数趋于 $0$”的直观误区</h4><ul>
+<li><p><strong>疑问</strong>：若 $\int_{a}^{+\infty} f(x) , dx$收敛，当$x \to +\infty$ 时，$f(x)$是否必然趋于$0$？</p>
+</li>
+<li><p><strong>结论与图形直观</strong>：<strong>不一定</strong>。</p>
+<p>  一个经典反例提示：我们可以构造一个函数，它在无穷远处有无数个越来越窄的“脉冲尖峰”（例如在每个整数 $n$处，尖峰高度为$1$，但宽度为 $\frac{1}{2^n}$）。</p>
+<p>  此时，虽然当 $x \to +\infty$时$f(x) \not\to 0$（极限甚至不存在），但由于尖峰的面积（即积分贡献）呈几何级数衰减，整个广义积分 $\int_{a}^{+\infty} f(x) , dx$ 依然是<strong>收敛</strong>的。</p>
+</li>
+</ul>
+<h2 id="审敛法"><a href="#审敛法" class="headerlink" title="审敛法"></a>审敛法</h2><h3 id="绝对收敛与条件收敛"><a href="#绝对收敛与条件收敛" class="headerlink" title="绝对收敛与条件收敛"></a>绝对收敛与条件收敛</h3><p>类似于数项级数，变号函数的广义积分根据其绝对值的可积性分为以下两种情况：</p>
+<ol>
+<li><p><strong>绝对收敛（Absolute Convergence）</strong></p>
+<p> 若广义积分 $\int_{a}^{+\infty} |f(x)| , dx$收敛，则称广义积分$\int_{a}^{+\infty} f(x) , dx$ <strong>绝对收敛</strong>。</p>
+</li>
+<li><p><strong>条件收敛（Conditional Convergence）</strong></p>
+<p> 若广义积分 $\int_{a}^{+\infty} f(x) , dx$收敛，但$\int_{a}^{+\infty} |f(x)| , dx$发散，则称广义积分$\int_{a}^{+\infty} f(x) , dx$ 为<strong>条件收敛</strong>。</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>图形直观</strong>：正负面积相互抵消使得原积分可能收敛；但如果把负半轴全部翻折上去取绝对值，面积累加过快就可能导致发散，这就构成了条件收敛。</p>
+</blockquote>
+<h3 id="非负函数广义积分的有界性定理"><a href="#非负函数广义积分的有界性定理" class="headerlink" title="非负函数广义积分的有界性定理"></a>非负函数广义积分的有界性定理</h3><p>对于始终非负的被积函数，其积分具有单调递增的特性，因而其收敛性与有界性完全等价。</p>
+<p><strong>定理</strong>：</p>
+<p>设 $f(x) \ge 0, \ x \in [a, +\infty)$。</p>
+<p>则广义积分 $\int_{a}^{+\infty} f(x) , dx$收敛$\Longleftrightarrow$ $\exists M &gt; 0$，使得：</p>
+<p>
+$$
+\int_{a}^{A} f(x) \, dx \le M, \quad \forall A \ge a
+$$
+</p>
+
+<blockquote>
+<p><strong>核心逻辑</strong>：非负函数的变上限积分 $F(A) &#x3D; \int_{a}^{A} f(x) , dx$是关于$A$的单调递增函数。根据单调有界原理，只要它上有界，当$A \to +\infty$ 时极限就必然存在。</p>
+</blockquote>
+<h3 id="非负函数广义积分的比较判别法"><a href="#非负函数广义积分的比较判别法" class="headerlink" title="非负函数广义积分的比较判别法"></a>非负函数广义积分的比较判别法</h3><p>类似数项级数，我们也有比较判别法：</p>
+<p>设在 $x \to +\infty$ 时，两个非负函数满足：</p>
+<p>
+$$
+0 \le f(x) \le g(x)
+$$
+</p>
+
+<p>或者考虑它们的极限形式（极限审敛法）：</p>
+<p>
+$$
+\lim_{x \to +\infty} \frac{f(x)}{g(x)} = k
+$$
+</p>
+
+<ul>
+<li>通过已知敛散性的基准函数 $g(x)$（通常为 $p$-积分 $\frac{1}{x^p}$），即可“放大”或“缩小”来锁定目标函数 $f(x)$ 的收敛状态。</li>
+</ul>
+<h4 id="比较判别法应用示例"><a href="#比较判别法应用示例" class="headerlink" title="比较判别法应用示例"></a>比较判别法应用示例</h4><h5 id="示例-1-1"><a href="#示例-1-1" class="headerlink" title="示例 1"></a>示例 1</h5><p>分析广义积分 $\int_{1}^{+\infty} \frac{x^2}{x^4 + \sin^2(x)} , dx$ 的收敛性。</p>
+<p>由于 $\sin^2(x) \ge 0$，在区间 $[1, +\infty)$ 上显而易见有如下不等式关系：</p>
+<p>
+$$
+0 \le \frac{x^2}{x^4 + \sin^2(x)} \le \frac{x^2}{x^4} = \frac{1}{x^2}
+$$
+</p>
+
+<p>因为基准 $p$-积分 $\int_{1}^{+\infty} \frac{1}{x^2} , dx$收敛（此时$p &#x3D; 2 &gt; 1$），根据非负函数的<strong>比较判别法</strong>，原积分<strong>收敛</strong>。</p>
+<h5 id="示例-2-1"><a href="#示例-2-1" class="headerlink" title="示例 2"></a>示例 2</h5><p>分析广义积分 $\int_{0}^{+\infty} e^{-x^2} , dx$ 的收敛性。</p>
+<p>我们可以将积分区间拆分为 $[0, 1]$和$[1, +\infty)$。由于被积函数在有限区间 $[0, 1]$上连续，该部分定积分必然存在，因此只需考察无穷限部分$\int_{1}^{+\infty} e^{-x^2} , dx$。</p>
+<p>当 $x \ge 1$时，有$x^2 \ge x$，从而引出不等式：</p>
+<p>
+$$
+e^{-x^2} \le e^{-x}
+$$
+</p>
+
+<p>因为 $\int_{1}^{+\infty} e^{-x} , dx$已知收敛，根据<strong>比较判别法</strong>，原积分$\int_{0}^{+\infty} e^{-x^2} , dx$ 亦<strong>收敛</strong>。</p>
+<p><em>(注：黑板上此处写出的 $\frac{\sqrt{\pi}}{2}$为该积分在$[0, +\infty)$ 上的精确高斯积分值)</em></p>
+<h3 id="阿贝尔判别法（Abel’s-Test）"><a href="#阿贝尔判别法（Abel’s-Test）" class="headerlink" title="阿贝尔判别法（Abel’s Test）"></a>阿贝尔判别法（Abel’s Test）</h3><h4 id="1-经典引例"><a href="#1-经典引例" class="headerlink" title="1. 经典引例"></a>1. 经典引例</h4><p>讨论变号函数积分 $\int_{1}^{+\infty} \frac{\sin(x)}{x^p} , dx$ 的收敛性：</p>
+<ul>
+<li><p><strong>当 $p &gt; 1$时</strong>：由于$\left| \frac{\sin(x)}{x^p} \right| \le \frac{1}{x^p}$，原积分<strong>绝对收敛</strong>。</p>
+</li>
+<li><p><strong>当 $p \in (0, 1]$时</strong>：原积分<strong>条件收敛</strong>。为了系统性证明此类单调递减驱向$0$ 的函数与振荡函数乘积的收敛性，需要引入更高级的判别法。</p>
+</li>
+</ul>
+<h4 id="2-定理：阿贝尔判别法（Abel’s-Test）"><a href="#2-定理：阿贝尔判别法（Abel’s-Test）" class="headerlink" title="2. 定理：阿贝尔判别法（Abel’s Test）"></a>2. 定理：阿贝尔判别法（Abel’s Test）</h4><p>考察积分 $\int_{a}^{+\infty} f(x)g(x) , dx$，若满足以下两个条件：</p>
+<ol>
+<li><p>$f(x)$在$[a, +\infty)$ 上<strong>单调且有界</strong>；</p>
+</li>
+<li><p>广义积分 $\int_{a}^{+\infty} g(x) , dx$ <strong>收敛</strong>；</p>
+</li>
+</ol>
+<p>则广义积分 $\int_{a}^{+\infty} f(x)g(x) , dx$ <strong>收敛</strong>。</p>
+<h3 id="三、-定理的数学证明与推导"><a href="#三、-定理的数学证明与推导" class="headerlink" title="三、 定理的数学证明与推导"></a>三、 定理的数学证明与推导</h3><p>有两种主流的微积分证明路径：</p>
+<h4 id="路径-A：利用积分第二中值定理（配合柯西准则）"><a href="#路径-A：利用积分第二中值定理（配合柯西准则）" class="headerlink" title="路径 A：利用积分第二中值定理（配合柯西准则）"></a>路径 A：利用积分第二中值定理（配合柯西准则）</h4><p>根据广义积分收敛的柯西准则，我们需要证明当 $A_1, A_2$充分大时，保持$\left| \int_{A_1}^{A_2} f(x)g(x) , dx \right| \le \varepsilon$。</p>
+<p>由于 $f(x)$在$[A_1, A_2]$ 上单调，由<strong>积分第二中值定理</strong>，$\exists \xi \in [A_1, A_2]$，使得：</p>
+<p>
+$$
+\left| \int_{A_1}^{A_2} f(x)g(x) \, dx \right| = \left| f(A_1) \int_{A_1}^{\xi} g(x) \, dx + f(A_2) \int_{\xi}^{A_2} g(x) \, dx \right|
+$$
+</p>
+
+<ul>
+<li><p>因为 $f(x)$有界，即$|f(x)| \le K$；</p>
+</li>
+<li><p>因为 $\int_{a}^{+\infty} g(x) , dx$收敛，由柯西准则，当$A_1, A_2$足够大时，其子区间的积分$\int_{A_1}^{\xi} g(x) , dx$和$\int_{\xi}^{A_2} g(x) , dx$ 均可任意小。</p>
+<p>  由此可证整个积分式趋近于 $0$，即满足收敛条件。</p>
+</li>
+</ul>
+<h4 id="路径-B：利用分部积分法（进一步探讨可导情形）"><a href="#路径-B：利用分部积分法（进一步探讨可导情形）" class="headerlink" title="路径 B：利用分部积分法（进一步探讨可导情形）"></a>路径 B：利用分部积分法（进一步探讨可导情形）</h4><p>假设 $f(x)$在区间上具有连续导数$f’(x)$，且不失一般性，设 $f(x) \downarrow f$且$f’(x) \le 0$。</p>
+<p>设 $G(x) &#x3D; \int_{a}^{x} g(t) , dt$。由于 $\int_{a}^{+\infty} g(x) , dx$收敛，可知$G(x)$在无穷远处极限存在且有界，即存在常数$M$使得$|G(x)| \le M$。</p>
+<p>对原式进行<strong>分部积分</strong>：</p>
+<p>
+$$
+\int_{a}^{A} f(x)g(x) \, dx = \left. f(x)G(x) \right|_{a}^{A} - \int_{a}^{A} f'(x)G(x) \, dx = f(A)G(A) - f(a)G(a) - \int_{a}^{A} f'(x)G(x) \, dx
+$$
+</p>
+
+<p>现在对 $A \to +\infty$ 取极限，逐项分析：</p>
+<ol>
+<li><p><strong>第一项 $f(A)G(A)$</strong>：当 $A \to +\infty$ 时，$f(A)$ 极限存在（单调有界原理），$G(A)$ 极限存在，故该项极限必然存在。</p>
+</li>
+<li><p><strong>最后一项积分项</strong>：考察其绝对值以验证是否绝对收敛：</p>
+</li>
+</ol>
+<p>
+$$
+\int_{a}^{A} |f'(x)G(x)| \, dx \le M \int_{a}^{A} |f'(x)| \, dx
+$$
+</p>
+
+<p>因为已知 $f’(x) \le 0$，所以 $|f’(x)| &#x3D; -f’(x)$。带入积分可得：</p>
+<p>
+$$
+M \int_{a}^{A} -f'(x) \, dx = M \Big| \int_{a}^{A} f'(x) \, dx \Big| = M |f(a) - f(A)| = \tilde{M}
+$$
+</p>
+
+<p>由于 $f(A)$在无穷远处有界，该积分项被一个常数$\tilde{M}$ 控制（上有界）。由于非负函数变上限积分上有界，该积分必然收敛。</p>
+<p><strong>总结</strong>：分部积分后的各项在 $A \to +\infty$ 时极限均存在，从而圆满证明了阿贝尔判别法的正确性。</p>
+<p>利用阿贝尔判别法，就不难知道 $p$ 广义积分的收敛。</p>
+<h3 id="发散的示例"><a href="#发散的示例" class="headerlink" title="发散的示例"></a>发散的示例</h3><p>当 $p \in (0, 1]$ 时，广义积分的绝对值积分是发散的：</p>
+<p>
+$$
+\int_{1}^{+\infty} \frac{|\sin(x)|}{x^p} \, dx = +\infty
+$$
+</p>
+
+<p>为了证明其发散，只需证明当上限 $A \to +\infty$ 时，变上限积分没有上界。</p>
+<h4 id="推导与放大步骤"><a href="#推导与放大步骤" class="headerlink" title="推导与放大步骤"></a>推导与放大步骤</h4><h5 id="1-缩小区间"><a href="#1-缩小区间" class="headerlink" title="1. 缩小区间"></a>1. 缩小区间</h5><p>让上限 $A$取一个特定的离散值$N\pi$（其中 $N$为足够大的正整数），并将下限由$1$缩小到$\pi$（由于 $[1, \pi]$ 上的积分为有限常数，省去后不影响敛散性判断）：</p>
+<p>
+$$
+\int_{1}^{A} \frac{|\sin(x)|}{x^p} \, dx \ge \int_{\pi}^{N\pi} \frac{|\sin(x)|}{x^p} \, dx
+$$
+</p>
+
+<h5 id="2-区间拆分（离散化为级数）"><a href="#2-区间拆分（离散化为级数）" class="headerlink" title="2. 区间拆分（离散化为级数）"></a>2. 区间拆分（离散化为级数）</h5><p>利用定积分的区间可加性，将 $[\pi, N\pi]$拆分为$N-1$个长度为$\pi$的小区间$[k\pi, (k+1)\pi]$ 之和：</p>
+<p>
+$$
+= \sum_{k=1}^{N-1} \int_{k\pi}^{(k+1)\pi} \frac{|\sin(x)|}{x^p} \, dx
+$$
+</p>
+
+<h5 id="3-分母放大（整体缩小）"><a href="#3-分母放大（整体缩小）" class="headerlink" title="3. 分母放大（整体缩小）"></a>3. 分母放大（整体缩小）</h5><p>在每一个子区间 $x \in [k\pi, (k+1)\pi]$上，由于$x^p$是单调递增的，为了将变量$x$从分母中提取出来，我们把分母替换为其在区间右端点的最大值$((k+1)\pi)^p$。</p>
+<p>分母变大，整个分式变小，从而得到不等式：</p>
+<p>
+$$
+\ge \sum_{k=1}^{N-1} \frac{1}{((k+1)\pi)^p} \int_{k\pi}^{(k+1)\pi} |\sin(x)| \, dx
+$$
+</p>
+
+<h5 id="4-计算正弦函数的周期面积"><a href="#4-计算正弦函数的周期面积" class="headerlink" title="4. 计算正弦函数的周期面积"></a>4. 计算正弦函数的周期面积</h5><p>注意到正弦函数绝对值 $|\sin(x)|$在任意长度为$\pi$的半周期区间上的积分都是一个固定的常数$C$：</p>
+<p>
+$$
+C = \int_{k\pi}^{(k+1)\pi} |\sin(x)| \, dx = \int_{0}^{\pi} \sin(x) \, dx = \left. -\cos(x) \right|_{0}^{\pi} = 1 - (-1) = 2
+$$
+</p>
+
+<p>将 $C &#x3D; 2$ 代入上式，并把常数项提出来：</p>
+<p>
+$$
+= \frac{2}{\pi^p} \sum_{k=1}^{N-1} \frac{1}{(k+1)^p}
+$$
+</p>
+
+<ul>
+<li><p>当 $p \in (0, 1]$时，根据$p$-级数的敛散性原理（或当 $p&#x3D;1$时作为著名的调和级数），级数$\sum_{k&#x3D;1}^{+\infty} \frac{1}{(k+1)^p}$是<strong>发散</strong>的，其和为$+\infty$。</p>
+</li>
+<li><p>既然缩小的下界在 $N \to +\infty$ 时都趋于无穷大，根据夹逼准则（比较判别法），原绝对值积分必然发散。</p>
+</li>
+</ul>
+<p><strong>最终结论</strong>：当 $p \in (0, 1]$时，广义积分$\int_{1}^{+\infty} \frac{\sin(x)}{x^p} , dx$ 不是绝对收敛的。结合此前阿贝尔判别法的结论，它在此区间内是<strong>条件收敛</strong>的。</p>
+<h3 id="全直线上广义积分"><a href="#全直线上广义积分" class="headerlink" title="全直线上广义积分"></a>全直线上广义积分</h3><p>对于积分上下限皆为无穷的情形，其定义类似于单侧无穷限积分 $\int_{a}^{+\infty} f(x) , dx$和$\int_{-\infty}^{b} f(x) , dx$。</p>
+<p><strong>定义</strong>：</p>
+<p>广义积分 $\int_{-\infty}^{+\infty} f(x) , dx$ <strong>收敛</strong>的充要条件（$\Longleftrightarrow$）是：在实数轴上任意选择一个基准点（通常选 $0$），将其拆分为两部分，这两部分都必须<strong>独立收敛</strong>。即：</p>
+<p>
+$$
+\int_{-\infty}^{+\infty} f(x) \, dx \text{ 收敛} \Longleftrightarrow \int_{-\infty}^{0} f(x) \, dx \text{ 收敛} \quad \text{且} \quad \int_{0}^{+\infty} f(x) \, dx \text{ 收敛}
+$$
+</p>
+
+<p>此时，定义该积分的值为两部分单独求极限后的和：</p>
+<p>
+$$
+\int_{-\infty}^{+\infty} f(x) \, dx = \int_{-\infty}^{0} f(x) \, dx + \int_{0}^{+\infty} f(x) \, dx
+$$
+</p>
+
+<h4 id="逻辑单向性与柯西主值（Cauchy-Principal-Value）"><a href="#逻辑单向性与柯西主值（Cauchy-Principal-Value）" class="headerlink" title="逻辑单向性与柯西主值（Cauchy Principal Value）"></a>逻辑单向性与柯西主值（Cauchy Principal Value）</h4><h5 id="1-单向蕴含关系"><a href="#1-单向蕴含关系" class="headerlink" title="1. 单向蕴含关系"></a>1. 单向蕴含关系</h5><p>如果广义积分 $\int_{-\infty}^{+\infty} f(x) , dx$ 收敛，那么我们让对称的上下限同时趋于无穷大，其极限也必然存在：</p>
+<p>
+$$
+\lim_{A \to +\infty} \int_{-A}^{A} f(x) \, dx \quad \text{存在}
+$$
+</p>
+
+<p><strong>注意：反之不成立！</strong> 这种对称逼近的极限存在，并不能代表原广义积分收敛。</p>
+<h5 id="2-柯西主值的定义"><a href="#2-柯西主值的定义" class="headerlink" title="2. 柯西主值的定义"></a>2. 柯西主值的定义</h5><p>为了定义这种“对称取极限”的特殊积分状态，引入<strong>柯西主值</strong>的概念，记作 $\text{P.V.}$（Principal Value）：</p>
+<p>
+$$
+\text{P.V.} \int_{-\infty}^{+\infty} f(x) \, dx = \lim_{A \to +\infty} \int_{-A}^{A} f(x) \, dx
+$$
+</p>
+
+<h4 id="经典反例与辨析"><a href="#经典反例与辨析" class="headerlink" title="经典反例与辨析"></a>经典反例与辨析</h4><p>“<strong>柯西主值存在 $\not\Rightarrow$ 广义积分收敛</strong>”</p>
+<p><strong>考察函数</strong>：</p>
+<p>
+$$
+f(x) = \frac{x}{1+x^2}
+$$
+</p>
+
+<h5 id="1-严格定义视角"><a href="#1-严格定义视角" class="headerlink" title="1. 严格定义视角"></a>1. 严格定义视角</h5><p>我们将其按定义拆分，优先考察右侧半轴的广义积分：</p>
+<p>
+$$
+\int_{0}^{+\infty} \frac{x}{1+x^2} \, dx = \lim_{A \to +\infty} \left. \frac{1}{2} \ln(1+x^2) \right|_{0}^{A} = \lim_{A \to +\infty} \frac{1}{2} \ln(1+A^2) = +\infty \quad (\text{发散})
+$$
+</p>
+
+<p>同理，左侧半轴的积分 $\int_{-\infty}^{0} \frac{x}{1+x^2} , dx &#x3D; -\infty$ 亦发散。</p>
+<p><strong>结论</strong>：根据定义，原广义积分 $\int_{-\infty}^{+\infty} \frac{x}{1+x^2} , dx$ <strong>发散</strong>。</p>
+<h5 id="2-柯西主值视角"><a href="#2-柯西主值视角" class="headerlink" title="2. 柯西主值视角"></a>2. 柯西主值视角</h5><p>由于该被积函数 $f(x) &#x3D; \frac{x}{1+x^2}$是一个奇函数（满足$f(-x) &#x3D; -f(x)$），对其在对称区间 $[-A, A]$ 上进行定积分：</p>
+<p>
+$$
+\int_{-A}^{A} \frac{x}{1+x^2} \, dx = 0 \quad (\text{奇函数在对称区间上的积分恒为 } 0)
+$$
+</p>
+
+<p>此时对其取极限：</p>
+<p>
+$$
+\text{P.V.} \int_{-\infty}^{+\infty} \frac{x}{1+x^2} \, dx = \lim_{A \to +\infty} \int_{-A}^{A} \frac{x}{1+x^2} \, dx = \lim_{A \to +\infty} 0 = 0
+$$
+</p>
+
+<p><strong>结论</strong>：该积分的柯西主值存在，且等于 $0$。</p>
+<blockquote>
+<p><strong>核心总结</strong>：</p>
+<p>广义积分收敛是一种极其严格的考核，要求负无穷和正无穷两端“各自为政、独立收敛”；而柯西主值 $\text{P.V.}$ 则允许两端的面积在同步对等（对称）扩大的过程中“相互抵消”。因此，不能将两者混为一谈。</p>
+</blockquote>
+<h1 id="瑕积分"><a href="#瑕积分" class="headerlink" title="瑕积分"></a>瑕积分</h1><h3 id="一、-瑕积分与瑕点的严格定义"><a href="#一、-瑕积分与瑕点的严格定义" class="headerlink" title="一、 瑕积分与瑕点的严格定义"></a>一、 瑕积分与瑕点的严格定义</h3><p>当积分区间为有限区间 $[a, b]$，但被积函数在区间端点无界时，需要引入瑕积分的概念。以下以左端点 $a$ 为瑕点为例：</p>
+<h4 id="1-前提与定义"><a href="#1-前提与定义" class="headerlink" title="1. 前提与定义"></a>1. 前提与定义</h4><p>设函数 $f(x)$在半开区间$(a, b]$上有定义。若$f(x)$在点$a$的右邻域内<strong>无界</strong>，则称点$a$为$f(x)$ 的一个<strong>瑕点（Singular Point &#x2F; Singular end）</strong>。</p>
+<h4 id="2-收敛与发散"><a href="#2-收敛与发散" class="headerlink" title="2. 收敛与发散"></a>2. 收敛与发散</h4><p>若 $f(x)$在任意有限子区间$[a+\delta, b]$（其中 $0 &lt; \delta &lt; b-a$）上可积，且极限：</p>
+<p>
+$$
+\lim_{\delta \to 0^+} \int_{a+\delta}^{b} f(x) \, dx
+$$
+</p>
+
+<p>存在，则称广义积分 $\int_{a}^{b} f(x) , dx$ <strong>收敛</strong>。</p>
+<p>若上述极限不存在，则称该瑕积分<strong>发散</strong>。<br><img src="/images/Pasted_image_20260523124918.png"></p>
+<blockquote>
+<p><strong>图形直观</strong>：在曲线下方，当 $x \to a^+$时，函数曲线垂直向上飙升趋于无穷。我们切掉靠近$a$的一小段$\delta$，计算 $[a+\delta, b]$的阴影面积，最后让$\delta \to 0^+$ 观察该面积是否能稳定收敛到一个常数。</p>
+</blockquote>
+<h3 id="二、-瑕积分与无穷限积分的转换（倒数换元）"><a href="#二、-瑕积分与无穷限积分的转换（倒数换元）" class="headerlink" title="二、 瑕积分与无穷限积分的转换（倒数换元）"></a>二、 瑕积分与无穷限积分的转换（倒数换元）</h3><p><strong>瑕积分和无穷限积分在本质上可以相互过渡。</strong></p>
+<p>设 $a$为瑕点，对积分$\int_{a+\delta}^{b} f(x) , dx$ 作倒数换元：</p>
+<p>令 $t &#x3D; \frac{1}{x-a}$，则 $x &#x3D; \frac{1}{t} + a$，从而 $dx &#x3D; -\frac{1}{t^2} , dt$。</p>
+<p>变换积分上下限：</p>
+<ul>
+<li>当 $x &#x3D; b$ 时，$t &#x3D; \frac{1}{b-a}$- 当$x &#x3D; a+\delta$ 时，$t &#x3D; \frac{1}{\delta}$</li>
+</ul>
+<p>带入积分式中：</p>
+<p>
+$$
+\int_{a+\delta}^{b} f(x) \, dx = \int_{\frac{1}{\delta}}^{\frac{1}{b-a}} f\left(\frac{1}{t}+a\right) \left(-\frac{1}{t^2}\right) dt = \int_{\frac{1}{b-a}}^{\frac{1}{\delta}} f\left(\frac{1}{t}+a\right) \frac{1}{t^2} \, dt
+$$
+</p>
+
+<p>当 $\delta \to 0^+$时，上限$\frac{1}{\delta} \to +\infty$。于是瑕积分成功转化为一个<strong>无穷限广义积分</strong>：</p>
+<p>
+$$
+\int_{\frac{1}{b-a}}^{+\infty} f\left(\frac{1}{t}+a\right) \frac{1}{t^2} \, dt
+$$
+</p>
+
+<h3 id="三、-几何对称性与对偶性"><a href="#三、-几何对称性与对偶性" class="headerlink" title="三、 几何对称性与对偶性"></a>三、 几何对称性与对偶性</h3><p><img src="/images/Pasted_image_20260523125023.png"><br>函数 $y &#x3D; \frac{1}{x}$（或类似反比例曲线）在第一象限的图像，并将其沿着对角线 $y&#x3D;x$ 做区域划分：</p>
+<ul>
+<li><p><strong>区域 $I_1$</strong>：代表横向向右延伸到正无穷的区域，对应<strong>无穷限积分</strong>。</p>
+</li>
+<li><p><strong>区域 $I_2$</strong>：代表纵向向上延伸到正无穷的区域，对应<strong>瑕积分</strong>。</p>
+</li>
+</ul>
+<p>图形直观地揭示了：从图形面积的几何互换（或反函数、坐标轴对调）视角来看，无穷限积分与瑕积分只是同一个几何实体在不同轴向上的投影，这也解释了为什么两者的分析工具和结论具有高度的对称性。</p>
+<h3 id="q-瑕积分的敛散性"><a href="#q-瑕积分的敛散性" class="headerlink" title="$q$-瑕积分的敛散性"></a>$q$-瑕积分的敛散性</h3><p>黑板最右侧给出了瑕积分中最重要的基准判别式：分析积分 $\int_{0}^{1} \frac{1}{x^q} , dx \quad (q &gt; 0)$的收敛性（此时$x&#x3D;0$ 为瑕点）。</p>
+<p>先求邻域定积分：</p>
+<p>
+$$
+\int_{\delta}^{1} \frac{1}{x^q} \, dx = \left. \frac{1}{1-q} x^{1-q} \right|_{\delta}^{1} = \frac{1}{1-q} (1 - \delta^{1-q})
+$$
+</p>
+
+<p>当 $\delta \to 0^+$ 时，分类讨论极限情况：</p>
+<ol>
+<li><p><strong>当 $q \in (0, 1)$ 时</strong>：</p>
+<p> 由于 $1-q &gt; 0$，当 $\delta \to 0^+$ 时，$\delta^{1-q} \to 0$。</p>
+<p> 极限存在，值为 $\frac{1}{1-q}$。因此该瑕积分<strong>收敛</strong>。</p>
+</li>
+<li><p><strong>当 $q &gt; 1$ 时</strong>：</p>
+<p> 由于 $1-q &lt; 0$，可写为 $\frac{1}{\delta^{q-1}}$。当 $\delta \to 0^+$ 时，$\delta^{1-q} \to +\infty$。</p>
+<p> 极限为无穷大，因此该瑕积分<strong>发散</strong>。</p>
+</li>
+<li><p><strong>当 $q &#x3D; 1$ 时（单独讨论）</strong>：</p>
+</li>
+</ol>
+<p>
+$$
+\int_{\delta}^{1} \frac{1}{x} \, dx = \left. \ln(x) \right|_{\delta}^{1} = \ln(1) - \ln(\delta) = -\ln(\delta)
+$$
+</p>
+
+<p>当 $\delta \to 0^+$ 时，$-\ln(\delta) \to +\infty$。因此该瑕积分<strong>发散</strong>。</p>
+<h4 id="💡-核心总结与对比（避坑指南）"><a href="#💡-核心总结与对比（避坑指南）" class="headerlink" title="💡 核心总结与对比（避坑指南）"></a>💡 核心总结与对比（避坑指南）</h4><p>对比此前无穷限 $p$-积分的结论，我们可以发现一个非常优美的“相反”镜像：</p>
+<ul>
+<li><p><strong>无穷限积分 $\int_{1}^{+\infty} \frac{1}{x^p} , dx$</strong>：空间太大，需要幂次<strong>足够大 ($p&gt;1$)</strong> 才能把函数压得足够低从而收敛。</p>
+</li>
+<li><p><strong>瑕积分 $\int_{0}^{1} \frac{1}{x^q} , dx$</strong>：高度太高，需要幂次<strong>足够小 ($q&lt;1$)</strong> 才能控制住瑕点处的爆炸速度从而收敛。</p>
+</li>
+</ul>
+<h3 id="瑕点的其它情形与严格定义"><a href="#瑕点的其它情形与严格定义" class="headerlink" title="瑕点的其它情形与严格定义"></a>瑕点的其它情形与严格定义</h3><h4 id="1-右端点为瑕点"><a href="#1-右端点为瑕点" class="headerlink" title="1. 右端点为瑕点"></a>1. 右端点为瑕点</h4><p>同理，若函数 $f(x)$在半开区间$[a, b)$上有定义，且右端点$b$为$f(x)$ 的瑕点。则可定义瑕积分为左极限：</p>
+<p>
+$$
+\int_{a}^{b} f(x) \, dx = \lim_{\delta \to 0^+} \int_{a}^{b-\delta} f(x) \, dx
+$$
+</p>
+
+<h4 id="2-区间内部为瑕点"><a href="#2-区间内部为瑕点" class="headerlink" title="2. 区间内部为瑕点"></a>2. 区间内部为瑕点</h4><p>若瑕点 $c$位于积分区间$(a, b)$的<strong>内部</strong>（即$c \in (a, b)$为$f(x)$ 的瑕点），其收敛性定义要求两边<strong>独立收敛</strong>：</p>
+<p>
+$$
+\int_{a}^{b} f(x) \, dx \text{ 收敛} \Longleftrightarrow \int_{a}^{c} f(x) \, dx \text{ 收敛} \quad \text{且} \quad \int_{c}^{b} f(x) \, dx \text{ 收敛}
+$$
+</p>
+
+<p>按照极限的严格写法，两边需要使用<strong>独立</strong>的扰动量（$\delta$和$\varepsilon$）分别逼近 $c$：</p>
+<p>
+$$
+\int_{a}^{b} f(x) \, dx = \lim_{\delta \to 0^+} \int_{a}^{c-\delta} f(x) \, dx + \lim_{\varepsilon \to 0^+} \int_{c+\varepsilon}^{b} f(x) \, dx
+$$
+</p>
+
+<blockquote>
+<p><strong>图形直观</strong>：在内部瑕点 $c$处，函数曲线两侧同时向正负无穷延伸（类似于$\frac{1}{x}$在$0$附近）。严格定义要求挖掉$[c-\delta, c+\varepsilon]$这一段，并在$\delta, \varepsilon$各自独立趋于$0$ 时两侧面积均存在极限。</p>
+</blockquote>
+<h3 id="瑕积分的柯西主值（Cauchy-Principal-Value）"><a href="#瑕积分的柯西主值（Cauchy-Principal-Value）" class="headerlink" title="瑕积分的柯西主值（Cauchy Principal Value）"></a>瑕积分的柯西主值（Cauchy Principal Value）</h3><p>如果强行令两侧逼近瑕点的速度完全对称（即令 $\delta &#x3D; \varepsilon$），此时对应的极限被称为<strong>瑕积分的柯西主值</strong>，记作 $\text{P.V.}$：</p>
+<p>
+$$
+\text{P.V.} \int_{a}^{b} f(x) \, dx = \lim_{\delta \to 0^+} \left( \int_{a}^{c-\delta} f(x) \, dx + \int_{c+\delta}^{b} f(x) \, dx \right)
+$$
+</p>
+
+<h3 id="经典实例分析"><a href="#经典实例分析" class="headerlink" title="经典实例分析"></a>经典实例分析</h3><p>考虑 $\int_{0}^{1} \frac{1}{x} , dx$ 。</p>
+<h4 id="1-严格定义视角-1"><a href="#1-严格定义视角-1" class="headerlink" title="1. 严格定义视角"></a>1. 严格定义视角</h4><p>将积分以 $0$ 为界拆分为两部分：</p>
+<ul>
+<li><p>右侧：$\int_{0}^{1} \frac{1}{x} , dx$发散（根据$q$-瑕积分定理，$q&#x3D;1$ 发散）；</p>
+</li>
+<li><p>左侧：$\int_{-1}^{0} \frac{1}{x} , dx$ 亦发散。</p>
+</li>
+</ul>
+<p>由于两部分不能同时独立收敛，根据定义：</p>
+<p>
+$$
+\int_{-1}^{1} \frac{1}{x} \, dx \quad \mathbf{\text{发散}}
+$$
+</p>
+
+<h4 id="2-柯西主值视角-1"><a href="#2-柯西主值视角-1" class="headerlink" title="2. 柯西主值视角"></a>2. 柯西主值视角</h4><p>采用对称的边界 $\delta$同时逼近瑕点$0$：</p>
+<p>
+$$
+\lim_{\delta \to 0^+} \left( \int_{-1}^{-\delta} \frac{1}{x} \, dx + \int_{\delta}^{1} \frac{1}{x} \, dx \right)
+$$
+</p>
+
+<p>由于 $\frac{1}{x}$是奇函数，在对称挖空的区间$[-1, -s] \cup [s, 1]$上，正负面积完全抵消，积分值恒为$0$：</p>
+<p>
+$$
+\lim_{\delta \to 0^+} \left( \ln|-1| - \ln|-\delta| + \ln|1| - \ln|\delta| \right) = \lim_{\delta \to 0^+} (0 - \ln \delta + 0 + \ln \delta) = \lim_{\delta \to 0^+} 0 = 0
+$$
+</p>
+
+<p>由此得到：</p>
+<p>
+$$
+\text{P.V.} \int_{-1}^{1} \frac{1}{x} \, dx = 0
+$$
+</p>
+
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

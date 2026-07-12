@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>10.线性递推 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>10.线性递推</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/9
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%A6%BB%E6%95%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                离散
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #03a9f4">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>介绍如题的内容</p>
+<span id="more"></span>
+
+<hr>
+<p>毕业生的工作问题：</p>
+<p>工作总数固定是 $m$，假设在某个领域每年每个教授教出一个毕业生，除了第一年。假设教师们不会退休(永生)，什么时候$m$ 个职位会被填满？边界条件：一个教授在一开始被聘用。</p>
+<p>记第 $n$年有$f(n)$ 个教授，$f(0)&#x3D;0,f(1)&#x3D;1,f(2)&#x3D;1,f(3)&#x3D;2,f(4)&#x3D;3,f(5)&#x3D;5$ 。没错，是个斐波那契数列。$f(n)&#x3D;f(n-1)+f(n-2)$ 。</p>
+<h1 id="线性递推"><a href="#线性递推" class="headerlink" title="线性递推"></a>线性递推</h1><p>是指递推满足如下形式：</p>
+<p>
+$$
+f(n)=\sum_{i=1}^da_if(n-i)+g(n)
+$$
+</p>
+
+<p>其中 $a_i$ 是常数，$d$ 被称为阶数。$g(n)$为$0$ 时称为<strong>齐次线性递推</strong>。</p>
+<p>如何<strong>求解</strong>呢，我们猜测 $f(n)&#x3D;\alpha^n$，其中$\alpha$ 是常数。代入递推式(斐波那契)化简得到：$\alpha^2-\alpha-1&#x3D;0$，这就能解出 $\alpha$的两个根，那么就有$f(n)&#x3D;\alpha_1^n+\alpha_2^n$ 。实际上，利用线性，$\alpha_1^n,\alpha_2^n$的任意线性组合也是解。为了确定他们的线性组合，就需要边界条件。例如$f(0),f(1)$ ，如此解出两个系数。 那么回到开头的问题：</p>
+<p>
+$$
+\begin{aligned}
+&\frac{1}{\sqrt{5}} \left( \frac{1+\sqrt{5}}{2} \right)^n + \delta(n) \geq M \\
+\Rightarrow \quad &\left( \frac{1+\sqrt{5}}{2} \right)^n \geq \sqrt{5} (M - \delta(n)) \\
+&n \geq \frac{\log(\sqrt{5}(M - \delta(n)))}{\log(\frac{1+\sqrt{5}}{2})} = \Theta(\log M)
+\end{aligned}
+$$
+</p>
+
+<p>对于一般的<strong>齐次线性递推</strong>，带入幂次猜测就有：</p>
+<p>
+$$
+\alpha^d-a_1\alpha^{d-1}-...-a_d=0
+$$
+</p>
+
+<p>这被称为<strong>特征方程</strong>。</p>
+<p>如果没有重根，那么解的<strong>线性组合</strong>就是递推方程的解。具体可以通过边<strong>界条件</strong>确定系数。</p>
+<p>如果存在重根呢，我们不加证明地给出结果：</p>
+<p>假设 $\alpha$是特征方程的$r$重根，那么$\alpha^n, n\alpha^n,…,n^{r-1}\alpha^n$ 都是递推方程的根，我们将他们作为等效的根进行线性组合也就得到了递推方程的解。这与微分方程一致。</p>
+<p>Ex.考虑如下的递推：</p>
+<p>
+$$
+f(n)=2f(n-1)-f(n-2)
+$$
+</p>
+
+<p>那么特征方程就是</p>
+<p>
+$$
+\alpha^2-2\alpha+1=0
+$$
+</p>
+
+<p>$\alpha&#x3D;1$则是二重根，利用前面所说，根就由$\alpha^2,n\alpha^2$构成，也就是$c_1+c_2n$ 。 </p>
+<p>对于<strong>非齐次</strong>的情形，特征方程变成：</p>
+<p>
+$$
+f(n)-a_1f(n-1)-...-a_df(n-d)=g(n)
+$$
+</p>
+
+<p>$g(n)&#x3D;0$ 就回到了齐次的情形。与线性方程组&#x2F;微分方程类似，我们</p>
+<ul>
+<li><p>首先求解 $g(n)&#x3D;0$ 的情形得到通解</p>
+</li>
+<li><p>然后带入 $g(n)$ 找到特解</p>
+</li>
+<li><p>最后的结果形式由通解加特解确定，并通过边界条件确定系数。</p>
+</li>
+</ul>
+<p>Ex.考虑</p>
+<p>
+$$
+f(n)=4f(n-1)+3^n
+$$
+</p>
+
+<p>首先扔掉 $3^n$，那么可以一眼看出$\alpha&#x3D;4$，那么$c_14^n$ 就是通解 。<br>然后试着找特解，根据形式，我们猜 $f(n)&#x3D;c_23^n$，代入得到$c_2&#x3D;-3$，那么特解就是$-3^{n+1}$ 。<br>最后把通解加上特解得到，$f(n)&#x3D;c_14^n-3^{n+1}$ ，最后的系数则通过边界条件解出。</p>
+<p>关于猜特解，就通过 $g(n)$猜，多项式就猜多项式，指数就猜指数……如果，例如$g(n)&#x3D;2^n$猜测$a2^n$失败，就猜测$(an+b)2^n$还不行再猜$(an^2+bn+c)2^n$ ，往往能解决问题，</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

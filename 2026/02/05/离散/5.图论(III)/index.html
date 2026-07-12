@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>5.图论(III) | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>5.图论(III)</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/5
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%A6%BB%E6%95%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                离散
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00bcd4">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>尝试用英语记。后面有自己翻译一遍的，顺带复习（</p>
+<span id="more"></span>
+
+<h3 id="Euler-tour"><a href="#Euler-tour" class="headerlink" title="Euler tour"></a>Euler tour</h3><p>An Euler tour is a walk that traverses every edge exactly once and starts and finishes at the same vertex.</p>
+<h4 id="Theorem"><a href="#Theorem" class="headerlink" title="Theorem"></a>Theorem</h4><p>A connected graph has an Euler tour iff(if and only if) every vertex has even degree.</p>
+<blockquote>
+<p>[!Proof]<br><strong>Only if</strong>:<br>Assume connected graph $C_1&#x3D;(V,E)$has an Euler tour.$v_0-…-v_0$.Each time the tour visits a vertex$u$, it enters via one edge and leaves via another, contributing 2 to its degree. So the degree of any vertex $u$ is even.</p>
+<p><strong>if</strong>:<br>For $C_2&#x3D;(V,E)$ ，assume deg($v$) is even for all $v\in V$ :<br>Let $W$: $v_0-v_1-…-v_k$ be the longest walk that traverses no edge more than once. <strong>It is common to consider the shortest or longest path.</strong><br>We want to show:<br>①: All edges incident to $v_k$are used in$W$: if$v_k-u$is not in$W$,$v_0-v_1-…-v_k-u$ could be a longer path, contradictory.<br>②: $v_k&#x3D;v_0$, otherwise$v_k$has odd degree in$W$, according to ①,$v_k$has odd degree in$G$ as well. This is a contradiction. So the original proposition holds.<br>Suppose $W$is not an Euler tour,$G$is connected, so$\exists$edge is not in$W$but incident to some vertex in$W$. Let $u-v_i$be the edge. Then we start from$u$, walking through$u-v_i-…-v_i$.This is a longer path than$W$. This gives contradiction. So$W$ is an Euler tour.</p>
+</blockquote>
+<h3 id="Directed-Graph-digraphs"><a href="#Directed-Graph-digraphs" class="headerlink" title="Directed Graph(digraphs)"></a>Directed Graph(digraphs)</h3><p>Every edge has a direction.<br>$v_0 -&gt; v_1$, then$v_0$called tail,$v_1$ called head.<br><strong>indegree</strong> : the number of incoming edges<br><strong>outdegree</strong> : the number of outgoing edges</p>
+<h4 id="Theorem-1"><a href="#Theorem-1" class="headerlink" title="Theorem"></a>Theorem</h4><p>Let $G&#x3D;(V,E)$be an$n$-node graph with $V&#x3D;{v_1,…v_n}$. Let$A&#x3D;{a_{ij}}$denote the <strong>adjacency matrix</strong> for$G$. That is $a_{i,j} &#x3D; \begin{cases} 1 &amp; \text{if } v_i \to v_j \text{ is an edge} \ 0 &amp; \text{otherwise} \end{cases}$Let$P_{ij}^{(k)}$denotes the number of walks of length k from$v_i$to$v_j$. Then$A^k&#x3D;{P_{ij}^{(k)}}$ .</p>
+<blockquote>
+<p>[!Proof]<br>$a_{ij}^{(k)}$denote the$(i,j)$entry in$A^k$ .<br>Let $P(k)$be the statement that$A^k$correctly counts the walks of length$k$.</p>
+<p>Base case: $k&#x3D;1$,Edge$v_i-&gt;v_j$:$P_{ij}^{(k)}&#x3D;1&#x3D;a_{ij}^{(k)}$, this is true by definition. The case for non-adjacent vertices follows similarly. :<br>$P_{ij}^{(k)}&#x3D;0&#x3D;a_{ij}^{(k)}$.</p>
+<p>Inductive step: Assume $P(k)$<br>$P_{ij}^{(k+1)}&#x3D;\sum\limits_{h:v_h-&gt;v_j} P_{ih}^{(k)}&#x3D;\sum\limits_{h&#x3D;1}^n P_{ih}^{(k)}\cdot a_{hj} \stackrel{\text{P(k)}}{&#x3D;} \sum\limits_{h&#x3D;1}^n a_{ih}^{(k)}\cdot a_{hj}\stackrel{\text{by def}}{&#x3D;}a_{ij}^{(k+1)}$<strong>Def</strong> : A digraph$G&#x3D;(V,E)$is strongly connected if for all$u,v\in V$,$\exists$directed path from$u$to$v$in$G$. </p>
+</blockquote>
+<p><strong>Def</strong> : A directed graph is called a directed acyclic graph(DAG) if it does not contain any directed cycles</p>
+<h4 id="Tournament-graph"><a href="#Tournament-graph" class="headerlink" title="Tournament graph"></a>Tournament graph</h4><p>A vertex denotes a team. Between $u,v$, either$u$win or$v$ win. So there’s only one directed edge between them.</p>
+<p><strong>Def</strong> : A <strong>directed Hamiltonian path</strong> is directed walk that visits every vertex exactly once.</p>
+<h5 id="Theorem-2"><a href="#Theorem-2" class="headerlink" title="Theorem"></a>Theorem</h5><p>Every tournament graph contains a directed Hamiltonian path.</p>
+<blockquote>
+<p>[!Proof]<br>By induction on $n$.<br>$P(n) &#x3D; stating.$</p>
+<p>Base case: $n&#x3D;1$ , holds obviously.</p>
+<p>Inductive step: Assume $P(k$).<br>Take out one node $v$. This gives a tournament graph.<br>By $P(n)$,$v_1-&gt;v_2-&gt;…-&gt;v_n$ is a directed Hamiltonian path.<br>$Case1$:$v-&gt;v_1$ , obviously right.<br>$Case2$:$v_1 -&gt; v$, let$i$be the smallest number such that$v-&gt;v_i$, then$v_{i-1}-&gt;v$, so$v_{i-1}-&gt;v-&gt;v_i$ . Thus, the proposition holds.</p>
+</blockquote>
+<h4 id="A-king-chicken"><a href="#A-king-chicken" class="headerlink" title="A king chicken"></a>A king chicken</h4><p><strong>Def</strong> : Let vertex denote a chicken, if $u$pecks$v$then$u-&gt;v$or$u-&gt;…-&gt;v$ . If a chicken pecks everyone else, then it is a <strong>king chicken</strong>.</p>
+<h5 id="Theorem-3"><a href="#Theorem-3" class="headerlink" title="Theorem"></a>Theorem</h5><p>A chicken with highest outdegree is a king.</p>
+<blockquote>
+<p>[!Proof]<br>By contradiction.<br>Let $u$have highest outdegree. Suppose$u$ is not a king.<br>$\exists v$,$v-&gt;u$and$\forall w,  u-&gt;w -&gt;v$cannot be true. So if$u-&gt;w$then$v-&gt;w$. Thus,$outdegree(v) \ge outdegree(u)+1$,that’s a contradiction. So$U$ is a king.  </p>
+</blockquote>
+<hr>
+<p>复习 &amp; 手动翻译：</p>
+<h3 id="欧拉巡回"><a href="#欧拉巡回" class="headerlink" title="欧拉巡回"></a>欧拉巡回</h3><p>欧拉巡回是指遍历每条边恰好一次，并且起点终点相同的途径。</p>
+<h4 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h4><p>一个连通图有欧拉巡回当且仅当每个顶点的度为偶数。</p>
+<blockquote>
+<p>[!证明]<br><strong>当：</strong><br>假设连通图 $C_1&#x3D;(V,E)$有一条欧拉巡回$v_0-…-v_0$ , 因为每条边只遍历一次，$deg(u)&#x3D;$ $u$出现在巡回中的次数$\times 2$ 。因而每个顶点的度数都是偶数。</p>
+<p><strong>仅当：</strong><br>假设连通图 $C_1&#x3D;(V,E)$ 的每个顶点度数都是偶数：<br>设 $W$: $v_0-v_1-…-v_k$是$C_1$ 中最长的，遍历所有边至多一次的途径。图论中常常考虑最长、最短路径。<br>那么：<br>①：每条连着 $v_k$的边都在$W$ 中，否则加上那条边显然会构造出一条更长的路径。<br>②： $v_k&#x3D;v_0$，否则$v_k$的度数在$W$中为奇数，又因为①，所以其在$G$ 中也是奇数，从而矛盾。<br>这时，假设 $W$不是欧拉巡回，因为$G$是连通图，存在一条边不在$W$里但连到了$W$中的某个顶点（否则就可以分成两个无关图），假设这条边是$u-v_i$，那么从$u$开始走到$v_i$再走一圈$u-v_i-…-v_i$显然更长，矛盾。从而$W$ 就是一个欧拉巡回。</p>
+</blockquote>
+<h3 id="有向图"><a href="#有向图" class="headerlink" title="有向图"></a>有向图</h3><p>每条边都有一个方向。如果 $v_0 -&gt; v_1$那么称$v_0$是尾，$v_1$ 是头。<br><strong>入度</strong>是指指向顶点的边的数量，<strong>出度</strong>类似。</p>
+<h4 id="定理-1"><a href="#定理-1" class="headerlink" title="定理"></a>定理</h4><p>设 $G&#x3D;(V,E)$是一个$n$ 个节点的图，$V&#x3D;{v_1,…v_n}$。让矩阵$A&#x3D;{a_{ij}}$ 代表其<strong>邻接矩阵</strong>，则$a_{i,j} &#x3D; \begin{cases} 1 &amp; \text{if } v_i \to v_j \text{ is an edge} \ 0 &amp; \text{otherwise} \end{cases}$设$P_{ij}^{(k)}$表示长度为$k$的途径从$v_i$到$v_j$. 那么$A^k&#x3D;{P_{ij}^{(k)}}$ .</p>
+<blockquote>
+<p>[!证明]<br>$a_{ij}^{(k)}$表示$A^k$ $(i,j)$ 处的元素  .<br>$P(k)$ 即命题</p>
+<p>初始状况: $k&#x3D;1$,如果有$v_i-&gt;v_j$:$P_{ij}^{(k)}&#x3D;1&#x3D;a_{ij}^{(k)}$, 这根据定义就是对的，没有边也类似 :<br>$P_{ij}^{(k)}&#x3D;0&#x3D;a_{ij}^{(k)}$.</p>
+<p>归纳步骤：假设 $P(k)$<br>$P_{ij}^{(k+1)}&#x3D;\sum\limits_{h:v_h-&gt;v_j} P_{ih}^{(k)}&#x3D;\sum\limits_{h&#x3D;1}^n P_{ih}^{(k)}\cdot a_{hj} \stackrel{\text{P(k)}}{&#x3D;} \sum\limits_{h&#x3D;1}^n a_{ih}^{(k)}\cdot a_{hj}\stackrel{\text{by def}}{&#x3D;}a_{ij}^{(k+1)}$<strong>定义</strong> ： 一个有向图$G&#x3D;(V,E)$ 是强连通的，如果任意两个点之间都存在一条有向路径。<br><strong>定义</strong> ： 有向无环图是没有环的有向图（</p>
+</blockquote>
+<h3 id="竞赛图"><a href="#竞赛图" class="headerlink" title="竞赛图"></a>竞赛图</h3><p>顶点代表参赛选手&#x2F;队伍。每对选手只有一个赢，我们用有向箭头表示。即每对顶点之间都有一条有向箭头。</p>
+<p><strong>定义</strong> ： 有向哈密顿路径是指一条恰好经过每个顶点一次的有向路径。</p>
+<h4 id="定理-2"><a href="#定理-2" class="headerlink" title="定理"></a>定理</h4><p>每个竞赛图都有有向哈密顿路径。</p>
+<blockquote>
+<p>[!证明]<br>利用对 $n$ 的归纳法。<br>$P(n)$ 即命题。</p>
+<p>初始情况：$n&#x3D;1$ ，显然成立。</p>
+<p>归纳步骤：假设 $P(k)$ 成立。<br>拿出一个顶点 $v$，这仍然是一个竞赛图，利用归纳假设，可知有 $v_1-&gt;v_2-&gt;…-&gt;v_n$ 这样一条有向哈密顿路径。<br>① $v$指向$v_1$ ，显然成立。<br>② 否则，设 $i$是最小的编号，使得$v$指向$v_i$，那么$v_{i-1}-&gt;v$，$v_{i-1}-&gt;v-&gt;v_i$ ，插进去就好了。<br>综上原命题成立。</p>
+</blockquote>
+<h3 id="鸡王"><a href="#鸡王" class="headerlink" title="鸡王"></a>鸡王</h3><p><strong>定义</strong> ： 如果一个顶点代表一只🐔，$u$如果可以啄$v$那么就是说有$u-&gt;v$，或者$u-&gt;…-&gt;v$ 。如果一只鸡可以啄所有其他鸡，那他就是鸡王。</p>
+<h4 id="定理-3"><a href="#定理-3" class="headerlink" title="定理"></a>定理</h4><p>出度最高的鸡是鸡王。</p>
+<blockquote>
+<p>[!证明]<br>用反证法。<br>设 $u$ 是出度最高的鸡，假设他不是鸡王。<br>那么存在 $v$ ，$v-&gt;u$而且不存在$u-&gt;w-&gt;v$，那么如果$u-&gt;w$就有$v-&gt;w$，这样就说明$v$的出度至少比$u$多$1$，这就矛盾了，所以$u$ 就是鸡王。</p>
+</blockquote>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

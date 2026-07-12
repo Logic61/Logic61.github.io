@@ -1,0 +1,485 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>数学随笔10 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>数学随笔10</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/1/25
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%95%B0%E5%AD%A6%E9%9A%8F%E7%AC%94/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                数学随笔
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ff7d73">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>据Gemini说，这种方法叫稠密性论证。</p>
+<span id="more"></span>
+
+<p>核心范式：</p>
+<blockquote>
+<p>「先在一个‘好’的稠密子集上证明 → 再用连续性&#x2F;极限推广到一般情形」</p>
+</blockquote>
+<h2 id="可逆方阵性质推广至不可逆方阵"><a href="#可逆方阵性质推广至不可逆方阵" class="headerlink" title="可逆方阵性质推广至不可逆方阵"></a>可逆方阵性质推广至不可逆方阵</h2><p>首先，对于任意方阵 $A$，我们考虑$A+\lambda I$，由于$det(A+\lambda I)$是$\lambda$至多$n$次的多项式，所以至多有$n$个零点，也就是说，至多存在$n$个$\lambda$使得$det(A+\lambda I)$不可逆，从而有无数个$\lambda$使得其可逆，缩小之，可取最小的根$\lambda_m$，只要$\delta &lt; \lambda_m$，则有$\forall x &lt; \delta,A+xI$ 可逆。</p>
+<p>假设所有的可逆方阵都拥有性质 $\mathcal{A}$，如果$\mathcal{A}$在矩阵空间连续，那么对于一个不可逆方阵，我们考虑加上一个小扰动$xI$让其变得可逆，然后令$x \to 0$，就得到其亦满足性质 $\mathcal{A}$ 。<br>但对于类似秩的性质，这种手法便难以成功，该性质不连续，可能出现跃变。</p>
+<h2 id="可对角化矩阵性质推广至不可对角化矩阵"><a href="#可对角化矩阵性质推广至不可对角化矩阵" class="headerlink" title="可对角化矩阵性质推广至不可对角化矩阵"></a>可对角化矩阵性质推广至不可对角化矩阵</h2><p>稠密性引理 (Density Lemma)：</p>
+<p>在矩阵空间 $\mathbb{C}^{n \times n}$中，<strong>特征值互异的矩阵（可对角化矩阵）</strong> 构成的集合$D$ 是稠密的。</p>
+<p>这意味着对于任意矩阵 $A$，都存在序列 ${A_k} \subset D$ 使得：</p>
+<p>
+$$
+\lim_{k \to \infty} A_k = A
+$$
+</p>
+
+<p>引理证明如下<br><strong>等价命题：</strong></p>
+<p>设 $\mathcal{D} &#x3D; { M \in \mathbb{C}^{n \times n} \mid M \text{ 拥有 } n \text{ 个互异的特征值} }$。则对于任意 $A \in \mathbb{C}^{n \times n}$，在其任意邻域内均存在 $A_\epsilon \in \mathcal{D}$。</p>
+<hr>
+<p><strong>证明：</strong></p>
+<p><strong>1. 构造判别式多项式</strong></p>
+<p>对于任意矩阵 $M$，其特征多项式为 $p_M(\lambda) &#x3D; \det(\lambda I - M)$。定义 $M$ 的<strong>判别式 (Discriminant)</strong> 为：</p>
+<p>
+$$
+\Delta(M) = \prod_{1 \le i < j \le n} (\lambda_i - \lambda_j)^2
+$$
+</p>
+
+<p>其中 $\lambda_1, \dots, \lambda_n$是$M$ 的特征值。</p>
+<ul>
+<li><p>根据对称多项式基本定理，$\Delta(M)$可以表示为$p_M(\lambda)$ 系数的多项式。</p>
+</li>
+<li><p>由于 $p_M(\lambda)$的系数是$M$中元素$m_{ij}$的多项式，故$\Delta(M)$是一个关于$m_{ij}$ 的 <strong>复多项式函数</strong>：$\Delta: \mathbb{C}^{n \times n} \to \mathbb{C}$。</p>
+</li>
+</ul>
+<p><strong>2. 判定准则</strong></p>
+<p>由判别式的定义可知：</p>
+<p>
+$$
+M \in \mathcal{D} \iff \Delta(M) \neq 0
+$$
+</p>
+
+<p>反之，$M$具有重根当且仅当$\Delta(M) &#x3D; 0$。</p>
+<p><strong>3. 构造扰动直线</strong></p>
+<p>取一个特征值互异的对角矩阵 $E &#x3D; \text{diag}(1, 2, \dots, n) \in \mathcal{D}$。对于给定的矩阵 $A$，定义复变量 $\epsilon$ 的多项式函数：</p>
+<p>
+$$
+g(\epsilon) = \Delta(A + \epsilon E)
+$$
+</p>
+
+<ul>
+<li><p>当 $\epsilon$足够大时，矩阵$A&#x2F;\epsilon + E$趋近于$E$。由于 $E$的特征值互异，由特征值的连续性可知，存在某个$\epsilon_0$使得$A + \epsilon_0 E \in \mathcal{D}$。</p>
+</li>
+<li><p>因此，$g(\epsilon_0) \neq 0$，这意味着 $g(\epsilon)$ 是一个<strong>非恒为零</strong>的多项式。</p>
+</li>
+</ul>
+<p><strong>4. 孤立零点与稠密性</strong></p>
+<p>根据复分析或代数学性质，非恒为零的多项式 $g(\epsilon)$在复平面$\mathbb{C}$ 上只有有限个孤立零点。</p>
+<ul>
+<li><p>因此，在 $\epsilon &#x3D; 0$的任意开邻域$U &#x3D; { \epsilon \mid |\epsilon| &lt; \delta }$内，必然存在无穷多个$\epsilon^<em>$使得$g(\epsilon^</em>) \neq 0$。</p>
+</li>
+<li><p>取序列 $\epsilon_k \to 0$且满足$g(\epsilon_k) \neq 0$，则构造序列 $A_k &#x3D; A + \epsilon_k E$。</p>
+</li>
+</ul>
+<p><strong>结论：</strong></p>
+<p>由于 $g(\epsilon_k) \neq 0 \implies A_k \in \mathcal{D}$，且 $\lim_{k \to \infty} A_k &#x3D; A$，证得 $\mathcal{D}$在$\mathbb{C}^{n \times n}$中稠密。由于$\mathcal{D}$ 中的矩阵必可对角化，故可对角化矩阵集合亦稠密。</p>
+<p><strong>证毕。</strong></p>
+<h3 id="证明：Cayley-Hamilton-定理（连续性方法）"><a href="#证明：Cayley-Hamilton-定理（连续性方法）" class="headerlink" title="证明：Cayley-Hamilton 定理（连续性方法）"></a><strong>证明：Cayley-Hamilton 定理（连续性方法）</strong></h3><p><strong>定理陈述：</strong></p>
+<p>设 $A \in \mathbb{C}^{n \times n}$，其特征多项式为 $p_A(\lambda) &#x3D; \det(\lambda I - A)$，则有 $p_A(A) &#x3D; O$。</p>
+<hr>
+<p>**1. 根据稠密性原理，对于任意矩阵 $A$，都存在序列 ${A_k} \subset D$ 使得：</p>
+<p>
+$$
+\lim_{k \to \infty} A_k = A
+$$
+</p>
+
+<p><strong>2. 针对 $A \in D$ 的证明</strong></p>
+<p>若 $A$特征值互异，则$A$可对角化为$A &#x3D; P \Lambda P^{-1}$，其中 $\Lambda &#x3D; \text{diag}(\lambda_1, \dots, \lambda_n)$。</p>
+<p>
+$$
+p_A(A) = P p_A(\Lambda) P^{-1} = P \text{diag}(p_A(\lambda_1), \dots, p_A(\lambda_n)) P^{-1}
+$$
+</p>
+
+<p>由于 $\lambda_i$是$p_A(\lambda)$的根，故$p_A(\lambda_i) &#x3D; 0$，从而 $p_A(A) &#x3D; O$。</p>
+<p><strong>3. 连续性扩张 (Continuity Argument)</strong></p>
+<p>定义映射 $f: \mathbb{C}^{n \times n} \to \mathbb{C}^{n \times n}$ 为：</p>
+<p>
+$$
+f(M) = p_M(M)
+$$
+</p>
+
+<ul>
+<li><p><strong>连续性：</strong> $p_M(\lambda)$的系数是$M$元素的行列式多项式，而$M$ 的幂次也是连续的。因此，$f(M)$是关于$M$ 元素的<strong>连续函数</strong>。</p>
+</li>
+<li><p><strong>极限推导：</strong></p>
+</li>
+</ul>
+<p>
+$$
+f(A) = f(\lim_{k \to \infty} A_k) = \lim_{k \to \infty} f(A_k)
+$$
+</p>
+
+<p>由于 $A_k \in D$，根据步骤 2 得到 $f(A_k) &#x3D; O$。</p>
+<p>
+$$
+\therefore f(A) = \lim_{k \to \infty} O = O
+$$
+</p>
+
+<p><strong>证毕。</strong></p>
+<hr>
+<h3 id="💡-笔记小贴士："><a href="#💡-笔记小贴士：" class="headerlink" title="💡 笔记小贴士："></a><strong>💡 笔记小贴士：</strong></h3><ul>
+<li><strong>为什么要在 $\mathbb{C}$而不是$\mathbb{R}$中证明？</strong> 因为在实数域$\mathbb{R}$ 上，特征值可能不存在（变成复数），会导致“稠密性”讨论变复杂。在复数域下，任何矩阵都至少有特征值，处理起来最自然。</li>
+</ul>
+<h2 id="正定矩阵性质推广到半正定矩阵"><a href="#正定矩阵性质推广到半正定矩阵" class="headerlink" title="正定矩阵性质推广到半正定矩阵"></a>正定矩阵性质推广到半正定矩阵</h2><p>完全类似上方，具体可参照 [[数学随笔9#（半）正定矩阵的行列式约束]]，对正定矩阵证明后，半正定矩阵自然也满足该性质。</p>
+<h2 id="秩一扰动"><a href="#秩一扰动" class="headerlink" title="秩一扰动"></a>秩一扰动</h2><p>类似上方，我们将矩阵 $A$加上一个秩一矩阵$uv^T$即有$A+uv^T$。<br>参考[[数学随笔2#Woodbury 恒等式]]，我们有</p>
+<p>
+$$
+\det(A + uv^T) = (1 + v^T A^{-1} u) \det(A)
+$$
+</p>
+
+<p>以及</p>
+<p>
+$$
+(A + uv^T)^{-1} = A^{-1} - \frac{A^{-1}uv^T A^{-1}}{1 + v^T A^{-1}u}
+$$
+</p>
+
+<p>我忘了在哪见到的，也忘了有什么应用，但都是扰动，就扔进来吧（</p>
+<h2 id="柯西交错定理-Cauchy’s-Interlacing-Theorem"><a href="#柯西交错定理-Cauchy’s-Interlacing-Theorem" class="headerlink" title="柯西交错定理 (Cauchy’s Interlacing Theorem)"></a><strong>柯西交错定理 (Cauchy’s Interlacing Theorem)</strong></h2><p>即 $n-1$阶主子阵$A$的特征值$\mu_j$严格交错地分布在$n$阶对称矩阵$S$的特征值$\lambda_i$ 之间。</p>
+<hr>
+<h3 id="1-构造矩阵与特征多项式"><a href="#1-构造矩阵与特征多项式" class="headerlink" title="1. 构造矩阵与特征多项式"></a>1. 构造矩阵与特征多项式</h3><p>设 $S$是$n$ 阶对称矩阵，将其写成分块形式：</p>
+<p>
+$$
+S = \begin{bmatrix} A & \mathbf{b} \\ \mathbf{b}^T & c \end{bmatrix}
+$$
+</p>
+
+<p>其中 $A$是$(n-1) \times (n-1)$ 的对称主子阵，$c$ 是标量，$\mathbf{b}$是$n-1$维列向量。$S$的特征多项式定义为$P_S(\lambda) &#x3D; \det(S - \lambda I)$。利用分块矩阵的行列式性质（Schur补）：</p>
+<p>
+$$
+P_S(\lambda) = \det(A - \lambda I) \cdot \left( (c - \lambda) - \mathbf{b}^T (A - \lambda I)^{-1} \mathbf{b} \right)
+$$
+</p>
+
+<h3 id="2-利用谱分解展开二次型"><a href="#2-利用谱分解展开二次型" class="headerlink" title="2. 利用谱分解展开二次型"></a>2. 利用谱分解展开二次型</h3><p>设 $A$的特征值为$\mu_1 \leq \mu_2 \leq \dots \leq \mu_{n-1}$，对应的单位正交特征向量为 $v_1, v_2, \dots, v_{n-1}$。</p>
+<p>如前所述，将 $(A - \lambda I)^{-1}$ 进行谱展开：</p>
+<p>
+$$
+\mathbf{b}^T (A - \lambda I)^{-1} \mathbf{b} = \sum_{j=1}^{n-1} \frac{(v_j^T \mathbf{b})^2}{\mu_j - \lambda}
+$$
+</p>
+
+<p>令 $\beta_j^2 &#x3D; (v_j^T \mathbf{b})^2$（这是非负常数），代入原多项式：</p>
+<p>
+$$
+P_S(\lambda) = P_A(\lambda) \left( c - \lambda - \sum_{j=1}^{n-1} \frac{\beta_j^2}{\mu_j - \lambda} \right)
+$$
+</p>
+
+<h3 id="3-分析符号变化（核心证明）"><a href="#3-分析符号变化（核心证明）" class="headerlink" title="3. 分析符号变化（核心证明）"></a>3. 分析符号变化（核心证明）</h3><p>为了简化讨论，假设 $\beta_j \neq 0$且$\mu_j$ 各不相同（一般情况可通过极限逼近说明）。</p>
+<p>考虑函数 $f(\lambda) &#x3D; c - \lambda - \sum_{j&#x3D;1}^{n-1} \frac{\beta_j^2}{\mu_j - \lambda}$。</p>
+<ul>
+<li><p><strong>极点处的跳变</strong>：当 $\lambda$从左侧趋近于$\mu_i$ 时（$\lambda \to \mu_i^-$），项 $\frac{\beta_i^2}{\mu_i - \lambda} \to +\infty$，因此 $f(\lambda) \to -\infty$。</p>
+</li>
+<li><p><strong>极点处的跳变</strong>：当 $\lambda$从右侧趋近于$\mu_i$ 时（$\lambda \to \mu_i^+$），项 $\frac{\beta_i^2}{\mu_i - \lambda} \to -\infty$，因此 $f(\lambda) \to +\infty$。</p>
+</li>
+</ul>
+<p>在每一个开区间 $(\mu_i, \mu_{i+1})$ 内：</p>
+<ol>
+<li><p>$f(\lambda)$从$+\infty$连续变化到$-\infty$。</p>
+</li>
+<li><p>根据<strong>连续性</strong>，$f(\lambda)$ 在此区间内必然至少有一个根。</p>
+</li>
+<li><p>因为 $P_S(\lambda) &#x3D; P_A(\lambda) f(\lambda)$，且在该区间内 $P_A(\lambda) \neq 0$，所以 $f(\lambda)$的根就是$P_S(\lambda)$的根，即$S$的特征值$\lambda_{i+1}$。</p>
+</li>
+</ol>
+<h3 id="4-边界分析"><a href="#4-边界分析" class="headerlink" title="4. 边界分析"></a>4. 边界分析</h3><ul>
+<li><p>当 $\lambda \to -\infty$ 时，$f(\lambda) \to +\infty$，而在第一个极点左侧 $f(\mu_1^-) \to -\infty$，所以在 $(-\infty, \mu_1)$必有一个根$\lambda_1$。</p>
+</li>
+<li><p>当 $\lambda \to +\infty$ 时，$f(\lambda) \to -\infty$，而在最后一个极点右侧 $f(\mu_{n-1}^+) \to +\infty$，所以在 $(\mu_{n-1}, +\infty)$必有一个根$\lambda_n$。</p>
+</li>
+</ul>
+<h3 id="5-结论"><a href="#5-结论" class="headerlink" title="5. 结论"></a>5. 结论</h3><p>综合以上所有区间的零点分布，我们得到：</p>
+<p>
+$$
+\lambda_1 < \mu_1 < \lambda_2 < \mu_2 < \dots < \mu_{n-1} < \lambda_n
+$$
+</p>
+
+<p>这完整证明了 $A$的特征值严格交错地分布在$S$ 的特征值之间。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

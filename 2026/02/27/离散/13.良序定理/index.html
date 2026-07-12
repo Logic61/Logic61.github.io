@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>13.良序定理 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>13.良序定理</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/27
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%A6%BB%E6%95%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                离散
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ff7d73">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>这里开始是从 $mit$的$note$ 整的，之前是视频课。</p>
+<span id="more"></span>
+
+<p><strong>良序集</strong> 是指集合的任意元素都能比较大小，且任意子集都有最小元素的集合。<br><strong>良序定理(Well Ordering Principle,WOP)</strong>： 任何自然数集合都包含一个最小元素。</p>
+<h1 id="证明范式"><a href="#证明范式" class="headerlink" title="证明范式"></a>证明范式</h1><h4 id="1-验证边界后，考虑集合-C-包含不符合命题的-n-2-利用良序定理，存在最小元素-m"><a href="#1-验证边界后，考虑集合-C-包含不符合命题的-n-2-利用良序定理，存在最小元素-m" class="headerlink" title="1. 验证边界后，考虑集合 $C$包含不符合命题的$n$#### 2. 利用良序定理，存在最小元素$m$"></a>1. 验证边界后，考虑集合 $C$包含不符合命题的$n$#### 2. 利用良序定理，存在最小元素$m$</h4><h4 id="3-利用命题，得到更小元素或得到矛盾"><a href="#3-利用命题，得到更小元素或得到矛盾" class="headerlink" title="3. 利用命题，得到更小元素或得到矛盾"></a>3. 利用命题，得到更小元素或得到矛盾</h4><h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><h3 id="连续自然数求和"><a href="#连续自然数求和" class="headerlink" title="连续自然数求和"></a>连续自然数求和</h3><p>
+$$
+1+2+...+n=\frac{n(n+1)}{2}
+$$
+</p>
+
+<p>显然 $n&#x3D;1$时成立。假设集合$C$包含所有不满足上述的$n$。假设$C$非空，根据$WOP$ ，$C$存在最小元素$m&gt;1$。那么对于所有$x&lt;m$命题都成立，那么就有$m-1$ 满足命题，那么</p>
+<p>
+$$
+1+2+...+m - 1=\frac{(m-1)m}{2}
+$$
+</p>
+
+<p>两侧同时加上 $m$就得到对$m$命题也成立，矛盾，从而$C$ 实际上为空集，命题成立。</p>
+<h3 id="正有理数都能写成最简分数"><a href="#正有理数都能写成最简分数" class="headerlink" title="正有理数都能写成最简分数"></a>正有理数都能写成最简分数</h3><p>证明任何正有理数 $q$都能写成最简分数（即$q &#x3D; \frac{m}{n}$，且 $\gcd(m, n) &#x3D; 1$），我们可以这样做：</p>
+<ol>
+<li><p><strong>构造整数集合：</strong></p>
+<p> 设 $S$是所有可以作为$q$ 的分母的正整数组成的集合。</p>
+</li>
+</ol>
+<p>
+$$
+S = \{ n \in \mathbb{Z}^+ \mid \exists m \in \mathbb{Z}^+, q = \frac{m}{n} \}
+$$
+</p>
+
+<ol start="2">
+<li><p><strong>应用良序定理：</strong></p>
+<p> 因为 $q$是有理数，所以$S$ 一定是非空的。根据<strong>正整数集的良序定理</strong>，$S$内部一定存在一个<strong>最小的正整数</strong>，记为$n_0$。</p>
+</li>
+<li><p><strong>对应分子：</strong></p>
+<p> 既然 $n_0 \in S$，那么一定存在对应的正整数 $m_0$，使得 $q &#x3D; \frac{m_0}{n_0}$。</p>
+</li>
+<li><p><strong>证明最简性（反证法）：</strong></p>
+<p> 假设 $\gcd(m_0, n_0) &#x3D; d &gt; 1$。</p>
+<p> 那么我们可以同时除以 $d$，得到 $m’ &#x3D; \frac{m_0}{d}$和$n’ &#x3D; \frac{n_0}{d}$。</p>
+<p> 此时 $q &#x3D; \frac{m’}{n’}$，且 $n’$ 也是一个正整数。</p>
+<p> 由于 $d &gt; 1$，显然有 <strong>$n’ &lt; n_0$</strong>。</p>
+</li>
+<li><p><strong>得出矛盾：</strong></p>
+<p> 这说明 $n’$也应该在集合$S$中，但我们之前假设$n_0$是$S$ 中最小的元素。产生矛盾！</p>
+<p> 因此，最初的假设 $\gcd(m_0, n_0) &gt; 1$不成立，即$q &#x3D; \frac{m_0}{n_0}$ 已经是最简分数。</p>
+</li>
+</ol>
+<h3 id="方程无正整数解"><a href="#方程无正整数解" class="headerlink" title="方程无正整数解"></a>方程无正整数解</h3><p>
+$$
+4a^3+2b^3=c^3 没有正整数解。
+$$
+</p>
+
+<p>设集合 $S &#x3D; {a \in \mathbb{Z}^+ \mid \exists b, c \in \mathbb{Z}^+, 4a^3 + 2b^3 &#x3D; c^3}$。 根据<strong>良序定理</strong>，由于 $S$是正整数集的非空子集，它一定包含一个<strong>最小元素</strong>，记为$a_0$。相应的解记为 $(a_0, b_0, c_0)$。<br>观察等式：</p>
+<p>
+$$
+4a_0^3 + 2b_0^3 = c_0^3
+$$
+</p>
+
+<ul>
+<li><p><strong>第一步：关于 $c_0$</strong></p>
+<p>  左边 $4a_0^3$和$2b_0^3$都是偶数，所以$c_0^3$ 必须是偶数。</p>
+<p>  这意味着 $c_0$本身必须是偶数。设$c_0 &#x3D; 2C$，其中 $C \in \mathbb{Z}^+$。</p>
+<p>  代入原式：$4a_0^3 + 2b_0^3 &#x3D; (2C)^3 &#x3D; 8C^3$。</p>
+<p>  两边同时除以 2，得到：<strong>$2a_0^3 + b_0^3 &#x3D; 4C^3$</strong>。</p>
+</li>
+<li><p><strong>第二步：关于 $b_0$</strong></p>
+<p>  在新的等式中，$2a_0^3$和$4C^3$都是偶数，所以$b_0^3$ 必须是偶数。</p>
+<p>  这意味着 $b_0$是偶数。设$b_0 &#x3D; 2B$，其中 $B \in \mathbb{Z}^+$。</p>
+<p>  代入上式：$2a_0^3 + (2B)^3 &#x3D; 4C^3 \Rightarrow 2a_0^3 + 8B^3 &#x3D; 4C^3$。</p>
+<p>  两边同时除以 2，得到：<strong>$a_0^3 + 4B^3 &#x3D; 2C^3$</strong>。</p>
+</li>
+<li><p><strong>第三步：关于 $a_0$</strong></p>
+<p>  现在，$4B^3$和$2C^3$都是偶数，所以$a_0^3$ 必须是偶数。</p>
+<p>  这意味着 $a_0$是偶数。设$a_0 &#x3D; 2A$，其中 $A \in \mathbb{Z}^+$。</p>
+<p>  代入得到：$(2A)^3 + 4B^3 &#x3D; 2C^3 \Rightarrow 8A^3 + 4B^3 &#x3D; 2C^3$。</p>
+<p>  两边最后一次除以 2，得到：<strong>$4A^3 + 2B^3 &#x3D; C^3$</strong>。</p>
+</li>
+</ul>
+<hr>
+<p><strong>导出矛盾</strong>：</p>
+<p>观察最后得到的等式 $4A^3 + 2B^3 &#x3D; C^3$，这说明 $(A, B, C)$ 也是该方程的一组正整数解。</p>
+<p>这意味着 $A \in S$。</p>
+<p>但是，根据前面的构造，$a_0 &#x3D; 2A$，由于 $A$ 是正整数，显然有：</p>
+<p>
+$$
+A < a_0
+$$
+</p>
+
+<p>这与我们最初的假设——<strong>$a_0$是集合$S$ 中的最小元素</strong>——直接矛盾。</p>
+<p><strong>结论</strong></p>
+<p>由于假设“存在解”会导致逻辑矛盾（永远能找到更小的解），根据反证法，该方程在正整数范围内<strong>没有解</strong>。</p>
+<p>实际上，我们可以发现这个结果可以推广一下，多几个未知数也行，例如</p>
+<p>
+$$
+8w^3 + 4x^3 + 2y^3 = z^3
+$$
+</p>
+
+<p>也可以同样地证明无解。以此类推，有：</p>
+<p>
+$$
+2^nx_n^3+...+2x_1^3=y^3
+$$
+</p>
+
+<p>无解，类似可以证明。当然这也不局限是 $2$，可以推广到素数$p$ 和任意次方：</p>
+<p>
+$$
+p^{n-1}x_{n-1}^d + p^{n-2}x_{n-2}^d + \dots + px_1^d = x_0^d
+$$
+</p>
+
+<p>也可以完全类似地证明。</p>
+<h3 id="离散值的不等式"><a href="#离散值的不等式" class="headerlink" title="离散值的不等式"></a>离散值的不等式</h3><p>
+$$
+n\leq 3^{n/3}
+$$
+</p>
+
+<p>对正整数成立。<br>首先对于 $n\leq 4$是显然的，设不满足的正整数构成非空集合$C$，根据$WOP$其有最小元素$m\ge 5$。那么则有$m-1 \le 3^{(m-1)&#x2F;3}$，两边同乘$3^{1&#x2F;3}$ 就有：</p>
+<p>
+$$
+3^{1/3}(m-1)\le 3^{m/3}
+$$
+</p>
+
+<p>那么只需要说明 $3^{1&#x2F;3}(m-1) \ge m$ 就能得到矛盾，移项得到：</p>
+<p>
+$$
+m\ge \frac{3^{1/3}}{3^{1/3}-1}
+$$
+</p>
+
+<p>计算得到右侧为 $3.26$显然符合$m$的取值，从而$m\le 3^{1&#x2F;3}(m-1)\le 3^{m&#x2F;3}$ 矛盾，故原不等式成立。</p>
+<h3 id="有限非空实数集有最小元素"><a href="#有限非空实数集有最小元素" class="headerlink" title="有限非空实数集有最小元素"></a>有限非空实数集有最小元素</h3><p>我们需要一点巧妙的转换，因为良序原理通常是针对<strong>自然数</strong>（$0, 1, 2, \dots$）定义的。</p>
+<p><strong>第一步：反证法假设</strong></p>
+<p>假设存在某些有限非空的实数集<strong>没有</strong>最小元素。</p>
+<p><strong>第二步：构建自然数集合</strong></p>
+<p>我们将所有“不具备最小元素”的有限实数集的**大小（元素个数）**组成一个集合 $C$。</p>
+<p>
+$$
+C = \{ n \in \mathbb{Z}^+ \mid \text{存在一个大小为 } n \text{ 的实数集没有最小元素} \}
+$$
+</p>
+
+<p><strong>第三步：应用良序原理</strong></p>
+<p>根据我们的假设，$C$ 是一个非空的自然数集合。根据<strong>良序原理</strong>，$C$必须有一个最小元素，我们称之为$k$。</p>
+<p>这意味着：</p>
+<ul>
+<li><p>大小为 $k$的某个实数集$S &#x3D; {a_1, a_2, \dots, a_k}$ 没有最小元素。</p>
+</li>
+<li><p>任何大小小于 $k$的非空实数集<strong>都一定</strong>有最小元素（因为$k$是$C$ 中最小的）。</p>
+</li>
+</ul>
+<p><strong>第四步：寻找矛盾</strong></p>
+<ul>
+<li><p>显然 $k &gt; 1$，因为只有一个元素的集合 ${a_1}$，其最小元素就是它本身。</p>
+</li>
+<li><p>考虑集合 $S$。我们可以把它拆分为两个子集：$S’ &#x3D; {a_1, \dots, a_{k-1}}$和${a_k}$。</p>
+</li>
+<li><p>因为 $S’$的大小是$k-1$，小于 $k$，所以根据定义 $S’$<strong>一定有一个最小元素</strong>，设为$m’$。</p>
+</li>
+<li><p>现在，整个集合 $S$的最小元素只需要在$m’$和$a_k$ 之间比较：</p>
+<ul>
+<li><p>如果 $m’ \le a_k$，则 $m’$是$S$ 的最小元素。</p>
+</li>
+<li><p>如果 $a_k &lt; m’$，则 $a_k$是$S$ 的最小元素。</p>
+</li>
+</ul>
+</li>
+<li><p>无论哪种情况，$S$ 都有最小元素。</p>
+</li>
+</ul>
+<p><strong>结论：</strong></p>
+<p>这与“$S$ 没有最小元素”的假设产生矛盾。因此，我们的假设错误，所有的有限非空实数集都必然拥有最小元素。</p>
+<p><strong>虽然实数本身不是良序的（比如开区间 $(0, 1)$ 没有最小值），但集合的“大小”（元素的个数）是自然数，是服从良序原理的。</strong> 我们通过对集合规模进行数学归纳（或良序分析）证明了结论。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

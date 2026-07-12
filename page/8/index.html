@@ -1,0 +1,2930 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/background.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Logic の 博客</h1>
+                <h3></h3>
+                <h5>一小块凝固的时间</h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2026/05/06/%E8%A5%BF%E6%96%B9%E6%96%87%E5%8C%96%E9%80%89%E8%AF%BB/Free%20Will%20as%20the%20Transcendence%20of%20Calculation/">
+        <h2 class="post-title">Free Will as the Transcendence of Calculation</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E8%A5%BF%E6%96%B9%E6%96%87%E5%8C%96%E9%80%89%E8%AF%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                西方文化选读
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/5/6
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>As the thinking is what matters, I reserve the original raw thinking after the formal essay.</p>
+<hr>
+<h2 id="Trimmed-Version"><a href="#Trimmed-Version" class="headerlink" title="Trimmed Version"></a>Trimmed Version</h2><p>Before delving into the materials we learnt this term, freedom seemed a transparent concept: the simple ability to choose what one desires. Yet, a shadow of doubt inevitably emerges: Is what we “want” truly our own, or is it merely a precarious balance between inner cravings and outer forces? When we talk about free will, what we are actually discussing?</p>
+<p>History and myth offer a gallery of forces that shape human choice—oracles, fate, political power, and biological instinct. On the surface, every choice Oedipus made seemed to spring from his own volition. No one forced him to flee Corinth; no one commanded him to strike the stranger on the road. Yet, from a higher perspective, his every step was shadowed by the oracle. His “free” decision to leave his home was, paradoxically, the very mechanism that delivered him to his tragic fate. Here, freedom appears as an illusion: a man walking a path he believes he is paving, only to find the stones were laid long before his birth. We find this unsettling. We feel the suffocating power of fate. Was Oedipus a free man, or was even his very temperament—his “hot temper” and “wisdom”—merely a set of pre-installed parameters leading to a predetermined end?</p>
+<p>To escape this deterministic trap, we might look to Socrates. Facing the Athenian court, he was presented with a clear calculation: to persuade the citizens and live, or to deliver his <em>Apology</em>, refuse escape, and accept the hemlock. He chose the latter. Here, we find a different flavor of choice. In the tiger’s world, a hungry predator might forgo a hunt to avoid injury—we classify this not as free will, but as survival instinct. It is a calculation of risks. But Socrates’ choice was incommensurable with such biological or social logic. He weighed his life against his pursuit of truth and found the latter heavier. This choice feels “free” precisely because it breaks the standard mold of self-preservation.</p>
+<p>From these examples, we may derive a clearer, albeit indirect, description: <strong>Free will is the choice made beyond calculation.</strong> “Calculation” here refers to objective reasoning—the machine-like processing of variables to find the “optimal” path. If you are told it will rain, you bring an umbrella; if a tiger is too dangerous, you retreat. These are predictable, almost algorithmic responses. If every person under the same conditions would act identically, can we truly say they are acting freely? Or are they simply executing a program?</p>
+<p>I am inclined to view free will through the lens of probability. Let $P_i$represent the likelihood of a certain action being taken by an individual within a population. The more “calculable” an action is—the more it aligns with standard survival, social norms, or logical optimization—the higher its$P_i$ becomes. In this light, free will shines most brightly in the “statistical outlier.” It is not that free will is merely “acting differently” for the sake of it, but rather that it manifests when an individual transcends the “standard way” of thinking.</p>
+<p>Oedipus’s flight from Corinth was a calculated escape from a curse—a high-probability reaction to fear. But the moment Oedipus blinded himself, he stepped out of the oracle’s shadow and into the light of his own agency. There was no “reason” for such agony, no calculation that would recommend self-mutilation. It was a leap. Similarly, Socrates’ acceptance of death was a rejection of the “optimal” biological program. These great, “weird” moments in history are what we instinctively recognize as the peak of human freedom.</p>
+<p>Thus, we arrive at a conclusion that bridges the ancient and the modern:</p>
+<p>Free will is the moment when a person refuses to become a machine that merely executes a program. It is a leap toward a purpose higher than one’s own calculations—even if that leap brings worldly harm. In that moment of illogical, uncalculable sacrifice, the soul renders itself no longer predictable or exhaustible by any probabilistic model. It is the glorious anomaly that proves we are more than the sum of our inputs</p>
+<hr>
+<h2 id="The-row-thinking-my-CoT"><a href="#The-row-thinking-my-CoT" class="headerlink" title="The row thinking (my CoT)"></a>The row thinking (my CoT)</h2><p>Before reading relevant materials, freedom seemed easy to understand, meaning one may choose what he wants to do. But is what we ‘want’ really the very thing we want? Or is it just a balance between our actual desire and outer forces? When we talk about free will, what we are actually discussing?</p>
+<p>There are tons of matters that might influence one’s choice–oracles, fate, prophecy, political powers, to name a few. When we make decision, those factors will inevitably contribute to it. Every choice Oedipus made seemed totally out of his own free will, but it was obvious that the oracle could be the decisive factor for him to leave the place he grew up. After that, his characteristics naturally rendered him the final tragic ending. No one told him that he should leave, or he should kill the people he meet on the road. From this perspective, every choice was made by himself. But we notice that, oracle made him leave, and his hot temper killed his father. Then his wisdom helped him become the king, marrying his mother. Except the first step, everything seemed natural. But from a higher perspective, everything seemed had already been settled down by fate. It felt unsettling; we sensed the overwhelming power of fate. Did Oedipus really have his own free will? Or even what he shall think had already been settled by fate?</p>
+<p>This way, we fell into something that could not discussed at all. We could say everything was settled down, but we could not know it before it has happend. We could say every thought that emerges in our minds was set by a mysterious force. However, these could not be verified, so it has no room for discussion. Then how do we think over free will? What is free will? A hungry tiger chooses not to hunt a bison because it may get hurt. Is this choice out of free will? An inner voice tells me not. I tend to classfiy it as out of survival intuition. Then what is free will? We may recall Socrates. Among those ancient figures, the way Socrates acted might suit ‘free will’ the best in my mind. Then we could delve into it to see why. He was faced with two choices: to persuade the citizens and be freed, or to deliver the Apology, to refuse his students’ help and accepting his death. He chose the latter. Is there anything that will contribute to the former or latter? Of course. His life and his pursuit stood for the former and the latter respectively. Between them, Socrates chose one. And I find this suits ‘free will’. Then why Oedipus seemed not so ‘free’? If there was not such a oracle, maybe he would not leave Corinth. And leaving Corinth caused the following bad outcomes. But in the end, Oedipus blinded himself. This action seemed out of free will. So, from these examples, we may find a clearer meaning for free will.</p>
+<p>Free will is the choice one makes beyond calculation and outer factors, the choice made out of ‘no reasons’. Here, reasons are not including inner factors like faith, characteristics, otherwise there is no free will at all. Calculation means objective reasoning, like if you fight with a tiger, you are more likely to be killed. For Socrates, his pursuits weighed heavier than his life. Under such situation, different people could have different answers, and none of answers could be judged ‘wrong’, so it is beyond calculation. For Oedipus, his leaving was out of the oracle, while he blinded himself out of his own choice. This seemed fit pretty well. Then how about Aeneas? Aeneas was described faithful. Though Mercuid sent Jupiter’s messenges to him, he thought of his son, thought of his kingdom. So actually I tend to say that he made this choice out of free will. Love for Dido and mission he carried, he chose the latter. But this could be more complicated, as gods’ attitude weighed a lot for that period of time. From another perspective, however, we may find that, if he chose to live with Dido, would Jupiter allow all these to happen? So this way, Aeneas seemed not that free. And we shall see that, for most circumstances, there is not pure free will. In situations like what Aeneas or Socrates faced, free will could also be like a certain distribution of weigh for several factors. For Socrates, pursuits weighed more than life. For Aeneas, his faith weighed more than his love. But we could see that such free will is different from the way Oedipus blinded himself. This difference should be natural. We are not always choose one from A and B. We might suddenly want to run for a while or jump in the muddy puddles. In different situations, free will has different forms. This sounds natural. But also naturally, we want a final answer that might describe free will in a sentence instead of discussing it in different situations.</p>
+<p>It could be hard to give the very sentence. But from above, we may give a indirect description. If someone acts out of free will, different person might act differently under the same conditions. In other words, free will links to specific individual. This aligned with my intuition. However, in this way, every action we mentioned above becomes out of free will. But as I have mentioned, by intuition, Oedipus left Corinth was not out of free will, while the description I just gave seemed quite reasonable. Luckily, this is just a logical problem. If someone acts out of free will, then… So this is not a sufficient condition but a necessary condition. If different person might act differently under the same conditions, we could not say firmly that this action is out of free will. But why not? It’s true that someone might stay in Corinth, ignoring the oracle. This way it seems free. So the intuition actually built on the ground that the oracle meant a lot for people then. In this way, running away from his father and mother could be easily calculated. Or we could take it in another perspective. We could almost every action partly out of free will, also its opposite. So we assign our attention on the ratio of free will. If weather prediciton goes that it will rain tomorrow, you then cancel your trip to climb a mountain, of course you may go ahead with an umbrella, but most people might choose to cancel. The same as why we might focus more on the ratio of free will. Under every situations, every choice could be possible. So we could say every action is free, but this is useless. The only way to get something is to focus on the partition. Idealy, we might assume every action has a posibility to be made among all people. We call it $P_i$, namely the posibility i happens. Then we want to know how free an action is. The less$P_i$ is, the more likely you made this decision out of free will. I am not saying that free will means acting differently. It is hard to judge whether something could be ‘calculated’ and act following a standard way without thinking, just like a machine. And the likelihood people will do might reveal whether it could be ‘calculated’ to some extent as we are all human, we have similar features. I have to say that this relation could be false, as it was created by a sudden whim. What I really want to show is free will shines as it goes beyond a standard but machine-like way.</p>
+<p>The moment Oedipus blinded himself, or the moment Socrates embraced his death… these profound moments feel almost unbelievable, and we intuitively recognize them as acts of free will. They could have chosen comfort; they could have chosen to live. Yet, they pursued something higher, taking a ‘weird’ or illogical step that led to personal disaster but resulted in a pure, shining soul.</p>
+<p>Thus, we could give a conclusion:</p>
+<p>Free will is the moment when a person refuses to become a machine that merely executes a program, and instead takes a leap toward a purpose higher than his own calculations — even if that leap brings him harm in the world, it renders his soul no longer predictable or exhaustible by any probabilistic model.</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/05/06/%E8%A5%BF%E6%96%B9%E6%96%87%E5%8C%96%E9%80%89%E8%AF%BB/Free%20Will%20as%20the%20Transcendence%20of%20Calculation/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/05/06/%E9%AB%98%E6%95%B0/10.%E7%BA%A7%E6%95%B0%20I%20%E2%80%94%E2%80%94%20%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%AD%A3%E9%A1%B9%E7%BA%A7%E6%95%B0/">
+        <h2 class="post-title">10.级数 I —— 定义与正项级数</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/5/6
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>我们熟悉的</p>
+<p>
+$$
+\sum_{k=0}^\infty q^k=\frac{1}{1-q},|q|<1
+$$
+</p>
+
+<p>有一个名字叫做所谓几何级数。级数是什么呢，实际上就是无穷多个数的求和。那么这样的求和是不是有限的值呢？自然就会想到收敛这个概念。我们定义</p>
+<p>
+$$
+S_n=\sum_{k=1}^na_k
+$$
+</p>
+
+<p>为部分和，即截取前 $n$项的和。那么$S_n$ 是否收敛也即级数是否收敛。</p>
+<p>对于和的极限，我们想到柯西收敛定理，那么级数收敛的充要条件也就是：</p>
+<p>
+$$
+\forall \epsilon>0,\exists N,x>N时,\forall p,|\sum_{k=x}^{x+p}a_k|<\epsilon
+$$
+</p>
+
+<p>换句话说，也就是较大下标的部分和之差是否收敛。极端一点，考虑两个相邻的部分和的差，也就是通项，那么就得到通项要趋于 $0$ 级数才可能收敛。</p>
+<p>判断收敛实际上回到了放缩，阶估算那些东西。</p>
+<p>例如，我们考虑 $1&#x2F;n^2$的求和，利用裂项就得到，从$n$开始的一个求和小于$\frac{1}{n}$ ，收敛，从而级数收敛。</p>
+<p>相应的，对于 $1&#x2F;n$，我们可以往小了放，放到$p$个$\frac{1}{n+p}$，那么选取$p&gt;n$就得到部分和$&gt;\frac{1}{2}$ ，从而级数不收敛。</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><h3 id="收敛级数的线性组合也收敛"><a href="#收敛级数的线性组合也收敛" class="headerlink" title="收敛级数的线性组合也收敛"></a>收敛级数的线性组合也收敛</h3><p>利用柯西收敛定理以及极限的线性性质可知，且线性组合的极限也就是对应的极限的线性组合。</p>
+<h3 id="改变有限项不影响收敛"><a href="#改变有限项不影响收敛" class="headerlink" title="改变有限项不影响收敛"></a>改变有限项不影响收敛</h3><p>收敛的级数改变有限项仍然收敛，但是和会改变。</p>
+<p>和显然会改变，利用柯西收敛定理，我们跳过有限项的最后一项也就能找到 $N$ 。</p>
+<h3 id="收敛级数任意加括号形成的级数也收敛"><a href="#收敛级数任意加括号形成的级数也收敛" class="headerlink" title="收敛级数任意加括号形成的级数也收敛"></a>收敛级数任意加括号形成的级数也收敛</h3><p>设级数 $\sum_{n&#x3D;1}^{\infty} u_n$收敛于和$S$，其部分和序列为 ${S_n}$。将其项任意加括号后所成的级数为：</p>
+<p>
+$$
+(u_1 + \cdots + u_{i_1}) + (u_{i_1+1} + \cdots + u_{i_2}) + \cdots + (u_{i_{n-1}+1} + \cdots + u_{i_n}) + \cdots = \sum_{k=1}^{\infty} v_k \quad (10.1)
+$$
+</p>
+
+<p>其中 $v_k &#x3D; u_{i_{k-1}+1} + \cdots + u_{i_k}$，并规定 $i_0 &#x3D; 0$。设级数 (10.1) 的部分和序列为 ${\sigma_n}$。不难看出有关系式：</p>
+<p>
+$$
+\sigma_n = S_{i_n}
+$$
+</p>
+
+<p>即 ${\sigma_n}$是${S_n}$的一个子序列。因而若原级数收敛于$S$时，也即$S_n \to S (n \to \infty)$，就有 $\sigma_n \to S (n \to \infty)$。证毕。</p>
+<p>但要注意反向并不成立：若对一个级数中的项添加括号后收敛，该级数本身未必收敛。一个最明显的例子是 $\sum_{n&#x3D;0}^{\infty} (-1)^n$。它是发散的，但适当添加括号后可以变成收敛的。</p>
+<p>这看起来像废话，有什么用呢？实际上它在反证法中是有一定作用的。</p>
+<p>例如</p>
+<h4 id="证明：调和级数-sum-n-1-infty-frac-1-n-发散"><a href="#证明：调和级数-sum-n-1-infty-frac-1-n-发散" class="headerlink" title="证明：调和级数 $\sum_{n&#x3D;1}^{\infty} \frac{1}{n}$ 发散"></a>证明：调和级数 $\sum_{n&#x3D;1}^{\infty} \frac{1}{n}$ 发散</h4><p><strong>例：</strong> 考察级数 $\sum_{n&#x3D;1}^{\infty} \frac{1}{n}$，其中通项 $a_n &#x3D; \frac{1}{n}$。</p>
+<p><strong>证：</strong> （反证法）</p>
+<p>假设该级数<strong>收敛</strong>，并设其和为 $S$。</p>
+<ol>
+<li><p><strong>构造新级数 $b_n$：</strong></p>
+<p> 我们将原级数的项每两项两项结合，令：</p>
+</li>
+</ol>
+<p>
+$$
+b_n = a_{2n-1} + a_{2n} = \frac{1}{2n-1} + \frac{1}{2n}
+$$
+</p>
+
+<p>由于 $\frac{1}{2n-1} &gt; \frac{1}{2n}$，显然有：</p>
+<p>
+$$
+b_n = \frac{1}{2n-1} + \frac{1}{2n} > \frac{1}{2n} + \frac{1}{2n} = \frac{1}{n} = a_n
+$$
+</p>
+
+<p>即 $b_n &gt; a_n$。</p>
+<ol start="2">
+<li><p><strong>定义部分和：</strong></p>
+<ul>
+<li><p>记级数 $\sum b_k$的部分和为$B_n &#x3D; \sum_{k&#x3D;1}^{n} b_k$。</p>
+</li>
+<li><p>记级数 $\sum a_k$的部分和为$A_n &#x3D; \sum_{k&#x3D;1}^{n} a_k$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>推导矛盾：</strong></p>
+<p> 根据级数的结合律，如果 $\sum a_n$收敛于$S$，那么对其任意加括号后的级数 $\sum b_n$也必然收敛于同一个和$S$。这意味着：</p>
+<p> 当 $n \to \infty$ 时，$B_n \to S$且$A_n \to S$。</p>
+<p> 然而，考察两者的差值：</p>
+</li>
+</ol>
+<p>
+$$
+B_n - A_n = \sum_{k=1}^{n} (b_k - a_k)
+$$
+</p>
+
+<p>由于每一个 $b_k - a_k &gt; 0$，该差值序列是单调递增的，因此：</p>
+<p>
+$$
+B_n - A_n \geq B_1 - A_1 = b_1 - a_1 = \left(\frac{1}{1} + \frac{1}{2}\right) - 1 = \frac{1}{2}
+$$
+</p>
+
+<p>如果令 $n \to \infty$，左边将趋于 $S - S &#x3D; 0$，由此得到：</p>
+<p>
+$$
+0 \geq \frac{1}{2}
+$$
+</p>
+
+<p>这显然是一个<strong>矛盾</strong>。</p>
+<p><strong>结论：</strong> 原假设不成立，调和级数 $\sum_{n&#x3D;1}^{\infty} \frac{1}{n}$ 发散。</p>
+<h1 id="正项级数的收敛判别法"><a href="#正项级数的收敛判别法" class="headerlink" title="正项级数的收敛判别法"></a>正项级数的收敛判别法</h1><p>如果级数通项都是正的，那么利用单调有界定理，我们只需要说明 $S_n$ 有一致上界就知道级数收敛。</p>
+<p>此外，有个自然的想法，如果通项每一项都大，那求和自然应该大。</p>
+<h2 id="比较判别法"><a href="#比较判别法" class="headerlink" title="比较判别法"></a>比较判别法</h2><p>设两个正项级数 $\sum_{n&#x3D;1}^{\infty} u_n$与$\sum_{n&#x3D;1}^{\infty} v_n$的一般项满足$u_n \leqslant v_n \quad (n&#x3D;1, 2, \cdots)$，则：</p>
+<ol>
+<li><p>若级数 $\sum_{n&#x3D;1}^{\infty} v_n$<strong>收敛</strong>，则级数$\sum_{n&#x3D;1}^{\infty} u_n$ 也收敛；</p>
+</li>
+<li><p>若级数 $\sum_{n&#x3D;1}^{\infty} u_n$<strong>发散</strong>，则级数$\sum_{n&#x3D;1}^{\infty} v_n$ 也发散。</p>
+</li>
+</ol>
+<hr>
+<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p><strong>对于结论 (1)：</strong></p>
+<ul>
+<li><p>设 $\sum_{n&#x3D;1}^{\infty} u_n$与$\sum_{n&#x3D;1}^{\infty} v_n$的部分和序列分别为${S_n}$与${T_n}$。</p>
+</li>
+<li><p>由假设条件 $u_n \leqslant v_n$ 可得：$0 \leqslant S_n \leqslant T_n \quad (n&#x3D;1, 2, \cdots)$。</p>
+</li>
+<li><p>设 $\sum_{n&#x3D;1}^{\infty} v_n$收敛，根据单调有界原理（命题 1），其部分和序列${T_n}$ 必有上界。</p>
+</li>
+<li><p>即存在常数 $M$，使得 $T_n \leqslant M \quad (n&#x3D;1, 2, \cdots)$。</p>
+</li>
+<li><p>由不等式传递性得 $S_n \leqslant M \quad (n&#x3D;1, 2, \cdots)$，说明 ${S_n}$ 也有上界。</p>
+</li>
+<li><p>再次引用单调有界原理，得知级数 $\sum_{n&#x3D;1}^{\infty} u_n$ 收敛。</p>
+</li>
+</ul>
+<p><strong>对于结论 (2)：</strong></p>
+<ul>
+<li><p>采用<strong>反证法</strong>。</p>
+</li>
+<li><p>假设 $\sum_{n&#x3D;1}^{\infty} v_n$收敛，则由结论 (1) 推得$\sum_{n&#x3D;1}^{\infty} u_n$ 也收敛。</p>
+</li>
+<li><p>这与已知条件“$\sum_{n&#x3D;1}^{\infty} u_n$ 发散”相矛盾。</p>
+</li>
+<li><p>因此，$\sum_{n&#x3D;1}^{\infty} v_n$ 必发散。证毕。</p>
+</li>
+</ul>
+<hr>
+<h3 id="推论（更一般的形式）"><a href="#推论（更一般的形式）" class="headerlink" title="推论（更一般的形式）"></a>推论（更一般的形式）</h3><p>注意到删去级数开头的有限项不影响级数的收敛性，可得如下推论：</p>
+<p>若存在常数 $N(\geqslant 1)$及$c(&gt;0)$，使得当 $n \geqslant N$ 时，有：</p>
+<p>
+$$
+0 \leqslant u_n \leqslant c v_n
+$$
+</p>
+
+<p>则：</p>
+<ul>
+<li><p>当 $\sum_{n&#x3D;1}^{\infty} v_n$ 收敛时，$\sum_{n&#x3D;1}^{\infty} u_n$ 也收敛；</p>
+</li>
+<li><p>当 $\sum_{n&#x3D;1}^{\infty} u_n$ 发散时，$\sum_{n&#x3D;1}^{\infty} v_n$ 也发散。</p>
+</li>
+</ul>
+<p>这有点像夹逼定理。</p>
+<h4 id="p-级数的敛散性"><a href="#p-级数的敛散性" class="headerlink" title="p-级数的敛散性"></a>p-级数的敛散性</h4><p>例如我们知道调和级数 $a_n&#x3D;1&#x2F;n$发散，就可以考虑所谓 p-级数$1&#x2F;n^p$的求和。那么$0&lt;p&lt;1$ 时，就知道也发散。</p>
+<p>设 $p &gt; 1$。下面给出一个不用积分判别的，非常神秘的做法。用积分判别十分显然，就不说了。积分判别将在后面提到。</p>
+<h5 id="1-利用微分中值定理建立不等式"><a href="#1-利用微分中值定理建立不等式" class="headerlink" title="1. 利用微分中值定理建立不等式"></a>1. 利用微分中值定理建立不等式</h5><p>考虑函数 $f(x) &#x3D; \frac{1}{x^{p-1}}$在区间$[n-1, n]$ 上的增量。根据<strong>拉格朗日中值定理</strong>：</p>
+<p>
+$$
+\frac{1}{(n-1)^{p-1}} - \frac{1}{n^{p-1}} = (p-1) \frac{1}{(n-\eta)^p}, \quad \eta \in (0, 1)
+$$
+</p>
+
+<p>由于 $n-\eta &lt; n$，则 $\frac{1}{(n-\eta)^p} &gt; \frac{1}{n^p}$。</p>
+<p>由此得到关键不等式：</p>
+<p>
+$$
+\frac{1}{(n-1)^{p-1}} - \frac{1}{n^{p-1}} \geq (p-1) \frac{1}{n^p}
+$$
+</p>
+
+<p>整理得：</p>
+<p>
+$$
+\frac{1}{n^p} \leq \frac{1}{p-1} \left( \frac{1}{(n-1)^{p-1}} - \frac{1}{n^{p-1}} \right)
+$$
+</p>
+
+<hr>
+<h5 id="2-估计部分和-S-N-设级数的部分和为-S-N-sum-n-1-N-frac-1-n-p-。我们将第一项（-n-1-）单独提出，对剩余项使用上述不等式："><a href="#2-估计部分和-S-N-设级数的部分和为-S-N-sum-n-1-N-frac-1-n-p-。我们将第一项（-n-1-）单独提出，对剩余项使用上述不等式：" class="headerlink" title="2. 估计部分和 $S_N$设级数的部分和为$S_N &#x3D; \sum_{n&#x3D;1}^{N} \frac{1}{n^p}$。我们将第一项（$n&#x3D;1$）单独提出，对剩余项使用上述不等式："></a>2. 估计部分和 $S_N$设级数的部分和为$S_N &#x3D; \sum_{n&#x3D;1}^{N} \frac{1}{n^p}$。我们将第一项（$n&#x3D;1$）单独提出，对剩余项使用上述不等式：</h5><p>
+$$
+\begin{aligned} S_N &= 1 + \sum_{n=2}^{N} \frac{1}{n^p} \\ &\leq 1 + \frac{1}{p-1} \sum_{n=2}^{N} \left( \frac{1}{(n-1)^{p-1}} - \frac{1}{n^{p-1}} \right) \end{aligned}
+$$
+</p>
+
+<p>这是一个<strong>裂项相消级数</strong>，求和后中间项全部消去：</p>
+<p>
+$$
+\begin{aligned} S_N &\leq 1 + \frac{1}{p-1} \left( 1 - \frac{1}{N^{p-1}} \right) \\ &< 1 + \frac{1}{p-1} \quad (\text{因为 } \frac{1}{N^{p-1}} > 0) \\ &= \frac{p-1+1}{p-1} = \frac{p}{p-1} \end{aligned}
+$$
+</p>
+
+<hr>
+<h5 id="3-结论"><a href="#3-结论" class="headerlink" title="3. 结论"></a>3. 结论</h5><p>由上述推导可知，部分和序列 ${S_N}$是<strong>单调递增</strong>且<strong>上有界</strong>的（上界为$\frac{p}{p-1}$）。</p>
+<p>根据<strong>单调有界原理</strong>：</p>
+<p>
+$$
+\Rightarrow \sum_{n=1}^{\infty} \frac{1}{n^p} \text{ 收敛}
+$$
+</p>
+
+<p>技巧性就比较强。</p>
+<h2 id="比较判别法的极限形式"><a href="#比较判别法的极限形式" class="headerlink" title="比较判别法的极限形式"></a>比较判别法的极限形式</h2><p>设有三个正项级数 $\sum_{n&#x3D;1}^{\infty} u_n$与$\sum_{n&#x3D;1}^{\infty} v_n$，且有：</p>
+<p>
+$$
+\lim_{n \to \infty} \frac{u_n}{v_n} = h
+$$
+</p>
+
+<p>其中 $h$为有限数或$+\infty$。则有下述结论：</p>
+<ol>
+<li><p><strong>当 $0 \leqslant h &lt; +\infty$时</strong>：若级数$\sum_{n&#x3D;1}^{\infty} v_n$收敛，则级数$\sum_{n&#x3D;1}^{\infty} u_n$ 也收敛；</p>
+</li>
+<li><p><strong>当 $0 &lt; h \leqslant +\infty$时</strong>：若级数$\sum_{n&#x3D;1}^{\infty} v_n$发散，则级数$\sum_{n&#x3D;1}^{\infty} u_n$ 也发散。</p>
+</li>
+</ol>
+<p><strong>特别地</strong>：当 $0 &lt; h &lt; +\infty$ 时，两个无穷级数<strong>同时收敛或同时发散</strong>。<br>这实际上就是在做阶估算。同阶同敛散。</p>
+<hr>
+<h3 id="证明-1"><a href="#证明-1" class="headerlink" title="证明"></a>证明</h3><p><strong>结论 (1) 的证明：</strong></p>
+<ul>
+<li>当 $0 \leqslant h &lt; +\infty$时，根据极限的定义，存在一个自然数$N$，使得当 $n &gt; N$ 时：</li>
+</ul>
+<p>
+$$
+\frac{u_n}{v_n} < h + 1
+$$
+</p>
+
+<ul>
+<li><p>也即 $u_n &lt; (h + 1)v_n$。</p>
+</li>
+<li><p>由比较判别法（基本形式）可知，从 $\sum_{n&#x3D;1}^{\infty} v_n$的收敛性可推出$\sum_{n&#x3D;1}^{\infty} u_n$ 的收敛性。</p>
+</li>
+</ul>
+<p><strong>结论 (2) 的证明：</strong></p>
+<ul>
+<li>当 $0 &lt; h \leqslant +\infty$ 时，我们考虑比值的倒数：</li>
+</ul>
+<p>
+$$
+\lim_{n \to \infty} \frac{v_n}{u_n} = \frac{1}{h}
+$$
+</p>
+
+<ul>
+<li><p>约定当 $h &#x3D; +\infty$ 时，$\frac{1}{h} &#x3D; 0$。</p>
+</li>
+<li><p>同理，对于充分大的 $n$，$v_n &lt; \left(\frac{1}{h} + 1\right)u_n$。</p>
+</li>
+<li><p>这证明了结论 (2)。证毕。</p>
+</li>
+</ul>
+<h2 id="达朗贝尔判别法-Ratio-Test"><a href="#达朗贝尔判别法-Ratio-Test" class="headerlink" title="达朗贝尔判别法 (Ratio Test)"></a>达朗贝尔判别法 (Ratio Test)</h2><p>一般地，我们如何运用等比级数去判断一个级数的敛散性呢，就用到所谓达朗贝尔判别法。</p>
+<p><strong>已知条件：</strong></p>
+<p>给定正项级数 $\sum u_n$，其中 $u_n &gt; 0$。</p>
+<p>设相邻两项比值的极限为：</p>
+<p>
+$$
+\lim_{n \to +\infty} \frac{u_{n+1}}{u_n} = l
+$$
+</p>
+
+<p><strong>判定结论：</strong></p>
+<ol>
+<li><p>若 $l &lt; 1$，级数<strong>收敛</strong>；</p>
+</li>
+<li><p>若 $l &gt; 1$（或 $l &#x3D; +\infty$），级数<strong>发散</strong>；</p>
+</li>
+<li><p>若 $l &#x3D; 1$，判别法失效，级数可能收敛也可能发散，需另行判定。</p>
+</li>
+</ol>
+<hr>
+<h3 id="证明逻辑：为什么-l-1-时级数收敛"><a href="#证明逻辑：为什么-l-1-时级数收敛" class="headerlink" title="证明逻辑：为什么 $l &lt; 1$ 时级数收敛"></a>证明逻辑：为什么 $l &lt; 1$ 时级数收敛</h3><p><strong>证明思路：</strong> 利用比较判别法，将原级数与收敛的几何级数（等比级数）进行比较。</p>
+<ol>
+<li><p><strong>寻找公比 $q$：</strong></p>
+<p> 由于 $\lim_{n \to +\infty} \frac{u_{n+1}}{u_n} &#x3D; l &lt; 1$，根据极限的性质，一定存在一个常数 $q$，使得 $l &lt; q &lt; 1$。</p>
+</li>
+<li><p><strong>确定范围：</strong></p>
+<p> 存在充分大的正整数 $N$，使得当 $n \geq N$时，恒有$\frac{u_{n+1}}{u_n} &lt; q$。</p>
+</li>
+<li><p><strong>逐项放大：</strong></p>
+<ul>
+<li><p>$u_{N+1} &lt; q u_N$-$u_{N+2} &lt; q u_{N+1} &lt; q^2 u_N$</p>
+</li>
+<li><p>推广得：$u_n &lt; q^{n-N} u_N &#x3D; q^n \cdot \frac{u_N}{q^N}$</p>
+</li>
+</ul>
+</li>
+<li><p><strong>得出结论：</strong></p>
+<p> 记常数 $C_N &#x3D; \frac{u_N}{q^N}$，则对于所有 $n \geq N$，有 $u_n &lt; C_N q^n$。</p>
+<p> 因为 $0 &lt; q &lt; 1$，几何级数 $\sum q^n$是收敛的。由<strong>比较判别法</strong>可知，级数$\sum u_n$ 必定收敛。</p>
+</li>
+</ol>
+<p>对于另一侧，改个符号即可同理推出。</p>
+<hr>
+<h3 id="案例：为什么-l-1-时判定失效？"><a href="#案例：为什么-l-1-时判定失效？" class="headerlink" title="案例：为什么 $l &#x3D; 1$ 时判定失效？"></a>案例：为什么 $l &#x3D; 1$ 时判定失效？</h3><p>给出两个 $l&#x3D;1$ 但敛散性截然不同的例子：</p>
+<ul>
+<li><p><strong>例子 1（发散）：</strong> 调和级数 $\sum \frac{1}{n}$ $\frac{u_{n+1}}{u_n} &#x3D; \frac{n}{n+1} \to 1$，但该级数<strong>发散</strong>。</p>
+</li>
+<li><p><strong>例子 2（收敛）：</strong> $p&#x3D;2$的$p$-级数 $\sum \frac{1}{n^2}$ $\frac{u_{n+1}}{u_n} &#x3D; \left(\frac{n}{n+1}\right)^2 \to 1$，但该级数<strong>收敛</strong>。</p>
+</li>
+</ul>
+<h2 id="柯西判别法"><a href="#柯西判别法" class="headerlink" title="柯西判别法"></a>柯西判别法</h2><p>观察上面，我们发现我们实际上通过做比值，然后通过比值的极限去构造了等比数列。那实际上我们也可以一步到位，直接考虑 $u^{\frac{1}{n}}$的极限$l$ 。然后完全类似地得到和达朗贝尔判别一样的结果。</p>
+<p><strong>判定结论：</strong></p>
+<ol>
+<li><p>若 $l &lt; 1$，级数<strong>收敛</strong>；</p>
+</li>
+<li><p>若 $l &gt; 1$（或 $l &#x3D; +\infty$），级数<strong>发散</strong>；</p>
+</li>
+<li><p>若 $l &#x3D; 1$，判别法失效，级数可能收敛也可能发散，需另行判定。</p>
+</li>
+</ol>
+<hr>
+<h2 id="拉阿伯判别法-Raabe’s-Test"><a href="#拉阿伯判别法-Raabe’s-Test" class="headerlink" title="拉阿伯判别法 (Raabe’s Test)"></a>拉阿伯判别法 (Raabe’s Test)</h2><p>前面我们是利用等比级数做一个判定，但是等比级数并不那么强大，我们先前谈论的 $p$-级数是否也能拿来判断敛散性呢？答案是肯定的。</p>
+<p><strong>已知条件：</strong> 给定正项级数 $\sum u_n$，其中 $u_n &gt; 0$。 设其相邻项比值的变形极限为：</p>
+<p>
+$$
+\lim_{n \to \infty} n \left( \frac{u_n}{u_{n+1}} - 1 \right) = R
+$$
+</p>
+
+<p><strong>判定结论：</strong></p>
+<ol>
+<li><p><strong>若 $R &gt; 1$</strong>：级数<strong>收敛</strong>；</p>
+</li>
+<li><p><strong>若 $R &lt; 1$</strong>：级数<strong>发散</strong>；</p>
+</li>
+<li><p><strong>若 $R &#x3D; 1$</strong>：判别法<strong>失效</strong>，需采用更精细的判别法（如 Gauss 判别法）。</p>
+</li>
+</ol>
+<hr>
+<h3 id="证明要点与逻辑推导"><a href="#证明要点与逻辑推导" class="headerlink" title="证明要点与逻辑推导"></a>证明要点与逻辑推导</h3><p>核心思想是将其与已知的 <strong>p-级数</strong> 进行比较。</p>
+<h4 id="1-辅助级数的性质"><a href="#1-辅助级数的性质" class="headerlink" title="1. 辅助级数的性质"></a>1. 辅助级数的性质</h4><p>选取 $p$-级数 $v_n &#x3D; \frac{1}{n^p}$。对其进行同样的极限运算：</p>
+<p>
+$$
+n \left( \frac{v_n}{v_{n+1}} - 1 \right) = n \left( \frac{(n+1)^p}{n^p} - 1 \right) = n \left( (1 + \frac{1}{n})^p - 1 \right)
+$$
+</p>
+
+<p>利用二项式展开或泰勒展开 $(1+x)^p &#x3D; 1 + px + O(x^2)$：</p>
+<p>
+$$
+\approx n \left( 1 + \frac{p}{n} + O(\frac{1}{n^2}) - 1 \right) \to p
+$$
+</p>
+
+<p>这说明对于 $p$-级数，该极限值正好等于其幂次 $p$。</p>
+<h4 id="2-利用比较判别法证明-R-1-的收敛性"><a href="#2-利用比较判别法证明-R-1-的收敛性" class="headerlink" title="2. 利用比较判别法证明 $R &gt; 1$ 的收敛性"></a>2. 利用比较判别法证明 $R &gt; 1$ 的收敛性</h4><ul>
+<li><p><strong>寻找中介值</strong>：若 $R &gt; 1$，则一定存在一个数 $p$，使得 $R &gt; p &gt; 1$。</p>
+</li>
+<li><p><strong>建立不等式</strong>：由于 $\lim_{n \to \infty} n \left( \frac{u_n}{u_{n+1}} - 1 \right) &#x3D; R &gt; p$，则存在充分大的 $N$，使得当 $n \geq N$ 时：</p>
+</li>
+</ul>
+<p>
+$$
+n \left( \frac{u_n}{u_{n+1}} - 1 \right) > n \left( \frac{(n+1)^p}{n^p} - 1 \right)
+$$
+</p>
+
+<ul>
+<li><strong>化简不等式</strong>：</li>
+</ul>
+<p>
+$$
+\frac{u_n}{u_{n+1}} > \frac{(n+1)^p}{n^p} \Rightarrow (n+1)^p u_{n+1} < n^p u_n
+$$
+</p>
+
+<ul>
+<li><strong>递推放大</strong>： 这说明序列 ${n^p u_n}$在$n \geq N$ 后是单调递减的。因此：</li>
+</ul>
+<p>
+$$
+(n+1)^p u_{n+1} < n^p u_n < \dots < N^p u_N = C_N
+$$
+</p>
+
+<p>从而得出 $u_{n+1} &lt; \frac{C_N}{(n+1)^p}$。</p>
+<ul>
+<li><strong>结论</strong>：由于 $p &gt; 1$，由 <strong>p-级数收敛判定</strong> 和<strong>比较判别法</strong> 可知，级数 $\sum u_n$ <strong>收敛</strong>。</li>
+</ul>
+<h2 id="积分判别法"><a href="#积分判别法" class="headerlink" title="积分判别法"></a>积分判别法</h2><p> 在[[7.求和#积分估计]]中我们实际上讨论过积分估计求和。</p>
+<h3 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h3><p><strong>1. 定理</strong></p>
+<p>设 $\sum_{n&#x3D;1}^{\infty} u_n$ 为正项级数（$u_n \geq 0$）。若存在单调不增的非负函数 $f(x)$使得$f(n) &#x3D; u_n$，则：</p>
+<p>
+$$
+\sum_{n=1}^{\infty} u_n \text{ 收敛} \iff \int_{1}^{+\infty} f(x) dx \text{ 收敛}
+$$
+</p>
+
+<p>**2. 核心等价关系</p>
+<p>通过有界性原理（正项级数&#x2F;非负函数增加的特性）不难得到如下链条：</p>
+<ul>
+<li><p><strong>级数收敛</strong> $\iff$部分和序列${S_n}$ <strong>有上界</strong>。</p>
+</li>
+<li><p><strong>积分存在</strong> $\iff$变上限积分$\int_{1}^{A} f(x) dx$ <strong>有上界</strong>。</p>
+</li>
+</ul>
+<hr>
+<h3 id="证明思路"><a href="#证明思路" class="headerlink" title="证明思路"></a>证明思路</h3><p>通过比较单位区间上的矩形面积与曲线下积分面积，可以得出以下两个关键不等式：</p>
+<h4 id="A-证明“级数收敛-Rightarrow-积分收敛”"><a href="#A-证明“级数收敛-Rightarrow-积分收敛”" class="headerlink" title="A. 证明“级数收敛 $\Rightarrow$ 积分收敛”"></a>A. 证明“级数收敛 $\Rightarrow$ 积分收敛”</h4><p>利用左矩形法（或右移比较）：</p>
+<p>
+$$
+\int_{1}^{n} f(x) dx \leq \sum_{k=1}^{n-1} u_k = S_{n-1}
+$$
+</p>
+
+<ul>
+<li><strong>逻辑推演</strong>：若级数收敛，则 ${S_{n-1}}$有上界，从而导致$\int_{1}^{n} f(x) dx$也有上界。根据单调有界原理，当$n \to \infty$时，积分$\int_{1}^{+\infty} f(x) dx$ 必定存在。</li>
+</ul>
+<h4 id="B-证明“积分收敛-Rightarrow-级数收敛”"><a href="#B-证明“积分收敛-Rightarrow-级数收敛”" class="headerlink" title="B. 证明“积分收敛 $\Rightarrow$ 级数收敛”"></a>B. 证明“积分收敛 $\Rightarrow$ 级数收敛”</h4><p>利用右矩形法：</p>
+<p>
+$$
+S_n = \sum_{k=1}^{n} u_k = u_1 + \sum_{k=2}^{n} u_k \leq u_1 + \int_{1}^{n} f(x) dx
+$$
+</p>
+
+<ul>
+<li><strong>逻辑推演</strong>：若反常积分收敛，则其变上限积分 $\int_{1}^{n} f(x) dx$有上界，从而推导出${S_n}$也有上界。因此，正项级数$\sum u_n$ 必定收敛。</li>
+</ul>
+<p>综合两方面就得到原命题成立。</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>积分判别法可以处理前述判别法得到极限为 $1$ 而无法处理的情形，例如</p>
+<p>
+$$
+\sum \frac{1}{nlnn}
+$$
+</p>
+
+<p>这应用 Raabe’s test 或者 Cauchy’s test 都行不通，但是一积分得到原函数 $lnlnn$就知道发散，相应地如果改成$\frac{1}{n(lnn)^2}$ 就知道收敛。</p>
+<p>尽管威力强大，但是需要能积出来，就对形式有一定要求，并不能一招吃遍。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/05/06/%E9%AB%98%E6%95%B0/10.%E7%BA%A7%E6%95%B0%20I%20%E2%80%94%E2%80%94%20%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%AD%A3%E9%A1%B9%E7%BA%A7%E6%95%B0/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/05/06/%E9%AB%98%E6%95%B0/11.%E7%BA%A7%E6%95%B0%20II%20%E2%80%94%E2%80%94%20%E4%BB%BB%E6%84%8F%E9%A1%B9%E7%BA%A7%E6%95%B0/">
+        <h2 class="post-title">11.级数 II —— 任意项级数</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/5/6
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="任意项级数"><a href="#任意项级数" class="headerlink" title="任意项级数"></a>任意项级数</h1><p>下面讨论有正有负的级数，例如曾讨论过的 $(-1)^n$和$(-1)^n \cdot \frac{1}{n}$ ，我们首先研究这样交错的级数。</p>
+<h3 id="交错级数的收敛之莱布尼茨判别法-Leibniz’s-Test"><a href="#交错级数的收敛之莱布尼茨判别法-Leibniz’s-Test" class="headerlink" title="交错级数的收敛之莱布尼茨判别法 (Leibniz’s Test)"></a>交错级数的收敛之莱布尼茨判别法 (Leibniz’s Test)</h3><p><strong>1. 定理内容 (Theorem)</strong></p>
+<p>若级数 $\sum_{n&#x3D;1}^{\infty} (-1)^{n-1} u_n$ 满足以下三个条件：</p>
+<ol>
+<li><p><strong>正项性</strong>：$u_n \geq 0$</p>
+</li>
+<li><p><strong>单调性</strong>：${u_n}$单调递减，即$u_{n+1} \leq u_n$</p>
+</li>
+<li><p><strong>趋于零</strong>：$\lim_{n \to \infty} u_n &#x3D; 0$</p>
+</li>
+</ol>
+<p>则该交错级数 <strong>收敛</strong>。</p>
+<hr>
+<h4 id="证明逻辑拆解-Proof-Sketch"><a href="#证明逻辑拆解-Proof-Sketch" class="headerlink" title="证明逻辑拆解 (Proof Sketch)"></a>证明逻辑拆解 (Proof Sketch)</h4><p>由于负一次方的周期性，自然想到通过分析<strong>奇数项部分和</strong>与<strong>偶数项部分和</strong>的单调性与有界性，那么就可以利用单调有界原理完成证明。</p>
+<h4 id="A-部分和的单调性分析"><a href="#A-部分和的单调性分析" class="headerlink" title="A. 部分和的单调性分析"></a>A. 部分和的单调性分析</h4><ul>
+<li><strong>奇数项部分和 ${S_{2k+1}}$</strong>：</li>
+</ul>
+<p>
+$$
+S_{2k+1} - S_{2k-1} = -u_{2k} + u_{2k+1} \leq 0
+$$
+</p>
+
+<p>由此可知，奇数项部分和序列是<strong>单调递减</strong>的。</p>
+<ul>
+<li><strong>偶数项部分和 ${S_{2k}}$</strong>：</li>
+</ul>
+<p>
+$$
+S_{2k} - S_{2k-2} = u_{2k-1} - u_{2k} \geq 0
+$$
+</p>
+
+<p>由此可知，偶数项部分和序列是<strong>单调递增</strong>的。</p>
+<h4 id="B-序列的有界性与极限存在性"><a href="#B-序列的有界性与极限存在性" class="headerlink" title="B. 序列的有界性与极限存在性"></a>B. 序列的有界性与极限存在性</h4><p>通过观察可知：$S_2 \leq S_{2k} &lt; S_{2k+1} \leq S_1$。</p>
+<ul>
+<li><p><strong>偶数项序列 ${S_{2k}}$</strong>：单调递增且有上界（如 $S_1$），根据单调有界原理，极限存在，记为 $S_{even}$。</p>
+</li>
+<li><p><strong>奇数项序列 ${S_{2k+1}}$</strong>：单调递减且有下界（如 $S_2$），极限存在，记为 $S_{odd}$。</p>
+</li>
+</ul>
+<h4 id="C-夹逼与统一极限"><a href="#C-夹逼与统一极限" class="headerlink" title="C. 夹逼与统一极限"></a>C. 夹逼与统一极限</h4><p>利用条件 $\lim_{n \to \infty} u_n &#x3D; 0$：</p>
+<p>
+$$
+S_{2k+1} - S_{2k} = u_{2k+1}
+$$
+</p>
+
+<p>取极限得：</p>
+<p>
+$$
+S_{odd} - S_{even} = \lim_{k \to \infty} u_{2k+1} = 0
+$$
+</p>
+
+<p>即 $S_{odd} &#x3D; S_{even}$。奇偶子序列极限相等，说明原级数的部分和序列 ${S_n}$ 收敛。</p>
+<h4 id="应用示例"><a href="#应用示例" class="headerlink" title="应用示例"></a>应用示例</h4><p>那么，$(-1)^n\cdot \frac{1}{n}$ 的收敛就显然了。我们考虑一个变种：</p>
+<p>
+$$
+1+\frac{1}{2}+\frac{1}{3}-\frac{1}{4}-\frac{1}{5}-\frac{1}{6}+...
+$$
+</p>
+
+<p>那么每三项的和看做一个新通项，不难验证新级数收敛，那么 $S_{3n}$收敛，不难验证剩下两个剩余类与$S_{3n}$极限相同，因为差是形如$\frac{1}{n}$ 的一项。</p>
+<h2 id="绝对收敛与条件收敛-Absolute-and-Conditional-Convergence"><a href="#绝对收敛与条件收敛-Absolute-and-Conditional-Convergence" class="headerlink" title="绝对收敛与条件收敛 (Absolute and Conditional Convergence)"></a>绝对收敛与条件收敛 (Absolute and Conditional Convergence)</h2><p>对于任意项级数 $\sum_{n&#x3D;1}^{\infty} a_n$：</p>
+<p><strong>定义 (Definitions)</strong></p>
+<ul>
+<li><p><strong>绝对收敛 (Absolute Convergence)</strong>：若取绝对值后的正项级数 $\sum_{n&#x3D;1}^{\infty} |a_n|$收敛，则称原级数$\sum_{n&#x3D;1}^{\infty} a_n$ 为绝对收敛。</p>
+</li>
+<li><p><strong>条件收敛 (Conditional Convergence)</strong>：若 $\sum_{n&#x3D;1}^{\infty} |a_n|$发散，但原级数$\sum_{n&#x3D;1}^{\infty} a_n$ 本身收敛，则称原级数为条件收敛。</p>
+</li>
+</ul>
+<hr>
+<h4 id="相关定理"><a href="#相关定理" class="headerlink" title="相关定理"></a>相关定理</h4><p><strong>定理：</strong> 若级数 $\sum a_n$ 绝对收敛，则该级数一定收敛。</p>
+<p><strong>证明思路 (使用柯西收敛准则)：</strong></p>
+<p>根据级数收敛的<strong>柯西准则 (Cauchy Criterion)</strong>，级数收敛当且仅当对于任意 $\varepsilon &gt; 0$，存在 $N_\varepsilon$，使得当 $n &gt; N_\varepsilon$时，对于任意正整数$p$，都有：</p>
+<p>
+$$
+|\sum_{k=n+1}^{n+p} a_k| < \varepsilon
+$$
+</p>
+
+<p><strong>推导过程：</strong></p>
+<ol>
+<li>由于级数绝对收敛，即 $\sum |a_n|$ 收敛，由柯西准则可知：</li>
+</ol>
+<p>
+$$
+\sum_{k=n+1}^{n+p} |a_k| < \varepsilon, \quad \forall n > N_\varepsilon, p \in \mathbb{Z}^+
+$$
+</p>
+
+<ol start="2">
+<li>利用<strong>三角不等式 (Triangle Inequality)</strong>：</li>
+</ol>
+<p>
+$$
+|\sum_{k=n+1}^{n+p} a_k| \leq \sum_{k=n+1}^{n+p} |a_k|
+$$
+</p>
+
+<ol start="3">
+<li><p>结合以上两点：</p>
+<p> 因为右边 $\sum |a_k| &lt; \varepsilon$，所以左边 $|\sum a_k| &lt; \varepsilon$ 必然成立。</p>
+</li>
+</ol>
+<p>由此证明了原级数 $\sum a_n$ 也满足柯西准则，故其必定收敛。</p>
+<h4 id="一、-级数项的正部与负部拆分"><a href="#一、-级数项的正部与负部拆分" class="headerlink" title="一、 级数项的正部与负部拆分"></a>一、 级数项的正部与负部拆分</h4><p>为了研究任意项级数 $\sum a_n$，我们将其每一项拆分为两个非负部分：</p>
+<ul>
+<li><p><strong>定义 (Definitions)</strong>：</p>
+<ul>
+<li><p>$b_n &#x3D; \frac{1}{2}(|a_n| + a_n)$：这是$a_n$的<strong>正部</strong>。若$a_n &gt; 0$，则 $b_n &#x3D; a_n$；若 $a_n \leq 0$，则 $b_n &#x3D; 0$。</p>
+</li>
+<li><p>$c_n &#x3D; \frac{1}{2}(|a_n| - a_n)$：这是$a_n$的<strong>负部</strong>。若$a_n &lt; 0$，则 $c_n &#x3D; |a_n|$；若 $a_n \geq 0$，则 $c_n &#x3D; 0$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>性质</strong>：</p>
+<ul>
+<li><p>$b_n, c_n \geq 0$（均为非负项），且对于每一项 $n$，两者中至少有一个为 $0$。</p>
+</li>
+<li><p><strong>$b_n + c_n &#x3D; |a_n|$</strong> ：两部分之和等于原项的绝对值。</p>
+</li>
+<li><p><strong>$b_n - c_n &#x3D; a_n$</strong> ：两部分之差还原为原级数项。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="二、-收敛性的等价关系"><a href="#二、-收敛性的等价关系" class="headerlink" title="二、 收敛性的等价关系"></a>二、 收敛性的等价关系</h4><p>基于上述拆分，可以得出关于级数敛散性的重要判定：</p>
+<h5 id="1-绝对收敛的充要条件"><a href="#1-绝对收敛的充要条件" class="headerlink" title="1. 绝对收敛的充要条件"></a>1. 绝对收敛的充要条件</h5><p><strong>定理</strong>：级数 $\sum a_n$<strong>绝对收敛</strong>$\iff$级数$\sum b_n$与$\sum c_n$ <strong>均收敛</strong>。</p>
+<ul>
+<li><p><strong>推导逻辑</strong>：</p>
+<ul>
+<li><p>$\sum |a_n|$收敛$\iff$部分和$\sum_{k&#x3D;1}^n |a_k|$ 有上界。</p>
+</li>
+<li><p>由于 $b_n, c_n \leq |a_n|$，若 $\sum |a_n|$有上界，则正项级数$\sum b_n$和$\sum c_n$ 必然也都有上界且收敛。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>结论</strong>：在此情况下，原级数可以表示为两个收敛级数的差：</p>
+</li>
+</ul>
+<p>
+$$
+\sum_{n=1}^\infty a_n = \sum_{n=1}^\infty b_n - \sum_{n=1}^\infty c_n
+$$
+</p>
+
+<h5 id="2-条件收敛的本质"><a href="#2-条件收敛的本质" class="headerlink" title="2. 条件收敛的本质"></a>2. 条件收敛的本质</h5><p><strong>定理</strong>：若级数 $\sum a_n$<strong>条件收敛</strong>$\iff$级数$\sum b_n$与$\sum c_n$ <strong>均发散</strong>。</p>
+<ul>
+<li><p><strong>直观理解</strong>：</p>
+<ul>
+<li><p>因为级数收敛，所以 $a_n$必须趋于$0$。</p>
+</li>
+<li><p>但因为不是绝对收敛（$\sum |a_n| &#x3D; \sum (b_n + c_n)$ 发散），说明正项部分之和与负项部分之和都是无穷大。</p>
+</li>
+<li><p><strong>条件收敛的奥秘</strong>就在于：虽然正部之和是 $+\infty$，负部之和也是 $+\infty$，但它们相减时通过巧妙的抵消，最终达到了一个有限的极限值。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>这两种收敛会带来什么结果呢，我们考虑重排。</p>
+<h2 id="重排现象"><a href="#重排现象" class="headerlink" title="重排现象"></a>重排现象</h2><p>**1. 定义：什么是重排？</p>
+<ul>
+<li><p><strong>原始下标序列</strong>：${1, 2, 3, \dots, n, \dots}$</p>
+</li>
+<li><p><strong>重排下标序列</strong>：${n_1, n_2, n_3, \dots, n_k, \dots}$，这是自然数集合到自身的一个一一映射（双射）。</p>
+</li>
+<li><p><strong>定义</strong>：给定级数 $\sum a_n$，称级数 $\sum a_{n_k}$ 为其一个<strong>重排级数</strong>。</p>
+</li>
+</ul>
+<hr>
+<p><strong>2. 核心定理 (Theorem)</strong></p>
+<p>若级数 $\sum a_n$<strong>绝对收敛</strong>，则对于它的<strong>任意重排</strong>级数$\sum a_{n_k}$：</p>
+<ol>
+<li><p>重排级数 $\sum a_{n_k}$ 也<strong>绝对收敛</strong>。</p>
+</li>
+<li><p>重排级数的和与原级数的和相等，即 $\sum a_{n_k} &#x3D; \sum a_n$。</p>
+</li>
+</ol>
+<hr>
+<p><strong>3. 证明思路推导 (Proof Sketch)</strong></p>
+<h4 id="A-证明重排后依然绝对收敛"><a href="#A-证明重排后依然绝对收敛" class="headerlink" title="A. 证明重排后依然绝对收敛"></a>A. 证明重排后依然绝对收敛</h4><ul>
+<li><p>已知 $\sum |a_n|$收敛，其部分和序列$\sum_{i&#x3D;1}^k |a_i|$ <strong>有界</strong>。</p>
+</li>
+<li><p>对于重排级数的任意前 $k$项$|a_{n_1}|, |a_{n_2}|, \dots, |a_{n_k}|$，由于这 $k$个下标必然包含在某个足够大的自然数集合${1, 2, \dots, m}$ 中。</p>
+</li>
+<li><p>因此有不等式：</p>
+</li>
+</ul>
+<p>
+$$
+\sum_{j=1}^k |a_{n_j}| \leq \sum_{i=1}^m |a_i|
+$$
+</p>
+
+<ul>
+<li>因为右侧有界，所以重排级数的绝对值部分和序列也<strong>有界</strong>，从而得出重排级数 $\sum a_{n_k}$ <strong>绝对收敛</strong>。又反过来，右侧也是左侧的重排，所以改换上标后，不等号反向也成立，从而取极限二者只有相等。故重排不改变正项级数的和。</li>
+</ul>
+<h4 id="B-证明级数之和不变"><a href="#B-证明级数之和不变" class="headerlink" title="B. 证明级数之和不变"></a>B. 证明级数之和不变</h4><p>利用正项级数的性质以及级数项的正部（$b_n$）与负部（$c_n$）拆分：</p>
+<ul>
+<li><p><strong>绝对值之和相等</strong>：对于正项级数，重排不改变其和，故 $\sum |a_n| &#x3D; \sum |a_{n_k}|$。</p>
+</li>
+<li><p><strong>分部求和</strong>：由于绝对收敛，可以将级数拆分为正部 $b_n$和负部$c_n$ 的差：</p>
+<ul>
+<li>$\sum b_n &#x3D; \sum b_{n_k}$-$\sum c_n &#x3D; \sum c_{n_k}$</li>
+</ul>
+</li>
+<li><p><strong>最终等式</strong>：</p>
+</li>
+</ul>
+<p>
+$$
+\sum a_n = \sum (b_n - c_n) = \sum b_n - \sum c_n = \sum b_{n_k} - \sum c_{n_k} = \sum (b_{n_k} - c_{n_k}) = \sum a_{n_k}
+$$
+</p>
+
+<hr>
+<h3 id="黎曼重排定理-Riemann-Rearrangement-Theorem"><a href="#黎曼重排定理-Riemann-Rearrangement-Theorem" class="headerlink" title="黎曼重排定理 (Riemann Rearrangement Theorem)"></a>黎曼重排定理 (Riemann Rearrangement Theorem)</h3><p><strong>1. 定理描述</strong></p>
+<p>设级数 $\sum a_n$是一个<strong>条件收敛</strong>级数。则对于任意实数$A \in \mathbb{R}$（或 $\pm \infty$），都存在原级数的一个<strong>重排</strong> $\sum a_{n_k}$，使得该重排级数的和恰好等于 $A$：</p>
+<p>
+$$
+\sum_{k=1}^{\infty} a_{n_k} = A
+$$
+</p>
+
+<p><strong>2. 核心原理</strong></p>
+<ul>
+<li><p><strong>正负部发散</strong>：对于条件收敛级数，其正部 $b_n$和负部$c_n$分别组成的级数$\sum b_n$和$\sum c_n$ 都是发散的。</p>
+</li>
+<li><p><strong>动态调整</strong>：由于正项和负项都有“无限多”且能求出“无限大”的和，我们可以先取足够多的正项使和超过 $A$，再取足够多的负项使和低于 $A$，不断往复。随着项趋于零，这种摆动最终会收敛于目标值 $A$。</p>
+</li>
+</ul>
+<hr>
+<h3 id="经典实例：交错调和级数的重排"><a href="#经典实例：交错调和级数的重排" class="headerlink" title="经典实例：交错调和级数的重排"></a>经典实例：交错调和级数的重排</h3><p><strong>1. 标准级数</strong></p>
+<p>设交错调和级数的和为 $S$：</p>
+<p>
+$$
+a_n: 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \frac{1}{5} - \frac{1}{6} + \dots = S
+$$
+</p>
+
+<p><em>(注：实际上 $S &#x3D; \ln 2$)</em></p>
+<p><strong>2. 重排级数（1个正项 + 2个负项）</strong></p>
+<p>我们将项按照“一正二负”的规律重排：</p>
+<p>
+$$
+a_{n_k}: \underbrace{1 - \frac{1}{2} - \frac{1}{4}} + \underbrace{\frac{1}{3} - \frac{1}{6} - \frac{1}{8}} + \underbrace{\frac{1}{5} - \frac{1}{10} - \frac{1}{12}} + \dots
+$$
+</p>
+
+<p><strong>3. 计算推导</strong></p>
+<ul>
+<li><p>对每一组进行合并计算：</p>
+<ul>
+<li>$1 - \frac{1}{2} &#x3D; \frac{1}{2}$-$\frac{1}{3} - \frac{1}{6} &#x3D; \frac{1}{6}$-$\frac{1}{5} - \frac{1}{10} &#x3D; \frac{1}{10}$</li>
+</ul>
+</li>
+<li><p>重排后的级数变为：</p>
+</li>
+</ul>
+<p>
+$$
+\frac{1}{2} - \frac{1}{4} + \frac{1}{6} - \frac{1}{8} + \frac{1}{10} - \frac{1}{12} + \dots
+$$
+</p>
+
+<ul>
+<li>提取公因子 $\frac{1}{2}$：</li>
+</ul>
+<p>
+$$
+= \frac{1}{2} \left( 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \dots \right)
+$$
+</p>
+
+<ul>
+<li><strong>结论</strong>：重排后的级数和变成了原级数和的一半：</li>
+</ul>
+<p>
+$$
+\sum a_{n_k} = \frac{1}{2} S
+$$
+</p>
+
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>该定理揭示了<strong>条件收敛</strong>与<strong>绝对收敛</strong>的本质区别：</p>
+<ul>
+<li><p><strong>绝对收敛级数</strong>：具有“交换律”，重排不改变和。</p>
+</li>
+<li><p><strong>条件收敛级数</strong>：不满足交换律，其和取决于项的排列顺序。</p>
+</li>
+</ul>
+<p>那么我们有什么手段判别条件收敛呢？</p>
+<hr>
+<h2 id="阿贝尔变换-Abel’s-Transformation"><a href="#阿贝尔变换-Abel’s-Transformation" class="headerlink" title="阿贝尔变换 (Abel’s Transformation)"></a>阿贝尔变换 (Abel’s Transformation)</h2><h3 id="核心公式"><a href="#核心公式" class="headerlink" title="核心公式"></a>核心公式</h3><p>设 ${\alpha_k}$和${\beta_k}$是两个数列，令$B_n &#x3D; \sum_{k&#x3D;1}^{n} \beta_k$为${\beta_k}$的前$n$项和，并规定$B_0 &#x3D; 0$。则有：</p>
+<p>
+$$
+\sum_{k=1}^{n} \alpha_k \beta_k = \alpha_n B_n - \sum_{k=1}^{n-1} (\alpha_{k+1} - \alpha_k) B_k
+$$
+</p>
+
+<hr>
+<h3 id="“离散分部积分”？"><a href="#“离散分部积分”？" class="headerlink" title="“离散分部积分”？"></a>“离散分部积分”？</h3><p>考虑分部积分：</p>
+<p>
+$$
+\int_{0}^{1} f g' \, dx = \left. fg \right|_0^1 - \int_{0}^{1} f' g \, dx
+$$
+</p>
+
+<p>我们可以发现阿贝尔变换与它有极强的<strong>对称性</strong>：</p>
+<ul>
+<li><p><strong>累加 vs. 积分</strong>：$\sum \beta_k$对应$\int g’ dx &#x3D; g$（$B_k$相当于$g$）。</p>
+</li>
+<li><p><strong>差分 vs. 导数</strong>：$(\alpha_{k+1} - \alpha_k)$对应$f’$。</p>
+</li>
+<li><p><strong>边界项</strong>：$\alpha_n B_n$对应$f(1)g(1)$。由于 $B_0&#x3D;0$ ，另一个边界项隐去。</p>
+</li>
+</ul>
+<h3 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h3><p>其核心思想是将数列 $\beta_k$写成部分和的差分形式，即利用$\beta_k &#x3D; B_k - B_{k-1}$（定义 $B_0 &#x3D; 0$）。</p>
+<h4 id="1-展开原级数"><a href="#1-展开原级数" class="headerlink" title="1. 展开原级数"></a>1. 展开原级数</h4><p>将 $\beta_k$替换为$(B_k - B_{k-1})$，并将求和式展开：</p>
+<p>
+$$
+\sum_{k=1}^n \alpha_k \beta_k = \alpha_1(B_1 - B_0) + \alpha_2(B_2 - B_1) + \alpha_3(B_3 - B_2) + \dots + \alpha_n(B_n - B_{n-1})
+$$
+</p>
+
+<h4 id="2-重新组合-Regrouping"><a href="#2-重新组合-Regrouping" class="headerlink" title="2. 重新组合 (Regrouping)"></a>2. 重新组合 (Regrouping)</h4><p>观察展开后的每一项，按照相同的 $B_k$进行合并。例如，包含$B_1$的项有$\alpha_1 B_1$和$-\alpha_2 B_1$，合并后得到 $(\alpha_1 - \alpha_2)B_1$：</p>
+<p>
+$$
+= (\alpha_1 - \alpha_2)B_1 + (\alpha_2 - \alpha_3)B_2 + \dots + (\alpha_{n-1} - \alpha_n)B_{n-1} + \alpha_n B_n
+$$
+</p>
+
+<blockquote>
+<p><strong>注意</strong>：由于 $B_0 &#x3D; 0$，第一项中的 $\alpha_1 B_0$消失了；而最后一项$\alpha_n B_n$ 没有对应的项与之抵消，因此保留。</p>
+</blockquote>
+<h4 id="3-归纳为求和形式"><a href="#3-归纳为求和形式" class="headerlink" title="3. 归纳为求和形式"></a>3. 归纳为求和形式</h4><p>将中间的差分项提取负号，写回 $\sum$ 符号：</p>
+<p>
+$$
+= -\sum_{k=1}^{n-1} (\alpha_{k+1} - \alpha_k) B_k + \alpha_n B_n
+$$
+</p>
+
+<p>这个变换可以帮助我们讨论任意项级数的敛散性。</p>
+<h3 id="阿贝尔引理（Abel’s-Lemma）的估计推导"><a href="#阿贝尔引理（Abel’s-Lemma）的估计推导" class="headerlink" title="阿贝尔引理（Abel’s Lemma）的估计推导"></a>阿贝尔引理（Abel’s Lemma）的估计推导</h3><h4 id="1-前置条件-Assumptions"><a href="#1-前置条件-Assumptions" class="headerlink" title="1. 前置条件 (Assumptions)"></a>1. 前置条件 (Assumptions)</h4><ul>
+<li><p><strong>单调性</strong>：设 ${\alpha_n}$ 是<strong>单调</strong>数列（Monotonic sequence）。</p>
+</li>
+<li><p><strong>有界性</strong>：设 ${\beta_n}$的部分和$B_n &#x3D; \sum_{k&#x3D;1}^n \beta_k$有界，即存在$M &gt; 0$，使得对所有 $n$，都有 $|B_n| \leq M$。</p>
+</li>
+</ul>
+<h4 id="2-核心结论-The-Conclusion"><a href="#2-核心结论-The-Conclusion" class="headerlink" title="2. 核心结论 (The Conclusion)"></a>2. 核心结论 (The Conclusion)</h4><p>
+$$
+\left| \sum_{k=1}^n \alpha_k \beta_k \right| \leq M (|\alpha_1| + 2|\alpha_n|)
+$$
+</p>
+
+<hr>
+<h3 id="3-逐步推导过程-Step-by-Step-Derivation"><a href="#3-逐步推导过程-Step-by-Step-Derivation" class="headerlink" title="3. 逐步推导过程 (Step-by-Step Derivation)"></a>3. 逐步推导过程 (Step-by-Step Derivation)</h3><p><strong>第一步：套用阿贝尔变换</strong></p>
+<p>利用前面推导的公式，将原式展开：</p>
+<p>
+$$
+\left| \sum_{k=1}^n \alpha_k \beta_k \right| = \left| \sum_{k=1}^{n-1} (\alpha_k - \alpha_{k+1}) B_k + \alpha_n B_n \right|
+$$
+</p>
+
+<p><strong>第二步：三角不等式放大</strong></p>
+<p>利用 $|a+b| \leq |a| + |b|$以及$|B_k| \leq M$：</p>
+<p>
+$$
+\leq \left( \sum_{k=1}^{n-1} |\alpha_k - \alpha_{k+1}| + |\alpha_n| \right) M
+$$
+</p>
+
+<p><strong>第三步：利用单调性脱去绝对值</strong></p>
+<p>这是最关键的一步。因为 ${\alpha_n}$是单调的，所以所有的差分项$(\alpha_k - \alpha_{k+1})$ 符号相同。这意味着<strong>绝对值的和等于和的绝对值</strong>（即裂项相消）：</p>
+<p>
+$$
+\sum_{k=1}^{n-1} |\alpha_k - \alpha_{k+1}| = \left| \sum_{k=1}^{n-1} (\alpha_k - \alpha_{k+1}) \right| = |\alpha_1 - \alpha_n|
+$$
+</p>
+
+<p><strong>第四步：最终整理</strong></p>
+<p>将结果代回估计式：</p>
+<p>
+$$
+= (|\alpha_1 - \alpha_n| + |\alpha_n|) M
+$$
+</p>
+
+<p>再利用一次三角不等式 $|\alpha_1 - \alpha_n| \leq |\alpha_1| + |\alpha_n|$，得到最终的上界：</p>
+<p>
+$$
+\leq (|\alpha_1| + 2|\alpha_n|) M
+$$
+</p>
+
+<h3 id="狄利克雷判别法"><a href="#狄利克雷判别法" class="headerlink" title="狄利克雷判别法"></a>狄利克雷判别法</h3><h4 id="1-定理描述-Theorem-Statement"><a href="#1-定理描述-Theorem-Statement" class="headerlink" title="1. 定理描述 (Theorem Statement)"></a><strong>1. 定理描述 (Theorem Statement)</strong></h4><p>对于级数 $\sum_{n&#x3D;1}^{\infty} a_n b_n$，如果满足以下两个条件：</p>
+<ol>
+<li><p>数列 ${a_n}$<strong>单调</strong> (Monotonic)，且其极限为 0，即$\lim_{n \to \infty} a_n &#x3D; 0$。</p>
+</li>
+<li><p>级数 $\sum b_n$的<strong>部分和数列有界</strong>。也就是说，存在一个常数$M &gt; 0$，使得对于所有的 $n$，都有：</p>
+</li>
+</ol>
+<p>
+$$
+\left| \sum_{k=1}^{n} b_k \right| < M
+$$
+</p>
+
+<p>则级数 $\sum_{n&#x3D;1}^{\infty} a_n b_n$ <strong>收敛</strong> (Convergent)。</p>
+<hr>
+<h4 id="2-证明思路-Outline-of-Proof"><a href="#2-证明思路-Outline-of-Proof" class="headerlink" title="2. 证明思路 (Outline of Proof)"></a><strong>2. 证明思路 (Outline of Proof)</strong></h4><p>利用 <strong>Cauchy 收敛准则</strong> 进行控制放大：</p>
+<ul>
+<li><p><strong>目标：</strong> 控制余项 $\left| \sum_{k&#x3D;n+1}^{n+p} a_k b_k \right|$，使其在 $n \to \infty$ 时趋于 0。</p>
+</li>
+<li><p><strong>已知条件的应用：</strong></p>
+<p>  由于 $\left| \sum_{k&#x3D;1}^{n} b_k \right| &lt; M$，那么对于任意的 $n, p$：</p>
+</li>
+</ul>
+<p>
+$$
+\left| \sum_{k=n+1}^{n+p} b_k \right| = \left| \sum_{k=1}^{n+p} b_k - \sum_{k=1}^{n} b_k \right| \leq \left| \sum_{k=1}^{n+p} b_k \right| + \left| \sum_{k=1}^{n} b_k \right| \leq 2M
+$$
+</p>
+
+<ul>
+<li><p><strong>阿贝尔变换 (Abel Transformation) 的核心步骤：</strong></p>
+<p>  利用阿贝尔引理进行放大：</p>
+</li>
+</ul>
+<p>
+$$
+\left| \sum_{k=n+1}^{n+p} a_k b_k \right| \leq 2M (|a_{n+1}| + 2|a_{n+p}|) \leq 6M \cdot |a_{n+1}|
+$$
+</p>
+
+<p>随着 $n \to \infty$，由于已知 $\lim_{n \to \infty} a_n &#x3D; 0$，所以 $6M \cdot |a_{n+1}| \to 0$。</p>
+<ul>
+<li><strong>结论：</strong> 根据 Cauchy 准则，该级数收敛。</li>
+</ul>
+<h4 id="与莱布尼茨判别法"><a href="#与莱布尼茨判别法" class="headerlink" title="与莱布尼茨判别法"></a>与莱布尼茨判别法</h4><p>取 $b_n$为$(-1)^n$ ，就发现莱布尼茨判别法实际上是狄利克雷判别法的特例。</p>
+<h3 id="阿贝尔判别法-Abel’s-Test"><a href="#阿贝尔判别法-Abel’s-Test" class="headerlink" title="阿贝尔判别法 (Abel’s Test)"></a>阿贝尔判别法 (Abel’s Test)</h3><h4 id="1-定理内容"><a href="#1-定理内容" class="headerlink" title="1. 定理内容"></a>1. 定理内容</h4><p>若级数满足以下两个条件：</p>
+<ol>
+<li><p>数列 ${a_n}$ <strong>单调且有界</strong>；</p>
+</li>
+<li><p>级数 $\sum_{n&#x3D;1}^{\infty} b_n$ <strong>收敛</strong>；</p>
+</li>
+</ol>
+<p>则级数 $\sum_{n&#x3D;1}^{\infty} a_n b_n$ <strong>收敛</strong>。</p>
+<hr>
+<h4 id="2-证明思路"><a href="#2-证明思路" class="headerlink" title="2. 证明思路"></a>2. 证明思路</h4><p>通过构造辅助数列，将阿贝尔判别法转化为狄利克雷判别法（Dirichlet’s Test）：</p>
+<ul>
+<li><p><strong>设定极限</strong>：</p>
+<p>  由于 ${a_n}$单调有界，根据单调有界准则，数列必有极限。设$\lim_{n \to \infty} a_n &#x3D; A$。</p>
+</li>
+<li><p><strong>构造新数列</strong>：</p>
+<p>  令 $\tilde{a}_n &#x3D; a_n - A$。</p>
+<p>  显然，数列 ${\tilde{a}_n}$依然保持<strong>单调</strong>性，且当$n \to \infty$ 时，$\tilde{a}_n \to 0$。</p>
+</li>
+<li><p><strong>级数拆分</strong>：</p>
+<p>  利用线性性质将原级数展开：</p>
+</li>
+</ul>
+<p>
+$$
+\sum a_n b_n = \sum (\tilde{a}_n + A) b_n = \sum \tilde{a}_n b_n + \sum A b_n
+$$
+</p>
+
+<ul>
+<li><p><strong>收敛性分析</strong>：</p>
+<ul>
+<li><p><strong>项 $\sum A b_n$</strong>：因为 $\sum b_n$收敛，由级数性质可知常数倍级数$A \sum b_n$ 必然收敛。</p>
+</li>
+<li><p><strong>项 $\sum \tilde{a}_n b_n$</strong>：</p>
+<ul>
+<li><p>${\tilde{a}_n}$单调且趋于$0$；</p>
+</li>
+<li><p>$\sum b_n$收敛，意味着其部分和数列$S_n &#x3D; \sum_{k&#x3D;1}^{n} b_k$ 有界。</p>
+</li>
+<li><p>根据<strong>狄利克雷判别法</strong>，这两者结合保证了 $\sum \tilde{a}_n b_n$ 收敛。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>结论</strong>：两个收敛级数之和依然收敛，故 <strong>$\sum a_n b_n$ 收敛</strong>。</p>
+<p>当然也可以不用狄利克雷判别法，直接利用阿贝尔引理说明。读者自证不难（</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/05/06/%E9%AB%98%E6%95%B0/11.%E7%BA%A7%E6%95%B0%20II%20%E2%80%94%E2%80%94%20%E4%BB%BB%E6%84%8F%E9%A1%B9%E7%BA%A7%E6%95%B0/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/05/01/%E6%9D%82%E8%AE%B0/5%E6%9C%88%E6%97%A5%E8%AE%B0/">
+        <h2 class="post-title">5月日记</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/5/1
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>May~</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%97%A5%E8%AE%B0%E7%B1%BB/" style="color: #00a596">日记类</a>
+        </span>
+        
+    </div>
+    <a href="/2026/05/01/%E6%9D%82%E8%AE%B0/5%E6%9C%88%E6%97%A5%E8%AE%B0/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/1.%E9%87%8D%E7%A7%AF%E5%88%86/">
+        <h2 class="post-title">1.重积分</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/19
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>在单变量的微积分中，我们通过黎曼和定义了定积分，那同样，我们可以通过它定义多重积分：</p>
+<p><strong>二重积分的黎曼和定义：</strong></p>
+<p>
+$$
+\iint_D f(x,y)\,dA
+=\lim_{\max \Delta S_{ij}\to 0}
+\sum_{i,j} f(\xi_{ij},\eta_{ij})\,\Delta S_{ij}
+$$
+</p>
+
+<p><strong>三重积分：</strong></p>
+<p>
+$$
+\iiint_\Omega f(x,y,z)\,dV
+=\lim_{\max \Delta V_{ijk}\to 0}
+\sum_{i,j,k} f(\xi_{ijk},\eta_{ijk},\zeta_{ijk})\,\Delta V_{ijk}
+$$
+</p>
+
+<hr>
+<p>特征都差不多，同样是把一块区域划分成小块，从而化曲为直便于计算，也同样要求分割“直径”趋于0。</p>
+<h2 id="重积分的基本性质"><a href="#重积分的基本性质" class="headerlink" title="重积分的基本性质"></a>重积分的基本性质</h2><p>这部分可以飞速浏览，几乎完全符合直觉（）</p>
+<p>设 $f,g$在区域$D$（或 $\Omega$）上可积，$\lambda,\mu \in \mathbb{R}$。</p>
+<hr>
+<h3 id="1-线性（Linearity）"><a href="#1-线性（Linearity）" class="headerlink" title="1. 线性（Linearity）"></a>1. 线性（Linearity）</h3><p>
+$$
+\iint_D (\lambda f + \mu g)\,dA
+=
+\lambda \iint_D f\,dA
++
+\mu \iint_D g\,dA
+$$
+</p>
+
+<p>三重积分同理：</p>
+<p>
+$$
+\iiint_\Omega (\lambda f + \mu g)\,dV
+=
+\lambda \iiint_\Omega f\,dV
++
+\mu \iiint_\Omega g\,dV
+$$
+</p>
+
+<blockquote>
+<p>本质：积分是“极限下的加权求和”，线性来自求和的线性。</p>
+</blockquote>
+<hr>
+<h3 id="2-区域可加性（Additivity-over-domain）"><a href="#2-区域可加性（Additivity-over-domain）" class="headerlink" title="2. 区域可加性（Additivity over domain）"></a>2. 区域可加性（Additivity over domain）</h3><p>若 $D &#x3D; D_1 \cup D_2$且$D_1,D_2$ 内部不重叠，则</p>
+<p>
+$$
+\iint_D f\,dA
+=
+\iint_{D_1} f\,dA
++
+\iint_{D_2} f\,dA
+$$
+</p>
+
+<p>更一般：</p>
+<p>
+$$
+D = \bigcup_{k=1}^n D_k \quad (\text{两两内部不交})
+\Rightarrow
+\iint_D f\,dA = \sum_{k=1}^n \iint_{D_k} f\,dA
+$$
+</p>
+
+<blockquote>
+<p>本质：黎曼和可以拆块。</p>
+</blockquote>
+<hr>
+<h3 id="3-保序性（Monotonicity）"><a href="#3-保序性（Monotonicity）" class="headerlink" title="3. 保序性（Monotonicity）"></a>3. 保序性（Monotonicity）</h3><p>若 $f(x,y) \le g(x,y)$，则</p>
+<p>
+$$
+\iint_D f\,dA \le \iint_D g\,dA
+$$
+</p>
+
+<p>特别地：</p>
+<p>
+$$
+f(x,y) \ge 0 \Rightarrow \iint_D f\,dA \ge 0
+$$
+</p>
+
+<blockquote>
+<p>本质：每个小块上都不超过，总和自然不超过。</p>
+</blockquote>
+<hr>
+<h3 id="4-估计（Bounding）"><a href="#4-估计（Bounding）" class="headerlink" title="4. 估计（Bounding）"></a>4. 估计（Bounding）</h3><p>若</p>
+<p>
+$$
+m \le f(x,y) \le M
+$$
+</p>
+
+<p>则</p>
+<p>
+$$
+m \cdot |D|
+\le
+\iint_D f\,dA
+\le
+M \cdot |D|
+$$
+</p>
+
+<p>其中 $|D|$ 表示区域面积。</p>
+<p>三维对应：</p>
+<p>
+$$
+m|\Omega| \le \iiint_\Omega f\,dV \le M|\Omega|
+$$
+</p>
+
+<blockquote>
+<p>本质：函数被夹住 ⇒ 积分被夹住。</p>
+</blockquote>
+<hr>
+<h3 id="5-绝对值不等式"><a href="#5-绝对值不等式" class="headerlink" title="5. 绝对值不等式"></a>5. 绝对值不等式</h3><p>
+$$
+\left| \iint_D f\,dA \right|
+\le
+\iint_D |f|\,dA
+$$
+</p>
+
+<blockquote>
+<p>本质：积分不会比“把每块都取绝对值再加”更大。</p>
+</blockquote>
+<hr>
+<h3 id="6-积分中值定理（Integral-Mean-Value-Theorem）"><a href="#6-积分中值定理（Integral-Mean-Value-Theorem）" class="headerlink" title="6. 积分中值定理（Integral Mean Value Theorem）"></a>6. 积分中值定理（Integral Mean Value Theorem）</h3><p>若 $f$在有界闭区域$D$上连续，则存在$(\xi,\eta)\in D$ 使得</p>
+<p>
+$$
+\iint_D f(x,y)\,dA
+=
+f(\xi,\eta)\cdot |D|
+$$
+</p>
+
+<p>三维：</p>
+<p>
+$$
+\iiint_\Omega f\,dV
+=
+f(\xi,\eta,\zeta)\cdot |\Omega|
+$$
+</p>
+
+<blockquote>
+<p>本质：积分 &#x3D; “某个代表值 × 体积”。</p>
+</blockquote>
+<hr>
+<h3 id="7-与常数函数的关系"><a href="#7-与常数函数的关系" class="headerlink" title="7. 与常数函数的关系"></a>7. 与常数函数的关系</h3><p>
+$$
+\iint_D 1\,dA = |D|
+$$
+</p>
+
+<p>
+$$
+\iiint_\Omega 1\,dV = |\Omega|
+$$
+</p>
+
+<blockquote>
+<p>本质：积分统一了“面积&#x2F;体积”的概念。</p>
+</blockquote>
+<hr>
+<p>那么如何计算呢？我们先看看二维。</p>
+<h1 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h1><p>我们会算的也就是一重积分，所以自然想到能不能把二重积分变成一重积分，这也就是所谓累次积分：</p>
+<p><strong>Fubini 定理（基本形式）：</strong></p>
+<p>
+$$
+\iint_D f(x,y)\,dA
+=
+\int_a^b \left(\int_{c(x)}^{d(x)} f(x,y)\,dy\right)\,dx
+$$
+</p>
+
+<p>或</p>
+<p>
+$$
+\iint_D f(x,y)\,dA
+=
+\int_c^d \left(\int_{a(y)}^{b(y)} f(x,y)\,dx\right)\,dy
+$$
+</p>
+
+<hr>
+<h3 id="分割"><a href="#分割" class="headerlink" title="分割"></a>分割</h3><p>不过与一维情形不同，多个变量之间互相制约，所以积分上下限可能包含其他变量，这很多时候也是形式复杂的源头。</p>
+<p>我们应该划分好区域，让变量上下界秩序分明：</p>
+<p><strong>I 型区域（竖切）：</strong></p>
+<p>
+$$
+D=\{(x,y)\mid a\le x\le b,\ c(x)\le y\le d(x)\}
+$$
+</p>
+
+<p>对应</p>
+<p>
+$$
+\iint_D f(x,y)\,dA
+=
+\int_a^b \int_{c(x)}^{d(x)} f(x,y)\,dy\,dx
+$$
+</p>
+
+<p><strong>II 型区域（横切）：</strong></p>
+<p>
+$$
+D=\{(x,y)\mid c\le y\le d,\ a(y)\le x\le b(y)\}
+$$
+</p>
+
+<p>对应</p>
+<p>
+$$
+\iint_D f(x,y)\,dA
+=
+\int_c^d \int_{a(y)}^{b(y)} f(x,y)\,dx\,dy
+$$
+</p>
+
+<p><strong>变量依赖关系（本质约束）：</strong></p>
+<p>
+$$
+\text{内层积分变量的上下限可以含外层变量，但反之不行}
+$$
+</p>
+
+<hr>
+<p>这样，再运用一次次定积分也就解决了所有问题。三维，乃至高维，也只是重复多次。</p>
+<p><strong>三重积分累次积分形式：</strong></p>
+<p>
+$$
+\iiint_\Omega f(x,y,z)\,dV
+=
+\int_a^b \int_{c(x)}^{d(x)} \int_{e(x,y)}^{g(x,y)} f(x,y,z)\,dz\,dy\,dx
+$$
+</p>
+
+<hr>
+<h3 id="换元"><a href="#换元" class="headerlink" title="换元"></a>换元</h3><p>那么，我们也可以利用换元来简化积分。在一维中：</p>
+<p><strong>一维换元公式：</strong></p>
+<p>
+$$
+\int f(x)\,dx = \int f(x(t))\,x'(t)\,dt
+$$
+</p>
+
+<p>那么 $dxdy$ 怎么换呢？</p>
+<p>设参数变换：</p>
+<p>
+$$
+(x,y) = (x(u,v),\,y(u,v))
+$$
+</p>
+
+<p>考虑微元变化：</p>
+<p>
+$$
+\mathbf r(u+du,v)\approx \mathbf r + \mathbf r_u\,du
+$$
+</p>
+
+<p>
+$$
+\mathbf r(u,v+dv)\approx \mathbf r + \mathbf r_v\,dv
+$$
+</p>
+
+<p>则面积元为：</p>
+<p><strong>面积元（叉积形式）：</strong></p>
+<p>
+$$
+dA = |\mathbf r_u \times \mathbf r_v|\,dudv
+$$
+</p>
+
+<p>计算可得，这正是雅可比行列式：</p>
+<p><strong>雅可比行列式（二维）：</strong></p>
+<p>
+$$
+\frac{\partial(x,y)}{\partial(u,v)}
+=
+\begin{vmatrix}
+\frac{\partial x}{\partial u} & \frac{\partial x}{\partial v}\\
+\frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
+\end{vmatrix}
+$$
+</p>
+
+<p>于是得到：</p>
+<p><strong>二重积分换元公式：</strong></p>
+<p>
+$$
+\iint_D f(x,y)\,dxdy
+=
+\iint_{D'} f(x(u,v),y(u,v))
+\left|\frac{\partial(x,y)}{\partial(u,v)}\right|
+\,dudv
+$$
+</p>
+
+<hr>
+<p>在三维中，我们则变成混合积：</p>
+<p>
+$$
+V = |\mathbf{A} \cdot (\mathbf{B} \times \mathbf{C})|
+$$
+</p>
+
+<p>从而换元变成：</p>
+<p>
+$$
+\begin{aligned} dV' &= |(\mathbf{r}_u du) \cdot ((\mathbf{r}_v dv) \times (\mathbf{r}_w dw))| \\ &= |\mathbf{r}_u \cdot (\mathbf{r}_v \times \mathbf{r}_w)| \cdot du dv dw \end{aligned}
+$$
+</p>
+
+<p>恰好也是雅可比行列式：</p>
+<p>
+$$
+\mathbf{r}_u \cdot (\mathbf{r}_v \times \mathbf{r}_w) = \det \begin{pmatrix} \frac{\partial x}{\partial u} & \frac{\partial y}{\partial u} & \frac{\partial z}{\partial u} \\ \frac{\partial x}{\partial v} & \frac{\partial y}{\partial v} & \frac{\partial z}{\partial v} \\ \frac{\partial x}{\partial w} & \frac{\partial y}{\partial w} & \frac{\partial z}{\partial w} \end{pmatrix}
+$$
+</p>
+
+<p><strong>三维雅可比行列式：</strong></p>
+<p>
+$$
+\frac{\partial(x,y,z)}{\partial(u,v,w)}
+=
+\begin{vmatrix}
+x_u & x_v & x_w\\
+y_u & y_v & y_w\\
+z_u & z_v & z_w
+\end{vmatrix}
+$$
+</p>
+
+<p><strong>三重积分换元公式：</strong></p>
+<p>
+$$
+\iiint_\Omega f(x,y,z)\,dV
+=
+\iiint_{\Omega'} f(x(u,v,w),y(u,v,w),z(u,v,w))
+\left|\frac{\partial(x,y,z)}{\partial(u,v,w)}\right|
+\,dudvdw
+$$
+</p>
+
+<hr>
+<p>我们可以计算常见坐标变换：</p>
+<p><strong>极坐标：</strong></p>
+<p>
+$$
+x=r\cos\theta,\quad y=r\sin\theta
+$$
+</p>
+
+<p>
+$$
+dxdy = r\,dr\,d\theta
+$$
+</p>
+
+<hr>
+<p><strong>柱坐标：</strong></p>
+<p>
+$$
+x=r\cos\theta,\quad y=r\sin\theta,\quad z=z
+$$
+</p>
+
+<p>
+$$
+dV = r\,dr\,d\theta\,dz
+$$
+</p>
+
+<hr>
+<p><strong>球坐标：</strong></p>
+<p>
+$$
+x=\rho\sin\varphi\cos\theta,\quad
+y=\rho\sin\varphi\sin\theta,\quad
+z=\rho\cos\varphi
+$$
+</p>
+
+<p>
+$$
+dV = \rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta
+$$
+</p>
+
+<hr>
+<p> 一般维度也是雅可比行列式吗，我们可以这样看：</p>
+<p>
+$$
+\begin{pmatrix} dx \\ dy \end{pmatrix} \approx \begin{pmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \end{pmatrix} \begin{pmatrix} du \\ dv \end{pmatrix}
+$$
+</p>
+
+<p>联系线性代数，我们知道行列式代表着体积，所以确实，对于一般的情形，直接上行列式就好了！</p>
+<h1 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h1><p>那么我们便可以小结一下：</p>
+<p>1.考虑对称，换元</p>
+<p>2.划分变量区域</p>
+<p>3.积分</p>
+<p>我们来实操一下。</p>
+<p><img src="/images/Pasted_image_20260402140342.png"></p>
+<h3 id="1-考虑对称，简化被积函数"><a href="#1-考虑对称，简化被积函数" class="headerlink" title="1. 考虑对称，简化被积函数"></a>1. 考虑对称，简化被积函数</h3><p>观察被积函数的分子 $(x+y+z)^2 &#x3D; x^2+y^2+z^2 + 2xy + 2yz + 2zx$。</p>
+<p>由于积分区域 $\Omega$关于$Oyz$、$Oxz$和$Oxy$ 三个坐标面均具有对称性，根据<strong>奇函数在对称区域上的积分为零</strong>：</p>
+<ul>
+<li>交叉项 $\iiint_{\Omega} 2xy , dV &#x3D; \iiint_{\Omega} 2yz , dV &#x3D; \iiint_{\Omega} 2zx , dV &#x3D; 0$。</li>
+</ul>
+<p>因此，复杂的分子被“脱壳”简化为径向平方和：</p>
+<p>
+$$
+f(x,y,z) = \frac{x^2+y^2+z^2}{(x^2+y^2+z^2)^2} = \frac{1}{x^2+y^2+z^2}
+$$
+</p>
+
+<hr>
+<h3 id="2-换元，划分变量区域"><a href="#2-换元，划分变量区域" class="headerlink" title="2. 换元，划分变量区域"></a>2. 换元，划分变量区域</h3><p>为了处理分母中的 $r^2$ 和区域的旋转对称性，引入球坐标换元：</p>
+<ul>
+<li><strong>球面：</strong> $\rho &#x3D; 2$- <strong>抛物面：</strong>$z &#x3D; \frac{1}{3}(x^2+y^2) \implies \rho \cos\phi &#x3D; \frac{1}{3}\rho^2 \sin^2\phi \implies \rho &#x3D; \frac{3\cos\phi}{\sin^2\phi}$通过联立方程$2 &#x3D; \frac{3\cos\phi}{\sin^2\phi}$，解得交线处的临界角 <strong>$\phi &#x3D; \frac{\pi}{3}$</strong>。</li>
+</ul>
+<p>据此，我们将积分区域 $\Omega$在$\phi$ 方向上划分为秩序分明的两部分：</p>
+<ul>
+<li><p><strong>区域 I ($0 \le \phi \le \frac{\pi}{3}$):</strong> 径向受限于球面，$0 \le \rho \le 2$。</p>
+</li>
+<li><p><strong>区域 II ($\frac{\pi}{3} &lt; \phi \le \frac{\pi}{2}$):</strong> 径向受限于抛物面，$0 \le \rho \le \frac{3\cos\phi}{\sin^2\phi}$。</p>
+</li>
+</ul>
+<hr>
+<h3 id="3-积分计算（Jacobi-抵消与分段累加）"><a href="#3-积分计算（Jacobi-抵消与分段累加）" class="headerlink" title="3. 积分计算（Jacobi 抵消与分段累加）"></a>3. 积分计算（Jacobi 抵消与分段累加）</h3><p>利用球坐标体积元 $dV &#x3D; \rho^2 \sin\phi , d\rho d\phi d\theta$，被积函数中的 $1&#x2F;\rho^2$与 Jacobi 因子抵消，积分简化为对$\sin\phi$ 的分段累次积分：</p>
+<p>
+$$
+I = \int_{0}^{2\pi} d\theta \left[ \int_{0}^{\frac{\pi}{3}} d\phi \int_{0}^{2} \sin\phi \, d\rho + \int_{\frac{\pi}{3}}^{\frac{\pi}{2}} d\phi \int_{0}^{\frac{3\cos\phi}{\sin^2\phi}} \sin\phi \, d\rho \right]
+$$
+</p>
+
+<p><strong>分步求解：</strong></p>
+<ul>
+<li><p><strong>第一部分：</strong> $2\pi \int_{0}^{\frac{\pi}{3}} 2\sin\phi , d\phi &#x3D; 4\pi [-\cos\phi]<em>{0}^{\frac{\pi}{3}} &#x3D; 4\pi (\frac{1}{2}) &#x3D; 2\pi$- <strong>第二部分：</strong>$2\pi \int</em>{\frac{\pi}{3}}^{\frac{\pi}{2}} \sin\phi \cdot \frac{3\cos\phi}{\sin^2\phi} , d\phi &#x3D; 6\pi \int_{\frac{\pi}{3}}^{\frac{\pi}{2}} \frac{\cos\phi}{\sin\phi} , d\phi &#x3D; 6\pi [\ln(\sin\phi)]_{\frac{\pi}{3}}^{\frac{\pi}{2}}$</p>
+<p>  代入得：$6\pi (\ln 1 - \ln \frac{\sqrt{3}}{2}) &#x3D; -6\pi \ln \frac{\sqrt{3}}{2}$</p>
+</li>
+</ul>
+<p><strong>最终结果：</strong></p>
+<p>
+$$
+I = 2\pi - 6\pi \ln \frac{\sqrt{3}}{2} = 2\pi \left( 1 - 3\ln\frac{\sqrt{3}}{2} \right)
+$$
+</p>
+
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/1.%E9%87%8D%E7%A7%AF%E5%88%86/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/3.%E6%A0%BC%E6%9E%97%EF%BC%8C%E9%AB%98%E6%96%AF%E4%B8%8E%E6%96%AF%E6%89%98%E5%85%8B%E6%96%AF%E5%85%AC%E5%BC%8F/">
+        <h2 class="post-title">3.格林，高斯与斯托克斯公式</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/19
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>对于二维、三维的重积分，我们有没有类似一维的牛顿莱布尼茨公式，有没有类似的分部积分操作呢？</p>
+<h3 id="梯度定理"><a href="#梯度定理" class="headerlink" title="梯度定理"></a>梯度定理</h3><p>设 $\phi(\vec{r})$ 是一个定义在空间区域上的标量场（$C^1$ 连续可微），$L$是空间中从点$A$到点$B$ 的一条光滑曲线，则：</p>
+<p>
+$$
+\int_{L} \nabla \phi \cdot d\vec{r} = \phi(B) - \phi(A)
+$$
+</p>
+
+<p>这里的 $\nabla \phi \cdot d\vec{r}$就是标量场的<strong>全微分</strong>$d\phi$。</p>
+<p>证明：<br>设空间曲线 $L$的参数方程为$\vec{r}(t) &#x3D; (x(t), y(t), z(t))$，其中 $t \in [t_A, t_B]$。</p>
+<p>对应地，起点 $A &#x3D; \vec{r}(t_A)$，终点 $B &#x3D; \vec{r}(t_B)$。</p>
+<h4 id="1-展开左侧的线积分"><a href="#1-展开左侧的线积分" class="headerlink" title="1. 展开左侧的线积分"></a>1. 展开左侧的线积分</h4><p>根据线积分的定义，我们将 $d\vec{r}$写成$\frac{d\vec{r}}{dt} dt$：</p>
+<p>
+$$
+\int_{L} \nabla \phi \cdot d\vec{r} = \int_{t_A}^{t_B} \left( \nabla \phi(\vec{r}(t)) \cdot \frac{d\vec{r}}{dt} \right) dt
+$$
+</p>
+
+<h4 id="2-链式法则的逆运用"><a href="#2-链式法则的逆运用" class="headerlink" title="2. 链式法则的逆运用"></a>2. 链式法则的逆运用</h4><p>观察括号内的点积项。根据多元函数复合求导的<strong>链式法则（Chain Rule）</strong>：</p>
+<p>
+$$
+\frac{d}{dt} \phi(\vec{r}(t)) = \frac{\partial \phi}{\partial x} \frac{dx}{dt} + \frac{\partial \phi}{\partial y} \frac{dy}{dt} + \frac{\partial \phi}{\partial z} \frac{dz}{dt}
+$$
+</p>
+
+<p>这恰好就是 $\nabla \phi \cdot \frac{d\vec{r}}{dt}$。</p>
+<p>所以，积分式可以简化为：</p>
+<p>
+$$
+\int_{t_A}^{t_B} \frac{d}{dt} \phi(\vec{r}(t)) \, dt
+$$
+</p>
+
+<h4 id="3-回归一元牛顿-莱布尼茨公式"><a href="#3-回归一元牛顿-莱布尼茨公式" class="headerlink" title="3. 回归一元牛顿-莱布尼茨公式"></a>3. 回归一元牛顿-莱布尼茨公式</h4><p>现在，这就是一个最标准的一元函数对导数的积分。根据微积分基本定理：</p>
+<p>
+$$
+\int_{t_A}^{t_B} \frac{d}{dt} \phi(\vec{r}(t)) \, dt = \phi(\vec{r}(t_B)) - \phi(\vec{r}(t_A))
+$$
+</p>
+
+<p>代入终点 $B$和起点$A$ 的坐标，得证：</p>
+<p>
+$$
+\int_{L} \nabla \phi \cdot d\vec{r} = \phi(B) - \phi(A)
+$$
+</p>
+
+<hr>
+<p>不管里面多复杂，总之满足如此的条件我们就只需要管边界值，这给予了十分的便利。<br>那么对于一般一些的函数有什么类似的方法写成边界值吗？或者我们看这样一个积分：</p>
+<h3 id="烦人的积分"><a href="#烦人的积分" class="headerlink" title="烦人的积分"></a>烦人的积分</h3><p><strong>求空间曲线积分：</strong></p>
+<p>
+$$
+I = \oint_L (z^2 - y^2)dx + (x^2 - z^2)dy + (y^2 - x^2)dz
+$$
+</p>
+
+<p>其中 $L$为球面$x^2 + y^2 + z^2 &#x3D; 1$在第一卦限的边界，方向为$A(1,0,0) \to B(0,1,0) \to C(0,0,1) \to A$。</p>
+<hr>
+<p>怎么办，要分成三段算吗，很麻烦诶。实际上可以利用所谓的 Stokes 公式转化成面积分从而简化，我们先直接给出 Stokes 公式体验一下，后续会详细一些地论述。</p>
+<h4 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h4><h5 id="1-旋度计算-Curl"><a href="#1-旋度计算-Curl" class="headerlink" title="1. 旋度计算 (Curl)"></a>1. 旋度计算 (Curl)</h5><p>设向量场 $\mathbf{F} &#x3D; (P, Q, R) &#x3D; (z^2 - y^2, x^2 - z^2, y^2 - x^2)$。根据 Stokes 公式 $\oint_L \mathbf{F} \cdot d\mathbf{r} &#x3D; \iint_\Sigma (\nabla \times \mathbf{F}) \cdot d\mathbf{S}$，计算旋度：</p>
+<p>
+$$
+\nabla \times \mathbf{F} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ z^2-y^2 & x^2-z^2 & y^2-x^2 \end{vmatrix}
+$$
+</p>
+
+<ul>
+<li><p><strong>$x$ 分量</strong>：$\frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z} &#x3D; 2y - (-2z) &#x3D; 2(y+z)$</p>
+</li>
+<li><p><strong>$y$ 分量</strong>：$\frac{\partial P}{\partial z} - \frac{\partial R}{\partial x} &#x3D; 2z - 0 &#x3D; 2z$（注意此处$R$不含$x$，且 $\mathbf{j}$项需取负号）：应该是$2z - (-2x) &#x3D; 2(z+x)$</p>
+</li>
+<li><p><strong>$z$ 分量</strong>：$\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} &#x3D; 2x - (-2y) &#x3D; 2(x+y)$</p>
+</li>
+</ul>
+<p>得到：$\nabla \times \mathbf{F} &#x3D; (2(y+z), 2(z+x), 2(x+y))$。</p>
+<h5 id="2-选取积分曲面-Sigma-取-Sigma-为球面-x-2-y-2-z-2-1-在第一卦限的部分。其单位外法向量为-mathbf-n-x-y-z-。"><a href="#2-选取积分曲面-Sigma-取-Sigma-为球面-x-2-y-2-z-2-1-在第一卦限的部分。其单位外法向量为-mathbf-n-x-y-z-。" class="headerlink" title="2. 选取积分曲面 $\Sigma$取$\Sigma$为球面$x^2 + y^2 + z^2 &#x3D; 1$在第一卦限的部分。其单位外法向量为$\mathbf{n} &#x3D; (x, y, z)$。"></a>2. 选取积分曲面 $\Sigma$取$\Sigma$为球面$x^2 + y^2 + z^2 &#x3D; 1$在第一卦限的部分。其单位外法向量为$\mathbf{n} &#x3D; (x, y, z)$。</h5><p>计算 $(\nabla \times \mathbf{F}) \cdot \mathbf{n}$：</p>
+<p>
+$$
+(\nabla \times \mathbf{F}) \cdot \mathbf{n} = 2(y+z)x + 2(z+x)y + 2(x+y)z = 4(xy + yz + zx)
+$$
+</p>
+
+<h5 id="3-利用对称性化简"><a href="#3-利用对称性化简" class="headerlink" title="3. 利用对称性化简"></a>3. 利用对称性化简</h5><p>由于曲面 $\Sigma$在第一卦限关于$x, y, z$ 完全对称，积分可以简化为：</p>
+<p>
+$$
+I = \iint_\Sigma 4(xy + yz + zx) dS = 12 \iint_\Sigma xy \, dS
+$$
+</p>
+
+<h5 id="4-坐标投影与积分"><a href="#4-坐标投影与积分" class="headerlink" title="4. 坐标投影与积分"></a>4. 坐标投影与积分</h5><p>在球面上，利用参数方程 $x &#x3D; \sin\phi \cos\theta, y &#x3D; \sin\phi \sin\theta, dS &#x3D; \sin\phi , d\phi d\theta$。</p>
+<p>第一卦限范围：$\theta \in [0, \pi&#x2F;2], \phi \in [0, \pi&#x2F;2]$。</p>
+<p>
+$$
+\iint_\Sigma xy \, dS = \int_0^{\pi/2} \sin\theta \cos\theta \, d\theta \int_0^{\pi/2} \sin^3\phi \, d\phi
+$$
+</p>
+
+<ul>
+<li><p><strong>$\theta$ 部分</strong>：$\int_0^{\pi&#x2F;2} \sin\theta \cos\theta , d\theta &#x3D; \left[ \frac{1}{2}\sin^2\theta \right]_0^{\pi&#x2F;2} &#x3D; \frac{1}{2}$</p>
+</li>
+<li><p><strong>$\phi$ 部分</strong>：$\int_0^{\pi&#x2F;2} \sin^3\phi , d\phi &#x3D; \frac{2}{3}$（利用$\sin^3\phi &#x3D; \sin\phi(1-\cos^2\phi)$ 或 Walli’s 公式）</p>
+</li>
+</ul>
+<h5 id="5-最终结果"><a href="#5-最终结果" class="headerlink" title="5. 最终结果"></a>5. 最终结果</h5><p>
+$$
+I = 12 \times \left( \frac{1}{2} \times \frac{2}{3} \right) = 12 \times \frac{1}{3} = \mathbf{4}
+$$
+</p>
+
+<p>可以看到，虽然还是有一定的计算量，但我们不需要算三条线，这大约很让人宽慰，至少在我感觉是如此。可以看到， Stokes 公式实际上把边界的积分转化为内部的积分，但这有时候会带来相当的便利。下面，我们先看 Stokes 的二维版本，也就是所谓 Green 公式。</p>
+<hr>
+<h3 id="格林公式"><a href="#格林公式" class="headerlink" title="格林公式"></a>格林公式</h3><p>
+$$
+\oint_{\partial D^+}Pdx+Qdy=\iint_D(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})dxdy
+$$
+</p>
+
+<p>下面我们给出证明：</p>
+<h4 id="第一阶段：特殊区域（单连通、凸区域）的证明"><a href="#第一阶段：特殊区域（单连通、凸区域）的证明" class="headerlink" title="第一阶段：特殊区域（单连通、凸区域）的证明"></a>第一阶段：特殊区域（单连通、凸区域）的证明</h4><p>我们首先证明在一个<strong>标准区域</strong>（例如在 $y$方向上由两条函数曲线$y &#x3D; \phi_1(x)$和$y &#x3D; \phi_2(x)$ 围成的区域）内，公式的半部分成立。</p>
+<p><img src="/images/Pasted_image_20260402122823.png"></p>
+<h5 id="1-目标等式"><a href="#1-目标等式" class="headerlink" title="1. 目标等式"></a>1. 目标等式</h5><p>证明关于 $P$ 的分量：</p>
+<p>
+$$
+\oint_{\partial D^+} P \, dx = \iint_D -P_y \, dx \, dy
+$$
+</p>
+
+<h5 id="2-推导过程"><a href="#2-推导过程" class="headerlink" title="2. 推导过程"></a>2. 推导过程</h5><p>利用微积分基本定理，对二重积分进行累次积分：</p>
+<p>
+$$
+\begin{aligned} \iint_D \frac{\partial P}{\partial y} \, dx \, dy &= \int_a^b \left( \int_{\phi_1(x)}^{\phi_2(x)} \frac{\partial P}{\partial y} \, dy \right) dx \\ &= \int_a^b [P(x, \phi_2(x)) - P(x, \phi_1(x))] \, dx \end{aligned}
+$$
+</p>
+
+<p>对应的边界曲线积分 $\oint_{\partial D^+} P , dx$ 分为四部分：</p>
+<ul>
+<li><p><strong>底边和顶边</strong>：沿 $y&#x3D;\phi_1(x)$的积分为$\int_a^b P(x, \phi_1(x)) , dx$；沿 $y&#x3D;\phi_2(x)$（反向）为 $-\int_a^b P(x, \phi_2(x)) , dx$。</p>
+</li>
+<li><p><strong>侧边</strong>：由于侧边上 $dx &#x3D; 0$，故积分为 0。</p>
+</li>
+</ul>
+<p>合并即得：</p>
+<p>
+$$
+\oint_{\partial D^+} P \, dx = -\iint_D P_y \, dx \, dy
+$$
+</p>
+
+<p>同理可证 $\oint_{\partial D^+} Q , dy &#x3D; \iint_D Q_x , dx , dy$。</p>
+<hr>
+<h4 id="第二阶段：复杂区域的拆解"><a href="#第二阶段：复杂区域的拆解" class="headerlink" title="第二阶段：复杂区域的拆解"></a>第二阶段：复杂区域的拆解</h4><p>如果区域 $D$形状复杂（非凸或非标准），我们通过<strong>辅助线</strong>将其切割成若干个小标准区域$D_1, D_2, \dots, D_n$。</p>
+<ul>
+<li><p><strong>体积分相加</strong>：$\iint_D &#x3D; \sum \iint_{D_i}$。</p>
+</li>
+<li><p><strong>线积分抵消</strong>：当你把所有小区域的边界积分 $\oint_{\partial D_i^+}$相加时，内部的辅助线会被经过两次，且方向相反，因此<strong>内部积分全部抵消</strong>，只剩下最外层的边界$\partial D^+$。</p>
+</li>
+</ul>
+<hr>
+<h4 id="第三阶段：多连通区域（有洞的区域）"><a href="#第三阶段：多连通区域（有洞的区域）" class="headerlink" title="第三阶段：多连通区域（有洞的区域）"></a>第三阶段：多连通区域（有洞的区域）</h4><p><strong>正向边界的定义</strong>：</p>
+<ul>
+<li><p><strong>规则</strong>：当你沿着边界前进时，区域 $D$ 始终在你的<strong>左侧</strong>。</p>
+</li>
+<li><p><strong>结论</strong>：对于多连通区域，外边界 $L_0$是逆时针的，而内部的所有“洞”边界$L_i$ 必须是<strong>顺时针</strong>的。</p>
+</li>
+</ul>
+<p><img src="/images/Pasted_image_20260402122951.png"><br>通过在洞与外边界之间拉起“切口”线（辅助线），多连通区域可以被看作一个复杂的单连通区域，从而使格林公式依然成立：</p>
+<p>
+$$
+\oint_{\partial D^+} P \, dx + Q \, dy = \sum_{i=0}^n \oint_{L_i} P \, dx + Q \, dy = \iint_D (Q_x - P_y) \, dx \, dy
+$$
+</p>
+
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>例如，可以利用<strong>格林公式（Green’s Theorem）</strong> 的一个精巧推论来计算平面图形的面积。</p>
+<blockquote>
+<p>这种方法的本质是：将“对面积的积分”转化为“沿边界的环流积分”，这在处理复杂边界时往往比直接做二重积分更<strong>优雅</strong>。</p>
+</blockquote>
+<h5 id="格林公式求面积"><a href="#格林公式求面积" class="headerlink" title="格林公式求面积"></a>格林公式求面积</h5><p>根据格林公式：</p>
+<p>
+$$
+\oint_{\partial D^+} (P \, dx + Q \, dy) = \iint_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) \, dA
+$$
+</p>
+
+<p>如果我们巧妙地构造 $P$和$Q$，使得 $\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} &#x3D; 1$，那么右侧的二重积分就直接等于区域 $D$的面积$S(D)$。</p>
+<p>采用最对称的一种构造：</p>
+<ul>
+<li><p>令 $P &#x3D; -\frac{1}{2}y, \quad Q &#x3D; \frac{1}{2}x$</p>
+</li>
+<li><p>验证：$\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} &#x3D; \frac{1}{2} - (-\frac{1}{2}) &#x3D; 1$</p>
+</li>
+</ul>
+<p>由此得到<strong>面积计算公式</strong>：</p>
+<p>
+$$
+S(D) = \iint_D \, dx \, dy = \frac{1}{2} \oint_{\partial D^+} (x \, dy - y \, dx)
+$$
+</p>
+
+<p>只要沿着一个图形走一圈，就能知道包住的面积，想想还是很神奇的。</p>
+<h5 id="椭圆面积的计算"><a href="#椭圆面积的计算" class="headerlink" title="椭圆面积的计算"></a>椭圆面积的计算</h5><p>计算区域 $D &#x3D; { \frac{x^2}{a^2} + \frac{y^2}{b^2} \le 1 }$ 的面积。</p>
+<h6 id="步骤一：参数化边界"><a href="#步骤一：参数化边界" class="headerlink" title="步骤一：参数化边界"></a>步骤一：参数化边界</h6><p>椭圆边界 $\partial D^+$ 的参数方程为：</p>
+<p>
+$$
+\begin{cases} x = a \cos \theta \\ y = b \sin \theta \end{cases} \quad (\theta \in [0, 2\pi])
+$$
+</p>
+
+<p>对应的微分项为：</p>
+<p>
+$$
+\begin{cases} dx = -a \sin \theta \, d\theta \\ dy = b \cos \theta \, d\theta \end{cases}
+$$
+</p>
+
+<h6 id="步骤二：代入环流量积分"><a href="#步骤二：代入环流量积分" class="headerlink" title="步骤二：代入环流量积分"></a>步骤二：代入环流量积分</h6><p>将参数化后的项代入公式：</p>
+<p>
+$$
+\begin{aligned} S(D) &= \frac{1}{2} \oint_{\partial D^t} (x \, dy - y \, dx) \\ &= \frac{1}{2} \int_{0}^{2\pi} \left[ (a \cos \theta)(b \cos \theta \, d\theta) - (b \sin \theta)(-a \sin \theta \, d\theta) \right] \\ &= \frac{1}{2} \int_{0}^{2\pi} (ab \cos^2 \theta + ab \sin^2 \theta) \, d\theta \\ &= \frac{1}{2} ab \int_{0}^{2\pi} (\cos^2 \theta + \sin^2 \theta) \, d\theta \end{aligned}
+$$
+</p>
+
+<h6 id="步骤三：得出结论"><a href="#步骤三：得出结论" class="headerlink" title="步骤三：得出结论"></a>步骤三：得出结论</h6><p>利用三角恒等式 $\cos^2 \theta + \sin^2 \theta &#x3D; 1$：</p>
+<p>
+$$
+S(D) = \frac{1}{2} ab \int_{0}^{2\pi} 1 \, d\theta = \frac{1}{2} ab \cdot 2\pi = \pi ab
+$$
+</p>
+
+<p>多么美妙。<br>但是格林公式显然需要函数可导，万一区域里出了个叛徒不可导怎么办？这就是所谓奇点。我们先抛出这个问题：</p>
+<p>$P &#x3D; \frac{-(x+y)}{x^2+y^2}$，$Q &#x3D; \frac{x-y}{x^2+y^2}</p>
+<p>
+$$
+$\oint_C Pdx + Qdy = \iint_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) dA
+$$
+</p>
+
+<p>如果 $D$ 包含了原点怎么办呢？是不是用不了格林公式？请听下回分解。</p>
+<hr>
+<h3 id="高斯公式"><a href="#高斯公式" class="headerlink" title="高斯公式"></a>高斯公式</h3><p>从格林公式，我们可以玩出一个新公式，减号看起来有点不对称，如果把环路积分变成减号，相应的面积分也就变成加号了：</p>
+<p>
+$$
+\oint_{L} (P dy - Q dx) = \iint_{D} (P_x + Q_y) \, dx dy
+$$
+</p>
+
+<p>这也就是二维的高斯公式。二维高斯公式建立了闭合曲线上的<strong>法向通量</strong>与区域内<strong>散度累积</strong>之间的关系。我们可以把左侧的积分写成点积，然后加上一个fancy的符号 $\nabla$ 。$\nabla$ 可以看做向量$(\frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z})</p>
+<p>
+$$
+$\oint_{L} (\vec{v} \cdot \vec{n}^+) \, ds = \iint_{D} (\nabla \cdot \vec{v}) \, dx dy
+$$
+</p>
+
+<h4 id="泊松方程解的唯一性"><a href="#泊松方程解的唯一性" class="headerlink" title="泊松方程解的唯一性"></a>泊松方程解的唯一性</h4><p>我们可以拿上述的二维高斯公式整点活。</p>
+<p>设 $u \in C^2(D)$，$L &#x3D; \partial D$（其中 $\vec{n}$ 为单位外法向量）。</p>
+<p>根据散度定理（高斯公式在二维的体现）：</p>
+<p>
+$$
+\oint_L (\nabla u \cdot \vec{n}) \, ds = \iint_D (\nabla \cdot (\nabla u)) \, dx dy = \iint_D \Delta u \, dx dy
+$$
+</p>
+
+<p>（注：此处 $\Delta u &#x3D; u_{xx} + u_{yy}$ 为拉普拉斯算子）</p>
+<hr>
+<p><strong>设定：</strong></p>
+<p>令 $u &#x3D; \tilde{f}^2$，则其梯度与拉普拉斯算子分别为：</p>
+<ul>
+<li>$\nabla u &#x3D; 2\tilde{f} \nabla \tilde{f}$-$\Delta u &#x3D; 2|\nabla \tilde{f}|^2 + 2\tilde{f} \Delta \tilde{f}$</li>
+</ul>
+<p>代入：</p>
+<p>
+$$
+\oint_L (\tilde{f} \nabla \tilde{f}) \cdot \vec{n} \, ds = \iint_D (|\nabla \tilde{f}|^2 + \tilde{f} \Delta \tilde{f}) \, dx dy
+$$
+</p>
+
+<p>若左边积分项为 $0$且$\Delta \tilde{f} &#x3D; 0$，则推导出：</p>
+<p>
+$$
+\iint_D |\nabla \tilde{f}|^2 \, dx dy = 0
+$$
+</p>
+
+<p><strong>Poisson 方程描述：</strong></p>
+<p>在区域 $D$ 内满足：</p>
+<p>
+$$
+\begin{cases} \Delta f = h & \text{在 } D \text{ 内} \\ f = g & \text{在 } \partial D \text{ 上} \end{cases}
+$$
+</p>
+
+<p><strong>唯一性证明思路：</strong></p>
+<p>假如有两个解 $f_1, f_2$，记误差函数 $\tilde{f} &#x3D; f_1 - f_2$，则 $\tilde{f}$ 满足：</p>
+<p>
+$$
+\begin{cases} \Delta \tilde{f} = 0 & \text{在 } D \text{ 内} \\ \tilde{f} = 0 & \text{在 } \partial D \text{ 上} \end{cases}
+$$
+</p>
+
+<p>结合前述推导，由于 $\iint_D |\nabla \tilde{f}|^2 , dx dy &#x3D; 0$，在连续性条件下必有 $\nabla \tilde{f} &#x3D; 0$，即 $\tilde{f}$为常数。又因边界处$\tilde{f}&#x3D;0$，故在全域内 $\tilde{f} &#x3D; 0$，即 <strong>$f_1 &#x3D; f_2$（解是唯一的）</strong>。</p>
+<hr>
+<h3 id="4-第二类曲线积分与路径无关性"><a href="#4-第二类曲线积分与路径无关性" class="headerlink" title="4. 第二类曲线积分与路径无关性"></a>4. 第二类曲线积分与路径无关性</h3><p><strong>命题：</strong></p>
+<p>设 $D$ 是单连通区域，$P, Q \in C^1(D)$。</p>
+<p>以下两个论断等价：</p>
+<ol>
+<li><p><strong>路径无关性：</strong> 曲线积分 $\int_A^B P , dx + Q , dy$与连接$A, B$的路径无关（其中$A, B \in D$）。</p>
+</li>
+<li><p><strong>环路动量为零：</strong> 对 $D$ 内任意分段光滑的闭曲线（Jordan 闭曲线）$L$，均有：</p>
+</li>
+</ol>
+<p>
+$$
+\oint_L P \, dx + Q \, dy = 0
+$$
+</p>
+
+<hr>
+<h3 id="斯托克斯公式的证明"><a href="#斯托克斯公式的证明" class="headerlink" title="斯托克斯公式的证明"></a>斯托克斯公式的证明</h3><p>设 $P, Q, R \in C^1(S)$，我们要证明：</p>
+<p>
+$$
+\oint_{L^+} \vec{F} \cdot d\vec{r} = \iint_{S^+} (\nabla \times \vec{F}) \cdot \vec{n}^+ \, dS
+$$
+</p>
+
+<h4 id="1-证明目标分解"><a href="#1-证明目标分解" class="headerlink" title="1. 证明目标分解"></a>1. 证明目标分解</h4><p>只需证明分量形式：</p>
+<p>
+$$
+\oint_{L^+} P \, dx = \iint_{S^+} (P_z \, dz \wedge dx - P_y \, dx \wedge dy)
+$$
+</p>
+
+<p>这里的 $\wedge$是所谓<strong>外微分</strong>，这在后续笔记中将简单提到，可以先简单理解成代表了方向的$dzdx$ 。</p>
+<h4 id="2-参数化表达"><a href="#2-参数化表达" class="headerlink" title="2. 参数化表达"></a>2. 参数化表达</h4><p>引入参数方程 $(u, v) \to \vec{r}(u, v)$，其中：</p>
+<p>
+$$
+\begin{cases} x = x(u, v) \\ y = y(u, v) \\ z = z(u, v) \end{cases}
+$$
+</p>
+
+<p>对应的法向量微元 $\vec{du} \wedge \vec{dv} \approx \vec{n}^+ , dS$。</p>
+<h4 id="3-推导过程"><a href="#3-推导过程" class="headerlink" title="3. 推导过程"></a>3. 推导过程</h4><p>利用复合函数求导法则与格林公式：</p>
+<p>
+$$
+\begin{aligned} \oint_{L^+} P \, dx &= \oint_{L^{'+}} P(x_u \, du + x_v \, dv) \\ &= \oint_{L^{'+}} (P x_u) \, du + (P x_v) \, dv \\ &= \iint_{D'} \left[ (P x_v)_u - (P x_u)_v \right] \, du \, dv \\ &= \iint_{D'} (P_u x_v - P_v x_u) \, du \, dv \\ &= \iint_{D'} \left[ (P_x x_u + P_y y_u + P_z z_u) x_v - (P_x x_v + P_y y_v + P_z z_v) x_u \right] \, du \, dv \\ &= \iint_{D'} \left[ -P_y (x_u y_v - x_v y_u) + P_z (z_u x_v - z_v x_u) \right] \, du \, dv \\ &= \iint_{D'} (P_z B + (-P_y) C) \, du \, dv \end{aligned}
+$$
+</p>
+
+<p>其中：</p>
+<ul>
+<li>$C &#x3D; \frac{\partial(x, y)}{\partial(u, v)} &#x3D; x_u y_v - x_v y_u$-$B &#x3D; \frac{\partial(z, x)}{\partial(u, v)} &#x3D; z_u x_v - z_v x_u$</li>
+</ul>
+<p>对比即知与</p>
+<p>
+$$
+\iint_{S^+} (P_z \, dz \wedge dx - P_y \, dx \wedge dy)
+$$
+</p>
+
+<p>一致。同理可证明其他分量也满足该形式，故斯托克斯公式得证。</p>
+<hr>
+<h3 id="无旋场、无散场"><a href="#无旋场、无散场" class="headerlink" title="无旋场、无散场"></a>无旋场、无散场</h3><p>无旋、无散场有一定的美好的性质，但对于一个任意的函数，往往并不能直接满足无旋、无散，如何应用我们得到的性质呢？实际上我们可以做一个分解。</p>
+<hr>
+<h3 id="Hodge-分解定理证明（三维区域-Omega-）"><a href="#Hodge-分解定理证明（三维区域-Omega-）" class="headerlink" title="Hodge 分解定理证明（三维区域 $\Omega$）"></a>Hodge 分解定理证明（三维区域 $\Omega$）</h3><h4 id="1-分解目标的设定"><a href="#1-分解目标的设定" class="headerlink" title="1. 分解目标的设定"></a>1. 分解目标的设定</h4><p>设 $\vec{F} \in C^1(\Omega)$，我们要寻找 $\vec{F}_1, \vec{F}_2$ 使得：</p>
+<ol>
+<li><p><strong>分解性</strong>：$\vec{F} &#x3D; \vec{F}_1 + \vec{F}_2 &#x3D; \nabla u + \nabla \times \vec{G}$</p>
+</li>
+<li><p><strong>场特性</strong>：$\nabla \times \vec{F}_1 &#x3D; 0$（无旋）；$\nabla \cdot \vec{F}_2 &#x3D; 0$且在边界上$\vec{F}_2 \cdot \vec{n} &#x3D; 0$（无源且切向）。</p>
+</li>
+<li><p><strong>正交性</strong>：$\iiint_{\Omega} \vec{F}_1 \cdot \vec{F}_2 , dV &#x3D; 0$</p>
+</li>
+</ol>
+<h4 id="2-构造过程（引入-Neumann-边界）"><a href="#2-构造过程（引入-Neumann-边界）" class="headerlink" title="2. 构造过程（引入 Neumann 边界）"></a>2. 构造过程（引入 Neumann 边界）</h4><p>为了确定 $\vec{F}_1 &#x3D; \nabla u$，我们利用 $\vec{F}_2$ 的无源特性：</p>
+<p>
+$$
+\nabla \cdot \vec{F}_2 = \nabla \cdot (\vec{F} - \nabla u) = 0 \implies \nabla^2 u = \nabla \cdot \vec{F}
+$$
+</p>
+
+<p>这就是在 $\Omega$ 内的 <strong>Poisson 方程</strong>。为了保证分解的唯一性并消除边界干扰，我们引入 <strong>Neumann 边界条件</strong>：</p>
+<p>
+$$
+\left. \frac{\partial u}{\partial n} \right|_{\partial \Omega} = \nabla u \cdot \vec{n} = \vec{F} \cdot \vec{n}
+$$
+</p>
+
+<ul>
+<li><p><strong>存在性</strong>：根据偏微分方程理论，上述边值问题的解 $u$ 存在且在差一个常数的意义下唯一。</p>
+</li>
+<li><p><strong>推论</strong>：确定了 $u$ 之后，$\vec{F}_1 &#x3D; \nabla u$唯一确定，则$\vec{F}_2 &#x3D; \vec{F} - \vec{F}_1$自动满足$\nabla \cdot \vec{F}_2 &#x3D; 0$。</p>
+</li>
+</ul>
+<h4 id="3-正交性证明（核心计算）"><a href="#3-正交性证明（核心计算）" class="headerlink" title="3. 正交性证明（核心计算）"></a>3. 正交性证明（核心计算）</h4><p>验证 $\vec{F}_1$与$\vec{F}_2$的$L^2$ 内积为 0：</p>
+<p>
+$$
+\begin{aligned} \iiint_{\Omega} \vec{F}_1 \cdot \vec{F}_2 \, dV &= \iiint_{\Omega} \nabla u \cdot \vec{F}_2 \, dV \\ &= \iiint_{\Omega} \left[ \nabla \cdot (u \vec{F}_2) - u (\nabla \cdot \vec{F}_2) \right] \, dV \\ &= \iint_{\partial \Omega} u (\vec{F}_2 \cdot \vec{n}) \, dS - \iiint_{\Omega} u (\nabla \cdot \vec{F}_2) \, dV \end{aligned}
+$$
+</p>
+
+<p>根据构造条件：</p>
+<ul>
+<li><p>由 Poisson 方程知 $\nabla \cdot \vec{F}_2 &#x3D; 0$，故体积分项为 <strong>0</strong>。</p>
+</li>
+<li><p>由 Neumann 边界条件知 $\vec{F}_2 \cdot \vec{n} &#x3D; (\vec{F} - \nabla u) \cdot \vec{n} &#x3D; 0$，故面积分项为 <strong>0</strong>。</p>
+</li>
+</ul>
+<p><strong>结论</strong>：$\iiint_{\Omega} \vec{F}_1 \cdot \vec{F}_2 , dV &#x3D; 0$，证明了分解的正交性。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/3.%E6%A0%BC%E6%9E%97%EF%BC%8C%E9%AB%98%E6%96%AF%E4%B8%8E%E6%96%AF%E6%89%98%E5%85%8B%E6%96%AF%E5%85%AC%E5%BC%8F/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/2.%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86%E3%80%81%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86/">
+        <h2 class="post-title">2.曲线积分、曲面积分</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/19
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>之前的积分区域还算好看，但有时候我们需要在曲线、曲面上积分。</p>
+<h2 id="第一型曲线积分"><a href="#第一型曲线积分" class="headerlink" title="第一型曲线积分"></a>第一型曲线积分</h2><h3 id="1-第一型曲线积分的定义"><a href="#1-第一型曲线积分的定义" class="headerlink" title="1. 第一型曲线积分的定义"></a>1. 第一型曲线积分的定义</h3><p>对于空间曲线 $L$，若其参数方程为：</p>
+<p>
+$$
+\begin{cases} x = x(t) \\ y = y(t) \\ z = z(t) \end{cases} \quad t \in [\alpha, \beta], \quad \beta > \alpha
+$$
+</p>
+
+<p>且满足 $x, y, z \in C^1([\alpha, \beta])$（一阶连续可导），且切向量 $(x’(t), y’(t), z’(t)) \neq \vec{0}$。</p>
+<p>则函数 $f(x, y, z)$沿曲线$L$ 的第一型曲线积分为：</p>
+<p>
+$$
+\int_L f(x, y, z) \, ds = \int_{\alpha}^{\beta} f(x(t), y(t), z(t)) \sqrt{[x'(t)]^2 + [y'(t)]^2 + [z'(t)]^2} \, dt
+$$
+</p>
+
+<blockquote>
+<p><strong>关键点：</strong> 积分路径是从 $A$点到$B$ 点，强调“无折返”。</p>
+</blockquote>
+<hr>
+<h3 id="2-参数变换的不变性"><a href="#2-参数变换的不变性" class="headerlink" title="2. 参数变换的不变性"></a>2. 参数变换的不变性</h3><p>引入新参数 $\tau$的情况。设$t &#x3D; t(\tau)$，其中 $\tau \in [a, b]$。</p>
+<h4 id="情况-①：-t’-tau-0-（正向变换）"><a href="#情况-①：-t’-tau-0-（正向变换）" class="headerlink" title="情况 ①：$t’(\tau) &gt; 0$（正向变换）"></a>情况 ①：$t’(\tau) &gt; 0$（正向变换）</h4><p>此时 $t(a) &#x3D; \alpha$，$t(b) &#x3D; \beta$。积分变换后：</p>
+<p>
+$$
+\int_a^b f(P(t(\tau))) \sqrt{[x'(t)]^2 + [y'(t)]^2 + [z'(t)]^2} \cdot t'(\tau) \, d\tau
+$$
+</p>
+
+<h4 id="情况-②：-t’-tau-0-（逆向变换）"><a href="#情况-②：-t’-tau-0-（逆向变换）" class="headerlink" title="情况 ②：$t’(\tau) &lt; 0$（逆向变换）"></a>情况 ②：$t’(\tau) &lt; 0$（逆向变换）</h4><p>此时 $t(a) &#x3D; \beta$，$t(b) &#x3D; \alpha$。虽然积分限颠倒了，但由于弧微分 $ds$包含绝对值项$|t’(\tau)|$，最终结果依然保持一致：</p>
+<p>
+$$
+\int_a^b f(P(t(\tau))) \sqrt{(x')^2 + (y')^2 + (z')^2} \cdot |t'(\tau)| \, d\tau
+$$
+</p>
+
+<p>这是第一型曲线积分的特性，无方向性，正着走反着走结果一样。</p>
+<h2 id="第二型曲线积分"><a href="#第二型曲线积分" class="headerlink" title="第二型曲线积分"></a>第二型曲线积分</h2><h3 id="一、-物理背景：变力做功"><a href="#一、-物理背景：变力做功" class="headerlink" title="一、 物理背景：变力做功"></a>一、 物理背景：变力做功</h3><p>第二型曲线积分最直观的物理来源是计算一个变力 $\vec{F}$沿曲线$L$所做的功$W$。</p>
+<ul>
+<li><strong>离散化思想</strong>：将曲线划分为 $n$个微小段$\Delta \vec{r}_i$，在每一小段上力近似不变。</li>
+</ul>
+<p>
+$$
+W \approx \sum_{i=1}^{n} \vec{F}_i \cdot \Delta \vec{r}_i
+$$
+</p>
+
+<ul>
+<li><strong>极限过程</strong>：当切分无限细时，得到精确的功：</li>
+</ul>
+<p>
+$$
+W = \int_{L} \vec{F}(x, y, z) \cdot d\vec{r}
+$$
+</p>
+
+<hr>
+<h3 id="二、-核心性质"><a href="#二、-核心性质" class="headerlink" title="二、 核心性质"></a>二、 核心性质</h3><p>类似其他积分：</p>
+<ol>
+<li><strong>线性（Linearity）</strong>：</li>
+</ol>
+<p>
+$$
+\int_{L} (a\vec{F} + b\vec{G}) \cdot d\vec{r} = a\int_{L} \vec{F} \cdot d\vec{r} + b\int_{L} \vec{G} \cdot d\vec{r}
+$$
+</p>
+
+<ol start="2">
+<li><strong>有向性（Directionality）</strong>：这是与第一型积分最大的区别。</li>
+</ol>
+<p>
+$$
+\int_{A \to B} \vec{F} \cdot d\vec{r} = -\int_{B \to A} \vec{F} \cdot d\vec{r}
+$$
+</p>
+
+<p><strong>结论</strong>：积分结果取决于路径的方向，方向反转，结果取负。</p>
+<ol start="3">
+<li><p><strong>分段可加性</strong>：</p>
+<p> 若路径 $C$由$C_1$和$C_2$ 首尾相连组成，则：</p>
+</li>
+</ol>
+<p>
+$$
+\int_{C} \vec{F} \cdot d\vec{r} = \int_{C_1} \vec{F} \cdot d\vec{r} + \int_{C_2} \vec{F} \cdot d\vec{r}
+$$
+</p>
+
+<hr>
+<h3 id="三、-定义与表达形式"><a href="#三、-定义与表达形式" class="headerlink" title="三、 定义与表达形式"></a>三、 定义与表达形式</h3><p>第二型曲线积分通常有三种等价的数学面孔：</p>
+<ul>
+<li><p><strong>向量形式</strong>：$\int_{L} \vec{F} \cdot d\vec{r}$</p>
+</li>
+<li><p><strong>坐标形式（分量形式）</strong>：</p>
+<p>  设 $\vec{F} &#x3D; (P, Q, R)$，位移元 $d\vec{r} &#x3D; (dx, dy, dz)$，则：</p>
+</li>
+</ul>
+<p>
+$$
+\int_{L} P \, dx + Q \, dy + R \, dz
+$$
+</p>
+
+<ul>
+<li><strong>与第一型的转换（投影形式）</strong>：</li>
+</ul>
+<p>
+$$
+\int_{L} \vec{F} \cdot d\vec{r} = \int_{L} (|\vec{F}| \cos \theta) \, ds
+$$
+</p>
+
+<p>其中 $\theta$ 是力场与曲线切线方向的夹角。</p>
+<hr>
+<h3 id="四、-计算方法：参数化法"><a href="#四、-计算方法：参数化法" class="headerlink" title="四、 计算方法：参数化法"></a>四、 计算方法：参数化法</h3><p>将曲线积分转化为定积分的核心步骤是 <strong>“统一变量”</strong>。</p>
+<p><strong>已知条件</strong>：</p>
+<ul>
+<li><p>曲线 $L$ 的参数方程：$x&#x3D;x(t), y&#x3D;y(t), z&#x3D;z(t)$</p>
+</li>
+<li><p>参数范围：$t: \alpha \to \beta$（注意：$\alpha$对应起点$A$，$\beta$对应终点$B$）</p>
+</li>
+</ul>
+<p><strong>计算步骤</strong>：</p>
+<ol>
+<li><p>计算微分项：$dx &#x3D; x’(t)dt, \quad dy &#x3D; y’(t)dt, \quad dz &#x3D; z’(t)dt$</p>
+</li>
+<li><p>代入积分式：</p>
+</li>
+</ol>
+<p>
+$$
+\int_{L} \vec{F} \cdot d\vec{r} = \int_{\alpha}^{\beta} \left[ P(x(t), y(t), z(t))x'(t) + Q(\dots)y'(t) + R(\dots)z'(t) \right] dt
+$$
+</p>
+
+<hr>
+<p>计算第二型积分时，<strong>不需要</strong>像第一型那样在根号下平方求和，也不强制要求积分下限小于上限，积分限必须严格遵循路径的<strong>起点到终点</strong>。</p>
+<p>最后我们指出第一型曲线积分与第二型曲线积分之间的联系。虽然两类曲线积分的定义不同，但在一定条件下可以互相转化。</p>
+<p>当曲线 $L$ 用参数方程</p>
+<p>
+$$
+\begin{cases} x = x(t), \\ y = y(t), \quad \alpha \le t \le \beta \\ z = z(t), \end{cases}
+$$
+</p>
+
+<p>表出时，$(x’(t), y’(t), z’(t))$ 是曲线的切向量，因而</p>
+<p>
+$$
+d\mathbf{r} = (dx, dy, dz) = (x'(t), y'(t), z'(t)) dt
+$$
+</p>
+
+<p>也是切向量，且其方向与积分路径的方向一致。又 $d\mathbf{r}$ 的模正好是弧微分，即</p>
+<p>
+$$
+|d\mathbf{r}| = \sqrt{(dx)^2 + (dy)^2 + (dz)^2} = ds
+$$
+</p>
+
+<p>设 $d\mathbf{r}$的方向余弦为$\cos\alpha, \cos\beta, \cos\gamma$，则有</p>
+<p>
+$$
+(\cos\alpha, \cos\beta, \cos\gamma) = \frac{d\mathbf{r}}{|d\mathbf{r}|} = \left( \frac{dx}{ds}, \frac{dy}{ds}, \frac{dz}{ds} \right)
+$$
+</p>
+
+<p>由此得</p>
+<p>
+$$
+dx = \cos\alpha ds, \quad dy = \cos\beta ds, \quad dz = \cos\gamma ds
+$$
+</p>
+
+<hr>
+<p>因而</p>
+<p>
+$$
+\int_{\widehat{AB}} P dx + Q dy + R dz = \int_{\widehat{AB}} (P \cos\alpha + Q \cos\beta + R \cos\gamma) ds
+$$
+</p>
+
+<p>其中 $\cos\alpha, \cos\beta, \cos\gamma$为曲线$\widehat{AB}$ 上各点的切线（且其方向与积分方向一致）的方向余弦。</p>
+<p>上式刻画了两类曲线积分的关系。需要注意的是，式中 $\cos\alpha, \cos\beta, \cos\gamma$ 与曲线的方向有关。当曲线的方向改变时，$\cos\alpha, \cos\beta, \cos\gamma$ 都要改变符号。</p>
+<p>对于平面曲线，上述公式变成下列形式：</p>
+<p>
+$$
+\int_{\widehat{AB}} P dx + Q dy = \int_{\widehat{AB}} (P \cos\alpha + Q \cos\beta) ds
+$$
+</p>
+
+<p>其中 $\cos\alpha, \cos\beta$是曲线$\widehat{AB}$上各点处与$\widehat{AB}$ 同方向的切线的方向余弦。</p>
+<hr>
+<p>从曲线漫步到曲面攀升，我们实际上是将“一元参数化”升级为了“二元映射”。核心矛盾：<strong>如何将弯曲的、在三维空间中延展的面积，准确地投影（或拉回）到平坦的二维参数平面上？</strong></p>
+<p>我们可以把这个过程拆解为两个阶段：从最直观的“投影法”，到更具一般性的“参数映射法”。</p>
+<hr>
+<h2 id="第一型曲面积分"><a href="#第一型曲面积分" class="headerlink" title="第一型曲面积分"></a>第一型曲面积分</h2><p>对于一个显式定义的曲面 $S: z &#x3D; f(x, y)$，其积分区域在 $xy$平面上的投影为$D$。</p>
+<p>
+$$
+\iint_S F(x, y, z) \, dS
+$$
+</p>
+
+<p>即为第一型曲面积分，$dS$ 是面积微元，并不带有方向。</p>
+<h3 id="1-面积微元的几何补偿"><a href="#1-面积微元的几何补偿" class="headerlink" title="1. 面积微元的几何补偿"></a>1. 面积微元的几何补偿</h3><p>想象曲面上的一块极其微小的面积 $dS$。如果你直接用它在底面上的投影 $d\sigma &#x3D; dx dy$ 来代替它，你显然低估了它的实际大小，因为曲面是有“斜度”的。</p>
+<p>推导的核心在于：</p>
+<p>
+$$
+dS = \sqrt{1 + f_x^2 + f_y^2} \, d\sigma
+$$
+</p>
+
+<p>这里的根号项本质上是<strong>割线（Secant）</strong> 的概念（这坨实际上就是一个叉乘）。如果 $\gamma$是曲面法向量与$z$ 轴正方向的夹角，那么：</p>
+<p>
+$$
+dS = \frac{d\sigma}{|\cos \gamma|}
+$$
+</p>
+
+<p>这是一种“投影补偿”。你站在高处俯瞰（投影到 $D$），必须乘以一个放大系数，才能还原出斜坡的真实面积。具体的公式如下：</p>
+<h3 id="2-计算公式"><a href="#2-计算公式" class="headerlink" title="2. 计算公式"></a>2. 计算公式</h3><p>
+$$
+\iint_S F(x, y, z) \, dS = \iint_D F(x, y, f(x, y)) \sqrt{1 + f_x^2 + f_y^2} \, dx dy
+$$
+</p>
+
+<p>为什么是根号下那一坨呢，实际上还是从叉乘得到，一如重积分。</p>
+<hr>
+<h2 id="二、-参数化曲面：微观线性化"><a href="#二、-参数化曲面：微观线性化" class="headerlink" title="二、 参数化曲面：微观线性化"></a>二、 参数化曲面：微观线性化</h2><p>当曲面不再是简单的 $z&#x3D;f(x, y)$，而是更广义的参数方程 $\vec{r}(u, v) &#x3D; (x(u, v), y(u, v), z(u, v))$ 时，投影法就失效了。这时需要用到<strong>叉积推导</strong>。</p>
+<h3 id="1-局部切平面的“拉伸”"><a href="#1-局部切平面的“拉伸”" class="headerlink" title="1. 局部切平面的“拉伸”"></a>1. 局部切平面的“拉伸”</h3><p>在 $(u, v)$平面上一个小矩形$du \cdot dv$，映射到空间中会变成一个近似的平行四边形。</p>
+<ul>
+<li><p>其两条边向量分别为切向量：$\vec{r}_u du$和$\vec{r}_v dv$。</p>
+</li>
+<li><p>这一小块面积 $dS$ 恰好等于这两个向量叉积的模：</p>
+</li>
+</ul>
+<p>
+$$
+dS = |\vec{r}_u \times \vec{r}_v| \, du dv
+$$
+</p>
+
+<h3 id="2-雅可比行列式的几何化"><a href="#2-雅可比行列式的几何化" class="headerlink" title="2. 雅可比行列式的几何化"></a>2. 雅可比行列式的几何化</h3><p>定义 $A, B, C$ ：</p>
+<p>
+$$
+A = \frac{\partial(y, z)}{\partial(u, v)}, \quad B = \frac{\partial(z, x)}{\partial(u, v)}, \quad C = \frac{\partial(x, y)}{\partial(u, v)}
+$$
+</p>
+
+<p>最终的面积微元系数即为 $\sqrt{A^2 + B^2 + C^2}$。这与曲线积分中的 $\sqrt{x’^2 + y’^2}$ 在结构上具有高度的自洽性。这看起来有点难算，可以换一个办法算，也许会好算一点。</p>
+<p>为了避开复杂的叉积行列式计算，我们引入了三个标量函数。设参数曲面为 $\vec{r}(u, v)$，其偏导向量（切向量）为 $\vec{r}_u$和$\vec{r}_v$：</p>
+<ul>
+<li><p><strong>$E &#x3D; \vec{r}_u \cdot \vec{r}_u &#x3D; x_u^2 + y_u^2 + z_u^2$</strong>：衡量 $u$ 方向的长度拉伸。</p>
+</li>
+<li><p><strong>$F &#x3D; \vec{r}_u \cdot \vec{r}_v &#x3D; x_u x_v + y_u y_v + z_u z_v$</strong>：衡量 $u, v$ 参数线之间的夹角（正交性）。</p>
+</li>
+<li><p><strong>$G &#x3D; \vec{r}_v \cdot \vec{r}_v &#x3D; x_v^2 + y_v^2 + z_v^2$</strong>：衡量 $v$ 方向的长度拉伸。</p>
+</li>
+</ul>
+<p>然后利用：</p>
+<p>
+$$
+|\vec{r}_u \times \vec{r}_v|^2 = |\vec{r}_u|^2 |\vec{r}_v|^2 (1 - \cos^2 \theta) = |\vec{r}_u|^2 |\vec{r}_v|^2 - (\vec{r}_u \cdot \vec{r}_v)^2
+$$
+</p>
+
+<p>这也就说明：</p>
+<p>
+$$
+A^2 + B^2 + C^2 = EG - F^2
+$$
+</p>
+
+<p>那我们就不需要去算行列式叉乘，只要算算点积和平方和，一般来说会好算一点。</p>
+<p>
+$$
+S = \iint_{D'} \sqrt{EG - F^2} \, du dv
+$$
+</p>
+
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>求球面的表面积。</p>
+<h4 id="1-建模：从空间到投影面"><a href="#1-建模：从空间到投影面" class="headerlink" title="1. 建模：从空间到投影面"></a>1. 建模：从空间到投影面</h4><p>首先选取上半球面作为研究对象。</p>
+<ul>
+<li><p><strong>曲面方程</strong>：$z &#x3D; f(x, y) &#x3D; \sqrt{R^2 - x^2 - y^2}$。</p>
+</li>
+<li><p><strong>投影区域 $D$</strong>：球面在 $xy$平面上的投影是一个圆盘$x^2 + y^2 \leq R^2$。</p>
+</li>
+</ul>
+<hr>
+<h4 id="2-计算面积微元的“修正系数”"><a href="#2-计算面积微元的“修正系数”" class="headerlink" title="2. 计算面积微元的“修正系数”"></a>2. 计算面积微元的“修正系数”</h4><p>这是最关键的一步。为了求得 $dS &#x3D; \sqrt{1 + f_x^2 + f_y^2} , dA$，我们需要计算偏导数：</p>
+<ul>
+<li>$f_x &#x3D; \frac{-x}{\sqrt{R^2 - x^2 - y^2}}$-$f_y &#x3D; \frac{-y}{\sqrt{R^2 - x^2 - y^2}}$</li>
+</ul>
+<p>代入根号项进行化简：</p>
+<p>
+$$
+1 + f_x^2 + f_y^2 = 1 + \frac{x^2}{R^2 - x^2 - y^2} + \frac{y^2}{R^2 - x^2 - y^2} = \frac{R^2}{R^2 - x^2 - y^2}
+$$
+</p>
+
+<p>因此，面积微元为：</p>
+<p>
+$$
+dS = \frac{R}{\sqrt{R^2 - x^2 - y^2}} \, dx dy
+$$
+</p>
+
+<hr>
+<h4 id="3-积分转化：极坐标的优雅"><a href="#3-积分转化：极坐标的优雅" class="headerlink" title="3. 积分转化：极坐标的优雅"></a>3. 积分转化：极坐标的优雅</h4><p>直接在直角坐标系下积分会非常痛苦，于是引入<strong>极坐标变换</strong>（$x &#x3D; r\cos\theta, y &#x3D; r\sin\theta$）：</p>
+<ul>
+<li><p><strong>雅可比行列式补偿</strong>：$dx dy \to r , dr d\theta$。</p>
+</li>
+<li><p><strong>被积函数简化</strong>：分母变为 $\sqrt{R^2 - r^2}$。</p>
+</li>
+</ul>
+<p>上半球面积 $S_{\text{up}}$ 的计算过程如下：</p>
+<p>
+$$
+S_{\text{up}} = \int_0^{2\pi} d\theta \int_0^R \frac{R}{\sqrt{R^2 - r^2}} r \, dr
+$$
+</p>
+
+<p>利用凑微分法 $\int \frac{r}{\sqrt{R^2 - r^2}} dr &#x3D; -\sqrt{R^2 - r^2}$：</p>
+<ul>
+<li><p><strong>内层积分结果</strong>：$[-R\sqrt{R^2 - r^2}] \Big|_0^R &#x3D; 0 - (-R^2) &#x3D; R^2$。</p>
+</li>
+<li><p><strong>外层积分结果</strong>：$2\pi \cdot R^2$。</p>
+</li>
+</ul>
+<p>最后，由于这只是上半球，全球面面积 $S_{\text{total}} &#x3D; 2 \cdot 2\pi R^2 &#x3D; \mathbf{4\pi R^2}$。</p>
+<hr>
+<h2 id="三、-第二型曲面积分：通量的定向"><a href="#三、-第二型曲面积分：通量的定向" class="headerlink" title="三、 第二型曲面积分：通量的定向"></a>三、 第二型曲面积分：通量的定向</h2><p>法向量 $\vec{n}$ 为第二型积分埋下了伏笔。</p>
+<ul>
+<li><p><strong>物理本质</strong>：流体穿过曲面的通量。</p>
+</li>
+<li><p><strong>核心差异</strong>：第二型积分是有方向的（侧的概念）。</p>
+</li>
+<li><p><strong>联系公式</strong>：</p>
+</li>
+</ul>
+<p>
+$$
+\iint_S \vec{F} \cdot d\vec{S} = \iint_S (\vec{F} \cdot \vec{n}) \, dS
+$$
+</p>
+
+<p>这说明第二型积分本质上是向量场在曲面法向上的<strong>投影权重</strong>。</p>
+<p>法向量如何计算呢，我们考虑两条切线的叉积即可。</p>
+<p>
+$$
+\vec{n}=\frac{\vec{r_u}\times \vec{r_v}}{|\vec{r_u}\times \vec{r_v}|}
+$$
+</p>
+
+<p>如果显示写出 $z&#x3D;f(x,y)$比较容易且好算，取$u&#x3D;x,v&#x3D;y$ ，那么：</p>
+<p>
+$$
+\vec{r_u}=(1,0,f_x),\vec{r_v}=(0,1,f_y)
+$$
+</p>
+
+<p>就不难得到法向量：</p>
+<p>
+$$
+\vec{n}=\frac{(-f_x,-f_y,1)}{\sqrt{1+f_x^2+f_y^2}}
+$$
+</p>
+
+<p>这样会好看不少。当然，我们还是直接考虑一般的情形，代入 $\vec{n}$ 看看：</p>
+<p>
+$$
+\iint_S \vec{F} \cdot d\vec{S} = \iint_S (\vec{F} \cdot \vec{n}) \, dS=\iint_S\vec{F}\cdot (\vec{r_u}\times\vec{r_v})d\sigma
+$$
+</p>
+
+<p>注意到 $dS$和$d\sigma$的比例系数恰好是$\vec{n}$的分母，也即叉积的模，从而刚好约掉，我们只需要在平整的$u,v$ 平面做一个二重积分就好了。不过仍然需要算个叉积，有点麻烦。</p>
+<p>我们可以把形式做的 $fancy$一点，假设$\vec{F} &#x3D; (P, Q, R)$，参数方程为 $\vec{r}(u, v) &#x3D; (x(u,v), y(u,v), z(u,v))$，那么混合积可以直接写成：</p>
+<p>
+$$
+\iint_{D} \begin{vmatrix} P & Q & R \\ \frac{\partial x}{\partial u} & \frac{\partial y}{\partial u} & \frac{\partial z}{\partial u} \\ \frac{\partial x}{\partial v} & \frac{\partial y}{\partial v} & \frac{\partial z}{\partial v} \end{vmatrix} du dv
+$$
+</p>
+
+<p>或者写成分量形式：</p>
+<p>
+$$
+\iint_{D} \left( P \frac{\partial(y, z)}{\partial(u, v)} + Q \frac{\partial(z, x)}{\partial(u, v)} + R \frac{\partial(x, y)}{\partial(u, v)} \right) du dv
+$$
+</p>
+
+<p>为什么教材常常看到 $P , dydz + Q , dzdx + R , dxdy$呢，为什么写$dydz$而并非$dzdy$呢，实际上这应该是外微分，具体我们会在后面讨论。可以如此简单地考虑，按照$y-z$的顺序叉积刚好是$x$ 正方向，其余坐标同理。</p>
+<p>那么具体计算就没什么好说的，完全就是走流程，算叉积，点乘，积分。不过需要注意方向以及对称性化简。</p>
+<p><img src="/images/Pasted_image_20260418135355.png"></p>
+<p>我们可以不动脑子，换球坐标，直接算叉乘然后点乘积分。<br>也可以考虑对称性，发现法向在上半区和 $dxdy$的方向(即$z$轴)相反，下半区法向则与$z$ 轴点积是正的，于是利用对称性，$z$会变一个号，其他都不变，所以变成两倍的在上半区的积分。然后把$z$写成$f(x,y)$，因为这里只有$dxdy$，所以刚好点乘对应乘$1$ ，然后积分即可。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/2.%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86%E3%80%81%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/4.%E5%A5%87%E7%82%B9/">
+        <h2 class="post-title">4.奇点</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/19
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>考虑向量场 $\vec{F} &#x3D; \left( \frac{-y}{x^2+y^2}, \frac{x}{x^2+y^2} \right)$：</p>
+<ul>
+<li><p><strong>数学陷阱</strong>：计算可知 $\frac{\partial Q}{\partial x} &#x3D; \frac{\partial P}{\partial y} &#x3D; \frac{y^2-x^2}{(x^2+y^2)^2}$，看起来场是“无旋”的。</p>
+</li>
+<li><p><strong>直觉误区</strong>：如果直接套用格林公式，结论似乎应该是环流量为 $0$。</p>
+</li>
+<li><p><strong>事实</strong>：但在原点 $(0,0)$处，函数分母为$0$，场不存在。如果闭合曲线包围了原点，实际积分为 $2\pi$而非$0$。当然，如果不包含原点，积分便恒为 $0$ 。</p>
+</li>
+</ul>
+<hr>
+<h3 id="处理策略：“挖洞”法-Excising-the-Singularity"><a href="#处理策略：“挖洞”法-Excising-the-Singularity" class="headerlink" title="处理策略：“挖洞”法 (Excising the Singularity)"></a>处理策略：“挖洞”法 (Excising the Singularity)</h3><p>当区域 $D$内包含奇点时，格林公式的前提（函数在区域内$C^1$ 连续）不再满足。此时需要手动构造一个<strong>多连通区域</strong>：</p>
+<ol>
+<li><p><strong>构造内边界</strong>：以奇点为圆心，取一个极小的半径 $\epsilon$，构造一个闭合圆周 $\Gamma_{\epsilon}$ 将奇点“挖掉”。</p>
+</li>
+<li><p><strong>应用公式</strong>：在剩下的区域 $D \setminus D_{\epsilon}$ 内，场是处处连续的，可以应用格林公式：</p>
+</li>
+</ol>
+<p>
+$$
+\iint_{D \setminus D_{\epsilon}} (Q_x - P_y) \, dA = \oint_{L^+} \vec{F} \cdot d\vec{r} + \oint_{\Gamma_{\epsilon}^-} \vec{F} \cdot d\vec{r} = 0
+$$
+</p>
+
+<ol>
+<li><strong>结果转化</strong>：这说明外部大环的积分等于内部小圆周的积分（换了一下 $\Gamma$ 的环流方向）：</li>
+</ol>
+<p>
+$$
+\oint_{L^+} Pdx+Qdy = \oint_{\Gamma_{\epsilon}^+} Pdx+Qdy
+$$
+</p>
+
+<hr>
+<h3 id="计算：参数化极限"><a href="#计算：参数化极限" class="headerlink" title="计算：参数化极限"></a>计算：参数化极限</h3><p>对于上述圆形小边界 $\Gamma_{\epsilon}$，利用极坐标极易计算：</p>
+<ul>
+<li><p>令 $x &#x3D; \epsilon \cos\theta, y &#x3D; \epsilon \sin\theta$。</p>
+</li>
+<li><p>代入积分式：$\int_0^{2\pi} \frac{-\epsilon \sin\theta (-\epsilon \sin\theta) + \epsilon \cos\theta (\epsilon \cos\theta)}{\epsilon^2} d\theta &#x3D; \int_0^{2\pi} 1 , d\theta &#x3D; 2\pi$。</p>
+</li>
+<li><p><strong>结论</strong>：只要曲线包围了该奇点，无论曲线形状如何，积分值永远是 $2\pi$。</p>
+</li>
+</ul>
+<p>那如果曲线只包含了半个奇点呢？如果只包含了四分之一个奇点呢？<br>直觉上，把积分上限变一下就好了（</p>
+<p><img src="/images/Pasted_image_20260402123906.png"></p>
+<p><strong>半覆盖或特定角度（$\alpha$）—— 分段积分或不完全环绕</strong>。</p>
+<ul>
+<li><p><strong>$\pi$的情况</strong>：如果路径仅在半个平面内围绕奇点旋转（例如从极角$0$到$\pi$），线积分的结果往往对应于张角的弧度值。</p>
+</li>
+<li><p><strong>$\alpha$的情况</strong>：在更一般的情况下，如果边界曲线在奇点处张开的角度为$\alpha$，积分结果将直接正比于这个<strong>局部几何角</strong>。</p>
+</li>
+</ul>
+<p>虽然说不清楚严谨过程，但这是对的（</p>
+<h2 id="Maxwell-方程其一"><a href="#Maxwell-方程其一" class="headerlink" title="Maxwell 方程其一"></a>Maxwell 方程其一</h2><p>格林公式会碰到奇点，高斯公式呢？</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/4.%E5%A5%87%E7%82%B9/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/5.%E5%9C%BA%E8%AE%BA/">
+        <h2 class="post-title">5.场论</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/19
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/5.%E5%9C%BA%E8%AE%BA/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/6.%E5%A4%96%E5%BE%AE%E5%88%86%E5%88%9D%E6%8E%A2/">
+        <h2 class="post-title">6.外微分初探</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/19
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="庞加莱引理"><a href="#庞加莱引理" class="headerlink" title="庞加莱引理"></a>庞加莱引理</h2><p>
+$$
+d(d\omega)=0
+$$
+</p>
+
+<h3 id="1-第一性原理：算符的对易与抵消"><a href="#1-第一性原理：算符的对易与抵消" class="headerlink" title="1. 第一性原理：算符的对易与抵消"></a>1. 第一性原理：算符的对易与抵消</h3><p>在最基础的坐标表示下，假设 $\omega$是一个$0$-形式（即标量函数 $f$），那么：</p>
+<p>
+$$
+df = \sum \frac{\partial f}{\partial x_i} dx_i
+$$
+</p>
+
+<p>当我们再作用一次 $d$：</p>
+<p>
+$$
+d(df) = \sum_{i,j} \frac{\partial^2 f}{\partial x_j \partial x_i} dx_j \wedge dx_i
+$$
+</p>
+
+<p>这里发生了两个关键的抵消机制：</p>
+<ul>
+<li><p><strong>解析对称性</strong>：根据 Clairaut 定理（或 Schwarz 定理），对二阶全微分而言，求导顺序无关，即 $\frac{\partial^2 f}{\partial x_j \partial x_i} &#x3D; \frac{\partial^2 f}{\partial x_i \partial x_j}$。</p>
+</li>
+<li><p><strong>代数反对称性</strong>：外积（Wedge product）定义了 $dx_j \wedge dx_i &#x3D; -dx_i \wedge dx_j$。</p>
+</li>
+</ul>
+<p><strong>对称的系数</strong>乘以<strong>反对称的基底</strong>，求和之后必然为 $0$。这就像是在天平两端放上了完全抵消的砝码，这种消失是逻辑上的必然。</p>
+<h3 id="2-几何直观：边界的边界"><a href="#2-几何直观：边界的边界" class="headerlink" title="2. 几何直观：边界的边界"></a>2. 几何直观：边界的边界</h3><p>如果你偏好直观，庞加莱引理对应的几何事实是：<strong>“边界的边界为空”</strong>（The boundary of a boundary is empty），即 $\partial(\partial M) &#x3D; 0$。</p>
+<p>根据斯托克斯定理（Stokes’ Theorem）：</p>
+<p>
+$$
+\int_M d\omega = \int_{\partial M} \omega
+$$
+</p>
+
+<p>如果我们把 $d\omega$替换为$d(d\omega)$：</p>
+<p>
+$$
+\int_M d(d\omega) = \int_{\partial M} d\omega = \int_{\partial(\partial M)} \omega
+$$
+</p>
+
+<p>因为一个区域的边缘（比如球面的边缘）是不存在的，所以右边恒等于 $0$。为了保持数学体系的自洽，左边的 integrand $d^2\omega$必须恒为$0$。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/6.%E5%A4%96%E5%BE%AE%E5%88%86%E5%88%9D%E6%8E%A2/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <a class="page-num" href="/page/7/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">8</span>
+    
+    <a class="page-num" href="/page/9">
+        9
+    </a>
+    
+    
+    <a class="page-num" href="/page/10">
+        10
+    </a>
+    
+    
+    <span class="page-omit">...</span>
+    <a class="page-num" href="/page/15">15</a>
+    
+    
+    <a class="page-num" href="/page/9/">
+        <i class="fa-solid fa-caret-right fa-fw"></i>
+    </a>
+    
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">Logic</div>
+        <div class="description">
+            <p>冀幸橐龠生光</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://github.com/Logic61">My github</a>
+            </div>
+            
+            <div class="friend-link">
+                <a href="https://logic61.github.io/MyPage">My Page(更为正式的主页)</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://xj.editlife.cn/">JingsXu&#39;s site</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

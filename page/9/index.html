@@ -1,0 +1,4735 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/background.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>Logic の 博客</h1>
+                <h3></h3>
+                <h5>一小块凝固的时间</h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/8.%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%20II/">
+        <h2 class="post-title">8.常微分方程 II</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/19
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="解的唯一性和存在性"><a href="#解的唯一性和存在性" class="headerlink" title="解的唯一性和存在性"></a>解的唯一性和存在性</h2><p>一阶常微分方程的初值问题</p>
+<p>
+$$
+\frac{dy}{dx} = f(x, y), \quad y(x_0) = y_0
+$$
+</p>
+
+<p><strong>已知条件</strong>：</p>
+<ol>
+<li>函数 $f(x, y)$在某个包含点$(x_0, y_0)$ 的闭矩形区域</li>
+</ol>
+<p>
+$$
+R = \{ (x, y) \in \mathbb{R}^2 : |x - x_0| \leq a, |y - y_0| \leq b \}
+$$
+</p>
+
+<p>上连续。因此，根据闭区间上连续函数的性质，$f$在$R$上有界，即存在常数$M &gt; 0$，使得对所有 $(x, y) \in R$，有 $|f(x, y)| \leq M$。</p>
+<ol start="2">
+<li>函数 $f(x, y)$在$R$上关于变量$y$满足 <strong>Lipschitz 条件</strong>：存在常数$L &gt; 0$，使得对于任意 $(x, y_1) \in R$和$(x, y_2) \in R$，都有</li>
+</ol>
+<p>
+$$
+|f(x, y_1) - f(x, y_2)| \leq L |y_1 - y_2|
+$$
+</p>
+
+<p>在上述条件下，存在唯一的函数 $y &#x3D; \phi(x)$，定义在某个包含 $x_0$的区间$I$ 上，满足该微分方程及初始条件。</p>
+<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>朴素地，我们考虑两边积分，得到：</p>
+<p>
+$$
+y=y_0+\int_{x_0}^x f(t,y)dt
+$$
+</p>
+
+<p>这就转化为一个所谓积分方程，如何进一步求解呢？利用 Neumann 方法的思想，想到通过迭代或许可以逼近解。先随便猜一个解，例如常值函数 $\phi_0(x)\equiv y_0$ ，这是唯一确定的值，尽管不满足微分方程，我们可以用方程修正结果，我们考虑这样的迭代：</p>
+<p>
+$$
+\phi_{n+1}(x) = y_0 + \int_{x_0}^{x} f(t, \phi_n(t)) \, dt, \quad n = 0, 1, 2, \dots
+$$
+</p>
+
+<p>这样，如果序列 $\phi_n$ 收敛，那么这个极限也就满足积分方程，从而满足微分方程，这样就可做了。</p>
+<h3 id="确保良定义"><a href="#确保良定义" class="headerlink" title="确保良定义"></a>确保良定义</h3><p>那么首先，我们知道的约束是 $|x-x_0|\le a$，以及$|\phi_n(x)-y_0|\le b$，那么通过归纳法寻找$h$。假设对$n$ 及之前都满足约束，下一步：</p>
+<p>
+$$
+|\phi_{n+1}(x)-y_0|=| \int_{x_0}^x f(t,\phi_n(x))dt | \le \int_{x_0}^x|f(t,\phi_n(x))|dt\le M|x-x_0|
+$$
+</p>
+
+<p>那么，为了让 $\phi_{n+1}(x)-y_0\le b$，只要$M|x-x_0|\le b$即可，那么只要选择$Mh\le b$，也就是$h\le b&#x2F;M$。同时$h$也要满足$h\le a$，那么综合就得到$h&#x3D;min(a,\frac{b}{M})$。从而在$[x_0-h,x_0+h]$ 上定义都是良的，且图像保持在矩形区域内。</p>
+<h3 id="估计相邻迭代"><a href="#估计相邻迭代" class="headerlink" title="估计相邻迭代"></a>估计相邻迭代</h3><p>从 $n&#x3D;1$ 开始：</p>
+<p>
+$$
+|\phi_1(x) - \phi_0(x)| = \left| \int_{x_0}^{x} f(t, y_0) \, dt \right| \leq M |x - x_0|
+$$
+</p>
+
+<p>对于一般的 $n \geq 1$，利用迭代定义和 Lipschitz 条件，</p>
+<p>
+$$
+\begin{aligned}
+|\phi_{n+1}(x) - \phi_n(x)| &= \left| \int_{x_0}^{x} [f(t, \phi_n(t)) - f(t, \phi_{n-1}(t))] \, dt \right| \\
+&\leq  \int_{x_0}^{x} |f(t, \phi_n(t)) - f(t, \phi_{n-1}(t))| \, dt 
+\end{aligned}
+$$
+</p>
+
+<p>利用 Lipschitz 条件：</p>
+<p>
+$$
+\leq L \left| \int_{x_0}^{x} |\phi_n(t) - \phi_{n-1}(t)| \, dt \right|
+$$
+</p>
+
+<p><strong>推导</strong>：<br>让我们尝试计算前几项来寻找规律。</p>
+<ul>
+<li>已知：$|\phi_1(x) - \phi_0(x)| \leq M |x - x_0|$- 计算$|\phi_2(x) - \phi_1(x)|$：</li>
+</ul>
+<p>
+$$
+|\phi_2(x) - \phi_1(x)| \leq L \left| \int_{x_0}^{x} M |t - x_0| \, dt \right| = M L \frac{|x - x_0|^2}{2}
+$$
+</p>
+
+<ul>
+<li>计算 $|\phi_3(x) - \phi_2(x)|$：</li>
+</ul>
+<p>
+$$
+|\phi_3(x) - \phi_2(x)| \leq L \left| \int_{x_0}^{x} M L \frac{|t - x_0|^2}{2} \, dt \right| = M L^2 \frac{|x - x_0|^3}{3!}
+$$
+</p>
+
+<p>对于所有 $n \geq 1$和$x \in I$，有以下估计成立：</p>
+<p>
+$$
+|\phi_n(x) - \phi_{n-1}(x)| \leq \frac{M L^{n-1}}{n!} |x - x_0|^n \leq \frac{M L^{n-1}}{n!} h^n
+$$
+</p>
+
+<h3 id="证明存在性"><a href="#证明存在性" class="headerlink" title="证明存在性"></a>证明存在性</h3><p>考虑级数</p>
+<p>
+$$
+\sum_{n=1}^{\infty} \max_{x \in I} |\phi_n(x) - \phi_{n-1}(x)|
+$$
+</p>
+
+<p>根据估计，这个级数的每一项都被 $\frac{M L^{n-1}}{n!} h^n$ 所控制。</p>
+<p>考虑数值级数 $\sum_{n&#x3D;1}^{\infty} \frac{M L^{n-1}}{n!} h^n$。我们可以用比值判别法来检验其收敛性：</p>
+<p>
+$$
+\lim_{n \to \infty} \frac{\frac{M L^n}{(n+1)!} h^{n+1}}{\frac{M L^{n-1}}{n!} h^n} = \lim_{n \to \infty} \frac{L h}{n+1} = 0
+$$
+</p>
+
+<p>由于极限为 0（小于 1），该数值级数收敛。</p>
+<p>根据 <strong>Weierstrass M-判别法</strong>，由于函数项级数的每一项在区间 $I$上的绝对值都被一个收敛的正项级数的对应项所控制，因此该函数项级数在$I$ 上<strong>一致收敛</strong>。</p>
+<p><strong>结论</strong>：<br>这意味着 Picard 迭代序列 ${\phi_n(x)}$在区间$I$上一致收敛于一个极限函数，记作$\phi(x)$。由于每个 $\phi_n$都是连续的，且收敛是一致的，极限函数$\phi(x)$ 也是连续的。</p>
+<p>回忆迭代公式：</p>
+<p>
+$$
+\phi_{n+1}(x) = y_0 + \int_{x_0}^{x} f(t, \phi_n(t)) \, dt
+$$
+</p>
+
+<p>对等式两边取极限 $n \to \infty$。<br>左边直接趋于 $\phi(x)$。<br>对于右边，将极限号移入积分号内，即：</p>
+<p>
+$$
+\lim_{n \to \infty} \int_{x_0}^{x} f(t, \phi_n(t)) \, dt = \int_{x_0}^{x} \lim_{n \to \infty} f(t, \phi_n(t)) \, dt = \int_{x_0}^{x} f(t, \phi(t)) \, dt
+$$
+</p>
+
+<p>这说明 $\phi(x)$ 满足积分方程，从而是初值问题的一个解。存在性得证。</p>
+<h3 id="证明唯一性"><a href="#证明唯一性" class="headerlink" title="证明唯一性"></a>证明唯一性</h3><p><strong>推导</strong>：<br>假设存在另一个函数 $\psi(x)$ 也满足积分方程：</p>
+<p>
+$$
+\psi(x) = y_0 + \int_{x_0}^{x} f(t, \psi(t)) \, dt
+$$
+</p>
+
+<p>考虑两个解之差的绝对值 $u(x) &#x3D; |\phi(x) - \psi(x)|$。将两者满足的积分方程相减并取绝对值：</p>
+<p>
+$$
+u(x) = \left| \int_{x_0}^{x} [f(t, \phi(t)) - f(t, \psi(t))] \, dt \right| \leq \left| \int_{x_0}^{x} |f(t, \phi(t)) - f(t, \psi(t))| \, dt \right|
+$$
+</p>
+
+<p>再次应用 Lipschitz 条件：</p>
+<p>
+$$
+u(x) \leq L \left| \int_{x_0}^{x} |\phi(t) - \psi(t)| \, dt \right| = L \left| \int_{x_0}^{x} u(t) \, dt \right|
+$$
+</p>
+
+<p>现在我需要从这个积分不等式推导出 $u(x) \equiv 0$。不失一般性，考虑 $x \geq x_0$的情况。定义$U(x) &#x3D; \int_{x_0}^{x} u(t) , dt$。那么 $U’(x) &#x3D; u(x)$。上述不等式变为：</p>
+<p>
+$$
+U'(x) \leq L \cdot U(x)
+$$
+</p>
+
+<p>移项得 $U’(x) - L U(x) \leq 0$。两边乘以积分因子 $e^{-Lx}$：</p>
+<p>
+$$
+\frac{d}{dx} \left( e^{-Lx} U(x) \right) \leq 0
+$$
+</p>
+
+<p>这说明函数 $e^{-Lx} U(x)$在$x \geq x_0$上是单调不增的。在$x &#x3D; x_0$ 处，$U(x_0) &#x3D; \int_{x_0}^{x_0} u(t) , dt &#x3D; 0$。因此，对于所有 $x \geq x_0$，有 $e^{-Lx} U(x) \leq 0$。但由于 $e^{-Lx} &gt; 0$且$U(x) &#x3D; \int_{x_0}^{x} u(t) , dt \geq 0$，我们得出 $U(x) \leq 0$且$U(x) \geq 0$，故 $U(x) &#x3D; 0$。</p>
+<p>由于 $U(x) &#x3D; 0$，其导数 $u(x) &#x3D; U’(x)$也必然为 0（此处$u$是连续的）。所以$u(x) \equiv 0$，即 $\phi(x) &#x3D; \psi(x)$对所有$x \geq x_0$成立。对于$x \leq x_0$ 的情况，论证类似。</p>
+<p><strong>结论</strong>：唯一性得证。</p>
+<p>如果从高阶的视角来看，我们可以采用所谓 $Banach$ 不动点定理，简单理解就是一个压缩映射在所谓完备度量空间存在唯一不动点。压缩映射指的是映射值的差小于原来的差，也就是映射后两个点距离变小了。完备度量空间是什么且不管。这样的话，也可以清楚地梳理整个证明。</p>
+<p>先转化为积分方程，选取合适的区间长度(足够小)，让积分方程对应的映射是一个压缩映射(就如上面选一个 $h$ )，然后就可以应用不动点定理。</p>
+<h2 id="n-阶线性常微分方程的解结构"><a href="#n-阶线性常微分方程的解结构" class="headerlink" title="n 阶线性常微分方程的解结构"></a>n 阶线性常微分方程的解结构</h2><p>这部分确立了线性方程解的基本框架。</p>
+<ul>
+<li><p><strong>n 阶线性齐次 ODE</strong>：指出若存在 $n$个线性无关的特解$\psi_1, \dots, \psi_n$，则通解可表示为它们的线性组合 $y &#x3D; C_1\psi_1 + \dots + C_n\psi_n$。此类方程<strong>无奇解</strong>。</p>
+</li>
+<li><p><strong>n 阶非齐次线性 ODE</strong>：其通解结构为 $y &#x3D; \psi^* + C_1\psi_1 + \dots + C_n\psi_n$，其中 $\psi^*$ 是非齐次方程的一个特解。</p>
+</li>
+<li><p><strong>核心工具预告</strong>： <strong>Wronski 行列式 (Wronskian)</strong>，用于判定函数组的线性相关性。</p>
+</li>
+</ul>
+<h3 id="二阶线性-ODE-与存在唯一性定理"><a href="#二阶线性-ODE-与存在唯一性定理" class="headerlink" title="二阶线性 ODE 与存在唯一性定理"></a>二阶线性 ODE 与存在唯一性定理</h3><p>将讨论具体化到二阶情形。</p>
+<ul>
+<li><p><strong>标准形式</strong>：</p>
+<ul>
+<li><p>非齐次：$y’’ + p(x)y’ + q(x)y &#x3D; f(x)$</p>
+</li>
+<li><p>齐次：$y’’ + p(x)y’ + q(x)y &#x3D; 0$</p>
+</li>
+</ul>
+</li>
+<li><p><strong>解的存在唯一性定理</strong>：</p>
+<p>  若系数 $p(x), q(x)$及$f(x)$在区间$[a, b]$ 上连续，则对于初值问题（$x_0 \in [a, b]$），方程在区间上存在且仅有一个唯一的解。</p>
+</li>
+</ul>
+<h3 id="Wronski-行列式的定义与判定"><a href="#Wronski-行列式的定义与判定" class="headerlink" title="Wronski 行列式的定义与判定"></a>Wronski 行列式的定义与判定</h3><p>开始推导判定解是否线性无关的数学判据。</p>
+<ul>
+<li><strong>定义</strong>：对于两个解 $\psi_1, \psi_2$，定义其 Wronski 行列式为：</li>
+</ul>
+<p>
+$$
+W(x) = \begin{vmatrix} \psi_1 & \psi_2 \\ \psi_1' & \psi_2' \end{vmatrix}
+$$
+</p>
+
+<ul>
+<li><strong>定理核心</strong>：$\psi_1, \psi_2$在$(a, b)$上线性无关的充要条件是$W(x) \neq 0$（对于区间内任意 $x$）。</li>
+</ul>
+<h4 id="线性相关性的逻辑证明"><a href="#线性相关性的逻辑证明" class="headerlink" title="线性相关性的逻辑证明"></a>线性相关性的逻辑证明</h4><p>板书展示了必要性与充分性的证明思路。</p>
+<ul>
+<li><p><strong>反证法&#x2F;直接推导</strong>：</p>
+<ul>
+<li><p>若 $\psi_1, \psi_2$线性相关，则存在不全为零的常数$k_1, k_2$使得$k_1\psi_1 + k_2\psi_2 \equiv 0$。</p>
+</li>
+<li><p>求导得到方程组，由线性代数基础可知，其系数行列式 $W(x)$ 必然恒等于 0。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>引申</strong>：探讨了 $W(x) \equiv 0$ 与解的线性相关性之间的必然联系。</p>
+</li>
+</ul>
+<h4 id="结论的收束与验证"><a href="#结论的收束与验证" class="headerlink" title="结论的收束与验证"></a>结论的收束与验证</h4><p>利用初值问题的唯一性完成最后的逻辑闭环。</p>
+<ul>
+<li><p><strong>唯一性应用</strong>：</p>
+<ul>
+<li><p>构造一个函数 $Y(x) &#x3D; C_1\psi_1(x) + C_2\psi_2(x)$。</p>
+</li>
+<li><p>若 $W(x_0) &#x3D; 0$，则可以找到一组不全为零的 $C_1, C_2$使得在某点$x_0$ 处的初值为 0。</p>
+</li>
+<li><p>根据唯一性定理，如果初值为 0 且满足齐次方程，该解在整个区间内必然恒等于 0（$Y(x) \equiv 0$）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>最终判定</strong>：由此证明了在 ODE 框架下，只要在一点处 $W(x_0) &#x3D; 0$，则解组必然线性相关；反之若线性无关，则 $W(x)$ 在区间内处处不为 0。</p>
+</li>
+</ul>
+<p>上面的推导中，我们发现只是假定一个点 $W(x)$为$0$就会得到处处为$0$ ，这实际上对线性微分方程都成立。</p>
+<h3 id="Wronskian行列式"><a href="#Wronskian行列式" class="headerlink" title="Wronskian行列式"></a>Wronskian行列式</h3><h4 id="1-核心背景"><a href="#1-核心背景" class="headerlink" title="1. 核心背景"></a>1. 核心背景</h4><p>设有一个二阶齐次线性微分方程：</p>
+<p>
+$$
+y'' + P(x)y' + Q(x)y = 0
+$$
+</p>
+
+<p>假设 $\varphi_1, \varphi_2$ 是该方程的两个解。</p>
+<h4 id="2-推导逻辑拆解"><a href="#2-推导逻辑拆解" class="headerlink" title="2. 推导逻辑拆解"></a>2. 推导逻辑拆解</h4><ul>
+<li><p><strong>朗斯基行列式的定义</strong></p>
+<p>  首先定义 $W(x)$ 为这两个解的行列式：</p>
+</li>
+</ul>
+<p>
+$$
+W(x) = \begin{vmatrix} \varphi_1 & \varphi_2 \\ \varphi_1' & \varphi_2' \end{vmatrix} = \varphi_1 \varphi_2' - \varphi_2 \varphi_1'
+$$
+</p>
+
+<ul>
+<li><p><strong>对 $W(x)$ 求导</strong></p>
+<p>  利用导数的乘法法则（或行列式求导法则）：</p>
+</li>
+</ul>
+<p>
+$$
+W'(x) = (\varphi_1 \varphi_2'' + \varphi_1' \varphi_2') - (\varphi_2 \varphi_1'' + \varphi_2' \varphi_1') = \varphi_1 \varphi_2'' - \varphi_2 \varphi_1''
+$$
+</p>
+
+<ul>
+<li><p><strong>利用原方程进行代换</strong></p>
+<p>  因为 $\varphi_1, \varphi_2$满足原方程，可以提取出二阶导数项：$\varphi_i’’ &#x3D; -P(x)\varphi_i’ - Q(x)\varphi_i$代入后，包含$Q(x)$ 的项会互相抵消，剩下：</p>
+</li>
+</ul>
+<p>
+$$
+W'(x) = \varphi_1 (-P \varphi_2' - Q \varphi_2) - \varphi_2 (-P \varphi_1' - Q \varphi_1) = -P(x) (\varphi_1 \varphi_2' - \varphi_2 \varphi_1')
+$$
+</p>
+
+<p>即：</p>
+<p>
+$$
+W'(x) = -P(x)W(x)
+$$
+</p>
+
+<ul>
+<li><p><strong>求解一阶线性方程</strong></p>
+<p>  这是一个典型的一阶可分离变量微分方程，整理得 $W’(x) + P(x)W(x) &#x3D; 0$。</p>
+<p>  通过积分因子法或分离变量法得到通解：</p>
+</li>
+</ul>
+<p>
+$$
+W(x) = C e^{-\int P(x) dx}
+$$
+</p>
+
+<p>若给定初始点 $x_0$，则表达式为：</p>
+<p>
+$$
+W(x) = W(x_0) e^{-\int_{x_0}^x P(t) dt}
+$$
+</p>
+
+<hr>
+<h4 id="3-关键结论与直觉"><a href="#3-关键结论与直觉" class="headerlink" title="3. 关键结论与直觉"></a>3. 关键结论与直觉</h4><p>“<strong>$W$ 不变号</strong>”是这个理论在定性分析上的核心价值。</p>
+<ul>
+<li><p><strong>定号性：</strong> 由于指数函数 $e^{f(x)}$永远大于零，因此$W(x)$的正负完全取决于初始值$W(x_0)$。</p>
+</li>
+<li><p><strong>线性无关性的保持：</strong> 只要在某一点 $x_0$处两个解线性无关（即$W(x_0) \neq 0$），那么在 $P(x)$ 连续的区间内，它们在任何点都线性无关。反之，如果一点为零，则处处为零。</p>
+</li>
+</ul>
+<h3 id="通解结构定理"><a href="#通解结构定理" class="headerlink" title="通解结构定理"></a>通解结构定理</h3><ul>
+<li><p><strong>核心结论：</strong> 若 $\varphi_1, \varphi_2$线性无关，则它们的线性组合$y &#x3D; C_1\varphi_1 + C_2\varphi_2$ <strong>包含所有解</strong>。</p>
+</li>
+<li><p>这意味着这组解构成了解空间的<strong>一组基</strong>，方程的通解空间是一个二维向量空间。</p>
+</li>
+</ul>
+<hr>
+<h4 id="逻辑推导"><a href="#逻辑推导" class="headerlink" title="逻辑推导"></a>逻辑推导</h4><p>为什么上述线性组合能覆盖所有解：</p>
+<ol>
+<li><p><strong>构造初值问题：</strong> 假设方程 $(\star)$有一个任意解$u(x)$。在某点 $x_0$，它满足初值 $y(x_0) &#x3D; u(x_0)$和$y’(x_0) &#x3D; u’(x_0)$。</p>
+</li>
+<li><p><strong>确定系数：</strong> 考虑线性代数方程组：</p>
+</li>
+</ol>
+<p>
+$$
+\begin{cases} C_1\varphi_1(x_0) + C_2\varphi_2(x_0) = u(x_0) \\ C_1\varphi_1'(x_0) + C_2\varphi_2'(x_0) = u'(x_0) \end{cases}
+$$
+</p>
+
+<p>因为 $\varphi_1, \varphi_2$线性无关，所以该方程组的行列式（即$W(x_0)$）不为零。根据克莱姆法则，<strong>必然存在唯一的一组解</strong> $(C_1^<em>, C_2^</em>)$。</p>
+<ol start="3">
+<li><p><strong>唯一性收网：</strong> * 令 $y(x) &#x3D; C_1^<em>\varphi_1(x) + C_2^</em>\varphi_2(x)$，它显然也是原方程的解。</p>
+<ul>
+<li>由于 $y(x)$和$u(x)$在$x_0$ 点的初值完全相同，根据微分方程解的<strong>唯一性定理</strong>，必然有 <strong>$u(x) \equiv y(x)$</strong>。</li>
+</ul>
+</li>
+</ol>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/8.%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%20II/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/7.%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%20I/">
+        <h2 class="post-title">7.常微分方程 I</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/19
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>微分方程实际上对学过物理的人而言，是相当熟悉的事情，但如何严格化则还应归属于数学，尽管就应用而言，直觉可以解决大部分问题（</p>
+<h2 id="从场论到微分方程"><a href="#从场论到微分方程" class="headerlink" title="从场论到微分方程"></a>从场论到微分方程</h2><p>在场论中，我们讨论了所谓散度无旋，旋度无源：</p>
+<p>
+$$
+\nabla\times(\nabla u)=0,\ \nabla \cdot (\nabla \times G)=0
+$$
+</p>
+
+<p>以及一个函数可以漂亮地分解成某个散度和某个旋度：</p>
+<p>
+$$
+F=\nabla u+\nabla \times G
+$$
+</p>
+
+<h3 id="Maxwell-方程"><a href="#Maxwell-方程" class="headerlink" title="Maxwell 方程"></a>Maxwell 方程</h3><p>如雷贯耳的$Maxwell$方程组的微分形式，实际上就是用$\nabla$ 的语言写成的。这也在场论中提到过。</p>
+<p>
+$$
+\begin{cases}
+\nabla \cdot E = \rho \\
+\nabla \cdot B = 0 \\
+\nabla \times E = -B_t \\
+\nabla \times B = J + E_t
+\end{cases}
+$$
+</p>
+
+<p>正如上面所说，我们可以试着把 $E$ 拆解：</p>
+<p>
+$$
+E = \nabla (-U) + \nabla \times\int B\, dt
+$$
+</p>
+
+<p>物理上，大概就是静电场和涡旋电场，分别由电势的梯度和变化的磁场产生。<br>能不能消掉 $B$，得到一个只含$E$ 的方程呢？</p>
+<h4 id="波动方程的推导-Derivation-of-Wave-Equation"><a href="#波动方程的推导-Derivation-of-Wave-Equation" class="headerlink" title="波动方程的推导 (Derivation of Wave Equation)"></a>波动方程的推导 (Derivation of Wave Equation)</h4><h5 id="1-基础方程"><a href="#1-基础方程" class="headerlink" title="1. 基础方程"></a>1. 基础方程</h5><p>推导始于真空（或无源项 $J&#x3D;0, \rho&#x3D;0$）中的麦克斯韦方程组：</p>
+<ul>
+<li><strong>法拉第感应定律：</strong> $\nabla \times E &#x3D; -B_t$- <strong>安培-麦克斯韦定律：</strong>$\nabla \times B &#x3D; E_t$（注：此处简化了系数，并假设无源$J&#x3D;0$）</li>
+</ul>
+<h5 id="2-数学推导步骤"><a href="#2-数学推导步骤" class="headerlink" title="2. 数学推导步骤"></a>2. 数学推导步骤</h5><p>对法拉第定律两边同时取<strong>旋度（Curl）</strong>：</p>
+<p>
+$$
+\nabla \times (\nabla \times E) = -(\nabla \times B)_t
+$$
+</p>
+
+<p><strong>左侧（利用矢量算子恒等式）：</strong></p>
+<p>
+$$
+\nabla \times (\nabla \times E) = \nabla(\nabla \cdot E) - \Delta E
+$$
+</p>
+
+<blockquote>
+<p><strong>关键点：</strong> 在无源区域（真空），由于 $\nabla \cdot E &#x3D; 0$（由高斯定律得出），左侧简化为 <strong>$-\Delta E$</strong>。</p>
+</blockquote>
+<p><strong>右侧（代入安培定律）：</strong></p>
+<p>
+$$
+-(\nabla \times B)_t = -(E_t)_t = -E_{tt}
+$$
+</p>
+
+<h5 id="3-最终结论：波动方程"><a href="#3-最终结论：波动方程" class="headerlink" title="3. 最终结论：波动方程"></a>3. 最终结论：波动方程</h5><p>将左右两项合并并消去负号，得到电磁波在空间的演化规律：</p>
+<p>
+$$
+E_{tt} = \Delta E
+$$
+</p>
+
+<p>展开即为：</p>
+<p>
+$$
+E_{tt} = E_{xx} + E_{yy} + E_{zz}
+$$
+</p>
+
+<blockquote>
+<p><strong>物理意义：</strong> 这正是一个典型的<strong>波动方程</strong>（Wave Equation）。它表明电场（和磁场）不需要介质，可以通过自身场的变化在空间中以波的形式传播。</p>
+</blockquote>
+<p>可以看到，这样一个方程全是 $E$ 的导数所满足的方程，也就是物理直觉上的微分方程。数学上如何描述呢，我们先从简单的情形开始——常微分方程，即不带偏导数的微分方程。</p>
+<h1 id="常微分方程-ODE"><a href="#常微分方程-ODE" class="headerlink" title="常微分方程 (ODE)"></a>常微分方程 (ODE)</h1><h2 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h2><p>设定 $x$ 为一个自变量，$y$为因变量，以及$y$的各阶导数$y’, y’’, \dots, y^{(n)}$。</p>
+<p><strong>定义（$n$ 阶 ODE）：</strong></p>
+<p>
+$$
+F(x, y, y', \dots, y^{(n)}) = 0 \quad (\star)
+$$
+</p>
+
+<p>满足该等式的方程称为一个 <strong>$n$ 阶常微分方程</strong>。</p>
+<p><strong>定义（解）：</strong></p>
+<p>若函数 $y(x)$在区间$[a, b]$上满足方程$(\star)$，则称 $y(x)$为该方程在区间$[a, b]$ 上的一个<strong>解</strong>。</p>
+<hr>
+<h2 id="2-示例"><a href="#2-示例" class="headerlink" title="2. 示例"></a>2. 示例</h2><h3 id="一阶模型：指数衰减"><a href="#一阶模型：指数衰减" class="headerlink" title="一阶模型：指数衰减"></a>一阶模型：指数衰减</h3><p>
+$$
+m'(t) = -a m(t)
+$$
+</p>
+
+<ul>
+<li><strong>解的形式：</strong> $m(t) &#x3D; C e^{-at} \quad (\forall C \in \mathbb{R})$- <strong>特性：</strong> 解存在且不唯一（取决于常数$C$）。</li>
+</ul>
+<h3 id="二阶模型：简谐振动"><a href="#二阶模型：简谐振动" class="headerlink" title="二阶模型：简谐振动"></a>二阶模型：简谐振动</h3><p>
+$$
+x''(t) = -k x(t)
+$$
+</p>
+
+<ul>
+<li><strong>也许可以注意到的解：</strong> $x(t) &#x3D; \sin(t)$或$x(t) &#x3D; \cos(t)$- <strong>注意到方程的线性，于是找到比较一般的解：</strong>$x(t) &#x3D; C_1 \cos(t) + C_2 \sin(t) \quad (\forall C_1, C_2 \in \mathbb{R})$</li>
+</ul>
+<p>这个比较一般的解，我们称为通解。</p>
+<h2 id="通解-General-Solution-的定义"><a href="#通解-General-Solution-的定义" class="headerlink" title="通解 (General Solution) 的定义"></a>通解 (General Solution) 的定义</h2><p>对于含有 $n$个相互独立的任意常数$C_1, C_2, \dots, C_n$的解函数组$y(x; C_1, C_2, \dots, C_n)$，若满足以下两个条件：</p>
+<ol>
+<li><p><strong>独立性：</strong> 常数 $C_1, C_2, \dots, C_n$在区间$x \in [a, b]$ 上是<strong>相互独立</strong>的。</p>
+</li>
+<li><p><strong>有效性：</strong> 对于每一组固定的 $C_1, \dots, C_n$，函数 $y(x, C_1, \dots, C_n)$在$[a, b]$上均满足方程$(\star)$。</p>
+</li>
+</ol>
+<p>则称 $y(x; C_1, \dots, C_n)$为方程$(\star)$ 的一个 <strong>通解</strong>。<br>固定常数后的函数也就被称为特解，例如简谐振动示例中的 $\sin(t)$就是取常数为$0,1$ 。</p>
+<hr>
+<h2 id="常数独立性-Wronskian-行列式"><a href="#常数独立性-Wronskian-行列式" class="headerlink" title="常数独立性 (Wronskian 行列式)"></a>常数独立性 (Wronskian 行列式)</h2><p>为了判断一组解是否能构成通解，需要引入线性无关性的判定：</p>
+<p><strong>定义（常数独立性）：</strong></p>
+<p>对于函数组 $\psi(x, C_1, C_2, \dots, C_n)$，若 $C_1, \dots, C_n$在$x \in [a, b]$ 上线性独立，其充要条件通常涉及 <strong>Wronskian 行列式</strong>不为零：</p>
+<p>
+$$
+\left| \frac{\partial(\psi, \psi', \psi'', \dots, \psi^{(n-1)})}{\partial(C_1, C_2, C_3, \dots, C_n)} \right| \neq 0, \quad x \in [a, b]
+$$
+</p>
+
+<blockquote>
+<p><strong>逻辑闭环：</strong></p>
+<ul>
+<li><p><strong>一阶方程</strong>有一个待定常数 $C$。</p>
+</li>
+<li><p><strong>二阶方程</strong>有两个相互独立的待定常数 $C_1, C_2$。</p>
+</li>
+<li><p><strong>n 阶方程</strong>则需要 $n$ 个线性独立的解来构造通解。</p>
+</li>
+</ul>
+</blockquote>
+<p>我们可以验证一下简谐振动的解是不是符合常数独立性。</p>
+<h3 id="验证：通解中常数的独立性"><a href="#验证：通解中常数的独立性" class="headerlink" title="验证：通解中常数的独立性"></a>验证：通解中常数的独立性</h3><p><strong>1. 设定函数形式</strong></p>
+<p>已知二阶方程的解函数族为：</p>
+<p>
+$$
+x(t, C_1, C_2) = C_1 \cos(t) + C_2 \sin(t), \quad \forall C_1, C_2 \in \mathbb{R}
+$$
+</p>
+
+<p>对其求一阶导数（关于时间 $t$）：</p>
+<p>
+$$
+x'(t, C_1, C_2) = -C_1 \sin(t) + C_2 \cos(t)
+$$
+</p>
+
+<p><strong>2. 构造行列式 (Wronskian 思想的变形)</strong></p>
+<p>为了验证 $C_1, C_2$ 的独立性，计算函数向量对常数向量的偏导数行列式：</p>
+<p>
+$$
+\left| \frac{D(x, x')}{D(C_1, C_2)} \right| = \begin{vmatrix} \frac{\partial x}{\partial C_1} & \frac{\partial x}{\partial C_2} \\ \frac{\partial x'}{\partial C_1} & \frac{\partial x'}{\partial C_2} \end{vmatrix}
+$$
+</p>
+
+<p><strong>3. 代入计算</strong></p>
+<p>将偏导数结果代入矩阵：</p>
+<p>
+$$
+= \begin{vmatrix} \cos(t) & \sin(t) \\ -\sin(t) & \cos(t) \end{vmatrix}
+$$
+</p>
+
+<p>利用行列式计算规则 $ad - bc$：</p>
+<p>
+$$
+= \cos^2(t) - (-\sin^2(t))
+$$
+</p>
+
+<p>
+$$
+= \cos^2(t) + \sin^2(t)
+$$
+</p>
+
+<p>
+$$
+= 1 \neq 0
+$$
+</p>
+
+<hr>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>由于该行列式的值为 <strong>1</strong>（恒不为零），根据判定准则，常数 $C_1$与$C_2$ 在解空间中是<strong>相互独立</strong>的。</p>
+<p>这证明了 $x(t) &#x3D; C_1 \cos(t) + C_2 \sin(t)$ 确实是该二阶微分方程的<strong>通解</strong></p>
+<hr>
+<p>一般的方程的解，我们也可以看成函数，那么也就有所谓隐函数，相应的，这里有所谓通积分。</p>
+<h2 id="通积分-General-Integral"><a href="#通积分-General-Integral" class="headerlink" title="通积分 (General Integral)"></a>通积分 (General Integral)</h2><h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h3><p>对于 $n$阶常微分方程$F(x, y, y’, \dots, y^{(n)}) &#x3D; 0 \quad (\star)$，如果其通解是由一个隐函数方程给出的：</p>
+<p>
+$$
+\Phi(x, y; C_1, C_2, \dots, C_n) = 0
+$$
+</p>
+
+<p>若该等式在满足常数独立性的前提下，能够通过对 $x$求导等代数运算还原为原方程$(\star)$，则称该隐式方程为原方程的 <strong>通积分</strong>。</p>
+<blockquote>
+<p><strong>核心区别：</strong></p>
+<ul>
+<li><p><strong>通解</strong>：通常指显式函数形式 $y &#x3D; f(x, C_1, \dots, C_n)$。</p>
+</li>
+<li><p><strong>通积分</strong>：指隐式方程形式，不一定能轻易解出显式的 $y$。</p>
+</li>
+</ul>
+</blockquote>
+<p>实际上，也就是消除了 $y$ 的导数的影响，也就是解掉了微分。</p>
+<hr>
+<h3 id="2-案例演示：圆族与微分方程"><a href="#2-案例演示：圆族与微分方程" class="headerlink" title="2. 案例演示：圆族与微分方程"></a>2. 案例演示：圆族与微分方程</h3><p>板书通过一个几何例子展示了通积分与微分方程的转换逻辑：</p>
+<ul>
+<li><strong>微分方程：</strong> $x + y \cdot y’ &#x3D; 0$- <strong>通积分猜测：</strong>$x^2 + y^2 &#x3D; C$ （这是一个以原点为圆心的圆族）</li>
+</ul>
+<p><strong>验证过程：</strong></p>
+<p>对隐式方程 $x^2 + y^2 &#x3D; C$关于$x$ 求导：</p>
+<ol>
+<li><p>$\frac{d}{dx}(x^2) + \frac{d}{dx}(y^2) &#x3D; \frac{d}{dx}(C)$2.$2x + 2y \cdot y’ &#x3D; 0$</p>
+</li>
+<li><p>化简得：$x + y \cdot y’ &#x3D; 0$</p>
+</li>
+</ol>
+<p><strong>结论：</strong></p>
+<p>隐式方程 $x^2 + y^2 &#x3D; C$是微分方程$x + y \cdot y’ &#x3D; 0$ 的通积分。如果写成显式通解，则为：</p>
+<p>
+$$
+y = \pm \sqrt{C - x^2}
+$$
+</p>
+
+<hr>
+<h3 id="3-几何直观"><a href="#3-几何直观" class="headerlink" title="3. 几何直观"></a>3. 几何直观</h3><p>在坐标系中，这个通积分代表了一系列同心圆。微分方程 $y’ &#x3D; -\frac{x}{y}$ 实际上描述了圆上任意一点的切线斜率必须与该点到原点的连线（半径）垂直。</p>
+<hr>
+<p>会不会有解落在通解之外呢，或者说遍历通解中的常数也取不到某个解？</p>
+<h2 id="定义：奇解-Singular-Solution"><a href="#定义：奇解-Singular-Solution" class="headerlink" title="定义：奇解 (Singular Solution)"></a>定义：奇解 (Singular Solution)</h2><p>若函数 $y(x)$满足原方程$(\star)$，但它<strong>不包含在通解中</strong>（即无法通过给通解中的任意常数 $C$ 赋值来得到），则称其为方程的一个<strong>奇解</strong>。</p>
+<h3 id="典型案例分析：-y-2-y’-2-1"><a href="#典型案例分析：-y-2-y’-2-1" class="headerlink" title="典型案例分析：$y^2 + (y’)^2 &#x3D; 1$"></a>典型案例分析：$y^2 + (y’)^2 &#x3D; 1$</h3><h4 id="1-通解及其验证"><a href="#1-通解及其验证" class="headerlink" title="1. 通解及其验证"></a>1. 通解及其验证</h4><p>给定微分方程：</p>
+<p>
+$$
+y(x)^2 + (y'(x))^2 = 1
+$$
+</p>
+
+<p>其<strong>通解</strong>形式为：</p>
+<p>
+$$
+y(x) = \sin(x-c), \quad c \in \mathbb{R}
+$$
+</p>
+
+<p><strong>常数独立性验证：</strong></p>
+<p>通过对常数 $c$ 求偏导来判断其是否提供了一个有效的自由度：</p>
+<p>
+$$
+\partial_c y = -\cos(x-c) \not\equiv 0
+$$
+</p>
+
+<blockquote>
+<p><strong>核心逻辑：</strong> 虽然在某些特定点该偏导数为零，但在区间内它<strong>不恒等于零</strong>，因此常数 $c$ 是独立的。</p>
+</blockquote>
+<hr>
+<h4 id="2-奇解-Singular-Solutions"><a href="#2-奇解-Singular-Solutions" class="headerlink" title="2. 奇解 (Singular Solutions)"></a>2. 奇解 (Singular Solutions)</h4><p>观察方程结构，可以发现两个不包含在上述通解族中的特殊恒等解：</p>
+<ul>
+<li><p><strong>$y(x) \equiv 1$</strong></p>
+</li>
+<li><p><strong>$y(x) \equiv -1$</strong></p>
+</li>
+</ul>
+<p><strong>验证：</strong> 若 $y &#x3D; \pm 1$，则 $y’ &#x3D; 0$。代入原方程：$(\pm 1)^2 + 0^2 &#x3D; 1$，等式成立。</p>
+<p>由于这两个解无法通过给通解中的 $c$ 赋值得到（$\sin$ 函数无法恒等于 1），它们被定义为该方程的<strong>奇解</strong>。</p>
+<hr>
+<h4 id="包络与奇解-Envelope-and-Singular-Solution"><a href="#包络与奇解-Envelope-and-Singular-Solution" class="headerlink" title="包络与奇解 (Envelope and Singular Solution)"></a>包络与奇解 (Envelope and Singular Solution)</h4><h5 id="核心定义"><a href="#核心定义" class="headerlink" title="核心定义"></a>核心定义</h5><p>针对 <strong>一阶常微分方程 (1st Order ODE)</strong>：</p>
+<p>若某个函数 $y(x)$ 在其曲线上：</p>
+<ul>
+<li><p><strong>每一点</strong> 都与该方程通解族中的 <strong>某一个解</strong> 相切；</p>
+</li>
+<li><p>且 $y(x)$ 本身也满足该微分方程。</p>
+</li>
+</ul>
+<p>则 $y(x)$ 为该方程的一个 <strong>奇解</strong>。</p>
+<hr>
+<h5 id="为什么“相切”意味着“唯一性失效”？"><a href="#为什么“相切”意味着“唯一性失效”？" class="headerlink" title="为什么“相切”意味着“唯一性失效”？"></a>为什么“相切”意味着“唯一性失效”？</h5><p>从几何角度来看，包络线具有一种奇特的“重合”属性：</p>
+<ol>
+<li><p><strong>坐标相同：</strong> 在切点处，包络线与通解曲线的 $y$ 值一致。</p>
+</li>
+<li><p><strong>斜率相同：</strong> 由于相切，它们的导数 $y’$ 也完全一致。</p>
+</li>
+</ol>
+<p><strong>推论：</strong></p>
+<p>对于同一个初值点 $(x_0, y_0)$，现在出现了两条不同的积分曲线（包络线本身和穿过该点的通解曲线），它们在该点具有相同的斜率。这说明在该轨迹上，微分方程解的<strong>存在唯一性定理</strong> 遭到了破坏。</p>
+<hr>
+<h5 id="判别逻辑"><a href="#判别逻辑" class="headerlink" title="判别逻辑"></a>判别逻辑</h5><ul>
+<li><strong>通解族：</strong> $\Phi(x, y, C) &#x3D; 0$- <strong>包络线方程：</strong> 通常通过联立以下方程组并消去参数$C$ 获得：</li>
+</ul>
+<p>
+$$
+\begin{cases} \Phi(x, y, C) = 0 \\ \frac{\partial \Phi}{\partial C} = 0 \end{cases}
+$$
+</p>
+
+<ul>
+<li><strong>验证：</strong> 求出的包络线方程如果代入原 ODE 成立，且无法通过给 $C$ 赋值得到，则它就是奇解。</li>
+</ul>
+<p>实际上奇解有无穷多个，就上面的例子而言，我们可以在 $y&#x3D;-1$走一段，然后沿着三角函数走到$y&#x3D;1$ ，然后再随便走……也许正如，当你看到一只蟑螂，屋子里已经满是蟑螂了（？）从另一个视角来看，通解甚至只是解的一小部分（</p>
+<hr>
+<h2 id="初值问题-Cauchy-问题"><a href="#初值问题-Cauchy-问题" class="headerlink" title="初值问题 (Cauchy 问题)"></a>初值问题 (Cauchy 问题)</h2><p>对于一个 $n$ 阶常微分方程，如何通过初始条件锁定唯一轨迹。</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>对于 $n$ 阶 ODE：$F(x, y, y’, \dots, y^{(n)}) &#x3D; 0$，寻找一个特解 $y(x)$使其满足如下$n$ 个初始条件：</p>
+<p>
+$$
+\begin{cases} y(0) = y_0 \\ y'(0) = y_1 \\ \dots \\ y^{(n-1)}(0) = y_{n-1} \end{cases}
+$$
+</p>
+
+<p>其中 $y_0, y_1, \dots, y_{n-1}$ 为<strong>给定的初值</strong>。</p>
+<h3 id="研究核心"><a href="#研究核心" class="headerlink" title="研究核心"></a>研究核心</h3><p>对于 Cauchy 问题，数学家和物理学家最关心的三个维度：</p>
+<ol>
+<li><p><strong>存在性 (Existence)：</strong> 是否真的能找到这样一个解？</p>
+</li>
+<li><p><strong>唯一性 (Uniqueness)：</strong> 是否有且仅有一个解？（对应了刚才讨论的“包络线&#x2F;奇解”是否会破坏唯一性）。</p>
+</li>
+<li><p><strong>长期行为 (Long-term Behavior)：</strong> 随着自变量 $x$（通常是时间 $t$）的增加，解是趋于稳定、发散还是进入混沌状态？</p>
+</li>
+</ol>
+<p>怎么看存在性呢？</p>
+<h3 id="通解常数的独立性与逆映射-Independence-Inverse-Mapping"><a href="#通解常数的独立性与逆映射-Independence-Inverse-Mapping" class="headerlink" title="通解常数的独立性与逆映射 (Independence &amp; Inverse Mapping)"></a>通解常数的独立性与逆映射 (Independence &amp; Inverse Mapping)</h3><h4 id="1-初值条件的方程组形式"><a href="#1-初值条件的方程组形式" class="headerlink" title="1. 初值条件的方程组形式"></a>1. 初值条件的方程组形式</h4><p>对于一个包含 $n$个待定常数$C_1, \dots, C_n$的通解$y(x, C_1, \dots, C_n)$，给定初值 $(y_0, y_1, \dots, y_{n-1})$，我们可以建立如下方程组：</p>
+<p>
+$$
+\begin{cases} y(0, C_1, \dots, C_n) = y_0 \\ y'(0, C_1, \dots, C_n) = y_1 \\ \dots \\ y^{(n-1)}(0, C_1, \dots, C_n) = y_{n-1} \end{cases}
+$$
+</p>
+
+<h4 id="2-核心判定：Jacobi-行列式"><a href="#2-核心判定：Jacobi-行列式" class="headerlink" title="2. 核心判定：Jacobi 行列式"></a>2. 核心判定：Jacobi 行列式</h4><p>要使上述初值能够<strong>唯一地</strong>锁定一组常数 $(C_1, \dots, C_n)$，必须保证该映射在局部是可逆的。其判定条件为 Jacobi 行列式不为零：</p>
+<p>
+$$
+\left| \frac{D(y, y', \dots, y^{(n-1)})}{D(C_1, C_2, \dots, C_n)} \right| \neq 0
+$$
+</p>
+
+<ul>
+<li><p><strong>数学含义：</strong> 这一条件等价于常数的 <strong>独立性 (Independence)</strong>。</p>
+</li>
+<li><p><strong>几何直观：</strong> 它保证了从“常数空间”到“初值空间”的映射是一个<strong>局部微分同胚</strong>。即对于每一组合理的初值，我们都能反向找到唯一对应的常数解。</p>
+</li>
+</ul>
+<h4 id="3-逆映射定理的视角"><a href="#3-逆映射定理的视角" class="headerlink" title="3. 逆映射定理的视角"></a>3. 逆映射定理的视角</h4><p>更抽象的映射描述：</p>
+<ul>
+<li><p>设映射 $g(\vec{C}) &#x3D; \vec{u}$，其中 $\vec{C}$ 是常数向量，$\vec{u}$ 是初值向量。</p>
+</li>
+<li><p>若 Jacobi 行列式非零，则根据 <strong>逆映射定理 (Inverse Function Theorem)</strong>，存在逆映射：</p>
+</li>
+</ul>
+<p>
+$$
+\vec{C} = g^{-1}(\vec{u})
+$$
+</p>
+
+<ul>
+<li>这意味着：<strong>通解之所以能通过初值确定特解，本质上是因为常数的独立性保证了映射的可逆性。</strong></li>
+</ul>
+<h4 id="通解的局限性"><a href="#通解的局限性" class="headerlink" title="通解的局限性"></a>通解的局限性</h4><p>通解只是我们预期的一般的规律，除了上述的奇解之外，我们可以考虑：</p>
+<p>
+$$
+F(x,y,y')=0和G(x,y,y')=0
+$$
+</p>
+
+<p>我们把两个方程相乘就得到一个新的微分方程，这两个方程可以风马牛不相及，但是他们的通解都是新的方程通解，有两个通解？！</p>
+<h1 id="具体计算"><a href="#具体计算" class="headerlink" title="具体计算"></a>具体计算</h1><h2 id="变量分离法-Separable-Variables"><a href="#变量分离法-Separable-Variables" class="headerlink" title="变量分离法 (Separable Variables)"></a>变量分离法 (Separable Variables)</h2><h3 id="1-基本形式"><a href="#1-基本形式" class="headerlink" title="1. 基本形式"></a>1. 基本形式</h3><p>对于一阶常微分方程（First-order ODE），若其形式如下：</p>
+<p>
+$$
+y'(x) = f(x) \cdot g(y)
+$$
+</p>
+
+<h3 id="2-解题步骤"><a href="#2-解题步骤" class="headerlink" title="2. 解题步骤"></a>2. 解题步骤</h3><ul>
+<li><p><strong>寻找常数解（平衡解）：</strong></p>
+<p>  观察 $g(y)$是否有零点。即若存在常数$c_0$使得$g(c_0) &#x3D; 0$，则 <strong>$y(x) &#x3D; c_0$ 是原方程的一个解</strong>。</p>
+</li>
+<li><p><strong>变量分离：</strong></p>
+<p>  若在某个区间上 $g(y) \neq 0$，则可将方程改写为：</p>
+</li>
+</ul>
+<p>
+$$
+\frac{y'}{g(y)} = f(x)
+$$
+</p>
+
+<h3 id="3-原理解析"><a href="#3-原理解析" class="headerlink" title="3. 原理解析"></a>3. 原理解析</h3><p>设 $F’(x) &#x3D; f(x)$，$G’(y) &#x3D; \frac{1}{g(y)}$（假设 $g(y) \neq 0$）。</p>
+<p>对上述分离后的方程两边关于 $x$ 求导&#x2F;积分，可得隐式解：</p>
+<p>
+$$
+G(y(x)) = F(x) + C
+$$
+</p>
+
+<p>若 $G$ 存在逆函数，则显式解为：</p>
+<p>
+$$
+y(x) = G^{-1}(F(x) + C)
+$$
+</p>
+
+<p><strong>验证：</strong></p>
+<p>利用复合函数求导法则：</p>
+<p>
+$$
+y'(x) = (G^{-1})'(F(x) + C) \cdot F'(x) = \frac{1}{G'(G^{-1}(F(x)+C))} \cdot f(x) = g(y) \cdot f(x)
+$$
+</p>
+
+<hr>
+<h2 id="例题演示"><a href="#例题演示" class="headerlink" title="例题演示"></a>例题演示</h2><p><strong>方程：</strong> $y’ &#x3D; -xy$这里$f(x) &#x3D; -x$，$g(y) &#x3D; y$。</p>
+<ol>
+<li><p><strong>检查零点：</strong></p>
+<p> 令 $g(y) &#x3D; y &#x3D; 0$，得到 <strong>$y \equiv 0$ 是方程的一个特解</strong>。</p>
+</li>
+<li><p><strong>分离变量（假设 $y \neq 0$）：</strong></p>
+</li>
+</ol>
+<p>
+$$
+\frac{y'}{y} = -x
+$$
+</p>
+
+<ol start="3">
+<li><strong>两边积分：</strong></li>
+</ol>
+<p>
+$$
+\int \frac{1}{y} dy = \int -x dx
+$$
+</p>
+
+<p>
+$$
+\ln|y| = -\frac{1}{2}x^2 + C
+$$
+</p>
+
+<p>为了解出 $y$，对等式两边取指数：</p>
+<p>
+$$
+|y| = e^{-\frac{1}{2}x^2 + C} = e^C \cdot e^{-\frac{1}{2}x^2}
+$$
+</p>
+
+<p>令 $\tilde{C} &#x3D; e^C$（由于 $e^C &gt; 0$，故 $\tilde{C} &gt; 0$），则有：</p>
+<p>
+$$
+|y| = \tilde{C} e^{-\frac{1}{2}x^2}
+$$
+</p>
+
+<p>去掉左边的绝对值符号，右边引入正负号：</p>
+<p>
+$$
+y = \pm \tilde{C} e^{-\frac{1}{2}x^2}
+$$
+</p>
+
+<p>此时，系数 $\pm \tilde{C}$ 可以取遍所有非零实数。</p>
+<p>注意到我们在步骤 ① 中发现的常数解 <strong>$y \equiv 0$</strong>。</p>
+<ul>
+<li><p>如果我们允许上述式子中的系数取 <strong>0</strong>，那么这个式子就能涵盖 $y \equiv 0$。</p>
+</li>
+<li><p>重新定义一个新的任意常数 $\hat{C}$，使其包含正数、负数以及零（$\hat{C} \in \mathbb{R}$）。</p>
+</li>
+</ul>
+<p>最终，方程的**通解（General Solution）**写为：</p>
+<p>
+$$
+\mathbf{y(x) = \hat{C} e^{-\frac{1}{2}x^2}}
+$$
+</p>
+
+<h2 id="变量替换（Variable-Substitution）"><a href="#变量替换（Variable-Substitution）" class="headerlink" title="变量替换（Variable Substitution）"></a>变量替换（Variable Substitution）</h2><h3 id="一"><a href="#一" class="headerlink" title="一"></a>一</h3><p><strong>基本模型：</strong></p>
+<p>对于形如 $y’ &#x3D; f(ax + by + c)$ 的微分方程：</p>
+<ol>
+<li><strong>令：</strong> $z &#x3D; ax + by + c$2. <strong>求导：</strong>$z’ &#x3D; a + b \cdot y’ &#x3D; a + b \cdot f(z)$3. <strong>转化：</strong> 得到关于$z$ 的可分离变量方程：$z’ &#x3D; a + b f(z)$</li>
+</ol>
+<hr>
+<h4 id="典型例题"><a href="#典型例题" class="headerlink" title="典型例题"></a>典型例题</h4><p><strong>方程：</strong> $y’ &#x3D; \sin(x + y + 1)$</p>
+<p><strong>1. 变量替换</strong></p>
+<p>令 $z &#x3D; x + y + 1$，则有 $z’ &#x3D; 1 + y’$。</p>
+<p>代入原方程得：</p>
+<p>
+$$
+z' = 1 + \sin(z)
+$$
+</p>
+
+<p><strong>2. 寻找奇异解（Equilibrium Solutions）</strong></p>
+<p>考察 $1 + \sin(z) &#x3D; 0$ 的情况：</p>
+<p>当 $z &#x3D; 2k\pi + \frac{3}{2}\pi$ ($k \in \mathbb{Z}$) 时，$z’ &#x3D; 0$。</p>
+<p>反代回原变量，得到一组<strong>直线解</strong>：</p>
+<p><strong>$y(x) &#x3D; 2k\pi + \frac{3}{2}\pi - x - 1$</strong></p>
+<p><strong>3. 通解计算（分离变量法）</strong></p>
+<p>当 $1 + \sin(z) \neq 0$ 时，进行积分：</p>
+<p>
+$$
+\int \frac{dz}{1 + \sin(z)} = \int 1 dx
+$$
+</p>
+
+<ul>
+<li><p><strong>左侧积分推导：</strong></p>
+<p>  利用三角恒等式变换，积分为：</p>
+</li>
+</ul>
+<p>
+$$
+-\frac{\cos(z)}{1 + \sin(z)} = \tan\left(\frac{z}{2} - \frac{\pi}{4}\right)
+$$
+</p>
+
+<p><em>(注：利用了半角公式进行简化)</em></p>
+<ul>
+<li><strong>得出结果：</strong></li>
+</ul>
+<p>
+$$
+\tan\left(\frac{x + y + 1}{2} - \frac{\pi}{4}\right) = x + C
+$$
+</p>
+
+<p>进一步整理得：</p>
+<pre><code>**$y = 2 \arctan(x + C) + \frac{\pi}{2} - x - 1$**
+</code></pre>
+<p>注意到，$y$可以加上$2k\pi$ 而不影响方程成立，所以实际上的通解为：</p>
+<p>
+$$
+y = 2 \arctan(x + C) + \frac{\pi}{2} - x - 1+2k\pi
+$$
+</p>
+
+<hr>
+<h4 id="关于解"><a href="#关于解" class="headerlink" title="关于解"></a>关于解</h4><p>该方程解的族群分布：</p>
+<ul>
+<li><p><strong>特征：</strong> 解曲线被一系列斜率为 $-1$的平行直线（即奇异解$y &#x3D; -x - 1 + 2k\pi + \frac{3}{2}\pi$）所分割。</p>
+</li>
+<li><p><strong>趋势：</strong> 在这些“隔离带”之间，通解曲线呈现出周期性的波动形态。当 $x \to \infty$ 时，解会无限趋近于这些特定的直线。</p>
+</li>
+</ul>
+<hr>
+<h3 id="二，齐次"><a href="#二，齐次" class="headerlink" title="二，齐次"></a>二，齐次</h3><p><strong>1. 识别模型</strong></p>
+<p>当微分方程可以表示为自变量与因变量比值的函数时：</p>
+<p>
+$$
+y' = f(x, y) = h\left(\frac{y}{x}\right)
+$$
+</p>
+
+<p><strong>2. 引入中间变量</strong></p>
+<p>令：</p>
+<p>
+$$
+u = \frac{y}{x} \implies y = x \cdot u
+$$
+</p>
+
+<p><strong>3. 求导变换</strong></p>
+<p>对 $y &#x3D; xu$关于$x$ 求导（应用乘积法则）：</p>
+<p>
+$$
+y' = (xu)' = x \cdot u' + u
+$$
+</p>
+
+<p><strong>4. 建立新方程</strong></p>
+<p>将上述结果代入原方程 $y’ &#x3D; h(u)$：</p>
+<p>
+$$
+xu' + u = h(u)
+$$
+</p>
+
+<p>整理得：</p>
+<p>
+$$
+u' = \frac{h(u) - u}{x}
+$$
+</p>
+
+<hr>
+<h4 id="逻辑拆解"><a href="#逻辑拆解" class="headerlink" title="逻辑拆解"></a>逻辑拆解</h4><ul>
+<li><strong>本质：</strong> 这种变换的精髓在于通过“比例化”将一个二元函数 $f(x, y)$塌缩为一元函数$h(u)$，从而将方程转化为<strong>可分离变量</strong>的形式：</li>
+</ul>
+<p>
+$$
+\frac{du}{h(u) - u} = \frac{dx}{x}
+$$
+</p>
+
+<ul>
+<li><p><strong>适用场景：</strong> 如果方程中 $x$和$y$的每一项次数相同（齐次），那么它一定能化为$h(y&#x2F;x)$ 的形式。</p>
+</li>
+<li><p><strong>潜在风险：</strong> 在后续积分过程中，需额外注意分母 $h(u) - u &#x3D; 0$ 的情况，这通常对应于解空间中的射线（即平衡解）。</p>
+</li>
+</ul>
+<hr>
+<h3 id="三，分式线性组合"><a href="#三，分式线性组合" class="headerlink" title="三，分式线性组合"></a>三，分式线性组合</h3><h4 id="一、-核心模型"><a href="#一、-核心模型" class="headerlink" title="一、 核心模型"></a>一、 核心模型</h4><p>方程形式为：</p>
+<p>
+$$
+y' = f\left( \frac{a_1 x + b_1 y + c_1}{a_2 x + b_2 y + c_2} \right)
+$$
+</p>
+
+<p>这种方程的处理方式取决于分子、分母所代表的两条直线的几何关系，即行列式 $D &#x3D; \begin{vmatrix} a_1 &amp; b_1 \ a_2 &amp; b_2 \end{vmatrix}$ 是否为零。</p>
+<hr>
+<h4 id="二、-情况-a-：相交直线（-D-neq-0-）"><a href="#二、-情况-a-：相交直线（-D-neq-0-）" class="headerlink" title="二、 情况 (a)：相交直线（$D \neq 0$）"></a>二、 情况 (a)：相交直线（$D \neq 0$）</h4><p>当两条直线相交时，可以通过<strong>平移坐标原点</strong>到交点来消除常数项 $c_1$和$c_2$。</p>
+<ol>
+<li><p><strong>求交点：</strong> 解线性方程组 $\begin{cases} a_1 x + b_1 y + c_1 &#x3D; 0 \ a_2 x + b_2 y + c_2 &#x3D; 0 \end{cases}$，得到唯一解 $(x_0, y_0)$。</p>
+</li>
+<li><p><strong>坐标平移：</strong> 令 $u &#x3D; x - x_0, v &#x3D; y - y_0$。</p>
+</li>
+<li><p><strong>方程转化：</strong> 代入原方程后，常数项消失，方程变为：</p>
+</li>
+</ol>
+<p>
+$$
+v'(u) = f\left( \frac{a_1 u + b_1 v}{a_2 u + b_2 v} \right) = f\left( \frac{a_1 + b_1(v/u)}{a_2 + b_2(v/u)} \right)
+$$
+</p>
+
+<p>此时，方程转化为了标准的<strong>齐次方程</strong>，可用 $w &#x3D; v&#x2F;u$ 进一步求解。</p>
+<hr>
+<h4 id="三、-情况-b-：平行直线（-D-0-）"><a href="#三、-情况-b-：平行直线（-D-0-）" class="headerlink" title="三、 情况 (b)：平行直线（$D &#x3D; 0$）"></a>三、 情况 (b)：平行直线（$D &#x3D; 0$）</h4><p>当两条直线平行时，意味着系数成比例：$(a_1, b_1) &#x3D; \lambda(a_2, b_2)$。</p>
+<ol>
+<li><strong>比例简化：</strong> 此时分子和分母的线性部分是相关的。</li>
+</ol>
+<p>
+$$
+y' = f\left( \frac{(a x + b y) + c_1}{\lambda(a x + b y) + c_2} \right) = g(ax + by)
+$$
+</p>
+
+<ol start="2">
+<li><p><strong>变量替换：</strong> 此时回到最简单的模式，令 <strong>$z &#x3D; ax + by$</strong>。</p>
+</li>
+<li><p><strong>结果：</strong> 转化为可分离变量的方程进行计算。</p>
+</li>
+</ol>
+<hr>
+<h4 id="总结与观察"><a href="#总结与观察" class="headerlink" title="总结与观察"></a>总结与观察</h4><p>这展示了数学处理中“<strong>化归</strong>”的思想：</p>
+<ul>
+<li><p>如果<strong>有交点</strong>，就通过“平移”消除常数项，化归为<strong>齐次方程</strong>。</p>
+</li>
+<li><p>如果<strong>无交点</strong>（平行），就通过“整体替换”化归为<strong>一元函数方程</strong>。</p>
+</li>
+</ul>
+<p>至此，我们已经完整收集了一阶微分方程变量替换法的三大招式：</p>
+<ol>
+<li><p><strong>$y’ &#x3D; f(ax+by+c)$</strong>（整体替换）</p>
+</li>
+<li><p><strong>$y’ &#x3D; h(y&#x2F;x)$</strong>（齐次化替换）</p>
+</li>
+<li><p><strong>$y’ &#x3D; f(\frac{L_1}{L_2})$</strong>（坐标平移&#x2F;平行替换）</p>
+</li>
+</ol>
+<h2 id="一阶线性-ODE（关于-y-y’-线性）"><a href="#一阶线性-ODE（关于-y-y’-线性）" class="headerlink" title="一阶线性 ODE（关于 $y, y’$ 线性）"></a>一阶线性 ODE（关于 $y, y’$ 线性）</h2><p><strong>1. 基本定义与分类</strong></p>
+<p>方程的标准形式为：</p>
+<ul>
+<li><strong>非齐次方程：</strong> $y’ + P(x)y &#x3D; Q(x)$—— 记作$(*)$- <strong>齐次方程：</strong>$y’ + P(x)y &#x3D; 0$—— 记作$(**)$</li>
+</ul>
+<p><strong>2. 解的结构理论</strong></p>
+<p>线性方程最迷人的地方在于其解的可叠加性：</p>
+<ul>
+<li><p><strong>齐次解的线性性质：</strong> 若 $y_1, y_2$为$(<strong>)$的两个解，则其线性组合$C_1y_1 + C_2y_2$亦为解。其通解具有$C\varphi(x)$ 的形式，且</strong>没有奇异解**。这不难验证，代入即可。</p>
+</li>
+<li><p><strong>通解结构公式：</strong></p>
+<p>  若 $\hat{y}$是非齐次方程$(<em>)$ 的一个*<em>特解</em></em>，$\varphi$是对应齐次方程$(<strong>)$的一个</strong>非零解**，则$(*)$ 的<strong>通解</strong>可表示为：</p>
+</li>
+</ul>
+<p>
+$$
+y = \hat{y} + C\varphi
+$$
+</p>
+
+<blockquote>
+<p><strong>直观理解：</strong> 这与线性代数中“非齐次线性方程组的通解 &#x3D; 特解 + 齐次方程组通解”的逻辑完全一致。</p>
+</blockquote>
+<hr>
+<h3 id="齐次方程-的求解推导"><a href="#齐次方程-的求解推导" class="headerlink" title="齐次方程 $(**)$ 的求解推导"></a>齐次方程 $(**)$ 的求解推导</h3><p>利用<strong>积分因子法</strong>求解齐次方程的过程：</p>
+<ol>
+<li><p><strong>构造原函数：</strong> 令 $F(x)$满足$F’(x) &#x3D; P(x)$，即 $F(x) &#x3D; \int P(x)dx$。</p>
+</li>
+<li><p><strong>引入积分因子：</strong> 在方程 $(**)$两端同时乘以$e^{F(x)}$（显然 $e^{F(x)} \neq 0$）：</p>
+</li>
+</ol>
+<p>
+$$
+y'e^F + yF'e^F = 0
+$$
+</p>
+
+<ol start="3">
+<li><strong>逆用乘积导数法则：</strong></li>
+</ol>
+<p>
+$$
+(ye^F)' = 0
+$$
+</p>
+
+<ol start="4">
+<li><strong>积分得出结论：</strong></li>
+</ol>
+<p>
+$$
+ye^F = C \implies y(x) = Ce^{-F(x)}
+$$
+</p>
+
+<p>即齐次方程的通解为：<strong>$y(x) &#x3D; C e^{-\int P(x)dx}$</strong></p>
+<p>这实际上很符合直觉，正如 $y’+y&#x3D;0$我们会猜解$y&#x3D;e^{-x}$ 。 我们利用了指数求导不变来构造微分。又由于实际上每一步都是等价变换，所以没有奇解。</p>
+<h3 id="非齐次方程的求解——常数变易法-Variation-of-Parameters"><a href="#非齐次方程的求解——常数变易法-Variation-of-Parameters" class="headerlink" title="非齐次方程的求解——常数变易法 (Variation of Parameters)"></a>非齐次方程的求解——常数变易法 (Variation of Parameters)</h3><p><strong>1. 核心思想</strong></p>
+<p>对于齐次方程 $(**)$的通解$y &#x3D; Ce^{-F(x)}$，我们大胆假设非齐次方程 $(*)$的通解具有相同的形式，但将常数$C$替换为待定函数$C(x)$：</p>
+<p>
+$$
+y = C(x)e^{-F(x)}
+$$
+</p>
+
+<p><strong>2. 求解过程</strong></p>
+<p>继续沿用<strong>积分因子 $e^{F(x)}$</strong>：</p>
+<ul>
+<li><strong>原方程：</strong> $y’ + P(x)y &#x3D; Q(x)$——$(*)$- <strong>乘积分因子：</strong> 左右同乘$e^{F(x)}$，其中 $F’(x) &#x3D; P(x)$：</li>
+</ul>
+<p>
+$$
+y'e^F + yP(x)e^F = Q(x)e^F
+$$
+</p>
+
+<ul>
+<li><strong>合并左端：</strong> 根据导数乘积法则的逆过程：</li>
+</ul>
+<p>
+$$
+(ye^F)' = Q(x)e^F
+$$
+</p>
+
+<ul>
+<li><strong>两端积分：</strong></li>
+</ul>
+<p>
+$$
+ye^{F(x)} = \int_{x_0}^x Q(\tilde{x})e^{F(\tilde{x})}d\tilde{x} + C
+$$
+</p>
+
+<hr>
+<h3 id="二、-一阶线性-ODE-的通用公式"><a href="#二、-一阶线性-ODE-的通用公式" class="headerlink" title="二、 一阶线性 ODE 的通用公式"></a>二、 一阶线性 ODE 的通用公式</h3><p>通过上述推导，也就得到了最终的<strong>通解公式</strong>：</p>
+<p>
+$$
+y(x) = \left( \int_{x_0}^x Q(\tilde{x})e^{F(\tilde{x})} d\tilde{x} + C \right) e^{-F(x)}
+$$
+</p>
+
+<p><strong>结构拆解：</strong></p>
+<ol>
+<li><strong>特解部分：</strong> $e^{-F(x)} \int Q(x)e^{F(x)}dx$2. <strong>齐次解部分：</strong>$Ce^{-F(x)}$</li>
+</ol>
+<p>这同样步步等价，所以这并没有奇解，这是线性方程的优良性质。</p>
+<hr>
+<h3 id="示例：RL电路"><a href="#示例：RL电路" class="headerlink" title="示例：RL电路"></a>示例：RL电路</h3><p><strong>1. 电路构成</strong></p>
+<ul>
+<li><strong>电源电动势：</strong> $E$- <strong>电感：</strong>$L$- <strong>电阻：</strong>$R$</li>
+</ul>
+<p><strong>2. 建立方程</strong></p>
+<p>根据基尔霍夫电压定律（KVL），电路的电压平衡方程为：</p>
+<p>
+$$
+L \cdot I'(t) + R \cdot I(t) = E
+$$
+</p>
+
+<p>设定初始条件：$I(0) &#x3D; 0$（即电路在 $t&#x3D;0$ 时刻接通，初始电流为零）。</p>
+<hr>
+<h4 id="数学转化与求解"><a href="#数学转化与求解" class="headerlink" title="数学转化与求解"></a>数学转化与求解</h4><p><strong>1. 标准化处理</strong></p>
+<p>为了套用一阶线性 ODE 的公式，将方程两端同除以 $L$：</p>
+<p>
+$$
+I' + \frac{R}{L}I = \frac{E}{L}
+$$
+</p>
+
+<p>令常数 $P &#x3D; \frac{R}{L}$，$Q &#x3D; \frac{E}{L}$，方程简化为标准型：</p>
+<p>
+$$
+I' + PI = Q
+$$
+</p>
+
+<p><strong>2. 积分因子法求解</strong></p>
+<ul>
+<li><strong>积分因子：</strong> $e^{Pt}$- <strong>变换：</strong>$(I \cdot e^{Pt})’ &#x3D; Q e^{Pt}$- <strong>积分：</strong>$I \cdot e^{Pt} &#x3D; \frac{Q}{P} e^{Pt} + C$- <strong>通解公式：</strong>$I(t) &#x3D; \frac{Q}{P} + C e^{-Pt}$</li>
+</ul>
+<hr>
+<h4 id="带入物理量与初始条件"><a href="#带入物理量与初始条件" class="headerlink" title="带入物理量与初始条件"></a>带入物理量与初始条件</h4><p><strong>1. 代回物理参数</strong></p>
+<p>由于 $\frac{Q}{P} &#x3D; \frac{E&#x2F;L}{R&#x2F;L} &#x3D; \frac{E}{R}$，通解写为：</p>
+<p>
+$$
+I(t) = \frac{E}{R} + C e^{-\frac{R}{L}t}
+$$
+</p>
+
+<p><strong>2. 确定待定常数</strong></p>
+<p>代入初始条件 $I(0) &#x3D; 0$：</p>
+<p>
+$$
+0 = \frac{E}{R} + C \implies C = -\frac{E}{R}
+$$
+</p>
+
+<p><strong>3. 最终特解</strong></p>
+<p>
+$$
+I(t) = \frac{E}{R} \left( 1 - e^{-\frac{R}{L}t} \right)
+$$
+</p>
+
+<hr>
+<h4 id="物理意义评估"><a href="#物理意义评估" class="headerlink" title="物理意义评估"></a>物理意义评估</h4><ul>
+<li><p><strong>暂态响应：</strong> 指数项 $e^{-\frac{R}{L}t}$描述了电流从零开始增长的过程。电感$L$ 的存在产生了“反电动势”，阻碍了电流的突变。</p>
+</li>
+<li><p><strong>稳态电流：</strong> 当 $t \to \infty$时，指数项趋于$0$，电流趋于稳定值：</p>
+</li>
+</ul>
+<p>
+$$
+I_{\text{steady}} = \frac{E}{R}
+$$
+</p>
+
+<p>此时电感相当于短路，遵循基本的欧姆定律。</p>
+<hr>
+<h2 id="积分因子"><a href="#积分因子" class="headerlink" title="积分因子"></a>积分因子</h2><h3 id="一、-问题的引入：全微分方程"><a href="#一、-问题的引入：全微分方程" class="headerlink" title="一、 问题的引入：全微分方程"></a>一、 问题的引入：全微分方程</h3><p><strong>1. 基本形式</strong></p>
+<p>将微分方程写成对称形式：</p>
+<p>
+$$
+P(x, y)dx + Q(x, y)dy = 0
+$$
+</p>
+
+<p><strong>2. 判定条件（恰当性检验）</strong></p>
+<p>如果存在一个函数 $u(x, y)$使得$du &#x3D; P dx + Q dy &#x3D; 0$，那么该方程称为<strong>全微分方程</strong>（或恰当方程）。其通解直接为：</p>
+<p>
+$$
+u(x, y) = C
+$$
+</p>
+
+<p>根据全微分的性质，这要求满足：</p>
+<p>
+$$
+Q_x = P_y
+$$
+</p>
+
+<p>（即 $\frac{\partial Q}{\partial x} &#x3D; \frac{\partial P}{\partial y}$）</p>
+<hr>
+<h3 id="二、-非全微分方程与积分因子"><a href="#二、-非全微分方程与积分因子" class="headerlink" title="二、 非全微分方程与积分因子"></a>二、 非全微分方程与积分因子</h3><p>如果 $N_x \neq M_y$，方程就不是全微分的。此时，我们寻找一个非零函数 $\mu(x, y)$，使得乘以它之后方程变得“恰当”：</p>
+<p>
+$$
+\mu M dx + \mu N dy = 0 \implies (\mu N)_x = (\mu M)_y
+$$
+</p>
+
+<p>这里的 $\mu$ 被称为<strong>积分因子</strong>。</p>
+<hr>
+<h3 id="三、-积分因子的求解推导（以一元因子为例）"><a href="#三、-积分因子的求解推导（以一元因子为例）" class="headerlink" title="三、 积分因子的求解推导（以一元因子为例）"></a>三、 积分因子的求解推导（以一元因子为例）</h3><p>寻找通用的 $\mu(x, y)$通常涉及偏微分方程，非常困难。寻找<strong>一元积分因子</strong>（仅与$x$或$y$ 有关）的捷径：</p>
+<p><strong>1. 展开判定式：</strong></p>
+<p>根据乘积求导法则，$(\mu N)_x &#x3D; (\mu M)_y$ 展开为：</p>
+<p>
+$$
+\mu N_x + \mu_x N = \mu M_y + \mu_y M
+$$
+</p>
+
+<p>整理得：</p>
+<p>
+$$
+\mu(N_x - M_y) = -\mu_x N + \mu_y M
+$$
+</p>
+
+<p><strong>2. 假设 $\mu &#x3D; \mu(x)$：</strong></p>
+<p>此时 $\mu_y &#x3D; 0$，方程简化为：</p>
+<p>
+$$
+\mu(N_x - M_y) = -\mu_x N
+$$
+</p>
+
+<p>变形得到关于 $\mu$ 的可分离变量方程：</p>
+<p>
+$$
+\frac{\mu_x}{\mu} = -\frac{N_x - M_y}{N}
+$$
+</p>
+
+<p><strong>3. 求解结论：</strong></p>
+<p>如果右端项 $\frac{M_y - N_x}{N}$<strong>仅是$x$的函数</strong>，记为$F(x)$，那么积分因子为：</p>
+<p>
+$$
+\mu(x) = e^{\int F(x) dx}
+$$
+</p>
+
+<hr>
+<h3 id="补充情况：-mu-mu-y-的判定"><a href="#补充情况：-mu-mu-y-的判定" class="headerlink" title="补充情况：$\mu &#x3D; \mu(y)$ 的判定"></a>补充情况：$\mu &#x3D; \mu(y)$ 的判定</h3><p>如果积分因子仅是 $y$的函数，推导过程与$x$ 对称：</p>
+<ol>
+<li><p><strong>判定条件：</strong> 考察表达式 $\frac{N_x - M_y}{M}$。</p>
+</li>
+<li><p><strong>结论：</strong> 若该式<strong>仅与 $y$有关</strong>，记为$G(y)$，则有：</p>
+</li>
+</ol>
+<p>
+$$
+\frac{\mu_y}{\mu} = \frac{N_x - M_y}{M} = G(y)
+$$
+</p>
+
+<ol start="3">
+<li><strong>积分因子公式：</strong></li>
+</ol>
+<p>
+$$
+\mu(y) = e^{\int G(y) dy}
+$$
+</p>
+
+<hr>
+<h3 id="二、-综合例题演练"><a href="#二、-综合例题演练" class="headerlink" title="二、 综合例题演练"></a>二、 综合例题演练</h3><p><strong>方程：</strong> $(2xy^2 - y)dx + (x + 3y^3)dy &#x3D; 0$其中$M &#x3D; 2xy^2 - y$，$N &#x3D; x + 3y^3$。</p>
+<p><strong>1. 恰当性检查</strong></p>
+<ul>
+<li>$M_y &#x3D; 4xy - 1$-$N_x &#x3D; 1$显然$M_y \neq N_x$，方程<strong>不是</strong>全微分方程。</li>
+</ul>
+<p><strong>2. 寻找积分因子（试错过程）</strong></p>
+<ul>
+<li><p><strong>尝试 $\mu(x)$：</strong></p>
+<p>  计算 $\frac{N_x - M_y}{N} &#x3D; \frac{1 - (4xy - 1)}{x + 3y^3} &#x3D; \frac{2 - 4xy}{x + 3y^3}$。</p>
+<p>  结果含有 $y$，说明不存在仅与 $x$ 有关的积分因子。</p>
+</li>
+<li><p><strong>尝试 $\mu(y)$：</strong></p>
+<p>  计算 $\frac{N_x - M_y}{M} &#x3D; \frac{1 - (4xy - 1)}{2xy^2 - y} &#x3D; \frac{2(1 - 2xy)}{y(2xy - 1)} &#x3D; -\frac{2}{y}$。</p>
+<p>  结果<strong>仅与 $y$有关</strong>！满足条件，令$G(y) &#x3D; -\frac{2}{y}$。</p>
+</li>
+</ul>
+<p><strong>3. 计算积分因子</strong></p>
+<p>
+$$
+\mu(y) = e^{\int -\frac{2}{y} dy} = e^{-2\ln|y|} = \frac{1}{y^2}
+$$
+</p>
+
+<p><strong>4. 转化与求解</strong></p>
+<p>方程两端同乘 $\frac{1}{y^2}$，得到新方程：</p>
+<p>
+$$
+\frac{2xy^2 - y}{y^2}dx + \frac{x + 3y^3}{y^2}dy = 0
+$$
+</p>
+
+<p>简化为：</p>
+<p>
+$$
+\left( 2x - \frac{1}{y} \right)dx + \left( \frac{x}{y^2} + 3y \right)dy = 0
+$$
+</p>
+
+<p>验证可知，此时 $P_y &#x3D; \frac{1}{y^2}$，$Q_x &#x3D; \frac{1}{y^2}$，已变为全微分方程。</p>
+<p><strong>5. 最终通解</strong></p>
+<p>对 $P$关于$x$积分，对$Q$关于$y$ 积分并合并（注意去重）：</p>
+<p>
+$$
+u(x, y) = x^2 - \frac{x}{y} + \frac{3}{2}y^2 = C
+$$
+</p>
+
+<p>另外，注意到 $y \equiv 0$ 时，$M&#x3D;0$同时$dy&#x3D;0$ ，那么这时候方程也成立。</p>
+<h3 id="齐次方程的特殊积分因子"><a href="#齐次方程的特殊积分因子" class="headerlink" title="齐次方程的特殊积分因子"></a>齐次方程的特殊积分因子</h3><p><strong>核心定理：</strong></p>
+<p>对于齐次微分方程 $M(x, y)dx + N(x, y)dy &#x3D; 0$（即 $M, N$为同次数的齐次函数），如果$xM + yN \neq 0$，则该方程的一个积分因子为：</p>
+<p>
+$$
+\mu(x, y) = \frac{1}{xM + yN}
+$$
+</p>
+
+<p>证明：</p>
+<h4 id="1-核心工具：欧拉齐次函数定理"><a href="#1-核心工具：欧拉齐次函数定理" class="headerlink" title="1. 核心工具：欧拉齐次函数定理"></a>1. 核心工具：欧拉齐次函数定理</h4><p>根据齐次函数的性质，若 $f(x, y)$是$n$ 次齐次的，则满足：</p>
+<p>
+$$
+x \frac{\partial f}{\partial x} + y \frac{\partial f}{\partial y} = n f
+$$
+</p>
+
+<p>具体到我们的函数：</p>
+<ul>
+<li>(1) $x M_x + y M_y &#x3D; n M$- (2)$x N_x + y N_y &#x3D; n N$</li>
+</ul>
+<hr>
+<h4 id="2-判定目标"><a href="#2-判定目标" class="headerlink" title="2. 判定目标"></a>2. 判定目标</h4><p>我们需要证明，乘以 $\mu$后的方程$\frac{M}{xM+yN}dx + \frac{N}{xM+yN}dy &#x3D; 0$ 满足全微分条件：</p>
+<p>
+$$
+\frac{\partial}{\partial y} \left( \frac{M}{xM + yN} \right) = \frac{\partial}{\partial x} \left( \frac{N}{xM + yN} \right)
+$$
+</p>
+
+<hr>
+<h4 id="3-分步求偏导"><a href="#3-分步求偏导" class="headerlink" title="3. 分步求偏导"></a>3. 分步求偏导</h4><p><strong>左侧（对 $y$ 求偏导）：</strong></p>
+<p>应用商法则 $\left(\frac{u}{v}\right)’ &#x3D; \frac{u’v - uv’}{v^2}$，设分母 $D &#x3D; xM + yN$：</p>
+<p>
+$$
+\frac{\partial}{\partial y} \left( \frac{M}{D} \right) = \frac{M_y (xM + yN) - M \frac{\partial}{\partial y}(xM + yN)}{D^2}
+$$
+</p>
+
+<p>展开分母的偏导项 $\frac{\partial D}{\partial y} &#x3D; x M_y + N + y N_y$：</p>
+<p>
+$$
+\text{分子} = M_y(xM + yN) - M(x M_y + N + y N_y)
+$$
+</p>
+
+<p>
+$$
+= x M M_y + y M_y N - x M M_y - MN - y M N_y
+$$
+</p>
+
+<p>消去 $x M M_y$，得到：</p>
+<p>
+$$
+\text{分子}_L = y M_y N - MN - y M N_y \quad \dots (\alpha)
+$$
+</p>
+
+<p><strong>右侧（对 $x$ 求偏导）：</strong></p>
+<p>同样应用商法则：</p>
+<p>
+$$
+\frac{\partial}{\partial x} \left( \frac{N}{D} \right) = \frac{N_x (xM + yN) - N \frac{\partial}{\partial x}(xM + yN)}{D^2}
+$$
+</p>
+
+<p>展开分母的偏导项 $\frac{\partial D}{\partial x} &#x3D; M + x M_x + y N_x$：</p>
+<p>
+$$
+\text{分子} = N_x(xM + yN) - N(M + x M_x + y N_x)
+$$
+</p>
+
+<p>
+$$
+= x M N_x + y N N_x - MN - x N M_x - y N N_x
+$$
+</p>
+
+<p>消去 $y N N_x$：</p>
+<p>
+$$
+\text{分子}_R = x M N_x - MN - x N M_x \quad \dots (\beta)
+$$
+</p>
+
+<hr>
+<h4 id="4-利用欧拉定理进行等价变换"><a href="#4-利用欧拉定理进行等价变换" class="headerlink" title="4. 利用欧拉定理进行等价变换"></a>4. 利用欧拉定理进行等价变换</h4><p>现在我们要证明 $(\alpha) &#x3D; (\beta)$。将两式写在一起观察：</p>
+<p>
+$$
+y M_y N - MN - y M N_y \overset{?}{=} x M N_x - MN - x N M_x
+$$
+</p>
+
+<p>消去两边的 $-MN$，整理得：</p>
+<p>
+$$
+N(y M_y + x M_x) \overset{?}{=} M(y N_y + x N_x)
+$$
+</p>
+
+<p>此时，代入<strong>欧拉齐次函数定理</strong>：</p>
+<ul>
+<li>左边 $&#x3D; N \cdot (n M) &#x3D; n MN$- 右边$&#x3D; M \cdot (n N) &#x3D; n MN$</li>
+</ul>
+<p><strong>左右相等！</strong></p>
+<hr>
+<h3 id="二、-典型例题演练"><a href="#二、-典型例题演练" class="headerlink" title="二、 典型例题演练"></a>二、 典型例题演练</h3><p><strong>方程：</strong> $(x - y)dx + (x + y)dy &#x3D; 0$其中$M &#x3D; x - y, N &#x3D; x + y$，均为一阶齐次函数。</p>
+<p><strong>1. 恰当性检查</strong></p>
+<p>$N_x &#x3D; 1, M_y &#x3D; -1$。由于 $N_x \neq M_y$，方程不是全微分方程。</p>
+<p><strong>2. 解法视角一：齐次化替换（回顾）</strong></p>
+<p>可以将方程写为：</p>
+<p>
+$$
+\frac{dy}{dx} = -\frac{x - y}{x + y} = -\frac{1 - y/x}{1 + y/x}
+$$
+</p>
+
+<p>这是典型的 $h(y&#x2F;x)$形式，可用$u &#x3D; y&#x2F;x$ 求解。</p>
+<p><strong>3. 解法视角二：构造特殊积分因子</strong></p>
+<p>利用板书右侧的公式：</p>
+<ul>
+<li><p><strong>分母计算：</strong> $xM + yN &#x3D; x(x - y) + y(x + y) &#x3D; x^2 - xy + xy + y^2 &#x3D; x^2 + y^2$</p>
+</li>
+<li><p><strong>锁定因子：</strong> <strong>$\mu &#x3D; \frac{1}{x^2 + y^2}$</strong></p>
+</li>
+</ul>
+<p><strong>4. 转化与积分</strong></p>
+<p>将 $\mu$ 乘回原方程：</p>
+<p>
+$$
+\frac{x - y}{x^2 + y^2}dx + \frac{x + y}{x^2 + y^2}dy = 0
+$$
+</p>
+
+<p>拆分项：</p>
+<p>
+$$
+\left( \frac{x}{x^2 + y^2}dx + \frac{y}{x^2 + y^2}dy \right) + \left( \frac{x dy - y dx}{x^2 + y^2} \right) = 0
+$$
+</p>
+
+<p><strong>5. 最终通解</strong></p>
+<ul>
+<li><p>第一部分是 $\frac{1}{2}d(\ln(x^2 + y^2))$- 第二部分是$d(\arctan\frac{y}{x})$</p>
+<p>  合并得出：</p>
+</li>
+</ul>
+<p>
+$$
+u(x, y) = \frac{1}{2}\ln(x^2 + y^2) + \arctan\frac{y}{x} = C
+$$
+</p>
+
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/7.%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%20I/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/9.%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%20III/">
+        <h2 class="post-title">9.常微分方程 III</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/19
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="线性常系数微分方程"><a href="#线性常系数微分方程" class="headerlink" title="线性常系数微分方程"></a>线性常系数微分方程</h2><h3 id="1-算子多项式的映射"><a href="#1-算子多项式的映射" class="headerlink" title="1. 算子多项式的映射"></a>1. 算子多项式的映射</h3><p>当我们面对一个 $n$ 阶常系数齐次线性微分方程：</p>
+<p>
+$$
+a_n y^{(n)} + a_{n-1} y^{(n-1)} + \dots + a_1 y' + a_0 y = 0
+$$
+</p>
+
+<p>其实是在讨论微分算子 $D &#x3D; \frac{d}{dx}$的一个多项式$P(D) &#x3D; \sum_{i&#x3D;0}^n a_i D^i$。</p>
+<p>所谓的特征方程 $P(\lambda) &#x3D; 0$，本质上是将算子 $D$ 视为一个变量，把微分方程抽象为了算子空间的代数方程：$P(D)y &#x3D; 0$。</p>
+<h3 id="2-根子空间与核空间（Kernel）的分解"><a href="#2-根子空间与核空间（Kernel）的分解" class="headerlink" title="2. 根子空间与核空间（Kernel）的分解"></a>2. 根子空间与核空间（Kernel）的分解</h3><p>根据代数基本定理，多项式 $P(\lambda)$ 可以在复数域内唯一分解为线性因子的乘积：</p>
+<p>
+$$
+P(\lambda) = \prod_{j=1}^k (\lambda - \lambda_j)^{m_j}
+$$
+</p>
+
+<p>对应到微分算子，就有 $P(D) &#x3D; \prod_{j&#x3D;1}^k (D - \lambda_j)^{m_j}$。</p>
+<p>由于这些算子因子 $(D - \lambda_j)^{m_j}$之间是两两可交换的，根据<strong>核空间分解定理</strong>（或称循环子空间分解），微分方程的解空间$V &#x3D; \ker(P(D))$ 可以分解为若干个互不相干的子空间的直和：</p>
+<p>
+$$
+V = \ker((D - \lambda_1)^{m_1}) \oplus \ker((D - \lambda_2)^{m_2}) \oplus \dots \oplus \ker((D - \lambda_k)^{m_k})
+$$
+</p>
+
+<p>这里的每一个子空间 $\ker((D - \lambda_j)^{m_j})$，正是<strong>根子空间</strong>在函数空间中的体现。</p>
+<h3 id="3-基向量的生成机制"><a href="#3-基向量的生成机制" class="headerlink" title="3. 基向量的生成机制"></a>3. 基向量的生成机制</h3><p>在每个根子空间 $\ker((D - \lambda_j)^{m_j})$中，我们要寻找的是能够被$(D - \lambda_j)^{m_j}$ 湮灭（Annihilated）的所有函数。</p>
+<ul>
+<li><p>当 $m_j &#x3D; 1$（单根）时，子空间由特征向量 $e^{\lambda_j x}$ 张成。</p>
+</li>
+<li><p>当 $m_j &gt; 1$（重根）时，单纯的特征向量不足以填满维度，于是产生了<strong>广义特征向量</strong>。</p>
+</li>
+</ul>
+<p>通过平移公式 $D - \lambda &#x3D; e^{\lambda x} D e^{-\lambda x}$可以证明，这个子空间的基底正好是${e^{\lambda_j x}, x e^{\lambda_j x}, \dots, x^{m_j-1} e^{\lambda_j x}}$。这与线性代数中 Jordan 标准型处理重特征值的逻辑完全一致。</p>
+<p>所以实际上，常系数线性微分方程要做的也就只有做多项式分解，多项式分解能搞定，微分方程也就解决了。</p>
+<h3 id="例"><a href="#例" class="headerlink" title="例"></a>例</h3><p>例如 $f’’’-3f’+2f&#x3D;0$，也就是考虑$D^3-3D+2$的分解，分解成$(D-1)^2(D-2)$，于是就有$f\in Ker(D-1)^2 \oplus Ker(D+2)$，那么$Ker(D-1)^2$是$c_1e^x+c_2xe^x$ ，$Ker(D+2)$是$c_3e^{-2x}$，和也就是$c_1e^x+c_2xe^x+c_3e^{-2x}$ ，也就是通解了。</p>
+<h3 id="特解"><a href="#特解" class="headerlink" title="特解"></a>特解</h3><p>这个一方面是猜，如果要一般地做，也可以如下考虑：<br>“套娃”式地定义中间变量：</p>
+<ul>
+<li><p>令 $z_{n-1} &#x3D; (D - \lambda_2)\dots(D - \lambda_n)y$</p>
+</li>
+<li><p>则第一步求解：$(D - \lambda_1)z_{n-1} &#x3D; f(x)$- 得到$z_{n-1}$后，再解$(D - \lambda_2)z_{n-2} &#x3D; z_{n-1}$- 依此类推，直到解出$y$。</p>
+</li>
+</ul>
+<p>不过积分的话，就未必算的出了（</p>
+<h3 id="猜解"><a href="#猜解" class="headerlink" title="猜解"></a>猜解</h3><p>实际上也就是直觉经验。</p>
+<h4 id="1-f-x-为-n-次多项式-P-n-x-当-f-x-a-n-x-n-dots-a-1-x-a-0-时："><a href="#1-f-x-为-n-次多项式-P-n-x-当-f-x-a-n-x-n-dots-a-1-x-a-0-时：" class="headerlink" title="1. $f(x)$为$n$次多项式$P_n(x)$当$f(x) &#x3D; a_n x^n + \dots + a_1 x + a_0$ 时："></a>1. $f(x)$为$n$次多项式$P_n(x)$当$f(x) &#x3D; a_n x^n + \dots + a_1 x + a_0$ 时：</h4><ul>
+<li><p><strong>若 $0$不是特征根</strong>（即$q \neq 0$）：设特解 $\varphi^* &#x3D; Q_n(x)$（同阶多项式）。</p>
+</li>
+<li><p><strong>若 $0$是单特征根</strong>（即$q &#x3D; 0, p \neq 0$）：设特解 $\varphi^* &#x3D; x Q_n(x)$。</p>
+</li>
+<li><p><strong>若 $0$是二重特征根</strong>（即$q &#x3D; p &#x3D; 0$）：设特解 $\varphi^* &#x3D; x^2 Q_n(x)$。</p>
+</li>
+</ul>
+<h4 id="2-f-x-为指数函数-e-alpha-x-当-f-x-A-e-alpha-x-时："><a href="#2-f-x-为指数函数-e-alpha-x-当-f-x-A-e-alpha-x-时：" class="headerlink" title="2. $f(x)$为指数函数$e^{\alpha x}$当$f(x) &#x3D; A e^{\alpha x}$ 时："></a>2. $f(x)$为指数函数$e^{\alpha x}$当$f(x) &#x3D; A e^{\alpha x}$ 时：</h4><ul>
+<li><p><strong>若 $\alpha$不是特征根</strong>：设$\varphi^* &#x3D; B e^{\alpha x}$。</p>
+</li>
+<li><p><strong>若 $\alpha$是单特征根</strong>：设$\varphi^* &#x3D; B x e^{\alpha x}$。</p>
+</li>
+<li><p><strong>若 $\alpha$是二重特征根</strong>：设$\varphi^* &#x3D; B x^2 e^{\alpha x}$。</p>
+</li>
+</ul>
+<h4 id="3-f-x-为正余弦函数组合"><a href="#3-f-x-为正余弦函数组合" class="headerlink" title="3. $f(x)$ 为正余弦函数组合"></a>3. $f(x)$ 为正余弦函数组合</h4><p>当 $f(x) &#x3D; D_1 \cos(\beta x) + D_2 \sin(\beta x)$ 时：</p>
+<ul>
+<li><p><strong>若 $\pm i\beta$不是特征根</strong>：设$\varphi^* &#x3D; A \cos(\beta x) + B \sin(\beta x)$。</p>
+</li>
+<li><p><strong>若 $\pm i\beta$是特征根</strong>：设$\varphi^* &#x3D; x [A \cos(\beta x) + B \sin(\beta x)]$。</p>
+</li>
+</ul>
+<h4 id="4-复合形式"><a href="#4-复合形式" class="headerlink" title="4. 复合形式"></a>4. 复合形式</h4><p>当 $f(x) &#x3D; e^{\alpha x} [P_n(x) \cos(\beta x) + Q_m(x) \sin(\beta x)]$ 时：</p>
+<p>这是最复杂的情况。设 $k &#x3D; \max(n, m)$，若 $\alpha \pm i\beta$是特征方程的$s$ 重根（对于二阶方程，$s$取$0$或$1$），则：</p>
+<p>
+$$
+\varphi^* = x^s e^{\alpha x} [R_k(x) \cos(\beta x) + S_k(x) \sin(\beta x)]
+$$
+</p>
+
+<h3 id="另一种理解"><a href="#另一种理解" class="headerlink" title="另一种理解"></a>另一种理解</h3><p>我们之前从线性代数的角度思考了线性常系数微分方程的解，实际上可以考虑所谓的特征方程，而不考虑线性代数，虽然实际上几乎是一个东西，但是可以换种角度理解。</p>
+<p>考虑二阶线性递推方程：</p>
+<p>
+$$
+a_{n+2}+c_1a_{n+1}+c_2a_n=0
+$$
+</p>
+
+<p>我们不会解，但是我们会解等比的递推，于是想到构造 $b_n&#x3D;a_{n+1}+ka_n$ ，我们希望的是：</p>
+<p>
+$$
+b_{n+1}=qb_n
+$$
+</p>
+
+<p>或者也就是</p>
+<p>
+$$
+a_{n+2}+xa_{n+1}=y(a_{n+1}+a_n)
+$$
+</p>
+
+<p>这样，我们与原来的方程比较就能解出 $x,y$，从而解出$b_n$的通项，然后反求$a_n$ 。<br>对微分方程我们是不是也可以类似地转换呢：</p>
+<p>
+$$
+y''+c_1y'+c_2y=0
+$$
+</p>
+
+<p>二阶不会，一阶还是会的，于是构造 $h&#x3D;y’-ky$ ，我们希望得到：</p>
+<p>
+$$
+h'-qh=0
+$$
+</p>
+
+<p>也就是</p>
+<p>
+$$
+(y'-ky)'-q(y'-ky)=0
+$$
+</p>
+
+<p>同样，与原式对比就可以解出 $k,q$，从而得到$y’+ky$ 的形式，然后再解一个一阶方程就好了。<br>我们具体算算，利用</p>
+<p>
+$$
+k+q=-c_1,
+qk=c_2
+$$
+</p>
+
+<p>可知 $q,k$也就是对应方程$x^2+c_1x+c_2$即所谓特征方程的两根$\lambda_1,\lambda_2$ 。<br>先考虑两根不同。<br>对这样的方程，当然想到直接分离变量积分：</p>
+<p>
+$$
+\frac{(y'-ky)'}{y'-ky}=q
+$$
+</p>
+
+<p>积分并化简得到</p>
+<p>
+$$
+y'-ky=Ce^{qx}
+$$
+</p>
+
+<p>然后乘上因子 $e^{-kx}$ ：</p>
+<p>
+$$
+(e^{-kx}y)'=Ce^{(q-k)x}
+$$
+</p>
+
+<p>积分得到</p>
+<p>
+$$
+e^{-kx}y=C_1e^{(q-k)x}+C_2'
+$$
+</p>
+
+<p>也就有</p>
+<p>
+$$
+y=C_1e^{qx}+C_2e^{kx}
+$$
+</p>
+
+<p>不难解出特征方程两根，于是 $y$ 的通解：</p>
+<p>
+$$
+y=C_1e^{-\lambda_1x}+C_2e^{-\lambda_2x}
+$$
+</p>
+
+<p>如果两根相同，那么记为 $\lambda$ 。</p>
+<p>
+$$
+(y'-\lambda y)'-\lambda(y'-\lambda y)=0
+$$
+</p>
+
+<p>同样有</p>
+<p>
+$$
+y'-\lambda y=Ce^{\lambda x}
+$$
+</p>
+
+<p>同样作用 $e^{-\lambda x}$ ：</p>
+<p>
+$$
+(e^{-\lambda x}y)'=C
+$$
+</p>
+
+<p>于是得到</p>
+<p>
+$$
+y=Cxe^{\lambda x}
+$$
+</p>
+
+<p>这与我们考虑线性算子时得到的结果一致。</p>
+<h4 id="特解-1"><a href="#特解-1" class="headerlink" title="特解"></a>特解</h4><p>在线性算子中，我们具体考虑特解的一般性计算，将考虑微分算子的逆，笨人并未研究。<br>这里我们则可以比较形式化地直接得到特解，考虑：</p>
+<p>
+$$
+y''+c_1y'+c_2y=f(x)
+$$
+</p>
+
+<p>我们故技重施，写成：</p>
+<p>
+$$
+(y'-\lambda_1y)'-\lambda_2(y'-\lambda_1y)=f(x)
+$$
+</p>
+
+<p>这就降成了一阶微分方程，这样乘上积分因子 $e^{-\lambda_2x}$，记$u&#x3D;y’-\lambda_1 y$ ：</p>
+<p>
+$$
+(e^{-\lambda_2x}u)'=f(x)e^{-\lambda_2x}
+$$
+</p>
+
+<p>积分得到：</p>
+<p>
+$$
+y'-\lambda_1y=e^{\lambda_2x}(\int f(x)e^{-\lambda_2x}dx+C)
+$$
+</p>
+
+<p>再来一次：</p>
+<p>
+$$
+(e^{-\lambda_1x}y)'=RHS\cdot e^{-\lambda_1x}
+$$
+</p>
+
+<p>如果两根不同，则积分：</p>
+<p>
+$$
+y=e^{\lambda_1x}(\int(e^{(\lambda_2-\lambda_1)x}\int f(x)e^{-\lambda_2x}dx+C)dx+C')
+$$
+</p>
+
+<p>把常数分离一下就得到：</p>
+<p>
+$$
+y = e^{\lambda_1x} \left( \int e^{(\lambda_2-\lambda_1)x} \left( \int f(x)e^{-\lambda_2x} dx \right) dx + C_1 \int e^{(\lambda_2-\lambda_1)x} dx + C_2 \right)
+$$
+</p>
+
+<p>也就得到了解的一般形式，但是一般猜解还是舒服一点。<br>如果两根相同，那么第二项积分就变成 $C_1x$ 了。</p>
+<p>第一项积分看起来有点丑陋，而且并不对称，但实际上可以通过运算化简，我们写成定积分：</p>
+<p>
+$$
+\int_{a}^{x} \left( \int_{a}^{t} f(s) e^{-\lambda_1 s} ds \right) e^{(\lambda_1 - \lambda_2)t} dt \cdot e^{\lambda_2 x}
+$$
+</p>
+
+<p>分部积分：</p>
+<p>
+$$
+= \left( \left. \int_{a}^{s} f(s) e^{-\lambda_1 s} ds \cdot \frac{e^{(\lambda_1 - \lambda_2)t}}{\lambda_1 - \lambda_2} \right|_{t=a}^{t=x} - \int_{a}^{x} f(t) e^{-\lambda_1 t} \cdot \frac{e^{(\lambda_1 - \lambda_2)t}}{\lambda_1 - \lambda_2} dt \right) e^{\lambda_2 x}
+$$
+</p>
+
+<p>
+$$
+= \left( \int_{a}^{x} f(s) e^{-\lambda_1 s} ds \cdot \frac{e^{(\lambda_1 - \lambda_2)x}}{\lambda_1 - \lambda_2} + \int_{0}^{x} \frac{f(t) e^{-\lambda_2 t}}{\lambda_2 - \lambda_1} dt \right) e^{\lambda_2 x}
+$$
+</p>
+
+<p><strong>最终形式：</strong></p>
+<p>
+$$
+= \left( \int_{a}^{x} \frac{f(t) e^{-\lambda_1 t}}{\lambda_1 - \lambda_2} dt \right) e^{\lambda_1 x} + \left( \int_{a}^{x} \frac{f(t) e^{-\lambda_2 t}}{\lambda_2 - \lambda_1} dt \right) e^{\lambda_2 x}
+$$
+</p>
+
+<p><strong>① $\lambda_1 \neq \lambda_2$</strong></p>
+<p>
+$$
+y(x) = \left( \int^x \frac{f(t) e^{-\lambda_1 t}}{\lambda_1 - \lambda_2} dt + C_1 \right) e^{\lambda_1 x}
+
+<ul>
+<li>\left( \int^x \frac{f(t) e^{-\lambda_2 t}}{\lambda_2 - \lambda_1} dt + C_2 \right) e^{\lambda_2 x}<br>$$</p></li>
+</ul>
+<p><strong>② $\lambda_1 &#x3D; \lambda_2 &#x3D; \lambda$</strong></p>
+<p>
+$$
+y(x) = \left( \int^x f(t) \cdot t e^{-\lambda t} dt + C_1 \right) e^{\lambda x}
++ \left( \int^x f(t) e^{-\lambda t} dt + C_2 \right) x e^{\lambda x}
+$$
+</p>
+
+<p>这是非常正统，非常一般化的解，但是显然不太好算，也记不住。我们观察形式，发现：</p>
+<p>
+$$
+齐次部分对应：c_1\phi_1(x)+c_2\phi_1(x)
+$$
+</p>
+
+<p>
+$$
+非齐次部分对应：D_1(x)\phi_1(x)+D_2(x)\phi_2(x)
+$$
+</p>
+
+<h2 id="常数变易法"><a href="#常数变易法" class="headerlink" title="常数变易法"></a>常数变易法</h2><p>被判定为邪修，但是很好用（），根据上面我们的观察，我们知道只要整出来齐次的解，只要把系数设成新的函数带进去解出来就可以得到方程的解。实际上就是我们算出来的那一大坨，但是那显然不好记忆（）</p>
+<p>这实际上对非常系数的微分方程也成立，就不证了（buhui），非常系数的齐次解也没有通用的解法，但是我们还是假定我们找到了齐次的通解 $\varphi_1,\varphi_2$ ，然后现在讨论常数变易法。</p>
+<p>原方程：</p>
+<p>
+$$
+y''+p(x)y'+q(x)y=f(x)
+$$
+</p>
+
+<p>假装解出来了齐次解，安上两个系数函数：</p>
+<p>
+$$
+y=C_1(x)\varphi_1(x)+C_2(x)\varphi_2(x)
+$$
+</p>
+
+<p>求导：</p>
+<p>
+$$
+y'=C_1'\varphi_1+C_1\varphi_1'+C_2'\varphi_2+C_2\varphi_2'
+$$
+</p>
+
+<p>
+$$
+y'(x) = \underline{C_1' \varphi_1 + C_2' \varphi_2} + C_1 \varphi_1' + C_2 \varphi_2'
+$$
+</p>
+
+<p>$\qquad$设划线处$&#x3D; 0$ （一会解释为什么能这么干）</p>
+<p>
+$$
+y''(x) = C_1' \varphi_1' + C_2' \varphi_2' + C_1 \varphi_1'' + C_2 \varphi_2''
+$$
+</p>
+
+<p>
+$$
+f(x) = C_1' \varphi_1' + C_2' \varphi_2' + \underline{C_1 \varphi_1'' + C_2 \varphi_2''}
+$$
+</p>
+
+<p>
+$$
+\qquad + p(x) (\underline{C_1 \varphi_1' + C_2 \varphi_2'})
+$$
+</p>
+
+<p>
+$$
+\qquad + q(x) (\underline{C_1 \varphi_1 + C_2 \varphi_2})
+$$
+</p>
+
+<p>
+$$
+= C_1' \varphi_1' + C_2' \varphi_2'
+$$
+</p>
+
+<p>那么就得到两个方程：</p>
+<p>
+$$
+\begin{cases} C_1' \varphi_1 + C_2' \varphi_2 = 0 \\ C_1' \varphi_1' + C_2' \varphi_2' = f \end{cases}
+$$
+</p>
+
+<p>
+$$
+\Rightarrow \begin{aligned} C_1' &= -\frac{f \varphi_2}{W} \\ C_2' &= \frac{f \varphi_1}{W} \end{aligned}
+$$
+</p>
+
+<p>这里的 $W$ 是系数行列式，也就是朗斯基行列式。</p>
+<p>
+$$
+\Rightarrow \begin{aligned} C_1(x) &= \int^x -\frac{f(t) \varphi_2(t)}{W(t)} dt + D_1 \\ C_2(x) &= \int^x \frac{f \varphi_1}{W} dt + D_2 \end{aligned}
+$$
+</p>
+
+<p>从而</p>
+<p>
+$$
+y'' + p(x) y' + q(x) y = f(x)
+$$
+</p>
+
+<p>
+$$
+\downarrow
+$$
+</p>
+
+<p>
+$$
+y
+
+<p>&#x3D; \left( \int^x -\frac{f \varphi_2}{W} dt + D_1 \right) \varphi_1(x)</p>
+<ul>
+<li>\left( \int^x \frac{f \varphi_1}{W} dt + D_2 \right) \varphi_2(x)<br>$$</p></li>
+</ul>
+<h3 id="欧拉方程"><a href="#欧拉方程" class="headerlink" title="欧拉方程"></a>欧拉方程</h3><p>
+$$
+\sum_i a_ix^iy^{(i)}=0
+$$
+</p>
+
+<p>其中 $a_i$ 为常数，这样形式的微分方程称为所谓欧拉方程。<br>欧拉方程有一个不错的性质，考虑 $z(x)&#x3D;y(-x)$，那么偶数项不消说，奇数项由于$z’$和$x$ 都有多一个负号，所以抵消了。也就是说，$z$也满足方程，换言之，只需要考虑$x&gt;0$ 的情形。</p>
+<p>那么什么函数值域大于 $0$呢，自然的想法是$e^x$，我们令$x&#x3D;e^t$，那么$xy’&#x3D;e^t\frac{dy}{dx}&#x3D;e^t\frac{dy}{dt}\frac{dt}{dx}$，注意到$\frac{dt}{dx}&#x3D;e^{-t}$，那么就有$xy’&#x3D;\frac{dy}{dt}$，如此美妙。我们考虑第二项，设$D &#x3D; \frac{d}{dt}$，则$x^2 \frac{d^2y}{dx^2} &#x3D; D(D-1)y$，利用数学归纳法可以得到$x^k \frac{d^ky}{dx^k} &#x3D; D(D-1)\dots(D-k+1)y$ 。这么一来，就又变回常系数线性方程了。</p>
+<p>例如，我们考虑</p>
+<p>
+$$
+x^2y''+\frac{3}{2}xy'-y=0
+$$
+</p>
+
+<p>那么换元后就是</p>
+<p>
+$$
+(D(D-1)+\frac{3}{2}D-1)y=0
+$$
+</p>
+
+<p>整理得到</p>
+<p>
+$$
+(D^2+\frac{1}{2}D-1)y=0
+$$
+</p>
+
+<p>这个丑陋的方程就不解了，总之是解出两个根 $\lambda_i$ ，然后</p>
+<p>
+$$
+y=C_1e^{\lambda_1t}+C_2e^{\lambda_2t}
+$$
+</p>
+
+<p>但是这还不是 $y(x)$，代入$t&#x3D;lnx</p>
+<p>
+$$
+$y(x)=C_1x^{\lambda_1}+C_2x^{\lambda_2}
+$$
+</p>
+
+<p>但是这要求 $x&gt;0$，利用之前所说，只要把$x$ 加上绝对值就好</p>
+<p>
+$$
+y(x)=C_1|x|^{\lambda_1}+C_2|x|^{\lambda_2}
+$$
+</p>
+
+<p>相应的，如果有重根，就得到</p>
+<p>
+$$
+y(x)=C_1x^{\lambda}+C_2ln|x|x^{\lambda}
+$$
+</p>
+
+<h3 id="伯努利方程"><a href="#伯努利方程" class="headerlink" title="伯努利方程"></a>伯努利方程</h3><p>
+$$
+y'+P(x)y=Q(x)y^n
+$$
+</p>
+
+<p>如果没有 $y^n$，那就是标准的一阶非齐次方程，于是自然想到除掉$y^n$ ，得到</p>
+<p>
+$$
+y^{-n}y'+P(x)y^{1-n}=Q(x)
+$$
+</p>
+
+<p>发现 $1-n$和$-n$差$1$，这与求一次导有所关联，于是进行变量代换$z&#x3D;y^{1-n}$ ，那么</p>
+<p>
+$$
+z'+P(x)z=Q(x)
+$$
+</p>
+
+<p>就得到了标准的一阶非齐次方程的形式。</p>
+<h2 id="一阶-ODE-组"><a href="#一阶-ODE-组" class="headerlink" title="一阶 ODE 组"></a>一阶 ODE 组</h2><p>$n$ 个耦合的一阶微分方程如何求解？</p>
+<p>
+$$
+y_1'=F_1(x,y_1,y_2,...,y_n)
+$$
+</p>
+
+<p>
+$$
+...
+$$
+</p>
+
+<p>
+$$
+y_n'=F_n(x,y_1,y_2,...,y_n)
+$$
+</p>
+
+<p>为了方便描述，可以记 $\vec{y}&#x3D;(y_1,…,y_n)^T$，类似的$\vec{F}&#x3D;(F_1,…,F_n)^T$ 。</p>
+<p>通解形如</p>
+<p>
+$$
+y_1(x)=\varphi_1(x,C_1,...C_n)
+$$
+</p>
+
+<p>因为要解 $n$个方程，故有$n$ 个常数。<br>独立性的判断仍然是行列式</p>
+<p>
+$$
+|\frac{D(\vec{\varphi})}{D(\vec{C})}|
+$$
+</p>
+
+<p>存在唯一性条件则相应有所变化，要求对 $(x,\vec{y})\in \Omega \subseteq \mathbb{R}\times \mathbb{R}^n$，在其上每个$F_i$对每个$y_i$ 满足一致的李普希兹条件。</p>
+<h3 id="为什么要研究方程组"><a href="#为什么要研究方程组" class="headerlink" title="为什么要研究方程组"></a>为什么要研究方程组</h3><p>我们考虑 $n$阶微分方程，实际上可以通过变量替换变成一个一阶 ode 组，只要令$u_i&#x3D;y^{(i)}$ ，就得到</p>
+<p>
+$$
+u_1'=u_2
+$$
+</p>
+
+<p>
+$$
+...
+$$
+</p>
+
+<p>
+$$
+u_{n-1}'=u_n
+$$
+</p>
+
+<p>
+$$
+u_n=F(x,u_0,u_1...)，即原来的微分方程
+$$
+</p>
+
+<p>也就是说，要解 $n$阶方程，只要解这样一个方程组就好。所以$n$阶方程有$n$个常数，实际上是因为对应$n$个一阶方程。把上述的常数独立性条件的$\varphi$改成对应的$y^{(n)}$,就发现和$n$ 阶微分方程的常数独立性条件一样。</p>
+<p>对存在唯一性条件，我们看 $\vec{F}$ ：</p>
+<p>
+$$
+\vec{F}(x, \vec{y}) =  (y_2 \ y_3 \ \cdots \ G(x, y_1, \dots, y_n))^T
+$$
+</p>
+
+<p>那么对应的雅可比矩阵也就是</p>
+<p>
+$$
+\frac{D(\vec{F})}{D(\vec{y})} = \begin{pmatrix} 
+0 & 1 & 0 & \cdots & 0 \\ 
+0 & 0 & 1 & \cdots & 0 \\ 
+\vdots & \vdots & \vdots & \ddots & \vdots \\ 
+0 & 0 & 0 & \cdots & 1 \\ 
+G_{y_1} & G_{y_2} & G_{y_3} & \cdots & G_{y_n} 
+\end{pmatrix}
+$$
+</p>
+
+<p>这个矩阵 $\in C^1$ 是李普希兹连续的一个充分条件(导数有界)，那么也就只要求最下方那一排导数连续。</p>
+<p>二阶微分方程存在唯一性条件要求 $p,q$ 连续，实际上也就是对应的导数。</p>
+<h3 id="各种形式"><a href="#各种形式" class="headerlink" title="各种形式"></a>各种形式</h3><h4 id="1-一般形式（General-Form）"><a href="#1-一般形式（General-Form）" class="headerlink" title="1. 一般形式（General Form）"></a>1. 一般形式（General Form）</h4><p>最顶层是高度抽象的非线性向量方程：</p>
+<p>
+$$
+\vec{y}' = \vec{F}(x, \vec{y})
+$$
+</p>
+
+<ul>
+<li><strong>含义</strong>：系统的演化速率 $\vec{y}’$取决于当前自变量$x$和状态向量$\vec{y}$ 的某种复杂非线性组合。</li>
+</ul>
+<h4 id="2-线性化（Linearization）"><a href="#2-线性化（Linearization）" class="headerlink" title="2. 线性化（Linearization）"></a>2. 线性化（Linearization）</h4><p>通过引入“<strong>线性</strong>”约束，方程退化为变系数线性微分方程组：</p>
+<p>
+$$
+\vec{y}' = A(x)\vec{y} + \vec{f}(x)
+$$
+</p>
+
+<ul>
+<li><p><strong>结构</strong>：</p>
+<ul>
+<li><p>$A(x)$是系数矩阵，其元素随自变量$x$ 变化。</p>
+</li>
+<li><p>$\vec{f}(x)$ 是非齐次项（或称强制项）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>逻辑</strong>：此时状态 $\vec{y}$ 对演化速率的影响是线性的。</p>
+</li>
+</ul>
+<h4 id="3-常系数化（Constant-Coefficients）"><a href="#3-常系数化（Constant-Coefficients）" class="headerlink" title="3. 常系数化（Constant Coefficients）"></a>3. 常系数化（Constant Coefficients）</h4><p>进一步引入“<strong>常系数</strong>”约束，方程退化为最易求解的形式：</p>
+<p>
+$$
+\vec{y}' = A\vec{y} + \vec{f}(x)
+$$
+</p>
+
+<ul>
+<li><p><strong>核心变化</strong>：矩阵 $A$不再随$x$ 变化，而是一个常数矩阵。</p>
+</li>
+<li><p><strong>价值</strong>：这是线性代数介入最深的领域，可以通过计算矩阵 $A$ 的<strong>特征值</strong>和<strong>特征向量</strong>（如 Jordan 标准型）来直接写出通解。</p>
+</li>
+</ul>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/04/19/%E9%AB%98%E6%95%B0/9.%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%20III/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/18/%E7%BA%BF%E4%BB%A3/%E7%AC%94%E8%AE%B05.%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%20I/">
+        <h2 class="post-title">笔记5.线性变换 I</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E7%BA%BF%E4%BB%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                线代
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/18
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>首先，线性变换实际上是一种特殊的线性映射，定义域和陪域是同一个集合，所以我们关于线性映射的讨论仍然可以延续。</p>
+<h3 id="线性映射的核心定义"><a href="#线性映射的核心定义" class="headerlink" title="线性映射的核心定义"></a>线性映射的核心定义</h3><p>如果把一个空间 $U$映射到另一个空间$V$，要称之为“线性映射”，它必须恪守两个底线：</p>
+<ul>
+<li><p><strong>可加性</strong>：先相加再映射，等同于映射后再相加，即 $\mathscr{A}(\alpha + \beta) &#x3D; \mathscr{A}\alpha + \mathscr{A}\beta$。</p>
+</li>
+<li><p><strong>齐次性</strong>：缩放后的映射，等同于映射后再缩放，即 $\mathscr{A}(k\alpha) &#x3D; k\mathscr{A}\alpha$。</p>
+<p>  当这两个空间重合（即 $U &#x3D; V$）时，我们通常称之为<strong>线性变换</strong>。</p>
+</li>
+</ul>
+<h3 id="基的像确定整个映射"><a href="#基的像确定整个映射" class="headerlink" title="基的像确定整个映射"></a>基的像确定整个映射</h3><p>对于从 $K^n$到$K^m$ 的映射，其操作的本质就是<strong>矩阵乘法</strong>。</p>
+<ul>
+<li><p><strong>标准基的作用</strong>：通过观察标准基向量（那些只有一位是 1，其余为 0 的向量）被映射后的去向，我们可以把这些结果纵向排列，构造出<strong>矩阵 $A$</strong>。</p>
+</li>
+<li><p><strong>运算等价性</strong>：对向量 $x$进行线性映射，在计算层面等同于执行$Ax$。</p>
+</li>
+</ul>
+<p>设 $\mathscr{A}: \mathbf{K}^n \to \mathbf{K}^m$ 是线性映射</p>
+<p>
+$$
+\begin{bmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{bmatrix} \mapsto \color{green}{\begin{bmatrix} a_{11} \\ a_{21} \\ \vdots \\ a_{m1} \end{bmatrix}} , \quad \begin{bmatrix} 0 \\ 1 \\ \vdots \\ 0 \end{bmatrix} \mapsto \color{green}{\begin{bmatrix} a_{12} \\ a_{22} \\ \vdots \\ a_{m2} \end{bmatrix}} , \dots, \quad \begin{bmatrix} 0 \\ 0 \\ \vdots \\ 1 \end{bmatrix} \mapsto \color{green}{\begin{bmatrix} a_{1n} \\ a_{2n} \\ \vdots \\ a_{mn} \end{bmatrix}}
+$$
+</p>
+
+<p>
+$$
+\begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix} \mapsto \begin{array}{|cccc|} \hline \color{green}{a_{11}} & \color{green}{a_{12}} & \dots & \color{green}{a_{1n}} \\ \color{green}{a_{21}} & \color{green}{a_{22}} & \dots & \color{green}{a_{2n}} \\ \vdots & \vdots & & \vdots \\ \color{green}{a_{m1}} & \color{green}{a_{m2}} & \dots & \color{green}{a_{mn}} \\ \hline \end{array} \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix}
+$$
+</p>
+
+<p>**$\mathscr{A}$ 在标准基下的矩阵也就是表出系数。</p>
+<p>这是线性代数中极具力量的一个结论：<strong>只要确定了基底的去向，整个映射就彻底定死了。</strong></p>
+<ul>
+<li><p><strong>定理内涵</strong>：如果你给定空间 $U$的一组基${\alpha_1, \dots, \alpha_n}$，并随意指定它们在 $V$中对应的目标${\beta_1, \dots, \beta_n}$，那么世界上存在且仅存在一个线性映射 $\mathscr{A}$ 满足这个对应关系。</p>
+</li>
+<li><p><strong>构造逻辑</strong>：</p>
+<ol>
+<li><p>由于任何向量 $\alpha$都能唯一地写成基底的线性组合$\alpha &#x3D; \sum k_i \alpha_i$。</p>
+</li>
+<li><p>我们利用线性的“可加性”和“齐次性”，强制定义映射结果为 $\mathscr{A}\alpha &#x3D; \sum k_i \beta_i$。</p>
+</li>
+<li><p>这种定义方式保证了映射的<strong>良定义性</strong>（即一个输入对应唯一确定的输出）。</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>证明一下吧：</p>
+<h4 id="验证-mathscr-A-是线性映射"><a href="#验证-mathscr-A-是线性映射" class="headerlink" title="验证 $\mathscr{A}$ 是线性映射"></a>验证 $\mathscr{A}$ 是线性映射</h4><p>为了证明我们构造的映射 $\mathscr{A}$（即通过基底像的组合定义的映射）是合法的线性映射，需要验证其满足可加性与齐次性。</p>
+<p><strong>已知条件：</strong></p>
+<p>设 $\alpha &#x3D; k_1 \alpha_1 + \dots + k_n \alpha_n \in U$若$\alpha’ &#x3D; l_1 \alpha_1 + \dots + l_n \alpha_n \in U$，则：</p>
+<p><strong>验证过程：</strong></p>
+<ul>
+<li><strong>可加性：</strong></li>
+</ul>
+<p>
+$$
+\begin{aligned} \mathscr{A} (\alpha + \alpha') &= (k_1 + l_1) \beta_1 + \dots + (k_n + l_n) \beta_n \\ &= (k_1 \beta_1 + \dots + k_n \beta_n) + (l_1 \beta_1 + \dots + l_n \beta_n) \\ &= \mathscr{A} \alpha + \mathscr{A} \alpha' \end{aligned}
+$$
+</p>
+
+<ul>
+<li><strong>齐次性：</strong></li>
+</ul>
+<p>
+$$
+\mathscr{A} (l \alpha) = l k_1 \beta_1 + \dots + l k_n \beta_n = l \mathscr{A} \alpha
+$$
+</p>
+
+<hr>
+<h4 id="mathscr-A-的唯一性"><a href="#mathscr-A-的唯一性" class="headerlink" title="$\mathscr{A}$ 的唯一性"></a>$\mathscr{A}$ 的唯一性</h4><p>这部分证明了：一旦基底的像 ${\beta_i}$ 被确定，世界上不存在第二个不同的线性映射能达成同样的对应关系。</p>
+<p><strong>证明过程：</strong></p>
+<p>若有线性映射 $\mathscr{B}: U \to V$，也满足：</p>
+<p>
+$$
+\mathscr{B} \alpha_i = \beta_i, \quad \forall i
+$$
+</p>
+
+<p>则对于空间中任意向量的映射结果：</p>
+<p>
+$$
+\begin{aligned} \mathscr{B} (k_1 \alpha_1 + \dots + k_n \alpha_n) &= k_1 \mathscr{B} \alpha_1 + \dots + k_n \mathscr{B} \alpha_n \\ &= k_1 \beta_1 + \dots + k_n \beta_n \\ &= \mathscr{A} (k_1 \alpha_1 + \dots + k_n \alpha_n), \quad \forall k_i \end{aligned}
+$$
+</p>
+
+<p><strong>于是：</strong></p>
+<p>
+$$
+\mathscr{B} = \mathscr{A}
+$$
+</p>
+
+<h2 id="线性映射的运算"><a href="#线性映射的运算" class="headerlink" title="线性映射的运算"></a>线性映射的运算</h2><h3 id="线性运算：加法与数乘"><a href="#线性运算：加法与数乘" class="headerlink" title="线性运算：加法与数乘"></a>线性运算：加法与数乘</h3><p>若 $\mathscr{A}, \mathscr{B}$是从$U$到$V$ 的线性映射，则可以定义：</p>
+<ul>
+<li><p><strong>加法</strong>：$(\mathscr{A} + \mathscr{B}): \alpha \mapsto \mathscr{A}\alpha + \mathscr{B}\alpha$</p>
+</li>
+<li><p><strong>数乘</strong>：$k\mathscr{A}: \alpha \mapsto k(\mathscr{A}\alpha) \quad (k \in K)$</p>
+</li>
+</ul>
+<p>这两个运算的结果仍然是线性映射。</p>
+<blockquote>
+<p><strong>核心结论</strong>：从 $U$到$V$ 的全体线性映射在上述运算下构成一个线性空间，记作 <strong>$\text{Hom}(U, V)$</strong>。</p>
+<p><em>陪域上能作的运算映射也可以作</em></p>
+</blockquote>
+<hr>
+<h3 id="复合运算：映射的乘法"><a href="#复合运算：映射的乘法" class="headerlink" title="复合运算：映射的乘法"></a>复合运算：映射的乘法</h3><p>设 $\mathscr{B} \in \text{Hom}(U, V)$，$\mathscr{A} \in \text{Hom}(V, W)$。</p>
+<ul>
+<li><p><strong>定义</strong>：$\mathscr{B}$与$\mathscr{A}$的复合映射$\alpha \mapsto \mathscr{A}(\mathscr{B}\alpha)$是从$U$到$W$ 的线性映射。</p>
+</li>
+<li><p><strong>记法</strong>：称为 $\mathscr{A}$与$\mathscr{B}$ 的乘积，记作 <strong>$\mathscr{A}\mathscr{B}$</strong>。</p>
+</li>
+<li><p><strong>前提条件</strong>：$\mathscr{B}$的陪域与$\mathscr{A}$ 的定义域相同。</p>
+</li>
+<li><p><strong>结合律</strong>：$(\mathscr{A}\mathscr{B})\mathscr{C} &#x3D; \mathscr{A}(\mathscr{B}\mathscr{C})$。</p>
+</li>
+</ul>
+<p><img src="/images/Pasted_image_20260413194853.png"></p>
+<hr>
+<h3 id="线性变换的代数结构"><a href="#线性变换的代数结构" class="headerlink" title="线性变换的代数结构"></a>线性变换的代数结构</h3><p>当映射发生在同一个空间上，即 $\mathscr{A}, \mathscr{B} \in \text{Hom}(V)$ 时，结构变得更加丰富：</p>
+<ul>
+<li><p><strong>$\text{Hom}(V)$</strong>（或记作 $\text{End}(V)$）上的线性变换不但能相加、数乘，还能作乘法运算。</p>
+</li>
+<li><p>该乘法满足<strong>结合律</strong>、对加法的<strong>分配律</strong>，且存在单位元 $\mathscr{I}$（恒等变换）。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>核心结论</strong>：$\text{Hom}(V)$ 构成一个 <strong>$K$-代数</strong>。</p>
+</blockquote>
+<hr>
+<h3 id="算子运算实例：微分与乘法"><a href="#算子运算实例：微分与乘法" class="headerlink" title="算子运算实例：微分与乘法"></a>算子运算实例：微分与乘法</h3><p>幻灯片展示了一个极具启发性的例子，定义在 $C^1(\mathbb{R})$ 上的变换：</p>
+<ul>
+<li><strong>微分算子 $D$</strong>：$f(x) \mapsto f’(x)$- <strong>乘法算子$S$</strong>：$f(x) \mapsto xf(x)$根据导数的乘法法则$(xf(x))’ &#x3D; xf’(x) + f(x)$，可以推导出算子之间的关系：</li>
+</ul>
+<p>
+$$
+(DS - SD)f = (xf)' - xf' = f'x + f - xf' = f
+$$
+</p>
+
+<p>即：<strong>$DS - SD &#x3D; \mathscr{I}$</strong></p>
+<p><em>这实际上是量子力学中正则对易关系在函数空间的数学原型。</em></p>
+<hr>
+<h2 id="几何变换实例：投影变换"><a href="#几何变换实例：投影变换" class="headerlink" title="几何变换实例：投影变换"></a>几何变换实例：投影变换</h2><p><strong>沿 $W$向$U$的投影变换$\mathscr{P}_U$</strong>：</p>
+<ul>
+<li><p><strong>背景</strong>：空间 $V$可以分解为直和$V &#x3D; U \oplus W$。</p>
+</li>
+<li><p><strong>定义</strong>：对于任何向量 $\alpha &#x3D; \beta + \gamma$（其中 $\beta \in U, \gamma \in W$），投影算子将其映射为 $U$ 中的分量：</p>
+</li>
+</ul>
+<p>
+$$
+\mathscr{P}_U: \alpha \mapsto \beta
+$$
+</p>
+
+<ul>
+<li><strong>几何直观</strong>：所有平行于 $W$的向量被“压扁”到了平面$U$ 上。</li>
+</ul>
+<h3 id="投影变换的代数定义"><a href="#投影变换的代数定义" class="headerlink" title="投影变换的代数定义"></a>投影变换的代数定义</h3><p>当空间 $V$可以分解为直和$V &#x3D; U \oplus W$时，任何向量$\alpha$都能唯一分解为$\alpha &#x3D; \beta + \gamma$（其中 $\beta \in U, \gamma \in W$）。</p>
+<ul>
+<li><p><strong>投影算子 $P_U$</strong>：定义为 $\alpha \mapsto \beta$。</p>
+</li>
+<li><p><strong>基本性质</strong>：</p>
+<ul>
+<li><p><strong>幂等性</strong>：$P_U^2 &#x3D; P_U$（投射一次后再投射，结果不再改变）。</p>
+</li>
+<li><p><strong>正交互补性</strong>：$P_U P_W &#x3D; 0$且$P_U + P_W &#x3D; I$。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-核心定理：投影与幂等的等价性"><a href="#2-核心定理：投影与幂等的等价性" class="headerlink" title="2. 核心定理：投影与幂等的等价性"></a>2. 核心定理：投影与幂等的等价性</h3><p>这是线性代数中的一个优美结论：<strong>一个线性变换 $P$ 是投影变换，当且仅当它是幂等变换（$P^2 &#x3D; P$）。</strong></p>
+<ul>
+<li><strong>空间分解</strong>：若 $P^2 &#x3D; P$，则整个空间 $V$ 必然可以分解为：</li>
+</ul>
+<p>
+$$
+V = \text{Im } P \oplus \text{Ker } P
+$$
+</p>
+
+<ul>
+<li><p><strong>物理意义</strong>：</p>
+<ul>
+<li><p>$P$是沿$\text{Ker } P$向$\text{Im } P$ 的投影。</p>
+</li>
+<li><p>$I - P$则是反过来的“镜像”操作，即沿$\text{Im } P$向$\text{Ker } P$ 的投影。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-证明逻辑要点"><a href="#3-证明逻辑要点" class="headerlink" title="3. 证明逻辑要点"></a>3. 证明逻辑要点</h3><p>通过代数推导验证这种直和关系：</p>
+<ul>
+<li><p><strong>不动点特性</strong>：在 $\text{Im } P$中的向量$\beta$，在 $P$ 的作用下“点点不动”（$P\beta &#x3D; \beta$）。</p>
+</li>
+<li><p><strong>零交集</strong>：通过 $P\beta &#x3D; \beta$和$\beta \in \text{Ker } P \implies P\beta &#x3D; 0$联立，证明了$\text{Im } P \cap \text{Ker } P &#x3D; {0}$，从而满足直和的条件。</p>
+</li>
+<li><p><strong>全空间覆盖</strong>：利用恒等式 $\alpha &#x3D; P\alpha + (I - P)\alpha$，说明任何向量都能拆分成这两个子空间的成员。</p>
+</li>
+</ul>
+<h3 id="4-推广：空间的多项分解"><a href="#4-推广：空间的多项分解" class="headerlink" title="4. 推广：空间的多项分解"></a>4. 推广：空间的多项分解</h3><p>这一部分将二元投影推广到了多个子空间的情形。</p>
+<ul>
+<li><p><strong>定理（正向）</strong>：如果 $V$是多个子空间的直和$V &#x3D; V_1 \oplus \dots \oplus V_s$，那么必然存在一组投影算子 $P_1, \dots, P_s$，它们满足：</p>
+<ol>
+<li><p><strong>两两正交</strong>：$P_i P_j &#x3D; 0 \quad (i \neq j)$</p>
+</li>
+<li><p><strong>完备性</strong>：$\sum P_i &#x3D; I$</p>
+</li>
+<li><p><strong>像空间对应</strong>：$\text{Im } P_i &#x3D; V_i$- <strong>定理（逆向）</strong>：反之，若一组算子满足上述三个条件，它们就定义了空间$V$ 的一个直和分解。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="5-多项式与投影"><a href="#5-多项式与投影" class="headerlink" title="5.多项式与投影"></a>5.多项式与投影</h3><p>此前，我们已经讨论过如下定理：</p>
+<p>设 $f_1(x), \dots, f_s(x) \in K[x]$两两互素。记$f(x) &#x3D; \prod_{i&#x3D;1}^s f_i(x)$。对于 $A \in M_n(K)$，有：</p>
+<p>
+$$
+\text{Ker } f(A) = \text{Ker } f_1(A) \oplus \text{Ker } f_2(A) \oplus \dots \oplus \text{Ker } f_s(A)
+$$
+</p>
+
+<p>这实际上给出了一组投影。</p>
+<h2 id="线性映射空间与矩阵空间的同构"><a href="#线性映射空间与矩阵空间的同构" class="headerlink" title="线性映射空间与矩阵空间的同构"></a>线性映射空间与矩阵空间的同构</h2><p><strong>结论：$\text{Hom}(U, V) \cong M_{m,n}(K)$</strong></p>
+<p>当我们分别为线性空间 $U$和$V$取定基底${\alpha_1, \dots, \alpha_n}$和${\beta_1, \dots, \beta_m}$时，每一个线性映射$\mathscr{A}$都唯一对应一个矩阵$A$。</p>
+<ul>
+<li><strong>映射关系</strong>：$(\mathscr{A}\alpha_1, \mathscr{A}\alpha_2, \dots, \mathscr{A}\alpha_n) &#x3D; (\beta_1, \beta_2, \dots, \beta_m)A$- <strong>本质</strong>：这种对应不仅是双射，还保持了加法和数乘运算，意味着$\text{Hom}(U, V)$作为一个线性空间的结构，被矩阵空间$M_{m,n}(K)$ 完美“克隆”了。</li>
+</ul>
+<hr>
+<h3 id="基础矩阵与基本映射"><a href="#基础矩阵与基本映射" class="headerlink" title="基础矩阵与基本映射"></a>基础矩阵与基本映射</h3><p>正如矩阵空间有一组标准基 $E_{ij}$（仅在 $(i, j)$ 位置为 1，其余为 0），映射空间也有对应的<strong>基本映射</strong>。</p>
+<ul>
+<li><strong>定义</strong>：$E_{ij}: U \to V$，其作用规律为：</li>
+</ul>
+<p>
+$$
+E_{ij}(\alpha_k) = \begin{cases} \beta_i & k=j \\ 0 & k \neq j \end{cases}
+$$
+</p>
+
+<ul>
+<li><strong>意义</strong>：这组基本映射构成了 $\text{Hom}(U, V)$ 的基底。这告诉我们，任何复杂的线性映射都可以拆解为这些“只把特定的输入基映射到特定的输出基”的简单动作的线性组合。</li>
+</ul>
+<hr>
+<h3 id="映射复合与矩阵乘法的等价性"><a href="#映射复合与矩阵乘法的等价性" class="headerlink" title="映射复合与矩阵乘法的等价性"></a>映射复合与矩阵乘法的等价性</h3><p>这是线性代数中最关键的定理之一：<strong>映射的复合对应矩阵的乘法。</strong></p>
+<ul>
+<li><p><strong>定理描述</strong>：</p>
+<p>  设 $\mathscr{B}: U \to V$的矩阵是$B$，$\mathscr{A}: V \to W$的矩阵是$A$。</p>
+<p>  那么复合映射 $\mathscr{AB}: U \to W$的矩阵恰好就是$AB$。</p>
+</li>
+<li><p><strong>逻辑演示</strong>：</p>
+<p>  通过观察基底像的传递过程：</p>
+</li>
+</ul>
+<p>
+$$
+\begin{aligned} (\mathscr{AB}\alpha_1, \dots, \mathscr{AB}\alpha_n) &= \mathscr{A}((\beta_1, \dots, \beta_m)B) \\ &= ((\mathscr{A}\beta_1, \dots, \mathscr{A}\beta_m))B \\ &= ((\gamma_1, \dots, \gamma_s)A)B \\ &= (\gamma_1, \dots, \gamma_s)(AB) \end{aligned}
+$$
+</p>
+
+<hr>
+<h3 id="结合律的传递"><a href="#结合律的传递" class="headerlink" title="结合律的传递"></a>结合律的传递</h3><ul>
+<li><p><strong>映射层面</strong>：映射的复合天然满足结合律，即 $(\mathscr{AB})\mathscr{C} &#x3D; \mathscr{A}(\mathscr{BC})$。</p>
+</li>
+<li><p><strong>矩阵层面</strong>：基于上述等价性，矩阵乘法也必须满足结合律。</p>
+</li>
+</ul>
+<h2 id="复合映射的像空间与维度公式"><a href="#复合映射的像空间与维度公式" class="headerlink" title="复合映射的像空间与维度公式"></a>复合映射的像空间与维度公式</h2><ul>
+<li><strong>核心定理</strong>：</li>
+</ul>
+<p>
+$$
+\dim \text{Im } \mathscr{B} = \dim \text{Im } \mathscr{AB} + \dim(\text{Im } \mathscr{B} \cap \text{Ker } \mathscr{A})
+$$
+</p>
+
+<ul>
+<li><p><strong>证明逻辑</strong>：</p>
+<ol>
+<li><p>考察 $\mathscr{A}$在$\text{Im } \mathscr{B}$上的<strong>限制映射</strong>$\mathscr{A}’ : \text{Im } \mathscr{B} \to W$。</p>
+</li>
+<li><p>根据线性映射基本定理（第一同构定理）：$\text{Im } \mathscr{B} &#x2F; \text{Ker } \mathscr{A}’ \cong \text{Im } \mathscr{A}’$。</p>
+</li>
+<li><p>验证可知：$\text{Im } \mathscr{A}’ &#x3D; \text{Im } \mathscr{AB}$，且 $\text{Ker } \mathscr{A}’ &#x3D; \text{Im } \mathscr{B} \cap \text{Ker } \mathscr{A}$。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>推论（Sylvester 秩不等式）</strong>：</p>
+<p>  利用上述维数公式，可以推导出：</p>
+</li>
+</ul>
+<p>
+$$
+\dim \text{Im } \mathscr{A} + \dim \text{Im } \mathscr{B} \leq \dim \text{Im } \mathscr{AB} + \dim V
+$$
+</p>
+
+<p>对于矩阵形式，即：<strong>$\text{rank}(A) + \text{rank}(B) \leq \text{rank}(AB) + n$</strong>。</p>
+<pre><code>_等号成立条件：$\text{Ker } \mathscr{A} \subseteq \text{Im } \mathscr{B}$，即 $A$的解空间包含于$B$ 的列空间。_
+</code></pre>
+<p>这在之前，我们曾用打洞法构造大矩阵证明过。</p>
+<hr>
+<h2 id="基变换与矩阵表示的演变"><a href="#基变换与矩阵表示的演变" class="headerlink" title="基变换与矩阵表示的演变"></a>基变换与矩阵表示的演变</h2><p>这是线性代数从“静态矩阵”向“动态变换”跨越的关键。</p>
+<h4 id="核心问题"><a href="#核心问题" class="headerlink" title="核心问题"></a>核心问题</h4><p>当 $U$的基底从${\alpha_i}$变为${\alpha’_i}$（过渡矩阵为 $P$），$V$的基底从${\beta_j}$变为${\beta’_j}$（过渡矩阵为 $Q$）时，映射 $\mathscr{A}$ 的矩阵如何变化？</p>
+<h4 id="变换定理"><a href="#变换定理" class="headerlink" title="变换定理"></a>变换定理</h4><p>若 $\mathscr{A}$在原基底下的矩阵为$A$，则在<strong>新基底下的矩阵</strong>为：</p>
+<p>
+$$
+\mathbf{B} = Q^{-1} A P
+$$
+</p>
+
+<h4 id="证明推导"><a href="#证明推导" class="headerlink" title="证明推导"></a>证明推导</h4><ol>
+<li><p><strong>关系式 1</strong>：$\mathscr{A}(\alpha_1 \dots \alpha_n) &#x3D; (\beta_1 \dots \beta_m)A$</p>
+</li>
+<li><p><strong>基变换</strong>：$(\alpha’_1 \dots \alpha’_n) &#x3D; (\alpha_1 \dots \alpha_n)P$；$(\beta’_1 \dots \beta’_m) &#x3D; (\beta_1 \dots \beta_m)Q \implies (\beta_1 \dots \beta_m) &#x3D; (\beta’_1 \dots \beta’_m)Q^{-1}$</p>
+</li>
+<li><p><strong>代入计算</strong>：</p>
+</li>
+</ol>
+<p>
+$$
+\begin{aligned} \mathscr{A}(\alpha'_1 \dots \alpha'_n) &= \mathscr{A}(\alpha_1 \dots \alpha_n)P \\ &= (\beta_1 \dots \beta_m)AP \\ &= (\beta'_1 \dots \beta'_m)Q^{-1}AP \end{aligned}
+$$
+</p>
+
+<p>在线性变换的语境下，就自然出现了所谓<strong>相似</strong>，$A&#x3D;PQP^{-1}$ 。相似描述的实际上也就是同一个线性变换在不同基的表现。</p>
+<p>在最美妙的选取下，就会出现所谓标准型，分块地写成单位阵和0。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00a596">数学</a>
+        </span>
+        
+    </div>
+    <a href="/2026/04/18/%E7%BA%BF%E4%BB%A3/%E7%AC%94%E8%AE%B05.%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2%20I/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/18/%E8%BF%98%E5%8E%9F%E8%84%9A%E6%89%8B%E6%9E%B6/Picard%E5%AD%98%E5%9C%A8%E6%80%A7%E5%AE%9A%E7%90%86/">
+        <h2 class="post-title">Picard存在性定理</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/18
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="系列前言"><a href="#系列前言" class="headerlink" title="系列前言"></a>系列前言</h1><p>高斯对拆掉脚手架后的完美证明感到满意，但读者也只好接受美妙的证明却难以一窥背后的思路。实际上，大部分的证明都是有迹可循的，来源于已有的证明，而非凭空发明的思路，这也正是数学笔记的一大意义，积累足够的素材，于是自然地得到看似天马行空的证明。</p>
+<p>我们总是希望详尽的理解，但教科书或者常见的证明则好像冷酷的传统印象的机械，工序化地一步步证明命题，却并不告诉我们纲要，不告诉我们背后的思路。这于是自然地驱动我们去发掘，为什么数学家会想到这么干。幸而如今 AI 十分超标，指令一下，便可以得到详尽的解释，但又有些不幸，还没到输出能让人直接采纳，于是我做一个中转，整理出得到的，至少我自己接受的一个思路还原。</p>
+<p>第一篇是 Picard 的原因很简单，我看书看破防了。这是一个对我而言有一定长度的证明，教材分了一二三四步，我一步步看下去感觉不知所云。</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>19 世纪初期，数学家面临这样一个困境：求解一阶微分方程</p>
+<p>
+$$
+\frac{dy}{dx} = f(x, y), \quad y(x_0) = y_0
+$$
+</p>
+
+<p>的显式解析解，仅在极其有限的特殊情形下才是可能的（如变量分离方程、恰当方程、线性方程等）。然而，来自物理学的需求却是压倒性的——牛顿力学、天体力学、热传导、流体运动，无一不产生这样的方程。物理学家的直觉告诉他们，给定一个系统的初始状态和演化规律，未来的状态“应当”是确定的。但直觉不是数学证明。<strong>是否存在解？如果存在，是否唯一？</strong> ——这两个问题直接关系到整个经典物理学世界观的可信度。</p>
+<p>在 Cauchy 之前，整个 18 世纪关于微分方程的工作几乎全部聚焦于<strong>求解技术</strong>。Bernoulli 家族、Euler、Lagrange 等大师发展了大量精巧的积分技巧——积分因子、变量代换、幂级数展开等。但这些方法都有一个共同的局限性：它们只能处理能够被“积出来”的方程。对于非线性方程</p>
+<p>
+$$
+\frac{dy}{dx} = x^2 + y^2,
+$$
+</p>
+
+<p>18 世纪的数学家无能为力。这个方程没有初等函数形式的解，但在数学上却完全“合法”。于是，一个深刻的问题浮现了：<strong>一个“合法”提出的微分方程，是否必然拥有解？</strong></p>
+<p>对于今天的我们来说，这不是一个自明的问题。请考虑以下具体例子：</p>
+<p><strong>（Peano 反例）</strong>：考虑初值问题</p>
+<p>
+$$
+\frac{dy}{dx} = 3y^{2/3}, \quad y(0) = 0.
+$$
+</p>
+
+<p>通过观察，可以验证函数 $y(x) \equiv 0$满足该方程。但进一步考察会发现，对于任意$c &gt; 0$，函数</p>
+<p>
+$$
+y(x) =
+\begin{cases}
+0, & x \leq c \\
+(x - c)^3, & x > c
+\end{cases}
+$$
+</p>
+
+<p>同样满足方程。这意味着<strong>从同一个初始点出发，存在无穷多条解曲线</strong>。物理上的决定论——给定初始条件唯一确定未来演化——在这里彻底失效。如果微分方程允许这种多解性，那么整个经典力学的哲学基础都将动摇。这个例子清楚地说明，<strong>解的存在性和唯一性绝非理所当然，而是需要被严格证明的数学性质</strong>。</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><h2 id="转化成积分方程"><a href="#转化成积分方程" class="headerlink" title="转化成积分方程"></a>转化成积分方程</h2><p>面对</p>
+<p>
+$$
+\frac{dy}{dx} = f(x, y), \quad y(x_0) = y_0
+$$
+</p>
+
+<p>时，最朴素、最不需要创造力的念头就是：<strong>两边积分</strong>。</p>
+<p>这不是一个需要灵感的操作。微积分基本定理在 Cauchy 的时代早已是标准工具。对一个方程两边积分是“解微分方程”的最原始本能——就像看到 $a &#x3D; b$会想到$a - b &#x3D; 0$ 一样自然。积分之后得到：</p>
+<p>
+$$
+y(x) - y(x_0) = \int_{x_0}^{x} f(t, y(t)) \, dt
+$$
+</p>
+
+<p>代入初始条件，直接就是：</p>
+<p>
+$$
+y(x) = y_0 + \int_{x_0}^{x} f(t, y(t)) \, dt
+$$
+</p>
+
+<p>从微分方程到积分方程的转换，在形式上只是微积分基本定理的直接应用。数学家之所以会“想到”它，不是因为有什么深刻的洞见，而是因为 <strong>任何试图处理微分方程的人，迟早都会写下这个等式</strong>——它是出发点的自然延伸，不是终点处的巧妙构造。</p>
+<p>写下积分等式是容易的。困难的是 <strong>意识到这个看似同义反复的改写，竟然可以用来证明解的存在性</strong>。这一步才是思想史上真正值得追问的“为什么想到”。</p>
+<p>这个洞察的来源，可以从两个方向追溯：</p>
+<p><strong>方向一：数值逼近的启发（Euler 折线法的反思）</strong></p>
+<p>Euler 折线法在 18 世纪已广为人知。它的构造方式是：从 $x_0$出发，走一小步$h$，用当前斜率 $f(x_0, y_0)$更新$y$。这个过程本质上是在做：</p>
+<p>
+$$
+y_{n+1} = y_n + h f(x_n, y_n)
+$$
+</p>
+
+<p>数学家会自然地追问：当 $h \to 0$ 时，这些折线收敛到什么？如果我们把离散的递推求和写成积分近似的形式，它就是：</p>
+<p>
+$$
+y(x) \approx y_0 + \sum f(x_i, y_i) \Delta x \longrightarrow y_0 + \int_{x_0}^{x} f(t, y(t)) \, dt
+$$
+</p>
+
+<p>也就是说，<strong>Euler 折线法的连续极限天然地暗示了积分方程的形式</strong>。那些试图严格化 Euler 折线法的数学家（如 Cauchy、Peano）在做极限论证时，必须处理的正是这个积分等式。所以，积分方程并非从天上掉下来的灵感，而是 <strong>从离散逼近的极限过程中自动涌现出来的</strong>。</p>
+<p><strong>方向二：积分方程研究的先行经验（Liouville-Neumann 方法）</strong></p>
+<p>在 Picard 之前，积分方程领域已经有了逐次逼近法的成功先例。对于方程</p>
+<p>
+$$
+y(x) = g(x) + \lambda \int_{a}^{x} K(x, t) y(t) \, dt
+$$
+</p>
+
+<p>Liouville 和 Neumann 在 19 世纪中叶发展了一套迭代求解技术：从一个初始猜测出发，反复代入积分号下，得到 Neumann 级数。这种方法在求解 Volterra 积分方程时被证明极为有效。</p>
+<p>Picard 的“想到”很可能是一种 <strong>类比迁移</strong>：他看到常微分方程的初值问题恰好可以写成这种积分方程的形式（右端没有 $y$在积分外的项，或者说$g(x) \equiv y_0$）。既然积分方程那边已经有一套成熟的迭代技术，为什么不直接搬过来用？于是有了 Picard 迭代。</p>
+<p>所以，对 Picard 而言，“换成积分方程”不是原创动作，而是 <strong>为了使用已有的积分方程工具而做的刻意变形</strong>。他看到微分方程，想到的是：“这玩意能写成积分方程吗？如果能，我就能用 Neumann 那一套了。”</p>
+<h2 id="先前的经验之-Neumann-级数"><a href="#先前的经验之-Neumann-级数" class="headerlink" title="先前的经验之 Neumann 级数"></a>先前的经验之 Neumann 级数</h2><p>Neumann 级数是求解积分方程的核心工具。它的核心思想是，通过无穷级数来构造性地表示一个算子的逆。就思想而言，实际上线性代数中也就碰到过，例如求 $A - I$ 的逆。</p>
+<h3 id="1-核心思想：算子版本的“几何级数”"><a href="#1-核心思想：算子版本的“几何级数”" class="headerlink" title="1. 核心思想：算子版本的“几何级数”"></a>1. 核心思想：算子版本的“几何级数”</h3><p>Neumann 级数的灵感直接来源于经典的几何级数公式：</p>
+<p>
+$$
+\frac{1}{1 - r} = 1 + r + r^2 + r^3 + \cdots \quad (\text{当 } |r| < 1)
+$$
+</p>
+
+<p>现在，我们不把 $r$ 看作一个数，而是一个作用在函数上的<strong>线性算子</strong>（或矩阵）$K$。那么，$(I - K)^{-1}$（可以类比为$\frac{1}{1-K}$）的逆，就可以形式地写成：</p>
+<p>
+$$
+(I - K)^{-1} = I + K + K^2 + K^3 + \cdots
+$$
+</p>
+
+<p>这个算子形式的几何级数，就是 <strong>Neumann 级数</strong>。其中，$I$ 是恒等算子，$K^2$表示连续两次应用算子$K$。</p>
+<h3 id="2-在积分方程中的具体应用"><a href="#2-在积分方程中的具体应用" class="headerlink" title="2. 在积分方程中的具体应用"></a>2. 在积分方程中的具体应用</h3><p>Neumann 级数最经典的应用场景是求解<strong>第二类 Fredholm 积分方程</strong>。其形式如下：</p>
+<p>
+$$
+y(x) = f(x) + \lambda \int_{a}^{b} K(x, t) y(t) \, dt
+$$
+</p>
+
+<p>这个方程可以简洁地写成算子形式：</p>
+<p>
+$$
+y = f + \lambda K y
+$$
+</p>
+
+<p>我们的目标是求解未知函数 $y(x)$。对上述算子方程进行整理：</p>
+<p>
+$$
+(I - \lambda K) y = f
+$$
+</p>
+
+<p><strong>关键一步</strong>：形式上解出 $y$，就得到了逆算子的表达式：</p>
+<p>
+$$
+y = (I - \lambda K)^{-1} f
+$$
+</p>
+
+<p>接下来，应用 Neumann 级数将逆算子展开：</p>
+<p>
+$$
+y = (I + \lambda K + \lambda^2 K^2 + \lambda^3 K^3 + \cdots) f
+$$
+</p>
+
+<p>将这个算子级数展开并写回积分形式，我们就得到了解的级数表达式。这个级数由以下各项构成：</p>
+<ul>
+<li><strong>零阶项</strong>: $y_0(x) &#x3D; f(x)$- <strong>一阶项</strong>:$y_1(x) &#x3D; \lambda \int_{a}^{b} K(x, t) f(t) , dt$- <strong>二阶项</strong>:$y_2(x) &#x3D; \lambda^2 \int_{a}^{b} K(x, t) \left[ \int_{a}^{b} K(t, t_1) f(t_1) , dt_1 \right] dt$</li>
+<li>……以此类推。</li>
+</ul>
+<p>这个构造过程被称为“逐次逼近法”，而得到的级数正是 Neumann 级数。</p>
+<h3 id="3-历史脉络：从-Carl-Neumann-到-Picard"><a href="#3-历史脉络：从-Carl-Neumann-到-Picard" class="headerlink" title="3. 历史脉络：从 Carl Neumann 到 Picard"></a>3. 历史脉络：从 Carl Neumann 到 Picard</h3><ul>
+<li><strong>Carl Neumann (1870s)</strong>: 德国数学家 Carl Neumann 在研究位势理论中的 Dirichlet 问题时，发展了这一方法。他于 1870 年首次对严格凸区域上的 Dirichlet 问题给出了解的存在性证明，其核心在于证明相应积分算子的 Neumann 级数是收敛的。</li>
+<li><strong>Picard 的继承 (1890s)</strong>: Émile Picard 直接继承了 Neumann 的成果。他将 Neumann 级数和逐次逼近法从积分方程“移植”到常微分方程领域，用来证明解的存在唯一性，这就是我们熟知的 <strong>Picard 迭代法</strong>。可以说，Neumann 级数为 Picard 的工作提供了直接的技术蓝图。</li>
+</ul>
+<h2 id="试图还原-Picard-的想法"><a href="#试图还原-Picard-的想法" class="headerlink" title="试图还原 Picard 的想法"></a>试图还原 Picard 的想法</h2><p>有了上述，实际上也就可以试着还原了。叠甲：下面所有类似 Picard 的思考都是意淫。</p>
+<h3 id="证明的完整还原"><a href="#证明的完整还原" class="headerlink" title="证明的完整还原"></a>证明的完整还原</h3><h4 id="问题设定"><a href="#问题设定" class="headerlink" title="问题设定"></a>问题设定</h4><p><strong>研究对象</strong>：一阶常微分方程的初值问题</p>
+<p>
+$$
+\frac{dy}{dx} = f(x, y), \quad y(x_0) = y_0
+$$
+</p>
+
+<p><strong>已知条件</strong>：</p>
+<ol>
+<li>函数 $f(x, y)$在某个包含点$(x_0, y_0)$ 的闭矩形区域</li>
+</ol>
+<p>
+$$
+R = \{ (x, y) \in \mathbb{R}^2 : |x - x_0| \leq a, |y - y_0| \leq b \}
+$$
+</p>
+
+<p>上连续。因此，根据闭区间上连续函数的性质，$f$在$R$上有界，即存在常数$M &gt; 0$，使得对所有 $(x, y) \in R$，有 $|f(x, y)| \leq M$。</p>
+<ol start="2">
+<li>函数 $f(x, y)$在$R$上关于变量$y$满足 <strong>Lipschitz 条件</strong>：存在常数$L &gt; 0$，使得对于任意 $(x, y_1) \in R$和$(x, y_2) \in R$，都有</li>
+</ol>
+<p>
+$$
+|f(x, y_1) - f(x, y_2)| \leq L |y_1 - y_2|
+$$
+</p>
+
+<p><strong>目标</strong>：证明在上述条件下，存在唯一的函数 $y &#x3D; \phi(x)$，定义在某个包含 $x_0$的区间$I$ 上，满足该微分方程及初始条件。</p>
+<h4 id="第一步：转化为积分方程"><a href="#第一步：转化为积分方程" class="headerlink" title="第一步：转化为积分方程"></a>第一步：转化为积分方程</h4><p><strong>推导</strong>：<br>对微分方程 $\frac{dy}{dt} &#x3D; f(t, y(t))$两边在区间$[x_0, x]$ 上积分：</p>
+<p>
+$$
+\int_{x_0}^{x} \frac{dy}{dt} \, dt = \int_{x_0}^{x} f(t, y(t)) \, dt
+$$
+</p>
+
+<p>根据微积分基本定理，左边等于 $y(x) - y(x_0)$。代入初始条件 $y(x_0) &#x3D; y_0$，得到：</p>
+<p>
+$$
+y(x) - y_0 = \int_{x_0}^{x} f(t, y(t)) \, dt
+$$
+</p>
+
+<p>移项得到<strong>等价的积分方程</strong>：</p>
+<p>
+$$
+y(x) = y_0 + \int_{x_0}^{x} f(t, y(t)) \, dt
+$$
+</p>
+
+<p><strong>观察</strong>：<br>现在问题变了。我不需要找一个可导的函数，只需要找一个<strong>连续函数</strong> $y(x)$满足这个积分方程。一旦找到，由$f$的连续性，右边作为$x$的函数是可导的，从而$y(x)$ 自动是可导的，并且满足原微分方程和初始条件。这个转化的好处是：积分运算对函数的“光滑性”要求比求导低，它把连续函数映射为连续函数。这让我可以在连续函数空间这个更“宽敞”也更“结实”的框架里工作。</p>
+<h4 id="第二步：构造-Picard-迭代序列"><a href="#第二步：构造-Picard-迭代序列" class="headerlink" title="第二步：构造 Picard 迭代序列"></a>第二步：构造 Picard 迭代序列</h4><p><strong>推导</strong>：<br>构造一个函数序列 ${\phi_n(x)}_{n&#x3D;0}^{\infty}$ 如下：</p>
+<ol>
+<li>取初始猜测为常值函数：$\phi_0(x) \equiv y_0$。这是最自然的起点，因为我们唯一确定的信息就是在 $x_0$ 处的值。</li>
+<li>递归定义：</li>
+</ol>
+<p>
+$$
+\phi_{n+1}(x) = y_0 + \int_{x_0}^{x} f(t, \phi_n(t)) \, dt, \quad n = 0, 1, 2, \dots
+$$
+</p>
+
+<p>现在，整个证明的核心就变成了：<strong>证明这个序列 ${\phi_n(x)}$在某种意义下收敛，且其极限函数$\phi(x)$ 恰好满足那个积分方程。</strong></p>
+<h4 id="第三步：确定迭代的有效区间"><a href="#第三步：确定迭代的有效区间" class="headerlink" title="第三步：确定迭代的有效区间"></a>第三步：确定迭代的有效区间</h4><p><strong>推导</strong>：<br>我需要确定一个最大允许的区间半径 $h &gt; 0$，使得只要 $|x - x_0| \leq h$，就能保证所有迭代函数的值都满足 $|\phi_n(x) - y_0| \leq b$。</p>
+<p>让我们用归纳法来寻找这个 $h$。</p>
+<ul>
+<li>假设对于某个 $n$和所有满足$|x - x_0| \leq h$的$x$，都有 $|\phi_n(x) - y_0| \leq b$。</li>
+<li>那么对于下一步迭代，</li>
+</ul>
+<p>
+$$
+|\phi_{n+1}(x) - y_0| = \left| \int_{x_0}^{x} f(t, \phi_n(t)) \, dt \right| \leq \left| \int_{x_0}^{x} |f(t, \phi_n(t))| \, dt \right| \leq M |x - x_0|
+$$
+</p>
+
+<ul>
+<li>为了保证 $|\phi_{n+1}(x) - y_0| \leq b$，只要 $M |x - x_0| \leq b$ 即可。</li>
+</ul>
+<p>因此，我只需要选择 $h$满足$Mh \leq b$。同时，为了不超出 $R$的水平边界，我还需要$h \leq a$。</p>
+<p><strong>结论</strong>：<br>取 $h &#x3D; \min\left(a, \frac{b}{M}\right)$。在区间 $I &#x3D; [x_0 - h, x_0 + h]$上，所有迭代函数$\phi_n(x)$的定义都是良性的，且其图像始终保持在矩形区域$R$ 内。</p>
+<h4 id="第四步：估计相邻迭代之差"><a href="#第四步：估计相邻迭代之差" class="headerlink" title="第四步：估计相邻迭代之差"></a>第四步：估计相邻迭代之差</h4><p><strong>推导</strong>：<br>从 $n&#x3D;1$ 开始：</p>
+<p>
+$$
+|\phi_1(x) - \phi_0(x)| = \left| \int_{x_0}^{x} f(t, y_0) \, dt \right| \leq M |x - x_0|
+$$
+</p>
+
+<p>对于一般的 $n \geq 1$，利用迭代定义和 Lipschitz 条件，</p>
+<p>
+$$
+\begin{aligned}
+|\phi_{n+1}(x) - \phi_n(x)| &= \left| \int_{x_0}^{x} [f(t, \phi_n(t)) - f(t, \phi_{n-1}(t))] \, dt \right| \\
+&\leq \left| \int_{x_0}^{x} |f(t, \phi_n(t)) - f(t, \phi_{n-1}(t))| \, dt \right|
+\end{aligned}
+$$
+</p>
+
+<p><strong>关键点</strong>：这里用到了 Lipschitz 条件。它允许我将关于 $f$的差的估计转化为关于$\phi$ 的差的估计，这是整个证明能够进行下去的基石。</p>
+<p>
+$$
+\leq L \left| \int_{x_0}^{x} |\phi_n(t) - \phi_{n-1}(t)| \, dt \right|
+$$
+</p>
+
+<h4 id="第五步：递推估计与阶乘因子的出现"><a href="#第五步：递推估计与阶乘因子的出现" class="headerlink" title="第五步：递推估计与阶乘因子的出现"></a>第五步：递推估计与阶乘因子的出现</h4><p><strong>推导</strong>：<br>让我们尝试计算前几项来寻找规律。</p>
+<ul>
+<li>已知：$|\phi_1(x) - \phi_0(x)| \leq M |x - x_0|$- 计算$|\phi_2(x) - \phi_1(x)|$：</li>
+</ul>
+<p>
+$$
+|\phi_2(x) - \phi_1(x)| \leq L \left| \int_{x_0}^{x} M |t - x_0| \, dt \right| = M L \frac{|x - x_0|^2}{2}
+$$
+</p>
+
+<ul>
+<li>计算 $|\phi_3(x) - \phi_2(x)|$：</li>
+</ul>
+<p>
+$$
+|\phi_3(x) - \phi_2(x)| \leq L \left| \int_{x_0}^{x} M L \frac{|t - x_0|^2}{2} \, dt \right| = M L^2 \frac{|x - x_0|^3}{3!}
+$$
+</p>
+
+<p><strong>一般公式</strong>：<br>规律已经非常明显了。我可以断言，对于所有 $n \geq 1$和$x \in I$，有以下估计成立：</p>
+<p>
+$$
+|\phi_n(x) - \phi_{n-1}(x)| \leq \frac{M L^{n-1}}{n!} |x - x_0|^n \leq \frac{M L^{n-1}}{n!} h^n
+$$
+</p>
+
+<p><strong>Picard 的洞察</strong>：<br>这个估计的美妙之处在于分母上的阶乘 $n!$。它增长得如此之快，以至于无论常数 $M, L, h$的具体值是多少，只要它们是有限的，级数$\sum_{n&#x3D;1}^{\infty} \frac{M L^{n-1}}{n!} h^n$ 都必然收敛。这正是我需要的收敛性的保证。</p>
+<h4 id="第六步：证明序列的一致收敛"><a href="#第六步：证明序列的一致收敛" class="headerlink" title="第六步：证明序列的一致收敛"></a>第六步：证明序列的一致收敛</h4><p><strong>推导</strong>：<br>考虑级数</p>
+<p>
+$$
+\sum_{n=1}^{\infty} \max_{x \in I} |\phi_n(x) - \phi_{n-1}(x)|
+$$
+</p>
+
+<p>根据第五步的估计，这个级数的每一项都被 $\frac{M L^{n-1}}{n!} h^n$ 所控制。</p>
+<p>考虑数值级数 $\sum_{n&#x3D;1}^{\infty} \frac{M L^{n-1}}{n!} h^n$。我们可以用比值判别法来检验其收敛性：</p>
+<p>
+$$
+\lim_{n \to \infty} \frac{\frac{M L^n}{(n+1)!} h^{n+1}}{\frac{M L^{n-1}}{n!} h^n} = \lim_{n \to \infty} \frac{L h}{n+1} = 0
+$$
+</p>
+
+<p>由于极限为 0（小于 1），该数值级数收敛。</p>
+<p>根据 <strong>Weierstrass M-判别法</strong>，由于函数项级数的每一项在区间 $I$上的绝对值都被一个收敛的正项级数的对应项所控制，因此该函数项级数在$I$ 上<strong>一致收敛</strong>。</p>
+<p><strong>结论</strong>：<br>这意味着 Picard 迭代序列 ${\phi_n(x)}$在区间$I$上一致收敛于一个极限函数，记作$\phi(x)$。由于每个 $\phi_n$都是连续的，且收敛是一致的，极限函数$\phi(x)$ 也是连续的。</p>
+<h4 id="第七步：证明极限函数是解"><a href="#第七步：证明极限函数是解" class="headerlink" title="第七步：证明极限函数是解"></a>第七步：证明极限函数是解</h4><p><strong>推导</strong>：<br>回忆迭代公式：</p>
+<p>
+$$
+\phi_{n+1}(x) = y_0 + \int_{x_0}^{x} f(t, \phi_n(t)) \, dt
+$$
+</p>
+
+<p>我想对等式两边取极限 $n \to \infty$。<br>左边直接趋于 $\phi(x)$。<br>对于右边，我需要将极限号移入积分号内，即证明：</p>
+<p>
+$$
+\lim_{n \to \infty} \int_{x_0}^{x} f(t, \phi_n(t)) \, dt = \int_{x_0}^{x} \lim_{n \to \infty} f(t, \phi_n(t)) \, dt = \int_{x_0}^{x} f(t, \phi(t)) \, dt
+$$
+</p>
+
+<p><strong>合法性验证</strong>：</p>
+<ol>
+<li>我已经知道函数序列 ${\phi_n(t)}$在$I$上一致收敛于$\phi(t)$。</li>
+<li>函数 $f$在闭矩形$R$上是连续的，因此在$R$ 上是一致连续的。</li>
+<li>根据一致连续的性质，对于任意给定的 $\varepsilon &gt; 0$，存在 $\delta &gt; 0$，只要 $|\phi_n(t) - \phi(t)| &lt; \delta$，就有 $|f(t, \phi_n(t)) - f(t, \phi(t))| &lt; \varepsilon$。</li>
+<li>由于 ${\phi_n(t)}$一致收敛，对于这个$\delta$，存在 $N$，当 $n &gt; N$时，对所有$t \in I$都有$|\phi_n(t) - \phi(t)| &lt; \delta$。</li>
+<li>因此，当 $n &gt; N$时，对所有$t \in I$都有$|f(t, \phi_n(t)) - f(t, \phi(t))| &lt; \varepsilon$。这意味着函数序列 ${f(t, \phi_n(t))}$在$I$上<strong>一致收敛</strong>于$f(t, \phi(t))$。</li>
+<li>对于一致收敛的函数序列，积分和极限可以交换。</li>
+</ol>
+<p><strong>结论</strong>：<br>因此，取极限是合法的，我得到：</p>
+<p>
+$$
+\phi(x) = y_0 + \int_{x_0}^{x} f(t, \phi(t)) \, dt
+$$
+</p>
+
+<p>这说明 $\phi(x)$ 满足积分方程，从而是初值问题的一个解。存在性得证。</p>
+<h4 id="第八步：证明唯一性"><a href="#第八步：证明唯一性" class="headerlink" title="第八步：证明唯一性"></a>第八步：证明唯一性</h4><p><strong>推导</strong>：<br>假设存在另一个函数 $\psi(x)$ 也满足积分方程：</p>
+<p>
+$$
+\psi(x) = y_0 + \int_{x_0}^{x} f(t, \psi(t)) \, dt
+$$
+</p>
+
+<p>考虑两个解之差的绝对值 $u(x) &#x3D; |\phi(x) - \psi(x)|$。将两者满足的积分方程相减并取绝对值：</p>
+<p>
+$$
+u(x) = \left| \int_{x_0}^{x} [f(t, \phi(t)) - f(t, \psi(t))] \, dt \right| \leq \left| \int_{x_0}^{x} |f(t, \phi(t)) - f(t, \psi(t))| \, dt \right|
+$$
+</p>
+
+<p>再次应用 Lipschitz 条件：</p>
+<p>
+$$
+u(x) \leq L \left| \int_{x_0}^{x} |\phi(t) - \psi(t)| \, dt \right| = L \left| \int_{x_0}^{x} u(t) \, dt \right|
+$$
+</p>
+
+<p>现在我需要从这个积分不等式推导出 $u(x) \equiv 0$。不失一般性，考虑 $x \geq x_0$的情况。定义$U(x) &#x3D; \int_{x_0}^{x} u(t) , dt$。那么 $U’(x) &#x3D; u(x)$。上述不等式变为：</p>
+<p>
+$$
+U'(x) \leq L \cdot U(x)
+$$
+</p>
+
+<p>移项得 $U’(x) - L U(x) \leq 0$。两边乘以积分因子 $e^{-Lx}$：</p>
+<p>
+$$
+\frac{d}{dx} \left( e^{-Lx} U(x) \right) \leq 0
+$$
+</p>
+
+<p>这说明函数 $e^{-Lx} U(x)$在$x \geq x_0$上是单调不增的。在$x &#x3D; x_0$ 处，$U(x_0) &#x3D; \int_{x_0}^{x_0} u(t) , dt &#x3D; 0$。因此，对于所有 $x \geq x_0$，有 $e^{-Lx} U(x) \leq 0$。但由于 $e^{-Lx} &gt; 0$且$U(x) &#x3D; \int_{x_0}^{x} u(t) , dt \geq 0$，我们得出 $U(x) \leq 0$且$U(x) \geq 0$，故 $U(x) &#x3D; 0$。</p>
+<p>由于 $U(x) &#x3D; 0$，其导数 $u(x) &#x3D; U’(x)$也必然为 0（此处$u$是连续的）。所以$u(x) \equiv 0$，即 $\phi(x) &#x3D; \psi(x)$对所有$x \geq x_0$成立。对于$x \leq x_0$ 的情况，论证类似。</p>
+<p><strong>结论</strong>：唯一性得证。</p>
+<h3 id="证明完成"><a href="#证明完成" class="headerlink" title="证明完成"></a>证明完成</h3><p>综合以上八个步骤，Picard 完整地证明了在连续性和 Lipschitz 条件下，初值问题在某个局部区间上存在且唯一解。他不仅证明了存在性，而且提供了一种构造性的算法（Picard 迭代）以及误差估计（通过阶乘级数的余项），这在当时是关于微分方程理论基础的一项重大突破。</p>
+<p>通过这样，所谓的 $h$ 的形式也就很自然。</p>
+<h2 id="证明结构总结"><a href="#证明结构总结" class="headerlink" title="证明结构总结"></a>证明结构总结</h2><p>Picard 的证明可以浓缩为以下几个技术节点：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>核心操作</th>
+<th>关键条件</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>转化为积分方程</td>
+<td>微积分基本定理</td>
+<td>降低光滑性要求，嵌入初始条件</td>
+</tr>
+<tr>
+<td>2</td>
+<td>构造迭代序列</td>
+<td>$f$ 连续</td>
+<td>生成候选逼近序列</td>
+</tr>
+<tr>
+<td>3</td>
+<td>确定有效区间</td>
+<td>$f$ 在紧集上有界</td>
+<td>保证迭代良定义</td>
+</tr>
+<tr>
+<td>4</td>
+<td>估计相邻差</td>
+<td>Lipschitz 条件</td>
+<td>控制误差传递</td>
+</tr>
+<tr>
+<td>5</td>
+<td>递推得阶乘估计</td>
+<td>数学归纳法</td>
+<td>获得显式收敛速率</td>
+</tr>
+<tr>
+<td>6</td>
+<td>证明一致收敛</td>
+<td>Weierstrass M-判别法</td>
+<td>确立极限函数存在</td>
+</tr>
+<tr>
+<td>7</td>
+<td>取极限得解</td>
+<td>一致连续 + 一致收敛</td>
+<td>验证极限函数是解</td>
+</tr>
+<tr>
+<td>8</td>
+<td>唯一性证明</td>
+<td>Lipschitz 条件 + Gronwall</td>
+<td>排除多解可能性</td>
+</tr>
+</tbody></table>
+<h2 id="Picard-迭代与-Neumann-级数的对应关系"><a href="#Picard-迭代与-Neumann-级数的对应关系" class="headerlink" title="Picard 迭代与 Neumann 级数的对应关系"></a>Picard 迭代与 Neumann 级数的对应关系</h2><p>最后，也许读起来还是会让人有些跳跃的部分还是这个联系，我们再做一点点补充：</p>
+<p>这个问题的答案，不在于 Picard 盯着微分方程本身想出了什么妙招，而在于他<strong>把目光从微分方程移开，投向了另一个已经成熟的数学领域</strong>。</p>
+<h3 id="1-真正的灵感来源：积分方程中的“现成工具”"><a href="#1-真正的灵感来源：积分方程中的“现成工具”" class="headerlink" title="1. 真正的灵感来源：积分方程中的“现成工具”"></a>1. 真正的灵感来源：积分方程中的“现成工具”</h3><p>在 Picard 着手研究微分方程存在性的 1890 年代之前，数学界在另一个领域已经发展出了一套完整的、被称为“逐次逼近法”的技术。这个领域就是<strong>积分方程</strong>。</p>
+<p>具体来说，研究第二类 Volterra 积分方程（形如 $y(x) &#x3D; g(x) + \int_a^x K(x, t) y(t) , dt$）的数学家，比如 Liouville 和 Neumann，面临的问题和 Picard 其实是一样的：<strong>解不出来显式，但需要证明它存在</strong>。</p>
+<p>他们是怎么做的？他们注意到，如果把整个积分运算看作一个算子 $T$，方程就是 $y &#x3D; g + Ty$。一个非常自然的想法是：先猜 $y_0 &#x3D; g$，代入右边得到 $y_1 &#x3D; g + Tg$。但这显然不是解，因为 $y_1$和$g$不一样。那如果把$y_1$再代进去呢？就得到了$y_2 &#x3D; g + Ty_1 &#x3D; g + Tg + T^2g$。一直继续下去，就得到了一个无穷级数：</p>
+<p>
+$$
+y = g + Tg + T^2g + T^3g + \cdots
+$$
+</p>
+
+<p>这就是 <strong>Neumann 级数</strong>。他们证明了，只要核 $K(x, t)$ 满足一定的有界条件，这个级数就是收敛的，并且收敛到的函数就是原积分方程的解。这个方法在 Picard 的时代已经是积分方程领域的<strong>标准工具</strong>，不是秘密，不是猜想，而是已经被写进论文和教科书里的成熟方法。</p>
+<h3 id="2-Picard-的“为什么”：一次天才的类比移植"><a href="#2-Picard-的“为什么”：一次天才的类比移植" class="headerlink" title="2. Picard 的“为什么”：一次天才的类比移植"></a>2. Picard 的“为什么”：一次天才的类比移植</h3><p>现在，让我们把镜头转向 Picard。他面对的是微分方程初值问题：</p>
+<p>
+$$
+\frac{dy}{dx} = f(x, y), \quad y(x_0) = y_0
+$$
+</p>
+
+<p>他做的第一步——也是所有 19 世纪数学家都会做的本能动作——就是把它两边积分，变成：</p>
+<p>
+$$
+y(x) = y_0 + \int_{x_0}^x f(t, y(t)) \, dt
+$$
+</p>
+
+<p>此时，Picard 的脑子里发生了什么？他看到这个等式，并不是像我们今天的学生一样，仅仅把它看作“微分方程的等价形式”。他看到的是另一副面孔：</p>
+<p><strong>这个等式，不就是一个积分方程吗？</strong></p>
+<p>具体来说，如果定义算子 $T$为$(Ty)(x) &#x3D; \int_{x_0}^x f(t, y(t)) , dt$，那么这个方程就是：</p>
+<p>
+$$
+y = y_0 + Ty
+$$
+</p>
+
+<p>这和 Volterra 积分方程 $y &#x3D; g + Ty$在<strong>结构上完全一致</strong>！唯一的区别是，这里的$T$依赖于未知函数$y$的非线性方式（通过$f$），而经典的积分方程中 $T$是线性的（即$Ty &#x3D; \int K(x, t) y(t) , dt$）。但形式上的相似性是如此强烈，以至于任何一个熟悉积分方程文献的人都会产生一个念头：</p>
+<p><strong>既然积分方程那边用“反复代入”的方法（Neumann 级数）能够成功构造出解，那么对于这个方程，我能不能也试试同样的套路？</strong></p>
+<p>这就是 Picard 的“为什么”。<strong>他不是在发明一个新的哲学，他是在套用一个已知的、在相邻领域被证明极其有效的算法模板。</strong></p>
+<p>这个思维的跳跃，本质上是一次<strong>类比</strong>：</p>
+<ul>
+<li><strong>源领域</strong>：线性积分方程（已知：Neumann 级数有效）</li>
+<li><strong>目标领域</strong>：非线性微分方程的积分形式（未知：是否有效？）</li>
+<li><strong>相似性</strong>：方程都具有 $y &#x3D; g + Ty$ 的抽象形式</li>
+<li><strong>行动</strong>：将源领域的解法（迭代）直接搬用到目标领域</li>
+</ul>
+<p>Picard 的贡献，并不是凭空想出了“反复代入”这个动作，而是<strong>勇敢地将这个动作从线性积分方程迁移到了非线性的情境下，并成功地证明了它在 Lipschitz 条件下依然收敛</strong>。他的天才体现在“迁移的胆识”和“收敛证明的构造”（用阶乘估计代替 Neumann 的几何级数），而不是迭代动作本身的原创。</p>
+<h3 id="3-证据与旁证"><a href="#3-证据与旁证" class="headerlink" title="3. 证据与旁证"></a>3. 证据与旁证</h3><p>这个解释不是事后合理化的猜测。从历史文献中我们可以看到清晰的脉络：</p>
+<ul>
+<li><strong>Carl Neumann 在 1870 年代</strong>发表的关于位势理论的工作中，明确使用了级数展开法（即后来的 Neumann 级数）来求解边界积分方程。</li>
+<li><strong>Émile Picard 在 1890 年的论文</strong>中，明确引用了 Neumann 的工作，并指出他是将类似的方法应用于更一般的（非线性）情形。事实上，Picard 在 1890 年正是利用 Neumann 的结果发展了他的逐次逼近法。</li>
+<li>Picard 迭代在现代泛函分析教材中，经常被作为 <strong>Banach 不动点定理的前身和特例</strong>来介绍，而 Banach 不动点定理的另一直接前身，正是积分方程中 Neumann 级数的抽象化。</li>
+</ul>
+<p>因此，历史的链条是清晰的：<strong>积分方程中的 Neumann 级数 → Picard 的类比移植 → 微分方程中的 Picard 迭代 → Banach 的抽象不动点定理</strong>。</p>
+<h3 id="4-结论：为什么-Picard-会想到？"><a href="#4-结论：为什么-Picard-会想到？" class="headerlink" title="4. 结论：为什么 Picard 会想到？"></a>4. 结论：为什么 Picard 会想到？</h3><p>您问“为什么想到”，答案是：</p>
+<p><strong>因为他认出了微分方程在积分形式下，和他已经知道如何用迭代法求解的那类积分方程，长得一模一样。</strong></p>
+<p>对于 Picard 来说，“反复代入”根本不是一个需要灵感去凭空发明的动作。它是一个<strong>已知算法</strong>。他面对的问题不是“我应该用什么方法来逼近解？”，而是“我已知的这个叫 Neumann 级数的方法，换到这个新方程上还能不能用？”</p>
+<p>这就好比一个现代的程序员，面对一个新的数据处理任务，发现它可以被写成一个递归结构。他不会去思考“我为什么会想到用递归？”，因为“递归”是他工具箱里已经有的一个标准工具。他思考的是：“这个任务适合用递归吗？如果适合，我该怎么改写和证明它的正确性？”</p>
+<p>Picard 就是这样一位数学家。他手中的工具箱里，放着积分方程前辈们传下来的“逐次逼近法”。当他看到初值问题的积分形式时，他立刻意识到工具箱里的这个工具可能有戏。他试了，他证明了，于是他成功了。</p>
+<p>这就是“为什么”的最终答案：<strong>不是灵感的火花，而是工具的自然迁移。</strong></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/04/18/%E8%BF%98%E5%8E%9F%E8%84%9A%E6%89%8B%E6%9E%B6/Picard%E5%AD%98%E5%9C%A8%E6%80%A7%E5%AE%9A%E7%90%86/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/13/%E7%BA%BF%E4%BB%A3/%E7%AC%94%E8%AE%B03.%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/">
+        <h2 class="post-title">笔记3.线性空间</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E7%BA%BF%E4%BB%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                线代
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/13
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>尽管可能显得欠缺一定的连续性，先论述线性空间是合理的，尔后再从多项式延展到空间分解才更为自然，或许不妨看做两个分支，从线性空间和多项式环合并而导回线性代数的主分支。</p>
+<p>仍然给出一坨定义：</p>
+<h1 id="线性空间的结构"><a href="#线性空间的结构" class="headerlink" title="线性空间的结构"></a>线性空间的结构</h1><h2 id="线性空间的定义与公理体系"><a href="#线性空间的定义与公理体系" class="headerlink" title="线性空间的定义与公理体系"></a>线性空间的定义与公理体系</h2><p>线性空间是一个非空集合 $V$（其中的元素称为<strong>抽象向量</strong>），建立在数域 $K$ 之上，并定义了两种运算：<strong>加法</strong>与<strong>数乘</strong>。</p>
+<h3 id="核心运算与封闭性"><a href="#核心运算与封闭性" class="headerlink" title="核心运算与封闭性"></a>核心运算与封闭性</h3><ol>
+<li><p><strong>加法 (Vector Addition)</strong>：</p>
+<ul>
+<li><p>定义：$V \times V \to V$</p>
+</li>
+<li><p>映射：$(\alpha, \beta) \mapsto \alpha + \beta$- 本质：集合$V$ 对加法运算封闭。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>数乘 (Scalar Multiplication)</strong>：</p>
+<ul>
+<li><p>定义：$K \times V \to V$</p>
+</li>
+<li><p>映射：$(k, \alpha) \mapsto k\alpha$- 本质：数域$K$中的标量与向量结合，结果仍留在$V$ 中。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="八条公理-The-8-Axioms"><a href="#八条公理-The-8-Axioms" class="headerlink" title="八条公理 (The 8 Axioms)"></a>八条公理 (The 8 Axioms)</h3><p>这八条准则共同构成了线性空间的骨架。前四条确立了 $V$ 在加法下的<strong>交换群</strong>（阿贝尔群）地位，后四条规定了数乘与加法的兼容性。</p>
+<h4 id="1-加法性质（交换群）"><a href="#1-加法性质（交换群）" class="headerlink" title="1. 加法性质（交换群）"></a>1. 加法性质（交换群）</h4><ul>
+<li><p><strong>(1) 交换律：</strong> $\alpha + \beta &#x3D; \beta + \alpha$- <strong>(2) 结合律：</strong>$\alpha + (\beta + \gamma) &#x3D; (\alpha + \beta) + \gamma$- <strong>(3) 存在单位元（零元素）：</strong> 存在元素$0 \in V$，使得 $0 + \alpha &#x3D; \alpha + 0 &#x3D; \alpha, \forall \alpha \in V$- <strong>(4) 存在逆元（负元素）：</strong> 对任何$\alpha$，都有 $-\alpha \in V$，使得 $\alpha + (-\alpha) &#x3D; (-\alpha) + \alpha &#x3D; 0$</p>
+<blockquote>
+<p><strong>推论：</strong> 零元素与负元素在给定空间中是<strong>唯一</strong>的。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-数乘性质"><a href="#2-数乘性质" class="headerlink" title="2. 数乘性质"></a>2. 数乘性质</h4><p>对 $\forall \alpha, \beta \in V$以及$\forall k, l \in K$：</p>
+<ul>
+<li><strong>(5) 数乘单位元：</strong> $1 \cdot \alpha &#x3D; \alpha$- <strong>(6) 数乘结合律：</strong>$k(l\alpha) &#x3D; (kl)\alpha$- <strong>(7) 左分配律：</strong>$(k + l)\alpha &#x3D; k\alpha + l\alpha$- <strong>(8) 右分配律：</strong>$k(\alpha + \beta) &#x3D; k\alpha + k\beta$</li>
+</ul>
+<hr>
+<p><strong>$V$是能与$K$ 作数乘的交换群。</strong></p>
+<h3 id="与环的对比"><a href="#与环的对比" class="headerlink" title="与环的对比"></a>与环的对比</h3><p>如果把代数结构比作某种构建规则，线性空间强调的是<strong>层次间的互动</strong>，而环强调的是<strong>内部的自我演化</strong>。</p>
+<ul>
+<li><p><strong>环（Ring）</strong> 是一个 <strong>“自给自足”</strong> 的单集结构。它在一个集合 $R$ 上定义了两种二元运算：加法和乘法。所有的操作（$a+b$或$a \cdot b$）都发生在 $R$ 内部。你可以把它想象成一个封闭的黑盒，里面的元素通过两种规则自我碰撞。</p>
+</li>
+<li><p><strong>线性空间（Vector Space）</strong> 是一个 <strong>“双集联动”</strong> 的结构。它涉及两个集合：一个向量集 $V$和一个数域$K$（标量）。加法是 $V$内部的互动，但乘法（数乘）是<strong>跨界</strong>的——由域$K$中的“外部力量”作用于$V$ 中的元素。</p>
+</li>
+</ul>
+<p>这部分讲义将讨论的重心从线性空间的“定义”转向了它的<strong>结构度量</strong>。如果说公理是空间的“宪法”，那么<strong>基（Basis）</strong> 与<strong>维数（Dimension）</strong> 就是它的“骨架”与“尺度”。</p>
+<hr>
+<p>类似我们熟悉的向量组的讨论，线性空间也可以完全类似地定义基、维数等，事实上我们将看到线性映射和矩阵是同构的。</p>
+<h2 id="基、维数与同构"><a href="#基、维数与同构" class="headerlink" title="基、维数与同构"></a>基、维数与同构</h2><h3 id="向量组的秩与极大无关组"><a href="#向量组的秩与极大无关组" class="headerlink" title="向量组的秩与极大无关组"></a>向量组的秩与极大无关组</h3><ul>
+<li><p><strong>极大无关组</strong>：向量组可以有许多不同的极大无关组，但它们包含的向量个数必然相同。</p>
+</li>
+<li><p><strong>秩（Rank）</strong>：极大无关组所含向量的个数称为该向量组的秩。</p>
+</li>
+</ul>
+<h3 id="基底与维数"><a href="#基底与维数" class="headerlink" title="基底与维数"></a>基底与维数</h3><p>对于线性空间 $V$的子集$S$：</p>
+<ol>
+<li><p><strong>线性表出</strong>：若 $V$中每个向量都能表示为$S$中有限个向量的线性组合，称$S$能线性表出$V$。</p>
+</li>
+<li><p><strong>线性无关</strong>：若 $S$的任意有限子集都线性无关，则称$S$ 线性无关。</p>
+</li>
+</ol>
+<p><strong>基底（Basis）的定义</strong>：</p>
+<p>若子集 $S$ 同时满足：</p>
+<ol>
+<li><p>$S$ 线性无关；</p>
+</li>
+<li><p>$S$能线性表出$V$；</p>
+<p> 则称 $S$是$V$ 的一组<strong>基</strong>。</p>
+</li>
+</ol>
+<ul>
+<li><p><strong>维数（Dimension）</strong>：</p>
+<ul>
+<li><p>若 $S$是有限集，则称$V$ 为<strong>有限维线性空间</strong>。</p>
+</li>
+<li><p>$V$的任意两组基包含的向量个数相同，这个常数称为$V$的维数，记为$\dim V$。</p>
+</li>
+<li><p>规定零空间 ${0}$的维数为$0$。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="引理与推论"><a href="#引理与推论" class="headerlink" title="引理与推论"></a>引理与推论</h3><ul>
+<li><p><strong>引理</strong>：设 $\alpha_1, \dots, \alpha_s$线性无关，则$\alpha_1, \dots, \alpha_s, \beta$线性相关$\iff \beta$能被$\alpha_1, \dots, \alpha_s$ 线性表出。</p>
+</li>
+<li><p><strong>扩充定理（推论）</strong>：在有限维线性空间 $V$中，任何线性无关的向量组$\alpha_1, \dots, \alpha_s$都能扩充为$V$ 的一组基。</p>
+</li>
+</ul>
+<hr>
+<h3 id="基底的判定定理"><a href="#基底的判定定理" class="headerlink" title="基底的判定定理"></a>基底的判定定理</h3><p>设 $S$是有限维线性空间$V$的子集，以下三个条件中只要有<strong>两个</strong>成立，则三个条件都成立（即$S$构成$V$ 的基）：</p>
+<ol>
+<li><p>$S$ 线性无关；</p>
+</li>
+<li><p>$S$能线性表出$V$；</p>
+</li>
+<li><p>$|S| &#x3D; \dim V$（向量个数等于空间维数）。</p>
+</li>
+</ol>
+<hr>
+<h3 id="坐标同构-V-cong-K-n-一旦在线性空间-V-中取定了一组基-alpha-1-alpha-2-dots-alpha-n-，那么-V-中的每一个元素-alpha-都可以唯一地表示为："><a href="#坐标同构-V-cong-K-n-一旦在线性空间-V-中取定了一组基-alpha-1-alpha-2-dots-alpha-n-，那么-V-中的每一个元素-alpha-都可以唯一地表示为：" class="headerlink" title="坐标同构 $V \cong K^n$一旦在线性空间$V$中取定了一组基$\alpha_1, \alpha_2, \dots, \alpha_n$，那么 $V$中的每一个元素$\alpha$ 都可以唯一地表示为："></a>坐标同构 $V \cong K^n$一旦在线性空间$V$中取定了一组基$\alpha_1, \alpha_2, \dots, \alpha_n$，那么 $V$中的每一个元素$\alpha$ 都可以唯一地表示为：</h3><p>
+$$
+\alpha = k_1\alpha_1 + k_2\alpha_2 + \dots + k_n\alpha_n
+$$
+</p>
+
+<ul>
+<li><p><strong>坐标</strong>：列向量 $[k_1, k_2, \dots, k_n]^T \in K^n$称为$\alpha$ 在该基下的坐标。</p>
+</li>
+<li><p><strong>本质</strong>：这种一一对应关系保持了加法和数乘运算。这意味着，<strong>任何 $n$维线性空间在代数结构上都与$K^n$ 是一模一样的（同构）</strong>。</p>
+</li>
+</ul>
+<p>关于基、换基等操作，可以在数学随笔3.基底思想阅读。</p>
+<hr>
+<h1 id="子空间的运算"><a href="#子空间的运算" class="headerlink" title="子空间的运算"></a>子空间的运算</h1><h3 id="线性子空间的定义"><a href="#线性子空间的定义" class="headerlink" title="线性子空间的定义"></a>线性子空间的定义</h3><p>若线性空间 $V$的子集$W$满足以下三条性质，则称$W$是$V$ 的<strong>子空间</strong>：</p>
+<ol>
+<li><strong>非空性&#x2F;包含零向量</strong>：$0 \in W$2. <strong>加法封闭性</strong>：若$\alpha, \beta \in W$，则 $\alpha + \beta \in W$3. <strong>数乘封闭性</strong>：若$k \in K, \beta \in W$，则 $k\beta \in W$</li>
+</ol>
+<blockquote>
+<p><strong>本质</strong>：$W$在$V$ 原有的运算下也构成一个完备的线性空间，自动满足八条公理。</p>
+</blockquote>
+<hr>
+<h3 id="子空间的性质与构造"><a href="#子空间的性质与构造" class="headerlink" title="子空间的性质与构造"></a>子空间的性质与构造</h3><ul>
+<li><p><strong>定理（基扩张与维数）</strong>：</p>
+<ul>
+<li><p>子空间 $W$的基都能扩充成全空间$V$ 的基。</p>
+</li>
+<li><p><strong>维数不等式</strong>：$\dim W \le \dim V$。</p>
+</li>
+<li><p><strong>等号成立条件</strong>：$\dim W &#x3D; \dim V \iff W &#x3D; V$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>给出子空间的几种方式</strong>：</p>
+<ol>
+<li><p><strong>生成元方式</strong>：由一组向量生成的张成空间 $W &#x3D; \langle \alpha_1, \dots, \alpha_s \rangle$。</p>
+</li>
+<li><p><strong>解空间方式</strong>：作为齐次线性方程组 $Ax &#x3D; 0$ 的解集。</p>
+</li>
+<li><p><strong>运算构造方式</strong>：通过交、和、正交补（内积空间中）等运算得到。</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="子空间的运算：交与和"><a href="#子空间的运算：交与和" class="headerlink" title="子空间的运算：交与和"></a>子空间的运算：交与和</h3><h4 id="1-子空间的交-Intersection"><a href="#1-子空间的交-Intersection" class="headerlink" title="1. 子空间的交 (Intersection)"></a>1. 子空间的交 (Intersection)</h4><ul>
+<li><p><strong>定理</strong>：若 $V_1, V_2$是$V$的子空间，则其交集$V_1 \cap V_2$也是$V$ 的子空间。</p>
+</li>
+<li><p><strong>注意</strong>：并集 $V_1 \cup V_2$<strong>一般不是</strong>子空间，除非其中一个包含另一个（即$V_1 \supseteq V_2$或$V_1 \subseteq V_2$）。</p>
+</li>
+</ul>
+<h4 id="2-子空间的和-Sum"><a href="#2-子空间的和-Sum" class="headerlink" title="2. 子空间的和 (Sum)"></a>2. 子空间的和 (Sum)</h4><ul>
+<li><p><strong>定义</strong>：若 $V_1, V_2$是$V$的子空间，集合${ \alpha_1 + \alpha_2 \mid \alpha_1 \in V_1, \alpha_2 \in V_2 }$称为$V_1$与$V_2$ 的和，记为 <strong>$V_1 + V_2$</strong>。</p>
+</li>
+<li><p><strong>性质</strong>：$V_1 + V_2$也是$V$ 的子空间。</p>
+</li>
+<li><p><strong>生成元表示</strong>：</p>
+<p>  若 $V_1 &#x3D; \langle \alpha_1, \dots, \alpha_r \rangle$，$V_2 &#x3D; \langle \beta_1, \dots, \beta_s \rangle$，</p>
+<p>  则 $V_1 + V_2 &#x3D; \langle \alpha_1, \dots, \alpha_r, \beta_1, \dots, \beta_s \rangle$。</p>
+</li>
+</ul>
+<p>相比于并，和更能体现线性空间的味道，例如两条直线的并是两条直线作为一个整体，但是和则是铺成一个平面，带有了线性运算。同时，和可以直接构造子空间，并则不太容易。</p>
+<h3 id="维数公式"><a href="#维数公式" class="headerlink" title="维数公式"></a>维数公式</h3><h4 id="一、-定理内容"><a href="#一、-定理内容" class="headerlink" title="一、 定理内容"></a>一、 定理内容</h4><p>若 $V_1, V_2$是线性空间$V$ 的子空间，则它们的和空间与交空间的维数满足以下关系：</p>
+<p>
+$$
+\dim(V_1 + V_2) + \dim(V_1 \cap V_2) = \dim V_1 + \dim V_2
+$$
+</p>
+
+<blockquote>
+<p><strong>直观理解</strong>：两个空间的合并维数，等于各自维数之和减去重复计算的交集部分维数。这与集合论中的容斥原理极其相似。</p>
+</blockquote>
+<hr>
+<h4 id="二、-证明概要"><a href="#二、-证明概要" class="headerlink" title="二、 证明概要"></a>二、 证明概要</h4><p>证明的核心在于通过<strong>基的扩充</strong>构造出一组能张成 $V_1 + V_2$ 的线性无关组。实际上在数学随笔3之基底思想已经干过完全一样的证明了。</p>
+<ol>
+<li><p><strong>取交空间的基</strong>：设 $V_1 \cap V_2$的一组基为$\alpha_1, \dots, \alpha_r$。此时 $\dim(V_1 \cap V_2) &#x3D; r$。</p>
+</li>
+<li><p><strong>向两侧扩充</strong>：</p>
+<ul>
+<li><p>将其扩充为 $V_1$ 的基：$\alpha_1, \dots, \alpha_r, \beta_1, \dots, \beta_m$。则 $\dim V_1 &#x3D; r + m$。</p>
+</li>
+<li><p>将其扩充为 $V_2$ 的基：$\alpha_1, \dots, \alpha_r, \gamma_1, \dots, \gamma_s$。则 $\dim V_2 &#x3D; r + s$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>构造和空间的基</strong>：证明 $\beta_1, \dots, \beta_m, \alpha_1, \dots, \alpha_r, \gamma_1, \dots, \gamma_s$线性无关且张成$V_1 + V_2$。</p>
+<ul>
+<li><p>若线性组合为零：$k_1\beta_1 + \dots + l_1\gamma_1 + \dots &#x3D; 0$。</p>
+</li>
+<li><p>变形得：$k_i\beta_i$的组合属于$V_2$，因此必然落在交集 $V_1 \cap V_2$ 中。</p>
+</li>
+<li><p>利用交空间的基表出并结合线性无关性，推出所有系数全为 $0$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>结论</strong>：$\dim(V_1 + V_2) &#x3D; m + r + s$。</p>
+<ul>
+<li>代入等式：$(m + r + s) + r &#x3D; (r + m) + (r + s)$，公式成立。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="线性无关、直和与唯一性表示"><a href="#线性无关、直和与唯一性表示" class="headerlink" title="线性无关、直和与唯一性表示"></a>线性无关、直和与唯一性表示</h3><h4 id="一、-线性无关-iff-表出唯一"><a href="#一、-线性无关-iff-表出唯一" class="headerlink" title="一、 线性无关 $\iff$ 表出唯一"></a>一、 线性无关 $\iff$ 表出唯一</h4><p>对于向量组 $\alpha_1, \dots, \alpha_s$：</p>
+<ul>
+<li><strong>核心逻辑</strong>：如果该向量组表示零向量的方式是唯一的，那么它表示任何能表出的向量的方式都是唯一的。</li>
+</ul>
+<p>若满足表达零向量唯一，则设有两种方法表示 $\beta$ ，作差就得到两种方法的系数必须一样，那也就实际上只有一种方法。</p>
+<hr>
+<h4 id="二、-子空间的直和-Direct-Sum"><a href="#二、-子空间的直和-Direct-Sum" class="headerlink" title="二、 子空间的直和 (Direct Sum)"></a>二、 子空间的直和 (Direct Sum)</h4><p>当我们将讨论的对象从“单个向量”提升到“子空间”时，唯一性依然是判定结构的核心。</p>
+<h5 id="1-表示方式的定义"><a href="#1-表示方式的定义" class="headerlink" title="1. 表示方式的定义"></a>1. 表示方式的定义</h5><p>设 $V_1, \dots, V_s$是$V$的子空间。对于和空间$V_1 + \dots + V_s$中的任意向量$\beta$，其表示方式为：</p>
+<p>
+$$
+\beta = \alpha_1 + \alpha_2 + \dots + \alpha_s, \quad (\alpha_i \in V_i)
+$$
+</p>
+
+<p>有序组 $(\alpha_1, \dots, \alpha_s)$称为$\beta$ 的一种表示。</p>
+<h5 id="2-直和的判定：零向量的唯一性"><a href="#2-直和的判定：零向量的唯一性" class="headerlink" title="2. 直和的判定：零向量的唯一性"></a>2. 直和的判定：零向量的唯一性</h5><ul>
+<li><p><strong>定理</strong>：表示零向量的方式唯一 $\iff$ 表示任何向量的方式都唯一。</p>
+</li>
+<li><p><strong>直和的定义</strong>：若 $V_1 + \dots + V_s$ 中任何元素的表示方式都唯一，则称该和为<strong>直和</strong>，记为：</p>
+</li>
+</ul>
+<p>
+$$
+V_1 \oplus V_2 \oplus \dots \oplus V_s
+$$
+</p>
+
+<ul>
+<li><p><strong>推导过程</strong>：</p>
+<ul>
+<li><p>如果表示零向量的方式不唯一（存在非零向量之和为 $0$），则通过加法叠加，任何向量的表示都会有无数种组合。</p>
+</li>
+<li><p>反之，若表示 $0$的方式唯一（即$\sum \alpha_i &#x3D; 0 \implies \alpha_i &#x3D; 0$），则由 $\beta$ 的两种表示作差，立得两种表示完全一致。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>直和的本质是子空间之间“不重叠”（除零向量外）。</p>
+<ul>
+<li><p><strong>非直和情形</strong>：若 $V_1 \cap V_2 \neq {0}$，则存在非零向量 $\alpha \in V_1 \cap V_2$。此时零向量可以有非平凡表示：$0 &#x3D; \alpha + (-\alpha)$。几何上表现为两个平面（或线）交于一条线。</p>
+</li>
+<li><p><strong>直和情形</strong>：若 $V_1 \cap V_2 &#x3D; {0}$，则 $\alpha_1 + \alpha_2 &#x3D; 0 \implies \alpha_1 &#x3D; -\alpha_2 \in V_1 \cap V_2 &#x3D; {0}$。这意味着分解方式唯一。几何上表现为两个空间仅交于原点。</p>
+</li>
+</ul>
+<p>当涉及多个子空间 $V_1, \dots, V_s$ 时，两两交为零是不够的，必须满足更强的条件。</p>
+<p><strong>定理：</strong></p>
+<p>$V_1 + \dots + V_s$是直和，当且仅当对每一个$k$ ($1 \le k \le s$)，第 $k$ 个子空间与它前面所有子空间之和的交集仅含零向量：</p>
+<p>
+$$
+V_k \cap (V_1 + \dots + V_{k-1}) = \{0\}
+$$
+</p>
+
+<ul>
+<li><p><strong>证明要点</strong>：</p>
+<ul>
+<li><p><strong>充分性</strong>：设 $\sum \alpha_i &#x3D; 0$。取最后一个非零向量 $\alpha_k$，则 $\alpha_k &#x3D; -(\alpha_1 + \dots + \alpha_{k-1})$。这导致 $\alpha_k$落在$V_k$ 与前面子空间和的交集中，与条件矛盾。</p>
+</li>
+<li><p><strong>必要性</strong>：若交集不为零，则存在非零向量能被前面的向量组表出，导致零向量的表示不唯一。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="三、-等价命题定理"><a href="#三、-等价命题定理" class="headerlink" title="三、 等价命题定理"></a>三、 等价命题定理</h4><p>以下命题对于判定子空间是否构成直和是等价的：</p>
+<ul>
+<li><p><strong>表示唯一性</strong>：$V_1 + \dots + V_s$是直和（即表示$0$ 的方式唯一）。</p>
+</li>
+<li><p><strong>基的保持性</strong>：分别取子空间 $V_1, \dots, V_s$ 的基，将这些基向量合并后，得到的向量组在全空间中<strong>依然线性无关</strong>。</p>
+<ul>
+<li>换句话说，这些基向量合并后构成了和空间 $V_1 \oplus \dots \oplus V_s$ 的一组基.。</li>
+</ul>
+</li>
+<li><p><strong>维数和</strong>：$dim(V_1+…+V_s)&#x3D;dim(V_1)+…+dim(V_s)$当$\dim(V_1 \cap V_2) &#x3D; 0$（即 $V_1 \cap V_2 &#x3D; {0}$）时，维数公式简化为：</p>
+</li>
+</ul>
+<p>
+$$
+\dim(V_1 + V_2) = \dim V_1 + \dim V_2
+$$
+</p>
+
+<p>此时的和称为<strong>直和</strong>，记作 $V_1 \oplus V_2$。这意味着和空间中的每一个向量都可以<strong>唯一地</strong>表示为 $V_1$和$V_2$ 中向量的和。</p>
+<p>我们看一个定理，这实际上在数学随笔之范德蒙德行列式的意外出现有提到过，讨论的就是直和。</p>
+<p><strong>定理：</strong></p>
+<p>设 $V_1, V_2, \dots, V_s$是方阵$A$对应于不同特征值$\lambda_1, \lambda_2, \dots, \lambda_s$ 的<strong>特征子空间</strong>，则它们的和是<strong>直和</strong>。</p>
+<ul>
+<li><p><strong>证明思路（范德蒙德法）</strong>：</p>
+<ol>
+<li><p>设 $\alpha_1 + \alpha_2 + \dots + \alpha_s &#x3D; 0$，其中 $\alpha_i \in V_i$。</p>
+</li>
+<li><p>利用 $A$左乘该式$s-1$次，根据$A\alpha_i &#x3D; \lambda_i \alpha_i$，得到一系列线性方程：</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>
+$$
+\begin{cases} \alpha_1 + \dots + \alpha_s = 0 \\ \lambda_1 \alpha_1 + \dots + \lambda_s \alpha_s = 0 \\ \vdots \\ \lambda_1^{s-1} \alpha_1 + \dots + \lambda_s^{s-1} \alpha_s = 0 \end{cases}
+$$
+</p>
+
+<ol start="3">
+<li>由于特征值 $\lambda_i$两两不同，对应的<strong>范德蒙德行列式</strong>不为零，从而推导出每个分量$\alpha_i$必须全为$0$。</li>
+</ol>
+<p>还可以更进一步，考虑所谓广义特征子空间。</p>
+<h3 id="广义特征子空间的直和与多项式分解"><a href="#广义特征子空间的直和与多项式分解" class="headerlink" title="广义特征子空间的直和与多项式分解"></a>广义特征子空间的直和与多项式分解</h3><h4 id="一、-广义特征子空间的直和性"><a href="#一、-广义特征子空间的直和性" class="headerlink" title="一、 广义特征子空间的直和性"></a>一、 广义特征子空间的直和性</h4><p><strong>定理</strong>：</p>
+<p>设 $\lambda_1, \dots, \lambda_s \in K$是矩阵$A \in M_n(K)$ 的互异特征值，$r_1, \dots, r_s &gt; 0$ 为对应的幂次，则其广义特征子空间之和是直和：</p>
+<p>
+$$
+\text{Ker}(A - \lambda_1 I)^{r_1} \oplus \dots \oplus \text{Ker}(A - \lambda_s I)^{r_s}
+$$
+</p>
+
+<ul>
+<li><p><strong>证明逻辑（构造性矛盾法）</strong>：</p>
+<ol>
+<li><p>假设存在非零向量之和为零：$\alpha_1 + \dots + \alpha_s &#x3D; 0$。</p>
+</li>
+<li><p>对 $\alpha_1$，寻找使其“退化”到特征向量层级的最小指数 $t$，定义 $\beta_1 &#x3D; (A - \lambda_1 I)^{t-1} \alpha_1 \neq 0$。此时 $\beta_1$是属于$\lambda_1$ 的特征向量($A-\lambda I$作用$\beta$是$0$ )。</p>
+</li>
+<li><p>利用算子 $(A - \lambda_1 I)^{t-1} \prod_{j \neq 1} (A - \lambda_j I)^{r_j}$ 左乘原式。</p>
+</li>
+<li><p>除了第一项，其余项均会因落在 $\text{Ker}$中而消解为$0$。</p>
+</li>
+<li><p>最终导出 $(\lambda_1 - \lambda_2)^{r_2} \dots (\lambda_1 - \lambda_s)^{r_s} \beta_1 &#x3D; 0$。由于特征值互异且 $\beta_1 \neq 0$，产生矛盾，从而证明各分量必为零。</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<p>那之前大费周章学了那么多多项式的内容有什么用呢？实际上利用多项式我们可以给出空间的分解：</p>
+<h2 id="核空间分解定理的详细证明"><a href="#核空间分解定理的详细证明" class="headerlink" title="核空间分解定理的详细证明"></a>核空间分解定理的详细证明</h2><h3 id="一、-定理"><a href="#一、-定理" class="headerlink" title="一、 定理"></a>一、 定理</h3><p>设 $f_1(x), \dots, f_s(x) \in K[x]$两两互素。记$f(x) &#x3D; \prod_{i&#x3D;1}^s f_i(x)$。对于 $A \in M_n(K)$，有：</p>
+<p>
+$$
+\text{Ker } f(A) = \text{Ker } f_1(A) \oplus \text{Ker } f_2(A) \oplus \dots \oplus \text{Ker } f_s(A)
+$$
+</p>
+
+<hr>
+<h3 id="二、-证明步骤拆解"><a href="#二、-证明步骤拆解" class="headerlink" title="二、 证明步骤拆解"></a>二、 证明步骤拆解</h3><h4 id="1-证明和是“直和”"><a href="#1-证明和是“直和”" class="headerlink" title="1. 证明和是“直和”"></a>1. 证明和是“直和”</h4><p>要证直和，只需证 $V_i \cap (\sum_{j \neq i} V_j) &#x3D; {0}$，其中 $V_i &#x3D; \text{Ker } f_i(A)$。</p>
+<ul>
+<li><p><strong>构造辅助多项式</strong>：记 $F_i(x) &#x3D; \frac{f(x)}{f_i(x)}$，即除去 $f_i$ 后其余多项式的乘积。</p>
+</li>
+<li><p><strong>利用互素性</strong>：由于 $(f_i(x), f_j(x)) &#x3D; 1$（对所有 $j \neq i$），推导出 $f_i(x)$与$F_i(x)$互素，即$(f_i, F_i) &#x3D; 1$。</p>
+</li>
+<li><p><strong>裴蜀等式 (Bézout’s Identity)</strong>：存在 $u(x), v(x)$使得$u(x)f_i(x) + v(x)F_i(x) &#x3D; 1$。</p>
+</li>
+<li><p><strong>算子化</strong>：将 $x$换成矩阵$A$，作用于任意向量 $\alpha \in V_i \cap (\sum_{j \neq i} V_j)$：</p>
+<ul>
+<li><p>$\alpha &#x3D; u(A)f_i(A)\alpha + v(A)F_i(A)\alpha$- 因为$\alpha \in \text{Ker } f_i(A)$，故 $f_i(A)\alpha &#x3D; 0$。</p>
+</li>
+<li><p>因为 $\alpha$在其余核空间的和中，而$F_i(A)$包含所有其余因子，故$F_i(A)\alpha &#x3D; 0$。</p>
+</li>
+<li><p><strong>结论</strong>：$\alpha &#x3D; 0$，故和为直和。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-证明核空间的包含关系"><a href="#2-证明核空间的包含关系" class="headerlink" title="2. 证明核空间的包含关系"></a>2. 证明核空间的包含关系</h4><p>需证 $\sum \text{Ker } f_i(A) &#x3D; \text{Ker } f(A)$。</p>
+<ul>
+<li><p><strong>以 $s&#x3D;2$为例</strong>：已知$(f_1, f_2) &#x3D; 1$，则 $u(A)f_1(A) + v(A)f_2(A) &#x3D; I$。</p>
+</li>
+<li><p>对于 $\forall \alpha \in \text{Ker } f(A)$：</p>
+</li>
+</ul>
+<p>
+$$
+\alpha = I\alpha = \underbrace{u(A)f_1(A)\alpha}_{\in \text{Ker } f_2(A)} + \underbrace{v(A)f_2(A)\alpha}_{\in \text{Ker } f_1(A)}
+$$
+</p>
+
+<p>（注：$f_2(A) \cdot [u(A)f_1(A)\alpha] &#x3D; u(A)f(A)\alpha &#x3D; 0$）</p>
+<ul>
+<li><strong>推广到一般情形</strong>：利用归纳法，将 $f(x)$视为$f_1(x)$与$(f_2 \dots f_s)(x)$ 的积，层层剥离。</li>
+</ul>
+<p>综合两方面证明就完成了。也就是说，从一个多项式的分解，我们可以得到一个空间的分解，这是非常美妙的。</p>
+<p>如果我们想分解整个空间，要考虑什么多项式呢？</p>
+<h3 id="零化多项式与空间分解"><a href="#零化多项式与空间分解" class="headerlink" title="零化多项式与空间分解"></a>零化多项式与空间分解</h3><h4 id="一、-零化多项式-Annihilating-Polynomial"><a href="#一、-零化多项式-Annihilating-Polynomial" class="headerlink" title="一、 零化多项式 (Annihilating Polynomial)"></a>一、 零化多项式 (Annihilating Polynomial)</h4><ul>
+<li><p><strong>定义</strong>：设 $A \in M_n(K)$，若存在多项式 $f(x) \in K[x]$使得$f(A) &#x3D; 0$，则称 $f(x)$为$A$ 的一个<strong>零化多项式</strong>。</p>
+</li>
+<li><p><strong>经典示例</strong>：</p>
+<ul>
+<li><p><strong>幂等变换（投影）</strong>：$x^2 - x$是其零化多项式（因为$A^2 &#x3D; A$）。</p>
+</li>
+<li><p><strong>对合变换（镜像）</strong>：$x^2 - 1$是其零化多项式（因为$A^2 &#x3D; I$）。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="二、-零化多项式驱动的空间全分解"><a href="#二、-零化多项式驱动的空间全分解" class="headerlink" title="二、 零化多项式驱动的空间全分解"></a>二、 零化多项式驱动的空间全分解</h4><p><strong>核心定理</strong>：</p>
+<p>若矩阵 $A$的零化多项式$f(x)$在域$K$上可分解为两两互素的因子乘积$f(x) &#x3D; f_1(x) \dots f_s(x)$，则全空间 $V$ 具有直和分解：</p>
+<p>
+$$
+V = \text{Ker } f_1(A) \oplus \dots \oplus \text{Ker } f_s(A)
+$$
+</p>
+
+<blockquote>
+<p><strong>逻辑跃迁</strong>：这里因为 $f(A)&#x3D;0$，所以 $\text{Ker } f(A)$直接就是整个空间$V$。</p>
+</blockquote>
+<hr>
+<h4 id="三、-可对角化的充分必要条件"><a href="#三、-可对角化的充分必要条件" class="headerlink" title="三、 可对角化的充分必要条件"></a>三、 可对角化的充分必要条件</h4><p>这是线性代数中最优雅的结论之一：</p>
+<p><strong>矩阵 $A$在域$K$上可对角化，当且仅当$A$有一个零化多项式能在$K$ 上分解成互异的一次因式的乘积：</strong></p>
+<p>
+$$
+f(x) = (x - \mu_1)(x - \mu_2) \dots (x - \mu_s), \quad \mu_i \in K \text{ 且互异}
+$$
+</p>
+
+<ul>
+<li><p><strong>必要性推导</strong>：若 $A$可对角化，则全空间是特征子空间的直和。作用算子$(A - \lambda_1 I)\dots(A - \lambda_s I)$于任何向量都会得到$0$，说明该乘积即为零化多项式。</p>
+</li>
+<li><p><strong>充分性推导</strong>：若存在此类零化多项式，由核空间分解定理，全空间 $V$ 会分解为各个特征子空间（或零空间）的直和：</p>
+</li>
+</ul>
+<p>
+$$
+V = \bigoplus_{i=1}^s \text{Ker}(A - \mu_i I)
+$$
+</p>
+
+<p>这意味着 $V$有一组由特征向量构成的基，即$A$ 可对角化。</p>
+<hr>
+<h4 id="四、-案例应用：对合变换的分解"><a href="#四、-案例应用：对合变换的分解" class="headerlink" title="四、 案例应用：对合变换的分解"></a>四、 案例应用：对合变换的分解</h4><p><strong>场景</strong>：设 $V &#x3D; M_n(K)$，考虑转置变换 $T: A \to A^T$。</p>
+<ol>
+<li><p><strong>特征方程</strong>：显然 $T^2 &#x3D; I$，故零化多项式为 $f(x) &#x3D; x^2 - 1 &#x3D; (x - 1)(x + 1)$。</p>
+</li>
+<li><p><strong>空间直和</strong>：由于 $1$与$-1$互异，空间$V$ 可分解为：</p>
+</li>
+</ol>
+<p>
+$$
+V = \text{Ker}(T - I) \oplus \text{Ker}(T + I)
+$$
+</p>
+
+<ol start="3">
+<li><p><strong>几何意义</strong>：</p>
+<ul>
+<li><p>$\text{Ker}(T - I)$是所有满足$A^T &#x3D; A$的矩阵（<strong>对称矩阵</strong>$V_1$）。</p>
+</li>
+<li><p>$\text{Ker}(T + I)$是所有满足$A^T &#x3D; -A$的矩阵（<strong>反对称矩阵</strong>$V_2$）。</p>
+</li>
+<li><p><strong>结论</strong>：任何方阵都能唯一地分解为一个对称矩阵与一个反对称矩阵之和：$A &#x3D; \frac{A+A^T}{2} + \frac{A-A^T}{2}$。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="补空间与外直和"><a href="#补空间与外直和" class="headerlink" title="补空间与外直和"></a>补空间与外直和</h2><h3 id="一、-补空间-Complementary-Subspace"><a href="#一、-补空间-Complementary-Subspace" class="headerlink" title="一、 补空间 (Complementary Subspace)"></a>一、 补空间 (Complementary Subspace)</h3><p>如果说子空间是空间的一部分，那么补空间就是“剩下那部分”的完美补充。</p>
+<ul>
+<li><p><strong>定义</strong>：设 $W, W’$是$V$的子空间。若满足$V &#x3D; W \oplus W’$（即 $V$是它们的直和），则称$W$与$W’$ <strong>互为补空间</strong>。</p>
+</li>
+<li><p><strong>存在性定理</strong>：任何线性子空间都有补空间。</p>
+</li>
+<li><p><strong>构造逻辑</strong>：</p>
+<ol>
+<li><p>取 $W$的一组基$\alpha_1, \dots, \alpha_r$。</p>
+</li>
+<li><p>将其扩充为全空间 $V$的一组基$\alpha_1, \dots, \alpha_r, \alpha_{r+1}, \dots, \alpha_n$。</p>
+</li>
+<li><p>由扩充出来的向量 $\langle \alpha_{r+1}, \dots, \alpha_n \rangle$张成的子空间即为$W$ 的一个补空间。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>注意</strong>：补空间通常<strong>不唯一</strong>。扩充基底的方式不同，得到的补空间在空间中的“姿态”也不同。</p>
+</li>
+</ul>
+<hr>
+<h3 id="二、-外直和-External-Direct-Sum"><a href="#二、-外直和-External-Direct-Sum" class="headerlink" title="二、 外直和 (External Direct Sum)"></a>二、 外直和 (External Direct Sum)</h3><p>当我们手里有几个独立的线性空间，想要把它们合成一个更大的空间时，就需要用到外直和。</p>
+<ul>
+<li><strong>定义</strong>：设 $V_1, \dots, V_s$是数域$K$ 上的线性空间，其外直和定义为笛卡尔积集合：</li>
+</ul>
+<p>
+$$
+V_1 \oplus \dots \oplus V_s = \{ (\alpha_1, \dots, \alpha_s) \mid \alpha_i \in V_i \}
+$$
+</p>
+
+<ul>
+<li><p><strong>运算规则</strong>：</p>
+<ul>
+<li><p><strong>加法</strong>：分量对位相加，$(\alpha_1, \dots) + (\beta_1, \dots) &#x3D; (\alpha_1 + \beta_1, \dots)$。</p>
+</li>
+<li><p><strong>数乘</strong>：标量作用于每个分量，$k(\alpha_1, \dots) &#x3D; (k\alpha_1, \dots)$。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="三、-外直和与内直和的统一"><a href="#三、-外直和与内直和的统一" class="headerlink" title="三、 外直和与内直和的统一"></a>三、 外直和与内直和的统一</h3><p>虽然“外直和”是从多个集合构建新集合，但它本质上可以看作“内直和”。</p>
+<ul>
+<li><p><strong>嵌入与同构</strong>：</p>
+<p>  构造 $V$的子空间$V_i’$，使得 $V_i’$中的元素仅在第$i$个位置有非零向量，其余位置全为$0$：</p>
+</li>
+</ul>
+<p>
+$$
+V_i' = \{ (0, \dots, \alpha_i, \dots, 0) \mid \alpha_i \in V_i \}
+$$
+</p>
+
+<ul>
+<li><p><strong>结论</strong>：</p>
+<ol>
+<li><p>$V_i’ \cong V_i$（每个 $V_i’$都同构于原空间$V_i$）。</p>
+</li>
+<li><p>整个外直和空间 $V$恰好是这些子空间$V_i’$ 的<strong>内直和</strong>：</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>
+$$
+V = V_1' \oplus \dots \oplus V_s'
+$$
+</p>
+
+<hr>
+<h1 id="线性空间的同构"><a href="#线性空间的同构" class="headerlink" title="线性空间的同构"></a>线性空间的同构</h1><h3 id="线性映射与同构的定义"><a href="#线性映射与同构的定义" class="headerlink" title="线性映射与同构的定义"></a>线性映射与同构的定义</h3><p>设 $U, V$是域$K$上的两个线性空间。若映射$\mathcal{A}: U \to V$ 满足：</p>
+<ol>
+<li><p><strong>加法齐次性</strong>：$\mathcal{A}(\alpha + \beta) &#x3D; \mathcal{A}\alpha + \mathcal{A}\beta, \quad \forall \alpha, \beta \in U$</p>
+</li>
+<li><p><strong>数乘齐次性</strong>：$\mathcal{A}(k\alpha) &#x3D; k\mathcal{A}\alpha, \quad \forall k \in K$则称$\mathcal{A}$是$U$到$V$ 的<strong>线性映射</strong>。</p>
+</li>
+</ol>
+<p>若 $\mathcal{A}$是<strong>双射</strong>（既是单射又是满射），则称$\mathcal{A}$是$U$到$V$的<strong>线性同构</strong>，记作$U \cong V$。</p>
+<hr>
+<h3 id="2-同构的关键判定与定理"><a href="#2-同构的关键判定与定理" class="headerlink" title="2. 同构的关键判定与定理"></a>2. 同构的关键判定与定理</h3><ul>
+<li><p><strong>推论</strong>：设 $\mathcal{A}: U \to V$ 是线性映射，$\alpha_1, \dots, \alpha_n$是$U$的一组基。$\mathcal{A}$是$U$与$V$的线性同构$\iff \mathcal{A}\alpha_1, \dots, \mathcal{A}\alpha_n$是$V$ 的一组基。</p>
+</li>
+<li><p><strong>基础定理</strong>：有限维 $K$-线性空间 $U$与$V$ 同构的充要条件是它们的维数相等：</p>
+</li>
+</ul>
+<p>
+$$
+U \cong V \iff \dim U = \dim V
+$$
+</p>
+
+<hr>
+<h3 id="3-性质证明要点"><a href="#3-性质证明要点" class="headerlink" title="3. 性质证明要点"></a>3. 性质证明要点</h3><ul>
+<li><p><strong>满射判定</strong>：$\mathcal{A}$是满射$\iff \mathcal{A}\alpha_1, \dots, \mathcal{A}\alpha_n$张成$V$。</p>
+<p>  即 $V$中任意向量均可表示为$\mathcal{A}\alpha_i$ 的线性组合：$\text{Im} \mathcal{A} &#x3D; L(\mathcal{A}\alpha_1, \dots, \mathcal{A}\alpha_n)$。</p>
+</li>
+<li><p><strong>单射判定</strong>：$\mathcal{A}$是单射$\iff \mathcal{A}\alpha_1, \dots, \mathcal{A}\alpha_n$ 线性无关。</p>
+<p>  证明思路：由 $\sum k_i \mathcal{A}\alpha_i &#x3D; 0$推导出$\mathcal{A}(\sum k_i \alpha_i) &#x3D; 0$，若 $\mathcal{A}$为单射则核为空，进而利用$\alpha_i$的无关性证得$k_i &#x3D; 0$。</p>
+</li>
+</ul>
+<hr>
+<h3 id="4-坐标同构-Coordinate-Isomorphism"><a href="#4-坐标同构-Coordinate-Isomorphism" class="headerlink" title="4. 坐标同构 (Coordinate Isomorphism)"></a>4. 坐标同构 (Coordinate Isomorphism)</h3><p>在 $n$维线性空间$V$中取定一组基$\alpha_1, \dots, \alpha_n$ 后，$V$中的每个元素$\alpha &#x3D; \sum k_i \alpha_i$与其坐标向量$[k_1, \dots, k_n]^T \in K^n$ 之间建立了一一对应关系。</p>
+<p><strong>结论</strong>：这种对应保持了向量的加法与数乘运算，即 $V$与向量空间$K^n$ 线性同构。</p>
+<hr>
+<h3 id="5-同构关系的性质"><a href="#5-同构关系的性质" class="headerlink" title="5. 同构关系的性质"></a>5. 同构关系的性质</h3><p>线性空间的同构关系满足：</p>
+<ul>
+<li><p><strong>自反性</strong>：$V \cong V$- <strong>交换性</strong>：若$U \cong V$，则 $V \cong U$- <strong>传递性</strong>：若$U \cong V$且$V \cong W$，则 $U \cong W$</p>
+<p>  因此，同构是线性空间集合上的一个<strong>等价关系</strong>。</p>
+</li>
+</ul>
+<hr>
+<h3 id="6-实例与应用"><a href="#6-实例与应用" class="headerlink" title="6. 实例与应用"></a>6. 实例与应用</h3><ul>
+<li><p><strong>矩阵秩的性质</strong>：</p>
+<p>  设矩阵 $A &#x3D; [\alpha_1, \dots, \alpha_n]$列满秩，则映射$X \mapsto AX$是$K^n$到$A$ 的列空间的线性同构。</p>
+</li>
+<li><p><strong>矩阵分解应用</strong>：</p>
+<p>  若 $B &#x3D; AC &#x3D; [\alpha_1, \dots, \alpha_n] [\gamma_1, \dots, \gamma_s]$，则：</p>
+<ol>
+<li><p>$B$的秩$&#x3D; C$ 的秩。</p>
+</li>
+<li><p>$B$的解空间$&#x3D; C$ 的解空间。</p>
+</li>
+<li><p>$\gamma_1, \dots, \gamma_s$是$\beta_1, \dots, \beta_s$在基$\alpha_1, \dots, \alpha_n$ 下的坐标。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>思考题</strong>：矩阵 $A$ 的行空间与列空间同构吗？</p>
+<p>  <strong>提示</strong>：由于行秩等于列秩，即维数相等，根据定理它们必然同构。</p>
+</li>
+</ul>
+<h1 id="商空间与线性映射基本定理"><a href="#商空间与线性映射基本定理" class="headerlink" title="商空间与线性映射基本定理"></a>商空间与线性映射基本定理</h1><p>商空间听起来很高级，实际上动机是简单的，我们知道重力势能可以简单地写为 $mgh$ ，那么水平方向如何运动便可以置之不顾了，那么我们略去三维中的两维，只看高度这一个坐标即可，商空间干的事其实也就是这样。</p>
+<h2 id="核心动机：忽略不相关的细节"><a href="#核心动机：忽略不相关的细节" class="headerlink" title="核心动机：忽略不相关的细节"></a>核心动机：忽略不相关的细节</h2><p>在处理复杂事物时，我们往往只关注某些特定的“层面”。</p>
+<ul>
+<li><p><strong>数学直观</strong>：如果我们对子空间 $W$ 方向的差异不感兴趣，就希望通过某种方式将其“抹去”或“淡化”。</p>
+</li>
+<li><p><strong>几何想象</strong>：将高维空间沿 $W$方向“压扁”，使得落在同一个与$W$ 平行的平面（陪集）上的所有点，在商空间视角下被视为同一个“元素”。</p>
+</li>
+</ul>
+<h2 id="W-陪集（Coset）"><a href="#W-陪集（Coset）" class="headerlink" title="$W$-陪集（Coset）"></a>$W$-陪集（Coset）</h2><p>陪集是将空间 $V$按照子空间$W$进行划分的基本单位。简单来说就是让$W&#x3D;0$。按照之前的重力势能的比喻，就是说在同一个高度的坐标我们就看做一个陪集，认为他们都相等，这里就可以把$W$看做$x,y$ 坐标，即被弃置不顾的东西。</p>
+<ul>
+<li><p><strong>等价关系</strong>：定义 $\alpha \sim \beta \iff \alpha - \beta \in W$。</p>
+</li>
+<li><p><strong>定义</strong>：对于 $V$中的向量$\beta$，其所在的等价类称为 <strong>$\beta$的$W$-陪集</strong>，记作 $\beta + W &#x3D; { \beta + \gamma \mid \gamma \in W }$。</p>
+</li>
+<li><p><strong>代表元</strong>：陪集中的任何向量都可以作为该陪集的代表。只要 $\alpha - \beta \in W$，则 $\alpha + W &#x3D; \beta + W$。</p>
+</li>
+</ul>
+<h2 id="商空间-V-W-的代数结构"><a href="#商空间-V-W-的代数结构" class="headerlink" title="商空间 $V&#x2F;W$ 的代数结构"></a>商空间 $V&#x2F;W$ 的代数结构</h2><p>全体 $W$-陪集的集合记为 $V&#x2F;W$。为了使其成为线性空间，定义了如下运算：</p>
+<ul>
+<li><p><strong>加法</strong>：$(\alpha + W) + (\beta + W) &#x3D; (\alpha + \beta) + W$</p>
+</li>
+<li><p><strong>数乘</strong>：$k(\alpha + W) &#x3D; k\alpha + W$</p>
+</li>
+<li><p><strong>良定义性</strong>：运算结果不依赖于陪集代表元的选取（需验证）。作差即可验证。</p>
+</li>
+<li><p><strong>结论</strong>：在此运算下，$V&#x2F;W$ 构成线性空间，称为 <strong>$V$模$W$ 的商空间</strong>。</p>
+</li>
+</ul>
+<h2 id="基与维度（Basis-and-Dimension）"><a href="#基与维度（Basis-and-Dimension）" class="headerlink" title="基与维度（Basis and Dimension）"></a>基与维度（Basis and Dimension）</h2><p>这是将商空间具体化的关键。</p>
+<ul>
+<li><p><strong>定理</strong>：设 $W$的一组基为$\alpha_1, \dots, \alpha_s$，将其扩充为 $V$的一组基$\alpha_1, \dots, \alpha_s, \beta_1, \dots, \beta_r$。</p>
+</li>
+<li><p><strong>结论</strong>：剩余的向量所形成的陪集 ${\beta_1 + W, \dots, \beta_r + W}$构成了商空间$V&#x2F;W$ 的一组<strong>基</strong>。</p>
+</li>
+<li><p><strong>维数公式</strong>：</p>
+</li>
+</ul>
+<p>
+$$
+\dim(V/W) = \dim V - \dim W
+$$
+</p>
+
+<p>证明：</p>
+<ul>
+<li><p><strong>证明能表出（Spanning）</strong>：</p>
+<p>  对于 $V&#x2F;W$中任意元素$\alpha + W$，将 $\alpha$用$V$的全基线性表示。由于$\alpha_i$部分全部落在$W$中，在商运算（模$W$）下，属于 $W$的分量会自动坍缩为零元（即$0 + W$）。</p>
+</li>
+</ul>
+<p>
+$$
+\alpha + W = (\sum k_i \alpha_i + \sum l_j \beta_j) + W = (\sum l_j \beta_j) + W
+$$
+</p>
+
+<p>这说明 $\beta_j + W$ 足以覆盖整个商空间。</p>
+<ul>
+<li><p><strong>证明线性无关（Linear Independence）</strong>：</p>
+<p>  设定线性组合为零元：$\sum l_j (\beta_j + W) &#x3D; 0 + W$。</p>
+<p>  这意味着向量 $\sum l_j \beta_j$必须落在子空间$W$ 内。</p>
+<p>  根据基底的唯一定义，若一个仅由 $\beta_j$组成的向量属于$\text{span}{\alpha_i}$，由于全基 ${\alpha_i, \beta_j}$是线性无关的，所有系数$l_j$必须全为$0$。</p>
+</li>
+</ul>
+<h2 id="线性映射的核心：核与像"><a href="#线性映射的核心：核与像" class="headerlink" title="线性映射的核心：核与像"></a>线性映射的核心：核与像</h2><p>对于任何线性映射 $\mathcal{A}: U \to V$，都有两个关键的子空间：</p>
+<ul>
+<li><p><strong>像空间 $\text{Im},\mathcal{A}$</strong>：$V$ 中所有能被映射到的向量集合。它反映了映射的“广度”。</p>
+</li>
+<li><p><strong>核空间 $\text{Ker},\mathcal{A}$</strong>：$U$中所有被映射到$0$ 的向量集合。它反映了映射丢失的“信息量”。</p>
+</li>
+<li><p><strong>典范映射</strong>：特例情况下，映射 $\mathcal{A}: V \to V&#x2F;W$将向量映为其陪集$\alpha + W$，此时 $\text{Ker},\mathcal{A} &#x3D; W$，$\text{Im},\mathcal{A} &#x3D; V&#x2F;W$。</p>
+</li>
+</ul>
+<h2 id="线性映射基本定理"><a href="#线性映射基本定理" class="headerlink" title="线性映射基本定理"></a>线性映射基本定理</h2><p>这是线性代数的高光时刻。定理指出：<strong>任何线性映射都可以被“分解”为一个同构映射。</strong></p>
+<ul>
+<li><strong>同构关系</strong>：</li>
+</ul>
+<p>
+$$
+U/\text{Ker}\,\mathcal{A} \cong \text{Im}\,\mathcal{A}
+$$
+</p>
+
+<ul>
+<li><p><strong>直观理解</strong>：</p>
+<p>  如果我们把定义域 $U$中那些映射到同一个点的向量“打包”在一起（即作商空间，模掉$\text{Ker},\mathcal{A}$），那么这个“包”的集合与像空间之间就是一一对应的。</p>
+</li>
+<li><p><strong>性质</strong>：映射 $\varphi: \alpha + \text{Ker},\mathcal{A} \mapsto \mathcal{A}\alpha$ 是良定义的，且既是单射又是满射。</p>
+</li>
+</ul>
+<h4 id="1-诱导映射的构造"><a href="#1-诱导映射的构造" class="headerlink" title="1. 诱导映射的构造"></a>1. 诱导映射的构造</h4><p>定义映射 $\varphi: U&#x2F;\text{Ker},\mathcal{A} \to \text{Im},\mathcal{A}$，其规则为：</p>
+<p>
+$$
+\varphi(\alpha + \text{Ker}\,\mathcal{A}) = \mathcal{A}\alpha
+$$
+</p>
+
+<ul>
+<li><p><strong>代数上的相容性</strong>：$\varphi$ 完美保持了向量的加法与数乘运算。</p>
+</li>
+<li><p><strong>几何上的映射关系</strong>：原本在 $U$中所有映射到同一个像点$\beta$的向量（它们构成一个$\text{Ker},\mathcal{A}$ 的陪集），现在被视为商空间中的一个整体。这意味着映射从“多对一”变成了一对一的<strong>线性同构</strong>。</p>
+</li>
+</ul>
+<p>具体的验证比较容易，就不打出来了。</p>
+<h4 id="2-维度守恒：秩-零化度定理"><a href="#2-维度守恒：秩-零化度定理" class="headerlink" title="2. 维度守恒：秩-零化度定理"></a>2. 维度守恒：秩-零化度定理</h4><p>基于 $U&#x2F;\text{Ker},\mathcal{A} \cong \text{Im},\mathcal{A}$ 的同构关系，我们必然得到维度的平衡：</p>
+<p>
+$$
+\dim U = \dim(\text{Ker}\,\mathcal{A}) + \dim(\text{Im}\,\mathcal{A})
+$$
+</p>
+
+<p>这可以看作是定义域空间的“能量守恒”：一部分维度坍缩到了零点（核空间），剩下的维度则铺开了映射的像（像空间）。</p>
+<hr>
+<h3 id="矩阵视角的具象化：方程组与空间的映射"><a href="#矩阵视角的具象化：方程组与空间的映射" class="headerlink" title="矩阵视角的具象化：方程组与空间的映射"></a>矩阵视角的具象化：方程组与空间的映射</h3><p>当我们将上述理论落地到矩阵 $A \in K^{m \times n}$ 时，抽象的符号变成了直观的线性方程组特性：</p>
+<table>
+<thead>
+<tr>
+<th><strong>抽象概念</strong></th>
+<th><strong>矩阵具象</strong></th>
+<th><strong>物理&#x2F;几何意义</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>像空间 $\text{Im},\mathcal{A}$</strong></td>
+<td><strong>列空间 (Column Space)</strong></td>
+<td>矩阵各列向量线性组合所能张成的空间。</td>
+</tr>
+<tr>
+<td><strong>核空间 $\text{Ker},\mathcal{A}$</strong></td>
+<td><strong>解空间 (Null Space)</strong></td>
+<td>齐次线性方程组 $A\mathbf{x} &#x3D; \mathbf{0}$ 的全体解。</td>
+</tr>
+<tr>
+<td><strong>同构关系</strong></td>
+<td>$K^n &#x2F; \text{Null}(A) \cong \text{Col}(A)$</td>
+<td>剔除解空间后的输入，与输出空间达成一一对应。</td>
+</tr>
+</tbody></table>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>由基本定理可直接导出矩阵论的基石：</p>
+<p><strong>矩阵的秩（列空间的维数） + 解空间的维数 &#x3D; 矩阵的列数。</strong></p>
+<p>这意味着，非齐次线性方程组 $A\mathbf{x} &#x3D; \mathbf{b}$ 的解集之所以呈现出“特解 + 齐次核”的形态，本质上是因为它就是商空间中某一个特定的陪集。</p>
+<h3 id="商空间的使用方法：构造满射，模去核空间，得到同构"><a href="#商空间的使用方法：构造满射，模去核空间，得到同构" class="headerlink" title="商空间的使用方法：构造满射，模去核空间，得到同构"></a><strong>商空间的使用方法：构造满射，模去核空间，得到同构</strong></h3><p><strong>例：设 $U, W$是线性空间$V$ 的子空间。证明：</strong></p>
+<p>
+$$
+U / U \cap W \cong (U + W) / W
+$$
+</p>
+
+<p><strong>证：映射</strong> $\mathcal{A} : U \to (U + W) &#x2F; W</p>
+<p>
+$$
+$\alpha \mapsto \alpha + W
+$$
+</p>
+
+<p>是线性映射。</p>
+<p>$\mathcal{A}$显然是满射 且$\text{Ker} \mathcal{A} &#x3D; U \cap W$。</p>
+<p>由线性映射基本定理即得到结论。</p>
+<hr>
+<p> <strong>$\mathbf{W}$的补空间$\cong$模$\mathbf{W}$ 的商空间</strong></p>
+<p><strong>定理：</strong></p>
+<p>设 $\mathbf{V}$的子空间$\mathbf{W}$的有一个补空间$\mathbf{U}$，即 $\mathbf{W} \oplus \mathbf{U} &#x3D; \mathbf{V}$。则映射</p>
+<p>
+$$
+\sigma : \mathbf{U} \to \mathbf{V} / \mathbf{W}
+$$
+</p>
+
+<p>
+$$
+\alpha \mapsto \alpha + \mathbf{W}
+$$
+</p>
+
+<p>是 $\mathbf{W}$的补空间$\mathbf{U}$到商空间$\mathbf{V} &#x2F; \mathbf{W}$ 的同构。</p>
+<hr>
+<p><strong>定理</strong>：</p>
+<p>
+$$
+\text{Im}\mathcal{A} \big/ (\text{Im}\mathcal{A} \cap \text{Ker}\mathcal{B}) \cong \text{Im}(\mathcal{BA})
+$$
+</p>
+
+<p>首先，考虑把 $B$限制在$ImA$上，有$Ker(A|_W)&#x3D;KerA\cap ImB$，从而$ImA&#x2F;KerB \cap ImA\cong Im(BA)$。$\mathbf{W} \oplus \mathbf{U} &#x3D; \mathbf{V} \implies \mathbf{U} \cong \mathbf{V} &#x2F; \mathbf{W}$</p>
+<p>$\beta + \alpha &#x3D; \gamma \mapsto \alpha + \mathbf{W} &#x3D; \gamma + \mathbf{W}$</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ffa2c4">数学</a>
+        </span>
+        
+    </div>
+    <a href="/2026/04/13/%E7%BA%BF%E4%BB%A3/%E7%AC%94%E8%AE%B03.%E7%BA%BF%E6%80%A7%E7%A9%BA%E9%97%B4/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/13/%E7%BA%BF%E4%BB%A3/%E7%AC%94%E8%AE%B04.%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E7%9A%84%E5%90%8C%E6%9E%84/">
+        <h2 class="post-title">笔记4.矩阵空间与向量空间的同构</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E7%BA%BF%E4%BB%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                线代
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/13
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>对一个向量，我们把它看做 $n$个坐标，构建从向量到$n$ 个坐标的同构。<br>矩阵实际上也就是向量的堆叠，那类似的我们把它看做 $n$ 个向量，也可以构建同构。</p>
+<h2 id="矩阵的展开-Matrix-Vectorization"><a href="#矩阵的展开-Matrix-Vectorization" class="headerlink" title="矩阵的展开 (Matrix Vectorization)"></a>矩阵的展开 (Matrix Vectorization)</h2><ul>
+<li><p><strong>列展开 $\text{cs}(A)$</strong>：将 $m \times n$矩阵$A$的元素自左向右、一列一列地排列成一个$mn$ 维列向量。</p>
+<ul>
+<li><strong>示例</strong>：若 $A &#x3D; \begin{pmatrix} 1 &amp; 4 \ 2 &amp; 5 \ 3 &amp; 6 \end{pmatrix}$，则 $\text{cs}(A) &#x3D; [1, 2, 3, 4, 5, 6]^T$。</li>
+</ul>
+</li>
+<li><p><strong>行展开 $\text{rs}(A)$</strong>：类似地，将矩阵按行顺序排列成一个行向量。</p>
+<ul>
+<li><strong>示例</strong>：对于上述矩阵，$rs(A) &#x3D; [1, 4, 2, 5, 3, 6]$。</li>
+</ul>
+</li>
+</ul>
+<p>这显然是同构，也就是说，我们完全可以把矩阵看成一个超级向量。</p>
+<hr>
+<h2 id="Kronecker-积-Kronecker-Product"><a href="#Kronecker-积-Kronecker-Product" class="headerlink" title="Kronecker 积 (Kronecker Product)"></a>Kronecker 积 (Kronecker Product)</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>设矩阵 $A &#x3D; [a_{ij}] \in M_{m,n}(K)$，矩阵 $B \in M_{p,q}(K)$。它们的 Kronecker 积（也称张量积）记为 $A \otimes B$，是一个 $mp \times nq$ 的分块矩阵：</p>
+<p>
+$$
+A \otimes B = \begin{pmatrix} a_{11}B & \dots & a_{1n}B \\ \vdots & \ddots & \vdots \\ a_{m1}B & \dots & a_{mn}B \end{pmatrix}
+$$
+</p>
+
+<p>即用 $A$的每个元素$a_{ij}$乘以矩阵$B$ 得到的分块矩阵。</p>
+<h3 id="关键性质"><a href="#关键性质" class="headerlink" title="关键性质"></a>关键性质</h3><ul>
+<li><p><strong>非交换性</strong>：一般情况下，$A \otimes B \neq B \otimes A$。</p>
+</li>
+<li><p><strong>结合律</strong>：$(A \otimes B) \otimes C &#x3D; A \otimes (B \otimes C)$。</p>
+</li>
+<li><p><strong>特殊情形</strong>：当 $A$为列向量且$C$为行向量时（或反之），在特定维度下可能满足$A \otimes C &#x3D; C \otimes A &#x3D; AC$。</p>
+</li>
+</ul>
+<hr>
+<h2 id="运算示例"><a href="#运算示例" class="headerlink" title="运算示例"></a>运算示例</h2><h3 id="基础计算"><a href="#基础计算" class="headerlink" title="基础计算"></a>基础计算</h3><p>若 $A &#x3D; \begin{pmatrix} 1 &amp; 2 &amp; 3 \ 4 &amp; 5 &amp; 6 \end{pmatrix}$，$B &#x3D; \begin{pmatrix} a &amp; b \ c &amp; d \end{pmatrix}$，则：</p>
+<p>
+$$
+A \otimes B = \begin{pmatrix} B & 2B & 3B \\ 4B & 5B & 6B \end{pmatrix} = \begin{pmatrix} a & b & 2a & 2b & 3a & 3b \\ c & d & 2c & 2d & 3c & 3d \\ 4a & 4b & 5a & 5b & 6a & 6b \\ 4c & 4d & 5c & 5d & 6c & 6d \end{pmatrix}
+$$
+</p>
+
+<h3 id="向量间的积"><a href="#向量间的积" class="headerlink" title="向量间的积"></a>向量间的积</h3><p>若 $A &#x3D; [1, 2, 3]^T$，$B &#x3D; [a, b]^T$，则：</p>
+<ul>
+<li><p>$A \otimes B &#x3D; [a, b, 2a, 2b, 3a, 3b]^T$-$B \otimes A &#x3D; [a, 2a, 3a, b, 2b, 3b]^T$</p>
+<p>  （此处直观展示了顺序不同导致的结果差异）</p>
+</li>
+</ul>
+<hr>
+<h2 id="4-混合乘积公式-Mixed-Product-Property"><a href="#4-混合乘积公式-Mixed-Product-Property" class="headerlink" title="4. 混合乘积公式 (Mixed-Product Property)"></a>4. 混合乘积公式 (Mixed-Product Property)</h2><p>这是 Kronecker 积最重要的性质之一，联系了普通矩阵乘法与张量积：</p>
+<p>
+$$
+(A \otimes B)(C \otimes D) = (AC) \otimes (BD)
+$$
+</p>
+
+<ul>
+<li><p><strong>前提条件</strong>：矩阵乘法 $AC$和$BD$必须有意义（即$A$的列数等于$C$ 的行数，$B$的列数等于$D$ 的行数）。</p>
+</li>
+<li><p><strong>推导逻辑</strong>：通过分块矩阵乘法规律可以证明，左侧展开后的子块项 $\sum a_{ik} c_{kj} B D$正好对应右侧$(AC) \otimes (BD)$ 的构造。</p>
+</li>
+</ul>
+<h2 id="Kronecker-积的核心性质"><a href="#Kronecker-积的核心性质" class="headerlink" title="Kronecker 积的核心性质"></a>Kronecker 积的核心性质</h2><ul>
+<li><p><strong>结合律</strong>：$(A \otimes B) \otimes C &#x3D; A \otimes (B \otimes C)$</p>
+</li>
+<li><p><strong>混合乘积公式</strong>：$(A \otimes B)(C \otimes D) &#x3D; AC \otimes BD$</p>
+</li>
+<li><p><strong>逆矩阵</strong>：$(A \otimes B)^{-1} &#x3D; A^{-1} \otimes B^{-1}$</p>
+</li>
+<li><p><strong>转置</strong>：$(A \otimes B)^T &#x3D; A^T \otimes B^T$- <strong>正交性保持</strong>：若$A, B$是正交矩阵，则$A \otimes B$ 也是正交矩阵。</p>
+</li>
+</ul>
+<hr>
+<h2 id="代数特征（秩、行列式、特征值）"><a href="#代数特征（秩、行列式、特征值）" class="headerlink" title="代数特征（秩、行列式、特征值）"></a>代数特征（秩、行列式、特征值）</h2><ol>
+<li><p><strong>秩</strong>：$\text{rank}(A \otimes B) &#x3D; \text{rank}(A) \cdot \text{rank}(B)$2. <strong>行列式</strong>：设$A$为$m$ 阶方阵，$B$为$n$阶方阵，则$|A \otimes B| &#x3D; |A|^n |B|^m$</p>
+</li>
+<li><p><strong>特征值</strong>：</p>
+<ul>
+<li><p>设 $A$的特征值为$\lambda_i$，$B$的特征值为$\mu_j$。</p>
+</li>
+<li><p>$A \otimes B$的特征值为$\lambda_i \mu_j$。</p>
+</li>
+<li><p><strong>Kronecker 和</strong> $A \otimes I_n + I_m \otimes B$的特征值为$\lambda_i + \mu_j$。</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="特殊实例：Hadamard-矩阵的构造"><a href="#特殊实例：Hadamard-矩阵的构造" class="headerlink" title="特殊实例：Hadamard 矩阵的构造"></a>特殊实例：Hadamard 矩阵的构造</h2><p>利用 Kronecker 积可以递归构造特殊的正交矩阵（如 Hadamard 矩阵）：</p>
+<ul>
+<li>$A_2 &#x3D; \frac{1}{\sqrt{2}} \begin{pmatrix} 1 &amp; 1 \ 1 &amp; -1 \end{pmatrix}$-$A_4 &#x3D; A_2 \otimes A_2 &#x3D; \frac{1}{2} \begin{pmatrix} A_2 &amp; A_2 \ A_2 &amp; -A_2 \end{pmatrix}$-$A_8 &#x3D; A_2 \otimes A_4$ … 以此类推。</li>
+</ul>
+<hr>
+<h2 id="矩阵列展开的核心定理"><a href="#矩阵列展开的核心定理" class="headerlink" title="矩阵列展开的核心定理"></a>矩阵列展开的核心定理</h2><p>这是连接矩阵方程与线性方程组的桥梁：</p>
+<h3 id="定理：-text-cs-AXB-B-T-otimes-A-text-cs-X"><a href="#定理：-text-cs-AXB-B-T-otimes-A-text-cs-X" class="headerlink" title="定理：$\text{cs}(AXB) &#x3D; (B^T \otimes A) \text{cs}(X)$"></a><strong>定理：$\text{cs}(AXB) &#x3D; (B^T \otimes A) \text{cs}(X)$</strong></h3><h4 id="证明逻辑拆解："><a href="#证明逻辑拆解：" class="headerlink" title="证明逻辑拆解："></a>证明逻辑拆解：</h4><ol>
+<li><p><strong>左乘变换</strong>：$\text{cs}(AX) &#x3D; (I_n \otimes A) \text{cs}(X)$。这说明 $A$对$X$ 的左乘对应于列展开后的块对角阵相乘。<br><img src="/images/Pasted_image_20260413160037.png"></p>
+</li>
+<li><p><strong>右乘变换</strong>：$\text{cs}(XB) &#x3D; (B^T \otimes I_m) \text{cs}(X)$。注意此处 $B$ 需要转置。<br> <img src="/images/Pasted_image_20260413160048.png"></p>
+</li>
+<li><p><strong>合成结论</strong>：通过结合律 $\text{cs}(A(XB)) &#x3D; (I_n \otimes A) \text{cs}(XB) &#x3D; (I_n \otimes A)(B^T \otimes I_m) \text{cs}(X)$，利用混合乘积公式化简为 $(B^T \otimes A) \text{cs}(X)$。<br><img src="/images/Pasted_image_20260413160059.png"></p>
+</li>
+</ol>
+<hr>
+<h2 id="线性变换的矩阵表示"><a href="#线性变换的矩阵表示" class="headerlink" title="线性变换的矩阵表示"></a>线性变换的矩阵表示</h2><p>设 $\mathcal{A}: X \mapsto AXB$是矩阵空间$M_{m,n}(K)$ 上的线性变换：</p>
+<ul>
+<li><p>在标准基 $E_{1,1}, E_{2,1}, \dots, E_{m,n}$（即按列展开排序）下，该线性变换对应的矩阵正是 <strong>$B^T \otimes A$</strong>。</p>
+</li>
+<li><p><strong>直观理解</strong>：</p>
+<ul>
+<li><p>$A$作用于$X$ 的<strong>行变换</strong>。</p>
+</li>
+<li><p>$B$作用于$X$ 的<strong>列变换</strong>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="线性矩阵方程的向量化求解"><a href="#线性矩阵方程的向量化求解" class="headerlink" title="线性矩阵方程的向量化求解"></a>线性矩阵方程的向量化求解</h2><p>基于前文的列展开性质，可以将复杂的矩阵方程转化为标准的线性方程组形式。</p>
+<ul>
+<li><strong>推论</strong>：$X \in M_{m,n}(K)$是矩阵方程$\sum_{j&#x3D;1}^{s} A_j X B_j &#x3D; C$的解，<strong>当且仅当</strong>其列展开$\text{cs}(X)$ 满足：</li>
+</ul>
+<p>
+$$
+\left( \sum_{j=1}^{s} B_j^T \otimes A_j \right) \text{cs}(X) = \text{cs}(C)
+$$
+</p>
+
+<p>其中 $A_j, B_j$分别为$m, n$ 级方阵，$C \in M_{m,n}(K)$。</p>
+<ul>
+<li><strong>本质</strong>：这利用了 Kronecker 积将矩阵算子“拉直”为算子矩阵，使得我们能用经典的线性代数工具（如高斯消元法）来处理矩阵方程。</li>
+</ul>
+<hr>
+<h2 id="张量积空间-Tensor-Product-Space"><a href="#张量积空间-Tensor-Product-Space" class="headerlink" title="张量积空间 (Tensor Product Space)"></a>张量积空间 (Tensor Product Space)</h2><p>将张量积从矩阵运算上升到线性空间的构造。</p>
+<ul>
+<li><strong>定义</strong>：设 $U &#x3D; R^m, V &#x3D; R^n$ 是两个线性空间，集合</li>
+</ul>
+<p>
+$$
+T = \left\{ \sum_{i=1}^{k} \alpha_i \otimes \beta_i \mid \alpha_i \in U, \beta_i \in V, k \geq 1 \right\}
+$$
+</p>
+
+<p>构成一个线性空间，称为 $U$与$V$的<strong>张量积空间</strong>，记为$U \otimes V$。</p>
+<ul>
+<li><p><strong>基与维数</strong>：</p>
+<ul>
+<li><p>若 $\alpha_1, \dots, \alpha_m$是$U$ 的基，$\beta_1, \dots, \beta_n$是$V$ 的基。</p>
+</li>
+<li><p>则所有可能的组合 ${\alpha_i \otimes \beta_j}$构成$U \otimes V$ 的一组基。</p>
+</li>
+<li><p><strong>结论</strong>：$U \otimes V \cong R^{mn}$，即张量积空间的维数是原空间维数的乘积。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="线性变换的张量积"><a href="#线性变换的张量积" class="headerlink" title="线性变换的张量积"></a>线性变换的张量积</h2><p>这是张量积在算子层面的推广。</p>
+<ul>
+<li><strong>定义</strong>：设 $\mathcal{A} \in \text{Hom}(U), \mathcal{B} \in \text{Hom}(V)$，定义线性变换 $\mathcal{A} \otimes \mathcal{B}: U \otimes V \to U \otimes V$ 为：</li>
+</ul>
+<p>
+$$
+\mathcal{A} \otimes \mathcal{B} (\alpha \otimes \beta) = (\mathcal{A}\alpha) \otimes (\mathcal{B}\beta)
+$$
+</p>
+
+<p>该变换称为变换 $\mathcal{A}$与$\mathcal{B}$ 的张量积。</p>
+<ul>
+<li><p><strong>矩阵表示</strong>：</p>
+<p>  若 $\mathcal{A}$在基${\alpha_i}$下的矩阵为$A$，$\mathcal{B}$在基${\beta_j}$下的矩阵为$B$，则线性变换 $\mathcal{A} \otimes \mathcal{B}$在$U \otimes V$的基${\alpha_i \otimes \beta_j}$ 下的矩阵恰好就是 <strong>$A \otimes B$</strong>。</p>
+</li>
+</ul>
+<p>这些东西实际上是可以简化结构，让我们更清楚地看到矩阵的，例如我们可以看一些问题：</p>
+<hr>
+<h3 id="题目：矩阵方程解空间的性质证明"><a href="#题目：矩阵方程解空间的性质证明" class="headerlink" title="题目：矩阵方程解空间的性质证明"></a>题目：矩阵方程解空间的性质证明</h3><p>设 $A, B$分别是$m, n$级方阵，且$\text{rank}(A) &#x3D; r$，$\text{rank}(B) &#x3D; s$。证明：</p>
+<p>
+$$
+W = \{ X \in M_{m,n}(K) \mid AXB = 0 \}
+$$
+</p>
+
+<p>是矩阵空间 $M_{m,n}(K)$的子空间，且$\dim W &#x3D; mn - rs$。</p>
+<hr>
+<h3 id="1-证明-W-是子空间"><a href="#1-证明-W-是子空间" class="headerlink" title="1. 证明 $W$ 是子空间"></a>1. 证明 $W$ 是子空间</h3><p>根据子空间的定义，需验证对加法和数乘的封闭性：</p>
+<ul>
+<li><strong>加法封闭性</strong>：设 $X, Y \in W$，则有 $AXB &#x3D; 0$且$AYB &#x3D; 0$。</li>
+</ul>
+<p>
+$$
+A(X + Y)B = AXB + AYB = 0 + 0 = 0
+$$
+</p>
+
+<p>故 $X + Y \in W$。</p>
+<ul>
+<li><strong>数乘封闭性</strong>：设 $X \in W, k \in K$，则：</li>
+</ul>
+<p>
+$$
+A(kX)B = k(AXB) = k \cdot 0 = 0
+$$
+</p>
+
+<p>故 $kX \in W$。</p>
+<pre><code>由此可知，$W$是$M_{m,n}(K)$ 的子空间。
+</code></pre>
+<hr>
+<h3 id="2-证明-dim-W-mn-rs"><a href="#2-证明-dim-W-mn-rs" class="headerlink" title="2. 证明 $\dim W &#x3D; mn - rs$"></a>2. 证明 $\dim W &#x3D; mn - rs$</h3><p>这里使用了**列展开（Vectorization）**和 <strong>Kronecker 积</strong> 的性质将矩阵问题转化为线性方程组问题。</p>
+<h4 id="1-方程转化"><a href="#1-方程转化" class="headerlink" title="(1) 方程转化"></a>(1) 方程转化</h4><p>利用恒等式 $\text{cs}(AXB) &#x3D; (B^T \otimes A) \text{cs}(X)$，原矩阵方程 $AXB &#x3D; 0$ 等价于线性方程组：</p>
+<p>
+$$
+(B^T \otimes A) \cdot \text{cs}(X) = \mathbf{0}
+$$
+</p>
+
+<p>其中，$\text{cs}(X)$是一个$mn$维的列向量，系数矩阵为$M &#x3D; B^T \otimes A$，其规模为 $mn \times mn$。</p>
+<h4 id="2-确定系数矩阵的秩"><a href="#2-确定系数矩阵的秩" class="headerlink" title="(2) 确定系数矩阵的秩"></a>(2) 确定系数矩阵的秩</h4><p>根据 Kronecker 积关于秩的性质：</p>
+<p>
+$$
+\text{rank}(B^T \otimes A) = \text{rank}(B^T) \cdot \text{rank}(A)
+$$
+</p>
+
+<p>由于矩阵转置不改变秩，且已知 $\text{rank}(A) &#x3D; r, \text{rank}(B) &#x3D; s$，则：</p>
+<p>
+$$
+\text{rank}(B^T \otimes A) = s \cdot r = rs
+$$
+</p>
+
+<h4 id="3-利用维数公式"><a href="#3-利用维数公式" class="headerlink" title="(3) 利用维数公式"></a>(3) 利用维数公式</h4><p>子空间 $W$ 的维数等价于上述齐次线性方程组解空间的维数。根据线性方程组解空间的维数公式（$n$ 维空间减去系数矩阵的秩）：</p>
+<p>
+$$
+\dim W = \dim (\text{解空间}) = mn - \text{rank}(B^T \otimes A) = mn - rs
+$$
+</p>
+
+<p><strong>证毕。</strong></p>
+<h3 id="题目：矩阵变换-mathcal-S-的特征值与对角化证明"><a href="#题目：矩阵变换-mathcal-S-的特征值与对角化证明" class="headerlink" title="题目：矩阵变换 $\mathcal{S}$ 的特征值与对角化证明"></a>题目：矩阵变换 $\mathcal{S}$ 的特征值与对角化证明</h3><p>设 $A, B$分别是$m, n$阶复矩阵，其特征值分别为${\lambda_1, \dots, \lambda_m}$与${\mu_1, \dots, \mu_n}$。</p>
+<p>定义映射 $\mathcal{S}: M_{m,n}(\mathbb{C}) \to M_{m,n}(\mathbb{C})$：</p>
+<p>
+$$
+\mathcal{S}(X) = AX - XB + AXB^2
+$$
+</p>
+
+<hr>
+<h3 id="1-证明-mathcal-S-是线性变换"><a href="#1-证明-mathcal-S-是线性变换" class="headerlink" title="1. 证明 $\mathcal{S}$ 是线性变换"></a>1. 证明 $\mathcal{S}$ 是线性变换</h3><p>根据线性变换的定义，需满足加法与数乘的齐次性：</p>
+<ul>
+<li><strong>线性度验证</strong>：利用矩阵乘法的分配律与结合律：</li>
+</ul>
+<p>
+$$
+\mathcal{S}(k_1 X + k_2 Y) = A(k_1 X + k_2 Y) - (k_1 X + k_2 Y)B + A(k_1 X + k_2 Y)B^2
+$$
+</p>
+
+<p>
+$$
+= k_1(AX - XB + AXB^2) + k_2(AY - YB + AYB^2) = k_1 \mathcal{S}(X) + k_2 \mathcal{S}(Y)
+$$
+</p>
+
+<p>故 $\mathcal{S}$是$M_{m,n}(\mathbb{C})$ 上的线性变换。</p>
+<hr>
+<h3 id="2-求变换-mathcal-S-的所有特征值"><a href="#2-求变换-mathcal-S-的所有特征值" class="headerlink" title="2. 求变换 $\mathcal{S}$ 的所有特征值"></a>2. 求变换 $\mathcal{S}$ 的所有特征值</h3><p>利用<strong>列展开（Vectorization）</strong>，我们将 $\mathcal{S}(X)$ 转换为向量形式：</p>
+<p>
+$$
+\text{cs}(\mathcal{S}(X)) = \text{cs}(AXI_n - I_m XB + AXB^2)
+$$
+</p>
+
+<p>根据公式 $\text{cs}(AXB) &#x3D; (B^T \otimes A) \text{cs}(X)$，提取 $\text{cs}(X)$得到变换矩阵$M$：</p>
+<p>
+$$
+M = (I_n \otimes A) - (B^T \otimes I_m) + ((B^2)^T \otimes A)
+$$
+</p>
+
+<ul>
+<li><p><strong>特征值计算</strong>：</p>
+<p>  已知 $A$的特征值为$\lambda_i$，$B$（及 $B^T$）的特征值为 $\mu_j$。</p>
+<p>  根据 Kronecker 积的性质，特征值的对应关系为：</p>
+<ul>
+<li>$I_n \otimes A$的特征值为$1 \cdot \lambda_i &#x3D; \lambda_i$-$B^T \otimes I_m$的特征值为$\mu_j \cdot 1 &#x3D; \mu_j$-$(B^T)^2 \otimes A$的特征值为$\mu_j^2 \cdot \lambda_i$由于这些项在同一组基（由$A$和$B^T$的特征向量构成的张量积基）下可以同时三角化，因此变换$\mathcal{S}$ 的特征值为：</li>
+</ul>
+</li>
+</ul>
+<p>
+$$
+\lambda'_{ij} = \lambda_i - \mu_j + \lambda_i \mu_j^2, \quad (i=1,\dots,m; \ j=1,\dots,n)
+$$
+</p>
+
+<hr>
+<h3 id="3-对角化证明与特征向量"><a href="#3-对角化证明与特征向量" class="headerlink" title="3. 对角化证明与特征向量"></a>3. 对角化证明与特征向量</h3><p><strong>证明：</strong></p>
+<ol>
+<li><p><strong>前提条件</strong>：已知 $A$和$B$可对角化。这意味着$A$有$m$个线性无关的特征向量$\alpha_i$， $B^T$有$n$个线性无关的特征向量$\gamma_j$（注意 $B$可对角化则$B^T$ 亦然，且特征值相同）。</p>
+</li>
+<li><p><strong>构造变换 $\mathcal{S}$ 的特征向量</strong>：</p>
+<p> 在张量积空间 $M_{m,n}(\mathbb{C})$中，变换$\mathcal{S}$ 的特征向量对应的“矩阵形式”为：</p>
+</li>
+</ol>
+<p>
+$$
+X_{ij} = \alpha_i \beta_j^H \quad (\text{或更简单地记为 } \alpha_i \text{ 与 } B \text{ 的左特征向量的积})
+$$
+</p>
+
+<p>更严谨地说，若 $A\alpha_i &#x3D; \lambda_i \alpha_i$，且 $\beta_j$是$B$的特征向量（满足$B\beta_j &#x3D; \mu_j \beta_j$并不直观，这里通常看作$X \beta_j$ 的映射关系）。</p>
+<ol start="3">
+<li><p><strong>结论</strong>：</p>
+<p> 由于我们能构造出 $m \times n$个形如$E_{ij} &#x3D; \alpha_i \otimes \gamma_j$的线性无关特征向量，而空间$M_{m,n}(\mathbb{C})$的维数恰好也是$mn$，特征向量集构成了空间的一组基。</p>
+<p> <strong>故 $\mathcal{S}$ 可对角化。</strong></p>
+</li>
+</ol>
+<ul>
+<li><p><strong>$\mathcal{S}$ 的特征向量（矩阵形式）</strong>：</p>
+<p>  即满足 $\mathcal{S}(X) &#x3D; \lambda’_{ij} X$的矩阵。若$A \alpha_i &#x3D; \lambda_i \alpha_i$且$\beta_j^T B &#x3D; \mu_j \beta_j^T$（即 $\beta_j^T$是$B$ 的左特征向量），则：</p>
+</li>
+</ul>
+<p>
+$$
+X_{ij} = \alpha_i \beta_j^T
+$$
+</p>
+
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ffa2c4">数学</a>
+        </span>
+        
+    </div>
+    <a href="/2026/04/13/%E7%BA%BF%E4%BB%A3/%E7%AC%94%E8%AE%B04.%E7%9F%A9%E9%98%B5%E7%A9%BA%E9%97%B4%E4%B8%8E%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E7%9A%84%E5%90%8C%E6%9E%84/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/05/%E7%BA%BF%E4%BB%A3/%E7%A5%9E%E7%A7%98%E8%A1%A5%E5%85%85%E9%A2%98/">
+        <h2 class="post-title">神秘补充题</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E7%BA%BF%E4%BB%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                线代
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/5
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="一"><a href="#一" class="headerlink" title="一"></a>一</h1><p>设 $V &#x3D; \mathbb{F}<em>{13}^3$是有限域$\mathbb{F}</em>{13}$ 上的三维向量空间。给定矩阵：</p>
+<p>
+$$
+A = \begin{bmatrix} 5 & 7 & 7 \\ 12 & 4 & 2 \\ 3 & 7 & 9 \end{bmatrix} \pmod{13}
+$$
+</p>
+
+<ol>
+<li><p>对角化判定判断矩阵 $A$能否在域$\mathbb{F}_{13}$ 上对角化，并说明理由。</p>
+</li>
+<li><p>矩阵的阶与可逆性证明 $A$是可逆矩阵，并求出最小的正整数$d$，使得：</p>
+</li>
+</ol>
+<p>
+$$
+A^d = I
+$$
+</p>
+
+<p>（其中 $I$ 为单位矩阵）。</p>
+<ol start="3">
+<li>向量等价关系与轨道分解设 $\alpha, \beta \in \mathbb{F}_{13}^3$。若存在非负整数 $k, l \ge 0$，使得：</li>
+</ol>
+<p>
+$$
+A^k \alpha = \beta \quad \text{且} \quad A^l \beta = \alpha
+$$
+</p>
+
+<p>则称 $\alpha$与$\beta$等价，记作$\alpha \sim \beta$。证明：“$\sim$” 是向量空间 $\mathbb{F}<em>{13}^3$上的一个等价关系。向量空间$\mathbb{F}</em>{13}^3$被划分为几个等价类？每个等价类（称为一条$A$-轨道）分别包含几个向量？哪些等价类的并集能够构成 $\mathbb{F}_{13}^3$ 的子空间？</p>
+<p>这道题的本质，其实是：</p>
+<blockquote>
+<p><strong>有限域上线性变换 &#x3D; 对角化 + 有限乘法群 + 群作用轨道分解</strong></p>
+</blockquote>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ff7d73">数学</a>
+        </span>
+        
+    </div>
+    <a href="/2026/04/05/%E7%BA%BF%E4%BB%A3/%E7%A5%9E%E7%A7%98%E8%A1%A5%E5%85%85%E9%A2%98/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/02/%E8%A5%BF%E6%96%B9%E6%96%87%E5%8C%96%E9%80%89%E8%AF%BB/%E7%BD%97%E9%A9%AC/">
+        <h2 class="post-title">罗马</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E8%A5%BF%E6%96%B9%E6%96%87%E5%8C%96%E9%80%89%E8%AF%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                西方文化选读
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/2
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2026/04/02/%E8%A5%BF%E6%96%B9%E6%96%87%E5%8C%96%E9%80%89%E8%AF%BB/%E7%BD%97%E9%A9%AC/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2026/04/01/%E6%9D%82%E8%AE%B0/4%E6%9C%88%E6%97%A5%E8%AE%B0/">
+        <h2 class="post-title">4月日记</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/1
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>4月了呢。</p>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%97%A5%E8%AE%B0%E7%B1%BB/" style="color: #00bcd4">日记类</a>
+        </span>
+        
+    </div>
+    <a href="/2026/04/01/%E6%9D%82%E8%AE%B0/4%E6%9C%88%E6%97%A5%E8%AE%B0/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <a class="page-num" href="/page/8/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">9</span>
+    
+    <a class="page-num" href="/page/10">
+        10
+    </a>
+    
+    
+    <a class="page-num" href="/page/11">
+        11
+    </a>
+    
+    
+    <span class="page-omit">...</span>
+    <a class="page-num" href="/page/15">15</a>
+    
+    
+    <a class="page-num" href="/page/10/">
+        <i class="fa-solid fa-caret-right fa-fw"></i>
+    </a>
+    
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">Logic</div>
+        <div class="description">
+            <p>冀幸橐龠生光</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://github.com/Logic61">My github</a>
+            </div>
+            
+            <div class="friend-link">
+                <a href="https://logic61.github.io/MyPage">My Page(更为正式的主页)</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://xj.editlife.cn/">JingsXu&#39;s site</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

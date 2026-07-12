@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>12.计数原理II | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>12.计数原理II</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/15
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%A6%BB%E6%95%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                离散
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #03a9f4">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>果然直接截图很好吧，为什么要手打公式呢（</p>
+<span id="more"></span>
+
+<h3 id="容斥原理"><a href="#容斥原理" class="headerlink" title="容斥原理"></a>容斥原理</h3><p><img src="/images/Pasted_image_20260215135720.png"><br>韦恩图是一个很好的表示方法。从此图以及加法原理有：<br><img src="/images/Pasted_image_20260215135825.png"><br>结合以上三个公式，可以看到如果把两个集合的势相加，交集被多算了一次，所以<br><img src="/images/Pasted_image_20260215135933.png"><br>类似地，对于三个集合<br><img src="/images/Pasted_image_20260215140007.png"><br>但如果我们直接减去两两的交，又会多减去一些<br><img src="/images/Pasted_image_20260215140112.png"><br>那么就可以看出需要加回去三个集合的交集的势<br><img src="/images/Pasted_image_20260215140205.png"><br>类似地可以推广到 $n$ 个集合的情形，我们有如下定理：</p>
+<p>
+$$
+\begin{aligned}
+|A_1 \cup A_2 \cup \dots \cup A_n| = & \sum_{i=1}^{n} |A_i| \\
+& - \sum_{1 \le i_1 < i_2 \le n} |A_{i_1} \cap A_{i_2}| \\
+& + \sum_{1 \le i_1 < i_2 < i_3 \le n} |A_{i_1} \cap A_{i_2} \cap A_{i_3}| \\
+& - \dots + (-1)^{n-1} |A_1 \cap A_2 \cap \dots \cap A_n|
+\end{aligned}
+$$
+</p>
+
+<p>更优雅地，我们写成：</p>
+<p>
+$$
+\sum_{k=1}^{n} (-1)^{k+1} \sum_{\substack{S \subseteq \{1, \dots, n\} \\ \text{s.t. } |S|=k}} \left| \bigcap_{i \in S} A_i \right|
+$$
+</p>
+
+<p>这就是容斥原理。</p>
+<p>Ex.有一个包含 $0$到$9$的整数集合，他的排列中有多少至少满足下面三个之一条件：$4$后面是$2$ (后简写)，$60$,$04$？</p>
+<p>仍然高中题，但是我们审慎地思考我们在做什么：</p>
+<p>首先我们要计算符合条件的集合 $S$的势，这不好求，我们构造双射把他转换成容易求的$P$ 。$P$是$42$和其他剩下的数字的排列，容易验证这就是双射，所以$|P|&#x3D;|S|$，那么我们算$|P|$就好了。由于$P$的元素都不同，这就是一个全排列，于是$|S|&#x3D;|P|&#x3D;9!$ 。</p>
+<p>接下来我们看看有多少排列同时满足 $42,60$，类似地建立双射，变成$42$，$60$和其他数字的排列，得到势为$8!$。如果是$04,60$呢，那就是$604$和其他数字的排列，还是$8!$。类似地，我们可以得到三个集合的交。最后利用容斥原理，三个集合的并的势就是$3\times 9!-3\times 8!+7!$ 。</p>
+<h3 id="bookkeeper-rule"><a href="#bookkeeper-rule" class="headerlink" title="bookkeeper rule"></a>bookkeeper rule</h3><p>什么叫簿记员规则（<br>总之是说，一个序列有 $n_i$个重复的字符$l_i$ ，那么能组成的字符串个数就是：</p>
+<p>
+$$
+\frac{(n_1+n_2+...+n_k)!}{n_1!\cdot n_2!\cdot \cdot \cdot n_k!}=\dbinom{n_1+...+n_k}{n_1,...,n_k}
+$$
+</p>
+
+<p>$k&#x3D;2$ 的时候实际上就是二项式</p>
+<p>
+$$
+\dbinom{n}{k}=\dbinom{n}{n,n-k}
+$$
+</p>
+
+<h4 id="二项式定理："><a href="#二项式定理：" class="headerlink" title="二项式定理："></a>二项式定理：</h4><p>
+$$
+\forall n,(a+b)^n=\sum_{k=0}^n \dbinom{n}{k}a^kb^{n-k}
+$$
+</p>
+
+<p>拆成 $n$个东西相乘就能很好地匹配$n$选$k$ 的意义。</p>
+<p>Ex. 抓五张扑克牌（52张），抓到四张一样的情况有多少种？</p>
+<p>同样双射，映射到 $(一样的牌的大小，剩下的牌的大小，剩下的牌的花色)$，那么就利用乘法原理得到 $13\times 12\times 4$ 。</p>
+<p>如果三带二呢，用CSHD表示花色，同样可以构造双射：<br><img src="/images/Pasted_image_20260215143848.png"><br>然后：<br>第一个牌的大小：13<br>第二个是四选三：$\binom{4}{3}&#x3D;4$<br>第三个是另一个值：12<br>最后是两张牌的花色：$\binom{4}{2}&#x3D;6$<br>最后利用乘法原理得到结果。</p>
+<p>这一切都和高中朴素的直觉非常吻合呢。高中老师对排列组合题强调的所谓策略，其实就是建立双射的方法。</p>
+<p>有时候建立的未必是双射，那就要利用除法原则。</p>
+<p>Ex. {1,2,3}要拍照，{1,2}要待一起。我们建立映射到{12,3}，那么注意到{1,2,3}和{2,1,3}都被映射到{12,3}，因而需要有一个 $2$ 的因子。</p>
+<p><strong>算两次</strong><br>要从 $n$人里面选$k$个代表，要么选了$X$要么没选，分别对应$\binom{n-1}{k-1}$和$\binom{n-1}{k}$ ，那么也就有</p>
+<p>
+$$
+\dbinom{n-1}{k-1}+\dbinom{n-1}{k}=\dbinom{n}{k}
+$$
+</p>
+
+<p>这是组合问题的一种常见证明方法。<br>另一个问题：</p>
+<p>
+$$
+\sum_{r=0}^n\dbinom{n}{r}\dbinom{2n}{n-r}=\dbinom{3n}{n}
+$$
+</p>
+
+<blockquote>
+<p>[!证明]<br>记 $S$是从$n$个红球和$2n$个绿球中选$n$ 个球的集合。<br>$|S|&#x3D;\dbinom{3n}{n}$，因为这就是$3n$个球选$n$ 个。</p>
+<p>考虑选 $r$个红球的情况，那么就选了$n-r$个绿球，那么就有$\dbinom{n}{r}\dbinom{2n}{n-r}$种情况。对所有的情况求和就得到了$|S|$ 。</p>
+<p>综合以上两种算法得到原等式成立。</p>
+</blockquote>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

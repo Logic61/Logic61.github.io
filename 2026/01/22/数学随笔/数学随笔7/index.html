@@ -1,0 +1,516 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>数学随笔7 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>数学随笔7</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/1/22
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%95%B0%E5%AD%A6%E9%9A%8F%E7%AC%94/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                数学随笔
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00a596">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>Vandermonde的神秘出现。</p>
+<span id="more"></span>
+
+<h2 id="特征子空间的独立性证明"><a href="#特征子空间的独立性证明" class="headerlink" title="特征子空间的独立性证明"></a>特征子空间的独立性证明</h2><h3 id="1-直和的定义"><a href="#1-直和的定义" class="headerlink" title="1. 直和的定义"></a>1. 直和的定义</h3><p>设 $V_1, V_2, \dots, V_s$是方阵$A$ 的不同特征子空间，$\alpha_i \in V_i, 1 \le i \le s$。<br>若满足：</p>
+<p>
+$$
+\alpha_1 + \alpha_2 + \dots + \alpha_s = \mathbf{0}
+$$
+</p>
+
+<p>则必有：</p>
+<p>
+$$
+\alpha_1 = \alpha_2 = \dots = \alpha_s = \mathbf{0}
+$$
+</p>
+
+<blockquote>
+<p>[!abstract] 结论<br>这说明 $V_1, V_2, \dots, V_s$ 的和是<strong>直和</strong>。</p>
+</blockquote>
+<hr>
+<h3 id="2-证明推导过程"><a href="#2-证明推导过程" class="headerlink" title="2. 证明推导过程"></a>2. 证明推导过程</h3><p>设 $V_1, V_2, \dots, V_s$对应的特征值分别为$\lambda_1, \lambda_2, \dots, \lambda_s$（互不相同）。</p>
+<h4 id="第一步：构造线性方程组"><a href="#第一步：构造线性方程组" class="headerlink" title="第一步：构造线性方程组"></a>第一步：构造线性方程组</h4><p>利用 $A\alpha_i &#x3D; \lambda_i\alpha_i$，我们不断用矩阵 $A$ 左乘向量和等式：</p>
+<ol>
+<li>$\alpha_1 + \alpha_2 + \dots + \alpha_s &#x3D; \mathbf{0}$2.$\lambda_1\alpha_1 + \lambda_2\alpha_2 + \dots + \lambda_s\alpha_s &#x3D; \mathbf{0}$3.$\lambda_1^2\alpha_1 + \lambda_2^2\alpha_2 + \dots + \lambda_s^2\alpha_s &#x3D; \mathbf{0}$4.$\dots$5.$\lambda_1^{s-1}\alpha_1 + \lambda_2^{s-1}\alpha_2 + \dots + \lambda_s^{s-1}\alpha_s &#x3D; \mathbf{0}$</li>
+</ol>
+<h4 id="第二步：矩阵化表示"><a href="#第二步：矩阵化表示" class="headerlink" title="第二步：矩阵化表示"></a>第二步：矩阵化表示</h4><p>将上述方程组写成矩阵乘法形式：</p>
+<p>
+$$
+[\alpha_1 \ \alpha_2 \ \cdots \ \alpha_s] 
+\begin{bmatrix}
+1 & \lambda_1 & \lambda_1^2 & \cdots & \lambda_1^{s-1} \\
+1 & \lambda_2 & \lambda_2^2 & \cdots & \lambda_2^{s-1} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & \lambda_s & \lambda_s^2 & \cdots & \lambda_s^{s-1}
+\end{bmatrix} = \mathbf{0}
+$$
+</p>
+
+<h4 id="第三步：利用范德蒙德行列式-Vandermonde"><a href="#第三步：利用范德蒙德行列式-Vandermonde" class="headerlink" title="第三步：利用范德蒙德行列式 (Vandermonde)"></a>第三步：利用范德蒙德行列式 (Vandermonde)</h4><p>右侧的方阵是一个<strong>范德蒙德矩阵</strong>。由于特征值 $\lambda_i$ 互异，该方阵的行列式不为 0，因此<strong>方阵可逆</strong>。</p>
+<p>等式两边同时右乘该方阵的逆矩阵：</p>
+<p>
+$$
+\Rightarrow \alpha_1 = \alpha_2 = \dots = \alpha_s = \mathbf{0}
+$$
+</p>
+
+<p><strong>由此证明：</strong> 不同特征值的特征向量线性无关，进而不同特征子空间的基合并后依然线性无关。</p>
+<hr>
+<h1 id="关于幂零矩阵的证明"><a href="#关于幂零矩阵的证明" class="headerlink" title="关于幂零矩阵的证明"></a>关于幂零矩阵的证明</h1><h2 id="命题"><a href="#命题" class="headerlink" title="命题"></a>命题</h2><p>若 $n$级矩阵$A$ 满足条件：</p>
+<p>
+$$
+\text{tr}(A^k) = 0, \quad k = 1, 2, \dots, n
+$$
+</p>
+
+<p>则 $A^n &#x3D; 0$。</p>
+<hr>
+<h2 id="证明过程"><a href="#证明过程" class="headerlink" title="证明过程"></a>证明过程</h2><h3 id="1-利用-Schur-引理"><a href="#1-利用-Schur-引理" class="headerlink" title="1. 利用 Schur 引理"></a>1. 利用 Schur 引理</h3><p>证：由 <strong>Schur 引理</strong>，在复数域上，$A$ 相似于一个上三角矩阵：</p>
+<p>
+$$
+A \sim \begin{bmatrix} 
+\lambda_1 & * & \dots & * \\
+0 & \lambda_2 & & * \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \dots & \lambda_n 
+\end{bmatrix}
+$$
+</p>
+
+<p>故 $A^k$ 相似于：</p>
+<p>
+$$
+A^k \sim \begin{bmatrix} 
+\lambda_1^k & * & \dots & * \\
+0 & \lambda_2^k & & * \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \dots & \lambda_n^k 
+\end{bmatrix}
+$$
+</p>
+
+<h3 id="2-迹与特征值的关系"><a href="#2-迹与特征值的关系" class="headerlink" title="2. 迹与特征值的关系"></a>2. 迹与特征值的关系</h3><p>于是有：</p>
+<p>
+$$
+\begin{aligned}
+\text{tr}(A) &= \lambda_1 + \lambda_2 + \dots + \lambda_n = 0 \\
+\text{tr}(A^2) &= \lambda_1^2 + \lambda_2^2 + \dots + \lambda_n^2 = 0 \\
+&\dots \dots \\
+\text{tr}(A^k) &= \lambda_1^k + \lambda_2^k + \dots + \lambda_n^k = 0 
+\end{aligned}
+$$
+</p>
+
+<h3 id="3-合并相同特征值"><a href="#3-合并相同特征值" class="headerlink" title="3. 合并相同特征值"></a>3. 合并相同特征值</h3><p>将相同的特征值合并在一起。不妨设 $\lambda_1, \lambda_2, \dots, \lambda_s$是$A$ 在复数域上<strong>互异</strong>的特征值，$\lambda_i$的代数重数记为$k_i$。则有：</p>
+<p>
+$$
+\begin{aligned}
+\text{tr}(A) &= k_1 \lambda_1 + k_2 \lambda_2 + \dots + k_s \lambda_s = 0 \\
+\text{tr}(A^2) &= k_1 \lambda_1^2 + k_2 \lambda_2^2 + \dots + k_s \lambda_s^2 = 0 \\
+&\dots \dots \\
+\text{tr}(A^s) &= k_1 \lambda_1^s + k_2 \lambda_2^s + \dots + k_s \lambda_s^s = 0 
+\end{aligned}
+$$
+</p>
+
+<h3 id="4-范德蒙德行列式-Vandermonde-Matrix-形式"><a href="#4-范德蒙德行列式-Vandermonde-Matrix-形式" class="headerlink" title="4. 范德蒙德行列式 (Vandermonde Matrix) 形式"></a>4. 范德蒙德行列式 (Vandermonde Matrix) 形式</h3><p>写成矩阵形式：</p>
+<p>
+$$
+\underbrace{\begin{bmatrix} 
+1 & 1 & \dots & 1 \\
+\lambda_1 & \lambda_2 & \dots & \lambda_s \\
+\lambda_1^2 & \lambda_2^2 & \dots & \lambda_s^2 \\
+\vdots & \vdots & & \vdots \\
+\lambda_1^{s-1} & \lambda_2^{s-1} & \dots & \lambda_s^{s-1} 
+\end{bmatrix}}_{\text{Vandermonde 矩阵 (可逆)}}
+\begin{bmatrix} 
+k_1 \lambda_1 \\
+k_2 \lambda_2 \\
+\vdots \\
+k_s \lambda_s 
+\end{bmatrix} = 
+\begin{bmatrix} 
+0 \\
+0 \\
+\vdots \\
+0 
+\end{bmatrix}
+$$
+</p>
+
+<p>由于特征值 $\lambda_i$ 互异，该范德蒙德矩阵<strong>可逆</strong>，因此唯一解为：</p>
+<p>
+$$
+k_i \lambda_i = 0, \quad i = 1, \dots, s
+$$
+</p>
+
+<p>因为重数 $k_i \geq 1$，所以必有 $\lambda_i &#x3D; 0$。</p>
+<h3 id="5-结论"><a href="#5-结论" class="headerlink" title="5. 结论"></a>5. 结论</h3><p>于是 $A$在复数域上的特征值均为$0$。<br>这意味着 $A$相似于一个主对角线全为$0$的上三角矩阵$B$：</p>
+<p>
+$$
+A \sim B = \begin{bmatrix} 
+0 & * & \dots & * \\
+0 & 0 & & \vdots \\
+\vdots & \vdots & \ddots & * \\
+0 & 0 & \dots & 0 
+\end{bmatrix}
+$$
+</p>
+
+<p>而对于 $n$ 级严格上三角矩阵，$B^n &#x3D; 0$，故 <strong>$A^n &#x3D; 0$</strong>。</p>
+<h3 id="拉格朗日插值多项式的过渡矩阵"><a href="#拉格朗日插值多项式的过渡矩阵" class="headerlink" title="拉格朗日插值多项式的过渡矩阵"></a>拉格朗日插值多项式的过渡矩阵</h3><p>设 $c_1, \cdots, c_n \in K$互异，并对$i&#x3D;1, 2, \cdots, n$ 记：</p>
+<p>
+$$
+h_i(x) = \frac{(x-c_1) \cdots (x-c_{i-1})(x-c_{i+1}) \cdots (x-c_n)}{(c_i-c_1) \cdots (c_i-c_{i-1})(c_i-c_{i+1}) \cdots (c_i-c_n)}
+$$
+</p>
+
+<p><strong>证明：</strong> 插值多项式 $h_1(x), h_2(x), \cdots, h_n(x)$构成线性空间$V_n$ 的一组基。</p>
+<p>并求此基到 $V_n$的另一组基$1, x, \cdots, x^{n-1}$的<strong>过渡矩阵$P$</strong>。</p>
+<hr>
+<h3 id="证明过程-1"><a href="#证明过程-1" class="headerlink" title="证明过程"></a>证明过程</h3><p><strong>1. 证明线性无关性</strong></p>
+<p>考虑线性组合：</p>
+<p>
+$$
+f(x) = \sum_{i=1}^n \lambda_i h_i(x)
+$$
+</p>
+
+<p>假设 ${h_i(x)}$线性相关，则存在不全为零的$\lambda_i$，使得 $f(x) \equiv 0$。</p>
+<p>根据 $h_i(x)$ 的定义，具有如下性质：</p>
+<p>
+$$
+h_i(c_j) = \delta_{ij} = \begin{cases} 1, & i=j \\ 0, & i \neq j \end{cases}
+$$
+</p>
+
+<p>将 $x &#x3D; c_j$代入$f(x)$，得：</p>
+<p>
+$$
+f(c_j) = \lambda_j h_j(c_j) = \lambda_j \cdot 1 = 0
+$$
+</p>
+
+<p>由此可得对于所有的 $j$，都有 $\lambda_j &#x3D; 0$。</p>
+<p>这与假设矛盾，故 $h_1(x), \dots, h_n(x)$ <strong>线性无关</strong>。</p>
+<p><strong>2. 结论</strong></p>
+<p>又因为 $\dim V_n &#x3D; n$，且我们已知有 $n$个线性无关的多项式，故${h_i(x)}$构成$V_n$ 的一組<strong>基</strong>。</p>
+<hr>
+<h3 id="求过渡矩阵-P"><a href="#求过渡矩阵-P" class="headerlink" title="求过渡矩阵 $P$"></a>求过渡矩阵 $P$</h3><p>根据过渡矩阵的定义，设：</p>
+<p>
+$$
+(1, x, \cdots, x^{n-1}) = (h_1(x), \cdots, h_n(x)) P
+$$
+</p>
+
+<p>为了确定 $P$，我们将互异节点 $c_1, c_2, \cdots, c_n$ 分别代入上述算式：</p>
+<ul>
+<li>代入 $x &#x3D; c_1$：</li>
+</ul>
+<p>
+$$
+(1, c_1, \cdots, c_1^{n-1}) = (h_1(c_1), h_2(c_1), \cdots, h_n(c_1)) P = (1, 0, \cdots, 0) P
+$$
+</p>
+
+<p>由此可见，$(1, c_1, \cdots, c_1^{n-1})$正好是矩阵$P$ 的<strong>第 1 行</strong>。</p>
+<ul>
+<li>代入 $x &#x3D; c_i$：</li>
+</ul>
+<p>
+$$
+(1, c_i, \cdots, c_i^{n-1}) = (0, \cdots, 1, \cdots, 0) P
+$$
+</p>
+
+<p>（其中 $1$在第$i$ 位）</p>
+<pre><code>同理，这构成了矩阵 $P$的**第$i$ 行**。
+</code></pre>
+<p><strong>往复得到：</strong></p>
+<p>
+$$
+P = \begin{pmatrix} 1 & c_1 & \cdots & c_1^{n-1} \\ 1 & c_2 & \cdots & c_2^{n-1} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & c_n & \cdots & c_n^{n-1} \end{pmatrix}
+$$
+</p>
+
+<p>该矩阵即为<strong>范德蒙德（Vandermonde）矩阵</strong>。</p>
+<blockquote>
+<p><strong>注：</strong> 若设 $\mathbf{h} &#x3D; {h_i}$ 为基 1，$\mathbf{e} &#x3D; {x^{i-1}}$为基 2。根据变换公式$\mathbf{e} &#x3D; \mathbf{h}P$，则有 $P &#x3D; V$。由于从基 1 到基 2 的过渡矩阵是 $V$，那么反之从基 2 到基 1 的过渡矩阵即为 $V^{-1}$。这也从构造角度解释了范德蒙德矩阵与拉格朗日插值的对偶关系。</p>
+</blockquote>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

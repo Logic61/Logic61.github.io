@@ -1,0 +1,1652 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>13.级数 IV —— 幂级数与泰勒级数 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>13.级数 IV —— 幂级数与泰勒级数</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/5/26
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="幂级数"><a href="#幂级数" class="headerlink" title="幂级数"></a>幂级数</h1><p>研究幂级数的动机，实际上就是利用多项式去逼近一个点的函数值。<br>对于一般的函数级数：</p>
+<p>
+$$
+\sum u_n(x)
+$$
+</p>
+
+<p>我们取最简单的幂级数，同时由于平移不应该影响敛散性，我们直接考虑最简单的样子：</p>
+<p>
+$$
+\sum_{n=0}^{+\infty} a_n (x - x_0)^n \longrightarrow \sum_{n=0}^{+\infty} a_n x^n
+$$
+</p>
+
+<hr>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><h3 id="收敛区间的连通性"><a href="#收敛区间的连通性" class="headerlink" title="收敛区间的连通性"></a>收敛区间的连通性</h3><p>对于特殊的函数级数，自然应该有特殊的性质。对于幂级数，有个有趣的事情：收敛区间是连通的：</p>
+<p><strong>定理</strong> 任给 $\sum a_n x^n$① 若$\exists , x_1 \in \mathbb{R} \setminus {0}$使$\sum a_n (x_1)^n$ 收敛，</p>
+<p>则对于 $\forall , x \in (-|x_1|, |x_1|)$，</p>
+<p>$\sum a_n x^n$ 绝对收敛。</p>
+<p>② 若 $\exists , x_2 \in \mathbb{R}$使$\sum a_n (x_2)^n$ 发散，</p>
+<p>则对于 $\forall , x \in (-\infty, -|x_2|) \cup (|x_2|, +\infty)$，</p>
+<p>$\sum a_n x^n$ 发散。</p>
+<hr>
+<p><strong>证</strong>：</p>
+<p>① $\sum a_n (x_1)^n$收敛$\Longrightarrow { a_n (x_1)^n }$ 有界</p>
+<p>对于任意 $x \in (-|x_1|, |x_1|)$，</p>
+<p>
+$$
+\sum |a_n x^n| = \sum |a_n x_1^n| \cdot \left| \frac{x}{x_1} \right|^n
+$$
+</p>
+
+<p>利用狄利克雷判别法就知道收敛。</p>
+<p>② 由 ① 反证，一个点发散，那么利用 ① ，它的外侧不会有点收敛。</p>
+<hr>
+<p><strong>推论</strong>：对 $\sum a_n x^n$ ，我们就可以考虑这样一个收敛区间</p>
+<p>
+$$
+A = \{ b \mid \sum a_n b^n \text{ 收敛} \}
+$$
+</p>
+
+<p>取出上界</p>
+<p>
+$$
+R = \sup A
+$$
+</p>
+
+<p>那么 $R$ 就把数轴分成了收敛和发散的两部分。</p>
+<p>换句话说：<br>存在 $R \in [0, +\infty] \quad (R \text{ 可为 } +\infty)$使$\sum a_n x^n$在$(-R, R)$ 内绝对收敛</p>
+<p>在 $(-\infty, -R) \cup (R, +\infty)$发散。$R$ 称为<strong>收敛半径</strong>。</p>
+<hr>
+<h3 id="收敛与符号、幂次因子无关"><a href="#收敛与符号、幂次因子无关" class="headerlink" title="收敛与符号、幂次因子无关"></a>收敛与符号、幂次因子无关</h3><p><strong>(1) 性质一：收敛半径与各项系数绝对值的关系</strong></p>
+<ul>
+<li><p><strong>核心结论</strong>：收敛半径 $R$只与系数的绝对值$|a_n|$ 有关，与系数的符号无关。</p>
+</li>
+<li><p><strong>表达式</strong>：$\sum a_n x^n$与$\sum |a_n| x^n$ 的<strong>收敛半径一样</strong>。</p>
+</li>
+</ul>
+<p>这利用上面已讨论的就可以得到。</p>
+<p><strong>(2) 性质二：引入幂次因子后收敛半径的不变性</strong></p>
+<ul>
+<li><p><strong>已知条件</strong>：设级数 $\sum_{n&#x3D;0}^{\infty} a_n x^n$的<strong>收敛半径为$R$</strong>。</p>
+</li>
+<li><p><strong>研究对象</strong>：引入因子 $n^m$（其中 $m \neq 0$为常数）后的新级数$\sum_{n&#x3D;0}^{\infty} a_n \cdot n^m x^n$，其收敛半径记为 $\tilde{R}$。</p>
+</li>
+<li><p><strong>推导逻辑</strong>：</p>
+<p>  当 $m &gt; 0$ 时：</p>
+<ul>
+<li><p>一方面可以证明 $\tilde{R} \le R$- 另一方面可以证明$\tilde{R} \ge R$</p>
+</li>
+<li><p>综合上下界，最终得到结论：<strong>$\tilde{R} &#x3D; R$</strong>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h4><ul>
+<li><p><strong>数轴示意</strong>：</p>
+<p>  在区间 $(-R, R)$内，任取一点$x$，并在 $x$与$R$之间插入一个介点$b$，满足：</p>
+</li>
+</ul>
+<p>
+$$
+-R < x < b < R
+$$
+</p>
+
+<ul>
+<li><p><strong>级数放缩与收敛性分析</strong>：</p>
+<p>  为了考察通项的绝对值 $\sum |a_n n^m x^n|$，将其进行恒等变形与拆分：</p>
+</li>
+</ul>
+<p>
+$$
+\sum |a_n n^m x^n| = \sum \left( |a_n b^n| \right) \cdot n^m \left| \frac{x}{b} \right|^n
+$$
+</p>
+
+<ul>
+<li><p><strong>分析判定</strong>：</p>
+<pre><code>  1. 因为 $b &lt; R$，落在原级数的收敛域内，所以数列 $|a_n b^n|$ 是有界（bounded）的。
+      
+  2. 因为 $|x/b| &lt; 1$，新引入的几何级数部分 $\sum n^m \left| \frac{x}{b} \right|^n$ 是绝对收敛的。
+      
+</code></pre>
+<ul>
+<li><strong>结论</strong>：相乘后的级数<strong>收敛</strong>。</li>
+</ul>
+</li>
+</ul>
+<h2 id="审敛法"><a href="#审敛法" class="headerlink" title="审敛法"></a>审敛法</h2><h3 id="达朗贝尔-柯西审敛法"><a href="#达朗贝尔-柯西审敛法" class="headerlink" title="达朗贝尔 &#x2F; 柯西审敛法"></a>达朗贝尔 &#x2F; 柯西审敛法</h3><ul>
+<li><p><strong>定理名称</strong>：柯西 &#x2F; 达朗贝尔 test（Cauchy &#x2F; d’Alembert test，即根值审敛法与比值审敛法）。</p>
+</li>
+<li><p><strong>研究对象</strong>：幂级数 $\sum_{n&#x3D;0}^{\infty} a_n x^n$。</p>
+</li>
+<li><p><strong>判定条件</strong>：</p>
+<ul>
+<li><strong>比值形式</strong>：若 $\lim_{n \to +\infty} \left| \frac{a_{n+1}}{a_n} \right| &#x3D; l$- <strong>根值形式</strong>：或$\lim_{n \to +\infty} (|a_n|)^{\frac{1}{n}} &#x3D; l$- <em>注：其中$l \in [0, +\infty]$。</em></li>
+</ul>
+</li>
+<li><p><strong>核心结论</strong>：则该幂级数的<strong>收敛半径 $R &#x3D; \frac{1}{l}$</strong>。</p>
+</li>
+</ul>
+<h4 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h4><p>通过考察通项的绝对值，将幂级数问题转化为常数项级数的审敛：</p>
+<ul>
+<li><p><strong>令通项绝对值为</strong>：$u_n &#x3D; |a_n x^n|$</p>
+</li>
+<li><p><strong>应用根值审敛法（Root Test）</strong>：</p>
+</li>
+</ul>
+<p>
+$$
+\lim_{n \to +\infty} (u_n)^{\frac{1}{n}} = \lim_{n \to +\infty} |a_n x^n|^\frac{1}{n}
+$$
+</p>
+
+<p>
+$$
+= \lim_{n \to +\infty} |a_n|^\frac{1}{n} \cdot |x| = l \cdot |x|
+$$
+</p>
+
+<ul>
+<li><p><strong>敛散性分类讨论</strong>：</p>
+<ul>
+<li>当 $l \cdot |x| &lt; 1$ 时，级数绝对收敛。对此不等式移项变形，得到：</li>
+</ul>
+</li>
+</ul>
+<p>
+$$
+|x| < \frac{1}{l} \implies \text{\textbf{收敛}}
+$$
+</p>
+
+<ul>
+<li>当 $l \cdot |x| &gt; 1$ 时，得到：</li>
+</ul>
+<p>
+$$
+|x| > \frac{1}{l} \implies \text{\textbf{发散}}
+$$
+</p>
+
+<ul>
+<li><strong>结论映射</strong>：根据收敛半径的定义（使得级数收敛的 $|x|$的上界），显然有$R &#x3D; \frac{1}{l}$。</li>
+</ul>
+<p>可以完全类似地证明比值判别。</p>
+<h2 id="四则运算"><a href="#四则运算" class="headerlink" title="四则运算"></a>四则运算</h2><h4 id="幂级数的加法"><a href="#幂级数的加法" class="headerlink" title="幂级数的加法"></a>幂级数的加法</h4><ul>
+<li><strong>前置条件</strong>：已知两个幂级数 $\sum a_n x^n$和$\sum b_n x^n$，其收敛半径分别为 $R_1$和$R_2$。</li>
+</ul>
+<p><strong>(1) 线性组合（和级数）的收敛半径 $R$</strong></p>
+<p>研究对象为新级数：$\sum (a_n + b_n) x^n$，探讨其收敛半径 $R$ 的取值情况：</p>
+<ul>
+<li><p><strong>情况一：当 $R_1 \neq R_2$ 时</strong></p>
+<p>  收敛半径由短板决定：</p>
+</li>
+</ul>
+<p>
+$$
+R = \min\{R_1, R_2\}
+$$
+</p>
+
+<ul>
+<li><p><strong>情况二：当 $R_1 &#x3D; R_2$ 时</strong></p>
+<p>  由于系数相加可能发生抵消（使得某些高次项系数变为 0 或显著变小），收敛半径可能会扩大：</p>
+</li>
+</ul>
+<p>
+$$
+R \ge R_1 = R_2
+$$
+</p>
+
+<h4 id="幂级数的乘法（柯西乘积-Cauchy-Product）"><a href="#幂级数的乘法（柯西乘积-Cauchy-Product）" class="headerlink" title="幂级数的乘法（柯西乘积 Cauchy Product）"></a>幂级数的乘法（柯西乘积 Cauchy Product）</h4><p><strong>(2) 乘积级数的定义与半径估计</strong></p>
+<ul>
+<li><strong>定义柯西乘积的系数 $c_n$</strong>：</li>
+</ul>
+<p>
+$$
+c_n = \sum_{j=0}^{n} a_j b_{n-j}
+$$
+</p>
+
+<ul>
+<li><strong>形式乘积表达式</strong>：</li>
+</ul>
+<p>
+$$
+\left( \sum_{n=0}^{+\infty} c_n x^n \right) = \left( \sum_{n=0}^{+\infty} a_n x^n \right) \left( \sum_{n=0}^{+\infty} b_n x^n \right)
+$$
+</p>
+
+<p>这里项的乘积表现为 $a_j x^j \cdot b_{n-j} x^{n-j} &#x3D; a_j b_{n-j} x^n$。</p>
+<ul>
+<li><p><strong>绝对值放缩与有界性分析</strong>：</p>
+<p>  为了考察新级数 $\sum c_n x^n$的收敛半径$R$，对部分和的绝对值进行放缩：</p>
+</li>
+</ul>
+<p>
+$$
+\sum_{k=0}^{n} |c_k x^k| \le \left( \sum_{k=0}^{n} |a_k x^k| \right) \left( \sum_{k=0}^{n} |b_k x^k| \right)
+$$
+</p>
+
+<p>从系数层面上看，显然有：</p>
+<p>
+$$
+|c_n| \le \sum_{j=0}^{n} |a_j| \cdot |b_{n-j}|
+$$
+</p>
+
+<ul>
+<li><p><strong>核心结论</strong>：</p>
+<p>  通过上述放缩可以证明，只要 $x$同时落在两个原级数的绝对收敛域内，乘积级数就必然收敛。因此新级数的收敛半径$R$ 满足：</p>
+</li>
+</ul>
+<p>
+$$
+\mathbf{R \ge \min\{R_1, R_2\}}
+$$
+</p>
+
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><h5 id="1-前置条件与对象定义"><a href="#1-前置条件与对象定义" class="headerlink" title="1. 前置条件与对象定义"></a>1. 前置条件与对象定义</h5><p>构造两个简单的级数进行相乘：</p>
+<ul>
+<li><strong>级数一（几何级数）</strong>：</li>
+</ul>
+<p>
+$$
+\sum_{n=0}^{\infty} x^n = 1 + x + x^2 + \dots = \frac{1}{1-x}
+$$
+</p>
+
+<ul>
+<li><p>其系数为 $a_n &#x3D; 1$。</p>
+<ul>
+<li>收敛区间为 $(-1, 1)$，收敛半径 <strong>$R_1 &#x3D; 1$</strong>。</li>
+</ul>
+</li>
+<li><p><strong>级数二（多项式退化级数）</strong>：</p>
+<p>  直接取多项式 <strong>$1 - x$</strong> 作为第二个级数。</p>
+<ul>
+<li><p>它的各项系数为：$b_0 &#x3D; 1$，$b_1 &#x3D; -1$，当 $n \ge 2$时$b_n &#x3D; 0$。</p>
+</li>
+<li><p>因为是有限项多项式，它在全复平面或全实数轴上都收敛，因此收敛半径 <strong>$R_2 &#x3D; +\infty$</strong>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>按照之前的定理，两个级数做柯西乘积，其收敛半径下界为 $\min{R_1, R_2} &#x3D; \min{1, +\infty} &#x3D; 1$。</p>
+<h5 id="2-柯西乘积系数-c-n-的计算过程"><a href="#2-柯西乘积系数-c-n-的计算过程" class="headerlink" title="2. 柯西乘积系数 $c_n$ 的计算过程"></a>2. 柯西乘积系数 $c_n$ 的计算过程</h5><p>现在通过公式 $c_n &#x3D; \sum_{j&#x3D;0}^{n} a_j b_{n-j}$ 逐项计算乘积级数的系数：</p>
+<ul>
+<li><strong>当 $n &#x3D; 0$ 时</strong>：</li>
+</ul>
+<p>
+$$
+c_0 = a_0 b_0 = 1 \cdot 1 = 1
+$$
+</p>
+
+<ul>
+<li><strong>当 $n &#x3D; 1$ 时</strong>：</li>
+</ul>
+<p>
+$$
+c_1 = a_0 b_1 + a_1 b_0 = 1 \cdot (-1) + 1 \cdot 1 = 0
+$$
+</p>
+
+<ul>
+<li><p><strong>当 $n \ge 2$ 时（一般项）</strong>：</p>
+<p>  由于当 $j \ge 2$时$b_j &#x3D; 0$，求和项中只有最后两项非零：</p>
+</li>
+</ul>
+<p>
+$$
+c_n = \sum_{j=0}^{n} a_{n-j} b_{j} = a_n b_0 + a_{n-1} b_1
+$$
+</p>
+
+<p>带入系数 $a_n&#x3D;1, a_{n-1}&#x3D;1$以及$b_0&#x3D;1, b_1&#x3D;-1$：</p>
+<p>
+$$
+c_n = 1 \cdot 1 + 1 \cdot (-1) = 0
+$$
+</p>
+
+<h5 id="3-核心结论"><a href="#3-核心结论" class="headerlink" title="3. 核心结论"></a>3. 核心结论</h5><p>由于除了常数项 $c_0 &#x3D; 1$之外，高次项的系数<strong>全部完美抵消为 0</strong>（即$c_1 &#x3D; c_2 &#x3D; \dots &#x3D; c_n &#x3D; 0$），所以：</p>
+<ul>
+<li><strong>乘积级数的形式为</strong>：</li>
+</ul>
+<p>
+$$
+\sum_{n=0}^{\infty} c_n x^n = 1
+$$
+</p>
+
+<ul>
+<li><p><strong>最终收敛半径</strong>：</p>
+<p>  因为常数 $1$函数对于任意$x$ 都恒成立（退化为了常数），所以新级数的收敛半径直接发生了“阶跃”：</p>
+</li>
+</ul>
+<p>
+$$
+\mathbf{R = +\infty}
+$$
+</p>
+
+<p>这个具体的例子完美支撑了公式里为什么是大于等于号（$\ge$）而非恒等号——在特定的代数抵消下，级数内部的截断效应可以让收敛边界完全消失。</p>
+<h4 id="幂级数的除法与待定系数法"><a href="#幂级数的除法与待定系数法" class="headerlink" title="幂级数的除法与待定系数法"></a>幂级数的除法与待定系数法</h4><p><strong>(3) 商级数的定义与前置条件</strong></p>
+<ul>
+<li><p><strong>重要前提</strong>：设分母级数的常数项 <strong>$b_0 \neq 0$</strong>。</p>
+<ul>
+<li><em>注：这是为了确保在 $x&#x3D;0$ 的邻域内分母不为零，从而使除法运算在数学上合法（Well-defined）。</em></li>
+</ul>
+</li>
+<li><p><strong>形式表达式</strong>：</p>
+<p>  设分子级数的收敛半径为 $R_1$，分母级数的收敛半径为 $R_2$。它们的商可以写成一个新的幂级数，记其收敛半径为 $R$：</p>
+</li>
+</ul>
+<p>
+$$
+\frac{\sum_{n=0}^{\infty} a_n x^n}{\sum_{n=0}^{\infty} b_n x^n} = \sum_{n=0}^{\infty} d_n x^n
+$$
+</p>
+
+<ul>
+<li><p><strong>求解方法</strong>：<strong>待定系数法</strong>（Undetermined coefficients）。</p>
+<p>  通过两边同乘分母，将其转化为我们熟知的柯西乘积形式：</p>
+</li>
+</ul>
+<p>
+$$
+\sum_{n=0}^{\infty} a_n x^n = \left( \sum_{n=0}^{\infty} b_n x^n \right) \left( \sum_{n=0}^{\infty} d_n x^n \right)
+$$
+</p>
+
+<ul>
+<li><p><strong>具体系数的递推关系（以 $a_1$ 为例）</strong>：</p>
+<p>  通过比较两边 $x^1$ 次项的系数，利用柯西乘积的展开规则，可以得到：</p>
+</li>
+</ul>
+<p>
+$$
+\mathbf{a_1 = d_1 b_0 + d_0 b_1}
+$$
+</p>
+
+<p>利用这类递推方程，在已知 $a_n$和$b_n$的情况下，就可以逐个解出待定系数$d_0, d_1, d_2 \dots$。</p>
+<ul>
+<li><p><strong>劣势（风险）</strong>：由于分母级数 $\sum b_n x^n$在复平面上可能存在零点（Zeros），新级数的收敛半径$R$不仅取决于$\min{R_1, R_2}$，还<strong>严重受限于分母级数离原点最近的那个零点的距离</strong>。</p>
+</li>
+<li><p><strong>置信度评级（高）</strong>：因此，通常只能保证 $R &gt; 0$（在原点的一个足够小的邻域内解析），而无法像乘法那样简单地给出 $R \ge \min{R_1, R_2}$ 的宏观下界。</p>
+</li>
+</ul>
+<h2 id="一致收敛的判断"><a href="#一致收敛的判断" class="headerlink" title="一致收敛的判断"></a>一致收敛的判断</h2><p>当然，我们也需要研究一致收敛，以便利用其美妙的性质。</p>
+<h3 id="幂级数一致收敛定理"><a href="#幂级数一致收敛定理" class="headerlink" title="幂级数一致收敛定理"></a>幂级数一致收敛定理</h3><ul>
+<li><p><strong>前置条件</strong>：设级数 $\sum_{n&#x3D;0}^{\infty} a_n x^n$的收敛半径为$R$。</p>
+</li>
+<li><p><strong>定理内容</strong>：</p>
+<ol>
+<li><p><strong>内部闭区间的一致收敛性</strong>：</p>
+<p> $\sum a_n x^n$在$[-b, b]$内<strong>一致收敛</strong>，其中对$\forall b \in (0, R)$ 均成立。</p>
+<p> <em>(也就是说，只要在收敛区间内部往里缩进一点点，构成的任何对称闭区间都是一致收敛的“安全区”。)</em></p>
+</li>
+<li><p><strong>右边界收敛的延伸（阿贝尔定理的分支）</strong>：</p>
+<p> 若 $\sum a_n x^n$在右端点$x &#x3D; R$ 处<strong>也收敛</strong>，则它在闭区间 <strong>$[0, R]$</strong> 上<strong>一致收敛</strong>。</p>
+</li>
+<li><p><strong>左边界收敛的延伸</strong>：</p>
+<p> 若 $\sum a_n x^n$在左端点$x &#x3D; -R$ 处<strong>也收敛</strong>，则它在闭区间 <strong>$[-R, 0]$</strong> 上<strong>一致收敛</strong>。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="1-证明"><a href="#1-证明" class="headerlink" title="(1) 证明"></a>(1) 证明</h4><p>利用<strong>强数级数压制</strong>的逻辑，给出性质 (1) 的核心推导：</p>
+<ul>
+<li><p>**数轴空间构造：</p>
+<p>  在实轴上，选取点满足 $b &lt; c &lt; R$。这就保证了点 $c$依然严格处于收敛半径$R$的内部，因此级数在$c$ 点必然<strong>绝对收敛</strong>。</p>
+</li>
+<li><p><strong>通项绝对值的放缩</strong>：</p>
+<p>  对于 $\forall x \in [-b, b]$，我们来考察通项的绝对值 $|a_n x^n|$。因为 $|x| \le b$，所以：</p>
+</li>
+</ul>
+<p>
+$$
+|a_n x^n| \le |a_n b^n|
+$$
+</p>
+
+<p>为了利用 $c$点的收敛性，进行恒等变形（乘以并除以$c^n$）：</p>
+<p>
+$$
+|a_n b^n| = |a_n c^n| \cdot \left| \frac{b}{c} \right|^n
+$$
+</p>
+
+<ul>
+<li><p><strong>优级数（M-series）的敛散性判定</strong>：</p>
+<ol>
+<li><p>因为 $c &lt; R$，所以数列 $|a_n c^n|$是有界（bounded）的（记其上界为$M$）。</p>
+</li>
+<li><p>因为 $b &lt; c$，所以公比 $\left| \frac{b}{c} \right| &lt; 1$，从而几何级数 $\sum \left| \frac{b}{c} \right|^n$ 是<strong>收敛</strong>的。</p>
+</li>
+<li><p>综合两点，常数项级数 $\sum |a_n c^n| \cdot \left| \frac{b}{c} \right|^n$ <strong>绝对收敛</strong>。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>应用 Weierstrass M-test 落地结论</strong>：</p>
+<p>  由于我们找到了一个不依赖于 $x$ 的收敛常数项级数，作为原函数项级数通项的绝对上界：</p>
+</li>
+</ul>
+<p>
+$$
+\implies \sum a_n x^n \text{ 在 } [-b, b] \text{ 上\textbf{一致收敛}}。
+$$
+</p>
+
+<h4 id="2-证明"><a href="#2-证明" class="headerlink" title="(2)证明"></a>(2)证明</h4><ul>
+<li><p><strong>证明目标</strong>：对于 $x \in [0, R]$，证明 $\sum a_n x^n$ 一致收敛。</p>
+</li>
+<li><p><strong>项的拆分（构造阿贝尔形式）</strong>：</p>
+<p>  由于在 $R$处只有收敛而非绝对收敛，需要另寻他法。完全类似地将幂级数通过乘除$R^n$ 进行恒等变形，拆分为两部分的乘积：</p>
+</li>
+</ul>
+<p>
+$$
+\sum a_n x^n = \sum \underline{a_n R^n} \cdot \underline{\left( \frac{x}{R} \right)^n}
+$$
+</p>
+
+<p>分别令：</p>
+<p>
+$$
+\beta_n = a_n R^n \quad (\text{常数项部分})
+$$
+</p>
+
+<p>
+$$
+\alpha_n(x) = \left( \frac{x}{R} \right)^n \quad (\text{函数项部分})
+$$
+</p>
+
+<ul>
+<li><p><strong>阿贝尔判别法条件验证</strong>：</p>
+<ol>
+<li><p><strong>关于 $\alpha_n(x)$</strong>：当 $x \in [0, R]$时，单项式序列$\alpha_n(x) &#x3D; \left( \frac{x}{R} \right)^n$ 满足：</p>
+<ul>
+<li><p>针对每个固定的 $x$，随 $n$的增加而<strong>关于$n$单调递减</strong>（因为商$\le 1$）。</p>
+</li>
+<li><p><strong>一致有界</strong>：由于 $0 \le \frac{x}{R} \le 1$，其绝对值满足 $|\alpha_n(x)| \le 1$，上界与 $x$ 无关。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>关于 $\beta_n$</strong>：已知级数 $\sum \beta_n &#x3D; \sum a_n R^n$ 在端点处<strong>收敛</strong>。既然它是常数项级数，收敛就等价于它在区间上<strong>一致收敛</strong>。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>落地结论</strong>：</p>
+<p>  由阿贝尔判别法，条件全部满足，因此乘积形式的函数项级数 $\sum \alpha_n(x) \beta_n$在$[0, R]$ 上<strong>一致收敛</strong>。</p>
+</li>
+</ul>
+<p>3同理可证</p>
+<h2 id="一致收敛性质的利用"><a href="#一致收敛性质的利用" class="headerlink" title="一致收敛性质的利用"></a>一致收敛性质的利用</h2><ul>
+<li><strong>前置条件</strong>：设级数 $\sum_{n&#x3D;0}^{\infty} a_n x^n$的收敛半径为$R$，其和函数记为 $S(x)$。取闭区间参数 $b \in (0, R)$。</li>
+</ul>
+<h3 id="1-和函数-S-x-的连续性-Continuity"><a href="#1-和函数-S-x-的连续性-Continuity" class="headerlink" title="(1) 和函数 $S(x)$ 的连续性 (Continuity)"></a>(1) 和函数 $S(x)$ 的连续性 (Continuity)</h3><ul>
+<li><p><strong>核心结论</strong>：$S(x)$在闭区间$[-b, b]$ 上<strong>连续</strong>。</p>
+</li>
+<li><p><strong>边界延伸（阿贝尔定理的推论）</strong>：若级数在右端点 $x &#x3D; R$处<strong>收敛</strong>，则$S(x)$在$[-b, R]$ 上<strong>连续</strong>。</p>
+</li>
+</ul>
+<p>
+$$
+\text{若 } \sum a_n R^n \text{ 收敛} \implies S(x) \text{ 在 } [-b, R] \text{ 上连续}
+$$
+</p>
+
+<p><em>(这意味着，只要级数在边界收敛，和函数在边界上就不仅有定义，而且能保持左连续。)</em></p>
+<h3 id="2-幂级数的逐项积分定理-Term-by-term-Integration"><a href="#2-幂级数的逐项积分定理-Term-by-term-Integration" class="headerlink" title="(2) 幂级数的逐项积分定理 (Term-by-term Integration)"></a>(2) 幂级数的逐项积分定理 (Term-by-term Integration)</h3><p>由于级数在内部闭区间上是一致收敛的，极限算子（求和）与积分算子可以完美交换顺序：</p>
+<ul>
+<li><strong>定义变上限积分函数 $F(x)$</strong>：</li>
+</ul>
+<p>
+$$
+F(x) = \int_{0}^{x} S(t) \, \mathrm{d}t = \int_{0}^{x} \left( \sum_{n=0}^{\infty} a_n t^n \right) \mathrm{d}t
+$$
+</p>
+
+<ul>
+<li><strong>性质陈述</strong>：对于 $\forall x \in [-b, b]$，上述级数可以<strong>逐项积分</strong>：</li>
+</ul>
+<p>
+$$
+F(x) = \sum_{n=0}^{\infty} \int_{0}^{x} a_n t^n \, \mathrm{d}t
+$$
+</p>
+
+<ul>
+<li><strong>积分落地结果</strong>：</li>
+</ul>
+<p>
+$$
+\int_{0}^{x} S(t) \, \mathrm{d}t = \sum_{n=0}^{\infty} \frac{a_n}{n+1} x^{n+1}
+$$
+</p>
+
+<ul>
+<li><p><strong>新级数的收敛半径</strong>：</p>
+<p>  利用乘上n的幂次不改变收敛半径，知道积分后得到的新幂级数，其<strong>收敛半径仍旧为 $R$</strong>，不过在边界的收敛性可能改变。一般来说越积分收敛性越好。</p>
+</li>
+</ul>
+<h3 id="3-幂级数的逐项求导定理-Term-by-term-Differentiation"><a href="#3-幂级数的逐项求导定理-Term-by-term-Differentiation" class="headerlink" title="(3) 幂级数的逐项求导定理 (Term-by-term Differentiation)"></a>(3) 幂级数的逐项求导定理 (Term-by-term Differentiation)</h3><p>由于级数在内部闭区间 $[-b, b]$（其中 $b \in (0, R)$）上一致收敛，且各项导数构成的级数也表现良好，极限算子（求和）与求导算子可以完美交换顺序：</p>
+<ul>
+<li><strong>核心表达式</strong>：对于 $\forall x \in [-b, b]$，和函数 $S(x)$ 的导数可以直接对级数的每一项分别求导得到：</li>
+</ul>
+<p>
+$$
+S'(x) = \left( \sum_{n=0}^{+\infty} a_n x^n \right)' = \sum_{n=1}^{+\infty} a_n n x^{n-1}
+$$
+</p>
+
+<ul>
+<li><p><em>注：由于常数项 $a_0$求导后变为$0$，新级数的求和下界从 $n&#x3D;0$变为了$n&#x3D;1$。</em></p>
+</li>
+<li><p><strong>收敛半径的不变性</strong>：</p>
+<p>  求导后得到的新级数，其<strong>收敛半径仍旧为 $R$</strong>（正如性质 (2) 所证明的，引入 $n^m$ 因子不改变收敛半径）。</p>
+</li>
+</ul>
+<h3 id="4-高阶逐项求导与无穷阶可导性"><a href="#4-高阶逐项求导与无穷阶可导性" class="headerlink" title="(4) 高阶逐项求导与无穷阶可导性"></a>(4) 高阶逐项求导与无穷阶可导性</h3><p>通过数学归纳法，这个逐项求导的操作可以无限次重复进行：</p>
+<ul>
+<li>$k$阶导数表达式：对于$\forall x \in [-b, b]$，和函数的 $k$阶导数$S^{(k)}(x)$ 为：</li>
+</ul>
+<p>
+$$
+S^{(k)}(x) = \sum_{n=k}^{+\infty} a_n \cdot n(n-1)(n-2)\cdots(n-k+1) x^{n-k}
+$$
+</p>
+
+<ul>
+<li><p><em>注：求和下界对称地变为了 $n&#x3D;k$。</em></p>
+</li>
+<li><p><strong>终极推论（光滑性）</strong>：</p>
+<p>  由于这个性质对任意满足 $b &lt; R$的闭区间$[-b, b]$都成立，我们可以将局部的一致收敛性平滑过渡到整个开区间$(-R, R)$ 上：</p>
+</li>
+</ul>
+<p>
+$$
+\implies S(x) \in C^{\infty}[-b, b]
+$$
+</p>
+
+<p>
+$$
+\implies \mathbf{S(x) \in C^{\infty}(-R, R)}
+$$
+</p>
+
+<p>这意味着：<strong>任何幂级数在其收敛区间内部都代表了一个绝对完美的“光滑函数”（Smooth function），不仅连续，而且拥有任意阶的连续导数。</strong></p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="1-经典例题背景与收敛域判定"><a href="#1-经典例题背景与收敛域判定" class="headerlink" title="1. 经典例题背景与收敛域判定"></a>1. 经典例题背景与收敛域判定</h4><ul>
+<li><strong>研究对象</strong>：给定级数</li>
+</ul>
+<p>
+$$
+S(x) = \sum_{n=0}^{+\infty} (-1)^n \frac{x^{2n+1}}{2n+1}
+$$
+</p>
+
+<ul>
+<li><p><strong>基本属性</strong>：</p>
+<ul>
+<li><p>使用比值审敛法易知其<strong>收敛半径 $R &#x3D; 1$</strong>。</p>
+</li>
+<li><p><strong>边界敛散性</strong>：</p>
+<ul>
+<li><p>当 $x &#x3D; 1$时，级数为$\sum \frac{(-1)^n}{2n+1}$，由交错级数审敛法（Leibniz test）可知其<strong>收敛</strong>。</p>
+</li>
+<li><p>当 $x &#x3D; -1$时，级数为$\sum \frac{(-1)^n (-1)^{2n+1}}{2n+1} &#x3D; \sum \frac{(-1)^{3n+1}}{2n+1}$，同样交错<strong>收敛</strong>。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>结论</strong>：该级数的收敛域为闭区间 <strong>$[-1, 1]$</strong>，而在开区间 <strong>$(-1, 1)$</strong> 内绝对收敛。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-运用逐项求导（Term-by-term-Differentiation）求和函数"><a href="#2-运用逐项求导（Term-by-term-Differentiation）求和函数" class="headerlink" title="2. 运用逐项求导（Term-by-term Differentiation）求和函数"></a>2. 运用逐项求导（Term-by-term Differentiation）求和函数</h4><p>为了解出 $S(x)$的解析表达式，在开区间$(-1, 1)$ 内对级数进行逐项求导：</p>
+<p>
+$$
+S'(x) = \sum_{n=0}^{+\infty} (-1)^n \frac{(2n+1)x^{2n}}{2n+1} = \sum_{n=0}^{+\infty} (-1)^n x^{2n}
+$$
+</p>
+
+<ul>
+<li><strong>几何级数还原</strong>：将上式变形为以 $-x^2$ 为公比的等比级数：</li>
+</ul>
+<p>
+$$
+S'(x) = \sum_{n=0}^{+\infty} (-x^2)^n = \frac{1}{1 - (-x^2)} = \frac{1}{1 + x^2}
+$$
+</p>
+
+<h4 id="3-积分回推与初值确定"><a href="#3-积分回推与初值确定" class="headerlink" title="3. 积分回推与初值确定"></a>3. 积分回推与初值确定</h4><p>通过对导函数 $S’(x)$求不定积分来还原$S(x)$：</p>
+<p>
+$$
+S(x) = \int \frac{1}{1+x^2} \,\mathrm{d}x = \arctan x + C
+$$
+</p>
+
+<ul>
+<li><p><strong>确定常数 $C$</strong>：代入原级数的初始值。显然当 $x&#x3D;0$时，每一项都为 0，即$S(0) &#x3D; 0$。</p>
+</li>
+<li><p><strong>求解</strong>：$\arctan(0) + C &#x3D; 0 \implies C &#x3D; 0$。</p>
+</li>
+<li><p><strong>得到开区间内的和函数</strong>：</p>
+</li>
+</ul>
+<p>
+$$
+S(x) = \arctan x \quad \left(x \in (-1, 1)\right)
+$$
+</p>
+
+<h4 id="4-边界延伸与莱布尼茨-pi-公式"><a href="#4-边界延伸与莱布尼茨-pi-公式" class="headerlink" title="4. 边界延伸与莱布尼茨 $\pi$ 公式"></a>4. 边界延伸与莱布尼茨 $\pi$ 公式</h4><p>这里展现了<strong>阿贝尔定理（Abel’s Theorem）<strong>的威力：因为原级数在端点 $x&#x3D;1$处收敛，所以和函数$S(x)$在$x&#x3D;1$处必然</strong>左连续</strong>。这意味着我们可以把$x&#x3D;1$直接带入刚才得到的$\arctan x$ 中：</p>
+<p>
+$$
+S(1) = \arctan(1) = \frac{\pi}{4}
+$$
+</p>
+
+<p>将 $x&#x3D;1$ 代入原级数展开式，最终落地为数论与分析中大名鼎鼎的经典交错级数公式：</p>
+<p>
+$$
+\mathbf{\sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \frac{1}{11} + \dots = \frac{\pi}{4}}
+$$
+</p>
+
+<h1 id="泰勒级数"><a href="#泰勒级数" class="headerlink" title="泰勒级数"></a>泰勒级数</h1><p>研究幂级数，很大一部分就是为了泰勒级数。</p>
+<h2 id="从无限可导向解析的跨越"><a href="#从无限可导向解析的跨越" class="headerlink" title="从无限可导向解析的跨越"></a>从无限可导向解析的跨越</h2><p>如果一个函数 $f(x)$在$x_0$附近满足$C^\infty$（即<strong>无穷阶连续可导</strong>），我们总可以基于泰勒公式形式化地构建一个无穷级数：</p>
+<p>
+$$
+T(x) = \sum_{n=0}^{+\infty} \frac{1}{n!} f^{(n)}(x_0)(x - x_0)^n
+$$
+</p>
+
+<p>这个级数被称为泰勒级数（当 $x_0&#x3D;0$时为麦克劳林级数）。由于泰勒级数本质上是幂级数，只要它在某个区间$x \in (-R, R)$ 内收敛，其系数就具有唯一性，由其逐阶导数完全决定：$a_n &#x3D; \frac{1}{n!} T^{(n)}(0)$。</p>
+<p>然而，微积分在这里留下了一个直觉的陷阱。<strong>通常情况下，即使泰勒级数在某个区间内完美收敛，它也不一定会收敛到原函数本身。</strong> 也就是说， $f(x) &#x3D; T(x)$ 并非理所当然。要看清这背后的本质，我们需要将视界从孤立的实数轴拓宽到二维的复平面。</p>
+<h3 id="隐藏在虚轴上的“暗礁”：收敛半径的几何本质"><a href="#隐藏在虚轴上的“暗礁”：收敛半径的几何本质" class="headerlink" title="隐藏在虚轴上的“暗礁”：收敛半径的几何本质"></a>隐藏在虚轴上的“暗礁”：收敛半径的几何本质</h3><p>考虑两个在实轴上表现完全不同的函数，它们的麦克劳林级数却展现出了对称的局限性：</p>
+<h4 id="1-几何级数的自然边界"><a href="#1-几何级数的自然边界" class="headerlink" title="1. 几何级数的自然边界"></a>1. 几何级数的自然边界</h4><p>
+$$
+\frac{1}{1-x} = \sum_{n=0}^{+\infty} x^n
+$$
+</p>
+
+<p>该级数的收敛半径是 $R&#x3D;1$。在实数域内，这个限制非常直观：当 $x&#x3D;1$ 时，函数的分母为零，出现了解析构造上的“奇点”。</p>
+<h4 id="2-反正切函数的神秘受限"><a href="#2-反正切函数的神秘受限" class="headerlink" title="2. 反正切函数的神秘受限"></a>2. 反正切函数的神秘受限</h4><p>
+$$
+\arctan(x) = \sum_{n=0}^{+\infty} (-1)^n \frac{x^{2n+1}}{2n+1}
+$$
+</p>
+
+<p>在实数轴上，$\arctan(x)$是一个无可挑剔的完美函数——它不仅处处连续，而且无穷阶可导，没有任何分母为零的断点。然而，它的泰勒级数收敛半径同样被死死限制在$R&#x3D;1$。如果只看实数轴，这无疑是一个令人费解的谜题。</p>
+<p>当我们引入复数 $z &#x3D; x + iy$，将函数通过复对数形式进行解析延拓（<em>analytic continuation</em>）后，真相才浮出水面：</p>
+<p>
+$$
+\arctan(z) = \frac{i}{2} \ln \left( \frac{i-z}{i+z} \right)
+$$
+</p>
+
+<p>在复平面上，复反正切函数在 $z &#x3D; \pm i$ 处分母为零。<strong>复平面上的奇点限制了实数域的收敛半径。</strong></p>
+<p>在几何上，幂级数的收敛区域在复平面上表现为一个圆。这个圆的边界必定会触碰到离原点最近的那个“奇点”。这两个隐藏在虚轴上的奇点 $\pm i$到原点的距离恰好是 1，因此划定了一个半径为 1 的收敛圆。我们在实轴上看到的收敛区间$(-1, 1)$，不过是这个复平面收敛圆在实轴上的一段投影。</p>
+<h3 id="虚妄的温顺：病态函数的实复两面性"><a href="#虚妄的温顺：病态函数的实复两面性" class="headerlink" title="虚妄的温顺：病态函数的实复两面性"></a>虚妄的温顺：病态函数的实复两面性</h3><p>为了彻底划清“无穷阶可导”与“可解析”的界限，我们需要审视数学分析中著名的病态函数（<em>pathological function</em>）：</p>
+<p>
+$$
+f_{\text{bad}}(x) = \begin{cases} e^{-\frac{1}{x^2}}, & x \neq 0 \\ 0, & x = 0 \end{cases}
+$$
+</p>
+
+<p>这个函数在实轴上极为特殊。如果你在原点 $x&#x3D;0$ 处对它求各阶导数，会发现由于指数爆炸级缩小的压制，它在原点处的任意一阶导数都精确地等于 0（$f^{(n)}(0) &#x3D; 0$）。这意味着，它的麦克劳林级数成了恒等于 0 的平庸级数：</p>
+<p>
+$$
+T(x) = 0 + 0\cdot x + 0\cdot x^2 + \dots \equiv 0
+$$
+</p>
+
+<p>这个级数显然在全实轴上收敛，但除了 $x&#x3D;0$这一点外，它在任何地方都不等于原函数$e^{-1&#x2F;x^2}$。</p>
+<p>这种实轴上的“温顺”欺骗了我们。一旦将该函数延拓至复平面 $f_{\text{bad}}(z) &#x3D; e^{-\frac{1}{z^2}}$，从不同的方向逼近原点，它会展现出截然相反的动态：</p>
+<ul>
+<li><strong>沿实轴趋近（$z &#x3D; x$）：</strong></li>
+</ul>
+<p>
+$$
+\lim_{x \to 0} e^{-\frac{1}{x^2}} = 0
+$$
+</p>
+
+<p>函数值平滑地滑向零，各阶导数沉寂。</p>
+<ul>
+<li><strong>沿虚轴趋近（$z &#x3D; iy$）：</strong></li>
+</ul>
+<p>
+$$
+f_{\text{bad}}(iy) = e^{-\frac{1}{(iy)^2}} = e^{\frac{1}{y^2}}
+$$
+</p>
+
+<p>
+$$
+\lim_{y \to 0} e^{\frac{1}{y^2}} = +\infty
+$$
+</p>
+
+<p>随着 $y$ 逼近原点，函数值发生剧烈的指数级爆炸。</p>
+<p><strong>原点 $z&#x3D;0$ 实际上是该函数在复平面上的本性奇点（<em>essential singularity</em>）。</strong> 它在实轴上的无限光滑，只是复平面上剧烈动荡向实轴投影后留下的一丝假象。这也最终解释了为什么它的泰勒级数永远无法真正代表它本身。一个实函数想要能够被泰勒级数完美局部逼近（即解析），它不仅要在实轴上光滑，更需要经受住复平面全方位逼近的考验。</p>
+<h2 id="泰勒公式的余项与级数收敛性判定"><a href="#泰勒公式的余项与级数收敛性判定" class="headerlink" title="泰勒公式的余项与级数收敛性判定"></a>泰勒公式的余项与级数收敛性判定</h2><p>由于我们进一步细化，从幂级数跳到了泰勒级数，那么自然我们会有一些更好的性质，这里就是利用余项来判定级数的收敛性。</p>
+<p>在研究函数的泰勒展开时，为了精确衡量有限阶泰勒多项式 $T_n(x)$与原函数$f(x)$ 之间的逼近误差，引入了余项（Remainder Term）的概念：</p>
+<p>
+$$
+R_n(x) \triangleq f(x) - T_n(x)
+$$
+</p>
+
+<p>根据不同的应用场景（误差估计或收敛性证明），余项主要有两种经典的定量表达形式。</p>
+<h3 id="泰勒公式的两种经典余项形式"><a href="#泰勒公式的两种经典余项形式" class="headerlink" title="泰勒公式的两种经典余项形式"></a>泰勒公式的两种经典余项形式</h3><p>假设函数 $f(x)$在含$x_0$和$x$的区间内具有直到$n+1$ 阶的导数，则余项可以表示为：</p>
+<h4 id="1-拉格朗日型余项（Lagrange-Form）"><a href="#1-拉格朗日型余项（Lagrange-Form）" class="headerlink" title="1. 拉格朗日型余项（Lagrange Form）"></a>1. 拉格朗日型余项（Lagrange Form）</h4><p>
+$$
+R_n(x) = \frac{f^{(n+1)}(x_0 + \theta(x - x_0))}{(n+1)!} (x - x_0)^{n+1}
+$$
+</p>
+
+<p>其中 $\theta &#x3D; \theta_{x, n} \in (0, 1)$。该形式可以看作是拉格朗日中值定理的高阶推广，非常适合用于函数值的误差上界估计。</p>
+<h4 id="2-柯西型余项（Cauchy-Form）"><a href="#2-柯西型余项（Cauchy-Form）" class="headerlink" title="2. 柯西型余项（Cauchy Form）"></a>2. 柯西型余项（Cauchy Form）</h4><p>
+$$
+R_n(x) = \frac{f^{(n+1)}(x_0 + \tilde{\theta}(x - x_0))}{n!} (1 - \tilde{\theta})^n (x - x_0)^{n+1}
+$$
+</p>
+
+<p>其中 $\tilde{\theta} &#x3D; \tilde{\theta}_{x, n} \in (0, 1)$。柯西余项在处理某些特殊函数（如 $\ln(1+x)$或$(1+x)^\alpha$ 在接近收敛边界时）的收敛性证明时更为有力。</p>
+<h3 id="实例分析：指数函数-e-x-的级数收敛性证明"><a href="#实例分析：指数函数-e-x-的级数收敛性证明" class="headerlink" title="实例分析：指数函数 $e^x$ 的级数收敛性证明"></a>实例分析：指数函数 $e^x$ 的级数收敛性证明</h3><p>以 $x_0 &#x3D; 0$（麦克劳林展开）为例，探讨指数函数 $e^x$ 的幂级数展开：</p>
+<p>
+$$
+e^x = \sum_{n=0}^{+\infty} \frac{1}{n!} x^n
+$$
+</p>
+
+<p>利用比值判别知其收敛半径 $R &#x3D; +\infty$。以下提供两种严格证明该级数在全实域 $\mathbb{R}$上等价于$e^x$ 的方法。</p>
+<h4 id="方法-1：余项估计法（利用拉格朗日余项）"><a href="#方法-1：余项估计法（利用拉格朗日余项）" class="headerlink" title="方法 1：余项估计法（利用拉格朗日余项）"></a>方法 1：余项估计法（利用拉格朗日余项）</h4><p>要证明级数收敛于原函数，只需证明当 $n \to +\infty$ 时，余项的极限为 0。</p>
+<p>令 $x_0 &#x3D; 0$，由于 $f^{(n+1)}(x) &#x3D; e^x$，其拉格朗日余项为：</p>
+<p>
+$$
+|R_n(x)| = \left| e^x - \sum_{k=0}^n \frac{1}{k!} x^k \right| = \left| \frac{e^{\theta x}}{(n+1)!} x^{n+1} \right| \quad (\theta \in (0, 1))
+$$
+</p>
+
+<p>对于任意固定的实数 $x$：</p>
+<ul>
+<li><p>$e^{\theta x}$是一个有界常数（若$x&gt;0$，则 $e^{\theta x} &lt; e^x$；若 $x&lt;0$，则 $e^{\theta x} &lt; 1$）。</p>
+</li>
+<li><p>根据阶乘的增长速度远快于幂函数这一性质，有 $\lim_{n \to +\infty} \frac{x^{n+1}}{(n+1)!} &#x3D; 0$。</p>
+</li>
+</ul>
+<p>因此：</p>
+<p>
+$$
+\lim_{n \to +\infty} R_n(x) = 0 \quad (\forall x \in \mathbb{R})
+$$
+</p>
+
+<p>级数在整个实数集上收敛于 $e^x$。</p>
+<h4 id="方法-2：微分方程法（利用逐项求导）"><a href="#方法-2：微分方程法（利用逐项求导）" class="headerlink" title="方法 2：微分方程法（利用逐项求导）"></a>方法 2：微分方程法（利用逐项求导）</h4><p>我们可以直接从和函数出发，利用幂级数的分析性质进行反向证明。</p>
+<p>设幂级数的和函数为 $S(x)$：</p>
+<p>
+$$
+S(x) = \sum_{n=0}^{+\infty} \frac{1}{n!} x^n \quad (\forall x \in \mathbb{R})
+$$
+</p>
+
+<p>由于幂级数在其收敛区间内可以逐项求导，对 $S(x)$ 求导得：</p>
+<p>
+$$
+S'(x) = \sum_{n=1}^{+\infty} \frac{1}{(n-1)!} x^{n-1}
+$$
+</p>
+
+<p>令 $m &#x3D; n-1$，平移求和指标后可得：</p>
+<p>
+$$
+S'(x) = \sum_{m=0}^{+\infty} \frac{1}{m!} x^m = S(x)
+$$
+</p>
+
+<p>这构成了初值问题：</p>
+<p>
+$$
+\begin{cases} S'(x) = S(x) \\ S(0) = 1 \end{cases}
+$$
+</p>
+
+<p>解该线性常微分方程可得：</p>
+<p>
+$$
+S(x) = C e^x
+$$
+</p>
+
+<p>代入初值 $S(0) &#x3D; 1$确定常数$C &#x3D; 1$，故有：</p>
+<p>
+$$
+S(x) = e^x
+$$
+</p>
+
+<p><strong>总结：</strong> 无论是通过拉格朗日余项直接夹逼，还是通过逐项求导构造微分方程，都完美地证明了 $\sum_{n&#x3D;0}^{+\infty} \frac{1}{n!} x^n$在实轴上不仅收敛，且其和函数精确等于$e^x$。</p>
+<h3 id="三角函数"><a href="#三角函数" class="headerlink" title="三角函数"></a>三角函数</h3><p>在完备了幂级数的余项估计理论后，我们可以将其直接应用于最具周期对称美感的经典三角函数——正弦函数 $\sin(x)$与余弦函数$\cos(x)$。</p>
+<h4 id="一、-高阶导数的周期性规律"><a href="#一、-高阶导数的周期性规律" class="headerlink" title="一、 高阶导数的周期性规律"></a>一、 高阶导数的周期性规律</h4><p>对三角函数进行泰勒展开的核心在于求解其任意阶导数。通过简单的微积分递推，可以发现它们的 $n$阶导数具有极具几何美感的统一形式（相当于在相位上不断推进$\frac{\pi}{2}$）：</p>
+<p>
+$$
+\sin^{(n)}(x) = \sin\left(x + \frac{n}{2}\pi\right)
+$$
+</p>
+
+<p>
+$$
+\cos^{(n)}(x) = \cos\left(x + \frac{n}{2}\pi\right)
+$$
+</p>
+
+<p>当选取展开中心 $x_0 &#x3D; 0$（麦克劳林展开）时，由于 $\sin(0)&#x3D;0$且$\cos(0)&#x3D;1$，导数序列在 $0, 1, 0, -1$ 之间循环交替。这导致展开后的多项式呈现出奇偶项分离的特征。</p>
+<h4 id="二、-麦克劳林级数展开"><a href="#二、-麦克劳林级数展开" class="headerlink" title="二、 麦克劳林级数展开"></a>二、 麦克劳林级数展开</h4><p>将上述导数代入公式，可得正弦与余弦函数的经典幂级数展开式。这两个级数的收敛半径均为 $R &#x3D; +\infty$：</p>
+<h5 id="1-正弦函数（奇函数，仅保留奇数次幂）"><a href="#1-正弦函数（奇函数，仅保留奇数次幂）" class="headerlink" title="1. 正弦函数（奇函数，仅保留奇数次幂）"></a>1. 正弦函数（奇函数，仅保留奇数次幂）</h5><p>
+$$
+\sin(x) = \sum_{n=0}^{+\infty} \frac{(-1)^n}{(2n+1)!} x^{2n+1} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots
+$$
+</p>
+
+<h5 id="2-余弦函数（偶函数，仅保留偶数次幂）"><a href="#2-余弦函数（偶函数，仅保留偶数次幂）" class="headerlink" title="2. 余弦函数（偶函数，仅保留偶数次幂）"></a>2. 余弦函数（偶函数，仅保留偶数次幂）</h5><p>
+$$
+\cos(x) = \sum_{n=0}^{+\infty} \frac{(-1)^n}{(2n)!} x^{2n} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots
+$$
+</p>
+
+<h4 id="三、-全实域收敛性证明（拉格朗日余项法）"><a href="#三、-全实域收敛性证明（拉格朗日余项法）" class="headerlink" title="三、 全实域收敛性证明（拉格朗日余项法）"></a>三、 全实域收敛性证明（拉格朗日余项法）</h4><p>为了严格说明这两个级数在整个实数域 $\mathbb{R}$上确实收敛于原函数，同样需要考察其拉格朗日余项$R_n(x)$。</p>
+<p>以 $\sin(x)$为例，其 $n$ 阶泰勒公式的拉格朗日余项为：</p>
+<p>
+$$
+|R_n(x)| = \left| \frac{\sin^{(n+1)}(\theta x)}{(n+1)!} x^{n+1} \right| \quad (\theta \in (0,1))
+$$
+</p>
+
+<p>由于任何阶数的三角函数导数都受到正弦或余弦幅值的绝对控制，因此其导数部分天然有界：</p>
+<p>
+$$
+\left| \sin^{(n+1)}(\theta x) \right| \le 1
+$$
+</p>
+
+<p>由此可得误差分量的绝对控制不等式：</p>
+<p>
+$$
+|R_n(x)| \le \frac{|x|^{n+1}}{(n+1)!}
+$$
+</p>
+
+<p>对于任意给定的实数 $x$，由于阶乘的增长速度在 $n \to +\infty$ 时居于绝对统治地位，级数的尾项必趋于 0：</p>
+<p>
+$$
+\lim_{n \to +\infty} R_n(x) = 0 \quad (\forall x \in \mathbb{R})
+$$
+</p>
+
+<p>同理可证 $\cos(x)$ 的余项同样全实域趋于 0。这说明两个级数在整个实轴上与原函数完全等价。</p>
+<h4 id="四、-终章：统一于欧拉公式"><a href="#四、-终章：统一于欧拉公式" class="headerlink" title="四、 终章：统一于欧拉公式"></a>四、 终章：统一于欧拉公式</h4><p>至此，我们手中已经握有了三个在全实域 $R&#x3D;+\infty$ 完美收敛的麦克劳林级数：$e^x$、$\sin(x)$以及$\cos(x)$。如果我们再次跨越实数边界，将纯虚数 $ix$代入到指数函数$e^x$ 的级数展开中：</p>
+<p>
+$$
+e^{ix} = \sum_{n=0}^{+\infty} \frac{(ix)^n}{n!} = 1 + ix + \frac{(ix)^2}{2!} + \frac{(ix)^3}{3!} + \frac{(ix)^4}{4!} + \dots
+$$
+</p>
+
+<p>利用虚数单位的幂次周期性（$i^2 &#x3D; -1, i^3 &#x3D; -i, i^4 &#x3D; 1$），将上式按照<strong>实部</strong>（不含 $i$的项）与<strong>虚部</strong>（含有$i$ 的项）进行重新拆分组合：</p>
+<p>
+$$
+e^{ix} = \left( 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots \right) + i \left( x - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots \right)
+$$
+</p>
+
+<p>这便在解析层面上严丝合缝地证明了被誉为“数学界最美公式”的<strong>欧拉公式（Euler’s Formula）</strong>：</p>
+<p>
+$$
+e^{ix} = \cos(x) + i\sin(x)
+$$
+</p>
+
+<h3 id="二项级数"><a href="#二项级数" class="headerlink" title="二项级数"></a>二项级数</h3><p>在完备了指数函数与三角函数的级数理论后，我们将目光投向另一个经典的函数族——<strong>二项式函数</strong> $f(x) &#x3D; (1+x)^\alpha$（其中 $\alpha \in \mathbb{R}$且$\alpha \neq 0$）。</p>
+<p>当 $\alpha$ 不为正整数时，该函数无法通过二项式定理展开为有限项多项式。为了探讨其无穷级数的形式及其在实轴上的等价性，必须对其进行高阶求导并对余项进行极其精细的估计。</p>
+<h4 id="一、-二项级数的形式构建与收敛半径"><a href="#一、-二项级数的形式构建与收敛半径" class="headerlink" title="一、 二项级数的形式构建与收敛半径"></a>一、 二项级数的形式构建与收敛半径</h4><h5 id="1-高阶导数与系数确定"><a href="#1-高阶导数与系数确定" class="headerlink" title="1. 高阶导数与系数确定"></a>1. 高阶导数与系数确定</h5><p>对 $f(x) &#x3D; (1+x)^\alpha$进行逐阶求导，其$n$ 阶导数呈现出明显的阶乘幂规律：</p>
+<p>
+$$
+f^{(n)}(x) = \alpha(\alpha-1)\dots(\alpha-n+1)(1+x)^{\alpha-n}
+$$
+</p>
+
+<p>在展开中心 $x_0 &#x3D; 0$ 处，各阶导数值为：</p>
+<p>
+$$
+f^{(n)}(0) = \alpha(\alpha-1)\dots(\alpha-n+1)
+$$
+</p>
+
+<p>由此，我们可以形式化地构建其麦克劳林级数（即<strong>二项级数</strong>）：</p>
+<p>
+$$
+(1+x)^\alpha \sim \sum_{n=0}^{+\infty} \frac{\alpha(\alpha-1)\dots(\alpha-n+1)}{n!} x^n
+$$
+</p>
+
+<h5 id="2-收敛半径的判定"><a href="#2-收敛半径的判定" class="headerlink" title="2. 收敛半径的判定"></a>2. 收敛半径的判定</h5><p>通过达朗贝尔（Ratio Test）比值判别法，考察相邻两项绝对值的比值极限：</p>
+<p>
+$$
+\lim_{n \to +\infty} \left| \frac{a_{n+1} x^{n+1}}{a_n x^n} \right| = \lim_{n \to +\infty} \left| \frac{\alpha-n}{n+1} \right| |x| = |x|
+$$
+</p>
+
+<p>若要级数绝对收敛，需满足 $|x| &lt; 1$。因此，二项级数的<strong>收敛半径 $R &#x3D; 1$</strong>。这说明该级数在开区间 $x \in (-1, 1)$ 内是完备收敛的。</p>
+<h4 id="二、-拉格朗日余项的局限：负区间的失效"><a href="#二、-拉格朗日余项的局限：负区间的失效" class="headerlink" title="二、 拉格朗日余项的局限：负区间的失效"></a>二、 拉格朗日余项的局限：负区间的失效</h4><p>为了证明级数在 $x \in (-1, 1)$内严格等价于原函数，我们需要证明其泰勒余项$\lim_{n \to +\infty} R_n(x) &#x3D; 0$。</p>
+<p>如果采用常规的<strong>拉格朗日型余项</strong>，公式形式如下：</p>
+<p>
+$$
+R_n(x) = \frac{\alpha(\alpha-1)\dots(\alpha-n)}{(n+1)!} (1+\theta x)^{\alpha-n-1} x^{n+1} \quad (\theta \in (0, 1))
+$$
+</p>
+
+<p>将变量项进行归类分离：</p>
+<p>
+$$
+R_n(x) = \frac{\alpha(\alpha-1)\dots(\alpha-n)}{(n+1)!} x^{n+1} \cdot (1+\theta x)^{\alpha-1} \cdot \underline{(1+\theta x)^{-n}}
+$$
+</p>
+
+<p>此时对区间进行分情况讨论，会发现拉格朗日余项遇到了本质阻碍：</p>
+<ul>
+<li><p><strong>当 $x \in (0, 1)$时：</strong>$1+\theta x &gt; 1$，则 $(1+\theta x)^{-n} &lt; 1$，余项可以顺利被阶乘压制趋于 0。</p>
+</li>
+<li><p><strong>当 $x \in (-1, 0)$时：</strong> 此时$0 &lt; 1+\theta x &lt; 1$。这意味着底数小于 1，当 $n \to +\infty$时，负幂次项$(1+\theta x)^{-n}$会变成一个<strong>剧烈增长的放大因子</strong>。由于$\theta$ 的不确定性，拉格朗日余项在负区间内无法直接证明收敛于 0。</p>
+</li>
+</ul>
+<h4 id="三、-柯西余项的巧妙破局"><a href="#三、-柯西余项的巧妙破局" class="headerlink" title="三、 柯西余项的巧妙破局"></a>三、 柯西余项的巧妙破局</h4><p>为了克服拉格朗日余项在负区间估计上的失效，必须引入对基准点权重处理更为细腻的<strong>柯西型余项</strong>。</p>
+<p>柯西余项的标准形式为：</p>
+<p>
+$$
+R_n(x) = \frac{\alpha(\alpha-1)\dots(\alpha-n)}{n!} (1+\theta x)^{\alpha-n-1} (1-\theta)^n x^{n+1} \quad (\theta \in (0, 1))
+$$
+</p>
+
+<h5 id="1-核心代数变形"><a href="#1-核心代数变形" class="headerlink" title="1. 核心代数变形"></a>1. 核心代数变形</h5><p>为了看清各项的控制关系，将柯西余项重组为三个独立因子的乘积结构：</p>
+<p>
+$$
+R_n(x) = \left[ \frac{\alpha(\alpha-1)\dots(\alpha-n)}{n!} x^{n+1} \right] \cdot (1+\theta x)^{\alpha-1} \cdot \left[ \frac{1-\theta}{1+\theta x} \right]^n
+$$
+</p>
+
+<h5 id="2-三大因子的收敛行为分析"><a href="#2-三大因子的收敛行为分析" class="headerlink" title="2. 三大因子的收敛行为分析"></a>2. 三大因子的收敛行为分析</h5><p>针对上面拆解出的三个部分，当 $n \to +\infty$且固定$x \in (-1, 1)$ 时，分别进行精细估计：</p>
+<ul>
+<li><p><strong>因子一（级数通项关联项）：$A_n &#x3D; \frac{\alpha(\alpha-1)\dots(\alpha-n)}{n!} x^{n+1}$</strong></p>
+<p>  这一部分本质上是二项级数的第 $n+1$项。既然我们已经通过比值判别法证明了级数$\sum a_n x^n$在$|x|&lt;1$ 时收敛，根据级数收敛的必要条件，其通项必趋于 0。因此：</p>
+</li>
+</ul>
+<p>
+$$
+\lim_{n \to +\infty} A_n = 0
+$$
+</p>
+
+<ul>
+<li><p><strong>因子二（有界项）：$B &#x3D; (1+\theta x)^{\alpha-1}$</strong></p>
+<p>  由于 $x \in (-1, 1)$且$\theta \in (0, 1)$，不管 $\alpha-1$的符号如何，连续函数$(1+\theta x)^{\alpha-1}$在闭区间上总能被两端点卡住，针对确定的$x$ 是一个<strong>绝对有界</strong>的量，不会走向无穷。</p>
+</li>
+<li><p><strong>因子三（关键收缩项）：$C_n &#x3D; \left[ \frac{1-\theta}{1+\theta x} \right]^n$</strong></p>
+<p>  我们需要评估底数 $\frac{1-\theta}{1+\theta x}$与 1 的大小关系。在整体区间$x \in (-1, 1)$ 内：</p>
+</li>
+</ul>
+<p>
+$$
+(1+\theta x) - (1-\theta) = \theta x + \theta = \theta(1+x) > 0
+$$
+</p>
+
+<p>由此可得：</p>
+<p>
+$$
+1+\theta x > 1-\theta \implies 0 < \frac{1-\theta}{1+\theta x} < 1
+$$
+</p>
+
+<p>既然底数被死死限制在 $(0, 1)$之间，那么它的$n$ 次幂在无穷处必然是有界的（甚至严格递减趋于 0）：</p>
+<p>
+$$
+\left| \frac{1-\theta}{1+\theta x} \right|^n < 1
+$$
+</p>
+
+<h5 id="3-最终夹逼结论"><a href="#3-最终夹逼结论" class="headerlink" title="3. 最终夹逼结论"></a>3. 最终夹逼结论</h5><p>综合以上三项的评估结果，整个柯西余项被拆解为了：</p>
+<p>
+$$
+\lim_{n \to +\infty} R_n(x) = (\text{趋于 } 0) \times (\text{有界项}) \times (\text{小于 } 1 \text{ 的无穷幂次项}) = 0
+$$
+</p>
+
+<p>通过柯西余项的巧妙重新组合，彻底化解了负区间内 $(1+\theta x)^{-n}$膨胀带来的数学危机。至此，我们完成了二项级数在整个开区间$x \in (-1, 1)$ 内收敛于原函数的严格证明：</p>
+<p>
+$$
+(1+x)^\alpha = \sum_{n=0}^{+\infty} \frac{\alpha(\alpha-1)\dots(\alpha-n+1)}{n!} x^n \quad (\forall x \in (-1, 1))
+$$
+</p>
+
+<h4 id="左侧边界：-x-1-将-x-1-强行代入级数，通项呈现为-u-n-frac-alpha-alpha-1-dots-alpha-n-1-n-1-n-。"><a href="#左侧边界：-x-1-将-x-1-强行代入级数，通项呈现为-u-n-frac-alpha-alpha-1-dots-alpha-n-1-n-1-n-。" class="headerlink" title="左侧边界：$x &#x3D; -1$将$x &#x3D; -1$强行代入级数，通项呈现为$u_n &#x3D; \frac{\alpha(\alpha-1)\dots(\alpha-n+1)}{n!} (-1)^n$。"></a>左侧边界：$x &#x3D; -1$将$x &#x3D; -1$强行代入级数，通项呈现为$u_n &#x3D; \frac{\alpha(\alpha-1)\dots(\alpha-n+1)}{n!} (-1)^n$。</h4><p>粗看之下，符号的介入似乎让事情变得复杂，但只要将视线拉长到无穷远处（当 $n &gt; \alpha$时），你会发现相邻两项的比值$\frac{u_{n+1}}{u_n} &#x3D; \frac{n-\alpha}{n+1}$ 悄然恒为正数。这意味着，在远离原点的旷野上，它其实蜕变为了一个<strong>同号级数</strong>。</p>
+<p>面对这种看似温和却缺乏相消机制的同号项累加，我们需要请出<strong>拉贝判别法（Raabe’s Test）</strong>——一种专门用来在比值失效时、通过放大高阶小项来定量级数衰减速度的精细工具。我们去捕捉它的极限行为：</p>
+<p>
+$$
+n \left( \frac{u_n}{u_{n+1}} - 1 \right) = n \left( \frac{n+1}{n-\alpha} - 1 \right) = \frac{n(1+\alpha)}{n-\alpha} \xrightarrow{n \to +\infty} 1 + \alpha
+$$
+</p>
+
+<p>拉贝判别法的标尺非常客观：当极限值大于 1 时级数收敛，小于 1 时则无情发散。</p>
+<ul>
+<li><p>当 $1+\alpha &gt; 1$，即 <strong>$\alpha &gt; 0$</strong> 时，衰减速度足够快，级数<strong>收敛</strong>。</p>
+</li>
+<li><p>当 $1+\alpha &lt; 1$，即 <strong>$\alpha &lt; 0$</strong> 时，累加的势头压过了衰减，级数<strong>发散</strong>。</p>
+</li>
+</ul>
+<p><em>(注：$\alpha &#x3D; 0$ 时函数退化为常数 1，级数自然平凡收敛，一般不作为病态情况讨论。)</em></p>
+<h4 id="右侧边界：-x-1-当目光转向右侧的-x-1-时，通项变成了-u-n-frac-alpha-alpha-1-dots-alpha-n-1-n-。"><a href="#右侧边界：-x-1-当目光转向右侧的-x-1-时，通项变成了-u-n-frac-alpha-alpha-1-dots-alpha-n-1-n-。" class="headerlink" title="右侧边界：$x &#x3D; 1$当目光转向右侧的$x &#x3D; 1$时，通项变成了$u_n &#x3D; \frac{\alpha(\alpha-1)\dots(\alpha-n+1)}{n!}$。"></a>右侧边界：$x &#x3D; 1$当目光转向右侧的$x &#x3D; 1$时，通项变成了$u_n &#x3D; \frac{\alpha(\alpha-1)\dots(\alpha-n+1)}{n!}$。</h4><p>与左边恰恰相反，当 $n$ 足够大时，$\frac{u_{n+1}}{u_n} &#x3D; \frac{\alpha-n}{n+1} &lt; 0$。这里的正负号开始像钟摆一样规律地跳动，级数变成了一个标准的长程<strong>交错级数（alternating series）</strong>。</p>
+<p>交错级数往往拥有一层由“正负相消”赋予的宽容庇护。即使绝对值累加会走向无穷，只要正负交替的浪潮交织得足够均匀，它们就能在动态中达成一种和解：</p>
+<ul>
+<li><p><strong>$\alpha &gt; 0$</strong>：由先前的拉贝判别法可知，此时它连绝对值之和都能收敛，在此处自然稳稳<strong>收敛</strong>。</p>
+</li>
+<li><p><strong>$-1 &lt; \alpha \le 0$</strong>：绝对值的盾牌虽然碎了，但交错相消的剑刃还在。借助莱布尼茨判别法的微调审视，项的大小依然单调趋于 0，使得级数能够维持一种脆弱的平衡，表现为<strong>条件收敛（conditional convergence）</strong>——即级数本身靠着正负抵消活着，但一旦剥离符号取绝对值就会崩溃。</p>
+</li>
+<li><p><strong>$\alpha \le -1$</strong>：此时跨越了危险的阈值，通项在趋近无穷时连“向零靠拢”的基本底线都无法维持，正负震荡的幅度越来越大，级数彻底<strong>发散</strong>。</p>
+</li>
+</ul>
+<h3 id="二项级数变体"><a href="#二项级数变体" class="headerlink" title="二项级数变体"></a>二项级数变体</h3><p>在建立起二项级数的完备理论之后，我们可以利用<strong>逐项求导、逐项积分以及变量代换</strong>等解析性质，将许多复杂的初等函数转化为优雅的幂级数形式。</p>
+<h4 id="一、-利用二项级数展开复合成反式：-frac-1-sqrt-1-x-2-为了求出广义代数分式-f-x-1-x-2-frac-1-2-的级数形式，我们首先引入二项级数中-alpha-frac-1-2-的特例。"><a href="#一、-利用二项级数展开复合成反式：-frac-1-sqrt-1-x-2-为了求出广义代数分式-f-x-1-x-2-frac-1-2-的级数形式，我们首先引入二项级数中-alpha-frac-1-2-的特例。" class="headerlink" title="一、 利用二项级数展开复合成反式：$\frac{1}{\sqrt{1-x^2}}$为了求出广义代数分式$f(x) &#x3D; (1-x^2)^{-\frac{1}{2}}$的级数形式，我们首先引入二项级数中$\alpha &#x3D; -\frac{1}{2}$ 的特例。"></a>一、 利用二项级数展开复合成反式：$\frac{1}{\sqrt{1-x^2}}$为了求出广义代数分式$f(x) &#x3D; (1-x^2)^{-\frac{1}{2}}$的级数形式，我们首先引入二项级数中$\alpha &#x3D; -\frac{1}{2}$ 的特例。</h4><h5 id="1-核心系数的基准推导"><a href="#1-核心系数的基准推导" class="headerlink" title="1. 核心系数的基准推导"></a>1. 核心系数的基准推导</h5><p>对于基础形式 $(1-x)^{-\frac{1}{2}}$，其麦克劳林级数的第 $n$ 项系数为：</p>
+<p>
+$$
+a_n = \frac{(-\frac{1}{2})(-\frac{3}{2})\dots(-\frac{1}{2}-n+1)}{n!} (-1)^n
+$$
+</p>
+
+<p>提取每一项的分母 $2$ 以及负号，分子转化为连续奇数的乘积：</p>
+<p>
+$$
+a_n = \frac{(-1)^n \cdot 1 \cdot 3 \cdot 5 \dots (2n-1)}{2^n \cdot n!} (-1)^n = \frac{(2n-1)!!}{2^n \cdot n!}
+$$
+</p>
+
+<p>由于 $2^n \cdot n! &#x3D; 2 \cdot 4 \cdot 6 \dots (2n) &#x3D; (2n)!!$，系数可以精简为双阶乘（Double Factorial）之比：</p>
+<p>
+$$
+a_n = \frac{(2n-1)!!}{(2n)!!}
+$$
+</p>
+
+<p>由此得到基础展开式：</p>
+<p>
+$$
+(1-x)^{-\frac{1}{2}} = 1+\sum_{n=1}^{+\infty} \frac{(2n-1)!!}{(2n)!!} x^n
+$$
+</p>
+
+<h5 id="2-变量代换完成目标"><a href="#2-变量代换完成目标" class="headerlink" title="2. 变量代换完成目标"></a>2. 变量代换完成目标</h5><p>将上述公式中的 $x$整体替换为$x^2$，即可直接写出目标函数的展开式：</p>
+<p>
+$$
+\frac{1}{\sqrt{1-x^2}} =1+ \sum_{n=1}^{+\infty} \frac{(2n-1)!!}{(2n)!!} x^{2n} \quad (\forall x \in (-1, 1))
+$$
+</p>
+
+<h4 id="二、-逐项积分的应用：反正弦函数-arcsin-x"><a href="#二、-逐项积分的应用：反正弦函数-arcsin-x" class="headerlink" title="二、 逐项积分的应用：反正弦函数 $\arcsin(x)$"></a>二、 逐项积分的应用：反正弦函数 $\arcsin(x)$</h4><p>反正弦函数可以通过导函数积分的形式表达：$\arcsin(x) &#x3D; \int_0^x \frac{1}{\sqrt{1-t^2}} dt$。由于幂级数在收敛区间内部允许逐项积分，我们可以直接对上一节的结果进行定积分操作。</p>
+<h5 id="1-级数形式的导出"><a href="#1-级数形式的导出" class="headerlink" title="1. 级数形式的导出"></a>1. 级数形式的导出</h5><p>
+$$
+\arcsin(x) = \int_0^x \left( \sum_{n=0}^{+\infty} \frac{(2n-1)!!}{(2n)!!} t^{2n} \right) dt = \sum_{n=0}^{+\infty} \frac{(2n-1)!!}{(2n)!!} \int_0^x t^{2n} dt
+$$
+</p>
+
+<p>计算积分项，得到反三角函数的标准级数展开：</p>
+<p>
+$$
+\arcsin(x) = \sum_{n=0}^{+\infty} \frac{(2n-1)!!}{(2n)!!(2n+1)} x^{2n+1}
+$$
+</p>
+
+<h5 id="2-边界收敛性"><a href="#2-边界收敛性" class="headerlink" title="2. 边界收敛性"></a>2. 边界收敛性</h5><p>对于收敛区间 $(-1, 1)$内部，逐项积分的有效性毋庸置疑。然而在端点$x &#x3D; \pm 1$ 处，该级数的表现表现出了更强的收敛倾向。</p>
+<p>通过斯特林公式（Stirling’s Approximation）或拉贝判别法评估其通项系数的渐进性质：</p>
+<p>
+$$
+\frac{(2n-1)!!}{(2n)!!} \sim \frac{1}{\sqrt{\pi n}}
+$$
+</p>
+
+<p>
+$$
+\text{通项大小 } u_n \sim \frac{1}{\sqrt{\pi n} \cdot (2n+1)} \sim O\left(\frac{1}{n^{3/2}}\right)
+$$
+</p>
+
+<p>因为 $p &#x3D; \frac{3}{2} &gt; 1$，根据 $p$-级数判别法，该级数在端点处不仅收敛，而且表现为<strong>绝对收敛</strong>。因此，反正弦函数的生存疆域完美闭合于全闭区间：</p>
+<p>
+$$
+x \in [-1, 1]
+$$
+</p>
+
+<h3 id="对数函数的组合：-frac-1-2-ln-left-frac-1-x-1-x-right"><a href="#对数函数的组合：-frac-1-2-ln-left-frac-1-x-1-x-right" class="headerlink" title="对数函数的组合：$\frac{1}{2}\ln\left(\frac{1+x}{1-x}\right)$"></a>对数函数的组合：$\frac{1}{2}\ln\left(\frac{1+x}{1-x}\right)$</h3><p>利用对数函数的代数性质，可以将商结构拆解为两个经典麦克劳林级数的差：</p>
+<p>
+$$
+\frac{1}{2}\ln\left(\frac{1+x}{1-x}\right) = \frac{1}{2}\big(\ln(1+x) - \ln(1-x)\big)
+$$
+</p>
+
+<h4 id="1-级数对消过程"><a href="#1-级数对消过程" class="headerlink" title="1. 级数对消过程"></a>1. 级数对消过程</h4><p>分别写出两者的级数展开：</p>
+<p>
+$$
+\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \dots = \sum_{n=1}^{+\infty} (-1)^{n-1} \frac{x^n}{n}
+$$
+</p>
+
+<p>
+$$
+\ln(1-x) = -x - \frac{x^2}{2} - \frac{x^3}{3} - \frac{x^4}{4} - \dots = -\sum_{n=1}^{+\infty} \frac{x^n}{n}
+$$
+</p>
+
+<p>当两者相减时，所有<strong>偶数次幂项</strong>因符号相同而完全抵消，所有<strong>奇数次幂项</strong>因符号相反负负得正而完成翻倍：</p>
+<p>
+$$
+\ln(1+x) - \ln(1-x) = 2x + \frac{2x^3}{3} + \frac{2x^5}{5} + \dots = 2 \sum_{n=0}^{+\infty} \frac{x^{2n+1}}{2n+1}
+$$
+</p>
+
+<h4 id="2-最终和函数形式"><a href="#2-最终和函数形式" class="headerlink" title="2. 最终和函数形式"></a>2. 最终和函数形式</h4><p>乘以系数 $\frac{1}{2}$ 消除常数倍，得到无偶数项的纯奇次幂级数：</p>
+<p>
+$$
+\frac{1}{2}\ln\left(\frac{1+x}{1-x}\right) = \sum_{n=0}^{+\infty} \frac{x^{2n+1}}{2n+1} \quad (\forall x \in (-1, 1))
+$$
+</p>
+
+<h3 id="对数与反正切的内在统一"><a href="#对数与反正切的内在统一" class="headerlink" title="对数与反正切的内在统一"></a>对数与反正切的内在统一</h3><p>在实数分析的框架内，上述的对数级数与反正切函数 $\arctan(x) &#x3D; \sum_{n&#x3D;0}^{+\infty} (-1)^n \frac{x^{2n+1}}{2n+1}$ 看起来只是结构相似的两个独立公式。然而，一旦引入复数元素，它们将展现出完美的统一性。</p>
+<p>如果在对数展开式中进行<strong>纯虚数代换</strong> $x \to ix$，则级数变为：</p>
+<p>
+$$
+\sum_{n=0}^{+\infty} \frac{(ix)^{2n+1}}{2n+1} = \sum_{n=0}^{+\infty} i^{2n+1} \frac{x^{2n+1}}{2n+1} = i \sum_{n=0}^{+\infty} (-1)^n \frac{x^{2n+1}}{2n+1} = i \arctan(x)
+$$
+</p>
+
+<p>结合对数函数的解析延拓，两者的函数形态在复数域内达成了如下的逻辑闭环：</p>
+<p>
+$$
+\frac{1}{2}\ln\left(\frac{1+ix}{1-ix}\right) = i \arctan(x) \implies \arctan(x) = \frac{1}{2i}\ln\left(\frac{1+ix}{1-ix}\right) = \frac{i}{2}\ln\left(\frac{i+x}{i-x}\right)
+$$
+</p>
+
+<p>这一关系不仅从代数上解释了为什么 $\arctan(x)$的收敛半径会被限制在$R&#x3D;1$，更揭示了实数域上的<strong>对数增长</strong>与<strong>反三角旋转</strong>，在虚轴的魔镜里，不过是同一个解析结构的双面投影。</p>
+<h3 id="分式"><a href="#分式" class="headerlink" title="分式"></a>分式</h3><p>在掌握了基本初等函数的麦克劳林展开式后，面对非中心点展开或复合分式结构时，直接求导通常会导致组合数爆炸。此时，<strong>平移变换</strong>与<strong>部分分式拆解</strong>的组合拳，是间接写出泰勒展开式最高效的代数技巧。</p>
+<h4 id="一、-核心问题与平移中心"><a href="#一、-核心问题与平移中心" class="headerlink" title="一、 核心问题与平移中心"></a>一、 核心问题与平移中心</h4><p>我们要解决的具体例题是将有理分式 $f(x) &#x3D; \frac{1}{(x-1)(x+3)}$在指定点$x_0 &#x3D; 2$ 处进行泰勒展开。</p>
+<p>为了能够利用现成的麦克劳林级数（以 0 为中心的展开式），首先需要进行<strong>平移变换</strong>，将展开中心强行拉回原点：</p>
+<p>
+$$
+\text{令 } t = x - 2 \implies x = t + 2
+$$
+</p>
+
+<p>将 $x &#x3D; t + 2$代入原函数中，使其转化为关于新变量$t$在$t_0 &#x3D; 0$ 处的麦克劳林展开问题：</p>
+<p>
+$$
+g(t) = \frac{1}{(t+2-1)(t+2+3)} = \frac{1}{(t+1)(t+5)}
+$$
+</p>
+
+<h4 id="二、-部分分式的代数拆解"><a href="#二、-部分分式的代数拆解" class="headerlink" title="二、 部分分式的代数拆解"></a>二、 部分分式的代数拆解</h4><p>分母中的乘积项 $(t+1)(t+5)$ 阻碍了我们直接对应标准级数。利用待定系数法将其拆解为两个独立线性分式的线性组合（部分分式法）：</p>
+<p>
+$$
+\frac{1}{(t+1)(t+5)} = \frac{A}{t+1} + \frac{B}{t+5}
+$$
+</p>
+
+<p>解得 $A &#x3D; \frac{1}{4}$，$B &#x3D; -\frac{1}{4}$。因此，函数被成功解耦：</p>
+<p>
+$$
+g(t) = \frac{1}{4} \left( \frac{1}{t+1} - \frac{1}{t+5} \right)
+$$
+</p>
+
+<h4 id="三、-经典几何级数映射与逐项展开"><a href="#三、-经典几何级数映射与逐项展开" class="headerlink" title="三、 经典几何级数映射与逐项展开"></a>三、 经典几何级数映射与逐项展开</h4><p>解耦后的两项均可完美隐射到标准的几何级数 $\frac{1}{1+u} &#x3D; \sum_{n&#x3D;0}^{+\infty} (-1)^n u^n$ 上，但两者的收敛边界存在内在差异：</p>
+<h5 id="1-第一项直接展开"><a href="#1-第一项直接展开" class="headerlink" title="1. 第一项直接展开"></a>1. 第一项直接展开</h5><p>
+$$
+\frac{1}{1+t} = \sum_{n=0}^{+\infty} (-1)^n t^n
+$$
+</p>
+
+<ul>
+<li><strong>收敛域限制</strong>：该级数要求模长 $|t| &lt; 1$。</li>
+</ul>
+<h5 id="2-第二项提公因式后展开"><a href="#2-第二项提公因式后展开" class="headerlink" title="2. 第二项提公因式后展开"></a>2. 第二项提公因式后展开</h5><p>
+$$
+\frac{1}{t+5} = \frac{1}{5} \cdot \frac{1}{1 + \frac{t}{5}} = \frac{1}{5} \sum_{n=0}^{+\infty} (-1)^n \left(\frac{t}{5}\right)^n = \sum_{n=0}^{+\infty} \frac{(-1)^n}{5^{n+1}} t^n
+$$
+</p>
+
+<ul>
+<li><strong>收敛域限制</strong>：该级数要求模长 $|\frac{t}{5}| &lt; 1 \implies |t| &lt; 5$。</li>
+</ul>
+<h4 id="四、-通项合并与收敛域的“短板效应”"><a href="#四、-通项合并与收敛域的“短板效应”" class="headerlink" title="四、 通项合并与收敛域的“短板效应”"></a>四、 通项合并与收敛域的“短板效应”</h4><p>将上述两个独立级数带回原式并合并同类项，提取出统一的幂次 $t^n$：</p>
+<p>
+$$
+g(t) = \frac{1}{4} \left( \sum_{n=0}^{+\infty} (-1)^n t^n - \sum_{n=0}^{+\infty} \frac{(-1)^n}{5^{n+1}} t^n \right) = \frac{1}{4} \sum_{n=0}^{+\infty} (-1)^n \left( 1 - \left(\frac{1}{5}\right)^{n+1} \right) t^n
+$$
+</p>
+
+<p>将 $t &#x3D; x - 2$重新代回，得到最终关于$(x-2)$ 的泰勒级数标准形式：</p>
+<p>
+$$
+f(x) = \frac{1}{4} \sum_{n=0}^{+\infty} (-1)^n \left( 1 - \left(\frac{1}{5}\right)^{n+1} \right) (x-2)^n
+$$
+</p>
+
+<h5 id="收敛域的最终判定"><a href="#收敛域的最终判定" class="headerlink" title="收敛域的最终判定"></a>收敛域的最终判定</h5><p>整体级数能够安全收敛的区域，取决于两个子级数收敛域的<strong>交集</strong>（即受限于较窄的那个“短板”）：</p>
+<p>
+$$
+|t| < 1 \;\cap\; |t| < 5 \implies |t| < 1
+$$
+</p>
+
+<p>因此，该级数的<strong>收敛半径 $R &#x3D; 1$</strong>，其关于新变量的收敛区间为 $t \in (-1, 1)$。还原到原变量 $x$，收敛区间即为：</p>
+<p>
+$$
+x - 2 \in (-1, 1) \implies x \in (1, 3)
+$$
+</p>
+
+<h4 id="五、-进阶视点：收敛半径的复分析几何本质"><a href="#五、-进阶视点：收敛半径的复分析几何本质" class="headerlink" title="五、 进阶视点：收敛半径的复分析几何本质"></a>五、 进阶视点：收敛半径的复分析几何本质</h4><p>结合此前所引入的复数域视点 $f(z) \to T(z)$，我们可以完全脱离繁琐的代数不等式，从几何上降维打击、一眼看穿收敛半径为何必然是 $R &#x3D; 1$。</p>
+<ul>
+<li><p><strong>奇点的空间分布</strong>：函数 $f(z) &#x3D; \frac{1}{(z-1)(z+3)}$ 在复平面上拥有两个阻碍其解析的“天然陷阱”（即分母为 0 的孤立极点）：$z_1 &#x3D; 1$和$z_2 &#x3D; -3$。</p>
+</li>
+<li><p><strong>收敛圆的扩张极限</strong>：我们在 $z_0 &#x3D; 2$ 处放置圆规的中心开始作解析展开。根据柯西的复变函数理论，泰勒级数的收敛圆会从中心出发不断向外等向扩张，直到触碰到<strong>最近的那个奇点</strong>时宣告破裂。</p>
+</li>
+<li><p><strong>距离的直观度量</strong>：</p>
+</li>
+</ul>
+<p>
+$$
+\text{中心 } z_0 = 2 \text{ 到最近奇点 } z_1 = 1 \text{ 的距离为：} |2 - 1| = 1
+$$
+</p>
+
+<p>
+$$
+\text{中心 } z_0 = 2 \text{ 到较远奇点 } z_2 = -3 \text{ 的距离为：} |2 - (-3)| = 5
+$$
+</p>
+
+<p>这两种长短距离，严丝合缝地对应了我们在代数拆解中得到的 $|t| &lt; 1$和$|t| &lt; 5$。复平面上这一实一虚的几何拉锯，就是实数轴上级数收敛“短板效应”的真正幕后主宰。</p>
+<h2 id="π的估计"><a href="#π的估计" class="headerlink" title="π的估计"></a>π的估计</h2><h3 id="经典级数在特定切片下的完整展开"><a href="#经典级数在特定切片下的完整展开" class="headerlink" title="经典级数在特定切片下的完整展开"></a>经典级数在特定切片下的完整展开</h3><p>当我们将目光投向麦克劳林展开与 $\arcsin$幂级数时，为了在收敛速度与计算可行性之间取得平衡，通常会放弃直接带入边界值$x&#x3D;1$，转而退守到更小的特征点：</p>
+<h4 id="①-麦克劳林级数（莱布尼茨型）的延伸"><a href="#①-麦克劳林级数（莱布尼茨型）的延伸" class="headerlink" title="① 麦克劳林级数（莱布尼茨型）的延伸"></a>① 麦克劳林级数（莱布尼茨型）的延伸</h4><p>该级数在边界 $x&#x3D;1$处的表现人尽皆知，但若将其推向更具实用价值的特征点$x &#x3D; \frac{1}{\sqrt{3}}$（对应 $\arctan\frac{1}{\sqrt{3}} &#x3D; \frac{\pi}{6}$）：</p>
+<p>
+$$
+\frac{\pi}{6} = \sum_{n=0}^{+\infty} \frac{(-1)^n}{2n+1} \left(\frac{1}{\sqrt{3}}\right)^{2n+1} = \frac{1}{\sqrt{3}} \left( 1 - \frac{1}{3 \times 3} + \frac{1}{5 \times 9} - \frac{1}{7 \times 27} + \dots \right)
+$$
+</p>
+
+<p>此时，原本致命的慢收敛被注入了几何因子 $\left(\frac{1}{3}\right)^n$，使其具备了实际计算的价值。</p>
+<h4 id="②-arcsin-幂级数的双位切片"><a href="#②-arcsin-幂级数的双位切片" class="headerlink" title="② $\arcsin$ 幂级数的双位切片"></a>② $\arcsin$ 幂级数的双位切片</h4><ul>
+<li><strong>直接带入边界 $x&#x3D;1$</strong>（对应 $\arcsin(1) &#x3D; \frac{\pi}{2}$）：</li>
+</ul>
+<p>
+$$
+\frac{\pi}{2} = \sum_{n=0}^{+\infty} \frac{(2n-1)!!}{(2n)!!} \frac{1}{2n+1} = 1 + \frac{1}{2 \times 3} + \frac{3}{8 \times 5} + \frac{5}{16 \times 7} + \dots
+$$
+</p>
+
+<p>由于缺少几何因子的加持，此项的收敛性极为脆弱。</p>
+<ul>
+<li><strong>退守至内部特征点 $x &#x3D; \frac{1}{2}$</strong>（对应 $\arcsin\frac{1}{2} &#x3D; \frac{\pi}{6}$）：</li>
+</ul>
+<p>
+$$
+\frac{\pi}{6} = \sum_{n=0}^{+\infty} \frac{(2n-1)!!}{(2n)!!} \frac{1}{2n+1} \left(\frac{1}{2}\right)^{2n+1} = \frac{1}{2} \left( 1 + \frac{1}{6 \times 4} + \frac{3}{40 \times 16} + \dots \right)
+$$
+</p>
+
+<p>这里通过引入 $\left(\frac{1}{4}\right)^n$ 级别的衰减因子，强行挽救了算法的实用度。</p>
+<h3 id="通过积分得到新形式"><a href="#通过积分得到新形式" class="headerlink" title="通过积分得到新形式"></a>通过积分得到新形式</h3><p>面对 $\arctan(x)$在$|x|&gt;1$ 时遭遇的收敛困境，传统的泰勒级数往往无能为力。如果换一种视角，从积分定义的本质出发，通过巧妙的几何级数构造与华里士积分（Wallis Integral）的桥接，可以赋予它一个<strong>在全实数域内绝对收敛的优美级数形式</strong>。</p>
+<p>思维的起点依旧是那条最朴素的路径：</p>
+<p>
+$$
+\arctan(x) = \int_0^x \frac{1}{1+t^2} dt
+$$
+</p>
+
+<p>为了打破积分上限的束缚，做第一次线性换元，令 $t &#x3D; xu$，将积分区间成功压缩到固定的 $[0, 1]$ 之间：</p>
+<p>
+$$
+\arctan(x) = x \int_0^1 \frac{1}{1+x^2 u^2} du
+$$
+</p>
+
+<p>接下来是一步极其精妙的蜕变：引入三角换元 $u &#x3D; \cos\theta$，将区间拉伸至广阔的 $[0, \frac{\pi}{2}]$。伴随着分母中 $\cos^2\theta &#x3D; 1 - \sin^2\theta$ 的恒等变换，积分式转化为：</p>
+<p>
+$$
+\arctan(x) = x \int_0^{\frac{\pi}{2}} \frac{\sin\theta}{(1+x^2) - x^2 \sin^2\theta} d\theta
+$$
+</p>
+
+<p>此时，若强行从分母中提取出 $(1+x^2)$，就能在内部人工制造出一个完美的几何级数（Geometric Series）内核：</p>
+<p>
+$$
+\arctan(x) = \frac{x}{1+x^2} \int_0^{\frac{\pi}{2}} \frac{\sin\theta}{1 - \frac{x^2}{1+x^2} \sin^2\theta} d\theta
+$$
+</p>
+
+<p>注意到对于任意实数 $x$，比值 $\frac{x^2}{1+x^2}$总是严格小于$1$的（在积分开区间内$\sin^2\theta &lt; 1$），这意味着我们<strong>在全实数域 $\mathbb{R}$ 上获得了展开为无穷级数的绝对安全权</strong>。将其展开并交换求和与积分号，核心部分被转化为求解经典的华里士积分：</p>
+<p>
+$$
+\arctan(x) = \frac{x}{1+x^2} \sum_{n=0}^{+\infty} \left(\frac{x^2}{1+x^2}\right)^n \left( \int_0^{\frac{\pi}{2}} \sin^{2n+1}\theta d\theta \right)
+$$
+</p>
+
+<p>代入华里士积分的结果 $\frac{(2n)!!}{(2n+1)!!}$，便诞生了那个超越了传统收敛半径限制的<strong>全域收敛级数公式</strong>：</p>
+<p>
+$$
+\mathbf{\arctan(x) = \frac{x}{1+x^2} \sum_{n=0}^{+\infty} \frac{(2n)!!}{(2n+1)!!} \left(\frac{x^2}{1+x^2}\right)^n \quad (\forall x \in \mathbb{R})}
+$$
+</p>
+
+<p>这个新工具最直接的映射就是对 $\pi$的逼近。只需轻轻将特殊的截面$x &#x3D; 1$嵌进公式，由于$\arctan(1) &#x3D; \frac{\pi}{4}$，便能提炼出一条<strong>收敛极具效率的 $\pi$ 计算路径</strong>：</p>
+<p>
+$$
+\mathbf{\frac{\pi}{4} = \frac{1}{2} \sum_{n=0}^{+\infty} \frac{(2n)!!}{(2n+1)!!} \left(\frac{1}{2}\right)^n}
+$$
+</p>
+
+<p>为了更清晰地审视这一结论在整个分析学坐标系中的位置，不妨将其与另外两种经典的 $\pi$ 求值底稿进行横向对照。不同的级数构造，背后折射出的是对收敛速度与代数结构的权衡：</p>
+<table>
+<thead>
+<tr>
+<th><strong>级数原型</strong></th>
+<th><strong>展开形式与收敛条件</strong></th>
+<th><strong>计算 π 的具体切片（以 x&#x3D;1 或特殊值点为例）</strong></th>
+<th><strong>收敛效能评估（逻辑依据与置信度评级）</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>全域收敛新级数</strong></td>
+<td>$\arctan(x) &#x3D; \frac{x}{1+x^2} \sum_{n&#x3D;0}^{+\infty} \frac{(2n)!!}{(2n+1)!!} \left(\frac{x^2}{1+x^2}\right)^n$<br><br>  <br><br>条件：$x \in \mathbb{R}$</td>
+<td>$\frac{\pi}{4} &#x3D; \frac{1}{2} \sum_{n&#x3D;0}^{+\infty} \frac{(2n)!!}{(2n+1)!!} \left(\frac{1}{2}\right)^n$</td>
+<td>后项与前项比值趋于$\frac{1}{2}$，具备强烈的几何级数（等比级数）收敛特性，速度极快且无边界发散风险。</td>
+</tr>
+<tr>
+<td><strong>麦克劳林级数</strong><br><br>  <br><br>(莱布尼茨型)</td>
+<td>$\arctan(x) &#x3D; \sum_{n&#x3D;0}^{+\infty} (-1)^n \frac{x^{2n+1}}{2n+1}$<br><br>  <br><br>条件：$x \in (-1, 1)$</td>
+<td>x</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>$\arcsin$幂级数</strong></td>
+<td>$\arcsin(x) &#x3D; \sum_{n&#x3D;0}^{+\infty} \frac{(2n-1)!!}{(2n)!!} \frac{x^{2n+1}}{2n+1}$<br><br>  <br><br>条件：$x \in (-1, 1)$</td>
+<td>x</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>纵观这些公式的演变，从莱布尼茨级数那令人绝望的交错慢收敛，到利用积分变换强行注入的几何收敛因子（$\frac{1}{2}$ 的幂次），数学在处理无穷时展现出的那种“以空间换速度”的精巧，往往就隐藏在最开始那步看似多余的换元之中。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

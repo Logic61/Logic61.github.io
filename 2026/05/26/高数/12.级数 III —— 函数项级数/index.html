@@ -1,0 +1,951 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>12.级数 III —— 函数项级数 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>12.级数 III —— 函数项级数</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/5/26
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>我们熟悉的几何级数，可以看做一个泰勒展开：</p>
+<p>
+$$
+\frac{1}{1-x} = 1 + x + x^2 + \dots + x^n + o(x^n)
+$$
+</p>
+
+<p>这像是函数的级数，那么<strong>在什么情况下，这个等式可以写成无穷级数的形式？</strong></p>
+<p>
+$$
+\frac{1}{1-x} = \sum_{n=0}^{\infty} x^n \quad (?)
+$$
+</p>
+
+<ul>
+<li><strong>观察点</strong>：当 $x \to 0$（或者更准确地说，在收敛半径 $|x| &lt; 1$ 内）时，这种转化才具有数学意义。</li>
+</ul>
+<hr>
+<h1 id="函数项级数"><a href="#函数项级数" class="headerlink" title="函数项级数"></a>函数项级数</h1><p>函数项级数的定义：</p>
+<ul>
+<li><strong>定义形式</strong>：</li>
+</ul>
+<p>
+$$
+\sum_{n=1}^{\infty} u_n(x), \quad x \in X
+$$
+</p>
+
+<p>其中 $u_n(x)$是定义在集合$X$ 上的函数序列。</p>
+<ul>
+<li><strong>部分和函数 (Partial Sum Function)</strong>：</li>
+</ul>
+<p>
+$$
+S_n(x) = \sum_{k=1}^{n} u_k(x)
+$$
+</p>
+
+<p>这是级数前 $n$项的和，它本身也是一个关于$x$ 的函数。</p>
+<ul>
+<li><p><strong>和函数 (Sum Function)</strong>：</p>
+<p>  当 $n \to \infty$时，如果部分和函数序列${S_n(x)}$ 趋于一个极限，这个极限被称为<strong>和函数</strong>，记作：</p>
+</li>
+</ul>
+<p>
+$$
+S_n(x) \longrightarrow S(x)
+$$
+</p>
+
+<hr>
+<h2 id="函数序列的极限与收敛"><a href="#函数序列的极限与收敛" class="headerlink" title="函数序列的极限与收敛"></a>函数序列的极限与收敛</h2><p>我们考虑函数序列 ${f_n}$ 的所谓极限和收敛，试着对其运用我们在数项级数的想法。</p>
+<h3 id="1-前提条件"><a href="#1-前提条件" class="headerlink" title="1. 前提条件"></a>1. 前提条件</h3><ul>
+<li><p><strong>共同定义域</strong>：设函数序列 ${f_n(x)}$中的每一个函数都定义在同一个集合$X$ 上。</p>
+</li>
+<li><p><strong>逐点存在性</strong>：对于定义域 $X$中的<strong>每一个</strong>确定的自变量$x$，数列 ${f_n(x)}$（此时已坍缩为常数数列）的极限都存在。</p>
+</li>
+</ul>
+<h3 id="2-极限函数的定义"><a href="#2-极限函数的定义" class="headerlink" title="2. 极限函数的定义"></a>2. 极限函数的定义</h3><ul>
+<li>如果上述极限存在，我们可以定义一个新的函数 $f(x)$，其在点 $x$ 的取值即为该数列的极限：</li>
+</ul>
+<p>
+$$
+\lim_{n \to \infty} f_n(x) = f(x)
+$$
+</p>
+
+<ul>
+<li>此时，$f(x)$被称为函数序列${f_n}$ 的<strong>极限函数 (Limit Function)</strong>。</li>
+</ul>
+<h3 id="3-记号与表述"><a href="#3-记号与表述" class="headerlink" title="3. 记号与表述"></a>3. 记号与表述</h3><ul>
+<li>这种关系记为：</li>
+</ul>
+<p>
+$$
+f_n \xrightarrow{n \to \infty} f \quad (\text{在 } X \text{ 上})
+$$
+</p>
+
+<ul>
+<li>这意味着函数序列 ${f_n}$在集合$X$上<strong>逐点收敛</strong>于$f$。</li>
+</ul>
+<h3 id="逐点收敛"><a href="#逐点收敛" class="headerlink" title="逐点收敛"></a>逐点收敛</h3><p>逐点收敛关注的是“局部”的胜利。如果我们把函数序列想象成一群向终点线跑去的运动员，逐点收敛只要求<strong>每个运动员最终都能到达自己的终点</strong>，但并不要求他们到达的速度是一致的。</p>
+<h3 id="一致收敛"><a href="#一致收敛" class="headerlink" title="一致收敛"></a>一致收敛</h3><p>设函数序列 ${f_n}$在集合$X$上收敛于极限函数$f$。</p>
+<p>若对于<strong>任意</strong>给定的 $\varepsilon &gt; 0$，都存在一个只与 $\varepsilon$有关的自然数$N_{\varepsilon}$，使得当 $n \geq N_{\varepsilon}$时，对于<strong>一切</strong>$x \in X$，都有：</p>
+<p>
+$$
+|f_n(x) - f(x)| < \varepsilon
+$$
+</p>
+
+<p>则称函数序列 ${f_n}$在$X$上<strong>一致收敛</strong>于$f$。</p>
+<p><strong>记法</strong>：</p>
+<p>
+$$
+f_n \rightrightarrows f, \quad x \in X
+$$
+</p>
+
+<p>（注意：这里使用了<strong>双箭头</strong>来区别于逐点收敛的单箭头）。</p>
+<hr>
+<h3 id="一致收敛-vs-逐点收敛"><a href="#一致收敛-vs-逐点收敛" class="headerlink" title="一致收敛 vs. 逐点收敛"></a>一致收敛 vs. 逐点收敛</h3><p>两者的本质区别在于 <strong>$N$对$x$ 的依赖性</strong>：</p>
+<ul>
+<li><p><strong>逐点收敛</strong>：对于不同的点 $x$，收敛的速度可以不同。为了达到同样的精度 $\varepsilon$，有些点可能需要 $n&#x3D;100$，有些点可能需要 $n&#x3D;10000$。这意味着 $N$是$\varepsilon$和$x$ 的函数：$N(\varepsilon, x)$。</p>
+</li>
+<li><p><strong>一致收敛</strong>：存在一个“全场通用”的 $N$。只要 $n$足够大，整个函数曲线会<strong>作为一个整体</strong>进入极限函数$f(x)$的$\varepsilon$-邻域内。此时 $N$ 只取决于精度要求：$N(\varepsilon)$。</p>
+</li>
+</ul>
+<h3 id="示例：幂函数序列"><a href="#示例：幂函数序列" class="headerlink" title="示例：幂函数序列"></a>示例：幂函数序列</h3><h4 id="1-设定条件"><a href="#1-设定条件" class="headerlink" title="1. 设定条件"></a>1. 设定条件</h4><p>设函数序列为：</p>
+<p>
+$$
+f_n(x) = x^n, \quad x \in [0, 1]
+$$
+</p>
+
+<h4 id="2-逐点收敛过程"><a href="#2-逐点收敛过程" class="headerlink" title="2. 逐点收敛过程"></a>2. 逐点收敛过程</h4><p>当 $n \to \infty$时，我们分情况讨论每个点$x$ 的极限：</p>
+<ul>
+<li><p><strong>当 $0 \leq x &lt; 1$ 时</strong>：根据幂函数的性质，$\lim_{n \to \infty} x^n &#x3D; 0$。</p>
+</li>
+<li><p><strong>当 $x &#x3D; 1$时</strong>：对于任何$n$，$1^n$始终为$1$，故 $\lim_{n \to \infty} 1^n &#x3D; 1$。</p>
+</li>
+</ul>
+<p>由此得到极限函数 $f(x)$：</p>
+<p>
+$$
+f(x) =
+
+<p>\begin{cases}</p>
+<p>0, &amp; x \in [0, 1) \</p>
+<p>1, &amp; x &#x3D; 1</p>
+<p>\end{cases}<br>$$</p>
+</p>
+
+<p><img src="/images/Pasted_image_20260510105820.png"></p>
+<h4 id="3-核心结论"><a href="#3-核心结论" class="headerlink" title="3. 核心结论"></a>3. 核心结论</h4><p><strong>收敛但不一致</strong>。</p>
+<ul>
+<li><p><strong>为什么不一致？</strong></p>
+<p>  观察图像可以看到，随着 $n$增大，曲线虽然在绝大部分区域向下“塌陷”趋近于$0$，但在 $x&#x3D;1$附近，曲线始终需要从$0$附近陡峭地升至$1$。</p>
+<p>  这意味着：</p>
+<ol>
+<li><p><strong>连续性破坏</strong>：所有的子项 $f_n(x) &#x3D; x^n$都是完美的连续函数，但它们的极限函数$f(x)$在$x&#x3D;1$ 处发生了跳跃（不连续）。</p>
+</li>
+<li><p><strong>速度不均</strong>：越靠近 $1$的点，收敛到$0$的速度越慢。你无法找到一个统一的$N$，让整条曲线在 $x&#x3D;1$附近也进入极限函数的$\varepsilon$-邻域。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="例-：利用均值不等式判定一致收敛"><a href="#例-：利用均值不等式判定一致收敛" class="headerlink" title="例 ：利用均值不等式判定一致收敛"></a>例 ：利用均值不等式判定一致收敛</h3><h4 id="1-问题设定"><a href="#1-问题设定" class="headerlink" title="1. 问题设定"></a>1. 问题设定</h4><p>设函数序列 $f_n(x) &#x3D; x^n(1-x)^n$，定义域为 $x \in [0, 1]$。</p>
+<h4 id="2-判定过程"><a href="#2-判定过程" class="headerlink" title="2. 判定过程"></a>2. 判定过程</h4><ul>
+<li><p><strong>逐点极限</strong>：显然，对于 $[0, 1]$内的任意$x$，当 $n \to \infty$ 时，$f_n(x) \to 0$。即极限函数 $f(x) \equiv 0$。</p>
+</li>
+<li><p><strong>寻找一致上界</strong>：我们需要估计 $|f_n(x) - f(x)| &#x3D; |x(1-x)|^n$ 的最大值。 根据算术-几何平均值不等式（AM-GM Inequality）：</p>
+</li>
+</ul>
+<p>
+$$
+x(1-x) \leq \left( \frac{x + (1-x)}{2} \right)^2 = \frac{1}{4}
+$$
+</p>
+
+<p>因此：</p>
+<p>
+$$
+|f_n(x) - 0| \leq \left( \frac{1}{4} \right)^n
+$$
+</p>
+
+<ul>
+<li><strong>结论</strong>：由于上界 $\left( \frac{1}{4} \right)^n$与$x$无关，且当$n \to \infty$时趋于$0$，所以：</li>
+</ul>
+<p>
+$$
+f_n \rightrightarrows 0 \quad (\text{在 } [0, 1] \text{ 上一致收敛})
+$$
+</p>
+
+<hr>
+<h3 id="例-：收敛域缩减保证一致收敛"><a href="#例-：收敛域缩减保证一致收敛" class="headerlink" title="例 ：收敛域缩减保证一致收敛"></a>例 ：收敛域缩减保证一致收敛</h3><h4 id="1-问题设定-1"><a href="#1-问题设定-1" class="headerlink" title="1. 问题设定"></a>1. 问题设定</h4><p>设函数序列 $f_n(x) &#x3D; x^n$，但此时定义域限制在 $x \in [0, a]$，其中 $0 &lt; a &lt; 1$。</p>
+<h4 id="2-判定过程-1"><a href="#2-判定过程-1" class="headerlink" title="2. 判定过程"></a>2. 判定过程</h4><ul>
+<li><p><strong>逐点极限</strong>：由于 $a &lt; 1$，对于该区间内所有 $x$，都有 $\lim_{n \to \infty} x^n &#x3D; 0$。</p>
+</li>
+<li><p><strong>寻找一致上界</strong>： 由于 $f_n(x) &#x3D; x^n$在$[0, a]$上是单调递增的，其最大值必然在右端点$a$ 处取得：</p>
+</li>
+</ul>
+<p>
+$$
+|f_n(x) - 0| \leq a^n
+$$
+</p>
+
+<ul>
+<li><strong>结论</strong>： 因为 $0 &lt; a &lt; 1$，所以当 $n \to \infty$ 时，$a^n \to 0$。 这意味着在<strong>缩短后的闭区间</strong> $[0, a]$ 上：</li>
+</ul>
+<p>
+$$
+f_n \rightrightarrows 0 \quad (\text{一致收敛})
+$$
+</p>
+
+<hr>
+<p>这两个例子揭示了判定一致收敛的一种标准范式——<strong>$M$ 判别法思想</strong>：</p>
+<ol>
+<li><p>先求出逐点极限 $f(x)$。</p>
+</li>
+<li><p>计算偏差的模 $|f_n(x) - f(x)|$。</p>
+</li>
+<li><p><strong>关键步骤</strong>：找到一个不依赖于 $x$的数列$M_n$，使得该偏差永远小于等于 $M_n$。</p>
+</li>
+<li><p>如果 $\lim_{n \to \infty} M_n &#x3D; 0$，则一致收敛。</p>
+</li>
+</ol>
+<h3 id="一致收敛的判别定理-The-Criterion-Theorem"><a href="#一致收敛的判别定理-The-Criterion-Theorem" class="headerlink" title="一致收敛的判别定理 (The Criterion Theorem)"></a>一致收敛的判别定理 (The Criterion Theorem)</h3><p>判定一致收敛最常用的<strong>充分必要条件</strong>（通常被称为 $M$ 判别法思想）：</p>
+<ul>
+<li><p><strong>定理内容</strong>：</p>
+<p>  设 $f_n \to f$（逐点收敛）。若存在一个数列 ${a_n}$，满足：</p>
+<ol>
+<li><p>$\lim_{n \to \infty} a_n &#x3D; 0$；</p>
+</li>
+<li><p>对一切 $x \in X$及一切$n \geq 1$，都有 $|f_n(x) - f(x)| \leq a_n$；</p>
+</li>
+</ol>
+</li>
+<li><p><strong>结论</strong>：则函数序列 ${f_n}$在$X$上<strong>一致收敛</strong>于$f$ ($f_n \rightrightarrows f$)。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>直观理解</strong>：如果能找到一个“盖子” $a_n$，它能把所有点的误差都盖住，且这个盖子本身会收缩到 $0$，那么收敛就是一致的。</p>
+</blockquote>
+<hr>
+<h3 id="非一致收敛的判定-Negation-Criterion"><a href="#非一致收敛的判定-Negation-Criterion" class="headerlink" title="非一致收敛的判定 (Negation Criterion)"></a>非一致收敛的判定 (Negation Criterion)</h3><p>证明一个级数<strong>不一致收敛</strong>的方法：</p>
+<ul>
+<li><p><strong>判定准则</strong>：</p>
+<p>  若存在一个常数 $k &gt; 0$，以及定义域中的一个特殊点列 ${x_n} \subset X$，使得：</p>
+</li>
+</ul>
+<p>
+$$
+|f_n(x_n) - f(x_n)| \geq k
+$$
+</p>
+
+<p>（或者该项的极限为 $k$），则 $f_n$在$X$ 上<strong>不一致收敛</strong>。</p>
+<hr>
+<h3 id="例"><a href="#例" class="headerlink" title="例"></a>例</h3><h4 id="1-问题设定-2"><a href="#1-问题设定-2" class="headerlink" title="1. 问题设定"></a>1. 问题设定</h4><p>
+$$
+f_n(x) = \frac{nx}{1 + n^2x^2}, \quad x \in [0, 1]
+$$
+</p>
+
+<h4 id="2-分析过程"><a href="#2-分析过程" class="headerlink" title="2. 分析过程"></a>2. 分析过程</h4><ul>
+<li><p><strong>逐点极限</strong>：</p>
+<ul>
+<li><p>若 $x&#x3D;0$，$f_n(0)&#x3D;0$。</p>
+</li>
+<li><p>若 $x \in (0, 1]$，分母 $n^2$的阶数高于分子$n$，故当 $n \to \infty$ 时，$f_n(x) \to 0$。</p>
+</li>
+<li><p>结论：极限函数 $f(x) \equiv 0$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>构造点列（否定准则）</strong>：</p>
+<p>  为了证明不一致收敛，我们需要找到一个点 $x_n$，使得函数值在该点不趋于 $0$。</p>
+<p>  令 $x_n &#x3D; \frac{1}{n}$ （通过观察容易找到这个序列）：</p>
+</li>
+</ul>
+<p>
+$$
+|f_n(x_n) - f(x_n)| = |f_n(\frac{1}{n}) - 0| = \frac{n \cdot \frac{1}{n}}{1 + n^2 \cdot (\frac{1}{n})^2} = \frac{1}{1+1} = \frac{1}{2}
+$$
+</p>
+
+<ul>
+<li><strong>结论</strong>：由于误差始终保持在 $1&#x2F;2$，无法被任意小的 $\varepsilon$覆盖，故在$[0, 1]$ 上<strong>不一致收敛</strong>。</li>
+</ul>
+<hr>
+<h3 id="例-：有界闭区间内的一致收敛"><a href="#例-：有界闭区间内的一致收敛" class="headerlink" title="例 ：有界闭区间内的一致收敛"></a>例 ：有界闭区间内的一致收敛</h3><h4 id="1-问题设定-3"><a href="#1-问题设定-3" class="headerlink" title="1. 问题设定"></a>1. 问题设定</h4><p>
+$$
+f_n(x) = \frac{n + x^2}{nx}, \quad x \in (0, M]
+$$
+</p>
+
+<h4 id="2-分析过程-1"><a href="#2-分析过程-1" class="headerlink" title="2. 分析过程"></a>2. 分析过程</h4><ul>
+<li><p><strong>逐点极限</strong>：将式子拆分为 $f_n(x) &#x3D; \frac{1}{x} + \frac{x}{n}$。当 $n \to \infty$ 时，$\frac{x}{n} \to 0$，故 $f_n(x) \to \frac{1}{x}$。</p>
+</li>
+<li><p><strong>寻找一致上界</strong>：</p>
+</li>
+</ul>
+<p>
+$$
+|f_n(x) - \frac{1}{x}| = |\frac{x}{n}|
+$$
+</p>
+
+<p>在区间 $(0, M]$上，其最大偏差出现在$x&#x3D;M$ 处：</p>
+<p>
+$$
+|\frac{x}{n}| \leq \frac{M}{n} = a_n
+$$
+</p>
+
+<ul>
+<li><strong>结论</strong>：令 $a_n &#x3D; \frac{M}{n}$，当 $n \to \infty$时$a_n \to 0$。因此在 $(0, M]$ 上<strong>一致收敛</strong>。</li>
+</ul>
+<hr>
+<h3 id="例-3：无穷区间导致的收敛失败"><a href="#例-3：无穷区间导致的收敛失败" class="headerlink" title="例 3：无穷区间导致的收敛失败"></a>例 3：无穷区间导致的收敛失败</h3><h4 id="1-问题设定-4"><a href="#1-问题设定-4" class="headerlink" title="1. 问题设定"></a>1. 问题设定</h4><p>
+$$
+f_n(x) = (1 + \frac{1}{n})^x, \quad x \in [0, +\infty)
+$$
+</p>
+
+<h4 id="2-分析过程-2"><a href="#2-分析过程-2" class="headerlink" title="2. 分析过程"></a>2. 分析过程</h4><ul>
+<li><p><strong>逐点极限</strong>：对于固定的 $x$，当 $n \to \infty$时，依据重要极限可知$f_n(x) \to 1^x &#x3D; 1$。</p>
+</li>
+<li><p><strong>寻找反例点列</strong>：</p>
+<p>  令 $x_n &#x3D; n$：</p>
+</li>
+</ul>
+<p>
+$$
+|f_n(n) - 1| = |(1 + \frac{1}{n})^n - 1| \longrightarrow e - 1
+$$
+</p>
+
+<ul>
+<li><p><strong>结论</strong>：由于 $e - 1 \approx 1.718 &gt; 0$，误差在 $x$趋向无穷时无法消失。故在$[0, +\infty)$ 上<strong>不一致收敛</strong>。</p>
+</li>
+<li><p><strong>对比</strong>：若将区间限制在有界的 $[0, M]$，则会变成一致收敛。</p>
+</li>
+</ul>
+<p>但是如果不知道极限，如何判定一致收敛呢？我们想到数项级数中的柯西判别法。</p>
+<h3 id="一致收敛的柯西准则"><a href="#一致收敛的柯西准则" class="headerlink" title="一致收敛的柯西准则"></a>一致收敛的柯西准则</h3><h4 id="1-定理内容"><a href="#1-定理内容" class="headerlink" title="1. 定理内容"></a>1. 定理内容</h4><p>设函数序列 ${f_n}$定义在集合$X$上。${f_n}$在$X$上<strong>一致收敛</strong>（即存在函数$f$使得$f_n \rightrightarrows f$）的<strong>充分必要条件</strong>是：</p>
+<p>对于<strong>任意</strong>给定的 $\varepsilon &gt; 0$，都<strong>存在</strong>一个仅与 $\varepsilon$有关的自然数$N_{\varepsilon}$，使得对于<strong>所有</strong> $n, m \geq N_{\varepsilon}$以及<strong>一切</strong>$x \in X$，都有：</p>
+<p>
+$$
+|f_n(x) - f_m(x)| < \varepsilon
+$$
+</p>
+
+<hr>
+<h4 id="2-核心逻辑拆解"><a href="#2-核心逻辑拆解" class="headerlink" title="2. 核心逻辑拆解"></a>2. 核心逻辑拆解</h4><ul>
+<li><p><strong>内部一致性</strong>：柯西准则的本质是要求序列的项在 $n$ 足够大时，彼此之间靠得非常近。</p>
+</li>
+<li><p><strong>摆脱极限函数的依赖</strong>：</p>
+<ul>
+<li><p>在之前的判别法中，我们通常需要先求出 $f(x) &#x3D; \lim_{n \to \infty} f_n(x)$，然后去分析 $|f_n(x) - f(x)|$。</p>
+</li>
+<li><p><strong>柯西准则</strong>只需要比较序列内部的两项 $f_n$和$f_m$。这意味着即使极限函数极其复杂或者难以显式表达，我们依然可以讨论其一致收敛性。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>“一致”的体现</strong>：</p>
+<p>  与数列柯西准则不同，这里的 $N_{\varepsilon}$对整个定义域$X$必须是通用的。无论你在$X$中选择哪一个$x$，只要下标超过 $N_{\varepsilon}$，两项之间的距离都必须小于 $\varepsilon$。</p>
+</li>
+</ul>
+<p>一致收敛到底有什么用呢？</p>
+<h3 id="核心定理：一致收敛与连续性-Uniform-Convergence-and-Continuity"><a href="#核心定理：一致收敛与连续性-Uniform-Convergence-and-Continuity" class="headerlink" title="核心定理：一致收敛与连续性 (Uniform Convergence and Continuity)"></a>核心定理：一致收敛与连续性 (Uniform Convergence and Continuity)</h3><h4 id="1-定理内容-1"><a href="#1-定理内容-1" class="headerlink" title="1. 定理内容"></a>1. 定理内容</h4><p>设函数序列 ${f_n}$定义在集合$X$ 上：</p>
+<ul>
+<li><p><strong>条件 1</strong>：每一项 $f_n(x)$都是$X$上的<strong>连续函数</strong>（记作$f_n \in C(X)$）；</p>
+</li>
+<li><p><strong>条件 2</strong>：${f_n}$在$X$上<strong>一致收敛</strong>于极限函数$f$（记作 $f_n \rightrightarrows f$）；</p>
+</li>
+<li><p><strong>结论</strong>：极限函数 $f(x)$也是$X$上的<strong>连续函数</strong>（即$f \in C(X)$）。</p>
+</li>
+</ul>
+<hr>
+<h4 id="2-证明思路：-varepsilon-3-技巧"><a href="#2-证明思路：-varepsilon-3-技巧" class="headerlink" title="2. 证明思路：$\varepsilon&#x2F;3$ 技巧"></a>2. 证明思路：$\varepsilon&#x2F;3$ 技巧</h4><p>为了证明 $f(x)$在$x_0$处连续，我们需要控制$|f(x) - f(x_0)|$ 的大小。</p>
+<p>通过插入项，将其拆解为三部分：</p>
+<p>
+$$
+|f(x) - f(x_0)| \leq |f(x) - f_n(x)| + |f_n(x) - f_n(x_0)| + |f_n(x_0) - f(x_0)|
+$$
+</p>
+
+<ol>
+<li><p><strong>第一项 $|f(x) - f_n(x)|$</strong>：由<strong>一致收敛</strong>保证。只要 $n$足够大，对所有$x$这一项都小于$\varepsilon&#x2F;3$。</p>
+</li>
+<li><p><strong>第二项 $|f_n(x) - f_n(x_0)|$</strong>：由 <strong>$f_n$的连续性</strong>保证。固定$n$后，当$x$靠近$x_0$时，这一项小于$\varepsilon&#x2F;3$。</p>
+</li>
+<li><p><strong>第三项 $|f_n(x_0) - f(x_0)|$</strong>：同样由<strong>一致收敛</strong>保证（特定点 $x_0$ 处的收敛）。</p>
+</li>
+</ol>
+<hr>
+<p>回顾那个 $f_n(x) &#x3D; x^n$在$[0, 1]$ 上的例子：</p>
+<ul>
+<li><p>每一项 $x^n$ 都是连续的。</p>
+</li>
+<li><p>但极限函数 $f(x)$在$x&#x3D;1$ 处不连续。</p>
+</li>
+<li><p><strong>原因</strong>：正是因为它在 $[0, 1]$ 上<strong>不满足一致收敛</strong>。这个反例从反面完美印证了本定理的必要性。</p>
+</li>
+</ul>
+<h3 id="一致收敛保持可积性"><a href="#一致收敛保持可积性" class="headerlink" title="一致收敛保持可积性"></a>一致收敛保持可积性</h3><h4 id="1-定理内容-2"><a href="#1-定理内容-2" class="headerlink" title="1. 定理内容"></a>1. 定理内容</h4><p>设函数序列 ${f_n}$定义在有界闭区间$[a, b]$ 上：</p>
+<ul>
+<li><p><strong>条件 1</strong>：每一项 $f_n(x)$都是$[a, b]$上的<strong>连续函数</strong>（即$f_n \in C[a, b]$）；</p>
+</li>
+<li><p><strong>条件 2</strong>：${f_n}$在$[a, b]$上<strong>一致收敛</strong>于极限函数$f$（记作 $f_n \rightrightarrows f$）；</p>
+</li>
+<li><p><strong>结论</strong>：极限函数与积分号可以交换顺序，即：</p>
+</li>
+</ul>
+<p>
+$$
+\lim_{n \to \infty} \int_a^b f_n(x) dx = \int_a^b f(x) dx
+$$
+</p>
+
+<blockquote>
+<p><strong>直观隐喻</strong>：由于一致收敛保证了整个函数曲线是“均匀”地靠近极限函数的，因此曲线下方的面积也会“平滑”地趋近于极限函数下方的面积。</p>
+</blockquote>
+<hr>
+<h4 id="2-证明过程整理"><a href="#2-证明过程整理" class="headerlink" title="2. 证明过程整理"></a>2. 证明过程整理</h4><p>通过对误差的估计完成证明：</p>
+<ul>
+<li><p><strong>误差表达式</strong>：我们需要证明 $\left| \int_a^b f_n(x) dx - \int_a^b f(x) dx \right| \to 0$。</p>
+</li>
+<li><p><strong>利用积分性质放大</strong>：</p>
+</li>
+</ul>
+<p>
+$$
+\left| \int_a^b (f_n(x) - f(x)) dx \right| \leq \int_a^b |f_n(x) - f(x)| dx
+$$
+</p>
+
+<ul>
+<li><p><strong>利用一致收敛代换</strong>：</p>
+<p>  根据一致收敛的定义，对于任意 $\varepsilon &gt; 0$，存在 $N_{\varepsilon}$，当 $n \geq N_{\varepsilon}$时，对所有$x \in [a, b]$都有$|f_n(x) - f(x)| &lt; \varepsilon$。</p>
+</li>
+<li><p><strong>最终估计</strong>：</p>
+</li>
+</ul>
+<p>
+$$
+\int_a^b |f_n(x) - f(x)| dx \leq \int_a^b \varepsilon \cdot dx = \varepsilon (b - a)
+$$
+</p>
+
+<p>当 $\varepsilon$趋于$0$时，上述误差项显然趋于$0$。</p>
+<p>如果不一致收敛，就未必满足：</p>
+<ul>
+<li><p>一个“三角形尖峰”函数序列 $f_n(x)$，其高度为 $n$，底边宽度缩减为 $1&#x2F;n$。</p>
+</li>
+<li><p><strong>现象</strong>：</p>
+<ul>
+<li><p><strong>逐点极限</strong>：对于任何固定的 $x &gt; 0$，最终 $1&#x2F;n &lt; x$，函数值变为 $0$。故 $f_n \to 0$。</p>
+</li>
+<li><p><strong>积分结果</strong>：三角形面积 $\int_0^1 f_n(x) dx &#x3D; \frac{1}{2}$（底 $\frac{1}{n}$ $\times$高$n$ $\times$ $\frac{1}{2}$）。</p>
+</li>
+<li><p><strong>极限冲突</strong>：$\lim_{n \to \infty} \int_0^1 f_n(x) dx &#x3D; \frac{1}{2}$，但极限函数的积分 $\int_0^1 0 dx &#x3D; 0$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>结论</strong>：由于收敛<strong>不一致</strong>（尖峰一直在拔高），积分与极限号不可交换。</p>
+</li>
+</ul>
+<h3 id="函数列的求导与一致收敛性"><a href="#函数列的求导与一致收敛性" class="headerlink" title="函数列的求导与一致收敛性"></a>函数列的求导与一致收敛性</h3><h4 id="1-定理陈述-Theorem"><a href="#1-定理陈述-Theorem" class="headerlink" title="1. 定理陈述 (Theorem)"></a>1. 定理陈述 (Theorem)</h4><p>设 ${f_n}$是定义在区间$X &#x3D; [a, b]$ 上的函数列，若满足以下条件：</p>
+<ul>
+<li><p><strong>点点收敛</strong>：存在 $x_0 \in X$，使得 ${f_n(x_0)}$ 收敛。</p>
+</li>
+<li><p><strong>连续可导</strong>：$f_n \in C^1(X)$，即每个 $f_n$在$X$ 上有一阶连续导数。</p>
+</li>
+<li><p><strong>导函数一致收敛</strong>：存在函数 $g$，使得导函数序列 ${f’_n}$在$X$上<strong>一致收敛</strong>于$g$，即：</p>
+</li>
+</ul>
+<p>
+$$
+f'_n \rightrightarrows g, \quad x \in X
+$$
+</p>
+
+<p><strong>则可以得出以下结论：</strong></p>
+<ol>
+<li><p>函数列 ${f_n}$在$X$上一致收敛于某个函数$f$（即 $f_n \rightrightarrows f$）。</p>
+</li>
+<li><p>极限函数 $f$在$X$ 上可导，且其导数等于导函数的极限，即：</p>
+</li>
+</ol>
+<p>
+$$
+f' = g \quad \text{或者写成} \quad \left( \lim_{n \to \infty} f_n \right)' = \lim_{n \to \infty} f'_n
+$$
+</p>
+
+<hr>
+<h4 id="2-证明思路推演-Proof-Sketch"><a href="#2-证明思路推演-Proof-Sketch" class="headerlink" title="2. 证明思路推演 (Proof Sketch)"></a>2. 证明思路推演 (Proof Sketch)</h4><p>利用<strong>微积分基本定理</strong>进行估计：</p>
+<p>通过基本公式：</p>
+<p>
+$$
+f_n(x) = f_n(a) + \int_a^x f'_n(t) \, dt
+$$
+</p>
+
+<p>当 $n \to \infty$ 时，对应的项分别趋向于：</p>
+<p>
+$$
+f(x) = f(a) + \int_a^x g(t) \, dt
+$$
+</p>
+
+<p>为了证明一致收敛，考察差值的绝对值：</p>
+<p>
+$$
+|f_n(x) - f_m(x)| \leq |f_n(a) - f_m(a)| + \int_a^x |f'_n(t) - f'_m(t)| \, dt
+$$
+</p>
+
+<p>由于 $f_n(a)$收敛且$f’_n$一致收敛，由 <strong>Cauchy 收敛准则</strong>可知，上式右端可以控制得任意小，从而证明$f_n$的一致收敛性。那么对第二个式子求导，利用变上限积分的导数就得到$f’ &#x3D; g$ 。</p>
+<hr>
+<h4 id="3-性质延伸：交换性-Interchangeability"><a href="#3-性质延伸：交换性-Interchangeability" class="headerlink" title="3. 性质延伸：交换性 (Interchangeability)"></a>3. 性质延伸：交换性 (Interchangeability)</h4><p>极限符号交换的核心思想：</p>
+<ul>
+<li><p><strong>极限交换</strong>：$\lim_{n \to \infty} \lim_{x \to x_0} f_n(x) &#x3D; \lim_{x \to x_0} \lim_{n \to \infty} f_n(x)$</p>
+</li>
+<li><p><strong>积分交换</strong>：$\lim_{n \to \infty} \int_a^b f_n(x) , dx &#x3D; \int_a^b \left( \lim_{n \to \infty} f_n(x) \right) , dx$</p>
+</li>
+<li><p><strong>求导交换</strong>：</p>
+</li>
+</ul>
+<p>
+$$
+\lim_{n \to \infty} \frac{d}{dx} f_n(x) = \frac{d}{dx} \lim_{n \to \infty} f_n(x)
+$$
+</p>
+
+<blockquote>
+<p><strong>注意 (Caveat)</strong>：求导的交换性比积分要求更苛刻。仅仅 $f_n \rightrightarrows f$是<strong>不足以</strong>推出$f’_n \to f’$ 的，必须要求 <strong>导函数序列本身一致收敛</strong> ($f’_n \rightrightarrows g$) 才能保证等式成立。</p>
+</blockquote>
+<h2 id="整理-应用到函数项级数"><a href="#整理-应用到函数项级数" class="headerlink" title="整理 &amp; 应用到函数项级数"></a>整理 &amp; 应用到函数项级数</h2><h3 id="一致收敛的判定"><a href="#一致收敛的判定" class="headerlink" title="一致收敛的判定"></a>一致收敛的判定</h3><p>
+$$
+f_n \rightrightarrows f \text{ 在 } X \text{ 上}
+$$
+</p>
+
+<p>
+$$
+\iff \forall \varepsilon > 0, \exists N_\varepsilon (\text{与 } x \text{ 无关})
+$$
+</p>
+
+<p>
+$$
+\text{使 } |f_n(x) - f(x)| < \varepsilon, \quad \forall n \ge N_\varepsilon, \forall x \in X
+$$
+</p>
+
+<p>
+$$
+\iff \forall \varepsilon > 0, \exists N_\varepsilon
+$$
+</p>
+
+<p>
+$$
+\text{使 } |f_n(x) - f_m(x)| < \varepsilon, \quad \forall n, m \ge N_\varepsilon, \forall x \in X
+$$
+</p>
+
+<p>
+$$
+(\text{一致柯西})
+$$
+</p>
+
+<hr>
+<h3 id="一致收敛的性质"><a href="#一致收敛的性质" class="headerlink" title="一致收敛的性质"></a>一致收敛的性质</h3><h4 id="①-连续性-Continuity"><a href="#①-连续性-Continuity" class="headerlink" title="① 连续性 (Continuity)"></a>① 连续性 (Continuity)</h4><p>
+$$
+f_n \rightrightarrows f, \text{ 且 } f_n \in C(X) \implies f \in C(X)
+$$
+</p>
+
+<h4 id="②-可积性-Integrability"><a href="#②-可积性-Integrability" class="headerlink" title="② 可积性 (Integrability)"></a>② 可积性 (Integrability)</h4><p>
+$$
+f_n \rightrightarrows f \text{ 在 } [a, b] \text{ 上} \implies \int_a^b f_n(x) dx \to \int_a^b f(x) dx
+$$
+</p>
+
+<h4 id="③-可微性-Differentiability"><a href="#③-可微性-Differentiability" class="headerlink" title="③ 可微性 (Differentiability)"></a>③ 可微性 (Differentiability)</h4><p>
+$$
+f_n \to f, \text{ 且 } f_n' \rightrightarrows g \implies f' = g, \text{ 且 } f_n \rightrightarrows f
+$$
+</p>
+
+<h3 id="应用到函数项级数"><a href="#应用到函数项级数" class="headerlink" title="应用到函数项级数"></a>应用到函数项级数</h3><p>称 $\sum_{n&#x3D;1}^{+\infty} u_n(x)$在$X$ 上一致收敛</p>
+<p>若</p>
+<p>
+$$
+S_n(x) = \sum_{k=1}^{n} u_k(x) \rightrightarrows S(x) = \sum_{n=1}^{+\infty} u_n(x)
+$$
+</p>
+
+<p>
+$$
+\iff \forall \varepsilon > 0, \exists N_\varepsilon
+$$
+</p>
+
+<p>
+$$
+\text{使 } \left| \sum_{k=n+1}^{+\infty} u_k(x) \right| < \varepsilon, \quad \forall n \ge N_\varepsilon, \forall x \in X
+$$
+</p>
+
+<p>
+$$
+\iff \forall \varepsilon > 0, \exists N_\varepsilon
+$$
+</p>
+
+<p>
+$$
+\text{使 } \left| \sum_{k=n+1}^{n+p} u_k(x) \right| < \varepsilon, \quad \forall n \ge N_\varepsilon, p \ge 1, \forall x \in X
+$$
+</p>
+
+<hr>
+<h3 id="一致收敛的性质-1"><a href="#一致收敛的性质-1" class="headerlink" title="一致收敛的性质"></a>一致收敛的性质</h3><h4 id="①-连续性-Continuity-1"><a href="#①-连续性-Continuity-1" class="headerlink" title="① 连续性 (Continuity)"></a>① 连续性 (Continuity)</h4><p>若 $S_n \rightrightarrows S$（在 $X$上），且每个$u_n \in C(X) \implies S_n \in C(X)</p>
+<p>
+$$
+$\implies S \in C(X)
+$$
+</p>
+
+<p>这实际上意味着极限符号与求和符号可以交换：</p>
+<p>
+$$
+\lim_{x \to x_0} \sum_{k=1}^{\infty} u_k(x) = \sum_{k=1}^{\infty} \lim_{x \to x_0} u_k(x)
+$$
+</p>
+
+<h4 id="②-可积性-Integrability-—-逐项积分"><a href="#②-可积性-Integrability-—-逐项积分" class="headerlink" title="② 可积性 (Integrability) — 逐项积分"></a>② 可积性 (Integrability) — 逐项积分</h4><p>若 $S_n \rightrightarrows S$在$[a, b]$ 上，（通常称可积）,那么首先利用积分的线性得到：</p>
+<p>
+$$
+\int_a^b \sum_{k=1}^nu_k(x)dx=\sum_{k=1}^n\int_a^bu_k(x)dx
+$$
+</p>
+
+<p>利用上述的函数序列的一致收敛的可积性</p>
+<p>
+$$
+\int_a^b f_n(x) dx \to \int_a^b f(x) dx
+$$
+</p>
+
+<p>就得到</p>
+<p>
+$$
+\int_a^b \sum_{n=1}^{+\infty} u_n(x) dx = \sum_{n=1}^{+\infty} \int_a^b u_n(x) dx
+$$
+</p>
+
+<h4 id="③-可微性-Differentiability-—-逐项求导"><a href="#③-可微性-Differentiability-—-逐项求导" class="headerlink" title="③ 可微性 (Differentiability) — 逐项求导"></a>③ 可微性 (Differentiability) — 逐项求导</h4><p>若 $S_n \to S$，且 $S_n’ &#x3D; \sum_{k&#x3D;1}^{n} u_k’(x) \rightrightarrows G(x)$ ，那么利用函数序列的可微性：</p>
+<p>
+$$
+\implies S_n \rightrightarrows S, \text{ 且 } S' = G(x)
+$$
+</p>
+
+<p>
+$$
+\implies \sum_{n=1}^{+\infty} u_n(x) \text{ 一致收敛，且 } \left( \sum_{n=1}^{+\infty} u_n(x) \right)' = \sum_{n=1}^{+\infty} u_n'(x)
+$$
+</p>
+
+<p>直观地说，一致收敛允许我们交换极限、积分、导数。</p>
+<h3 id="狄利克雷判别法（一致版）"><a href="#狄利克雷判别法（一致版）" class="headerlink" title="狄利克雷判别法（一致版）"></a>狄利克雷判别法（一致版）</h3><p>考察 $\sum_{n&#x3D;1}^{+\infty} a_n(x)b_n(x)$在$X$ 上：</p>
+<p>若：</p>
+<p>① 对任意 $x \in X$，${a_n(x)}$关于$n$<strong>单调</strong>，且$a_n(x) \rightrightarrows 0$在$X$ 上；</p>
+<p>② 存在 $M &gt; 0$，使得 $\left| \sum_{k&#x3D;1}^{n} b_k(x) \right| \le M, \quad \forall n, \forall x \in X$ （即部分和<strong>一致有界</strong>）；</p>
+<p>
+$$
+\implies \sum a_n(x)b_n(x) \text{ 在 } X \text{ 上一致收敛}
+$$
+</p>
+
+<hr>
+<h3 id="阿贝尔判别法（一致版）"><a href="#阿贝尔判别法（一致版）" class="headerlink" title="阿贝尔判别法（一致版）"></a>阿贝尔判别法（一致版）</h3><p>考察 $\sum_{n&#x3D;1}^{+\infty} a_n(x)b_n(x)$在$X$ 上：</p>
+<p>若：</p>
+<p>① 对任意 $x \in X$，${a_n(x)}$关于$n$<strong>单调</strong>，且存在$L &gt; 0$，使得 $|a_n(x)| \le L, \quad \forall n, \forall x$ （即序列<strong>一致有界</strong>）；</p>
+<p>② $\sum_{n&#x3D;1}^{+\infty} b_n(x)$ <strong>一致收敛</strong>；</p>
+<p>
+$$
+\implies \sum a_n(x)b_n(x) \text{ 一致收敛}
+$$
+</p>
+
+<hr>
+<ul>
+<li><p><strong>狄利克雷 (Dirichlet) 的逻辑：</strong> $b_n(x)$的能力比较弱，它的部分和只能做到不爆炸（<strong>一致有界</strong>），无法自主收敛。这时候就需要$a_n(x)$ 展现出极强的压制力（<strong>单调地一致趋于 0</strong>），硬生生把整个级数拉进收敛的怀抱。</p>
+</li>
+<li><p><strong>阿贝尔 (Abel) 的逻辑：</strong> $b_n(x)$本身已经足够优秀，自己就已经能做到<strong>一致收敛</strong>了。这时候对$a_n(x)$ 的要求就会放松，它不需要趋于 0，只需要在旁边安分守己，不要帮倒忙破坏稳定性即可（<strong>单调且一致有界</strong>）。</p>
+</li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

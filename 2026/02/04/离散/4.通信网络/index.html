@@ -1,0 +1,526 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>4.通信网络 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>4.通信网络</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/2/4
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%A6%BB%E6%95%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                离散
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00bcd4">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>在分布式系统和多处理器计算机中，核心问题是如何高效地连接 $N$个输入和$N$ 个输出。</p>
+<span id="more"></span>
+
+<h3 id="1-通信网络的四大衡量指标"><a href="#1-通信网络的四大衡量指标" class="headerlink" title="1. 通信网络的四大衡量指标"></a>1. 通信网络的四大衡量指标</h3><p>设计一个网络拓扑 $G$ 时，我们审视以下四个属性：</p>
+<ul>
+<li><p>需要的交换机数量、大小</p>
+</li>
+<li><p><strong>Degree (度数):</strong> 每个节点引出的边数（受硬件物理接口数量限制，理想情况下应为常数）。</p>
+</li>
+<li><p><strong>Diameter (直径):</strong> 任意输入到输出的最短路径的最大长度（决定了信号传输的最大延迟）。</p>
+</li>
+<li><p><strong>Congestion (拥塞度):</strong> 在所有可能的“一对一”通信排列中，经过某条边的最大包数量（决定了网络的吞吐瓶颈）。</p>
+</li>
+</ul>
+<h4 id="排列"><a href="#排列" class="headerlink" title="排列"></a>排列</h4><p>一个从 $1,…,n$到$1,…,n$的函数，将$i$映射到$\pi(i)$ ，$\pi(i)&#x3D;n(j)$当且仅当$i&#x3D;j$ 。</p>
+<p>对于 $N$个输入输出，从第$i$个输入到其对应输出的$path$记作$P_{i,\pi(i)}$ 。<br><strong>拥塞度</strong> ：所有 $P_{i,\pi(i)}$ 通过的最多的边被通过的次数的最大值。<br>例如，对二叉树，这个值可能是 $1$(输入输出的父节点一样)，也可能是$N$(所有输入都要经过最顶上的节点才能到输出)，那么其拥塞度就是$N$ 。</p>
+<hr>
+<h3 id="2-几种结构"><a href="#2-几种结构" class="headerlink" title="2. 几种结构"></a>2. 几种结构</h3><h4 id="二叉树-Binary-Tree"><a href="#二叉树-Binary-Tree" class="headerlink" title="二叉树(Binary Tree)"></a>二叉树(Binary Tree)</h4><p>底端是输入输出。</p>
+<ul>
+<li><p><strong>指标：</strong> 直径 $&#x3D; 2(1+log(N))$, 需要 $2N-1$ 台交换机。</p>
+</li>
+<li><p><strong>致命伤：</strong> 拥塞度 $&#x3D; N$ 。</p>
+</li>
+</ul>
+<pre class="mermaid">graph TD
+    A((A))
+    B((B))
+    C((C))
+    D((D))
+    E((E))
+    F((F))
+    G((G))
+
+    A --> B
+    A --> C
+    B --> D
+    B --> E
+    C --> F
+    C --> G</pre>
+<h4 id="完全二部图-Complete-Bipartite-Network"><a href="#完全二部图-Complete-Bipartite-Network" class="headerlink" title="完全二部图 (Complete Bipartite Network)"></a>完全二部图 (Complete Bipartite Network)</h4><p>每个输入直接连向每个输出。</p>
+<ul>
+<li><p><strong>指标：</strong> 直径 $&#x3D; 1$，拥塞度 $&#x3D; 1$。</p>
+</li>
+<li><p><strong>致命伤：</strong> 需要一台 $N\times N$ 的交换机。</p>
+</li>
+</ul>
+<pre class="mermaid">graph LR
+    subgraph U
+        U1((u₁))
+        U2((u₂))
+        U3((u₃))
+    end
+	
+    subgraph V
+        V1((v₁))
+        V2((v₂))
+        V3((v₃))
+    end
+
+    U1 --- Switch
+    U2 --- Switch
+    U3 --- Switch
+    Switch --- V1
+    Switch --- V2
+    Switch --- V3</pre>
+<h4 id="B-二维网格-2-D-Mesh"><a href="#B-二维网格-2-D-Mesh" class="headerlink" title="B. 二维网格 (2-D Mesh)"></a>B. 二维网格 (2-D Mesh)</h4><p> $N \times N$ 的阵列。</p>
+<ul>
+<li><p><strong>指标：</strong> 度数 $&#x3D; 4$，需要 $N^2$台$2\times 2$的交换机  ，拥塞度$&#x3D;2$ 。</p>
+</li>
+<li><p><strong>缺点：</strong> <strong>直径 $&#x3D; 2N$</strong>。</p>
+</li>
+</ul>
+<pre class="mermaid">graph TD
+    A11(In1) --- A12((1,2)) --- A13((1,3)) --- A14((1,4))
+    A21(In2) --- A22((2,2)) --- A23((2,3)) --- A24((2,4))
+    A31(In3) --- A32((3,2)) --- A33((3,3)) --- A34((3,4))
+    A41(In4/Out1) --- A42(Out2) --- A43(Out3) --- A44(Out4)
+
+    A11 --- A21
+    A12 --- A22
+    A13 --- A23
+    A14 --- A24
+
+    A21 --- A31
+    A22 --- A32
+    A23 --- A33
+    A24 --- A34
+
+    A31 --- A41
+    A32 --- A42
+    A33 --- A43
+    A34 --- A44</pre>
+<h5 id="Theorem：-拥塞度-2"><a href="#Theorem：-拥塞度-2" class="headerlink" title="Theorem： 拥塞度&#x3D;2"></a>Theorem： 拥塞度&#x3D;2</h5><blockquote>
+<p>[!证明]<br>如此行走： $P_{i,\pi(i)}$为从$row_i$向右走到$col_{\pi(i)}$，再向下走到输出。对于节点$(i,\pi(i))$，它只可能从左或上方被经过，那么只可能来自$Ini$和到达$Out\pi(i)$的两种情况，故不超过$2$，显然有排列可以达到$2$ 。</p>
+</blockquote>
+<h4 id="蝶形网络-Butterfly-Network"><a href="#蝶形网络-Butterfly-Network" class="headerlink" title="蝶形网络 (Butterfly Network)"></a>蝶形网络 (Butterfly Network)</h4><p>为了解决延迟问题，我们引入了分层递归。一个 $N&#x3D;2^k$的蝶形网络由两部分$N&#x2F;2$ 的子网络组成。</p>
+<ul>
+<li><p><strong>结构：</strong> 共有 $\log N + 1$层，每层$N$ 个节点。</p>
+</li>
+<li><p><strong>路由逻辑：</strong> 节点地址为二进制。在第 $i$层，比较目标地址的第$i$ 位：</p>
+<ul>
+<li><p>若为 0，走向左下方的子网络；</p>
+</li>
+<li><p>若为 1，走向右下方的子网络。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>指标：</strong></p>
+<ul>
+<li><p><strong>Size:</strong> $N(\log N + 1)$</p>
+</li>
+<li><p><strong>Degree:</strong> 4</p>
+</li>
+<li><p><strong>Diameter:</strong> $2+\log N$（<strong>巨大突破！</strong> $10^6$ 个节点，直径仅约 20）。</p>
+</li>
+<li><p><strong>Congestion:</strong> $\approx \sqrt{N}$（在中间层会发生严重的“交通堵塞”）。</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="mermaid">graph LR
+    subgraph Inputs
+        In0[In 0]
+        In1[In 1]
+        In2[In 2]
+        In3[In 3]
+    end
+
+    subgraph Layer_0
+        L0_0((00))
+        L0_1((01))
+        L0_2((10))
+        L0_3((11))
+    end
+
+    subgraph Layer_1
+        L1_0((00))
+        L1_1((01))
+        L1_2((10))
+        L1_3((11))
+    end
+
+    subgraph Layer_2
+        L2_0((00))
+        L2_1((01))
+        L2_2((10))
+        L2_3((11))
+    end
+
+    subgraph Outputs
+        Out0[Out 0]
+        Out1[Out 1]
+        Out2[Out 2]
+        Out3[Out 3]
+    end
+
+    %% 输入连接
+    In0 --- L0_0
+    In1 --- L0_1
+    In2 --- L0_2
+    In3 --- L0_3
+
+    %% Layer 0 -> Layer 1 (跨度为 2)
+    L0_0 === L1_0
+    L0_0 -.- L1_2
+    L0_1 === L1_1
+    L0_1 -.- L1_3
+    L0_2 === L1_2
+    L0_2 -.- L1_0
+    L0_3 === L1_3
+    L0_3 -.- L1_1
+
+    %% Layer 1 -> Layer 2 (跨度为 1)
+    L1_0 === L2_0
+    L1_0 -.- L2_1
+    L1_1 === L2_1
+    L1_1 -.- L2_0
+    L1_2 === L2_2
+    L1_2 -.- L2_3
+    L1_3 === L2_3
+    L1_3 -.- L2_2
+
+    %% 输出连接
+    L2_0 --- Out0
+    L2_1 --- Out1
+    L2_2 --- Out2
+    L2_3 --- Out3
+
+    %% 样式美化
+    style L0_0 fill:#fff,stroke:#333
+    style L1_0 fill:#fff,stroke:#333
+    linkStyle 4,6,8,10,12,14,16,18 stroke:#333,stroke-width:2px;
+    linkStyle 5,7,9,11,13,15,17,19 stroke:#666,stroke-dasharray: 5 5;</pre>
+
+<p>如果用二进制表示输入的编号，那么要达到输出，只要如此：如果这 $bit$ 两个相同，则前行，否则跳到上一块或下一块蝴蝶状的小网络上。</p>
+<h4 id="Benes网络"><a href="#Benes网络" class="headerlink" title="Benes网络"></a>Benes网络</h4><p>由两个蝴蝶网络背靠背组成，其阻塞度为 $1$ 。</p>
+<pre class="mermaid">graph LR
+    subgraph Inputs
+        I0[In 0]
+        I1[In 1]
+        I2[In 2]
+        I3[In 3]
+    end
+
+    subgraph Butterfly_Forward
+        L0_0(( )) --- L1_0(( ))
+        L0_0 -.- L1_2(( ))
+        L0_1(( )) --- L1_1(( ))
+        L0_1 -.- L1_3(( ))
+        L0_2(( )) --- L1_2
+        L0_2 -.- L1_0
+        L0_3(( )) --- L1_3
+        L0_3 -.- L1_1
+    end
+
+    subgraph Butterfly_Backward
+        L1_0 --- L2_0(( ))
+        L1_0 -.- L2_1(( ))
+        L1_1 --- L2_1
+        L1_1 -.- L2_0
+        L1_2 --- L2_2(( ))
+        L1_2 -.- L2_3(( ))
+        L1_3 --- L2_3
+        L1_3 -.- L2_2
+    end
+
+    subgraph Outputs
+        L2_0 --- O0[Out 0]
+        L2_1 --- O1[Out 1]
+        L2_2 --- O2[Out 2]
+        L2_3 --- O3[Out 3]
+    end
+
+    %% 输入到第一层连接
+    I0 --- L0_0
+    I1 --- L0_1
+    I2 --- L0_2
+    I3 --- L0_3</pre>
+<blockquote>
+<p>[!]<br>考虑 $N&#x3D;2^a, a&#x3D;1,2,3…$的情形，由于$Benes$网络去掉首尾列再保留上半部分仍然是一个$Benes$ 网络，可以运用归纳法证明。<br>对 $a&#x3D;1$ 的情形，简单枚举可知成立。<br>归纳假设即命题，可将 $a$的情形拆成$2$个$a-1$ 的网络加上首尾的节点的情形，此时，只要较好地分配进入上下子网络的方式，就可以利用归纳假设得证。<br>具体的，我们需要让子网络的输入端只接受一个信号，那么由于每个输入端都有两条指向他们的箭头，我们需要一种策略使得每个输入端只留下一个，输出同理。<br>构造约束图，画出原图的输入端，把指向同一个子网络输入端的节点之间连线。<br>节点：$0, 1, \dots, N-1$。<br>边类型 A（输入）：将指向同样子网络输入端连起来，表示它们必须去往不同子网络。<br>边类型 B（输出）：如果输入 $i$的目的地是$j$，输入 $i’$的目的地是$j’$，且 $j, j’$属于同一个输出交换机，则将$i$和$i’$ 连起来。<br>这个约束图 $G’$ 中每个节点的度数恰好为 2（一条输入约束边，一条输出约束边）。</p>
+</blockquote>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

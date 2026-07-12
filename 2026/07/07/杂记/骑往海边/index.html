@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>骑往海边 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>骑往海边</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/7/7
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E6%97%A5%E8%AE%B0%E7%B1%BB/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                日记类
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%97%A5%E8%AE%B0%E7%B1%BB/" style="color: #ffa2c4">
+                    日记类
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>骑行~<br>几分钟车程，过去十几年竟然一次都没去过。</p>
+<span id="more"></span>
+
+<hr>
+<p>总是闷在家里，大约并不好，也会让人想出去走走。下午骑上小黄车到海边吹了吹风。</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E9%AA%91%E5%BE%80%E6%B5%B7%E8%BE%B9/58659a2d5376a7b76b7d771c4c589387_720.jpg" alt="alt text"></p>
+<p>艳阳高照，白云反射日光，都毛茸茸地泛着雾化的白光，纯粹圣洁的白光，热烈美好的白光。</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E9%AA%91%E5%BE%80%E6%B5%B7%E8%BE%B9/a8fe47cc970994f658befbac692d51b9.jpeg" alt="alt text"></p>
+<p>整个世界的色调都是明媚的，像宫崎骏的动画那样，蓬勃的，生机满满的，充满朝气与希望。</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E9%AA%91%E5%BE%80%E6%B5%B7%E8%BE%B9/a2cdd869877f009b139d6eedb3925b62.jpeg" alt="alt text"></p>
+<p>有一条小路通往海滩</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E9%AA%91%E5%BE%80%E6%B5%B7%E8%BE%B9/8b1a3e8a02b6ae92dfaa7f7d29dd9514.jpeg" alt="alt text"></p>
+<p>但是走到那个标识牌，它会高声告诉你海边危险，让你返回。来都来了，怎么可能就这么回去了。沿着小路一路走到海边。海风呼呼吹着，海浪拍打着岸边，头顶是骄阳和成片的白云，这实在是极好的场景。随我走近海边，五六只白鹭刷地飞起，惊起一滩鸥鹭。我定睛一看，岸边还站着一只灰色的东西，似乎是夜鹭，久仰夜师傅大名，也在B站看了不少，倒是第一回亲眼见到。它比我想象的小，但是那猥琐的姿态非常符合我的印象，我没走近多少，它便也展翅飞走了，警觉半径相当高诶。</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E9%AA%91%E5%BE%80%E6%B5%B7%E8%BE%B9/bd1bb5283ce4781fed7695519e6409ed.jpeg" alt="alt text"></p>
+<p>也没拍到，只有上图，无意中拍到了非常糊的鹭们。</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E9%AA%91%E5%BE%80%E6%B5%B7%E8%BE%B9/b81e02e8e51f4c257b4f11d38eafe00e.jpeg" alt="alt text"></p>
+<p>滩上遍布着各样的石头，我于是想起打水漂，我从没试过，随手拿石头一试，扑通一下便沉了。无奈下打开b站学习了一番手法，终于能跳起来了，但是也跳的并不多，试了若干次，大部分弹两次或者干脆一次沉底，只有两次弹了三下。我看视频里那石头真是厉害，沿着水面如车轮快速滚动前行，足足能弹个二三十下。还真有不少门道，但是我没打算停留太久训练我的打水漂技术。我骑共享单车来，这附近是运营区外，还得预留回运营区的时间。学校虽然发了卡，只能免前一个小时。</p>
+<p>回去路上，看到了几头牛，我说怎么来时闻到了牲畜粪便的味道。</p>
+<p><img src="/../../images/%E6%9D%82%E8%AE%B0/%E9%AA%91%E5%BE%80%E6%B5%B7%E8%BE%B9/c8f58e29184a8018bc261dd009f7b6b8_720.jpg"></p>
+<p>回去的路上，走错了道，走到死路上了，原路返回再回去，花了不少时间，超过了一小时，痛失1r</p>
+<p>回想过去的两周，放假在家，净日有种无所事事的感觉。学习并不想学，游戏也不想打，也懒得出门，对任何事情都提不起兴趣，浑浑噩噩，一晃过了两周这样混沌的生活。真是糟糕。每日想着怎么打发时间，又什么都不想做，偶然被小说勾起兴趣便看，看久了腻了又空虚，顺手刷刷社媒，刷一会又无聊……总在索求着即时的满足，一时的快感，却并不能够长久，只能让自己陷入无边的空虚。</p>
+<p>或许是该多走走，虽然回来以后仍然什么都不那么想做，仍然感到空虚，但是缓和了不少，感到了一种持续性的满足，人似乎活了一点。而且在路上的时候心情十分畅快，若非时间限制我或许要骑个十几公里车去玩，明天吧？或许可以，不过科四我也许也该快快地考了，结束掉驾照这件事。看心情吧，也不急于一时，怎么高兴怎么干好了。放了假就狠狠摆摆好了，往后的寒暑假大约都会忙得很。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

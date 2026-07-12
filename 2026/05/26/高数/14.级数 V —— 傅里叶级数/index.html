@@ -1,0 +1,2321 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>14.级数 V —— 傅里叶级数 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>14.级数 V —— 傅里叶级数</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/5/26
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>幂级数作为一种拟合，还是有些不当之处，随着 $x$增长，高幂次的项数增长很快，于是需要一个很大的系数去压制，能不能找一个更好的基底拟合，而非$x$ 的幂次呢？</p>
+<p>动机我们难以理解，毕竟我们不是傅里叶。但是我们可以找这样一组基 $e^{ikx}$，或者等价地写作$\sin{kx},\cos{kx}$。我们会发现这组基有相当好的性质，考虑积分从$-\frac{\pi}{2}$到$\frac{\pi}{2}$ 构成的一个内积空间，那么这组基是正交的。这意味着我们可以通过</p>
+<p>
+$$
+f(x)=\sum a_ke^{ikx}
+$$
+</p>
+
+<p>直接积分，就得到对应的系数。详细地：</p>
+<p>从幂级数过渡到傅里叶级数，其本质是从“用代数多项式逼近一切函数”<strong>转向</strong>“用具有周期性的三角多项式逼近一切函数”。这一过程伴随着空间基底的转换，也揭示了现代数学中“正交分解”的深刻动机。</p>
+<h3 id="泰勒级数（幂级数）的局限与动机"><a href="#泰勒级数（幂级数）的局限与动机" class="headerlink" title="泰勒级数（幂级数）的局限与动机"></a>泰勒级数（幂级数）的局限与动机</h3><p>对于一些难以直接求出原函数的积分，例如 $\int_{0}^{1} e^{x^2} dx$，我们无法通过初等函数给表达式。为了解决这一困境，最自然的动机就是将复杂的非多项式函数转化为我们最熟悉的“无限项多项式”进行积。</p>
+<p>利用已知的泰勒展开公式：</p>
+<p>
+$$
+e^t = \sum_{n=0}^{+\infty} \frac{t^n}{n!}
+$$
+</p>
+
+<p>令 $t &#x3D; x^2$，我们可以将该积项展开为幂级数：</p>
+<p>
+$$
+\int_{0}^{1} e^{x^2} dx = \int_{0}^{1} \sum_{n=0}^{+\infty} \frac{(x^2)^n}{n!} dx
+$$
+</p>
+
+<p>这种做法在本质上是在假定一个函数 $f(x)$属于由单项式作为基底所张成的空间。在$x_0 &#x3D; 0$ 处展开时，其形式为：</p>
+<p>
+$$
+f(x) \in \text{span}\{1, x, x^2, x^3, \dots, x^n, \dots\}
+$$
+</p>
+
+<p>
+$$
+f(x) = \sum_{n=0}^{+\infty} \frac{f^{(n)}(0)}{n!} x^n = S(x), \quad x \in (-R, +R)
+$$
+</p>
+
+<p><strong>局限性分析（置信度评级：高）：</strong></p>
+<ol>
+<li><p><strong>收敛域的严格限制</strong>：泰勒级数仅在收敛半径 $x \in (-R, +R)$ 内有效。一旦超出这个范围，级数就会发散，无法表现全局性质。</p>
+</li>
+<li><p><strong>非周期性高次爆炸</strong>：由于单项式基底 $x^n$在$x \to \infty$时会趋于无穷（如图$x^n$ 的发散曲线），它极其不适合用来描述具有周期性、波动性或者局部剧烈震荡的信号。</p>
+</li>
+</ol>
+<h3 id="从代数基底向一般函数基底的泛化"><a href="#从代数基底向一般函数基底的泛化" class="headerlink" title="从代数基底向一般函数基底的泛化"></a>从代数基底向一般函数基底的泛化</h3><p>为了摆脱幂级数的空间限制，我们需要抽象出更一般的基底表达。假设存在某一组更广泛的函数基底 ${\varphi_0(x), \varphi_1(x), \varphi_2(x), \dots, \varphi_n(x), \dots}$，使得：</p>
+<p>
+$$
+f(x) \in \text{span}\{\varphi_0(x), \varphi_1(x), \varphi_2(x), \dots, \varphi_n(x), \dots\}
+$$
+</p>
+
+<p>针对特定物理和数学场景——比如一个以 $T$为周期的函数$f(x)$（满足 $f(x+T) &#x3D; f(x)$），或者一个在局部呈现密集波动的复杂信号：</p>
+<p>普通的幂级数在面对这类具有周期性边界、或包含复杂局部纹理的函数时，拟合效率极低。我们迫切需要一种天然具备周期性（如在 $[0, T]$、$[0, 2T]$ 循环往复）且在整体边界内有界的基底。</p>
+<h3 id="傅里叶级数（三角级数）的构造"><a href="#傅里叶级数（三角级数）的构造" class="headerlink" title="傅里叶级数（三角级数）的构造"></a>傅里叶级数（三角级数）的构造</h3><p>既然目标是逼近周期信号与波动函数，最完美的基底选择自然是简谐振动（三角函数）。我们构建一组由常数、正弦函数和余弦函数组成的完备正交基：</p>
+<p>
+$$
+\{1, \sin(x), \cos(x), \sin(2x), \cos(2x), \dots, \sin(nx), \cos(nx), \dots\}
+$$
+</p>
+
+<p>那么，任意函数 $f(x)$ 都可以看作是该基底空间中的一个“向量”：</p>
+<p>
+$$
+\forall f(x) \in \text{span}\{1, \sin(x), \cos(x), \sin(2x), \cos(2x), \dots, \sin(nx), \cos(nx), \dots\}
+$$
+</p>
+
+<p><strong>核心问题提出：</strong></p>
+<p>对于任意给定的函数 $f(x)$，是否必然存在唯一的一组系数 ${a_0, a_1, a_2, \dots, a_n, \dots}$和${b_1, b_2, \dots, b_n, \dots}$，使得函数可以被分解为：</p>
+<p>
+$$
+f(x) = \frac{a_0}{2} + \sum_{n=1}^{+\infty} (a_n \cos(nx) + b_n \sin(nx))
+$$
+</p>
+
+<p>且该公式成立的自变量定义域 $x \in ?$ 究竟能扩展到多大？</p>
+<p>通过这种基底的转换，我们成功将复杂的时域信号分解为了不同频率的谐波组合。正如在线性代数中利用对偶基提取系数一样，三角函数的“正交性”（即不同频率的三角函数在周期内的积分乘积为零）将作为后续提取这组系数 ${a_n, b_n}$ 的强力工具。</p>
+<p>从傅里叶级数的系数确定，到利用其求解偏微分方程（如热传导方程），再到从几何视角理解函数逼近的“距离”概念，这一阶段完成了从“纯函数分解”向“空间几何与动力学应用”的跃升。</p>
+<h3 id="物理背景：非齐次热传导方程的引入"><a href="#物理背景：非齐次热传导方程的引入" class="headerlink" title="物理背景：非齐次热传导方程的引入"></a>物理背景：非齐次热传导方程的引入</h3><p>为了展现傅里叶级数解题的强大威力，我们引入一个经典的物理模型：<strong>一根两端固定的均匀细杆的温度变化控制</strong>。</p>
+<p>假设杆的长度为 $\pi$，考虑其温度分布函数 $u(x, t)$，其满足如下带有外加热源的非齐次热传导方程：</p>
+<p>
+$$
+u_t = u_{x2} + f(x)
+$$
+</p>
+
+<ul>
+<li><p><strong>$u_t$（左端项）</strong>：温度随时间的变化率（热量随时间的累积）。</p>
+</li>
+<li><p><strong>$u_{xx}$（右端第一项）</strong>：热传导项，代表由于空间温度不均匀引起的扩散。</p>
+</li>
+<li><p><strong>$f(x)$（右端第二项）</strong>：外加热源项，它不随时间变化，仅与位置 $x$ 有关。</p>
+</li>
+</ul>
+<p><strong>核心动机</strong>：面对这样一个偏微分方程（PDE），直接求解极其困难。由于三角函数基底具有求导后形式不变（仅改变系数）的优良性质，我们自然的动机是将未知解 $u(x,t)$和已知源项$f(x)$ 统一在空间域上进行傅里叶级数展开，从而将“偏微分方程”降维解耦为“常微分方程”。</p>
+<h3 id="谱方法求解：偏微分方程的代数化"><a href="#谱方法求解：偏微分方程的代数化" class="headerlink" title="谱方法求解：偏微分方程的代数化"></a>谱方法求解：偏微分方程的代数化</h3><p>我们将 $u(x, t)$看作空间基底上的组合，其系数是时间的函数；同时将外加热源$f(x)$ 也做三角展开：</p>
+<p>
+$$
+\begin{aligned} u(x, t) &= \frac{a_0(t)}{2} + \sum_{n=1}^{+\infty} \left[ a_n(t) \cos(nx) + b_n(t) \sin(nx) \right] \\ f(x) &= \frac{\alpha_0}{2} + \sum_{n=1}^{+\infty} \left[ \alpha_n \cos(nx) + \beta_n \sin(nx) \right] \end{aligned}
+$$
+</p>
+
+<h4 id="1-算子作用（求导）"><a href="#1-算子作用（求导）" class="headerlink" title="1. 算子作用（求导）"></a>1. 算子作用（求导）</h4><p>利用傅里叶级数逐项求导的性质，分别计算控制方程的左、右两端：</p>
+<ul>
+<li><strong>对时间求导</strong>：</li>
+</ul>
+<p>
+$$
+u_t = \frac{a_0'(t)}{2} + \sum_{n=1}^{+\infty} \left[ a_n'(t) \cos(nx) + b_n'(t) \sin(nx) \right]
+$$
+</p>
+
+<ul>
+<li><strong>对空间求二次导</strong>：</li>
+</ul>
+<p>
+$$
+u_{xx} = 0 + \sum_{n=1}^{+\infty} \left[ -n^2 a_n(t) \cos(nx) - n^2 b_n(t) \sin(nx) \right]
+$$
+</p>
+
+<h4 id="2-代入方程与系数匹配"><a href="#2-代入方程与系数匹配" class="headerlink" title="2. 代入方程与系数匹配"></a>2. 代入方程与系数匹配</h4><p>将上述展开式代入原物理方程 $u_t &#x3D; u_{xx} + f(x)$，利用三角函数基底的线性独立性，我们可以让每一个谐波分量的系数分别对应相等。由此，<strong>偏微分方程成功转化为无限个独立的常微分方程（ODE）组</strong>：</p>
+<p>
+$$
+\begin{aligned} a_n'(t) &= -n^2 a_n(t) + \alpha_n \implies a_n(t) = \dots \\ b_n'(t) &= -n^2 b_n(t) + \beta_n \implies b_n(t) = \dots \end{aligned}
+$$
+</p>
+
+<p>通过求解这组一阶常微分方程，再结合初始条件，即可彻底锁定制得的未知解 $u(x,t)$。</p>
+<h3 id="几何视角：函数空间中的逼近与距离"><a href="#几何视角：函数空间中的逼近与距离" class="headerlink" title="几何视角：函数空间中的逼近与距离"></a>几何视角：函数空间中的逼近与距离</h3><p>当我们在实际计算中无法取无限项时，只能截取前 $N$项的有限和$S_N(x)$来逼近原函数$f(x)$。那么，如何度量这种“逼近的优劣”？这促使我们建立<strong>函数空间的几何学</strong>，即定义“距离”（范数）。</p>
+<p>这里存在两种不同的“度量误差”的哲学：</p>
+<h4 id="1-一致范数（-L-infty-范数）——-绝对极致的误差"><a href="#1-一致范数（-L-infty-范数）——-绝对极致的误差" class="headerlink" title="1. 一致范数（$L^\infty$ 范数）—— 绝对极致的误差"></a>1. 一致范数（$L^\infty$ 范数）—— 绝对极致的误差</h4><p>
+$$
+\max |f(x) - S_N(x)| \iff \|\vec{a} - \vec{b}\|_\infty
+$$
+</p>
+
+<ul>
+<li><strong>动机</strong>：关注的是“最坏的情况”。它要求在定义域的每一个点上，逼近函数与原函数的最大偏差都必须尽可能小。如图中两条曲线在最宽处的垂直距离。</li>
+</ul>
+<h4 id="2-均方范数（-L-2-范数）——-整体能量的误差"><a href="#2-均方范数（-L-2-范数）——-整体能量的误差" class="headerlink" title="2. 均方范数（$L^2$ 范数）—— 整体能量的误差"></a>2. 均方范数（$L^2$ 范数）—— 整体能量的误差</h4><p>
+$$
+\int_{0}^{\pi} (f(x) - S_N(x))^2 dx \iff \|\vec{a} - \vec{b}\|_2
+$$
+</p>
+
+<ul>
+<li><strong>动机</strong>：关注的是“整体的拟合能量”。它允许个别点存在相对明显的偏差（例如在间断点处的吉布斯现象），但要求整个区间上的总误差平方和（面积）达到最小。</li>
+</ul>
+<p><strong>结论</strong>：傅里叶级数在 $L^2$均方范数下具有完美的<strong>最佳逼近性</strong>。从几何上看，截断的傅里叶级数$S_N(x)$恰好是原函数$f(x)$ 在低频有限维子空间上的<strong>正交投影</strong>。这一几何本质，构成了近代泛函分析与现代信号处理的理论基石。</p>
+<p>有了前面对“几何度量”与“三角基底”的宏观直觉，这一阶段的核心任务是<strong>严格建立函数空间的内积架构</strong>。通过引入内积，函数空间被赋予了几何结构，进而能像处理有限维欧几里得空间一样，利用“正交性”去精确提取傅里叶级数的每一个系数。</p>
+<h3 id="构造平方可积函数空间-V"><a href="#构造平方可积函数空间-V" class="headerlink" title="构造平方可积函数空间 $V$"></a>构造平方可积函数空间 $V$</h3><p>为了让“整体能量误差”的度量在数学上是合法的，我们首先必须定义一个严谨的函数空间。这个空间不能包含那些会发散到无穷大的恶性函数。</p>
+<p>我们定义空间 $V$为在$[-\pi, \pi]$区间上的<strong>平方可积函数空间</strong>（即$L^2$ 空间的雏形）：</p>
+<p>
+$$
+V = \left\{ f(x) : [-\pi, \pi] \to \mathbb{R} \;\middle|\; \int_{-\pi}^{\pi} |f(x)|^2 dx < +\infty \right\}
+$$
+</p>
+
+<p>要让 $V$ 构成一个合格的线性向量空间，它必须对加法和数乘封闭。我们通过基本性质进行验证：</p>
+<ol>
+<li><p><strong>包含零元</strong>：恒等于 $0$的函数显然属于$V$。</p>
+</li>
+<li><p><strong>数乘封闭性</strong>：若 $f \in V$，对于任意实数 $\lambda \in \mathbb{R}$，有 $\lambda f \in V$。</p>
+</li>
+<li><p><strong>加法封闭性</strong>：若 $f, g \in V$，则其和 $f+g \in V$。</p>
+<blockquote>
+<p><strong>动机与数学支撑</strong>：为什么两个平方可积函数的和仍是平方可积的？我们可以通过简单的代数不等式与柯西-施瓦茨不等式来加以保证：</p>
+</blockquote>
+</li>
+</ol>
+<p>
+$$
+\int_{-\pi}^{\pi} |f+g|^2 dx = \int_{-\pi}^{\pi} (f^2 + g^2 + 2fg) dx \le \int_{-\pi}^{\pi} f^2 dx + \int_{-\pi}^{\pi} g^2 dx + 2\sqrt{\int_{-\pi}^{\pi} f^2 dx \int_{-\pi}^{\pi} g^2 dx} < +\infty
+$$
+</p>
+
+<blockquote>
+</blockquote>
+<pre><code>&gt; 其中利用了基本的积性不等式 $\int fg dx \le \sqrt{\int f^2 dx \int g^2 dx}$。
+</code></pre>
+<h3 id="函数空间几何化：内积-langle-cdot-cdot-rangle-的定义"><a href="#函数空间几何化：内积-langle-cdot-cdot-rangle-的定义" class="headerlink" title="函数空间几何化：内积 $\langle \cdot, \cdot \rangle$ 的定义"></a>函数空间几何化：内积 $\langle \cdot, \cdot \rangle$ 的定义</h3><p>有了线性空间后，为了引入“角度”和“投影”的概念，我们需要在 $V$ 上定义一个<strong>内积</strong>。</p>
+<p>对于任意 $f, g \in V$，我们定义其内积形式为在全周期上的加权积分：</p>
+<p>
+$$
+\langle f, g \rangle = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)g(x) dx
+$$
+</p>
+
+<p>这个定义必须严格满足内积的三条核心公理：</p>
+<ol>
+<li><p><strong>线性度 &#x2F; 对称性</strong>：$\langle f, g \rangle &#x3D; \langle g, f \rangle$</p>
+</li>
+<li><p><strong>正定性</strong>：$\langle f, f \rangle \ge 0$且$\langle f, f \rangle &#x3D; 0 \iff f \equiv 0$&gt; <em>注：在勒贝格积分意义下，这里的$f \equiv 0$表示$f$几乎处处为 0。若两个函数满足$\int</em>{-\pi}^{\pi} |f-g|^2 dx &#x3D; 0$，在几何上我们视它们为“同一个向量”（即 $f&#x3D;g$）。_</p>
+</li>
+</ol>
+<p><strong>正交的几何定义</strong>：有了内积，我们就可以定义函数之间的垂直关系。若两个函数的内积为零，即：</p>
+<p>
+$$
+\langle f, g \rangle = 0
+$$
+</p>
+
+<p>则称函数 $f$与$g$ <strong>正交</strong>。</p>
+<h3 id="三角函数基底的标准正交性验证"><a href="#三角函数基底的标准正交性验证" class="headerlink" title="三角函数基底的标准正交性验证"></a>三角函数基底的标准正交性验证</h3><p>现在我们将视线移回由常数和三角函数构成的基底空间：</p>
+<p>
+$$
+V = \text{span}\left\{ \frac{1}{\sqrt{2}}, \cos(x), \sin(x), \dots, \cos(nx), \sin(nx), \dots \right\}
+$$
+</p>
+
+<p><em>(注：为了后续规范化，这里将常数 1 修正为 $\frac{1}{\sqrt{2}}$，以便让所有基向量的模长统一。)</em></p>
+<p>我们的目标是证明这组基是一组<strong>标准正交基</strong>，即满足克罗内克积性质：</p>
+<p>
+$$
+\langle \varphi_i, \varphi_j \rangle = \delta_{ij} = \begin{cases} 1, & i=j \\ 0, & i \neq j \end{cases}
+$$
+</p>
+
+<p>通过经典的三角函数系积化和差公式，我们可以逐一验证其在内积定义下的正交与归一性：</p>
+<h4 id="1-异类函数正交（正弦与余弦）"><a href="#1-异类函数正交（正弦与余弦）" class="headerlink" title="1. 异类函数正交（正弦与余弦）"></a>1. 异类函数正交（正弦与余弦）</h4><p>对于任意的正整数 $m, n$，正弦与余弦在周期内总是正交的：</p>
+<p>
+$$
+\frac{1}{\pi} \int_{-\pi}^{\pi} \cos(mx)\sin(nx) dx = 0, \quad \forall m, n
+$$
+</p>
+
+<h4 id="2-同类不同频函数正交（频率不相等）"><a href="#2-同类不同频函数正交（频率不相等）" class="headerlink" title="2. 同类不同频函数正交（频率不相等）"></a>2. 同类不同频函数正交（频率不相等）</h4><p>当 $m \neq n$ 时，不同频率的波形相互独立：</p>
+<p>
+$$
+\frac{1}{\pi} \int_{-\pi}^{\pi} \cos(mx)\cos(nx) dx = 0 \quad (m \neq n)
+$$
+</p>
+
+<p>
+$$
+\frac{1}{\pi} \int_{-\pi}^{\pi} \sin(mx)\sin(nx) dx = 0 \quad (m \neq n)
+$$
+</p>
+
+<h4 id="3-同类同频归一化（频率相等）"><a href="#3-同类同频归一化（频率相等）" class="headerlink" title="3. 同类同频归一化（频率相等）"></a>3. 同类同频归一化（频率相等）</h4><p>当 $m &#x3D; n \ge 1$时，利用二倍角公式（如$\cos^2(nx) &#x3D; \frac{1+\cos(2nx)}{2}$）积分：</p>
+<p>
+$$
+\frac{1}{\pi} \int_{-\pi}^{\pi} \cos(mx)\cos(nx) dx = 1 \quad (m = n)
+$$
+</p>
+
+<p>
+$$
+\frac{1}{\pi} \int_{-\pi}^{\pi} \sin(mx)\sin(nx) dx = 1 \quad (m = n)
+$$
+</p>
+
+<h4 id="4-常数项基底的特殊验证"><a href="#4-常数项基底的特殊验证" class="headerlink" title="4. 常数项基底的特殊验证"></a>4. 常数项基底的特殊验证</h4><p>常数项与任何正余弦波形在全周期内积分均为 0（因为正余弦的均值为 0）：</p>
+<p>
+$$
+\int_{-\pi}^{\pi} 1 \cdot \cos(nx) dx = 0; \quad \int_{-\pi}^{\pi} 1 \cdot \sin(nx) dx = 0 \quad (n \ge 1)
+$$
+</p>
+
+<p>而常数基底自身的内积为：</p>
+<p>
+$$
+\langle 1, 1 \rangle = \frac{1}{\pi} \int_{-\pi}^{\pi} 1^2 dx = \frac{2\pi}{\pi} = 2
+$$
+</p>
+
+<p>这就是为什么我们在写傅里叶级数时，常数项往往写成 $\frac{a_0}{2}$的几何动机——因为常数$1$的模长平方是$2$，为了在形式上与后面模长为 $1$ 的三角项系数保持内积提取形式的统一，需要进行相应的数学修正。</p>
+<p>通过这一套完美的标准正交基，任意函数 $f(x)$的傅里叶系数提取就变得易如反掌：只需要将$f(x)$分别与对应的基向量$\cos(nx)$或$\sin(nx)$做内积，就能像在线性代数中投射坐标一样，直接“拍”出系数$a_n$和$b_n$。</p>
+<p>在建立了空间内积与三角基底的标准正交性后，最后一步核心任务就是<strong>利用正交投影严谨导出傅里叶系数</strong>，并明确函数能够展开为傅里叶级数的<strong>收敛条件（狄利克雷条件）</strong>。这完成了从线性代数框架到数学分析收敛性的闭环。</p>
+<h3 id="几何投影：傅里叶系数的精确导出"><a href="#几何投影：傅里叶系数的精确导出" class="headerlink" title="几何投影：傅里叶系数的精确导出"></a>几何投影：傅里叶系数的精确导出</h3><p>在线性代数中，已知一组标准正交基 ${\varphi_i}$，任意向量 $f$ 都可以表示为：</p>
+<p>
+$$
+f = \sum_{i=1}^{N} c_i \varphi_i
+$$
+</p>
+
+<p>利用标准正交性 $\langle \varphi_i, \varphi_j \rangle &#x3D; \delta_{ij}$，我们对等式两边同时与 $\varphi_i$ 做内积，可以直接“拍”出组合系数：</p>
+<p>
+$$
+c_i = \langle f, \varphi_i \rangle
+$$
+</p>
+
+<p>现在，我们将这个结论完全平移到平方可积函数空间 $V$ 中。由于空间基底为：</p>
+<p>
+$$
+\left\{ \frac{1}{\sqrt{2}}, \cos(x), \sin(x), \dots, \cos(nx), \sin(nx), \dots \right\}
+$$
+</p>
+
+<p>我们假设函数 $f(x)$ 展开为：</p>
+<p>
+$$
+f(x) \approx \tilde{a}_0 \cdot \frac{1}{\sqrt{2}} + \sum_{n=1}^{+\infty} \left[ a_n \cos(nx) + b_n \sin(nx) \right]
+$$
+</p>
+
+<h4 id="1-提取余弦项系数-a-n-与正弦项系数-b-n-利用定义好的内积-langle-f-g-rangle-frac-1-pi-int-pi-pi-f-x-g-x-dx-，当-n-ge-1-时，直接作投影："><a href="#1-提取余弦项系数-a-n-与正弦项系数-b-n-利用定义好的内积-langle-f-g-rangle-frac-1-pi-int-pi-pi-f-x-g-x-dx-，当-n-ge-1-时，直接作投影：" class="headerlink" title="1. 提取余弦项系数 $a_n$与正弦项系数$b_n$利用定义好的内积$\langle f, g \rangle &#x3D; \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)g(x) dx$，当 $n \ge 1$ 时，直接作投影："></a>1. 提取余弦项系数 $a_n$与正弦项系数$b_n$利用定义好的内积$\langle f, g \rangle &#x3D; \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)g(x) dx$，当 $n \ge 1$ 时，直接作投影：</h4><p>
+$$
+a_n = \langle f, \cos(nx) \rangle = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)\cos(nx) dx
+$$
+</p>
+
+<p>
+$$
+b_n = \langle f, \sin(nx) \rangle = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)\sin(nx) dx
+$$
+</p>
+
+<h4 id="2-提取常数项系数-tilde-a-0-同理，将-f-x-与常数基底-frac-1-sqrt-2-做内积："><a href="#2-提取常数项系数-tilde-a-0-同理，将-f-x-与常数基底-frac-1-sqrt-2-做内积：" class="headerlink" title="2. 提取常数项系数 $\tilde{a}_0$同理，将$f(x)$与常数基底$\frac{1}{\sqrt{2}}$ 做内积："></a>2. 提取常数项系数 $\tilde{a}_0$同理，将$f(x)$与常数基底$\frac{1}{\sqrt{2}}$ 做内积：</h4><p>
+$$
+\tilde{a}_0 = \left\langle f, \frac{1}{\sqrt{2}} \right\rangle = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot \frac{1}{\sqrt{2}} dx
+$$
+</p>
+
+<p>为了消除项中不习惯的 $\sqrt{2}$，让常数项在形式上更统一，我们重新定义一个系数 $a_0$，令：</p>
+<p>
+$$
+a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cdot 1 dx
+$$
+</p>
+
+<p>此时，由于 $\tilde{a}<em>0 \cdot \frac{1}{\sqrt{2}} &#x3D; \left( \frac{1}{\sqrt{2}\pi} \int</em>{-\pi}^{\pi} f(x)dx \right) \cdot \frac{1}{\sqrt{2}} &#x3D; \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x)dx &#x3D; \frac{1}{2} a_0$，级数的常数项便自然化为了我们最熟悉的经典形式：</p>
+<p>
+$$
+f(x) \sim \frac{1}{2}a_0 + \sum_{n=1}^{+\infty} (a_n \cos(nx) + b_n \sin(nx)) = S(x)
+$$
+</p>
+
+<h3 id="收敛的边界：狄利克雷（Dirichlet）条件"><a href="#收敛的边界：狄利克雷（Dirichlet）条件" class="headerlink" title="收敛的边界：狄利克雷（Dirichlet）条件"></a>收敛的边界：狄利克雷（Dirichlet）条件</h3><p>写出级数表达式 $S(x)$只是形式上的展开。这个级数到底在什么情况下才能真正收敛，并且其和$S(x)$是否严格等于原函数$f(x)$ 呢？这就需要引入<strong>狄利克雷条件</strong>。</p>
+<p>对于定义在 $[-\pi, \pi]$上的函数$f(x)$，若满足以下三个条件，则其傅里叶级数在区间内是收敛的：</p>
+<h4 id="1-分段连续-Piecewise-Continuous"><a href="#1-分段连续-Piecewise-Continuous" class="headerlink" title="1. 分段连续 (Piecewise Continuous)"></a>1. 分段连续 (Piecewise Continuous)</h4><p>函数 $f: [-\pi, \pi] \to \mathbb{R}$ 在区间内只有有限个第一类间断点。</p>
+<p>也就是说，可以把区间切分成有限个小区间 $(x_i, x_{i+1})$：</p>
+<p>
+$$
+-\pi = x_0 < x_1 < x_2 < \dots < x_k = \pi
+$$
+</p>
+
+<p>使得 $f$在每个单侧开区间内都是连续的，并且在端点处的左极限$\lim_{x \to x_{i+1}^-} f(x)$与右极限$\lim_{x \to x_i^+} f(x)$ 均存在（不能发散到无穷大）。</p>
+<h4 id="2-分段单调-Piecewise-Monotonic"><a href="#2-分段单调-Piecewise-Monotonic" class="headerlink" title="2. 分段单调 (Piecewise Monotonic)"></a>2. 分段单调 (Piecewise Monotonic)</h4><p>函数 $f(x)$在每个小区间$(x_i, x_{i+1})$内是单调的（要么单调递增，要么单调递减）。这意味着函数在整个大区间内只有有限个极值点，排除了像$y &#x3D; \sin(1&#x2F;x)$ 这样在原点附近产生无限次密集震荡的恶性函数。</p>
+<h4 id="3-分段可导-导数有界-Piecewise-Differentiable"><a href="#3-分段可导-导数有界-Piecewise-Differentiable" class="headerlink" title="3. 分段可导 &#x2F; 导数有界 (Piecewise Differentiable)"></a>3. 分段可导 &#x2F; 导数有界 (Piecewise Differentiable)</h4><p>函数 $f(x)$在每个小区间$(x_i, x_{i+1})$内可导，并且其导函数$f’(x)$ 在该区间内也是有界的。这一条件进一步保证了函数曲线的局部光滑度，使得级数逼近时在连续点处能够完美收敛。</p>
+<p>当函数满足上述狄利克雷条件时，傅里叶级数的收敛值 $S(x)$ 具有如下极其漂亮的分析学性质：</p>
+<ul>
+<li>当 $x$是$f(x)$ 的<strong>连续点</strong>时，级数严格收敛于函数值：</li>
+</ul>
+<p>
+$$
+S(x) = f(x)
+$$
+</p>
+
+<ul>
+<li>当 $x$是$f(x)$ 的<strong>间断点</strong>时，级数将收敛于该点左右极限的算术平均值：</li>
+</ul>
+<p>
+$$
+S(x) = \frac{f(x^+) + f(x^-)}{2}
+$$
+</p>
+
+<p>至此，傅里叶级数从空间的代数构造，最终平稳落地到了分析学的严格收敛应用上。</p>
+<p>在明确了狄利克雷收敛定理之后，最有效的巩固方式就是通过一个经典的非光滑函数——方波函数（Square Wave）来亲自实践傅里叶系数的计算，并直观观察级数在连续点与跳跃间断点处的收敛表现。</p>
+<h3 id="经典案例：符号函数（方波）的构建"><a href="#经典案例：符号函数（方波）的构建" class="headerlink" title="经典案例：符号函数（方波）的构建"></a>经典案例：符号函数（方波）的构建</h3><p>我们考虑一个在 $[-\pi, \pi]$上的分段恒定函数$f(x)$（实质上是符号函数 $\text{sgn}(x)$ 在该区间上的表现）：</p>
+<p>
+$$
+f(x) = \begin{cases} 1, & x \in (0, \pi) \\ 0, & x = 0, \pm\pi \\ -1, & x \in (-\pi, 0) \end{cases}
+$$
+</p>
+
+<p><strong>物理与几何动机</strong>：这是一个最典型的不连续函数。它在 $x &#x3D; 0$处有一个跨度为$2$的剧烈跳跃（从$-1$直接跳变到$1$）。我们希望用光滑的三角函数波形的叠加来逼近这个处处“坚硬”的方波。</p>
+<h3 id="傅里叶系数的精细推导"><a href="#傅里叶系数的精细推导" class="headerlink" title="傅里叶系数的精细推导"></a>傅里叶系数的精细推导</h3><p>利用之前导出的正交投影公式，我们分别计算各个系数。</p>
+<h4 id="1-常数项与余弦系数的奇偶性简化"><a href="#1-常数项与余弦系数的奇偶性简化" class="headerlink" title="1. 常数项与余弦系数的奇偶性简化"></a>1. 常数项与余弦系数的奇偶性简化</h4><p>注意到函数 $f(x)$是一个标准的<strong>奇函数</strong>（满足$f(-x) &#x3D; -f(x)$）。</p>
+<ul>
+<li><p>常数基底 $1$和余弦基底$\cos(nx)$ 都是<strong>偶函数</strong>。</p>
+</li>
+<li><p>奇函数与偶函数的乘积仍为奇函数。</p>
+</li>
+</ul>
+<p>根据定积分在对称区间上的性质，奇函数在 $[-\pi, \pi]$上的积分必然为$0$。因此，我们甚至不需要进行具体代数计算，就能从几何对称性上直接判定：</p>
+<p>
+$$
+a_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) dx = 0
+$$
+</p>
+
+<p>
+$$
+a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)\cos(nx) dx = 0, \quad \forall n \ge 1
+$$
+</p>
+
+<p>这意味着，<strong>奇函数的傅里叶展开中只包含正弦项（称为傅里叶正弦级数）</strong>。</p>
+<h4 id="2-正弦项系数-b-n-的计算"><a href="#2-正弦项系数-b-n-的计算" class="headerlink" title="2.正弦项系数 $b_n$ 的计算"></a>2.正弦项系数 $b_n$ 的计算</h4><p>由于 $f(x)$和$\sin(nx)$都是奇函数，它们的乘积$f(x)\sin(nx)$ 变为<strong>偶函数</strong>。因此积分可以简化为半区间积分的两倍：</p>
+<p>
+$$
+b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)\sin(nx) dx = \frac{2}{\pi} \int_{0}^{\pi} 1 \cdot \sin(nx) dx
+$$
+</p>
+
+<p>进行一元积分：</p>
+<p>
+$$
+b_n = \frac{2}{\pi} \left[ -\frac{1}{n} \cos(nx) \right]_{0}^{\pi} = \frac{2}{n\pi} \left( -\cos(n\pi) + \cos(0) \right)
+$$
+</p>
+
+<p>由于 $\cos(n\pi) &#x3D; (-1)^n$，上式化简为：</p>
+<p>
+$$
+b_n = \frac{2}{n\pi} (1 - (-1)^n)
+$$
+</p>
+
+<h4 id="3-系数的分类讨论"><a href="#3-系数的分类讨论" class="headerlink" title="3. 系数的分类讨论"></a>3. 系数的分类讨论</h4><p>分析因子 $(1 - (-1)^n)$ 的取值：</p>
+<ul>
+<li><p>当 $n$ 为<strong>偶数</strong>（$n &#x3D; 2m$）时，$(-1)^n &#x3D; 1$，则 $b_n &#x3D; 0$。</p>
+</li>
+<li><p>当 $n$ 为<strong>奇数</strong>（$n &#x3D; 2k+1$）时，$(-1)^n &#x3D; -1$，则 $b_n &#x3D; \frac{4}{n\pi}$。</p>
+</li>
+</ul>
+<h4 id="4-级数合成与狄利克雷收敛验证"><a href="#4-级数合成与狄利克雷收敛验证" class="headerlink" title="4.级数合成与狄利克雷收敛验证"></a>4.级数合成与狄利克雷收敛验证</h4><p>将计算出的系数代回傅里叶级数表达式：</p>
+<p>
+$$
+f(x) \sim \sum_{n=1}^{+\infty} \frac{2}{n\pi}(1 - (-1)^n) \sin(nx) = \frac{4}{\pi} \sum_{k=0}^{+\infty} \frac{1}{2k+1} \sin((2k+1)x) = S(x)
+$$
+</p>
+
+<p>展开前几项可以更直观地看到波形的叠加：</p>
+<p>
+$$
+S(x) = \frac{4}{\pi} \left( \sin(x) + \frac{1}{3}\sin(3x) + \frac{1}{5}\sin(5x) + \dots \right)
+$$
+</p>
+
+<p>现在我们用狄利克雷定理来严格检验其收敛值 $S(x)$：</p>
+<ol>
+<li><p><strong>在连续点处（如 $x \in (0, \pi)$）</strong>：</p>
+<p> 函数满足分段光滑，级数严格收敛于原函数值：</p>
+</li>
+</ol>
+<p>
+$$
+S(x) = f(x) = 1
+$$
+</p>
+
+<ol start="2">
+<li><p><strong>在跳跃间断点处（如 $x &#x3D; 0$）</strong>：</p>
+<p> 根据狄利克雷条件，级数应该收敛于左右极限的平均值。我们进行验证：</p>
+<ul>
+<li><p>左极限：$f(0^-) &#x3D; -1$</p>
+</li>
+<li><p>右极限：$f(0^+) &#x3D; 1$</p>
+</li>
+<li><p>理论收敛值：$\frac{f(0^-) + f(0^+)}{2} &#x3D; \frac{-1 + 1}{2} &#x3D; 0$直接带入级数级数解析式进行检验：当$x &#x3D; 0$时，每一项$\sin((2k+1) \cdot 0) &#x3D; 0$，所以整个级数的和 $S(0) &#x3D; 0$。理论预言与级数实际求和结果<strong>完全吻合</strong>。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>这一完美的实例不仅展示了如何通过正交性剥离出特定频率的系数，更证明了即使面对有间断点的函数，傅里叶级数也能在整体能量不失真的前提下，以一种圆滑且极其优美的方式在间断点处准确平稳地着陆。</p>
+<p>在深入理解了奇偶函数的特殊性质后，面对更具一般性的非对称分段信号，我们需要完整地同时计算出余弦和正弦系数。通过对这类函数的傅里叶级数在特定点（如不连续点）进行求值，我们不仅能再次验证狄利克雷收敛定理，还能意外获得求解数论中经典数项级数（如巴塞尔问题变形）的强力代数工具。</p>
+<h3 id="复杂分段函数的傅里叶级数展开"><a href="#复杂分段函数的傅里叶级数展开" class="headerlink" title="复杂分段函数的傅里叶级数展开"></a>复杂分段函数的傅里叶级数展开</h3><p>考虑如下非对称的分段函数 $f(x)$：</p>
+<p>
+$$
+f(x) = \begin{cases} x, & x \in [0, \pi) \\ 0, & x = \pi \\ -\pi, & x \in (-\pi, 0) \end{cases}
+$$
+</p>
+
+<p><strong>动机分析</strong>：该函数在 $(-\pi, 0)$内为常数，在$[0, \pi)$内为线性函数，既非奇函数也非偶函数。因此，其傅里叶系数中同时存在直流分量$a_0$、余弦分量 $a_n$与正弦分量$b_n$。我们需要在区间上分段进行定积分提取。</p>
+<h4 id="1-常数项系数-a-0-的计算"><a href="#1-常数项系数-a-0-的计算" class="headerlink" title="1. 常数项系数 $a_0$ 的计算"></a>1. 常数项系数 $a_0$ 的计算</h4><p>
+$$
+\begin{aligned} a_0 &= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) dx = \frac{1}{\pi} \left[ \int_{-\pi}^{0} (-\pi) dx + \int_{0}^{\pi} x dx \right] \\ &= \frac{1}{\pi} \left[ -\pi^2 + \frac{\pi^2}{2} \right] = -\frac{\pi}{2} \end{aligned}
+$$
+</p>
+
+<h4 id="2-余弦项系数-a-n-的计算（-n-ge-1-）"><a href="#2-余弦项系数-a-n-的计算（-n-ge-1-）" class="headerlink" title="2. 余弦项系数 $a_n$ 的计算（$n \ge 1$）"></a>2. 余弦项系数 $a_n$ 的计算（$n \ge 1$）</h4><p>
+$$
+\begin{aligned} a_n &= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)\cos(nx) dx = \frac{1}{\pi} \left[ \int_{-\pi}^{0} (-\pi)\cos(nx) dx + \int_{0}^{\pi} x\cos(nx) dx \right] \end{aligned}
+$$
+</p>
+
+<ul>
+<li><p>左半部分：$\int_{-\pi}^{0} (-\pi)\cos(nx) dx &#x3D; -\pi \left[ \frac{\sin(nx)}{n} \right]_{-\pi}^{0} &#x3D; 0$</p>
+</li>
+<li><p>右半部分（使用分部积分法）：</p>
+</li>
+</ul>
+<p>
+$$
+\int_{0}^{\pi} x\cos(nx) dx = \left[ \frac{x\sin(nx)}{n} \right]_{0}^{\pi} - \int_{0}^{\pi} \frac{\sin(nx)}{n} dx = 0 - \left[ -\frac{\cos(nx)}{n^2} \right]_{0}^{\pi} = \frac{(-1)^n - 1}{n^2}
+$$
+</p>
+
+<p>合并得到：</p>
+<p>
+$$
+a_n = \frac{(-1)^n - 1}{n^2\pi}
+$$
+</p>
+
+<h4 id="3-正弦项系数-b-n-的计算（-n-ge-1-）"><a href="#3-正弦项系数-b-n-的计算（-n-ge-1-）" class="headerlink" title="3. 正弦项系数 $b_n$ 的计算（$n \ge 1$）"></a>3. 正弦项系数 $b_n$ 的计算（$n \ge 1$）</h4><p>
+$$
+\begin{aligned} b_n &= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)\sin(nx) dx = \frac{1}{\pi} \left[ \int_{-\pi}^{0} (-\pi)\sin(nx) dx + \int_{0}^{\pi} x\sin(nx) dx \right] \end{aligned}
+$$
+</p>
+
+<ul>
+<li><p>左半部分：$-\pi \left[ -\frac{\cos(nx)}{n} \right]_{-\pi}^{0} &#x3D; \frac{\pi}{n}(1 - (-1)^n)$</p>
+</li>
+<li><p>右半部分：$\left[ -\frac{x\cos(nx)}{n} \right]<em>{0}^{\pi} - \int</em>{0}^{\pi} \left(-\frac{\cos(nx)}{n}\right) dx &#x3D; -\frac{\pi(-1)^n}{n}$合并各项并消去$\pi$：</p>
+</li>
+</ul>
+<p>
+$$
+b_n = \frac{1}{n}(1 - 2(-1)^n)
+$$
+</p>
+
+<h4 id="4-级数形式合成"><a href="#4-级数形式合成" class="headerlink" title="4. 级数形式合成"></a>4. 级数形式合成</h4><p>将各系数代入标准表达式中（注意直流项为 $\frac{a_0}{2}$）：</p>
+<p>
+$$
+f(x) \sim -\frac{\pi}{4} + \sum_{n=1}^{+\infty} \left[ \frac{(-1)^n - 1}{n^2\pi} \cos(nx) + \frac{1}{n}(1 - 2(-1)^n) \sin(nx) \right] = S(x)
+$$
+</p>
+
+<h4 id="狄利克雷定理在跳跃间断点-x-0-处的检验"><a href="#狄利克雷定理在跳跃间断点-x-0-处的检验" class="headerlink" title="狄利克雷定理在跳跃间断点 $x&#x3D;0$ 处的检验"></a>狄利克雷定理在跳跃间断点 $x&#x3D;0$ 处的检验</h4><p>该函数在 $x&#x3D;0$ 处不连续，我们利用狄利克雷定理来计算级数在该点处的理论收敛值：</p>
+<ul>
+<li><p>左极限：$f(0^-) &#x3D; -\pi$</p>
+</li>
+<li><p>右极限：$f(0^+) &#x3D; 0$</p>
+</li>
+<li><p>理论收敛值：</p>
+</li>
+</ul>
+<p>
+$$
+S(0) = \frac{f(0^-) + f(0^+)}{2} = \frac{-\pi + 0}{2} = -\frac{\pi}{2}
+$$
+</p>
+
+<h3 id="应用拓宽：解析经典数项级数的和"><a href="#应用拓宽：解析经典数项级数的和" class="headerlink" title="应用拓宽：解析经典数项级数的和"></a>应用拓宽：解析经典数项级数的和</h3><p><strong>核心动机</strong>：如果我们直接对傅里叶级数解析式在 $x&#x3D;0$处代入求和，并令其等于理论收敛值$-\frac{\pi}{2}$，就能建立起函数空间与纯数级数之间的神奇桥梁。</p>
+<p>当 $x&#x3D;0$时，所有正弦项$\sin(0)&#x3D;0$，余弦项 $\cos(0)&#x3D;1$，级数表达式简化为：</p>
+<p>
+$$
+S(0) = -\frac{\pi}{4} + \sum_{n=1}^{+\infty} \frac{(-1)^n - 1}{n^2\pi}
+$$
+</p>
+
+<p>令其等于理论值 $-\frac{\pi}{2}$：</p>
+<p>
+$$
+-\frac{\pi}{2} = -\frac{\pi}{4} + \sum_{n=1}^{+\infty} \frac{(-1)^n - 1}{n^2\pi} \implies -\frac{\pi}{4} = \sum_{n=1}^{+\infty} \frac{(-1)^n - 1}{n^2\pi}
+$$
+</p>
+
+<h4 id="1-求解奇数项平方倒数和"><a href="#1-求解奇数项平方倒数和" class="headerlink" title="1. 求解奇数项平方倒数和"></a>1. 求解奇数项平方倒数和</h4><p>分析分子项 $((-1)^n - 1)$：</p>
+<ul>
+<li><p>当 $n$ 为偶数时，$1 - 1 &#x3D; 0$，项消失；</p>
+</li>
+<li><p>当 $n$为奇数时（令$n &#x3D; 2k+1$），$-1 - 1 &#x3D; -2$。</p>
+</li>
+</ul>
+<p>因此，级数中仅剩下奇数项：</p>
+<p>
+$$
+-\frac{\pi}{4} = \sum_{k=0}^{+\infty} \frac{-2}{(2k+1)^2\pi} \implies -\frac{\pi}{4} = -\frac{2}{\pi} \sum_{k=0}^{+\infty} \frac{1}{(2k+1)^2}
+$$
+</p>
+
+<p>两边同乘 $-\frac{\pi}{2}$，精确导出：</p>
+<p>
+$$
+\sum_{k=0}^{+\infty} \frac{1}{(2k+1)^2} = \frac{\pi^2}{8}
+$$
+</p>
+
+<h4 id="2-泛化推导：解决巴塞尔问题-sum-frac-1-n-2-我们可以进一步利用上述奇数项的求和结果，推导出所有正整数的平方倒数和（即著名的-zeta-2-）。"><a href="#2-泛化推导：解决巴塞尔问题-sum-frac-1-n-2-我们可以进一步利用上述奇数项的求和结果，推导出所有正整数的平方倒数和（即著名的-zeta-2-）。" class="headerlink" title="2. 泛化推导：解决巴塞尔问题 $\sum \frac{1}{n^2}$我们可以进一步利用上述奇数项的求和结果，推导出所有正整数的平方倒数和（即著名的$\zeta(2)$ ）。"></a>2. 泛化推导：解决巴塞尔问题 $\sum \frac{1}{n^2}$我们可以进一步利用上述奇数项的求和结果，推导出所有正整数的平方倒数和（即著名的$\zeta(2)$ ）。</h4><p>设总和为 $X &#x3D; \sum_{n&#x3D;1}^{+\infty} \frac{1}{n^2}$，我们可以将其拆分为偶数项与奇数项两部分：</p>
+<p>
+$$
+X = \sum_{n=\text{偶数}} \frac{1}{n^2} + \sum_{n=\text{奇数}} \frac{1}{n^2} = \sum_{m=1}^{+\infty} \frac{1}{(2m)^2} + \sum_{k=0}^{+\infty} \frac{1}{(2k+1)^2}
+$$
+</p>
+
+<p>将偶数项提取出 $\frac{1}{4}$：</p>
+<p>
+$$
+X = \frac{1}{4} \sum_{m=1}^{+\infty} \frac{1}{m^2} + \frac{\pi^2}{8} \implies X = \frac{1}{4}X + \frac{\pi^2}{8}
+$$
+</p>
+
+<p>移项化简：</p>
+<p>
+$$
+\frac{3}{4}X = \frac{\pi^2}{8} \implies X = \sum_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+$$
+</p>
+
+<p>这向我们展示了傅里叶级数非凡的副产物：原本属于高等微积分的函数空间正交分解方法，居然能够极其轻巧地破解纯粹数论中极其困难的解析求和问题。</p>
+<p>在前一个案例中，我们处理了一个在原点处不连续的函数。现在，为了研究更具光滑性的波形，我们引入一个<strong>连续但非处处可导</strong>的二次抛物线拼接信号。通过它，我们不仅能观察到傅里叶系数随频率衰减速度的变化规律，还能顺藤摸瓜地攻克更高级的数项级数求和问题（如 $\sum \frac{1}{n^4}$）。</p>
+<h3 id="一、-连续分段函数（抛物线波形）的构建"><a href="#一、-连续分段函数（抛物线波形）的构建" class="headerlink" title="一、 连续分段函数（抛物线波形）的构建"></a>一、 连续分段函数（抛物线波形）的构建</h3><p>考虑如下在 $[-\pi, \pi]$上的分段二次函数$f(x)$：</p>
+<p>
+$$
+f(x) = \begin{cases} (x-\pi)^2, & x \in [0, \pi] \\ (x+\pi)^2, & x \in [-\pi, 0) \end{cases}
+$$
+</p>
+
+<p><strong>物理与几何动机</strong>：</p>
+<ol>
+<li><p><strong>对称性（奇偶性）</strong>：由于 $f(-x) &#x3D; f(x)$，该函数是一个标准的<strong>偶函数</strong>。它在 $x&#x3D;0$处的取值为$\pi^2$，在 $x&#x3D;\pm\pi$处光滑地落到$0$。</p>
+</li>
+<li><p><strong>光滑度提升</strong>：与前面的方波和锯齿波相比，这个函数在区间内部以及周期边界上（由于 $f(-\pi)&#x3D;f(\pi)&#x3D;0$）都是<strong>完全连续</strong>的。这种连续性将直接映射到其傅里叶系数的衰减速率上。</p>
+</li>
+</ol>
+<h3 id="二、-傅里叶系数的精细推导"><a href="#二、-傅里叶系数的精细推导" class="headerlink" title="二、 傅里叶系数的精细推导"></a>二、 傅里叶系数的精细推导</h3><p>利用偶函数的对称性质，我们可以大幅化简内积分运算。</p>
+<h4 id="1-正弦分量系数-b-n-由于-f-x-是偶函数，而-sin-nx-是奇函数，它们的乘积在对称区间上的积分恒为零："><a href="#1-正弦分量系数-b-n-由于-f-x-是偶函数，而-sin-nx-是奇函数，它们的乘积在对称区间上的积分恒为零：" class="headerlink" title="1. 正弦分量系数 $b_n$由于$f(x)$是偶函数，而$\sin(nx)$ 是奇函数，它们的乘积在对称区间上的积分恒为零："></a>1. 正弦分量系数 $b_n$由于$f(x)$是偶函数，而$\sin(nx)$ 是奇函数，它们的乘积在对称区间上的积分恒为零：</h4><p>
+$$
+b_n = 0, \quad \forall n \ge 1
+$$
+</p>
+
+<p>这意味着，<strong>偶函数的傅里叶展开只包含直流分量与余弦分量（称为傅里叶余弦级数）</strong>。</p>
+<h4 id="2-直流项系数-a-0"><a href="#2-直流项系数-a-0" class="headerlink" title="2. 直流项系数 $a_0$"></a>2. 直流项系数 $a_0$</h4><p>利用半区间积分的两倍：</p>
+<p>
+$$
+a_0 = \frac{2}{\pi} \int_{0}^{\pi} (x-\pi)^2 dx = \frac{2}{\pi} \left[ \frac{(x-\pi)^3}{3} \right]_{0}^{\pi} = \frac{2}{\pi} \left[ 0 - \frac{(-\pi)^3}{3} \right] = \frac{2}{3}\pi^2
+$$
+</p>
+
+<h4 id="3-余弦项系数-a-n-（-n-ge-1-）"><a href="#3-余弦项系数-a-n-（-n-ge-1-）" class="headerlink" title="3. 余弦项系数 $a_n$ （$n \ge 1$）"></a>3. 余弦项系数 $a_n$ （$n \ge 1$）</h4><p>同样利用偶函数性质展开，并采用连续两次<strong>分部积分法</strong>：</p>
+<p>
+$$
+a_n = \frac{2}{\pi} \int_{0}^{\pi} (x-\pi)^2 \cos(nx) dx
+$$
+</p>
+
+<ul>
+<li>第一次分部积分：</li>
+</ul>
+<p>
+$$
+a_n = \frac{2}{\pi} \left[ (x-\pi)^2 \frac{\sin(nx)}{n} \right]_{0}^{\pi} - \frac{2}{\pi} \int_{0}^{\pi} 2(x-\pi) \frac{\sin(nx)}{n} dx
+$$
+</p>
+
+<p>由于 $\sin(n\pi) &#x3D; \sin(0) &#x3D; 0$，第一项完全消失。化简剩：</p>
+<p>
+$$
+a_n = -\frac{4}{n\pi} \int_{0}^{\pi} (x-\pi) \sin(nx) dx
+$$
+</p>
+
+<ul>
+<li>第二次分部积分：</li>
+</ul>
+<p>
+$$
+a_n = -\frac{4}{n\pi} \left[ (x-\pi) \frac{-\cos(nx)}{n} \right]_{0}^{\pi} + \frac{4}{n\pi} \int_{0}^{\pi} 1 \cdot \frac{-\cos(nx)}{n} dx
+$$
+</p>
+
+<p>因为 $\int_{0}^{\pi} \cos(nx) dx &#x3D; 0$（当 $n \ge 1$），最后一项积分项再次消失。我们只需要代入边界评估前一项：</p>
+<p>
+$$
+a_n = \frac{4}{n^2\pi} \left[ (x-\pi)\cos(nx) \right]_{0}^{\pi} = \frac{4}{n^2\pi} \left[ 0 - (-\pi)\cos(0) \right] = \frac{4}{n^2}
+$$
+</p>
+
+<h4 id="4-级数形式合成-1"><a href="#4-级数形式合成-1" class="headerlink" title="4. 级数形式合成"></a>4. 级数形式合成</h4><p>将系数代入标准傅里叶余弦级数公式（注意直流项需要除以 2）：</p>
+<p>
+$$
+f(x) \sim \frac{1}{3}\pi^2 + \sum_{n=1}^{+\infty} \frac{4}{n^2} \cos(nx) = S(x)
+$$
+</p>
+
+<blockquote>
+<p><strong>数学本质观察</strong>：对比前几节的方波系数（正比于 $\frac{1}{n}$），当前二次波形的系数正比于 $\frac{1}{n^2}$。在分析学中，这表明<strong>原函数越光滑（连续性越好），其高频谐波系数衰减得就越快</strong>。</p>
+</blockquote>
+<h3 id="三、-狄利克雷收敛验证与级数求和"><a href="#三、-狄利克雷收敛验证与级数求和" class="headerlink" title="三、 狄利克雷收敛验证与级数求和"></a>三、 狄利克雷收敛验证与级数求和</h3><p>由于该函数在其定义域内处处连续，根据狄利克雷定理，在任意点 $x$处都必定有$S(x) &#x3D; f(x)$。</p>
+<h4 id="1-回归巴塞尔问题（验证-x-0-点）"><a href="#1-回归巴塞尔问题（验证-x-0-点）" class="headerlink" title="1. 回归巴塞尔问题（验证 $x&#x3D;0$ 点）"></a>1. 回归巴塞尔问题（验证 $x&#x3D;0$ 点）</h4><p>我们在 $x &#x3D; 0$处对级数进行求值。此时$f(0) &#x3D; \pi^2$，且 $\cos(0) &#x3D; 1$：</p>
+<p>
+$$
+\pi^2 = \frac{1}{3}\pi^2 + \sum_{n=1}^{+\infty} \frac{4}{n^2} \implies \frac{2}{3}\pi^2 = 4 \sum_{n=1}^{+\infty} \frac{1}{n^2}
+$$
+</p>
+
+<p>两边同时除以 $4$，再次极其漂亮地导出了巴塞尔问题的经典答案：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+$$
+</p>
+
+<h4 id="2-探索未知：求解四次平方倒数和-sum-frac-1-n-4-更高阶的动机：利用刚刚构造出的这个连续函数的傅里叶级数，我们该如何提取出带有-n-4-分母的数项级数呢？"><a href="#2-探索未知：求解四次平方倒数和-sum-frac-1-n-4-更高阶的动机：利用刚刚构造出的这个连续函数的傅里叶级数，我们该如何提取出带有-n-4-分母的数项级数呢？" class="headerlink" title="2. 探索未知：求解四次平方倒数和 $\sum \frac{1}{n^4}$更高阶的动机：利用刚刚构造出的这个连续函数的傅里叶级数，我们该如何提取出带有$n^4$ 分母的数项级数呢？"></a>2. 探索未知：求解四次平方倒数和 $\sum \frac{1}{n^4}$<strong>更高阶的动机</strong>：利用刚刚构造出的这个连续函数的傅里叶级数，我们该如何提取出带有$n^4$ 分母的数项级数呢？</h4><p>这需要借助<strong>帕塞瓦尔恒等式（Parseval’s Identity）</strong>。该定理在线性代数中的本质就是“毕达哥拉斯定理（勾股定理）”在无穷维标准正交基函数空间中的延伸——<strong>向量的总能量（模长平方）等于其各个分量能量的总和</strong>。</p>
+<p>根据内积空间中的帕塞瓦尔恒等式：</p>
+<p>
+$$
+\frac{1}{\pi} \int_{\alpha}^{\beta} |f(x)|^2 dx = \frac{a_0^2}{2} + \sum_{n=1}^{+\infty} (a_n^2 + b_n^2)
+$$
+</p>
+
+<p><em>(注：这里由于我们的内积定义带了 $\frac{1}{\pi}$ 前缀，故左侧形式对应匹配。)</em></p>
+<p>我们将本题的系数 $a_0 &#x3D; \frac{2}{3}\pi^2$，$a_n &#x3D; \frac{4}{n^2}$ 统一代入：</p>
+<ul>
+<li>左端项（总能量）：</li>
+</ul>
+<p>
+$$
+\frac{1}{\pi} \int_{-\pi}^{\pi} |f(x)|^2 dx = \frac{2}{\pi} \int_{0}^{\pi} (x-\pi)^4 dx = \frac{2}{\pi} \left[ \frac{(x-\pi)^5}{5} \right]_{0}^{\pi} = \frac{2}{5}\pi^4
+$$
+</p>
+
+<ul>
+<li>右端项（分量平方和）：</li>
+</ul>
+<p>
+$$
+\frac{a_0^2}{2} + \sum_{n=1}^{+\infty} a_n^2 = \frac{1}{2}\left(\frac{2}{3}\pi^2\right)^2 + \sum_{n=1}^{+\infty} \left(\frac{4}{n^2}\right)^2 = \frac{2}{9}\pi^4 + 16 \sum_{n=1}^{+\infty} \frac{1}{n^4}
+$$
+</p>
+
+<p>令两端相等：</p>
+<p>
+$$
+\frac{2}{5}\pi^4 = \frac{2}{9}\pi^4 + 16 \sum_{n=1}^{+\infty} \frac{1}{n^4}
+$$
+</p>
+
+<p>
+$$
+\left(\frac{2}{5} - \frac{2}{9}\right)\pi^4 = 16 \sum_{n=1}^{+\infty} \frac{1}{n^4} \implies \frac{8}{45}\pi^4 = 16 \sum_{n=1}^{+\infty} \frac{1}{n^4}
+$$
+</p>
+
+<p>两边同时除以 16，我们最终一锤定音地解出了四次幂级数的和：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} \frac{1}{n^4} = \frac{\pi^4}{90}
+$$
+</p>
+
+<p>从代数逼近的局限，到内积空间的几何化，再到算子方程的求解，最后到帕塞瓦尔能量守恒破解数论级数——至此，傅里叶级数在解析与几何上的宏伟全貌已全部闭环。</p>
+<h3 id="从标准周期到任意周期的坐标伸缩"><a href="#从标准周期到任意周期的坐标伸缩" class="headerlink" title="从标准周期到任意周期的坐标伸缩"></a>从标准周期到任意周期的坐标伸缩</h3><p>在经典的傅里叶级数中，我们通常习惯于在区间 $[-\pi, \pi]$上讨论周期为$2\pi$的函数。然而，现实中的物理信号或波动方程往往定义在任意长度的区间$[-L, L]$上，其周期为$2L$。我们的首要动机，就是<strong>通过一种平移和伸缩的变量代换，将未知的任意周期问题转化为已知的标准 $2\pi$ 周期问题。</strong></p>
+<p>设函数 $f(x)$定义在$[-L, L]$上，其周期为$2L$。为了将其映射到以 $t$为自变量的$[-\pi, \pi]$ 空间，我们需要构造一个线性映射。</p>
+<p>由于当 $x &#x3D; L$时，我们需要$t &#x3D; \pi$，因此两者的比例关系应当满足：</p>
+<p>
+$$
+\frac{t}{x} = \frac{\pi}{L}
+$$
+</p>
+
+<p>由此我们引入频率参数 $\omega &#x3D; \frac{\pi}{L}$。于是，坐标变换关系可以优雅地写为：</p>
+<p>
+$$
+t = \omega x, \quad x = \frac{t}{\omega}
+$$
+</p>
+
+<p>通过这个桥梁，我们构造一个辅助函数 $g(t)$，使得它在 $t \in [-\pi, \pi]$上的表现完全复刻$f(x)$在$x \in [-L, L]$ 上的行为：</p>
+<p>
+$$
+g(t) = f\left(\frac{t}{\omega}\right) = f\left(\frac{L}{\pi}t\right)
+$$
+</p>
+
+<p>由于 $f(x)$的周期是$2L$，容易验证 $g(t)$的周期恰好是$2\pi$。现在，我们可以直接写出 $g(t)$ 在标准区间上的傅里叶级数展开：</p>
+<p>
+$$
+g(t) \sim \frac{a_0}{2} + \sum_{n=1}^{+\infty} \left( a_n \cos(nt) + b_n \sin(nt) \right)
+$$
+</p>
+
+<p>这只是我们在标准空间里的工具。为了回归现实，我们需要将 $t &#x3D; \omega x$ 逆向代回上式。通过这个回代过程，我们便完成了从标准周期到任意周期傅里叶级数的严格推导：</p>
+<p>
+$$
+f(x) \sim \frac{a_0}{2} + \sum_{n=1}^{+\infty} \left( a_n \cos(n\omega x) + b_n \sin(n\omega x) \right)
+$$
+</p>
+
+<p>其中，$\omega &#x3D; \frac{\pi}{L}$。这表明，任意周期的函数依然可以分解为一组相互正交的三角函数基 ${\cos(n\omega x), \sin(n\omega x)}$ 的线性组合。</p>
+<h3 id="对称性的馈赠：奇偶函数的系数简化"><a href="#对称性的馈赠：奇偶函数的系数简化" class="headerlink" title="对称性的馈赠：奇偶函数的系数简化"></a>对称性的馈赠：奇偶函数的系数简化</h3><p>当我们得到任意周期的展开式后，下一个动机是<strong>如何利用函数自身的几何对称性来减少积分计算的冗余</strong>。积分在几何上代表面积。如果三角函数基与函数本身具有某种奇偶对称性的契合，积分的基底就会发生有趣的坍塌。</p>
+<h4 id="1-奇函数（本质奇）"><a href="#1-奇函数（本质奇）" class="headerlink" title="1. 奇函数（本质奇）"></a>1. 奇函数（本质奇）</h4><p>当 $f(x)$是一个奇函数时，它关于原点中心对称，满足$f(-x) &#x3D; -f(x)$。</p>
+<p>由于余弦函数 $\cos(n\omega x)$是偶函数，奇函数与偶函数的乘积依然是奇函数。在对称区间$[-L, L]$ 上，奇函数的积分必然为零。因此，所有的余弦系数全部消亡：</p>
+<p>
+$$
+a_n = 0 \quad (\forall n \ge 0)
+$$
+</p>
+
+<p>而正弦函数 $\sin(n\omega x)$也是奇函数，两个奇函数相乘变成了偶函数。偶函数在对称区间上的积分等于正区间上积分的两倍。因此，正弦系数$b_n$ 的计算可以从整个区间简化为半区间：</p>
+<p>
+$$
+b_n = \frac{1}{L} \int_{-L}^{L} f(x) \sin(n\omega x) \, dx = \frac{2}{L} \int_{0}^{L} f(x) \sin(n\omega x) \, dx
+$$
+</p>
+
+<h4 id="2-偶函数（本质偶）"><a href="#2-偶函数（本质偶）" class="headerlink" title="2. 偶函数（本质偶）"></a>2. 偶函数（本质偶）</h4><p>同理，当 $f(x)$是一个偶函数时，它关于$y$轴轴对称，满足$f(-x) &#x3D; f(x)$。</p>
+<p>此时，偶函数与奇函数 $\sin(n\omega x)$ 的乘积变成奇函数，在对称区间上的积分归零。这意味着所有的正弦系数荡然无存：</p>
+<p>
+$$
+b_n = 0 \quad (\forall n \ge 1)
+$$
+</p>
+
+<p>而余弦部分因为是两个偶函数相乘，依然保持偶性，积分同样可以减半：</p>
+<p>
+$$
+a_n = \frac{2}{L} \int_{0}^{L} f(x) \cos(n\omega x) \, dx
+$$
+</p>
+
+<h3 id="定义域的平移与周期拓延"><a href="#定义域的平移与周期拓延" class="headerlink" title="定义域的平移与周期拓延"></a>定义域的平移与周期拓延</h3><p>在讨论了对称区间 $[-L, L]$ 之后，我们常常还会遇到另一种常见的定义域形式：$[0, 2L]$。虽然区间变了，但其本质跨度（周期）依然是 $2L$。<strong>这里的动机在于证明：由于三角函数和周期函数的循环特性，只要积分区间的长度等于一个完整的周期，积分的具体起点并不会影响傅里叶系数的最终结果。</strong></p>
+<p>对于定义在 $x \in [0, 2L]$上的函数$f(x) \to \mathbb{R}$，其傅里叶级数的形式在结构上与前文完全一致：</p>
+<p>
+$$
+f(x) \sim \frac{a_0}{2} + \sum_{n=1}^{+\infty} \left( a_n \cos(n\omega x) + b_n \sin(n\omega x) \right)
+$$
+</p>
+
+<p>唯一的区别在于傅里叶系数的积分区间。当我们直接在函数的定义域上提取系数时，积分区间为 $[0, 2L]$：</p>
+<p>
+$$
+a_n = \frac{1}{L} \int_{0}^{2L} f(x) \cos(n\omega x) \, dx
+$$
+</p>
+
+<p>为了直观理解这一点，我们可以引入一个无缝拼接的几何视角：</p>
+<p>从几何图形的拓延来看，将函数在 $[-\pi, \pi]$上的图象向右平移，或者直接研究它在$[0, 2\pi]$ 上的表现，它们所围成的面积在总量上是完全守恒的。因此，我们在线性空间里可以得到一个重要的等价恒等式：</p>
+<p>
+$$
+a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \cos(nt) \, dt = \frac{1}{\pi} \int_{0}^{2\pi} f(t) \cos(nt) \, dt
+$$
+</p>
+
+<p>这种区间的等价性赋予了傅里叶分析极大的自由度。无论是选择关于原点对称的区间来利用奇偶性简化计算，还是选择从零开始的区间来顺应信号的物理时间轴，其数学本质在傅里叶变换的框架下都是完全融通的。</p>
+<h3 id="任意周期系数的严格换元推导"><a href="#任意周期系数的严格换元推导" class="headerlink" title="任意周期系数的严格换元推导"></a>任意周期系数的严格换元推导</h3><p>在将周期为 $2L$的函数$f(x)$映射到标准周期$2\pi$的辅助函数$g(t)$后，我们通过已知的标准傅里叶系数公式，对任意周期的系数$a_n$ 进行严格的换元积分推导。</p>
+<p>设变换关系为 $t &#x3D; \omega x &#x3D; \frac{\pi}{L}x$，则微分关系为 $dt &#x3D; \frac{\pi}{L}dx$。</p>
+<p>标准级数的系数定义在 $t \in [-\pi, \pi]$ 上：</p>
+<p>
+$$
+a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} g(t) \cos(nt) \, dt
+$$
+</p>
+
+<p>我们的动机是将积分变量由物理意义抽象的 $t$空间还原回原始的$x$空间。代入$g(t) &#x3D; f\left(\frac{L}{\pi}t\right) &#x3D; f(x)$以及$dt$的微分关系，积分区间从$[-\pi, \pi]$相应地变换为$x \in [-L, L]$：</p>
+<p>
+$$
+a_n = \frac{1}{\pi} \int_{-L}^{L} f(x) \cos\left(n \frac{\pi}{L} x\right) \cdot \frac{\pi}{L} \, dx
+$$
+</p>
+
+<p>消去常数项 $\pi$，我们便严格得到了任意周期下的系数提取公式：</p>
+<p>
+$$
+a_n = \frac{1}{L} \int_{-L}^{L} f(x) \cos(n\omega x) \, dx
+$$
+</p>
+
+<p>同理，对于定义在正向半周期平移区间 $[0, 2L]$上的函数，积分范围对称地平移为$[0, 2L]$。其背后的数学本质在于：<strong>在一个完整周期长度内，基向量与函数的内积（即积分值）对区间的起点具有平移不变性。</strong></p>
+<h3 id="典型案例分析：绝对值正弦波的谱分解"><a href="#典型案例分析：绝对值正弦波的谱分解" class="headerlink" title="典型案例分析：绝对值正弦波的谱分解"></a>典型案例分析：绝对值正弦波的谱分解</h3><p>为了具体化对称性的应用，我们引入一个具有极高工程价值的经典案例：<strong>全波整流波形（绝对值正弦波）</strong>。</p>
+<p>设函数 $f(x) &#x3D; |\sin(\omega x)|$，其中 $\omega &#x3D; \frac{\pi}{L}$，定义在 $x \in [-L, L]$。</p>
+<h4 id="1-奇偶性预判（动机：消除冗余计算）"><a href="#1-奇偶性预判（动机：消除冗余计算）" class="headerlink" title="1. 奇偶性预判（动机：消除冗余计算）"></a>1. 奇偶性预判（动机：消除冗余计算）</h4><p>由于 $f(-x) &#x3D; |\sin(-\omega x)| &#x3D; |-\sin(\omega x)| &#x3D; |\sin(\omega x)| &#x3D; f(x)$，该函数是一个标准的偶函数。</p>
+<p>几何上，图形关于 $y$轴完全对称。因此，它与任何奇函数基$\sin(n\omega x)$ 的内积在对称区间上必然相互抵消：</p>
+<p>
+$$
+b_n = 0 \quad (\forall n \ge 1)
+$$
+</p>
+
+<p>这意味着其展开式中将只包含直流分量与余弦谐波。</p>
+<h4 id="2-利用对称性减半区间"><a href="#2-利用对称性减半区间" class="headerlink" title="2. 利用对称性减半区间"></a>2. 利用对称性减半区间</h4><p>由于函数和余弦基皆为偶函数，其乘积在 $[-L, L]$ 上的积分可以简化为正半区间的两倍：</p>
+<p>
+$$
+a_n = \frac{2}{L} \int_{0}^{L} |\sin(\omega x)| \cos(n\omega x) \, dx
+$$
+</p>
+
+<p>在区间 $x \in [0, L]$ 上，$\omega x \in [0, \pi]$，此时 $\sin(\omega x) \ge 0$，因此绝对值符号可以直接去掉。积分式转化为：</p>
+<p>
+$$
+a_n = \frac{2}{L} \int_{0}^{L} \sin\left(\frac{\pi}{L}x\right) \cos\left(n\frac{\pi}{L}x\right) \, dx
+$$
+</p>
+
+<p>通过积化和差公式，我们可以将两个正交基的乘积转化为单一频率的余弦组合，进而轻松求出各项系数。这表明，看似复杂的非线性绝对值波形，通过奇偶性简化后，计算难度会大幅度降低。</p>
+<h3 id="半区间展开：边界拓延的选择艺术"><a href="#半区间展开：边界拓延的选择艺术" class="headerlink" title="半区间展开：边界拓延的选择艺术"></a>半区间展开：边界拓延的选择艺术</h3><p>在实际应用（如热传导方程、波动方程的边界值问题）中，函数 $f(x)$往往最初只定义在半区间$[0, L]$ 上。由于该区间不具备周期性，我们无法直接对其进行傅里叶分解。</p>
+<p>我们的核心动机在于：<strong>人为地将定义在 $[0, L]$上的函数拓延到$[-L, L]$ 上，使其获得周期性与对称性。拓延的方式不同，会导致函数在边界外的行为发生剧变，从而产生截然不同的级数表达。</strong></p>
+<p>针对定义在 $[0, L]$上的$f(x) \to \mathbb{R}$，存在以下三种主流的拓延策略：</p>
+<pre><code>1. 直接周期拓延 (以 L 为周期)  -&gt; 包含正余弦，边界可能不连续
+2. 奇拓延 (以 2L 为周期)     -&gt; 仅含正弦项 (正弦级数)，边界强行归零
+3. 偶拓延 (以 2L 为周期)     -&gt; 仅含余弦项 (余弦级数)，边界平滑过渡
+</code></pre>
+<h4 id="策略一：以-L-为周期的直接延拓"><a href="#策略一：以-L-为周期的直接延拓" class="headerlink" title="策略一：以 $L$ 为周期的直接延拓"></a>策略一：以 $L$ 为周期的直接延拓</h4><p>最直观的想法是将 $[0, L]$ 直接作为最小正周期进行复制。</p>
+<p>此时函数的物理周期变为 $L$（相当于前文公式中的 $2L’ &#x3D; L \implies L’ &#x3D; \frac{L}{2}$），基频率提升为 $\omega &#x3D; \frac{2\pi}{L}$。</p>
+<p>其级数展现为同时含有正余弦的完全体：</p>
+<p>
+$$
+f(x) \sim \frac{a_0}{2} + \sum_{n=1}^{+\infty} \left( a_n \cos\left(\frac{2n\pi}{L}x\right) + b_n \sin\left(\frac{2n\pi}{L}x\right) \right)
+$$
+</p>
+
+<ul>
+<li><strong>动机缺陷：</strong> 如果 $f(0) \neq f(L)$，这种强行拓延会导致在边界点 $x &#x3D; L, 2L, \dots$ 处出现第一类跳跃间断点，从而在级数收敛时引发<strong>吉布斯现象（Gibbs phenomenon）</strong>。</li>
+</ul>
+<h4 id="策略二：奇延拓（构造正弦级数）"><a href="#策略二：奇延拓（构造正弦级数）" class="headerlink" title="策略二：奇延拓（构造正弦级数）"></a>策略二：奇延拓（构造正弦级数）</h4><p>为了消除余弦项，或者为了满足边界上 $f(0)&#x3D;f(L)&#x3D;0$的物理约束，我们可以构造一个奇函数$F^o(x)$：</p>
+<p>
+$$
+F^o(x) = \begin{cases} f(x), & x \in (0, L) \\ 0, & x = 0, L \\ -f(-x), & x \in (-L, 0) \end{cases}
+$$
+</p>
+
+<p>随后，再将 $F^o(x)$以$2L$为周期进行全轴拓延。由于$F^o(x)$ 是严格的奇函数，所有的余弦系数自然坍塌：</p>
+<p>
+$$
+a_n^o = 0
+$$
+</p>
+
+<p>系数完全由正弦项继承：</p>
+<p>
+$$
+b_n^o = \frac{2}{L} \int_{0}^{L} f(x) \sin\left(\frac{n\pi}{L}x\right) \, dx
+$$
+</p>
+
+<p>此时，函数被完全展开为纯正弦级数：$f(x) \sim \sum_{n&#x3D;1}^{+\infty} b_n^o \sin\left(\frac{n\pi}{L}x\right)$。</p>
+<h4 id="策略三：偶延拓（构造余弦级数）"><a href="#策略三：偶延拓（构造余弦级数）" class="headerlink" title="策略三：偶延拓（构造余弦级数）"></a>策略三：偶延拓（构造余弦级数）</h4><p>如果物理边界条件要求导数为零（如绝热边界），或者为了在边界处获得更好的平滑度，我们可以构造一个偶函数 $F^e(x)$：</p>
+<p>
+$$
+F^e(x) = \begin{cases} f(x), & x \in [0, L] \\ f(-x), & x \in [-L, 0) \end{cases}
+$$
+</p>
+
+<p>将其以 $2L$ 为周期进行全轴拓延。基于偶函数的性质，所有的正弦系数被洗脱：</p>
+<p>
+$$
+b_n^e = 0
+$$
+</p>
+
+<p>余弦系数在半区间上加倍提取：</p>
+<p>
+$$
+a_n^e = \frac{2}{L} \int_{0}^{L} f(x) \cos\left(\frac{n\pi}{L}x\right) \, dx
+$$
+</p>
+
+<p>由此，函数在区间 $[0, L]$ 上被等价地表达为纯余弦级数：</p>
+<p>
+$$
+f(x) \sim \frac{a_0^e}{2} + \sum_{n=1}^{+\infty} a_n^e \cos\left(\frac{n\pi}{L}x\right)
+$$
+</p>
+
+<p><strong>总结与收敛性洞察：</strong></p>
+<p>虽然这三种拓延方法在原始区间 $x \in [0, L]$ 上的数学取值完全等价，但由于它们在区间外部构造的几何形态各异，它们在边界点处的收敛速度和连续性有着本质不同。这种边界拓延的自由度，正是傅里叶分析解决边界值问题时最核心的威力所在。</p>
+<h3 id="函数空间的代数视角：半区间拓延的基底坍塌"><a href="#函数空间的代数视角：半区间拓延的基底坍塌" class="headerlink" title="函数空间的代数视角：半区间拓延的基底坍塌"></a>函数空间的代数视角：半区间拓延的基底坍塌</h3><p>当我们把定义在 $[0, L]$上的函数$f(x)$ 分别通过三种不同的拓延方式（直接周期、奇、偶拓延）推向全轴时，在代数上，这本质上对应着<strong>将同一个函数投射到三个不同的希尔伯特空间（Hilbert Space）子空间中</strong>。</p>
+<p>下面我们站在线性代数的视角，将这三种拓延策略所对应的正交基进行系统的梳理：</p>
+<h3 id="一、-三种拓延对应的函数空间基底"><a href="#一、-三种拓延对应的函数空间基底" class="headerlink" title="一、 三种拓延对应的函数空间基底"></a>一、 三种拓延对应的函数空间基底</h3><h4 id="1-策略一：直接周期拓延空间-V-L-当我们把-0-L-视为一个独立的完整周期进行拓延时，所产生的函数空间我们记为-V-L-。在这个空间中，谐波的基频率变成了-frac-2-pi-L-。"><a href="#1-策略一：直接周期拓延空间-V-L-当我们把-0-L-视为一个独立的完整周期进行拓延时，所产生的函数空间我们记为-V-L-。在这个空间中，谐波的基频率变成了-frac-2-pi-L-。" class="headerlink" title="1. 策略一：直接周期拓延空间 $V_L$当我们把$[0, L]$视为一个独立的完整周期进行拓延时，所产生的函数空间我们记为$V_L$。在这个空间中，谐波的基频率变成了 $\frac{2\pi}{L}$。"></a>1. 策略一：直接周期拓延空间 $V_L$当我们把$[0, L]$视为一个独立的完整周期进行拓延时，所产生的函数空间我们记为$V_L$。在这个空间中，谐波的基频率变成了 $\frac{2\pi}{L}$。</h4><p>其对应的标准正交基底为：</p>
+<p>
+$$
+\left\{ 1, \, \cos\left(\frac{2\pi}{L}x\right), \, \sin\left(\frac{2\pi}{L}x\right), \, \dots, \, \cos\left(n\frac{2\pi}{L}x\right), \, \sin\left(n\frac{2\pi}{L}x\right), \, \dots \right\}
+$$
+</p>
+
+<h4 id="2-策略二：奇拓延空间-V-1-（纯正弦空间）"><a href="#2-策略二：奇拓延空间-V-1-（纯正弦空间）" class="headerlink" title="2. 策略二：奇拓延空间 $V_1$（纯正弦空间）"></a>2. 策略二：奇拓延空间 $V_1$（纯正弦空间）</h4><p>若我们将函数进行奇拓延，函数在 $[-L, L]$上的物理周期变为$2L$。由于奇对称性，所有的余弦项被清洗，空间被坍塌为纯正弦子空间，记为 $V_1$。</p>
+<p>容易发现，这个空间是 $2L$周期总空间$V_{2L}$ 的一个子空间（$V_1 \subset V_{2L}$）。其对应的基底为：</p>
+<p>
+$$
+\left\{ \sin\left(\frac{\pi}{L}x\right), \, \sin\left(2\frac{\pi}{L}x\right), \, \dots, \, \sin\left(n\frac{\pi}{L}x\right), \, \dots \right\}
+$$
+</p>
+
+<p>从集合势的角度来看，虽然它们都是无穷维空间，但其基底的“大小”（维度）在代数意义上满足 $\dim(V_1) &#x3D; |\mathbb{N}|$。</p>
+<h4 id="3-策略三：偶拓延空间-V-2-（纯余弦空间）"><a href="#3-策略三：偶拓延空间-V-2-（纯余弦空间）" class="headerlink" title="3. 策略三：偶拓延空间 $V_2$（纯余弦空间）"></a>3. 策略三：偶拓延空间 $V_2$（纯余弦空间）</h4><p>同理，偶拓延对应的空间是纯余弦子空间，记为 $V_2$。它同样包含于 $2L$ 周期的总空间（$V_2 \subset V_{2L}$）。</p>
+<p>其对应的基底为：</p>
+<p>
+$$
+\left\{ 1, \, \cos\left(\frac{\pi}{L}x\right), \, \cos\left(2\frac{\pi}{L}x\right), \, \dots, \, \cos\left(n\frac{\pi}{L}x\right), \, \dots \right\}
+$$
+</p>
+
+<p>同样地，其空间维度为 $\dim(V_2) &#x3D; \dim(V_1) &#x3D; |\mathbb{N}|$。</p>
+<h3 id="二、-正弦谐波空间的深层正交直和分解"><a href="#二、-正弦谐波空间的深层正交直和分解" class="headerlink" title="二、 正弦谐波空间的深层正交直和分解"></a>二、 正弦谐波空间的深层正交直和分解</h3><p>为了进一步解构纯正弦空间 $V_1$，我们可以根据谐波频率的<strong>奇偶性</strong>，将正弦基底再次做代数上的切分。这种解构的动机在于研究更精细的波动对称性（例如不仅关于原点奇对称，还关于半周期点对称）。</p>
+<p>我们将 $V_1$ 拆分为两个更小的子空间：</p>
+<ul>
+<li><strong>偶次谐波正弦空间 $V_{1, e}$</strong>：由所有偶数倍频的正弦基向量张成。</li>
+</ul>
+<p>
+$$
+V_{1, e} = \text{span}\left\{ \sin\left(2n\frac{\pi}{L}x\right) \right\}_{n=1}^{\infty}
+$$
+</p>
+
+<ul>
+<li><strong>奇次谐波正弦空间 $V_{1, o}$</strong>：由所有奇数倍频的正弦基向量张成。</li>
+</ul>
+<p>
+$$
+V_{1, o} = \text{span}\left\{ \sin\left((2m+1)\frac{\pi}{L}x\right) \right\}_{m=0}^{\infty}
+$$
+</p>
+
+<p>因为不同频率的正弦波在区间上是严格正交的，所以这两个子空间的交集仅含零元素（$V_{1, e} \cap V_{1, o} &#x3D; {0}$）。于是，整个纯正弦空间可以完美地表示为这两个子空间的<strong>正交直和</strong>：</p>
+<p>
+$$
+V_1 = V_{1, e} \oplus V_{1, o}
+$$
+</p>
+
+<h3 id="三、-空间基底的代数变换与耦合关系"><a href="#三、-空间基底的代数变换与耦合关系" class="headerlink" title="三、 空间基底的代数变换与耦合关系"></a>三、 空间基底的代数变换与耦合关系</h3><p>在线性代数中，当一个向量在不同的基底下表示时，我们可以通过过渡矩阵来进行坐标变换。板书右下角展示的正是不同谐波子空间之间的耦合与变换动机。</p>
+<p>如果我们希望将某一类子空间 $\begin{pmatrix} V_1 \ V_2 \end{pmatrix}$ 中的元素，投影或变换到另一组由特定奇偶谐波混合构成的空间中，可以通过三角函数的积化和差以及正交投影矩阵来建立联系。例如，考虑奇次正弦波与最基础的单倍频余弦&#x2F;正弦项相乘时的耦合：</p>
+<p>
+$$
+\sin\left(2n\frac{\pi}{L}x\right)\cos\left(\frac{\pi}{L}x\right), \quad \sin\left(2n\frac{\pi}{L}x\right)\sin\left(\frac{\pi}{L}x\right)
+$$
+</p>
+
+<p>利用三角恒等式展开：</p>
+<p>
+$$
+\sin\left(2n\frac{\pi}{L}x\right)\cos\left(\frac{\pi}{L}x\right) = \frac{1}{2}\left[\sin\left((2n+1)\frac{\pi}{L}x\right) + \sin\left((2n-1)\frac{\pi}{L}x\right)\right]
+$$
+</p>
+
+<p>这个代数事实表明：<strong>一个偶次谐波正弦空间中的基向量，在受到一个基本余弦扰动（调制）后，其频谱会完全线性组合转化为奇次谐波正弦空间 $V_{1, o}$ 中的基向量。</strong></p>
+<p>这种子空间之间的转换关系，不仅在线性空间理论中非常优美，在现代信号处理的“调制解调”以及量子力学算符的正确选择中，更是构成了其最核心的代数骨架。</p>
+<h2 id="最佳逼近的动机：数据、物理与模型的博弈"><a href="#最佳逼近的动机：数据、物理与模型的博弈" class="headerlink" title="最佳逼近的动机：数据、物理与模型的博弈"></a>最佳逼近的动机：数据、物理与模型的博弈</h2><p>在面对来自物理世界的真实数据（Data）时，我们通常希望建立一个数学模型（Model）来描述它。此时会面临一个核心矛盾：<strong>模型的复杂性（Complexity）与预测能力（Prediction）的权衡</strong>。</p>
+<ul>
+<li><p><strong>过拟合（Overfitting）</strong>：如果我们一味追求模型在已知数据点上的完美拟合，使用极其复杂的超高维函数（如高次多项式或过多项的三角级数），模型会去追踪数据中的噪声，导致其剧烈震荡。虽然在已知点上的误差为 $0$，但脱离这些点后的预测能力会彻底崩溃。</p>
+</li>
+<li><p><strong>奥卡姆剃刀原理</strong>：我们希望模型在保持“相对简单（Simple Model）”的同时，尽可能逼近真实数据。</p>
+</li>
+</ul>
+<p>为了量化这种“逼近”，我们引入内积空间中的距离概念。若真实函数为 $f$，逼近模型为 $T_N$，我们的目标是最小化它们之间的均方误差：</p>
+<p>
+$$
+\min \int ( \text{Data} - \text{Model} )^2 \, dx = \min \| f - T_N \|^2
+$$
+</p>
+
+<p>在线性空间中，寻找这个最小误差模型的本质，就是做<strong>正交投影</strong>。</p>
+<h2 id="正交投影定理与傅里叶最佳逼近"><a href="#正交投影定理与傅里叶最佳逼近" class="headerlink" title="正交投影定理与傅里叶最佳逼近"></a>正交投影定理与傅里叶最佳逼近</h2><h3 id="1-子空间的构建"><a href="#1-子空间的构建" class="headerlink" title="1. 子空间的构建"></a>1. 子空间的构建</h3><p>设 $f(x)$为我们想要逼近的平方可积函数。我们引入一个由前$N$阶三角函数生成的有限维子空间$V_N$：</p>
+<p>
+$$
+V_N = \text{span} \{ 1, \cos(x), \sin(x), \dots, \cos(Nx), \sin(Nx) \}
+$$
+</p>
+
+<p>显然，该空间的维数为 $\dim(V_N) &#x3D; 2N + 1$。在该子空间中，任意一个元素（即三角多项式）都可以写成：</p>
+<p>
+$$
+T_N(x) = \frac{a_0}{2} + \sum_{n=1}^N (a_n \cos(nx) + b_n \sin(nx))
+$$
+</p>
+
+<h3 id="2-引理：正交投影的几何本质"><a href="#2-引理：正交投影的几何本质" class="headerlink" title="2. 引理：正交投影的几何本质"></a>2. 引理：正交投影的几何本质</h3><p>要让 $T_N \in V_N$成为$f$在该子空间上的<strong>最佳逼近</strong>，几何直觉告诉我们：从向量$f$指向子空间$V_N$的误差向量$f - T_N$ 必须垂直于该子空间。</p>
+<blockquote>
+<p><strong>引理（正交垂直关系）</strong></p>
+<p>设 $T_N$是$f$在$V_N$中的最佳逼近，则对任意的$g \in V_N$，都有误差向量与子空间正交：</p>
+</blockquote>
+<p>
+$$
+\langle f - T_N, g \rangle = 0 \quad (\text{即 } f - T_N \perp V_N)
+$$
+</p>
+
+<blockquote>
+<p>此时，$T_N$称为$f$在子空间$V_N$上的正交投影，记作$T_N &#x3D; P_{V_N} f$。</p>
+</blockquote>
+<h3 id="3-定理的严密验证"><a href="#3-定理的严密验证" class="headerlink" title="3. 定理的严密验证"></a>3. 定理的严密验证</h3><p>我们通过计算内积来验证傅里叶系数是否天然满足这一正交性。两组基向量的验证是对称的，此处以基向量 $\cos(nx)$（其中$n&#x3D;0,1,\dots,N$）为例：</p>
+<p>利用内积的线性性质，将误差项拆开：</p>
+<p>
+$$
+\langle f - T_N, \cos(nx) \rangle = \langle f, \cos(nx) \rangle - \langle T_N, \cos(nx) \rangle
+$$
+</p>
+
+<p>由于三角函数系具有标准正交性（此处略去规范化常数 $\pi$的干扰，重点看系数耦合），将$T_N$的展开式代入后，除了相同频率的项外，其余项的内积均为$0$：</p>
+<p>
+$$
+\langle T_N, \cos(nx) \rangle = \left\langle \dots + a_n\cos(nx) + \dots, \cos(nx) \right\rangle = a_n \cdot \pi
+$$
+</p>
+
+<p>而在傅里叶系数的定义中，原本就有 $a_n &#x3D; \frac{1}{\pi} \langle f, \cos(nx) \rangle$。因此：</p>
+<p>
+$$
+\langle f - T_N, \cos(nx) \rangle = a_n \cdot \pi - a_n \cdot \pi = 0
+$$
+</p>
+
+<p><strong>结论</strong>：傅里叶级数的前 $N$项截断项$T_N$，恰好就是 $f$在有限维子空间$V_N$ 上的正交投影。这就从几何上保证了<strong>傅里叶有限项截断是在均方误差意义下的最佳逼近</strong>。</p>
+<h2 id="核心定理：均方误差意义下的最佳逼近与唯一性"><a href="#核心定理：均方误差意义下的最佳逼近与唯一性" class="headerlink" title="核心定理：均方误差意义下的最佳逼近与唯一性"></a>核心定理：均方误差意义下的最佳逼近与唯一性</h2><p>设 $f$为定义在$[-\pi, \pi]$上的平方可积函数（即$f \in L^2[-\pi, \pi]$），其 $L^2$模长定义为$|g|<em>{L^2}^2 &#x3D; \langle g, g \rangle &#x3D; \int</em>{-\pi}^\pi |g(x)|^2 dx$。</p>
+<p>设 $V_N$是由前$N$阶三角函数生成的$(2N+1)$ 维子空间，$T_N \in V_N$为$f$的傅里叶级数前$N$ 项截断。</p>
+<blockquote>
+<p><strong>最佳逼近定理</strong></p>
+<ol>
+<li><strong>存在性（最佳逼近）</strong>：对于任意的子空间元素 $g \in V_N$，傅里叶截断 $T_N$ 能够最大程度地减小均方误差：</li>
+</ol>
+</blockquote>
+<p>
+$$
+\|f - T_N\|_{L^2}^2 = \min_{g \in V_N} \|f - g\|_{L^2}^2
+$$
+</p>
+
+<blockquote>
+<ol start="2">
+<li><strong>唯一性</strong>：如果子空间中存在某个元素 $g \in V_N$实现了相同的最小误差，即$|f - T_N|<em>{L^2} &#x3D; |f - g|</em>{L^2}$，则该元素必然与傅里叶截断恒等：</li>
+</ol>
+</blockquote>
+<p>
+$$
+\Longrightarrow T_N = g \quad (\text{在 } V \text{ 中})
+$$
+</p>
+
+<blockquote>
+</blockquote>
+<h2 id="核心推导：正交分解与误差恒等式"><a href="#核心推导：正交分解与误差恒等式" class="headerlink" title="核心推导：正交分解与误差恒等式"></a>核心推导：正交分解与误差恒等式</h2><h3 id="1-巧妙引入中间项（构造动机）"><a href="#1-巧妙引入中间项（构造动机）" class="headerlink" title="1. 巧妙引入中间项（构造动机）"></a>1. 巧妙引入中间项（构造动机）</h3><p>为了比较任意逼近函数 $g$与最佳逼近项$T_N$的优劣，我们需要计算任意误差$|f - g|_{L^2}^2$。直接计算无法显现出 $T_N$的特殊地位，因此我们在内积内部巧妙地<strong>插入$T_N$ 作为桥梁</strong>：</p>
+<p>
+$$
+\|f - g\|_{L^2}^2 = \langle f - g, f - g \rangle = \langle (f - T_N) + (T_N - g), (f - T_N) + (T_N - g) \rangle
+$$
+</p>
+
+<h3 id="2-利用内积的双线性展开"><a href="#2-利用内积的双线性展开" class="headerlink" title="2. 利用内积的双线性展开"></a>2. 利用内积的双线性展开</h3><p>根据内积的分配律，将上式完全展开为四项，并合并同类项：</p>
+<p>
+$$
+\|f - g\|_{L^2}^2 = \langle f - T_N, f - T_N \rangle + \langle T_N - g, T_N - g \rangle + 2\langle f - T_N, T_N - g \rangle
+$$
+</p>
+
+<p>利用模长的定义，前两项可以写为模长的平方：</p>
+<p>
+$$
+\|f - g\|_{L^2}^2 = \|f - T_N\|_{L^2}^2 + \|T_N - g\|_{L^2}^2 + 2\langle f - T_N, T_N - g \rangle
+$$
+</p>
+
+<h3 id="3-交叉项的消除（几何投影的代数体现）"><a href="#3-交叉项的消除（几何投影的代数体现）" class="headerlink" title="3. 交叉项的消除（几何投影的代数体现）"></a>3. 交叉项的消除（几何投影的代数体现）</h3><p>现在审视交叉项 $2\langle f - T_N, T_N - g \rangle$。</p>
+<ul>
+<li><p>依据前文的正交投影引理，误差向量 $f - T_N$垂直于整个子空间$V_N$。</p>
+</li>
+<li><p>因为 $T_N \in V_N$且$g \in V_N$，根据子空间对减法的封闭性，它们的差向量也必然属于该子空间：$(T_N - g) \in V_N$。</p>
+</li>
+</ul>
+<p>因此，根据正交性，该内积严格为 $0$：</p>
+<p>
+$$
+\langle f - T_N, \underline{T_N - g}_{\in V_N} \rangle = 0
+$$
+</p>
+
+<p>交叉项被成功“划掉”后，我们得到了极其优美的<strong>误差恒等式</strong>：</p>
+<p>
+$$
+\|f - g\|_{L^2}^2 = \|f - T_N\|_{L^2}^2 + \|T_N - g\|_{L^2}^2
+$$
+</p>
+
+<h2 id="定理的逻辑闭环证明"><a href="#定理的逻辑闭环证明" class="headerlink" title="定理的逻辑闭环证明"></a>定理的逻辑闭环证明</h2><p>有了上述恒等式，定理的两个部分便不证自明：</p>
+<ol>
+<li><p><strong>最佳逼近的证明</strong>：</p>
+<p> 因为模长的平方具有非负性，即 $|T_N - g|_{L^2}^2 \ge 0$，所以从恒等式中移去该项后必然满足不等式：</p>
+</li>
+</ol>
+<p>
+$$
+\|f - g\|_{L^2}^2 \ge \|f - T_N\|_{L^2}^2
+$$
+</p>
+
+<p>这表明任意非傅里叶截断的函数 $g$带来的误差，都大于或等于$T_N$带来的误差。即$T_N$ 实现了误差的最小值。</p>
+<ol start="2">
+<li><p><strong>唯一性的证明</strong>：</p>
+<p> 若存在一个 $g$使得等号成立，即$|f - g|<em>{L^2}^2 &#x3D; |f - T_N|</em>{L^2}^2$，代入恒等式中：</p>
+</li>
+</ol>
+<p>
+$$
+\|f - T_N\|_{L^2}^2 = \|f - T_N\|_{L^2}^2 + \|T_N - g\|_{L^2}^2 \Longrightarrow \|T_N - g\|_{L^2}^2 = 0
+$$
+</p>
+
+<p>根据模长的正定性（只有零向量的模长才为 $0$），这意味着：</p>
+<p>
+$$
+T_N - g = 0 \Longrightarrow T_N = g
+$$
+</p>
+
+<p><strong>最终结论</strong>：在线性空间 $V_N$中，傅里叶级数截断项$T_N$是<strong>唯一能够将均方误差降至最低的最佳逼近函数</strong>。任何其他尝试（改变系数或组合）都必然会引入一个额外的正误差项$|T_N - g|_{L^2}^2$，导致逼近效果变差。</p>
+<h2 id="核心定理：贝塞尔不等式（Bessel’s-Inequality）"><a href="#核心定理：贝塞尔不等式（Bessel’s-Inequality）" class="headerlink" title="核心定理：贝塞尔不等式（Bessel’s Inequality）"></a>核心定理：贝塞尔不等式（Bessel’s Inequality）</h2><p>在平方可积函数空间 $L^2[-\pi, \pi]$中，设$f(x)$对应的傅里叶级数前$N$项截断项为$T_N(x)$。贝塞尔不等式的宏观几何形式极其简洁，它表明子空间投影的能量（模长平方）永远不会超过原函数的总能量：</p>
+<p>
+$$
+\|T_N\|_{L^2}^2 \le \|f\|_{L^2}^2, \quad \forall N
+$$
+</p>
+
+<h2 id="详细代数推导过程"><a href="#详细代数推导过程" class="headerlink" title="详细代数推导过程"></a>详细代数推导过程</h2><h3 id="1-展开式的内积表示"><a href="#1-展开式的内积表示" class="headerlink" title="1. 展开式的内积表示"></a>1. 展开式的内积表示</h3><p>根据 $L^2$空间中标准规范内积的定义，我们将上述宏观不等式的左右两侧写成定义域$[-\pi, \pi]$ 上的积分形式。</p>
+<ul>
+<li>右侧原函数的总能量为：</li>
+</ul>
+<p>
+$$
+\|f\|_{L^2}^2 = \frac{1}{\pi} \int_{-\pi}^\pi f(x)^2 \, dx
+$$
+</p>
+
+<ul>
+<li>左侧截断项 $T_N(x)$ 的能量为：</li>
+</ul>
+<p>
+$$
+\|T_N\|_{L^2}^2 = \frac{1}{\pi} \int_{-\pi}^\pi (T_N(x))^2 \, dx
+$$
+</p>
+
+<h3 id="2-代入傅里叶截断多项式"><a href="#2-代入傅里叶截断多项式" class="headerlink" title="2. 代入傅里叶截断多项式"></a>2. 代入傅里叶截断多项式</h3><p>将 $T_N(x) &#x3D; \frac{a_0}{2} + \sum_{n&#x3D;1}^N (a_n \cos(nx) + b_n \sin(nx))$ 代入左侧积分中：</p>
+<p>
+$$
+\|T_N\|_{L^2}^2 = \frac{1}{\pi} \int_{-\pi}^\pi \left( \frac{a_0}{2} + \sum_{n=1}^N \left(a_n \cos(nx) + b_n \sin(nx)\right) \right)^2 \, dx
+$$
+</p>
+
+<h3 id="3-利用三角函数系的正交性化简"><a href="#3-利用三角函数系的正交性化简" class="headerlink" title="3. 利用三角函数系的正交性化简"></a>3. 利用三角函数系的正交性化简</h3><p>当我们将上述级数的平方完全展开时，会产生大量的交叉项（如 $\cos(nx)\sin(mx)$，$\cos(nx)\cos(mx)$其中$n \neq m$）。由于三角函数系在 $[-\pi, \pi]$上具有<strong>标准正交性</strong>，所有不同频率的交叉项积分结果全部严格为$0$。</p>
+<p>最终，积分式中仅留下各项自身的平方项，即：</p>
+<ul>
+<li><p>常数项：$\frac{1}{\pi} \int_{-\pi}^\pi \left(\frac{a_0}{2}\right)^2 , dx &#x3D; \frac{1}{\pi} \cdot \frac{a_0^2}{4} \cdot 2\pi &#x3D; \frac{a_0^2}{2}$</p>
+</li>
+<li><p>余弦项：$\frac{1}{\pi} \int_{-\pi}^\pi a_n^2 \cos^2(nx) , dx &#x3D; a_n^2$</p>
+</li>
+<li><p>正弦项：$\frac{1}{\pi} \int_{-\pi}^\pi b_n^2 \sin^2(nx) , dx &#x3D; b_n^2$</p>
+</li>
+</ul>
+<p>将这些非零积分项求和，我们得到了截断项能量的离散代数精确表达式：</p>
+<p>
+$$
+\|T_N\|_{L^2}^2 = \frac{a_0^2}{2} + \sum_{n=1}^N (a_n^2 + b_n^2)
+$$
+</p>
+
+<h3 id="4-导出-Bessel-不等式"><a href="#4-导出-Bessel-不等式" class="headerlink" title="4. 导出 Bessel 不等式"></a>4. 导出 Bessel 不等式</h3><p>由于几何上已知 $|T_N|<em>{L^2}^2 \le |f|</em>{L^2}^2$，我们将化简后的代数结果直接代入，即导出了 <strong>Bessel 不等式的经典代数形式</strong>：</p>
+<p>
+$$
+\frac{a_0^2}{2} + \sum_{n=1}^N (a_n^2 + b_n^2) \le \frac{1}{\pi} \int_{-\pi}^\pi f(x)^2 \, dx
+$$
+</p>
+
+<h2 id="核心推论：傅里叶级数的收敛性"><a href="#核心推论：傅里叶级数的收敛性" class="headerlink" title="核心推论：傅里叶级数的收敛性"></a>核心推论：傅里叶级数的收敛性</h2><blockquote>
+<p><strong>推论（级数收敛性）</strong></p>
+<p>若 $f \in L^2[-\pi, \pi]$（即 $f$的平方积分有限），当截断项数$N \to \infty$ 时，其傅里叶系数构成的无穷级数必然<strong>收敛</strong>：</p>
+</blockquote>
+<p>
+$$
+\frac{a_0^2}{2} + \sum_{n=1}^{+\infty} (a_n^2 + b_n^2) < +\infty
+$$
+</p>
+
+<p><strong>动机与逻辑支撑</strong>：</p>
+<p>因为对于任意有限的 $N$，正项级数的部分和 $\frac{a_0^2}{2} + \sum_{n&#x3D;1}^N (a_n^2 + b_n^2)$都被一个与$N$无关的常数（即原函数的积分$|f|_{L^2}^2$）牢牢压住（单调有界），根据数学分析中的<strong>单调有界原理</strong>，该正项级数在 $N \to \infty$ 时必然收敛。</p>
+<p>这从根本上保证了，只要原函数能量有限，其拆解出的各阶谐波分量的能量总和就绝不会发散。</p>
+<h2 id="向极限制过渡：帕塞瓦尔等式（Parseval’s-Identity）"><a href="#向极限制过渡：帕塞瓦尔等式（Parseval’s-Identity）" class="headerlink" title="向极限制过渡：帕塞瓦尔等式（Parseval’s Identity）"></a>向极限制过渡：帕塞瓦尔等式（Parseval’s Identity）</h2><p>在宏观极限下，我们进一步审视级数的能量分布：</p>
+<p>当 $N \to \infty$时，如果三角函数基底在空间中满足<strong>完备性</strong>（即空间中没有任何非零向量能够同时垂直于所有的基向量，逼近误差$|f - T_N|_{L^2} \to 0$），那么上述 Bessel 不等式中的“小于等于号”将严格蜕变为“等号”：</p>
+<p>
+$$
+\frac{a_0^2}{2} + \sum_{n=1}^{+\infty} (a_n^2 + b_n^2) = \frac{1}{\pi} \int_{-\pi}^\pi f(x)^2 \, dx
+$$
+</p>
+
+<blockquote>
+<p><strong>帕塞瓦尔定理</strong></p>
+<p>若三角函数基底具有完备性，则对任意平方可积函数 $f \in V$，其误差向量的模长在无穷维极限下必然收敛于 $0$：</p>
+</blockquote>
+<p>
+$$
+\lim_{N \to \infty} \|f - S_N\|_{L^2}^2 = 0, \quad \forall f \in V
+$$
+</p>
+
+<blockquote>
+<p>此时等号严格成立，能量完全守恒：</p>
+</blockquote>
+<p>
+$$
+\|S\|_{L^2}^2 = \frac{a_0^2}{2} + \sum_{n=1}^{+\infty} (a_n^2 + b_n^2) = \frac{1}{\pi} \int_{-\pi}^\pi f(x)^2 \, dx
+$$
+</p>
+
+<h3 id="1-核心动机与几何起点"><a href="#1-核心动机与几何起点" class="headerlink" title="1. 核心动机与几何起点"></a>1. 核心动机与几何起点</h3><p>在线性空间中，根据正交投影的代数恒等式，对于任意项数 $N$，函数 $f$ 的总能量（模长平方）都可以严格分解为“投影项能量”与“残差项能量”之和（即高维勾股定理）：</p>
+<p>
+$$
+\|f\|_{L^2}^2 = \|T_N\|_{L^2}^2 + \|f - T_N\|_{L^2}^2
+$$
+</p>
+
+<p>将具体的代数形式代入，上式等价于：</p>
+<p>
+$$
+\frac{1}{\pi} \int_{-\pi}^\pi f(x)^2 \, dx = \left( \frac{a_0^2}{2} + \sum_{n=1}^N (a_n^2 + b_n^2) \right) + \|f - T_N\|_{L^2}^2
+$$
+</p>
+
+<h3 id="2-极限逼近与完备性假设（极限制的跨越）"><a href="#2-极限逼近与完备性假设（极限制的跨越）" class="headerlink" title="2. 极限逼近与完备性假设（极限制的跨越）"></a>2. 极限逼近与完备性假设（极限制的跨越）</h3><p>现在，我们让截断的项数趋于无穷大，即 $N \to \infty$。</p>
+<p>此时需要引入希尔伯特空间中三角函数系的<strong>完备性（Completeness）</strong>（或称逼近中的<strong>均方收敛性</strong>）。对于任何平方可积的函数 $f \in L^2[-\pi, \pi]$，随着谐波成分逐渐增加，残差项（即近似误差）在 $L^2$模长意义下必然趋于$0$：</p>
+<p>
+$$
+\lim_{N \to \infty} \|f - T_N\|_{L^2}^2 = 0
+$$
+</p>
+
+<p>这一性质的直观几何意义是：当基底的维度增长到无穷大时，子空间 $V_N$最终“铺满”了整个函数空间，使得原向量$f$与其在子空间上的投影之间的距离缩水为$0$。</p>
+<h3 id="3-极限消除残差项"><a href="#3-极限消除残差项" class="headerlink" title="3. 极限消除残差项"></a>3. 极限消除残差项</h3><p>我们在能量分解恒等式的两边同时取 $N \to \infty$ 的极限：</p>
+<p>
+$$
+\frac{1}{\pi} \int_{-\pi}^\pi f(x)^2 \, dx = \lim_{N \to \infty} \left( \frac{a_0^2}{2} + \sum_{n=1}^N (a_n^2 + b_n^2) \right) + \lim_{N \to \infty} \|f - T_N\|_{L^2}^2
+$$
+</p>
+
+<p>由于右侧最后的残差极限为 $0$，该项被彻底消除。而中间的有限项求和则自然蜕变为无穷级数：</p>
+<p>
+$$
+\frac{1}{\pi} \int_{-\pi}^\pi f(x)^2 \, dx = \frac{a_0^2}{2} + \sum_{n=1}^{+\infty} (a_n^2 + b_n^2)
+$$
+</p>
+
+<p>这就是<strong>帕塞瓦尔等式</strong>。</p>
+<h3 id="结论的物理重构"><a href="#结论的物理重构" class="headerlink" title="结论的物理重构"></a>结论的物理重构</h3><ul>
+<li><p><strong>Bessel 不等式</strong> 揭示了<strong>部分信号的能量截断性质</strong>：你用有限个频率成分去拟合信号，得到的能量总和只能无限逼近、但绝不会超过原信号的总能量。</p>
+</li>
+<li><p><strong>Parseval 等式</strong> 则是<strong>全频域能量守恒定律</strong>：当把所有从 $1$到$+\infty$ 频率的谐波能量全部累加起来时，频域的总能量（左侧）与时域的总能量（右侧）严格相等，没有任何能量在空间转换中丢失。</p>
+</li>
+</ul>
+<p>本篇笔记聚焦于<strong>帕塞瓦尔（Parseval）等式的完备性条件证明</strong>，并通过一个经典的方波函数（Square Wave）进行具体计算。最后，我们将见证纯粹的时域能量积分如何转化为频域的无穷级数，从而出人意料地导出一个著名的数论级数求和结果。</p>
+<h2 id="经典案例推导：方波函数的傅里叶级数与能量积分"><a href="#经典案例推导：方波函数的傅里叶级数与能量积分" class="headerlink" title="经典案例推导：方波函数的傅里叶级数与能量积分"></a>经典案例推导：方波函数的傅里叶级数与能量积分</h2><h3 id="1-建立问题与动机"><a href="#1-建立问题与动机" class="headerlink" title="1. 建立问题与动机"></a>1. 建立问题与动机</h3><p>为了验证 Parseval 等式在实际计算中的威力，我们引入一个具有代表性的不连续周期函数——<strong>标准方波函数</strong> $f(x)$。我们不仅要计算它的频域系数，还要通过时频两端的能量等价性，去求解一个高难度的数学分析级数和。</p>
+<p>设 $f(x)$定义在$[-\pi, \pi]$ 上，具体分段形式为：</p>
+<p>
+$$
+f(x) = \begin{cases} 1, & x \in (0, \pi) \\ 0, & x = 0, \pi \\ -1, & x \in (-\pi, 0) \end{cases}
+$$
+</p>
+
+<h3 id="2-傅里叶系数的代数计算"><a href="#2-傅里叶系数的代数计算" class="headerlink" title="2. 傅里叶系数的代数计算"></a>2. 傅里叶系数的代数计算</h3><p>由于 $f(x)$ 是一个严格的<strong>奇函数</strong>（关于原点对称），根据积分的对称性，其所有余弦分量的投影分量必然全部消失：</p>
+<p>
+$$
+a_n = 0, \quad \forall n \ge 0
+$$
+</p>
+
+<p>接下来计算正弦分量 $b_n$ 的投影值：</p>
+<p>
+$$
+b_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin(nx) \, dx = \frac{2}{\pi} \int_{0}^\pi 1 \cdot \sin(nx) \, dx = \frac{2}{\pi} \left[ -\frac{\cos(nx)}{n} \right]_{0}^\pi = \frac{2}{n\pi} (1 - (-1)^n)
+$$
+</p>
+
+<p>分析 $1 - (-1)^n$ 的奇偶耦合特性：</p>
+<ul>
+<li><p>当 $n$ 为偶数（$n&#x3D;2k$）时，$b_{2k} &#x3D; 0$。</p>
+</li>
+<li><p>当 $n$ 为奇数（$n&#x3D;2k+1$）时，$b_{2k+1} &#x3D; \frac{4}{(2k+1)\pi}$。</p>
+</li>
+</ul>
+<h3 id="3-时域总能量的积分"><a href="#3-时域总能量的积分" class="headerlink" title="3. 时域总能量的积分"></a>3. 时域总能量的积分</h3><p>我们在时域端直接对 $f(x)^2$ 进行定积分，以获取该信号的总能量常数：</p>
+<p>
+$$
+\frac{1}{\pi} \int_{-\pi}^\pi f(x)^2 \, dx = \frac{1}{\pi} \left( \int_{-\pi}^0 (-1)^2 \, dx + \int_{0}^\pi 1^2 \, dx \right) = \frac{1}{\pi} (\pi + \pi) = 2
+$$
+</p>
+
+<h2 id="运用-Parseval-等式进行级数求和的飞跃"><a href="#运用-Parseval-等式进行级数求和的飞跃" class="headerlink" title="运用 Parseval 等式进行级数求和的飞跃"></a>运用 Parseval 等式进行级数求和的飞跃</h2><h3 id="步骤动机"><a href="#步骤动机" class="headerlink" title="步骤动机"></a>步骤动机</h3><p>傅里叶系数 $b_n$的模长平方和代表了频域的总能量。根据帕塞瓦尔定理，频域总能量必须与时域总能量严格相等（即等于$2$）。通过建立这个等式，我们可以将复杂的三角级数能量，转化为一个纯粹的数论级数。</p>
+<h3 id="详细推导"><a href="#详细推导" class="headerlink" title="详细推导"></a>详细推导</h3><p>将 $a_n &#x3D; 0$和$b_n$ 代入 Parseval 等式的左侧（频域级数部分）：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} b_n^2 = \sum_{n=1}^{+\infty} \left[ \frac{2}{n\pi} (1 - (-1)^n) \right]^2 = \sum_{n=1}^{+\infty} \frac{4}{n^2\pi^2} (1 - (-1)^n)^2
+$$
+</p>
+
+<p>由于只有奇数项（$n &#x3D; 2k+1$）保留非零值，此时 $(1 - (-1)^n)^2 &#x3D; 2^2 &#x3D; 4$。我们将求和指标替换为奇数项指标 $k$（从 $0$到$+\infty$）：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} b_n^2 = \sum_{k=0}^{+\infty} \frac{4}{(2k+1)^2\pi^2} \cdot 4 = \sum_{k=0}^{+\infty} \frac{16}{\pi^2 \cdot (2k+1)^2}
+$$
+</p>
+
+<p>让频域总能量等于时域总能量 $2$：</p>
+<p>
+$$
+\sum_{k=0}^{+\infty} \frac{16}{\pi^2 \cdot (2k+1)^2} = 2
+$$
+</p>
+
+<p>两边同时乘以 $\frac{\pi^2}{16}$，移项孤立出未知的无穷级数：</p>
+<p>
+$$
+\sum_{k=0}^{+\infty} \frac{1}{(2k+1)^2} = 2 \cdot \frac{\pi^2}{16} = \frac{\pi^2}{8}
+$$
+</p>
+
+<h2 id="终极结论与数学之美"><a href="#终极结论与数学之美" class="headerlink" title="终极结论与数学之美"></a>终极结论与数学之美</h2><p>通过帕塞瓦尔等式的桥梁，我们成功证明了所有奇数倒数的平方和：</p>
+<p>
+$$
+1 + \frac{1}{9} + \frac{1}{25} + \frac{1}{49} + \dots = \sum_{k=0}^{+\infty} \frac{1}{(2k+1)^2} = \frac{\pi^2}{8}
+$$
+</p>
+
+<h3 id="批判性评估"><a href="#批判性评估" class="headerlink" title="批判性评估"></a>批判性评估</h3><ul>
+<li><p><strong>优势（置信度评级：极高）</strong>：方波函数虽然在 $x&#x3D;0, \pm\pi$处具有不连续的跳跃点（会引发局部频域震荡的吉布斯现象），但它在$L^2$ 空间中是严格平方可积的。Parseval 等式从<strong>宏观积分能量</strong>的角度完美避开了局部不连续点的数学诘难，无需复杂的极限证明便直接锁定了级数的精确和。</p>
+</li>
+<li><p><strong>物理意义重构</strong>：该推导展现了希尔伯特空间的几何威力——原本时域中一个简单的方波信号，其能量在频域被拆解为了无限多个奇数倍频高谐波的能量叠加。两者的守恒关系不仅论证了完备性，还意外成为解决数论级数求和（巴塞尔问题变体）的强力代数工具。</p>
+</li>
+</ul>
+<h2 id="奇函数的傅里叶展开与巴塞尔问题"><a href="#奇函数的傅里叶展开与巴塞尔问题" class="headerlink" title="奇函数的傅里叶展开与巴塞尔问题"></a>奇函数的傅里叶展开与巴塞尔问题</h2><p>面对形如 $\sum_{n&#x3D;1}^{+\infty} \frac{1}{n^2}$的倒数平方和，直接在数论或离散代数里硬凑通常举步维艰。我们需要一个“桥梁”，将离散的整数$n$变成某种解析结构中的频率。傅里叶展开正是绝佳的选择，因为其基函数的系数在积分后往往会自然产生$1&#x2F;n$或$1&#x2F;n^2$ 的结构。</p>
+<p>为了让级数中只出现正弦项（便于利用积分产生偶次方分母），我们首先构建一个周期为 $2\pi$的奇函数$f(x)$，其在初始周期内的定义为：</p>
+<p>
+$$
+f(x) = \begin{cases} \pi - x, & x \in (0, \pi) \\ 0, & x = 0, \pi \\ -\pi - x, & x \in (-\pi, 0) \end{cases}
+$$
+</p>
+
+<p>由于 $f(x)$是严格的奇函数，其傅里叶系数中的直流分量与余弦项系数直接归零，即$a_0 &#x3D; 0$且$a_n &#x3D; 0$。我们只需要专注于正弦系数 $b_n$ 的提取：</p>
+<p>
+$$
+b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(nx) \, dx = \frac{2}{\pi} \int_{0}^{\pi} (\pi - x) \sin(nx) \, dx
+$$
+</p>
+
+<p>利用分部积分法（Integration by parts）来剥离 $x$的多项式结构。设$u &#x3D; \pi - x \implies du &#x3D; -dx$，且 $dv &#x3D; \sin(nx)dx \implies v &#x3D; -\frac{1}{n}\cos(nx)$：</p>
+<p>
+$$
+b_n = \frac{2}{\pi} \left[ -\frac{1}{n}(\pi - x)\cos(nx) \right]_0^{\pi} - \frac{2}{\pi} \int_{0}^{\pi} \frac{1}{n}\cos(nx) \, dx
+$$
+</p>
+
+<p>代入上下限后，第一项在 $\pi$处为$0$，在 $0$处贡献了$\frac{2}{n}$；而第二项在区间 $[0, \pi]$上对余弦函数积分，结果显然为$0$。因此，我们得到了极其干净的系数：</p>
+<p>
+$$
+b_n = \frac{2}{n}
+$$
+</p>
+
+<p>此时，如果我们直接写出 $f(x)$的傅里叶级数，会得到$\sum \frac{2}{n}\sin(nx)$。但这只能用来计算交错级数。为了得到纯粹的 $\frac{1}{n^2}$，我们需要引入<strong>帕塞瓦尔定理（Parseval’s identity）</strong>。其物理本质是信号在时域的有限能量等于其在频域的能量总和。对于奇函数，该定理表现为：</p>
+<p>
+$$
+\frac{1}{\pi} \int_{-\pi}^{\pi} |f(x)|^2 \, dx = \sum_{n=1}^{+\infty} b_n^2
+$$
+</p>
+
+<p>我们将已知的 $b_n$和$f(x)$ 代入该等式。左侧的能量积分由于对称性可以化简为单侧：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} \left(\frac{2}{n}\right)^2 = \frac{2}{\pi} \int_{0}^{\pi} (\pi - x)^2 \, dx
+$$
+</p>
+
+<p>对右侧进行直接积分：</p>
+<p>
+$$
+\frac{2}{\pi} \left[ -\frac{1}{3}(\pi - x)^3 \right]_0^{\pi} = \frac{2}{3\pi} \cdot \pi^3 = \frac{2}{3}\pi^2
+$$
+</p>
+
+<p>两端同时展开与整理：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} \frac{4}{n^2} = \frac{2}{3}\pi^2 \implies \mathbf{\sum_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6}}
+$$
+</p>
+
+<p>至此，通过奇函数的能量守恒，巴塞尔问题得到了完美的证明。</p>
+<h2 id="偶函数的对称跃迁与高阶级数"><a href="#偶函数的对称跃迁与高阶级数" class="headerlink" title="偶函数的对称跃迁与高阶级数"></a>偶函数的对称跃迁与高阶级数</h2><p>上面的尝试让我们尝到了甜头：函数的自乘积分（平方）让原本分母上的 $n$变成了$n^2$。如果我们需要计算更高阶的级数，比如 $\sum_{n&#x3D;1}^{+\infty} \frac{1}{n^4}$，一种直观的动机就是提升函数的齐次幂次，使得傅里叶系数在基础阶段就带有 $1&#x2F;n^2$的特征，这样经过帕塞瓦尔定理的平方后，就能自然催生出$1&#x2F;n^4$。</p>
+<p>为此，我们重新构建一个偶函数 $f(x)$（将其在图形上表现为一个平滑的“山峰”状对称曲线）：</p>
+<p>
+$$
+f(x) = \begin{cases} (\pi - x)^2, & x \in [0, \pi] \\ (\pi + x)^2, & x \in [-\pi, 0) \end{cases}
+$$
+</p>
+
+<p>由于是偶函数，正弦项系数 $b_n &#x3D; 0$。我们重点计算直流分量 $a_0$与余弦项系数$a_n$。首先是均值（直流分量）：</p>
+<p>
+$$
+a_0 = \frac{2}{\pi} \int_{0}^{\pi} (\pi - x)^2 \, dx = \frac{2}{\pi} \cdot \frac{\pi^3}{3} = \frac{2}{3}\pi^2
+$$
+</p>
+
+<p>接着计算交流系数 $a_n$。同样使用分部积分法，对 $(\pi - x)^2 \cos(nx)$ 进行两次连续的剥离：</p>
+<p>
+$$
+a_n = \frac{2}{\pi} \int_{0}^{\pi} (\pi - x)^2 \cos(nx) \, dx
+$$
+</p>
+
+<p>第一次分部积分后，一次幂项在边界消失，留下正弦积分；第二次分部积分则将正弦转回余弦，并在分母上累积了 $n^2$。经过精细的上下限带入，我们得到：</p>
+<p>
+$$
+a_n = \frac{4}{n^2}
+$$
+</p>
+
+<p>这正符合我们的预期：傅里叶系数的基础形态已经是 $\frac{1}{n^2}$ 了。现在，再次调用通用的帕塞瓦尔定理。注意，此时包含直流分量，其完整形式为：</p>
+<p>
+$$
+\frac{a_0^2}{2} + \sum_{n=1}^{+\infty} a_n^2 = \frac{1}{\pi} \int_{-\pi}^{\pi} |f(x)|^2 \, dx
+$$
+</p>
+
+<p>将得到的系数与函数式代入左端与右端：</p>
+<p>
+$$
+\frac{1}{2}\left(\frac{2}{3}\pi^2\right)^2 + \sum_{n=1}^{+\infty} \left(\frac{4}{n^2}\right)^2 = \frac{2}{\pi} \int_{0}^{\pi} (\pi - x)^4 \, dx
+$$
+</p>
+
+<p>分别对两边进行算术展开与定积分计算：</p>
+<p>
+$$
+\frac{2}{9}\pi^4 + \sum_{n=1}^{+\infty} \frac{16}{n^4} = \frac{2}{\pi} \left[ -\frac{1}{5}(\pi - x)^5 \right]_0^{\pi} = \frac{2}{5}\pi^4
+$$
+</p>
+
+<p>现在，我们移项并分离核心级数：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} \frac{16}{n^4} = \frac{2}{5}\pi^4 - \frac{2}{9}\pi^4 = \frac{8}{45}\pi^4
+$$
+</p>
+
+<p>两边同除以 $16$，高阶欧拉级数的经典结论优雅浮现：</p>
+<p>
+$$
+\mathbf{\sum_{n=1}^{+\infty} \frac{1}{n^4} = \frac{\pi^4}{90}}
+$$
+</p>
+
+<h2 id="纵深思考与外推"><a href="#纵深思考与外推" class="headerlink" title="纵深思考与外推"></a>纵深思考与外推</h2><p>这种基于几何对称性与解析延拓（Analytic continuation）的工具展现了惊人的威力。通过对特定多项式边界的级数构造，我们实际上建立了一种通用范式：</p>
+<ul>
+<li><strong>更高级数的求解路径</strong>：如果我们需要解决 $\sum_{n&#x3D;1}^{+\infty} \frac{1}{n^6}$，其动机会逼迫我们去寻找一个傅里叶系数为 $a_n &#x3D; \frac{C}{n^3}$的函数。由于每次分部积分都会在分母上挂一个$n$，这意味着我们需要构造一个原函数，使其在完成三次分部积分后才能完全消去 $x$的多项式结构——也就是说，我们需要从一个三次幂的函数$f(x) &#x3D; (\pi - x)^3$（并作适当的奇偶延拓）出发，通过帕塞瓦尔定理即可在平方后得到分母为 $n^6$ 的离散和。</li>
+</ul>
+<p>傅里叶分析在此处将复杂的数论级数变成了一种可以线性外推的分析学游戏。</p>
+<h2 id="傅里叶级数中的内积空间与帕塞瓦尔定理证明"><a href="#傅里叶级数中的内积空间与帕塞瓦尔定理证明" class="headerlink" title="傅里叶级数中的内积空间与帕塞瓦尔定理证明"></a>傅里叶级数中的内积空间与帕塞瓦尔定理证明</h2><p>在经典微积分中，帕塞瓦尔定理通常被视为一种纯粹的微积分积分恒等式。然而，如果我们将其放入希尔伯特空间（Hilbert Space）的框架下，该定理的本质不过是欧几里得空间中“勾股定理”或“向量模长平方等于各分量平方和”在无穷维函数空间中的自然延伸。</p>
+<h3 id="1-结构构造：定义函数空间的内积"><a href="#1-结构构造：定义函数空间的内积" class="headerlink" title="1. 结构构造：定义函数空间的内积"></a>1. 结构构造：定义函数空间的内积</h3><p>设 $V$是定义在周期区间$[-\pi, \pi]$ 上的平方可积函数空间。为了度量两个函数之间的“夹角”与“投影”，我们定义内积（Inner Product）如下：</p>
+<p>
+$$
+\langle f, g \rangle = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)g(x) \, dx
+$$
+</p>
+
+<p>在这种内积定义下，三角函数族 ${1&#x2F;\sqrt{2}, \cos(nx), \sin(nx)}$ 恰好构成了该空间的一组<strong>标准正交基</strong>（Orthogonal Basis）。</p>
+<p>假设函数 $f, g \in V$ 的傅里叶展开式分别为：</p>
+<p>
+$$
+f(x) \sim \frac{a_0}{2} + \sum_{n=1}^{+\infty} (a_n \cos(nx) + b_n \sin(nx))
+$$
+</p>
+
+<p>
+$$
+g(x) \sim \frac{c_0}{2} + \sum_{n=1}^{+\infty} (c_n \cos(nx) + d_n \sin(nx))
+$$
+</p>
+
+<p>由标准正交基的性质，两个函数的内积可以直接转化为其傅里叶系数的离散代数和（类似于几何向量的坐标内积）：</p>
+<p>
+$$
+\langle f, g \rangle = \frac{a_0 c_0}{2} + \sum_{n=1}^{+\infty} (a_n c_n + b_n d_n)
+$$
+</p>
+
+<h3 id="2-动机与推导：从线性扩张到帕塞瓦尔定理"><a href="#2-动机与推导：从线性扩张到帕塞瓦尔定理" class="headerlink" title="2. 动机与推导：从线性扩张到帕塞瓦尔定理"></a>2. 动机与推导：从线性扩张到帕塞瓦尔定理</h3><p>我们的目标是证明当 $f &#x3D; g$时，上述内积关系能够完美契合能量守恒。为了从代数上严格导出该结论，我们考察向量（函数）和$f+g$ 的内积。</p>
+<p>依据内积的<strong>双线性（Bilinearity）<strong>与</strong>对称性</strong>，我们有：</p>
+<p>
+$$
+\langle f+g, f+g \rangle = \langle f, f \rangle + \langle g, g \rangle + 2\langle f, g \rangle
+$$
+</p>
+
+<p>这是一个纯粹的代数恒等式。接下来，我们将 $f+g$ 的对应傅里叶系数直接带入内积的系数表示法中。显然，$f+g$的各阶系数为$(a_n + c_n)$和$(b_n + d_n)$。于是左侧可以写为：</p>
+<p>
+$$
+\langle f+g, f+g \rangle = \frac{(a_0 + c_0)^2}{2} + \sum_{n=1}^{+\infty} \left[ (a_n + c_n)^2 + (b_n + d_n)^2 \right]
+$$
+</p>
+
+<p>同时，右侧的 $\langle f, f \rangle$与$\langle g, g \rangle$ 也可以写成对应的平方和形式：</p>
+<p>
+$$
+\langle f, f \rangle = \frac{a_0^2}{2} + \sum_{n=1}^{+\infty} (a_n^2 + b_n^2)
+$$
+</p>
+
+<p>
+$$
+\langle g, g \rangle = \frac{c_0^2}{2} + \sum_{n=1}^{+\infty} (c_n^2 + d_n^2)
+$$
+</p>
+
+<p>将这些显式表达代入最初的代数恒等式中，展开左侧的完全平方式：</p>
+<p>
+$$
+\frac{a_0^2 + 2a_0c_0 + c_0^2}{2} + \sum_{n=1}^{+\infty} (a_n^2 + 2a_ncc_n + c_n^2 + b_n^2 + 2b_nd_n + d_n^2)
+$$
+</p>
+
+<p>消去两端相同的自乘项 $\frac{a_0^2}{2}, \frac{c_0^2}{2}, a_n^2, c_n^2, b_n^2, d_n^2$，中间的交叉项 $\frac{2a_0c_0}{2}$与$2a_nc_n, 2b_nd_n$提取出系数$2$后，正好与右端的$2\langle f, g \rangle$ 完美对齐：</p>
+<p>
+$$
+\frac{(a_n+c_n)^2 - a_n^2 - c_n^2}{2} = a_n c_n
+$$
+</p>
+
+<p>当我们在空间中令 $g &#x3D; f$时（即坐标完全重合），所有的$c_n &#x3D; a_n$且$d_n &#x3D; b_n$，上述关系自然退化为：</p>
+<p>
+$$
+\langle f, f \rangle = \frac{a_0^2}{2} + \sum_{n=1}^{+\infty} (a_n^2 + b_n^2)
+$$
+</p>
+
+<p>还原为具体的积分表达，即完成了<strong>帕塞瓦尔定理</strong>的通用证明：</p>
+<p>
+$$
+\frac{1}{\pi} \int_{-\pi}^{\pi} |f(x)|^2 \, dx = \frac{a_0^2}{2} + \sum_{n=1}^{+\infty} (a_n^2 + b_n^2)
+$$
+</p>
+
+<h2 id="傅里叶级数逐项积分的代数本质：测试函数的构造"><a href="#傅里叶级数逐项积分的代数本质：测试函数的构造" class="headerlink" title="傅里叶级数逐项积分的代数本质：测试函数的构造"></a>傅里叶级数逐项积分的代数本质：测试函数的构造</h2><p>在分析学中，对一个无穷级数进行局部区间 $[\alpha, \beta]$的逐项积分$\int_{\alpha}^{\beta} f(x) , dx$，通常需要严格论证级数的<strong>一致收敛性（Uniform Convergence）</strong>。然而，借助刚刚建立的内积框架，我们可以绕过繁琐的分析学收敛性大棒，通过<strong>构造一个特定的“测试函数”</strong>，将复杂的区间积分运算，精妙地转化为内积空间中的代数投影。</p>
+<h3 id="1-动机：如何用内积表达局部区间积分？"><a href="#1-动机：如何用内积表达局部区间积分？" class="headerlink" title="1. 动机：如何用内积表达局部区间积分？"></a>1. 动机：如何用内积表达局部区间积分？</h3><p>我们希望计算的表达式为：</p>
+<p>
+$$
+\int_{\alpha}^{\beta} f(x) \, dx \quad (\text{其中 } [ \alpha, \beta ] \subset [-\pi, \pi])
+$$
+</p>
+
+<p>注意到现有的内积工具 $\langle f, g \rangle &#x3D; \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)g(x) , dx$是在整个$[-\pi, \pi]$区间上进行积分的。为了把整个区间的积分“裁剪”成局部区间的积分，我们需要构造一个在$[\alpha, \beta]$内部为$1$，在区间外部为 $0$的示性函数（Indicator Function）作为测试函数$g(x)$。</p>
+<h3 id="2-构造测试函数-g-x-定义测试函数-g-x-如下："><a href="#2-构造测试函数-g-x-定义测试函数-g-x-如下：" class="headerlink" title="2. 构造测试函数 $g(x)$定义测试函数$g(x)$ 如下："></a>2. 构造测试函数 $g(x)$定义测试函数$g(x)$ 如下：</h3><p>
+$$
+g(x) = \begin{cases} 1, & x \in [\alpha, \beta] \\ 0, & x \in [-\pi, \pi] \setminus [\alpha, \beta] \end{cases}
+$$
+</p>
+
+<p>此时，由于 $g(x)$在区间外的截断特性，$f$与$g$ 的内积会发生如下变换：</p>
+<p>
+$$
+\langle f, g \rangle = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)g(x) \, dx = \frac{1}{\pi} \int_{\alpha}^{\beta} f(x) \cdot 1 \, dx
+$$
+</p>
+
+<p>也就是说：</p>
+<p>
+$$
+\int_{\alpha}^{\beta} f(x) \, dx = \pi \langle f, g \rangle
+$$
+</p>
+
+<h3 id="3-计算测试函数-g-x-的傅里叶坐标"><a href="#3-计算测试函数-g-x-的傅里叶坐标" class="headerlink" title="3. 计算测试函数 $g(x)$ 的傅里叶坐标"></a>3. 计算测试函数 $g(x)$ 的傅里叶坐标</h3><p>既然局部积分等价于 $\pi \langle f, g \rangle$，而内积又可以通过两个函数的傅里叶系数代数和求得，我们接下来只需要算出这个人工构造的 $g(x)$的傅里叶系数$c_0, c_n, d_n$：</p>
+<ul>
+<li><strong>直流分量 $c_0$</strong>：</li>
+</ul>
+<p>
+$$
+c_0 = \frac{1}{\pi} \int_{-\pi}^{\pi} g(x) \, dx = \frac{1}{\pi} \int_{\alpha}^{\beta} 1 \, dx = \frac{\beta - \alpha}{\pi}
+$$
+</p>
+
+<ul>
+<li><strong>余弦项系数 $c_n$</strong>：</li>
+</ul>
+<p>
+$$
+c_n = \frac{1}{\pi} \int_{-\pi}^{\pi} g(x) \cos(nx) \, dx = \frac{1}{\pi} \int_{\alpha}^{\beta} \cos(nx) \, dx
+$$
+</p>
+
+<ul>
+<li><strong>正弦项系数 $d_n$</strong>：</li>
+</ul>
+<p>
+$$
+d_n = \frac{1}{\pi} \int_{-\pi}^{\pi} g(x) \sin(nx) \, dx = \frac{1}{\pi} \int_{\alpha}^{\beta} \sin(nx) \, dx
+$$
+</p>
+
+<h3 id="4-代数统合与最终推导"><a href="#4-代数统合与最终推导" class="headerlink" title="4. 代数统合与最终推导"></a>4. 代数统合与最终推导</h3><p>现在，我们将 $f$的已知系数$(a_0, a_n, b_n)$与$g$的新系数$(c_0, c_n, d_n)$ 共同带入内积坐标公式中：</p>
+<p>
+$$
+\frac{1}{\pi} \int_{\alpha}^{\beta} f(x) \, dx = \langle f, g \rangle = \frac{a_0 c_0}{2} + \sum_{n=1}^{+\infty} (a_n c_n + b_n d_n)
+$$
+</p>
+
+<p>将等式两边同时乘以 $\pi$，并把 $c_0, c_n, d_n$ 具体的积分定义式原封不动地代回右侧：</p>
+<p>
+$$
+\int_{\alpha}^{\beta} f(x) \, dx = \frac{a_0}{2} \cdot \pi c_0 + \sum_{n=1}^{+\infty} \left( a_n \cdot \pi c_n + b_n \cdot \pi d_n \right)
+$$
+</p>
+
+<p>
+$$
+\int_{\alpha}^{\beta} f(x) \, dx = \frac{a_0}{2} \int_{\alpha}^{\beta} 1 \, dx + \sum_{n=1}^{+\infty} \left( a_n \int_{\alpha}^{\beta} \cos(nx) \, dx + b_n \int_{\alpha}^{\beta} \sin(nx) \, dx \right)
+$$
+</p>
+
+<p>利用积分的线性性质，将求和号与系数移入积分号内部：</p>
+<p>
+$$
+\int_{\alpha}^{\beta} f(x) \, dx = \int_{\alpha}^{\beta} \left\{ \frac{a_0}{2} + \sum_{n=1}^{+\infty} \left[ a_n \cos(nx) + b_n \sin(nx) \right] \right\} \, dx
+$$
+</p>
+
+<p><strong>结论</strong>：这个最终形态在形式上正是对 $f(x)$的傅里叶级数表达式在$[\alpha, \beta]$ 区间上进行了<strong>逐项积分</strong>。</p>
+<p>通过构造测试函数 $g(x)$并借由内积空间转译，我们证明了：<strong>只要函数$f(x)$ 平方可积，其傅里叶级数在任意子区间上的逐项积分不仅完全合法，而且天然收敛。</strong> 这一巧妙的代数处理不仅避开了逐项求导时对平滑性的苛刻要求，也揭示了现代泛函分析在经典调和分析中的威力。</p>
+<p>之前我们证明了逐项积分的优良性质，但当面对“傅里叶级数的部分和 $S_n(x)$是否收敛于原函数$f(x)$”这一根本问题时，我们需要从<strong>局部收敛（点点收敛）<strong>跨越到</strong>全局收敛（一致收敛）</strong>。</p>
+<p>下面我们将通过引入导函数的能量约束，利用柯西-施瓦茨不等式（Cauchy-Schwarz inequality），严格证明傅里叶级数的一致收敛定理。</p>
+<h2 id="核心定理与动机"><a href="#核心定理与动机" class="headerlink" title="核心定理与动机"></a>核心定理与动机</h2><p>在数学分析中，一个函数项级数如果能<strong>一致收敛（Uniform Convergence）</strong>，就意味着它能保持原函数的连续性，且能保证极限与积分&#x2F;求导号的交换律。为了让傅里叶级数 $S_n(x) \rightrightarrows f(x)$在整个区间上一致收敛，仅要求$f(x)$ 连续是不够的，我们需要对函数的“粗糙度”进行限制。</p>
+<h3 id="定理陈述"><a href="#定理陈述" class="headerlink" title="定理陈述"></a>定理陈述</h3><p>设 $f \in V$是定义在$[-\pi, \pi]$上的连续函数（且满足周期边界条件$f(-\pi) &#x3D; f(\pi)$）。若其导函数 $f’$满足<strong>平方可积</strong>（即$f’ \in V$，$\frac{1}{\pi}\int_{-\pi}^{\pi} |f’(x)|^2 , dx &lt; +\infty$），则 $f(x)$的傅里叶级数$S_n(x)$在$[-\pi, \pi]$上<strong>一致收敛</strong>于$f(x)$。</p>
+<h3 id="代数动机"><a href="#代数动机" class="headerlink" title="代数动机"></a>代数动机</h3><p>要想证明一个三角级数一致收敛，最强有力的工具是 <strong>魏尔斯特拉斯判别法（M-判别法）</strong>。如果我们可以证明各项系数的绝对值之和是收敛的，即：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} (|a_n| + |b_n|) < +\infty
+$$
+</p>
+
+<p>那么由于 $|\a_n \cos(nx) + b_n \sin(nx)| \le |a_n| + |b_n|$，级数的一致收敛性便可直接宣告成立。因此，我们的核心代数动机就是去<strong>界定并放大系数级数 $\sum (|a_n| + |b_n|)$</strong>。</p>
+<h2 id="严密推导过程"><a href="#严密推导过程" class="headerlink" title="严密推导过程"></a>严密推导过程</h2><h3 id="1-导函数的傅里叶系数表达"><a href="#1-导函数的傅里叶系数表达" class="headerlink" title="1. 导函数的傅里叶系数表达"></a>1. 导函数的傅里叶系数表达</h3><p>假设 $f(x)$ 的傅里叶展开为：</p>
+<p>
+$$
+f(x) \sim \frac{a_0}{2} + \sum_{n=1}^{+\infty} (a_n \cos(nx) + b_n \sin(nx))
+$$
+</p>
+
+<p>我们对 $f(x)$进行形式上的逐项求导，设$f’(x)$的傅里叶系数为$a_n^{(1)}$和$b_n^{(1)}$：</p>
+<p>
+$$
+f'(x) \sim \sum_{n=1}^{+\infty} (-n a_n \sin(nx) + n b_n \cos(nx))
+$$
+</p>
+
+<p>通过直接对照或者分部积分法，我们可以精确建立 $f’$的系数与$f$ 的系数之间的代数纽带：</p>
+<p>
+$$
+a_n^{(1)} = n b_n, \quad b_n^{(1)} = -n a_n
+$$
+</p>
+
+<h3 id="2-引入导函数的帕塞瓦尔恒等式"><a href="#2-引入导函数的帕塞瓦尔恒等式" class="headerlink" title="2. 引入导函数的帕塞瓦尔恒等式"></a>2. 引入导函数的帕塞瓦尔恒等式</h3><p>由于定理给出了条件 $f’ \in V$（平方可积），我们可以对 $f’$ 施加帕塞瓦尔定理：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} \left[ (a_n^{(1)})^2 + (b_n^{(1)})^2 \right] = \frac{1}{\pi} \int_{-\pi}^{\pi} |f'(x)|^2 \, dx < +\infty
+$$
+</p>
+
+<p>将第 1 步的纽带关系代入左侧，得到：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} \left[ (n b_n)^2 + (-n a_n)^2 \right] = \sum_{n=1}^{+\infty} n^2 (a_n^2 + b_n^2) = \frac{1}{\pi} \int_{-\pi}^{\pi} |f'(x)|^2 \, dx
+$$
+</p>
+
+<p>这个式子非常关键，它说明只要导函数的能量有限，原函数的傅里叶系数 $(a_n, b_n)$在乘上权重$n$ 之后，其平方和依然是收敛的。</p>
+<h3 id="3-利用柯西-施瓦茨不等式进行解耦"><a href="#3-利用柯西-施瓦茨不等式进行解耦" class="headerlink" title="3. 利用柯西-施瓦茨不等式进行解耦"></a>3. 利用柯西-施瓦茨不等式进行解耦</h3><p>现在我们回到核心动机：计算 $\sum_{n&#x3D;1}^{+\infty} (|a_n| + |b_n|)$。</p>
+<p>直接观察这个级数很难与其高阶的 $n^2(a_n^2 + b_n^2)$产生联系。为此，我们引入一类经典的代数解耦技巧——在各项中<strong>同时乘以$n$并除以$n$</strong>：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} (|a_n| + |b_n|) = \sum_{n=1}^{+\infty} \frac{1}{n} \cdot \left( n|a_n| + n|b_n| \right)
+$$
+</p>
+
+<p>在无穷维空间中，利用离散形式的柯西-施瓦茨不等式（$\sum x_y \le \sqrt{\sum x^2} \sqrt{\sum y^2}$），将上述级数拆解为两个独立级数乘积的平方根：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} \frac{1}{n} \left( n|a_n| + n|b_n| \right) \le \left( \sum_{n=1}^{+\infty} \frac{1}{n^2} \right)^{\frac{1}{2}} \cdot \left( \sum_{n=1}^{+\infty} (n|a_n| + n|b_n|)^2 \right)^{\frac{1}{2}}
+$$
+</p>
+
+<h3 id="4-算术放大与最终约束"><a href="#4-算术放大与最终约束" class="headerlink" title="4. 算术放大与最终约束"></a>4. 算术放大与最终约束</h3><p>我们对右侧的第二项（即包含系数的部分）应用基本的二元均值不等式或简单的放大关系 $(|u|+|v|)^2 \le 2(u^2 + v^2)$：</p>
+<p>
+$$
+(n|a_n| + n|b_n|)^2 = n^2 (|a_n| + |b_n|)^2 \le 2n^2 (a_n^2 + b_n^2)
+$$
+</p>
+
+<p>将其整体代回不等式中：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} (|a_n| + |b_n|) \le \left( \sum_{n=1}^{+\infty} \frac{1}{n^2} \right)^{\frac{1}{2}} \cdot \left( \sum_{n=1}^{+\infty} 2n^2 (a_n^2 + b_n^2) \right)^{\frac{1}{2}}
+$$
+</p>
+
+<p>此时，奇迹发生了：</p>
+<ul>
+<li><p>第一项是经典的巴塞尔级数，我们已知其收敛值为 $\frac{\pi^2}{6}$。</p>
+</li>
+<li><p>第二项内部的 $\sum n^2(a_n^2+b_n^2)$正好是我们在第 2 步中通过$f’$ 的帕塞瓦尔定理算出的定积分。</p>
+</li>
+</ul>
+<p>将这两部分确定有限的值代入：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} (|a_n| + |b_n|) \le \left( \frac{\pi^2}{6} \right)^{\frac{1}{2}} \cdot \left( \frac{2}{\pi} \int_{-\pi}^{\pi} |f'(x)|^2 \, dx \right)^{\frac{1}{2}} < +\infty
+$$
+</p>
+
+<p>由于右侧两项均为确定有限的实数，我们成功证明了 $\sum_{n&#x3D;1}^{+\infty} (|a_n| + |b_n|)$ 的<strong>绝对收敛性</strong>。</p>
+<h2 id="结论与魏尔斯特拉斯判别"><a href="#结论与魏尔斯特拉斯判别" class="headerlink" title="结论与魏尔斯特拉斯判别"></a>结论与魏尔斯特拉斯判别</h2><p>令 $U_n(x) &#x3D; a_n \cos(nx) + b_n \sin(nx)$ 为傅里叶级数的每一项。显然：</p>
+<p>
+$$
+|U_n(x)| \le |a_n| \cdot 1 + |b_n| \cdot 1 = |a_n| + |b_n| = M_n
+$$
+</p>
+
+<p>因为我们刚刚证明了常数级数 $\sum M_n &#x3D; \sum (|a_n| + |b_n|)$收敛，根据 <strong>魏尔斯特拉斯 M-判别法（Weierstrass M-test）</strong>，傅里叶级数的部分和$S_n(x)$必然在整个区间$[-\pi, \pi]$ 上<strong>一致收敛</strong>。</p>
+<p>再结合之前建立的逐项积分性质或连续性定理，我们最终确认其一致收敛的极限函数只能是原函数 $f(x)$ 本身：</p>
+<p>
+$$
+S_n(x) \rightrightarrows f(x), \quad x \in [-\pi, \pi]
+$$
+</p>
+
+<h3 id="纵深总结"><a href="#纵深总结" class="headerlink" title="纵深总结"></a>纵深总结</h3><p>该证明展现了数学分析中“光滑度”与“收敛速度”的深刻对偶：<strong>导函数的能量有限（即原函数足够平滑），直接锁定了其傅里叶系数以高于 $1&#x2F;n$ 的速度快速衰减。</strong> 这种快速衰减压制了三角基函数的波动，最终编织出了一致收敛的完美结果。</p>
+<h2 id="帕塞瓦尔等式的严格证明（逼近与稠密性视角）"><a href="#帕塞瓦尔等式的严格证明（逼近与稠密性视角）" class="headerlink" title="帕塞瓦尔等式的严格证明（逼近与稠密性视角）"></a>帕塞瓦尔等式的严格证明（逼近与稠密性视角）</h2><p>在前面的讨论中，我们知道帕塞瓦尔等式在代数形式上等价于傅里叶部分和 $S_n$在$L^2$ 模长下的均方收敛，即目标是证明：</p>
+<p>
+$$
+\lim_{N \to \infty} \|f - S_N\|_{L^2}^2 = 0 \quad (\forall f \in V)
+$$
+</p>
+
+<p>然而，由于 $L^2$ 空间中的函数可能存在间断点甚至非常粗糙，我们无法直接断言其傅里叶级数一致收敛。这里的核心动机是利用<strong>空间稠密性（Density）</strong>：用足够漂亮的“光滑函数”去逼近粗糙的函数，再利用最佳逼近性质将误差传递给部分和。</p>
+<h3 id="1-动机与核心引理：通过-C-1-函数进行误差控制"><a href="#1-动机与核心引理：通过-C-1-函数进行误差控制" class="headerlink" title="1. 动机与核心引理：通过 $C^1$ 函数进行误差控制"></a>1. 动机与核心引理：通过 $C^1$ 函数进行误差控制</h3><p>依据测度论与泛函分析的结论，连续可微函数空间 $C^1[-\pi, \pi]$在平方可积空间$L^2[-\pi, \pi]$中是<strong>稠密</strong>的。这意味着，对于任意给定的粗糙函数$f \in V$和任意小的误差限$\varepsilon &gt; 0$，我们总能找到一个高度光滑的基准测试函数 $g \in C^1[-\pi, \pi]$，使得它们之间的距离足够小：</p>
+<p>
+$$
+\|f - g\|_{L^2} < \varepsilon
+$$
+</p>
+
+<h3 id="2-利用最佳逼近性质完成误差传递"><a href="#2-利用最佳逼近性质完成误差传递" class="headerlink" title="2. 利用最佳逼近性质完成误差传递"></a>2. 利用最佳逼近性质完成误差传递</h3><p>设 $T_N$是测试函数$g(x)$在三角多项式子空间$V_N$上的傅里叶部分和（即投影）。由于$g \in C^1$，满足上一节的一致收敛定理，因此当 $N \to \infty$ 时，$T_N \rightrightarrows g$（一致收敛）。</p>
+<p>一旦一致收敛，由控制收敛定理，其 $L^2$模长自然收敛。即存在足够大的$N$，使得：</p>
+<p>
+$$
+\|g - T_N\|_{L^2}^2 = \frac{1}{\pi}\int_{-\pi}^{\pi} |g(x) - T_N(x)|^2 \, dx \le \frac{1}{\pi} \cdot 2\pi \cdot \varepsilon^2 = 2\varepsilon^2 \implies \|g - T_N\|_{L^2} \le \sqrt{2}\varepsilon
+$$
+</p>
+
+<p>现在我们来考察原函数 $f$与其自身的傅里叶部分和$S_N$ 的距离。根据希尔伯特空间中正交投影的<strong>最佳逼近性质（Best Approximation Property）</strong>，$S_N$是子空间$V_N$中距离$f$最近的元素。因此，空间中任何其他$V_N$内的三角多项式（包括$g$的部分和$T_N$）到 $f$的距离，都必然大于等于$S_N$到$f$ 的距离：</p>
+<p>
+$$
+\|f - S_N\|_{L^2} \le \|f - T_N\|_{L^2}
+$$
+</p>
+
+<p>利用<strong>三角不等式</strong>对右侧进行强行拆分，插入测试函数 $g$ 作为中转桥梁：</p>
+<p>
+$$
+\|f - T_N\|_{L^2} = \|(f - g) + (g - T_N)\|_{L^2} \le \|f - g\|_{L^2} + \|g - T_N\|_{L^2}
+$$
+</p>
+
+<p>代入前两步的误差控制范围：</p>
+<p>
+$$
+\|f - S_N\|_{L^2} \le \varepsilon + \sqrt{2}\varepsilon = (1+\sqrt{2})\varepsilon = C \cdot \varepsilon
+$$
+</p>
+
+<p>由于 $\varepsilon$具有任意性，当$N \to \infty$时，误差边界被逼近至$0$。至此，通过“$L^2 \leftarrow C^1 \leftarrow \text{一致收敛的 } T_N$”的逼近链条，我们严格证明了帕塞瓦尔等式对一切平方可积函数均成立。</p>
+<h2 id="函数高阶光滑性与傅里叶系数的定量衰减"><a href="#函数高阶光滑性与傅里叶系数的定量衰减" class="headerlink" title="函数高阶光滑性与傅里叶系数的定量衰减"></a>函数高阶光滑性与傅里叶系数的定量衰减</h2><p>证明了逼近的可行性后，我们进一步定量探讨：<strong>如果一个函数不仅有一阶导数，而是拥有 $m$阶导数，它的傅里叶系数会以怎样的速度向$0$ 隐退？</strong> 在信号处理中，高频分量的衰减速度直接对应了信号的平滑程度。我们可以通过高阶求导将这种关系精确量化。</p>
+<h3 id="1-m-阶导数的傅里叶系数退化"><a href="#1-m-阶导数的傅里叶系数退化" class="headerlink" title="1. $m$ 阶导数的傅里叶系数退化"></a>1. $m$ 阶导数的傅里叶系数退化</h3><p>假设 $f \in V$，且其直到 $m$阶的导数均在$[-\pi, \pi]$上连续且满足周期性边界条件，即$f^{(m)} \in V$。</p>
+<p>通过对积分式连续进行 $m$次分部积分（每次分部积分都会因求导将内部的$n$提取到外面，并伴随正余弦项的互换与正负号交替），我们可以建立$f^{(m)}$的傅里叶系数$(a_n^{(m)}, b_n^{(m)})$与原函数系数$(a_n, b_n)$ 的精准对偶关系：</p>
+<ul>
+<li><strong>当 $m$ 为偶数时</strong>：</li>
+</ul>
+<p>
+$$
+a_n^{(m)} = (-1)^{\frac{m}{2}} n^m a_n, \quad b_n^{(m)} = (-1)^{\frac{m}{2}} n^m b_n
+$$
+</p>
+
+<ul>
+<li><strong>当 $m$ 为奇数时</strong>：</li>
+</ul>
+<p>
+$$
+a_n^{(m)} = (-1)^{\frac{m-1}{2}} n^m b_n, \quad b_n^{(m)} = (-1)^{\frac{m+1}{2}} n^m a_n
+$$
+</p>
+
+<p>无论 $m$ 的奇偶性如何，将其系数平方求和时，正负号与三角函数的互换均被抹平，统一服从以下代数关系：</p>
+<p>
+$$
+(a_n^{(m)})^2 + (b_n^{(m)})^2 = n^{2m} (a_n^2 + b_n^2)
+$$
+</p>
+
+<h3 id="2-系数衰减速度的级数约束"><a href="#2-系数衰减速度的级数约束" class="headerlink" title="2. 系数衰减速度的级数约束"></a>2. 系数衰减速度的级数约束</h3><p>将上式变形，把原函数的傅里叶能量谱孤立出来：</p>
+<p>
+$$
+a_n^2 + b_n^2 = \frac{1}{n^{2m}} \left[ (a_n^{(m)})^2 + (b_n^{(m)})^2 \right]
+$$
+</p>
+
+<p>因为 $f^{(m)} \in V$，由帕塞瓦尔定理，高阶导数系数的无穷级数必收敛：$\sum_{n&#x3D;1}^{+\infty} [ (a_n^{(m)})^2 + (b_n^{(m)})^2 ] &lt; +\infty$。根据级数收敛的必要条件，其通项当 $n \to \infty$时趋于$0$，即：</p>
+<p>
+$$
+(a_n^{(m)})^2 + (b_n^{(m)})^2 = o(1)
+$$
+</p>
+
+<p>由此，我们立即锁定了原函数傅里叶系数模长的渐近线界：</p>
+<p>
+$$
+\sqrt{a_n^2 + b_n^2} = o\left( \frac{1}{n^m} \right)
+$$
+</p>
+
+<p><strong>物理与几何意义</strong>：函数的导数阶数 $m$越高，意味着图形越圆润、没有尖点或突变。反映在频域上，其高频系数以$1&#x2F;n^m$的幂指数速度极其剧烈地向$0$ 衰减。</p>
+<h2 id="终极延拓：解析性与指数级衰减"><a href="#终极延拓：解析性与指数级衰减" class="headerlink" title="终极延拓：解析性与指数级衰减"></a>终极延拓：解析性与指数级衰减</h2><p>如果我们将上述的光滑性推向极致——假设 $f(x)$ 在整个定义域内是<strong>无穷阶可导的（$C^\infty$）</strong>，甚至是在复平面上某个区域内满足柯西-黎曼方程的<strong>解析函数（Analytic Function）</strong>。</p>
+<p>此时，对于任意大的整数 $m$，上式中的衰减屏障 $1&#x2F;n^m$均成立。为了满足对任意$m$ 都成立的约束，代数级数的内在逻辑会发生质的跃迁：系数的衰减速度将直接超越任何多项式倒数，从而演变为<strong>指数级衰减（Exponential Decay）</strong>：</p>
+<p>
+$$
+a_n \longrightarrow C_1 e^{-nc}, \quad b_n \longrightarrow C_2 e^{-nc} \quad (c > 0)
+$$
+</p>
+
+<ul>
+<li><p><strong>毛刺与锯齿（如方波、三角波）</strong>：不可导或仅一阶可导，对应低阶的多项式衰减（分母为 $n$或$n^2$），频域上有长长的“高频尾巴”。</p>
+</li>
+<li><p><strong>极度平滑的无瑕曲线（如 $\sin x$ 或解析曲线）</strong>：频域能量高度集中在极少数的低频项中，高频系数呈现断崖式的指数级消亡。这一结论不仅揭示了时域光滑度与频域集中度的完美对偶，也构成了现代谱方法（Spectral Methods）数值求解微分方程的理论根基。</p>
+</li>
+</ul>
+<h2 id="经典案例剖析：几何撕裂与频域衰减的定量映射"><a href="#经典案例剖析：几何撕裂与频域衰减的定量映射" class="headerlink" title="经典案例剖析：几何撕裂与频域衰减的定量映射"></a>经典案例剖析：几何撕裂与频域衰减的定量映射</h2><p>当我们在时域对一个函数进行求导时，图形的几何特征（如间断点、尖角）会逐层暴露。每一次不连续性的出现，都会深刻影响其傅里叶系数的衰减速率。</p>
+<h3 id="案例一：具有第一类间断点的锯齿状奇函数"><a href="#案例一：具有第一类间断点的锯齿状奇函数" class="headerlink" title="案例一：具有第一类间断点的锯齿状奇函数"></a>案例一：具有第一类间断点的锯齿状奇函数</h3><p>考察一个经典的非连续周期函数 $f(x)$，其在初始区间内的定义为：</p>
+<p>
+$$
+f(x) = \begin{cases} \pi - x, & x \in (0, \pi) \\ 0, & x = 0, \pi \\ -\pi - x, & x \in (-\pi, 0) \end{cases}
+$$
+</p>
+
+<h4 id="1-时域求导分析与几何性质"><a href="#1-时域求导分析与几何性质" class="headerlink" title="1. 时域求导分析与几何性质"></a>1. 时域求导分析与几何性质</h4><p>从空间结构上看，$f(x)$ 在整个平方可积空间中是完备的（$f \in V$）。然而，当我们在复平面或实数轴上对它进行一阶求导时：</p>
+<p>
+$$
+f'(x) = -1, \quad x \in (-\pi, \pi) \setminus \{0\}
+$$
+</p>
+
+<p>在 $x &#x3D; 0$和$x &#x3D; \pm\pi$处，函数发生了阶跃型的跳跃（第一类间断点）。在这些跳跃点上，广义导数会直接催生出狄拉克$\delta$函数。由于$\delta$ 函数的平方积分发散，这意味着：</p>
+<p>
+$$
+f' \notin V \quad (\text{一阶导数脱离平方可积空间})
+$$
+</p>
+
+<h4 id="2-对应的频域衰减速度"><a href="#2-对应的频域衰减速度" class="headerlink" title="2. 对应的频域衰减速度"></a>2. 对应的频域衰减速度</h4><p>因为在一阶求导时几何结构就已经“撕裂”（产生间断），其傅里叶系数不具备高阶衰减的条件。根据之前的计算，该函数的正弦系数为：</p>
+<p>
+$$
+b_n = \frac{2}{n} \sim O\left(\frac{1}{n}\right)
+$$
+</p>
+
+<p>这验证了我们的规律：<strong>若函数本身包含不连续的跳跃边界，其傅里叶系数仅以 $1&#x2F;n$ 的最慢速度衰减。</strong></p>
+<h3 id="案例二：具有“尖点”连续的一阶平滑偶函数"><a href="#案例二：具有“尖点”连续的一阶平滑偶函数" class="headerlink" title="案例二：具有“尖点”连续的一阶平滑偶函数"></a>案例二：具有“尖点”连续的一阶平滑偶函数</h3><p>为了延缓时域几何结构的破坏，我们提升幂次，考察如下偶函数：</p>
+<p>
+$$
+f(x) = \begin{cases} (\pi - x)^2, & x \in [0, \pi] \\ (\pi + x)^2, & x \in [-\pi, 0) \end{cases}
+$$
+</p>
+
+<h4 id="1-时域求导分析与几何性质-1"><a href="#1-时域求导分析与几何性质-1" class="headerlink" title="1. 时域求导分析与几何性质"></a>1. 时域求导分析与几何性质</h4><ul>
+<li><p><strong>原函数 $f(x)$</strong>：在 $x&#x3D;0$ 处，$(\pi-0)^2 &#x3D; \pi^2$；在 $x&#x3D;\pi$ 处，$(\pi-\pi)^2 &#x3D; 0$。函数在整个实轴上是<strong>连续</strong>的，即 $f \in V$。</p>
+</li>
+<li><p><strong>一阶导函数 $f’(x)$</strong>：直接求导得到：</p>
+</li>
+</ul>
+<p>
+$$
+f'(x) = \begin{cases} -2(\pi - x), & x \in (0, \pi) \\ 2(\pi + x), & x \in (-\pi, 0) \end{cases}
+$$
+</p>
+
+<p>此时 $f’(x)$依然是连续的（在$x&#x3D;0$处左右导数均为$-2\pi$和$2\pi$处的边界对称性）。因为$f’$ 连续且无间断，其能量有限：</p>
+<p>
+$$
+f' \in V
+$$
+</p>
+
+<ul>
+<li><strong>二阶导函数 $f’’(x)$</strong>：对 $f’$ 再次求导：</li>
+</ul>
+<p>
+$$
+f''(x) = \begin{cases} 2, & x \in (0, \pi) \\ 2, & x \in (-\pi, 0) \end{cases}
+$$
+</p>
+
+<p>表面上看起来在两侧都是常数 $2$，但在 $x&#x3D;0$处，$f’(x)$的图形是一个尖角（类似于绝对值函数的翻转）。这意味着在一阶导数$f’$的图形中存在“尖点”，从而导致二阶导数$f’’$在$x&#x3D;0$处发生阶跃型间断，甚至带有$\delta$ 函数分量。因此：</p>
+<p>
+$$
+f'' \notin V
+$$
+</p>
+
+<h4 id="2-对应的频域衰减速度-1"><a href="#2-对应的频域衰减速度-1" class="headerlink" title="2. 对应的频域衰减速度"></a>2. 对应的频域衰减速度</h4><p>由于几何结构的破坏被推迟到了二阶导数，该函数的傅里叶系数在基础阶段获得了更高的衰减动力。计算出的系数为：</p>
+<p>
+$$
+a_n = \frac{4}{n^2} \sim O\left(\frac{1}{n^2}\right)
+$$
+</p>
+
+<p>这再次精准对齐：<strong>函数本身连续（$f \in V$）且一阶导数平方可积（$f’ \in V$），其频域系数衰减速度跃升至 $1&#x2F;n^2$。</strong></p>
+<h3 id="案例三：无限平滑的解析函数"><a href="#案例三：无限平滑的解析函数" class="headerlink" title="案例三：无限平滑的解析函数"></a>案例三：无限平滑的解析函数</h3><p>如果我们考察形如 $f(x) &#x3D; e^{\cos(x)}$ 的函数，它在整个复平面上都没有任何几何尖点或间断。</p>
+<p>无论你对其求多少次导，所有的 $f^{(m)}$永远属于$V$。这种无限的光滑性使得频域分量以惊人的速度消亡。其系数的渐近线界超越了任何多项式倒数 $1&#x2F;n^m$，而是呈现指数级断崖式衰减：</p>
+<p>
+$$
+a_n \sim \frac{1}{n!} \quad \text{或} \quad a_n \sim \frac{1}{2^n}
+$$
+</p>
+
+<h2 id="现代泛函延拓：索伯列夫空间与分数阶平滑度"><a href="#现代泛函延拓：索伯列夫空间与分数阶平滑度" class="headerlink" title="现代泛函延拓：索伯列夫空间与分数阶平滑度"></a>现代泛函延拓：索伯列夫空间与分数阶平滑度</h2><p>在经典理论中，我们只能讨论一阶导数、二阶导数等整数阶导数是否平方可积。然而，有些函数的平滑度恰好介于“一阶导数平方可积”与“二阶导数平方可积”之间。为了实现对函数光滑度更精准的定量刻画，现代泛函分析引入了<strong>索伯列夫空间 $H^s$</strong>。</p>
+<p>其核心动机是：<strong>利用傅里叶系数的加权求和，将“时域的求导运算”完全等价地转译为“频域的代数加权”。</strong></p>
+<h3 id="1-从整数阶到分数阶的代数重构"><a href="#1-从整数阶到分数阶的代数重构" class="headerlink" title="1. 从整数阶到分数阶的代数重构"></a>1. 从整数阶到分数阶的代数重构</h3><p>回想一下，如果 $f$的$m$阶导数$f^{(m)}$ 平方可积，那么根据帕塞瓦尔定理，其对应的频域级数为：</p>
+<p>
+$$
+\sum_{n=1}^{+\infty} n^{2m} (a_n^2 + b_n^2) < +\infty
+$$
+</p>
+
+<p>泛函分析提出了一个极其大胆且优雅的想法：<strong>为什么指数 $2m$ 必须是偶数或整数？</strong></p>
+<p>我们可以直接将这个指标推广到任意实数 $s \ge 0$，从而定义索伯列夫空间 $H^s$。我们定义一个新函数 $g(x)$，使其傅里叶系数带有分数阶权重 $n^s$：</p>
+<p>
+$$
+g(x) \sim \sum_{n=1}^{+\infty} \left( n^s a_n \cos(nx) + n^s b_n \sin(nx) \right)
+$$
+</p>
+
+<h3 id="2-H-s-空间的严密定义"><a href="#2-H-s-空间的严密定义" class="headerlink" title="2. $H^s$ 空间的严密定义"></a>2. $H^s$ 空间的严密定义</h3><p>对于任意实数 $s \in \mathbb{R}$，如果函数 $f(x)$ 的傅里叶系数满足如下加权级数收敛：</p>
+<p>
+$$
+\|f\|_{H^s}^2 = \frac{a_0^2}{2} + \sum_{n=1}^{+\infty} n^{2s} (a_n^2 + b_n^2) < +\infty
+$$
+</p>
+
+<p>则称函数 $f$ 属于 <strong>$s$阶索伯列夫空间（记作$f \in H^s$）</strong>。</p>
+<ul>
+<li><p><strong>$H^0$空间</strong>：当$s&#x3D;0$时，上式退化为$\sum (a_n^2 + b_n^2) &lt; +\infty$，这正是经典的平方可积空间 $L^2$。它只要求函数自身的总能量有限。</p>
+</li>
+<li><p><strong>$H^1$空间</strong>：当$s&#x3D;1$时，上式要求$\sum n^2 (a_n^2 + b_n^2) &lt; +\infty$，这等价于函数的一阶导数平方可积（$\int |f’|^2 dx &lt; +\infty$）。</p>
+</li>
+<li><p><strong>分数阶空间（例如 $H^{\frac{1}{2}}$）</strong>：当 $s &#x3D; \frac{1}{2}$时，级数形式为$\sum n (a_n^2 + b_n^2) &lt; +\infty$。它度量了一种“半阶导数”的能量。</p>
+</li>
+</ul>
+<h3 id="3-纵深总结"><a href="#3-纵深总结" class="headerlink" title="3. 纵深总结"></a>3. 纵深总结</h3><p>通过引入索伯列夫空间 $H^s$，数学家成功建立了一套完美的对偶谱方法体系：</p>
+<p>
+$$
+\text{时域平滑度标准：} f \in H^s \Longleftrightarrow \text{频域衰减谱约束：} \sum n^{2s}(a_n^2+b_n^2) < +\infty
+$$
+</p>
+
+<p>这一理论打破了经典微积分只能讨论整数阶导数的局限。在现代偏微分方程（PDE）的数值求解、小波分析以及信号处理的谱方法中，通过考察指标 $s$ 的临界边界，我们可以非常精准地捕捉微分方程解的奇异性与图形毛刺的演化规律。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

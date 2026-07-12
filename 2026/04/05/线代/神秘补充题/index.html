@@ -1,0 +1,695 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>神秘补充题 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>神秘补充题</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/5
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%BA%BF%E4%BB%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                线代
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #00a596">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="一"><a href="#一" class="headerlink" title="一"></a>一</h1><p>设 $V &#x3D; \mathbb{F}<em>{13}^3$是有限域$\mathbb{F}</em>{13}$ 上的三维向量空间。给定矩阵：</p>
+<p>
+$$
+A = \begin{bmatrix} 5 & 7 & 7 \\ 12 & 4 & 2 \\ 3 & 7 & 9 \end{bmatrix} \pmod{13}
+$$
+</p>
+
+<ol>
+<li><p>对角化判定判断矩阵 $A$能否在域$\mathbb{F}_{13}$ 上对角化，并说明理由。</p>
+</li>
+<li><p>矩阵的阶与可逆性证明 $A$是可逆矩阵，并求出最小的正整数$d$，使得：</p>
+</li>
+</ol>
+<p>
+$$
+A^d = I
+$$
+</p>
+
+<p>（其中 $I$ 为单位矩阵）。</p>
+<ol start="3">
+<li>向量等价关系与轨道分解设 $\alpha, \beta \in \mathbb{F}_{13}^3$。若存在非负整数 $k, l \ge 0$，使得：</li>
+</ol>
+<p>
+$$
+A^k \alpha = \beta \quad \text{且} \quad A^l \beta = \alpha
+$$
+</p>
+
+<p>则称 $\alpha$与$\beta$等价，记作$\alpha \sim \beta$。证明：“$\sim$” 是向量空间 $\mathbb{F}<em>{13}^3$上的一个等价关系。向量空间$\mathbb{F}</em>{13}^3$被划分为几个等价类？每个等价类（称为一条$A$-轨道）分别包含几个向量？哪些等价类的并集能够构成 $\mathbb{F}_{13}^3$ 的子空间？</p>
+<p>这道题的本质，其实是：</p>
+<blockquote>
+<p><strong>有限域上线性变换 &#x3D; 对角化 + 有限乘法群 + 群作用轨道分解</strong></p>
+</blockquote>
+<span id="more"></span>
+
+<hr>
+<h1 id="一、谱结构"><a href="#一、谱结构" class="headerlink" title="一、谱结构"></a>一、谱结构</h1><p>设</p>
+<p>
+$$
+A = \begin{bmatrix}
+5 & 7 & 7 \\
+12 & 4 & 2 \\
+3 & 7 & 9
+\end{bmatrix} \pmod{13}
+$$
+</p>
+
+<p>特征多项式为：</p>
+<p>
+$$
+\chi_A(\lambda) = (\lambda - 1)(\lambda - 2)^2
+$$
+</p>
+
+<p>因此：</p>
+<ul>
+<li>特征值：$1$（重数1），$2$（重数2）</li>
+<li>几何重数：<ul>
+<li>$\dim E_1 &#x3D; 1$-$\dim E_2 &#x3D; 2$</li>
+</ul>
+</li>
+</ul>
+<p>故：</p>
+<p>
+$$
+V = \mathbb{F}_{13}^3 = E_1 \oplus E_2
+$$
+</p>
+
+<p>且 $A$ <strong>可对角化</strong>。</p>
+<hr>
+<h1 id="二、矩阵的阶"><a href="#二、矩阵的阶" class="headerlink" title="二、矩阵的阶"></a>二、矩阵的阶</h1><p>由于</p>
+<p>
+$$
+A \sim \operatorname{diag}(1,2,2)
+$$
+</p>
+
+<p>所以：</p>
+<p>
+$$
+A^d = I \iff 2^d = 1 \ (\bmod 13)
+$$
+</p>
+
+<p>在 $\mathbb{F}_{13}^\times$ 中：</p>
+<ul>
+<li>群阶：12</li>
+<li>$2$ 的阶为：12</li>
+</ul>
+<p>因此：</p>
+<p>
+$$
+\boxed{A^{12} = I}
+$$
+</p>
+
+<hr>
+<h1 id="三、群作用视角"><a href="#三、群作用视角" class="headerlink" title="三、群作用视角"></a>三、群作用视角</h1><p>考虑循环群：</p>
+<p>
+$$
+\langle A \rangle \cong C_{12}
+$$
+</p>
+
+<p>作用在 $V$ 上：</p>
+<p>
+$$
+A^k(v_1 + v_2) = v_1 + 2^k v_2
+\quad (v_1 \in E_1,\ v_2 \in E_2)
+$$
+</p>
+
+<hr>
+<h1 id="四、轨道结构"><a href="#四、轨道结构" class="headerlink" title="四、轨道结构"></a>四、轨道结构</h1><h2 id="1-E-1-（特征值-1）"><a href="#1-E-1-（特征值-1）" class="headerlink" title="1. $E_1$（特征值 1）"></a>1. $E_1$（特征值 1）</h2><p>
+$$
+Av_1 = v_1
+$$
+</p>
+
+<p>👉 每个向量都是不动点</p>
+<ul>
+<li>向量数：13</li>
+<li>轨道数：13（每个大小1）</li>
+</ul>
+<hr>
+<h2 id="2-v-2-neq-0-的向量"><a href="#2-v-2-neq-0-的向量" class="headerlink" title="2. $v_2 \neq 0$ 的向量"></a>2. $v_2 \neq 0$ 的向量</h2><p>设：</p>
+<p>
+$$
+v = v_1 + v_2,\quad v_2 \neq 0
+$$
+</p>
+
+<p>轨道为：</p>
+<p>
+$$
+\{\, v_1 + 2^k v_2 \mid k=0,\dots,11 \,\}
+$$
+</p>
+
+<p>由于：</p>
+<p>
+$$
+\operatorname{ord}(2) = 12
+$$
+</p>
+
+<p>👉 每个轨道大小为 12</p>
+<hr>
+<h2 id="向量总数"><a href="#向量总数" class="headerlink" title="向量总数"></a>向量总数</h2><ul>
+<li>$|E_2^\times| &#x3D; 13^2 - 1 &#x3D; 168$-$v_1$ 可任取：13 种</li>
+</ul>
+<p>所以：</p>
+<p>
+$$
+\text{总数} = 13 \times 168 = 2184
+$$
+</p>
+
+<hr>
+<h2 id="轨道数"><a href="#轨道数" class="headerlink" title="轨道数"></a>轨道数</h2><p>
+$$
+\frac{2184}{12} = 182
+$$
+</p>
+
+<hr>
+<h1 id="五、总轨道数"><a href="#五、总轨道数" class="headerlink" title="五、总轨道数"></a>五、总轨道数</h1><p>两种等价写法：</p>
+<hr>
+<h3 id="写法-A（推荐）"><a href="#写法-A（推荐）" class="headerlink" title="写法 A（推荐）"></a>写法 A（推荐）</h3><p>
+$$
+13 + 182 = \boxed{195}
+$$
+</p>
+
+<hr>
+<h3 id="写法-B（分零向量）"><a href="#写法-B（分零向量）" class="headerlink" title="写法 B（分零向量）"></a>写法 B（分零向量）</h3><p>
+$$
+1 + 12 + 182 = \boxed{195}
+$$
+</p>
+
+<hr>
+<h1 id="六、结构直观"><a href="#六、结构直观" class="headerlink" title="六、结构直观"></a>六、结构直观</h1><p>整个空间可以理解为：</p>
+<ul>
+<li>$E_1$：静止方向</li>
+<li>$E_2$：12周期旋转</li>
+</ul>
+<p>于是：</p>
+<blockquote>
+<p>每个轨道 &#x3D; 一个“圆”（来自 $E_2$）<br>被 $E_1$ <strong>平移</strong></p>
+</blockquote>
+<hr>
+<p>更精确地：</p>
+<ul>
+<li>$E_2$ 中有 14 个轨道（每个12个点）</li>
+<li>每个轨道被 $E_1$ 平移 13 次</li>
+</ul>
+<p>
+$$
+14 \times 13 = 182
+$$
+</p>
+
+<hr>
+<h1 id="七、等价类与子空间"><a href="#七、等价类与子空间" class="headerlink" title="七、等价类与子空间"></a>七、等价类与子空间</h1><p>等价类（轨道）的并构成子空间<br>⇔ 该子空间 <strong>在 $A$ 下不变</strong></p>
+<hr>
+<h2 id="所有-A-不变子空间"><a href="#所有-A-不变子空间" class="headerlink" title="所有 $A$-不变子空间"></a>所有 $A$-不变子空间</h2><p>由于：</p>
+<p>
+$$
+V = E_1 \oplus E_2
+$$
+</p>
+
+<p>所有不变子空间形如：</p>
+<p>
+$$
+W = W_1 \oplus W_2
+$$
+</p>
+
+<p>其中：</p>
+<ul>
+<li>$W_1 \subseteq E_1$（2种）</li>
+<li>$W_2 \subseteq E_2$（16种）</li>
+</ul>
+<hr>
+<h2 id="子空间总数"><a href="#子空间总数" class="headerlink" title="子空间总数"></a>子空间总数</h2><p>
+$$
+2 \times 16 = \boxed{32}
+$$
+</p>
+
+<hr>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
+<li>${0}$-$E_1$-$E_2$-$V$-$E_2$ 的 14 条直线</li>
+<li>$E_1 \oplus L$（$L \subset E_2$）</li>
+</ul>
+<hr>
+<h1 id="八、核心思想总结"><a href="#八、核心思想总结" class="headerlink" title="八、核心思想总结"></a>八、核心思想总结</h1><p>这道题的本质统一为：</p>
+<hr>
+<h2 id="1️⃣-对角化"><a href="#1️⃣-对角化" class="headerlink" title="1️⃣ 对角化"></a>1️⃣ 对角化</h2><p>
+$$
+A \sim \operatorname{diag}(1,2,2)
+$$
+</p>
+
+<hr>
+<h2 id="2️⃣-有限域乘法群"><a href="#2️⃣-有限域乘法群" class="headerlink" title="2️⃣ 有限域乘法群"></a>2️⃣ 有限域乘法群</h2><p>
+$$
+\mathbb{F}_{13}^\times \cong C_{12}
+$$
+</p>
+
+<hr>
+<h2 id="3️⃣-群作用"><a href="#3️⃣-群作用" class="headerlink" title="3️⃣ 群作用"></a>3️⃣ 群作用</h2><p>
+$$
+A^k(v_1+v_2) = v_1 + 2^k v_2
+$$
+</p>
+
+<hr>
+<h2 id="4️⃣-轨道结构"><a href="#4️⃣-轨道结构" class="headerlink" title="4️⃣ 轨道结构"></a>4️⃣ 轨道结构</h2><ul>
+<li>$E_1$：不动点</li>
+<li>$E_2$：12周期</li>
+<li>总体：<strong>平移后的周期轨道</strong></li>
+</ul>
+<hr>
+<h1 id="🌌-一句话总结"><a href="#🌌-一句话总结" class="headerlink" title="🌌 一句话总结"></a>🌌 一句话总结</h1><blockquote>
+<p>这是一个“静止方向 + 旋转方向”的系统，<br>所有轨道都是“旋转轨道的平移”。</p>
+</blockquote>
+<hr>
+<h1 id="二"><a href="#二" class="headerlink" title="二"></a>二</h1><p>设 $A, B$分别是$m, n$阶复矩阵，其特征值分别为$\lambda_1, \dots, \lambda_m$与$\mu_1, \dots, \mu_n$。定义映射 $\mathcal{S}$为矩阵空间$M_{m,n}(\mathbb{C})$ 上的变换：</p>
+<p>
+$$
+\mathcal{S} : X \mapsto AX - XB + AXB^2
+$$
+</p>
+
+<ol>
+<li>线性变换证明证明 $\mathcal{S}$是矩阵空间$M_{m,n}(\mathbb{C})$上的线性变换。2) 特征值求解求变换$\mathcal{S}$的所有特征值，并用$A$和$B$的特征值表示。3) 对角化与特征向量设$A, B$ 均可对角化，$\alpha_i$为$A$属于特征值$\lambda_i$ 的（右）特征向量，$\beta_j$为$B^T$属于特征值$\mu_j$的（右）特征向量。证明$\mathcal{S}$在$M_{m,n}(\mathbb{C})$上可对角化。写出$\mathcal{S}$ 属于各特征值的特征向量。</li>
+</ol>
+<h2 id="1-线性变换证明"><a href="#1-线性变换证明" class="headerlink" title="1) 线性变换证明"></a>1) 线性变换证明</h2><p><strong>证明 $\mathcal{S}$ 是线性变换：</strong></p>
+<p>对于任意 $X, Y \in M_{m,n}(\mathbb{C})$和任意$\alpha, \beta \in \mathbb{C}$，需要验证：</p>
+<p>
+$$
+\mathcal{S}(\alpha X + \beta Y) = \alpha \mathcal{S}(X) + \beta \mathcal{S}(Y)
+$$
+</p>
+
+<p>计算左边：</p>
+<p>
+$$
+\mathcal{S}(\alpha X + \beta Y) = A(\alpha X + \beta Y) - (\alpha X + \beta Y)B + A(\alpha X + \beta Y)B^2
+$$
+</p>
+
+<p>展开：</p>
+<p>
+$$
+= \alpha AX + \beta AY - \alpha XB - \beta YB + \alpha AXB^2 + \beta AYB^2
+$$
+</p>
+
+<p>
+$$
+= \alpha(AX - XB + AXB^2) + \beta(AY - YB + AYB^2)
+$$
+</p>
+
+<p>
+$$
+= \alpha \mathcal{S}(X) + \beta \mathcal{S}(Y)
+$$
+</p>
+
+<p><strong>因此 $\mathcal{S}$ 是线性变换。</strong> ∎</p>
+<h2 id="2-特征值求解"><a href="#2-特征值求解" class="headerlink" title="2) 特征值求解"></a>2) 特征值求解</h2><p><strong>关键观察：</strong> 将 $\mathcal{S}$ 改写为：</p>
+<p>
+$$
+\mathcal{S}(X) = AX(I + BB) - XB = AX(I + B^2) - XB
+$$
+</p>
+
+<p>更清晰地写成：</p>
+<p>
+$$
+\mathcal{S}(X) = A X (I_n + B^2) - X B
+$$
+</p>
+
+<p>这类似于<strong>Sylvester变换</strong>的形式。利用<strong>Kronecker积</strong>向量化：</p>
+<p>
+$$
+\text{vec}(\mathcal{S}(X)) = \left[(I_n + B^2)^T \otimes A - B^T \otimes I_m\right] \text{vec}(X)
+$$
+</p>
+
+<p><strong>计算 $\mathcal{S}$ 的特征值：</strong></p>
+<p>设 $\lambda_i$是$A$ 的特征值，$\mu_j$是$B$的特征值（从而也是$B^T$ 的特征值）。</p>
+<p>对于 Kronecker 积，有以下性质：</p>
+<ul>
+<li>$(I_n + B^2)^T &#x3D; I_n + (B^T)^2$的特征值为$1 + \mu_j^2$（对应特征向量与 $B^T$ 相同）</li>
+</ul>
+<p>因此变换矩阵的特征值为：</p>
+<p>
+$$
+\boxed{\nu_{ij} = (1 + \mu_j^2)\lambda_i - \mu_j = \lambda_i + \lambda_i \mu_j^2 - \mu_j}
+$$
+</p>
+
+<p>其中 $i &#x3D; 1, \ldots, m$，$j &#x3D; 1, \ldots, n$。</p>
+<p><strong>$\mathcal{S}$ 的所有特征值为：</strong></p>
+<p>
+$$
+\nu_{ij} = \lambda_i(1 + \mu_j^2) - \mu_j, \quad i=1,\ldots,m,\; j=1,\ldots,n
+$$
+</p>
+
+<h2 id="3-对角化与特征向量"><a href="#3-对角化与特征向量" class="headerlink" title="3) 对角化与特征向量"></a>3) 对角化与特征向量</h2><p><strong>证明 $\mathcal{S}$ 可对角化：</strong></p>
+<p>已知 $A$和$B$ 均可对角化，则：</p>
+<ul>
+<li>$A &#x3D; P\Lambda P^{-1}$，其中 $\Lambda &#x3D; \text{diag}(\lambda_1, \ldots, \lambda_m)$-$B &#x3D; QMQ^{-1}$，其中 $M &#x3D; \text{diag}(\mu_1, \ldots, \mu_n)$<strong>构造$\mathcal{S}$ 的特征向量：</strong></li>
+</ul>
+<p>设 $\alpha_i \in \mathbb{C}^m$是$A$属于$\lambda_i$ 的右特征向量：$A\alpha_i &#x3D; \lambda_i \alpha_i$设$\beta_j \in \mathbb{C}^n$是$B^T$属于$\mu_j$ 的右特征向量：$B^T\beta_j &#x3D; \mu_j \beta_j$，即 $\beta_j^T B &#x3D; \mu_j \beta_j^T$<strong>定义矩阵</strong>$E_{ij} &#x3D; \alpha_i \beta_j^T \in M_{m,n}(\mathbb{C})$<strong>验证$E_{ij}$是$\mathcal{S}$ 的特征向量：</strong></p>
+<p>计算 $\mathcal{S}(E_{ij})$：</p>
+<p>
+$$
+\mathcal{S}(\alpha_i \beta_j^T) = A(\alpha_i \beta_j^T) - (\alpha_i \beta_j^T)B + A(\alpha_i \beta_j^T)B^2
+$$
+</p>
+
+<p>逐项计算：</p>
+<ul>
+<li>$A(\alpha_i \beta_j^T) &#x3D; (A\alpha_i)\beta_j^T &#x3D; \lambda_i \alpha_i \beta_j^T$-$(\alpha_i \beta_j^T)B &#x3D; \alpha_i (\beta_j^T B) &#x3D; \alpha_i (\mu_j \beta_j^T) &#x3D; \mu_j \alpha_i \beta_j^T$-$A(\alpha_i \beta_j^T)B^2 &#x3D; (A\alpha_i)(\beta_j^T B^2) &#x3D; \lambda_i \alpha_i \cdot \mu_j^2 \beta_j^T &#x3D; \lambda_i \mu_j^2 \alpha_i \beta_j^T$</li>
+</ul>
+<p>因此：</p>
+<p>
+$$
+\mathcal{S}(E_{ij}) = \lambda_i E_{ij} - \mu_j E_{ij} + \lambda_i \mu_j^2 E_{ij} = (\lambda_i - \mu_j + \lambda_i \mu_j^2)E_{ij}
+$$
+</p>
+
+<p>
+$$
+\boxed{\mathcal{S}(E_{ij}) = \left[\lambda_i(1 + \mu_j^2) - \mu_j\right] E_{ij}}
+$$
+</p>
+
+<p><strong>结论：</strong></p>
+<ul>
+<li><strong>$E_{ij} &#x3D; \alpha_i \beta_j^T$是$\mathcal{S}$属于特征值$\nu_{ij} &#x3D; \lambda_i(1+\mu_j^2) - \mu_j$ 的特征向量</strong></li>
+<li>由于 $A, B$各有$m, n$个线性无关的特征向量，我们得到$mn$个矩阵$E_{ij}$，它们构成 $M_{m,n}(\mathbb{C})$的一组基（因为${\alpha_i}$和${\beta_j}$ 分别是基）</li>
+<li><strong>因此 $\mathcal{S}$ 可对角化</strong> ∎</li>
+</ul>
+<p><strong>总结表格：</strong></p>
+<table>
+<thead>
+<tr>
+<th>特征值</th>
+<th>特征向量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$\nu_{ij} &#x3D; \lambda_i(1+\mu_j^2) - \mu_j$</td>
+<td>$E_{ij} &#x3D; \alpha_i \beta_j^T$</td>
+</tr>
+</tbody></table>
+<p>其中 $i &#x3D; 1,\ldots,m$，$j &#x3D; 1,\ldots,n$。</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

@@ -1,0 +1,1051 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>笔记1.多项式环 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>笔记1.多项式环</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/3/10
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%BA%BF%E4%BB%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                线代
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ff7d73">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>大约是整数环的数论在多项式环的推广。</p>
+<span id="more"></span>
+
+<p>整着整着发现不考虑严谨性的话内容已经多到变成了可以当本书的一章的地步？</p>
+<p>关于整数环的数论基础，可以查看离散笔记中的数论。<br>在以下讨论中，多项式如果不加指出，都在某个数域 $K$ 上，$1$ 在适合的地方代指零次多项式（懒得写）。<br>在讨论之前，先给出环的定义。</p>
+<p>在代数学中，<strong>环（Ring）</strong> 是一个集合，它在两种二元运算（通常称为<strong>加法</strong>和<strong>乘法</strong>）的作用下，满足特定的公理。</p>
+<p>简单来说，环是把整数的加法和乘法的性质抽象化后得到的数学结构。如果不清楚环是什么暂时不要紧，以下内容可以飞速浏览，有个印象即可，这一篇笔记并不与环非常相关。</p>
+<hr>
+<h1 id="环的简介"><a href="#环的简介" class="headerlink" title="环的简介"></a>环的简介</h1><h2 id="形式定义"><a href="#形式定义" class="headerlink" title="形式定义"></a>形式定义</h2><p>设 $R$是一个非空集合，在其上定义了两个二元运算：<strong>加法</strong>（记作$+$）和<strong>乘法</strong>（记作 $\cdot$）。如果满足以下三个条件，则称 $(R, +, \cdot)$ 为一个环：</p>
+<h3 id="I-加法成交换群（阿贝尔群）"><a href="#I-加法成交换群（阿贝尔群）" class="headerlink" title="I. 加法成交换群（阿贝尔群）"></a>I. 加法成交换群（阿贝尔群）</h3><ol>
+<li><p><strong>结合律</strong>：$(a + b) + c &#x3D; a + (b + c)$</p>
+</li>
+<li><p><strong>交换律</strong>：$a + b &#x3D; b + a$3. <strong>单位元（零元）</strong>：存在$0 \in R$，使得对任何 $a \in R$，有 $0 + a &#x3D; a$。</p>
+</li>
+<li><p><strong>逆元（负元）</strong>：对任何 $a \in R$，存在 $-a \in R$，使得 $a + (-a) &#x3D; 0$。</p>
+</li>
+</ol>
+<h3 id="II-乘法成半群"><a href="#II-乘法成半群" class="headerlink" title="II. 乘法成半群"></a>II. 乘法成半群</h3><ol>
+<li><strong>结合律</strong>：$(a \cdot b) \cdot c &#x3D; a \cdot (b \cdot c)$<em>注意：基础环的定义并不强制要求乘法满足交换律，也不强制要求有乘法单位元（单位元$1$）。</em></li>
+</ol>
+<h3 id="III-分配律"><a href="#III-分配律" class="headerlink" title="III. 分配律"></a>III. 分配律</h3><p>乘法对加法满足左、右分配律：</p>
+<ol>
+<li>$a \cdot (b + c) &#x3D; (a \cdot b) + (a \cdot c)$2.$(a + b) \cdot c &#x3D; (a \cdot c) + (b \cdot c)$</li>
+</ol>
+<p>讨论这样一个结构干什么呢，主要是为了抽象，如果整数的结论能在多项式上运用，我们只要讨论某个环，然后在剩下的环就能够用类似的方法解决类似的问题，所以总的来说这样省事的多。</p>
+<p>类似整数，我们定义多项式的整除，考虑数域 $K$上的多项式$K[x]$，定义<strong>整除</strong>$f|g$，如果存在一个多项式$q$满足$g&#x3D;qf$ 。 </p>
+<h1 id="多项式的数论性质"><a href="#多项式的数论性质" class="headerlink" title="多项式的数论性质"></a>多项式的数论性质</h1><h2 id="带余除法"><a href="#带余除法" class="headerlink" title="带余除法"></a>带余除法</h2><p>类似整数，我们也可以考虑多项式的带余除法。我们希望的是：</p>
+<blockquote>
+<p>对于任意的多项式 $f,g$，都存在多项式$q,r$使得$g&#x3D;qf+r$ 。</p>
+</blockquote>
+<p>这时不方便像在整数环那样说所谓 $r &lt; f$，多项式的大小可以如何确定呢，我们可以让这个“大小”抽象一些，让多项式的度数作为定义，度数指的是多项式的最高幂次，用英文缩写记作$deg(f)$ 。</p>
+<p>那么完整来说，带余除法应该要是：</p>
+<blockquote>
+<p>对于任意的多项式 $f,g$ ，$f\neq 0$，都存在多项式$q,r$使得$g&#x3D;qf+r$，其中$deg(r) &lt; deg(f)$ 。</p>
+</blockquote>
+<p>是否存在呢，如果存在，是否唯一呢。我们可以类似整数讨论：</p>
+<blockquote>
+<p>[!存在性证明]<br>我们固定 $f$，对$g$ 的次数做第二数学归纳法。</p>
+<ol>
+<li>$g$的度数比$f$小，那么直接让$q&#x3D;0,r&#x3D;g$就好了。现在考虑对于度数小于$k$的多项式都存在带余除法，那么我们考虑度数为$k$ 的情形。</li>
+<li>$g$的度数大于等于$f$的度数。我们不妨设$f$首项为$ax^n$ ，$g$的首项为$bx^m$，那么$g-f\cdot \frac{b}{a}x^{m-n}$就是一个$m-1$ 度数的多项式，根据归纳假设存在带余除法，$g-f\cdot \frac{b}{a}x^{m-n} &#x3D; qf+r$，稍微整理就得到$g&#x3D;(\frac{b}{a}x^{m-n}+q)f+r$ ，符合带余除法的形式，从而成立，<br>综合以上两种情况得到原命题成立。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>[!唯一性证明]<br>采用反证法。<br>不妨设不唯一，有 $q_1f+r_1&#x3D;q_2f+r_2$，变换得到$(q_1-q_2)f&#x3D;r_2-r_1$，若$q_1&#x3D;q_2$则$r_2&#x3D;r_1$也就得到唯一性。否则考虑等式两边的度数，左侧度数为$deg(f)+deg(q_2-q_1)\ge deg(f)$，右侧度数为$deg(r_2-r_1)\le deg(r_2)&lt;deg(f)$ ，这就出现了矛盾。</p>
+</blockquote>
+<h2 id="Bezout定理"><a href="#Bezout定理" class="headerlink" title="Bezout定理"></a>Bezout定理</h2><p>有了带余除法，我们是否就可以类似整数得到裴蜀定理。</p>
+<blockquote>
+<p>存在 $u,v$使得$uf+vg&#x3D;gcd(f,g)$ 。</p>
+</blockquote>
+<p>首先我们需要定义 $gcd$ ，证明它的存在性。</p>
+<p><strong>最大公因式(gcd)</strong> 定义为：对于任意的 $f,g$的公因式$r$，我们有$r|gcd(f,g)$ 。<br>如果两个多项式互相整除会怎么样呢，设 $f|g,g|f$，利用定义$f&#x3D;ag,g&#x3D;bf$从而$f&#x3D;abf$，从而$ab&#x3D;1$，也就是说$ab$都是度数为$0$的，也就是常数。这时称$f,g$ <strong>相伴</strong>，他们之间差一个常数。从而最大公因式在相伴意义下是唯一的，对于两个最大公因式，他们互相整除。</p>
+<p>带余除法有个美妙的性质，$g&#x3D;qf+t\implies gcd(g,f)与gcd(f,t)相伴$。证明通过说明左右互相整除得到，简记为$l&#x3D;r$ 。$r|f,r|t\implies r|qf+t$，从而$r|g$，那么也就有$r|l$。另一边，移项得到$t&#x3D;g-qf$，这时类似得到$l|t$，从而$l|r$ 。综合两方面得到他们相伴。</p>
+<p>最大公因式是否总是存在呢，我们先把裴蜀定理解决。</p>
+<blockquote>
+<p>[!裴蜀定理证明]<br>类似整数情形，我们设集合 $J&#x3D;{uf+vg}$，其中$u,v$是任意的多项式。利用良序定理，集合$J$存在次数最小的一些多项式，考虑其中一个$d$ 。<br>我们证明 $d$就是$gcd(f,g)$ 。<br>首先，证明是公因式。我们希望利用良序定理推到矛盾。假设 $d$不整除$f$，利用已经证明的带余除法，有$f&#x3D;qd+r$，代入就得到$f&#x3D;q(uf+vg)+r$，那么$r&#x3D;(1-qu)f-qvg$ ，$r$被表出了，而由于$deg(r)&lt;deg(d)$，就得到了矛盾，所以至少$d|f$，同理$d|g$ ，从而是公因式。<br>再证明是最大公因式。考虑 $h$是一个公因式，那么$h|uf+vg&#x3D;d$ 。<br>综合以上得到 $d$ 就是最大公因式。 </p>
+</blockquote>
+<p>此时我们考虑 $J$的存在性，显然$f,g\in J$从而$J$非空，那么就存在$d$ 。 </p>
+<p>实际上还有<strong>另一个结论</strong>，就是因为 $J$可以由$d$ 生成，这实际上是一个主理想整环（叽里咕噜</p>
+<p>考虑 $m\in J$ ，$m&#x3D;kd+r$，那么$r&#x3D;kd-m$，把$d,m$被$f,g$表出代入就得到$r$也被表出，如果$r\neq 0$，就因为$deg(r)&lt;deg(d)$而与$WOP$矛盾了。所以$r&#x3D;0$，从而$m&#x3D;kd$ 。$J$可以由$d$ 这个主理想生成，至于理想是什么，请听下回分解。 </p>
+<p>实际上还有一种构造性证明，利用带余除法我们有：</p>
+<p>
+$$
+g=q_1f+r_1
+$$
+</p>
+
+<p>
+$$
+f=q_2r_1+r_2
+$$
+</p>
+
+<p>
+$$
+r_1=q_3r_2+r_3
+$$
+</p>
+
+<p>如此往复，最后有：</p>
+<p>
+$$
+r_{n-1}=q_nr_{n-2}+r_{n}
+$$
+</p>
+
+<p>
+$$
+r_n=q_{n+1}r_{n-1}
+$$
+</p>
+
+<p>终于整除了，利用 $gcd(g,f)&#x3D;gcd(f,r_1)$就有$r_{n}$就是$gcd(g,f)$。这样，我们回代，解出$r_n&#x3D;r_{n-1}-q_nr_{n-2}$，然后类似依次回代，就得到$r_n&#x3D;()f+()g$ 。<br>由于带余除法每次度数至少少 $1$ ，这个过程一定在有限步完成。</p>
+<h2 id="因式分解"><a href="#因式分解" class="headerlink" title="因式分解"></a>因式分解</h2><p>在整数环中，我们有唯一素因子分解，在多项式环也有类似的操作。定义<strong>不可约多项式</strong>为只能被零次多项式或其相伴元整除的多项式。这与素数定义类似。那么是否有唯一不可约多项式分解呢？</p>
+<p>我们先推导一些不可约多项式的性质。</p>
+<p><strong>一</strong><br>考虑不可约多项式 $p$，和任意多项式$f$，则$p|f 或 (p,f)&#x3D;1$ 。利用定义容易推出。</p>
+<p><strong>二</strong><br>若 $p|fg$，则$p|f 或 p|g$。证明：若$p|f$，已经成立，否则$gcd(p,f)&#x3D;1$，那么$up+vf&#x3D;1$，同乘$g$得到$upg+vfg&#x3D;g$，那么$p|左侧$，从而$p|g$ 。</p>
+<p><strong>三</strong><br>$p$不可约当且仅当$p$ 不能被分解成次数更小的两个非零次多项式的积。<br>必要性：若 $p$ 不可约，显然不能被分解。<br>充分性：假设 $p$可约，则设$p&#x3D;fg$，那么$deg(p)&#x3D;deg(f)+deg(g)$，由于$deg(f),deg(g)\neq 0$，二者次数显然比$p$小，与条件矛盾。故$p$ 不可约。</p>
+<p>有了以上，就可以方便地证明唯一因式分解定理：</p>
+<blockquote>
+<p>$K[x]$上次数大于$0$的多项式$f$都能唯一分解成$K$ 上若干个不可约不等式的乘积。</p>
+</blockquote>
+<p>证明：<br>先证明存在性，利用第二数学归纳法。<br>奠基步：显然次数 $1$ 的时候可以分解成自己。<br>归纳步：假设度数小于 $k$的情形都成立，对$deg(f)&#x3D;k$的情形讨论。若$f$不可约，则可以分解成自己，否则，利用上面的性质<strong>三</strong>得到$f&#x3D;gh$，其中$g,h$都是次数小于$f$的多项式。利用归纳假设得到$g,h$可以被分解，那么代入就得到$f$ 的不可约多项式分解。</p>
+<p>然后证明唯一性。采用反证法。<br>假设可以有两种分解： $f&#x3D;p_1p_2…p_n&#x3D;q_1q_2…q_m$。那么有$q_1|p_1p_2…p_n$，从而有$q_1|p_i$，我们可以任意地排序$p$，从而让$q_1|p_1$ 。那么就因为他们都不可约，$q_1,p_1$相伴，考虑相伴意义下，我们仍然写作等号而懒得换符号，从而约去二者得到：$p_2…p_n&#x3D;q_2…q_m$，往复，不妨设$n &gt; m$ ，$q_m&#x3D;p_m…p_n$，那么$q_m$就可约了，矛盾，得到$n\le m$，类似得到反面，从而$n&#x3D;m$ ，而且两边的不可约多项式都在相伴意义下相等。</p>
+<p>综上，我们就完成了证明。多项式 $f$ 总可以被分解成：</p>
+<p>
+$$
+f=ap_1^{e_1}\cdot\cdot\cdot p_n^{e_n}
+$$
+</p>
+
+<h3 id="重因式"><a href="#重因式" class="headerlink" title="重因式"></a>重因式</h3><p>虽然我们对多项式环一般来说没有整数环熟悉，但是实际上多项式环有比整数环更美妙的性质，他有导数这样一个线性运算，使得我们在处理时有许多便利。</p>
+<p>正如小标题，如果我们希望得到一个多项式的重因式怎么办呢？重因式的直观理解我们都有，具体的数学定义如下：$p^e|f$，但是$p^{e+1}\not | f$。那么$p$就是$f$的$e$ 重因数。下一步，如何求呢？</p>
+<p>已经提到过，我们有求导这个工具。对一个多项式求导会怎么样呢，次数减一，那么如果次数减一还不为 $0$次多项式，就说明原来次数比$1$ 大，是重因式。那么只要求多项式和其导数的公因式，我们就得到了一个多项式的重因式。</p>
+<p>严格地，我们可以如下说明：</p>
+<p>
+$$
+f=ap_1^{e_1}\cdot\cdot\cdot p_n^{e_n}
+$$
+</p>
+
+<p>求导就得到：</p>
+<p>
+$$
+f'=a(\sum_i e_ip_i^{e_i}p_1^{e_1}...p_n^{e_n}/p_i)
+$$
+</p>
+
+<p>大概这个意思，那么我们就能提出公因式：</p>
+<p>
+$$
+f'=ap_1^{e_1-1}...p_n^{e_n-1}(\sum_i e_ip_1...p_n/p_i)
+$$
+</p>
+
+<p>那么就能看出来考虑首项为 $1$的多项式，就有$gcd(f,f’)&#x3D;p_1^{e_1-1}…p_n^ {e_n-1}$，对$e&#x3D;1$的情形就是$1$，懒得剔除。这$gcd$正是$f’$的重因式们，和$f$的重因式差$1$ 的次数。<br>这有助于我们解决大名鼎鼎的 $ABC$ 猜想在多项式环的版本。</p>
+<h4 id="多项式的ABC定理-Mason-Stothers"><a href="#多项式的ABC定理-Mason-Stothers" class="headerlink" title="多项式的ABC定理(Mason-Stothers)"></a>多项式的ABC定理(Mason-Stothers)</h4><p>设 $f(x), g(x), h(x)$是定义在域$K$（如复数域 $\mathbb{C}$）上的互质多项式，且不全为常数，满足：</p>
+<p>
+$$
+f + g = h
+$$
+</p>
+
+<p>那么，这三个多项式中次数最高者的次数，受限于它们乘积的<strong>根式（radical）</strong> 的次数：</p>
+<p>
+$$
+\max\{\deg(f), \deg(g), \deg(h)\} \le \deg(\text{rad}(fgh)) - 1
+$$
+</p>
+
+<p>其中 $rad$指根式，也就是分解后的$p$ 们的一次方本身。<br>证明：<br>利用前面说的关于重因式的内容，不难有</p>
+<p>
+$$
+\text{rad}(f) = \frac{f}{\gcd(f, f')}
+$$
+</p>
+
+<p>那么</p>
+<p>
+$$
+r = \text{rad}(f) \cdot \text{rad}(g) \cdot \text{rad}(h) = \frac{f}{(f, f')} \cdot \frac{g}{(g, g')} \cdot \frac{h}{(h, h')}
+$$
+</p>
+
+<p>已知 $f + g &#x3D; h$，两边求导得 $f’ + g’ &#x3D; h’$。<br>两边先除以 $f$：$1+g&#x2F;f&#x3D;h&#x2F;f$，求导并约去分母$f^2$ 得到：</p>
+<p>
+$$
+g'f-f'g=h'f-hf'
+$$
+</p>
+
+<p>那么 $gcd(f,f’)$显然整除左侧，同理$gcd(g,g’)$ ，$gcd(h,h’)$ 整除这个式子，从而：</p>
+<p>
+$$
+(f, f')(g, g')(h, h') \mid f'g - fg'
+$$
+</p>
+
+<p>利用 $r$ 的式子得到：</p>
+<p>
+$$
+\frac{fgh}{r} \mid (f'g - fg') \implies \mathbf{fgh \mid (f'g - fg')r}
+$$
+</p>
+
+<p>讨论：<br>如果 $f’g - fg’ \neq 0$：</p>
+<pre><code>那么左边的次数必须小于或等于右边的次数。
+</code></pre>
+<p>
+$$
+\deg(fgh) \le \deg(f'g - fg') + \deg(r)
+$$
+</p>
+
+<ol>
+<li><p>代入次数：</p>
+<ul>
+<li>$\deg(fgh) &#x3D; \deg f + \deg g + \deg h$-$\deg(f’g - fg’) \le \deg f + \deg g - 1$（注意求导掉了一次）</li>
+</ul>
+</li>
+<li><p>抵消掉 $\deg f + \deg g$ 后得到：</p>
+</li>
+</ol>
+<p>
+$$
+\deg h \le \deg(r) - 1
+$$
+</p>
+
+<p>如果是 $0$，说明$f&#x2F;g$是常数，这样$h&#x2F;g$ 也是常数，与互质矛盾。<br>综上，证明完成。</p>
+<h4 id="费马大定理"><a href="#费马大定理" class="headerlink" title="费马大定理"></a>费马大定理</h4><p>有了 $ABC(Mason-Stothers)$ ，在多项式环证明就挺快的。费马地方太小写不下的理由就不能用了（</p>
+<p>定理：不存在互质的非常数多项式 $x(t), y(t), z(t)$ 满足：</p>
+<p>
+$$
+x(t)^n + y(t)^n = z(t)^n
+$$
+</p>
+
+<p>证明：采用反证法。<br>假设存在互质的非常数多项式 $x(t), y(t), z(t)$ 满足：</p>
+<p>
+$$
+f^n + g^n = h^n
+$$
+</p>
+
+<p>由于它们互质，利用 $ABC$ ，得到：</p>
+<p>
+$$
+deg(h^n) \le deg(r) - 1
+$$
+</p>
+
+<p>同时，由于</p>
+<p>
+$$
+r = \text{rad}(f) \cdot \text{rad}(g) \cdot \text{rad}(h) = \frac{f}{(f, f')} \cdot \frac{g}{(g, g')} \cdot \frac{h}{(h, h')}
+$$
+</p>
+
+<p>那么，不妨设 $deg(h)\ge deg(f),deg(g)$ ，有：</p>
+<p>
+$$
+deg(r) \le deg(fgh) \le 3deg(h)
+$$
+</p>
+
+<p>于是</p>
+<p>
+$$
+deg(h^n)=ndeg(h)\le 3deg(h)-1
+$$
+</p>
+
+<p>对于 $n\ge 3$的情形显然不成立，从而在$n\ge 3$ 时，有费马大定理成立。<br>对于 $n&#x3D;1,2$ ，则可以找到对应多项式。 </p>
+<h2 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h2><p>定理：<br>设 $P_1(t), P_2(t), \dots, P_k(t)$是域$F$上的两两互质的多项式。对于任意给定的多项式$A_1(t), A_2(t), \dots, A_k(t)$，必存在唯一的多项式 $f(t)$ 满足：</p>
+<p>
+$$
+f(t) \equiv A_i(t) \pmod{P_i(t)}, \quad i=1, 2, \dots, k
+$$
+</p>
+
+<p>且在次数 $\deg(f) &lt; \sum \deg(P_i)$ 的要求下，该解是唯一的。</p>
+<p>简而言之，就是这样的同余方程有唯一解。<br>构造性证明可以写的很简短：</p>
+<p>设 $M(t) &#x3D; \prod P_i(t)$，$M_i(t) &#x3D; \frac{M(t)}{P_i(t)}$。</p>
+<p>由于 $M_i(t)$与$P_i(t)$互质，利用<strong>扩展欧几里得算法</strong>可以找到$N_i(t)$ 使得：</p>
+<p>
+$$
+M_i(t) N_i(t) \equiv 1 \pmod{P_i(t)}
+$$
+</p>
+
+<p>最终的解即为：</p>
+<p>
+$$
+f(t) = \sum_{i=1}^k A_i(t) M_i(t) N_i(t) \pmod{M(t)}
+$$
+</p>
+
+<p>$Q.E.D$<br>当然，解释一下，简单来说是运用基的思想，用一个例子说明：</p>
+<p>
+$$
+f\equiv a \pmod p
+$$
+</p>
+
+<p>
+$$
+f\equiv b \pmod q
+$$
+</p>
+
+<p>那么怎么办呢，一般的 $a,b$不好求，如果等于$1$或者$0$ 就好了。</p>
+<p>
+$$
+f\equiv 1 \pmod p
+$$
+</p>
+
+<p>
+$$
+f\equiv 0 \pmod q
+$$
+</p>
+
+<p>这下会算了（<br>第二个式子得到 $f&#x3D;kq$，代入第一个得到$kq\equiv 1 \pmod p$。对互质的$p,q$运用裴蜀定理得到存在$up+vq&#x3D;1$，取模就发现$vq\equiv 1 \pmod p$，那么也就找到了一个解$f$。具体的$v$ 通过辗转相除就可以得到。</p>
+<p>然后呢，怎么弄回原来的方程呢？再解一个：</p>
+<p>
+$$
+f\equiv 0 \pmod p
+$$
+</p>
+
+<p>
+$$
+f\equiv 1 \pmod q
+$$
+</p>
+
+<p>然后得到 $f_1,f_2$，那线性组合不就得到了原来的方程吗。取 $af_1+bf_2$ 就得到了原先的解。这就是中国剩余定理，有点像找到每个模数的某种意义的基，然后线性组合，有点像拉格朗日插值。</p>
+<h1 id="多项式函数"><a href="#多项式函数" class="headerlink" title="多项式函数"></a>多项式函数</h1><h2 id="Lagrange-插值公式与范德蒙矩阵的逆"><a href="#Lagrange-插值公式与范德蒙矩阵的逆" class="headerlink" title="Lagrange 插值公式与范德蒙矩阵的逆"></a>Lagrange 插值公式与范德蒙矩阵的逆</h2><p>设 $K$ 是数域，$c_0, c_1, \dots, c_n \in K$互异。则任给$b_0, b_1, \dots, b_n \in K$，存在唯一的次数 $\le n$的多项式$f \in K[x]$，使得：</p>
+<p>
+$$
+f(c_i) = b_i, \quad \forall \ 0 \le i \le n
+$$
+</p>
+
+<h3 id="1-矩阵形式推导"><a href="#1-矩阵形式推导" class="headerlink" title="1. 矩阵形式推导"></a>1. 矩阵形式推导</h3><p>设 $f(x) &#x3D; a_0 + a_1x + \dots + a_nx^n$。根据插值条件，得到线性方程组：</p>
+<p>
+$$
+\begin{cases} f(c_0) = a_0 + a_1c_0 + \dots + a_nc_0^n = b_0 \\ f(c_1) = a_0 + a_1c_1 + \dots + a_nc_1^n = b_1 \\ \vdots \\ f(c_n) = a_0 + a_1c_n + \dots + a_nc_n^n = b_n \end{cases}
+$$
+</p>
+
+<p>该方程组等价于矩阵乘法：</p>
+<p>
+$$
+\underbrace{ \begin{bmatrix} 1 & c_0 & \cdots & c_0^n \\ 1 & c_1 & \cdots & c_1^n \\ \vdots & \vdots & & \vdots \\ 1 & c_n & \cdots & c_n^n \end{bmatrix} }_{\text{范德蒙矩阵 } A} \begin{bmatrix} a_0 \\ a_1 \\ \vdots \\ a_n \end{bmatrix} = \begin{bmatrix} b_0 \\ b_1 \\ \vdots \\ b_n \end{bmatrix}
+$$
+</p>
+
+<p>由 $c_0, c_1, \dots, c_n$互异可知，<strong>范德蒙矩阵$A$ 可逆</strong>。</p>
+<h3 id="2-系数的确定"><a href="#2-系数的确定" class="headerlink" title="2. 系数的确定"></a>2. 系数的确定</h3><p>故多项式 $f(x) &#x3D; a_0 + a_1x + \dots + a_nx^n$存在且由$b_0, \dots, b_n$ 唯一确定：</p>
+<p>
+$$
+\begin{bmatrix} a_0 \\ a_1 \\ \vdots \\ a_n \end{bmatrix} = \begin{bmatrix} 1 & c_0 & \cdots & c_0^n \\ 1 & c_1 & \cdots & c_1^n \\ \vdots & \vdots & & \vdots \\ 1 & c_n & \cdots & c_n^n \end{bmatrix}^{-1} \begin{bmatrix} b_0 \\ b_1 \\ \vdots \\ b_n \end{bmatrix}
+$$
+</p>
+
+<p>特别地，取 $b_0 &#x3D; \dots &#x3D; b_n &#x3D; 0$，用反证法可得：<strong>$n$次多项式（函数）在任意域中至多有$n$ 个根。</strong></p>
+<h3 id="3-利用伴随矩阵展开"><a href="#3-利用伴随矩阵展开" class="headerlink" title="3. 利用伴随矩阵展开"></a>3. 利用伴随矩阵展开</h3><p>利用逆矩阵公式 $A^{-1} &#x3D; \frac{1}{|A|} A^*$：</p>
+<p>
+$$
+\begin{bmatrix} a_0 \\ a_1 \\ \vdots \\ a_n \end{bmatrix} = \frac{1}{|A|} \begin{bmatrix} A_{11} & A_{21} & \cdots & A_{n+1,1} \\ A_{12} & A_{22} & \cdots & A_{n+1,2} \\ \vdots & \vdots & & \vdots \\ A_{1,n+1} & A_{2,n+1} & \cdots & A_{n+1,n+1} \end{bmatrix} \begin{bmatrix} b_0 \\ b_1 \\ \vdots \\ b_n \end{bmatrix}
+$$
+</p>
+
+<p>将 $f(x)$ 写成行向量与列向量的乘积：</p>
+<p>
+$$
+f(x) = [1 \ x \ \cdots \ x^n] \begin{bmatrix} a_0 \\ a_1 \\ \vdots \\ a_n \end{bmatrix}
+$$
+</p>
+
+<p>代入系数向量：</p>
+<p>
+$$
+f(x) = \frac{1}{|A|} [1 \ x \ \cdots \ x^n] \begin{bmatrix} A_{11} & A_{21} & \cdots & A_{n+1,1} \\ A_{12} & A_{22} & \cdots & A_{n+1,2} \\ \vdots & \vdots & & \vdots \\ A_{1,n+1} & A_{2,n+1} & \cdots & A_{n+1,n+1} \end{bmatrix} \begin{bmatrix} b_0 \\ b_1 \\ \vdots \\ b_n \end{bmatrix}
+$$
+</p>
+
+<p>进一步化简：</p>
+<p>
+$$
+f(x) = \frac{1}{|A|} \sum_{i=0}^{n} b_i (A_{i+1,1} + A_{i+1,2}x + \dots + A_{i+1,n+1}x^n)
+$$
+</p>
+
+<p>观察括号内的部分，它正好是行列式按第 $i+1$ 行展开的形式：</p>
+<p>
+$$
+= \frac{1}{|A|} \sum_{i=0}^{n} b_i \begin{vmatrix} 1 & c_0 & \cdots & c_0^n \\ \vdots & \vdots & & \vdots \\ 1 & x & \cdots & x^n \\ \vdots & \vdots & & \vdots \\ 1 & c_n & \cdots & c_n^n \end{vmatrix} \leftarrow \text{第 } i+1 \text{ 行展开}
+$$
+</p>
+
+<h3 id="4-Lagrange-插值公式"><a href="#4-Lagrange-插值公式" class="headerlink" title="4. Lagrange 插值公式"></a>4. Lagrange 插值公式</h3><p>最终再次利用范德蒙德行列式得到经典的 Lagrange 插值公式形式：</p>
+<p>
+$$
+f(x) = \sum_{j=0}^{n} b_j \frac{\prod_{k \neq j} (x - c_k)}{\prod_{k \neq j} (c_j - c_k)}
+$$
+</p>
+
+<h2 id="多项式的根，多项式函数"><a href="#多项式的根，多项式函数" class="headerlink" title="多项式的根，多项式函数"></a>多项式的根，多项式函数</h2><p>前面讨论的，除了拉格朗日插值的部分，实际上并不是传统印象中的<strong>多项式函数</strong>，一个 $x-&gt;f(x)$ 的映射，而是形式上的多项式，其只是系数与幂的形式。前面的求导也只是形式求导，当然，跟函数的求导一模一样。因为一切都是那么符合直觉，我们并没有讨论这些而已。</p>
+<p>前面的多项式应该如此定义，形如 $a_0+a_1x+…+a_nx^n$的一串符号，两个多项式相等当且仅当每一个$a$ 都相等。形式导数的定义则定义成函数求导的样子。</p>
+<p>为什么要区分呢，在我们惯常熟悉的数域中二者并没有很大的区别，也可以验证多项式函数同样构成唯一分解整环。但是在<strong>有限域</strong>，例如对 $2$取模的域中就不同了。这个域只有${0,1}$，那么$x^2$和$x$实际上考虑函数的话，他们对$2$ 取模一样，也就在这个域中相等。但是对于形式上的多项式，根据定义他们并不一样。</p>
+<p>无限域中他们存在双射，所以我们可以放心地按照直觉处理。</p>
+<ul>
+<li><p><strong>单射性（唯一性）</strong>：</p>
+<p>  如果两个多项式函数 $P(x)$和$Q(x)$相等，那么它们的差$D(x) &#x3D; P(x) - Q(x)$ 在无限个点上都等于 0。</p>
+<p>  根据代数原理（马上就要说明），一个 $n$次非零多项式最多只有$n$ 个根。如果它有无限个根，那么它必须是<strong>零多项式</strong>（即所有系数均为 0）。因此，$P(x)$和$Q(x)$ 的系数必须完全相同。</p>
+</li>
+<li><p><strong>满射性</strong>：</p>
+<p>  由定义可知，每一个多项式函数都是由某个形式多项式“诱导”出来的。</p>
+</li>
+</ul>
+<p>那么就可以定义根，根是使得多项式函数为 $0$ 的点。</p>
+<h3 id="余数定理"><a href="#余数定理" class="headerlink" title="余数定理"></a>余数定理</h3><p>在 $K[x]$，用$x-t$除$f(x)$得到的余数是$f(t)$ 。</p>
+<p>证明是容易的：$f(x)&#x3D;q(x)(x-t)+r$，代入$x&#x3D;t$就有$f(t)&#x3D;r$ 。</p>
+<p>那么，$x-t$整除$f(x)$当且仅当$t$是$f(x)$ 的一个根。非常符合直觉。</p>
+<h3 id="代数基本定理"><a href="#代数基本定理" class="headerlink" title="代数基本定理"></a>代数基本定理</h3><p><strong>在复数域上，$n$次多项式函数有$n$ 个根。</strong></p>
+<p>我们先说明 $n$个根是一个上界，即$n$次多项式至多有$n$ 个不同根。利用唯一分解定理，$f(x)$至多有$n$ 个不同的一重因式，从而得到证明。</p>
+<p>这有一个直接的推论，$f(x)&#x3D;c$至多有$n$个地方能取到，只要考虑多项式$f(x)-c$ 利用上述即可。利用这个就可以清晰地说明上方的多项式与多项式函数的单射。</p>
+<p>在证明定理之前，有一个<strong>引理</strong>：若 $f(x)$是复多项式，则实值函数$|f(x)|$ 在复平面上一定能取到最小值。</p>
+<blockquote>
+<p>[!证明]<br>设 $f(x)&#x3D;a_0+a_1x+…+a_nx^n&#x3D;a_nx^n(1+\frac{a_{n-1}}{x}+…+\frac{a_0}{x^n})&#x3D;a_nx^n(1+b(x))$，显然选取足够大的$R$，使得$|x|&gt;R$时，有$|b(x)|&lt;1&#x2F;2$，从而此时$|f(x)|\ge \frac{1}{2} a_nR^n$ 。</p>
+<p>在有界闭集 $|x|\in [0,R]$上，连续函数$|f(x)|$ 显然有极小值，从而在两个极小值中选取最小的那个就得到了全局的极小值。 </p>
+</blockquote>
+<p>进一步的，我们希望这个最小值就是 $0$ 。</p>
+<blockquote>
+<p>[!证明]<br>反证法。假设不是 $0$，不妨设是$1$。假设$deg(f)\ge 1$，没有复根，设$f(x_0)&#x3D;1$即为其最小值。做一个变量替换，令$y&#x3D;x-x_0$，那么$f(x)&#x3D;1+c_ky^k+…+c_ny^n$，其中$c_k\neq 0$ ，$k\ge 1$ 。</p>
+<p>同样提出 $y^k$得到$f(x) &#x3D; 1+c_ky^k(1+d(y))$。取$\epsilon$足够小，使得$|y|&lt;\epsilon$时$|d(y)| &lt; 1&#x2F;3$ 。</p>
+<p>设 $c&#x3D;\rho e^{i\theta}$，那么我们构造这样的$y$ ：$y&#x3D;re^{i(\pi-\theta)&#x2F;k}$，使得$r^k\rho&lt;1$且$0&lt;r&lt;\epsilon$，利用大名鼎鼎的欧拉公式$e^{i\pi}&#x3D;-1$就得到$|f(x)|&lt;|1-\frac{2}{3}\rho r^k|&lt;1$ ，这就得到了矛盾。</p>
+</blockquote>
+<p>不难看出，我们可以把 $1$换成任意的数，同时$1&#x2F;3$是随便选的。关键在于在复平面上，我们总可以找到一个方向让$y^k$是负的，同时对于足够小的$y$，其他项的影响可以忽略。这是证明的核心，函数值总可以一直下降，除非已经是$0$ ，无可下降。</p>
+<p>这样我们就得到复多项式总有根，那么找到一个根，利用余数定理就找到一个一次因式，除去这个因式，我们得到一个新的降了一次的复多项式，往复就得到复多项式都有 $n$ 个根，当然，根可能重复。</p>
+<p>总之这样也就证完了。那么也就得到，在复数域总可以把多项式函数分解成如下形式：</p>
+<p>
+$$
+f(x) = a (x - t_1)^{e_1} \dots (x - t_r)^{e_r}
+$$
+</p>
+
+<h3 id="实数域的分解"><a href="#实数域的分解" class="headerlink" title="实数域的分解"></a>实数域的分解</h3><p>在实数域上，非零多项式都能唯一地写成<strong>一次因式</strong>与<strong>判别式 $&lt; 0$ 的二次因式</strong>的乘积。</p>
+<p>
+$$
+f(x) = a (x - t_1)^{e_1} \dots (x - t_r)^{e_r} (x^2 + p_1 x + q_1)^{v_1} \dots (x^2 + p_s x + q_s)^{v_s}
+$$
+</p>
+
+<p>这里 $p_i^2 - 4q_i &lt; 0, \quad \forall \ 1 \le i \le s$</p>
+<hr>
+<h3 id="相关引理"><a href="#相关引理" class="headerlink" title="相关引理"></a>相关引理</h3><p><strong>引理 1</strong>：若 $c$是实系数多项式$f(x)$的复根，则$\bar{c}$也是$f(x)$ 的复根。取共轭便得到证明。</p>
+<p><strong>引理 2</strong>：$\mathbb{R}[x]$ 中首一不可约多项式只有：</p>
+<p>
+$$
+x - c \quad , \quad x^2 + ax + b
+$$
+</p>
+
+<p>（其中 $a, b, c \in \mathbb{R}$，且 $a^2 - 4b &lt; 0$）</p>
+<hr>
+<h3 id="引理-2-的证明"><a href="#引理-2-的证明" class="headerlink" title="引理 2 的证明"></a>引理 2 的证明</h3><p><strong>证</strong>：设 $p(x) \in \mathbb{R}[x]$ 是首一不可约多项式，$c$是$p(x)$ 的一个复根。</p>
+<ol>
+<li><p><strong>若 $c \in \mathbb{R}$</strong>：</p>
+<p> 则 $x - c$在$\mathbb{R}$上整除$p(x)$。</p>
+<p> 由于 $p(x)$不可约，于是$p(x) &#x3D; x - c$。</p>
+</li>
+<li><p><strong>若 $c \notin \mathbb{R}$</strong>：</p>
+<p> 则 $\bar{c} \neq c$也是$p(x)$ 的根（由引理 1）。</p>
+<p> 由此可知：</p>
+</li>
+</ol>
+<p>
+$$
+(x - c) \mid p(x), \quad (x - \bar{c}) \mid p(x)
+$$
+</p>
+
+<p>及 $(x - \bar{c}, x - c) &#x3D; (c - \bar{c}, x - c) &#x3D; 1$（互质），</p>
+<pre><code>知在 $\mathbb{C}$ 上：
+</code></pre>
+<p>
+$$
+(x - c)(x - \bar{c}) \mid p(x)
+$$
+</p>
+
+<p>又因为：</p>
+<p>
+$$
+(x - c)(x - \bar{c}) = x^2 - (c + \bar{c})x + c\bar{c} = x^2 + ax + b \in \mathbb{R}[x]
+$$
+</p>
+
+<p>故在 $\mathbb{R}$ 上也有：</p>
+<p>
+$$
+(x^2 + ax + b) \mid p(x)
+$$
+</p>
+
+<p>再由 $p(x)$在$\mathbb{R}$ 上首一不可约，知：</p>
+<p>
+$$
+p(x) = x^2 + ax + b, \quad a^2 - 4b < 0
+$$
+</p>
+
+<p>综合两个引理，实数域的分解不难得到。</p>
+<h2 id="本原多项式"><a href="#本原多项式" class="headerlink" title="本原多项式"></a>本原多项式</h2><h3 id="1-定义与性质"><a href="#1-定义与性质" class="headerlink" title="1. 定义与性质"></a>1. 定义与性质</h3><p><strong>本原多项式</strong>：若整系数多项式 $f(x)$各项系数的最大公因数为 1，则称$f(x)$ 是本原多项式。</p>
+<p><strong>示例</strong>：</p>
+<p>
+$$
+3x^5 + \frac{15}{4}x^2 + \frac{9}{2}x + \frac{45}{8} \in \mathbb{Q}[x]
+$$
+</p>
+
+<p>可以通过提取公因子化为：</p>
+<p>
+$$
+= \frac{3}{8}(8x^5 + 10x^2 + 12x + 15)
+$$
+</p>
+
+<p>其中括号内的部分即为本原多项式。</p>
+<hr>
+<h3 id="2-相关引理与定理"><a href="#2-相关引理与定理" class="headerlink" title="2. 相关引理与定理"></a>2. 相关引理与定理</h3><ul>
+<li><p><strong>引理</strong>：在 $\mathbb{Q}[x]$中，本原多项式$g(x), h(x)$<strong>相伴</strong>当且仅当$g(x) &#x3D; \pm h(x)$。</p>
+</li>
+<li><p><strong>定理</strong>：在 $\mathbb{Q}[x]$中，每个非零多项式$f(x)$ 都能唯一地写成：</p>
+</li>
+</ul>
+<p>
+$$
+f(x) = k \cdot g(x)
+$$
+</p>
+
+<p>其中 $k$ 是有理数，$g(x)$是本原多项式且首项系数$&gt; 0$。</p>
+<hr>
+<h3 id="3-Gauss-引理及其证明"><a href="#3-Gauss-引理及其证明" class="headerlink" title="3. Gauss 引理及其证明"></a>3. Gauss 引理及其证明</h3><p><strong>引理 (Gauss)</strong>：<strong>本原多项式的乘积仍是本原多项式。</strong></p>
+<p><strong>证</strong>：设 $f &#x3D; a_0 + a_1x + \dots + a_nx^n$，$g &#x3D; b_0 + b_1x + \dots + b_mx^m$。</p>
+<p>由于 $f, g$为本原多项式，即$(a_0, \dots, a_n) &#x3D; (b_0, \dots, b_m) &#x3D; 1$。</p>
+<p>我们要证明 $fg$ 系数的最大公因数仍是 1。</p>
+<p>若不然，存在素数 $p$整除$fg$ 的每个系数。</p>
+<p>设 $a_s, b_t$分别是$f, g$中<strong>不被$p$ 整除的最高次项</strong>系数：</p>
+<ul>
+<li><p>$f &#x3D; a_0 + \dots + a_s x^s + \dots + a_n x^n$（其中$a_{s+1} \dots a_n$是$p$ 的倍数）</p>
+</li>
+<li><p>$g &#x3D; b_0 + \dots + b_t x^t + \dots + b_m x^m$（其中$b_{t+1} \dots b_m$是$p$ 的倍数）</p>
+</li>
+</ul>
+<p>考察 $fg$的$x^{s+t}$ 项系数：</p>
+<p>在该项系数的组成中，$p$不整除$a_s b_t$，但 $p$整除其他所有项（如$a_{s+1}b_{t-1} + \dots$）。</p>
+<p>这导致 $p$不整除$x^{s+t}$ 项的系数，与“$p$整除$fg$ 每个系数”的假设矛盾！</p>
+<hr>
+<h3 id="4-mathbb-Q-x-与-mathbb-Z-x-的分解关系"><a href="#4-mathbb-Q-x-与-mathbb-Z-x-的分解关系" class="headerlink" title="4. $\mathbb{Q}[x]$与$\mathbb{Z}[x]$ 的分解关系"></a>4. $\mathbb{Q}[x]$与$\mathbb{Z}[x]$ 的分解关系</h3><p>在 $\mathbb{Q}[x]$ 中有多项式（不可约）分解：</p>
+<p>
+$$
+f(x) = g(x)h(x) \dots
+$$
+</p>
+
+<p>通过提取系数，这等价于在 $\mathbb{Z}[x]$ 中有本原多项式的本原（不可约）分解：</p>
+<p>
+$$
+f_1(x) = g_1(x)h_1(x) \dots
+$$
+</p>
+
+<blockquote>
+<p><strong>核心逻辑</strong>：在处理不可约性时，以下两种视角作认同处理即可。</p>
+</blockquote>
+<hr>
+<h3 id="5-推论"><a href="#5-推论" class="headerlink" title="5. 推论"></a>5. 推论</h3><h4 id="1"><a href="#1" class="headerlink" title="1"></a>1</h4><p>每个次数 $\ge 1$ 的本原多项式都能唯一地写成<strong>本原不可约多项式</strong>的乘积：</p>
+<p>
+$$
+f(x) = \pm g_1(x)^{e_1} g_2(x)^{e_2} \dots g_r(x)^{e_r}
+$$
+</p>
+
+<h4 id="2"><a href="#2" class="headerlink" title="2"></a>2</h4><p>若本原多项式 $g(x) &#x3D; b_m x^m + \dots + b_0$整除整系数多项式$f(x) &#x3D; a_n x^n + \dots + a_0 \in \mathbb{Z}[x]$，则有：</p>
+<p>
+$$
+b_m \mid a_n, \quad b_0 \mid a_0
+$$
+</p>
+
+<p><strong>推导思路</strong>：</p>
+<p>设 $f(x) &#x3D; g(x) \cdot q(x)$，由于 $g(x)$是本原多项式且$f(x) \in \mathbb{Z}[x]$，根据 Gauss 引理的推论，$q(x)$ 也必然是整系数多项式。</p>
+<p>设 $q(x) &#x3D; c_t x^t + \dots + c_0$，则有：</p>
+<p>
+$$
+(b_m x^m + \dots + b_0)(c_t x^t + \dots + c_0) = a_n x^n + \dots + a_0
+$$
+</p>
+
+<p>通过比较最高次项和常数项系数：</p>
+<ul>
+<li><p>最高次项：$a_n &#x3D; b_m \cdot c_t \implies b_m \mid a_n$</p>
+</li>
+<li><p>常数项：$a_0 &#x3D; b_0 \cdot c_0 \implies b_0 \mid a_0$</p>
+</li>
+</ul>
+<h4 id="3"><a href="#3" class="headerlink" title="3"></a>3</h4><p>若 $c&#x2F;d$（$c, d$ 互素）是整系数多项式</p>
+<p>
+$$
+f(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_0
+$$
+</p>
+
+<p>的有理根，即 $(dx - c) \mid f(x)$，则有：</p>
+<p>
+$$
+d \mid a_n, \quad c \mid a_0
+$$
+</p>
+
+<p><strong>核心结论</strong>：</p>
+<ul>
+<li><p><strong>分母 $d$</strong> 必须是最高次项系数 $a_n$ 的因子。</p>
+</li>
+<li><p><strong>分子 $c$</strong> 必须是常数项系数 $a_0$ 的因子。</p>
+</li>
+</ul>
+<p>这可以用来检验有理根，利用整除我们得到有限个可能的有理根，带进去尝试就行。</p>
+<hr>
+<h1 id="可约性的判定"><a href="#可约性的判定" class="headerlink" title="可约性的判定"></a>可约性的判定</h1><h2 id="Eisenstein-判别法-p-Eisenstein-多项式"><a href="#Eisenstein-判别法-p-Eisenstein-多项式" class="headerlink" title="Eisenstein 判别法 (p-Eisenstein 多项式)"></a>Eisenstein 判别法 (p-Eisenstein 多项式)</h2><h3 id="定义与定理"><a href="#定义与定理" class="headerlink" title="定义与定理"></a>定义与定理</h3><p>设 $p$ 是素数。若整系数多项式</p>
+<p>
+$$
+f(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0
+$$
+</p>
+
+<p>满足以下三个条件：</p>
+<ol>
+<li><p>$p \nmid a_n$（$p$ 不整除首项系数）</p>
+</li>
+<li><p>$p \mid a_i \quad (i &#x3D; 0, 1, \dots, n-1)$（$p$ 整除除首项外的所有系数）</p>
+</li>
+<li><p>$p^2 \nmid a_0$（$p^2$ 不整除常数项）</p>
+</li>
+</ol>
+<p>则 $f(x)$在$\mathbb{Q}[x]$ 中<strong>不可约</strong>。</p>
+<h3 id="证明思路（反证法）"><a href="#证明思路（反证法）" class="headerlink" title="证明思路（反证法）"></a>证明思路（反证法）</h3><h4 id="第一步：还原到整数环"><a href="#第一步：还原到整数环" class="headerlink" title="第一步：还原到整数环"></a>第一步：还原到整数环</h4><p>根据高斯引理，一个本原多项式在 $\mathbb{Q}[x]$上可约，当且仅当它在$\mathbb{Z}[x]$ 上可约。</p>
+<p>假设 $f(x)$ 竟然是可约的，那么可以设：</p>
+<p>
+$$
+f(x) = G(x)H(x)
+$$
+</p>
+
+<p>其中 $G(x) &#x3D; \sum_{i&#x3D;0}^s b_i x^i$，$H(x) &#x3D; \sum_{j&#x3D;0}^t c_j x^j$，且 $s, t \ge 1, s+t&#x3D;n$。</p>
+<h4 id="第二步：利用常数项锁定-p-的分布"><a href="#第二步：利用常数项锁定-p-的分布" class="headerlink" title="第二步：利用常数项锁定 $p$ 的分布"></a>第二步：利用常数项锁定 $p$ 的分布</h4><p>观察常数项：$a_0 &#x3D; b_0 c_0$。</p>
+<ul>
+<li><p>条件 (2) 说 $p \mid a_0$。</p>
+</li>
+<li><p>条件 (3) 说 $p^2 \nmid a_0$。</p>
+<p>  这意味着 $b_0$和$c_0$里面，<strong>有且仅有一个</strong>能被$p$整除。不妨设$p \mid b_0$且$p \nmid c_0$。</p>
+</li>
+</ul>
+<h4 id="第三步：得到矛盾"><a href="#第三步：得到矛盾" class="headerlink" title="第三步：得到矛盾"></a>第三步：得到矛盾</h4><p>接下来考虑 $a_1$的来源，不难发现正是$b_1c_0+b_0c_1$，于是利用上述我们得到$p \mid b_1$，那么依次地递推，我们就会推出$\forall i, p\mid b_i$，那么就得到$p\mid b_sc_t &#x3D;a_n$ ，与条件矛盾。</p>
+<p>因此，最初的分解假设不成立，$f(x)$ 不可约。</p>
+<hr>
+<h3 id="示例：分圆多项式-Phi-p-x-的不可约性证明"><a href="#示例：分圆多项式-Phi-p-x-的不可约性证明" class="headerlink" title="示例：分圆多项式 $\Phi_p(x)$ 的不可约性证明"></a>示例：分圆多项式 $\Phi_p(x)$ 的不可约性证明</h3><p>对于 $f(x) &#x3D; x^{p-1} + x^{p-2} + \dots + 1$，直接看系数全是 $1$，完全不符合 Eisenstein 的要求。所以我们需要做一个<strong>坐标平移</strong>。</p>
+<h4 id="核心技巧：令-x-y-1-我们构造一个新多项式-g-y-f-y-1-。平移的动机正是几何级数-等比数列-的形式。"><a href="#核心技巧：令-x-y-1-我们构造一个新多项式-g-y-f-y-1-。平移的动机正是几何级数-等比数列-的形式。" class="headerlink" title="核心技巧：令 $x &#x3D; y + 1$我们构造一个新多项式$g(y) &#x3D; f(y+1)$。平移的动机正是几何级数(等比数列)的形式。"></a>核心技巧：令 $x &#x3D; y + 1$我们构造一个新多项式$g(y) &#x3D; f(y+1)$。平移的动机正是几何级数(等比数列)的形式。</h4><p>利用几何级数求和公式：$f(x) &#x3D; \frac{x^p - 1}{x - 1}$，代入得：</p>
+<p>
+$$
+g(y) = \frac{(y+1)^p - 1}{(y+1) - 1} = \frac{(y+1)^p - 1}{y}
+$$
+</p>
+
+<h4 id="展开项分析"><a href="#展开项分析" class="headerlink" title="展开项分析"></a>展开项分析</h4><p>利用二项式定理展开 $(y+1)^p$：</p>
+<p>
+$$
+(y+1)^p = y^p + \binom{p}{1}y^{p-1} + \dots + \binom{p}{p-1}y + 1
+$$
+</p>
+
+<p>减去 $1$再除以$y$，得到：</p>
+<p>
+$$
+g(y) = y^{p-1} + \binom{p}{1}y^{p-2} + \binom{p}{2}y^{p-3} + \dots + \binom{p}{p-1}
+$$
+</p>
+
+<h4 id="验证条件"><a href="#验证条件" class="headerlink" title="验证条件"></a>验证条件</h4><p>现在对 $g(y)$使用 Eisenstein 判别法（针对素数$p$）：</p>
+<ol>
+<li><p><strong>首项系数</strong>：是 $1$，显然 $p \nmid 1$。</p>
+</li>
+<li><p><strong>中间项系数</strong>：即 $\binom{p}{k}$，$1 \le k &lt; p$。</p>
+<p> 根据组合数公式 $\binom{p}{k} &#x3D; \frac{p!}{k!(p-k)!}$，因为 $p$是素数且分母不含因子$p$，所以这些系数全部能被 $p$ 整除。</p>
+</li>
+<li><p><strong>常数项</strong>：是 $\binom{p}{p-1} &#x3D; p$。显然 $p \mid p$且$p^2 \nmid p$。</p>
+</li>
+</ol>
+<p><strong>结论</strong>：$g(y)$在$\mathbb{Q}$上不可约。因为平移变换不改变多项式的可约性，所以原多项式$f(x)$ 也不可约。</p>
+<h3 id="关于平移"><a href="#关于平移" class="headerlink" title="关于平移"></a>关于平移</h3><p>看上去确实非常神秘，但是知道技巧后也就是枯燥的运算，实际上也就是加减一观察着试试，或者结构特殊试试2,3什么的，实在不行再另寻他法吧（</p>
+<h2 id="通过取模判定可约性"><a href="#通过取模判定可约性" class="headerlink" title="通过取模判定可约性"></a>通过取模判定可约性</h2><p><strong>如果在更简单的世界里都无法分解，那么在复杂的世界里更不可能。</strong></p>
+<p><strong>判定定理：</strong></p>
+<p>设 $f(x) \in \mathbb{Z}[x]$，其首项系数不能被素数 $p$ 整除。</p>
+<p>如果在模 $p$的剩余类域$\mathbb{F}_p$上，取模后的多项式$\bar{f}(x)$是<strong>不可约</strong>的，且$\bar{f}(x)$的次数与$f(x)$相同，那么$f(x)$在$\mathbb{Q}[x]$ 上也一定<strong>不可约</strong>。</p>
+<blockquote>
+<p><strong>批判性评估：</strong></p>
+<ul>
+<li><p><strong>优势</strong>：在系数极大或 Eisenstein 失效时极其有效。模 $2$的世界只有$0$和$1$，因式分解变成了某种“拼图游戏”，计算量骤降。</p>
+</li>
+<li><p><strong>风险</strong>：这只是一个 <strong>单向门</strong> 。如果 $\bar{f}(x)$在模$p$下<strong>可约</strong>，你<strong>不能</strong>断定$f(x)$在$\mathbb{Q}$上可约。例如$x^2 + 1$在$\mathbb{F}_2$下是$(x+1)^2$，但在 $\mathbb{Q}$ 上显然不可约。</p>
+</li>
+</ul>
+</blockquote>
+<p>证明实际上很清晰，我们想逆否命题：若 $f$在$\mathbb{Z}$上<strong>可约</strong>$\implies$ $\bar{f}$在$\mathbb{F}_p$上<strong>可约</strong>（前提是取模后没掉次，即$p \nmid a_n$）。这很显然成立，把两边取模而已，所以逆否命题也相应成立，倒相当有用，我们也可以稍微形式化的写个证明：</p>
+<h3 id="核心证明"><a href="#核心证明" class="headerlink" title="核心证明"></a>核心证明</h3><p><strong>1. 准备工作：高斯引理的护航</strong></p>
+<p>同样，根据<strong>高斯引理</strong>，我们只需要证明 $f(x)$在$\mathbb{Z}[x]$ 上不可约即可。</p>
+<p>假设 $f(x)$在$\mathbb{Z}[x]$上是可约的，那么存在次数均大于$0$的整系数多项式$g(x), h(x)$，使得：</p>
+<p>
+$$
+f(x) = g(x)h(x)
+$$
+</p>
+
+<p>设 $\deg(g) &#x3D; r, \deg(h) &#x3D; s$，则 $r+s &#x3D; n$。</p>
+<p><strong>2. 投影到有限域</strong></p>
+<p>考虑模 $p$的同态映射$\phi: \mathbb{Z} \to \mathbb{F}_p$。这个映射可以自然诱导出一个多项式环之间的映射 $\bar{\phi}: \mathbb{Z}[x] \to \mathbb{F}_p[x]$。</p>
+<p>作用于等式两边：</p>
+<p>
+$$
+\bar{f}(x) = \bar{g}(x)\bar{h}(x)
+$$
+</p>
+
+<p><strong>3. 次数守恒的考察</strong></p>
+<p>观察等号左边：因为已知 $p \nmid a_n$，所以 $\bar{f}(x)$的首项系数$\bar{a}_n \neq 0$。这意味着：</p>
+<p>
+$$
+\deg(\bar{f}) = n
+$$
+</p>
+
+<p>观察等号右边：由于 $\deg(\bar{g}) \le r$且$\deg(\bar{h}) \le s$，而它们的乘积次数必须等于 $n$（即 $r+s$），这迫使：</p>
+<p>
+$$
+\deg(\bar{g}) = r > 0 \quad \text{且} \quad \deg(\bar{h}) = s > 0
+$$
+</p>
+
+<p><strong>4. 导出矛盾</strong></p>
+<p>我们发现 $\bar{f}(x)$在$\mathbb{F}_p[x]$中被分解成了两个次数较低的多项式$\bar{g}(x)$和$\bar{h}(x)$。</p>
+<p>这与定理的假设条件——<strong>“$\bar{f}(x)$在$\mathbb{F}_p[x]$ 上不可约”</strong>——直接冲突。</p>
+<p><strong>结论：</strong> 假设不成立，$f(x)$在$\mathbb{Z}[x]$上不可约，进而在$\mathbb{Q}[x]$ 上不可约。</p>
+<hr>
+<h3 id="2-实战演练：模-2-判定"><a href="#2-实战演练：模-2-判定" class="headerlink" title="2. 实战演练：模 2 判定"></a>2. 实战演练：模 2 判定</h3><p>假设我们要判定 $f(x) &#x3D; x^4 + x + 1$ 是否不可约。</p>
+<p>这个多项式不满足 Eisenstein（找不到合适的 $p$）。我们试着模 $2$：</p>
+<p>在 $\mathbb{F}_2[x]$ 中，$f(x)$的系数只有$0$和$1$。</p>
+<ol>
+<li><p><strong>检查一阶因子（根）</strong>：</p>
+<ul>
+<li><p>$\bar{f}(0) &#x3D; 1$-$\bar{f}(1) &#x3D; 1 + 1 + 1 &#x3D; 1$</p>
+<p>  没有根，说明没有一次因子。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>检查二阶因子</strong>：</p>
+<p> $\mathbb{F}_2[x]$上唯一的二阶不可约多项式是$x^2 + x + 1$。</p>
+<p> 我们算一下：$(x^2 + x + 1)^2 &#x3D; x^4 + x^2 + 1 \neq x^4 + x + 1$。</p>
+</li>
+</ol>
+<p>既然没有一次因子也没有二次因子，$\bar{f}(x)$在$\mathbb{F}_2$ 上不可约。</p>
+<p><strong>结论：</strong> $x^4 + x + 1$在$\mathbb{Q}$ 上绝对不可约。</p>
+<hr>
+<p>作为多项式环的最后一部分内容，我们梳理一下：<br>主线是：<br>带余除法$-&gt;$ $Bezout$定理 $-&gt;$ 因式分解<br>同时 $Bezout$定理也可以$-&gt;$ 中国剩余定理(CRT)</p>
+<p>在下一篇，一般一些的环论讨论中，也会延续这一套主线，大概框架如：<br>K[x] 是欧几里得整环</p>
+<p>存在 Euclid 算法</p>
+<p>Bezout</p>
+<p>PID</p>
+<p>UFD</p>
+<p>唯一分解</p>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

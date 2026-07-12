@@ -1,0 +1,528 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>概念题 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>概念题</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/5/6
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p><img src="/images/Pasted_image_20260429220616.png"><br>1.贝叶斯定理是</p>
+<p>
+$$
+P(A|B)=\frac{P(B|A)P(A)}{P(B)}
+$$
+</p>
+
+<p>说明后验概率可以由先验概率和似然得到。<br>最大似然估计 $MLE$即最大化似然，在已知观测数据$B$的情况下，寻找使似然函数$P(B|A)$最大化的参数$A^*$。<br>最大后验估计 $MAP$即最大化后验概率，即最大化$P(B|A)P(A)$ 。</p>
+<p>2 . $\mu&#x3D;\bar{x}，\sigma^2&#x3D;\frac{1}{n}\sum{(x-\bar{x})^2}$ </p>
+<p>3。输出值离散，连续。分别用于寻找决策边界，拟合映射函数。</p>
+<p>4。数据有无正确标签。分别用于学习映射关系，发现数据的结构。<br><img src="/images/Pasted_image_20260430135313.png"><br>5.特征数大于参数量时或 $A^TA$ 不可逆时无 closed form，反之可有。</p>
+<p>6.参数较小但一般非零，原因：正则化项为平方，对应超球，倾向离原点更近。<br>Lasso的解较稀疏，原因：正则化项为 $L_1$ 范数，在多维空间中具有菱形顶点，更倾向于贴向坐标轴。</p>
+<p>7.从model function看，Linear regression只用线性模型，而 Logistic regression 加上了 sigmoid 函数使得输出被压缩到0到1.<br>从Loss function看，Linear regression用Square loss，Logistic regression用Cross Entropy，以避免梯度消失。<br>从optimization solution看，都是反向传播梯度下降来优化参数。</p>
+<p>8.选取邻居的个数，以及距离度量方式。通过 Cross Validation 选择。<br><img src="/images/Pasted_image_20260430140544.png"><br>1.损失函数为度量模型输出和期望的输出间的函数，通过最小化损失函数我们可以得到想要的输出，损失函数提供了量化输出的方法。学习率是梯度下降中梯度的系数，通过调控学习率，使得梯度下降有适当的速率，同时避免震荡。</p>
+<p>2.线性回归的损失函数为 Square Loss ，也就是</p>
+<p>
+$$
+\mathcal{L}(\mathbf{W}, b) = \frac{1}{2} (\hat{y} - y)^2 = \frac{1}{2} (\mathbf{W}^\top \mathbf{x} + b - y)^2
+$$
+</p>
+
+<p>3.根据链式法则进行推导：</p>
+<p>对 $b$ 求偏导</p>
+<p>
+$$
+\frac{\partial \mathcal{L}}{\partial b} = (\mathbf{W}^\top \mathbf{x} + b - y) \cdot 1 = \hat{y} - y
+$$
+</p>
+
+<p>对 $\mathbf{W}$ 求偏导：</p>
+<p>
+$$
+\frac{\partial \mathcal{L}}{\partial \mathbf{W}} = (\mathbf{W}^\top \mathbf{x} + b - y) \cdot \mathbf{x} = (\hat{y} - y)\mathbf{x}
+$$
+</p>
+
+<ol start="4">
+<li></li>
+</ol>
+<p>
+$$
+\mathbf{W}_{n+1} = \mathbf{W}_n - [\nabla^2 \mathcal{L}(\mathbf{W}_n, b_n)]^{-1} \nabla \mathcal{L}(\mathbf{W}_n, b_n)
+$$
+</p>
+
+<p><img src="/images/Pasted_image_20260430141636.png"></p>
+<p>1.让函数变得非线性，从而可以处理更复杂的边界。</p>
+<p>2.带入 $h$整理就知道$\hat{y} &#x3D; (\mathbf{W}_2^\top \mathbf{W}_1^\top) \mathbf{x} + (\mathbf{W}_2^\top \mathbf{b}_1 + b_2)$ ，只是把矩阵稍作改换，仍然是线性模型的形式。</p>
+<p>3.线性层堆叠仍然线性，故为了处理更复杂的边界，需要引入非线性函数。</p>
+<p>4.sigmoid：类似S型曲线的函数，通常和 Logistic 函数 $\frac{1}{1+e^x}$混用。tanh即双曲函数。ReLU 为$max(0,x)$ 。</p>
+<p>5.对一个包含 $K$个类别的输出向量$\mathbf{z} &#x3D; [z_1, z_2, \dots, z_K]$，Softmax 的第 $i$ 个分量定义为：</p>
+<p>
+$$
+\text{softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^K e^{z_j}}
+$$
+</p>
+
+<p>6.使概率归一化，同时放大 logits 的差异，让模型更“自信”</p>
+<p><img src="/images/Pasted_image_20260430142228.png"></p>
+<p>1.$f(x) &#x3D; 0.5x + 1$，损失均为0</p>
+<ol start="2">
+<li></li>
+</ol>
+<p>
+$$
+\mathcal{L}(\mathbf{w}) = \frac{1}{2m} \sum_{i=1}^{m} (\mathbf{w}^\top \mathbf{x}_i - y_i)^2
+$$
+</p>
+
+<ol start="3">
+<li></li>
+</ol>
+<ul>
+<li><p>初始化 $\mathbf{w} &#x3D; (0, 0, 0, 0, 0)^\top$，学习率 $\eta &#x3D; 0.1$。</p>
+</li>
+<li><p>梯度更新公式：$\mathbf{w}^{(1)} &#x3D; \mathbf{w}^{(0)} - \eta \cdot \nabla_{\mathbf{w}} \mathcal{L}$。</p>
+</li>
+<li><p>梯度 $\nabla_{\mathbf{w}} \mathcal{L} &#x3D; \frac{1}{n} \sum_{i&#x3D;1}^{n} (\hat{y}_i - y_i) \mathbf{x}_i$。</p>
+</li>
+</ul>
+<p><strong>计算过程</strong>：</p>
+<ol>
+<li><p>初始预测值 $\hat{y}_i &#x3D; \mathbf{0}^\top \mathbf{x}_i &#x3D; 0$。</p>
+</li>
+<li><p>误差 $(\hat{y}_i - y_i)$ 分别为：$-1, -1.5, -2, -2.5$。</p>
+</li>
+<li><p>样本向量 $\mathbf{x}$ 分别为：$(1,0,0,0,0)^\top, (1,1,1,1,1)^\top, (1,2,4,8,16)^\top, (1,3,9,27,81)^\top$。</p>
+</li>
+<li><p>平均梯度 $\nabla_{\mathbf{w}} \mathcal{L} &#x3D; \frac{1}{4} [(-1)\mathbf{x}_1 + (-1.5)\mathbf{x}_2 + (-2)\mathbf{x}_3 + (-2.5)\mathbf{x}_4] &#x3D; (-1.75, -2.25, -6.625, -20.875, -53.625)^\top$。</p>
+</li>
+<li><p>更新：$\mathbf{w}^{(1)} &#x3D; \mathbf{0} - 0.1 \cdot \nabla_{\mathbf{w}} \mathcal{L} &#x3D; \mathbf{[0.175, 0.225, 0.6625, 2.0875, 5.3625]^\top}$。</p>
+</li>
+<li></li>
+</ol>
+<p>训练集损失计算：</p>
+<p>根据模型 $\hat{y} &#x3D; w_0 + w_1x + w_2x^2 + w_3x^3 + w_4x^4$，代入各训练点：</p>
+<ul>
+<li><p><strong>$x&#x3D;0$</strong>: $\hat{y} &#x3D; 1.0$</p>
+</li>
+<li><p><strong>$x&#x3D;1$</strong>: $\hat{y} \approx 1.0 \times 10^5$</p>
+</li>
+<li><p><strong>$x&#x3D;2$</strong>: $\hat{y} \approx 5.0 \times 10^5$</p>
+</li>
+<li><p><strong>$x&#x3D;3$</strong>: $\hat{y} \approx 1.5 \times 10^6$</p>
+</li>
+</ul>
+<p>训练集均方误差 ：</p>
+<p>
+$$
+MSE_{train} \approx 6.27 \times 10^{11}
+$$
+</p>
+
+<p>测试集损失计算：</p>
+<p>对于测试点 $x&#x3D;4, y&#x3D;3$：</p>
+<ul>
+<li><strong>预测值 $\hat{y}$</strong>:</li>
+</ul>
+<p>
+$$
+\hat{y} = 1.0 + 24998.75(4) + 45831.96(16) + 24999.25(64) + 4166.54(256)
+$$
+</p>
+
+<p>
+$$
+\hat{y} \approx 3,499,893.6
+$$
+</p>
+
+<ul>
+<li>测试集均方误差：</li>
+</ul>
+<p>
+$$
+MSE_{test} = (3499893.6 - 3)^2 \approx 1.22 \times 10^{13}
+$$
+</p>
+
+<ol start="5">
+<li></li>
+</ol>
+<p>现象：梯度爆炸。</p>
+<p>原因：</p>
+<ol>
+<li><p>模型复杂度过高：使用了 4 次多项式模型。</p>
+</li>
+<li><p>学习率过大。</p>
+</li>
+<li><p>初始化不当。</p>
+</li>
+<li></li>
+</ol>
+<ul>
+<li><p><strong>定义</strong>：</p>
+<ul>
+<li><p><strong>L1 正则化 (Lasso)</strong>：在损失函数后加上权重绝对值之和 $\lambda |\mathbf{w}|_1$。</p>
+</li>
+<li><p><strong>L2 正则化 (Ridge)</strong>：在损失函数后加上权重平方和的一半 $\frac{\lambda}{2} |\mathbf{w}|_2^2$。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>分析</strong>：</p>
+<ul>
+<li><p><strong>修改损失函数？</strong> 是。增加了惩罚项。</p>
+</li>
+<li><p><strong>修改网络结构？</strong> 否。网络层数和神经元数量保持不变。</p>
+</li>
+<li><p><strong>改变参数更新过程？</strong> 是。在梯度下降中，梯度会包含正则项的导数（如 L2 会引入Weight Decay）。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="7">
+<li></li>
+<li><p>Data Augmentation：获取更多样化的训练样本。</p>
+</li>
+<li><p>早停法：在验证集损失上升前停止训练。</p>
+</li>
+<li><p>Dropout：在神经网络中随机使部分神经元失活。</p>
+</li>
+<li><p>简化模型：降低多项式的次数（例如改用线性回归）。</p>
+</li>
+</ol>
+<p><img src="/images/Pasted_image_20260514101027.png"></p>
+<p>1.感受野是指在 CNN 中，每一层输出的特征图上的一个像素点在原始输入图像上对应的区域大小。</p>
+<p>计算公式如下：</p>
+<p>$RF_{i} &#x3D; RF_{i-1} + (k_i - 1) \cdot \prod_{j&#x3D;1}^{i-1} s_j$</p>
+<p>其中：</p>
+<ul>
+<li><p>$RF_i$是第$i$ 层的感受野。</p>
+</li>
+<li><p>$RF_{i-1}$是前一层的感受野（输入层的$RF_0 &#x3D; 1$）。</p>
+</li>
+<li><p>$k_i$是第$i$ 层的卷积核（或池化核）大小。</p>
+</li>
+<li><p>$s_j$是第$j$ 层的步长。</p>
+</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>不同点</th>
+<th><strong>相同点</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>R-CNN</strong></td>
+<td>原始版本。对 候选区域分别进行卷积计算，速度极慢，占用空间大。</td>
+<td>1. 都是二阶段方法。</td>
+</tr>
+<tr>
+<td><strong>SPP Net</strong></td>
+<td>引入空间金字塔池化。全图只进行一次卷积，在特征图上提取候选区域，解决了输入尺寸必须固定的问题。</td>
+<td>2. 都依赖候选区域生成算法（如 Selective Search）。</td>
+</tr>
+<tr>
+<td><strong>Fast R-CNN</strong></td>
+<td>将分类与边界框回归整合进一个网络。引入 RoI Pooling，大大提升了训练速度。</td>
+<td>3. 最后都包含分类头和回归头。</td>
+</tr>
+<tr>
+<td><strong>Faster R-CNN</strong></td>
+<td>提出 RPN。用神经网络取代了速度慢的传统算法，实现了真正意义上的端到端训练。</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li></li>
+</ol>
+<p>相同点</p>
+<ul>
+<li><p>循环结构：两者都用于处理序列数据（如文本、音频、时间序列）。</p>
+</li>
+<li><p>状态传递：都利用隐藏状态来传递过去时间步的信息。</p>
+</li>
+</ul>
+<p>不同点</p>
+<ul>
+<li><p>结构复杂度：</p>
+<ul>
+<li><p><strong>RNN</strong>：结构非常简单，只有一个单一的 $tanh$ 层进行循环。</p>
+</li>
+<li><p><strong>LSTM</strong>：结构复杂，引入了 <strong>门控机制</strong>，包含输入门、遗忘门、输出门以及细胞状态。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>LSTM 的优势</p>
+<ol>
+<li><p><strong>解决长程依赖问题</strong>：RNN 在处理长序列时容易出现 <strong>梯度消失</strong> 或 <strong>梯度爆炸</strong>。LSTM 通过细胞状态的长线传输，能有效保留远距离的信息。</p>
+</li>
+<li><p><strong>记忆管理</strong>：</p>
+<ul>
+<li><p><strong>遗忘门</strong>：决定丢弃哪些无关信息。</p>
+</li>
+<li><p><strong>输入门</strong>：决定存入哪些新信息。</p>
+</li>
+<li><p><strong>输出门</strong>：决定当前输出哪些信息。</p>
+</li>
+</ul>
+</li>
+</ol>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

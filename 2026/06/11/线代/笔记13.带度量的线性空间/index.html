@@ -1,0 +1,1110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>笔记13.带度量的线性空间 | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>笔记13.带度量的线性空间</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/6/11
+        </span>
+        
+        <span class="category">
+            <a href="/categories/%E7%BA%BF%E4%BB%A3/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                线代
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E6%95%B0%E5%AD%A6/" style="color: #ff7d73">
+                    数学
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="第十章-带度量的线性空间"><a href="#第十章-带度量的线性空间" class="headerlink" title="第十章 带度量的线性空间"></a>第十章 带度量的线性空间</h1><blockquote>
+<p>来源：线代 A II 讲义，第 203–357 页</p>
+</blockquote>
+<blockquote>
+<p>整理者注：本章是整门线代课程中<strong>理论深度最大、应用最广</strong>的一章。它把前面学过的内积、正交、对称变换等概念推广到复数域，并由此引出酉矩阵、Hermite 矩阵、正规矩阵对角化等一系列核心结论。学完这一章，你对”矩阵的本质”会有质的飞跃。</p>
+</blockquote>
+<hr>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><p><a href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%8E%A8%E5%B9%BF%E5%88%B0%E5%A4%8D%E7%A9%BA%E9%97%B4--%E5%8A%A8%E6%9C%BA%E4%B8%8E%E7%9B%B4%E8%A7%89">为什么要推广到复空间？——动机与直觉</a></p>
+</li>
+<li><p><a href="#2-%E5%85%B1%E8%BD%AD%E5%8F%8C%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E4%B8%8E%E5%BA%A6%E9%87%8F%E7%9F%A9%E9%98%B5">共轭双线性函数与度量矩阵</a></p>
+</li>
+<li><p><a href="#3-hermite-%E5%86%85%E7%A7%AF%E4%B8%8E-hermite-%E6%AD%A3%E5%AE%9A%E7%9F%A9%E9%98%B5">Hermite 内积与 Hermite 正定矩阵</a></p>
+</li>
+<li><p><a href="#4-cholesky-%E5%88%86%E8%A7%A3%E6%AD%A3%E5%AE%9A%E7%9F%A9%E9%98%B5%E7%9A%84%E5%BC%80%E6%96%B9">Cholesky 分解：正定矩阵的”开方”</a></p>
+</li>
+<li><p><a href="#5-%E9%85%89%E7%A9%BA%E9%97%B4%E5%A4%8D%E7%89%88%E6%AC%A7%E6%B0%8F%E7%A9%BA%E9%97%B4">酉空间：复版欧氏空间</a></p>
+</li>
+<li><p><a href="#6-%E9%85%89%E7%9F%A9%E9%98%B5%E4%B8%8E-%E9%85%89%E7%BE%A4">酉矩阵与酉群</a></p>
+</li>
+<li><p><a href="#7-fourier-%E7%9F%A9%E9%98%B5%E4%B8%8E%E5%BF%AB%E9%80%9F%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2-fft">Fourier 矩阵与快速傅里叶变换 FFT</a></p>
+</li>
+<li><p><a href="#8-%E9%85%89%E5%8F%98%E6%8D%A2%E4%B8%8E-hermite-%E5%8F%98%E6%8D%A2">酉变换与 Hermite 变换</a></p>
+</li>
+<li><p><a href="#9-%E5%85%B1%E8%BD%AD%E5%8F%98%E6%8D%A2%E4%BC%B4%E9%9A%8F%E7%AE%97%E5%AD%90%E7%9A%84%E5%A4%8D%E6%95%B0%E7%89%88">共轭变换：伴随算子的复数版</a></p>
+</li>
+<li><p><a href="#10-%E6%AD%A3%E8%A7%84%E5%8F%98%E6%8D%A2%E4%B8%8E%E6%AD%A3%E8%A7%84%E7%9F%A9%E9%98%B5%E7%9A%84%E8%B0%B1%E5%88%86%E8%A7%A3-%E6%A0%B8%E5%BF%83%E5%AE%9A%E7%90%86">正规变换与正规矩阵的谱分解 ★核心定理★</a></p>
+</li>
+<li><p><a href="#11-%E6%AD%A3%E4%BA%A4%E7%A9%BA%E9%97%B4%E4%B8%8E%E8%BE%9B%E7%A9%BA%E9%97%B4%E6%9B%B4%E4%B8%80%E8%88%AC%E7%9A%84%E5%BA%A6%E9%87%8F%E7%BB%93%E6%9E%84">正交空间与辛空间：更一般的度量结构</a></p>
+</li>
+<li><p><a href="#12-%E6%AD%A3%E4%BA%A4%E6%8A%95%E5%BD%B1%E4%BB%8E%E7%90%86%E8%AE%BA%E5%88%B0%E8%AE%A1%E7%AE%97">正交投影：从理论到计算</a></p>
+</li>
+<li><p><a href="#13-perron-frobenius-%E5%AE%9A%E7%90%86%E9%9D%9E%E8%B4%9F%E7%9F%A9%E9%98%B5%E7%9A%84%E7%81%B5%E9%AD%82">Perron-Frobenius 定理：非负矩阵的灵魂</a></p>
+</li>
+<li><p><a href="#14-%E7%9F%A9%E9%98%B5%E8%8C%83%E6%95%B0%E4%B8%8E%E7%89%B9%E5%BE%81%E5%80%BC%E4%BC%B0%E8%AE%A1">矩阵范数与特征值估计</a></p>
+</li>
+<li><p><a href="#15-penrose-%E5%B9%BF%E4%B9%89%E9%80%86%E4%B8%8E-svd">Penrose 广义逆与 SVD</a></p>
+</li>
+<li><p><a href="#16-cauchy-interlacing-%E4%B8%8E-courant-fischer-min-max-%E5%AE%9A%E7%90%86-%E7%A0%94%E7%A9%B6%E7%BA%A7%E5%B7%A5%E5%85%B7">Cauchy Interlacing 与 Courant-Fischer Min-Max 定理 ★研究级工具★</a></p>
+</li>
+<li><p><a href="#17-%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BArodrigues-%E5%85%AC%E5%BC%8F">三维旋转的矩阵表示：Rodrigues 公式</a></p>
+</li>
+<li><p><a href="#18-%E7%BB%BC%E5%90%88%E4%B9%A0%E9%A2%98%E9%80%89%E7%BC%96">综合习题选编</a></p>
+</li>
+</ol>
+<hr>
+<h2 id="1-为什么要推广到复空间？——动机与直觉"><a href="#1-为什么要推广到复空间？——动机与直觉" class="headerlink" title="1. 为什么要推广到复空间？——动机与直觉"></a>1. 为什么要推广到复空间？——动机与直觉</h2><h3 id="1-1-一个看似简单的问题"><a href="#1-1-一个看似简单的问题" class="headerlink" title="1.1 一个看似简单的问题"></a>1.1 一个看似简单的问题</h3><p>同学们，在上一章我们学了欧氏空间——配上内积的实线性空间。内积给了我们长度、角度、正交这些几何概念，一切都很美好。</p>
+<p>但现在我们进入复数域了。自然的问题是：<strong>在复线性空间上，如何定义向量的长度？</strong></p>
+<p>最直接的想法是：照搬实空间的公式呗。对 $\mathbf{z} &#x3D; (z_1, \dots, z_n)^T \in \mathbb{C}^n$，定义 $||\mathbf{z}||^2 &#x3D; z_1^2 + z_2^2 + \cdots + z_n^2$。</p>
+<p><strong>但这立刻出问题了。</strong> 考虑向量 $\begin{bmatrix} 1 \ i \end{bmatrix}$，它的”长度平方”是 $1^2 + i^2 &#x3D; 1 - 1 &#x3D; 0$。一个非零向量的长度是 0？这完全违背了长度的基本直觉。</p>
+<h3 id="1-2-正确的方向"><a href="#1-2-正确的方向" class="headerlink" title="1.2 正确的方向"></a>1.2 正确的方向</h3><p>问题出在哪？出在我们忘了复数的”模”是怎么定义的。一个复数 $z$的模平方是$|z|^2 &#x3D; z\bar{z}$，<strong>不是</strong> $z^2$。</p>
+<p>所以复向量的长度应该定义为：</p>
+<p>
+$$
+||\mathbf{z}||^2 = z_1\bar{z}_1 + z_2\bar{z}_2 + \cdots + z_n\bar{z}_n = \mathbf{z}^T\bar{\mathbf{z}}
+$$
+</p>
+
+<blockquote>
+<p><strong>老师点评</strong>：这一步看似 trivial，但它是整章的起点。从这里出发，我们会发现复空间上的”内积”不能是双线性的，而必须是<strong>共轭双线性</strong>的（sesquilinear）。这是复分析与量子力学中内积的标准形式，理解这一点对你后续学量子力学非常有帮助——量子态的内积 $\langle\psi|\phi\rangle$ 就是共轭双线性的。</p>
+</blockquote>
+<hr>
+<h2 id="2-共轭双线性函数与度量矩阵"><a href="#2-共轭双线性函数与度量矩阵" class="headerlink" title="2. 共轭双线性函数与度量矩阵"></a>2. 共轭双线性函数与度量矩阵</h2><h3 id="2-1-定义"><a href="#2-1-定义" class="headerlink" title="2.1 定义"></a>2.1 定义</h3><p><strong>定义（共轭双线性函数）</strong>：在复线性空间 $V$上，二元函数$f(\alpha, \beta)$ 称为<strong>共轭双线性函数</strong>，若满足：</p>
+<p>
+$$
+\begin{aligned}
+
+<p>f(k\alpha + l\beta, \gamma) &amp;&#x3D; k f(\alpha, \gamma) + l f(\beta, \gamma) &amp;\quad &amp;\text{（对第一个变量线性）} \</p>
+<p>f(\gamma, k\alpha + l\beta) &amp;&#x3D; \bar{k} f(\gamma, \alpha) + \bar{l} f(\gamma, \beta) &amp;\quad &amp;\text{（对第二个变量共轭线性）}</p>
+<p>\end{aligned}<br>$$</p>
+</p>
+
+<p>对任意 $k, l \in \mathbb{C}$。</p>
+<blockquote>
+<p><strong>注意</strong>：这里有一个约定问题。数学界和物理界对”哪个变量共轭线性”有相反的约定。数学通常让第二个变量共轭线性（如上），物理（Dirac 记号）通常让第一个变量共轭线性。两种约定本质等价，但混用会出符号错误，务必保持一致。</p>
+</blockquote>
+<h3 id="2-2-度量矩阵：坐标化"><a href="#2-2-度量矩阵：坐标化" class="headerlink" title="2.2 度量矩阵：坐标化"></a>2.2 度量矩阵：坐标化</h3><p>和上一章对称双线性函数完全类似，选定基之后，共轭双线性函数也可以用矩阵来表示。</p>
+<p>设 $\alpha, \beta$在基$\alpha_1, \dots, \alpha_n$下的坐标为$X &#x3D; (x_1, \dots, x_n)^T$，$Y &#x3D; (y_1, \dots, y_n)^T$。利用共轭双线性逐次展开：</p>
+<p>
+$$
+\begin{aligned}
+
+<p>f(\alpha, \beta) &amp;&#x3D; f\left(\sum_i x_i \alpha_i,\ \sum_j y_j \alpha_j\right) \</p>
+<p>&amp;&#x3D; \sum_{i&#x3D;1}^n \sum_{j&#x3D;1}^n x_i \bar{y}_j \cdot f(\alpha_i, \alpha_j) \</p>
+<p>&amp;&#x3D; X^T A \bar{Y}</p>
+<p>\end{aligned}<br>$$</p>
+</p>
+
+<p>其中 $A &#x3D; [f(\alpha_i, \alpha_j)]_{n \times n}$称为$f$ 在该基下的<strong>度量矩阵</strong>。</p>
+<blockquote>
+<p><strong>老师讲解</strong>：注意这里的公式是 $X^T A \bar{Y}$，不是上一章的 $X^T A Y$。差别就在 $\bar{Y}$ 上——因为第二个变量是共轭线性的，所以坐标要取共轭。这个细节在后续推导中反复出现，一定要养成条件反射。</p>
+</blockquote>
+<p><strong>结论</strong>：固定基底后，共轭双线性函数与复矩阵（度量矩阵）一一对应。</p>
+<h3 id="2-3-基变换公式"><a href="#2-3-基变换公式" class="headerlink" title="2.3 基变换公式"></a>2.3 基变换公式</h3><p><strong>定理</strong>：若 $f$在基底$\alpha_1, \dots, \alpha_n$下的度量矩阵为$A$，新基底 $(\beta_1, \dots, \beta_n) &#x3D; (\alpha_1, \dots, \alpha_n)P$，则 $f$ 在新基下的度量矩阵为：</p>
+<p>
+$$
+P^T A \bar{P}
+$$
+</p>
+
+<p><strong>证明</strong>：设向量在 ${\beta}$基下的坐标为$X_i, Y_i$，则在 ${\alpha}$基下的坐标为$PX_i, PY_i$。于是：</p>
+<p>
+$$
+f(\cdot, \cdot) = (PX_i)^T A \overline{(PY_i)} = X_i^T (P^T A \bar{P}) \bar{Y}_i
+$$
+</p>
+
+<p>故新度量矩阵为 $P^T A \bar{P}$。 $\square$&gt; <strong>对比</strong>：上一章实对称双线性函数的基变换公式是$P^T A P$。这里变成了 $P^T A \bar{P}$，多了一个共轭。如果 $P$ 恰好是实矩阵，两个公式就一样了。</p>
+<hr>
+<h2 id="3-Hermite-内积与-Hermite-正定矩阵"><a href="#3-Hermite-内积与-Hermite-正定矩阵" class="headerlink" title="3. Hermite 内积与 Hermite 正定矩阵"></a>3. Hermite 内积与 Hermite 正定矩阵</h2><h3 id="3-1-从共轭双线性到内积"><a href="#3-1-从共轭双线性到内积" class="headerlink" title="3.1 从共轭双线性到内积"></a>3.1 从共轭双线性到内积</h3><p>并不是所有共轭双线性函数都能当”内积”用。我们需要两个额外条件：</p>
+<p><strong>定义（Hermite 内积）</strong>：若共轭双线性函数 $(\cdot, \cdot)$ 满足：</p>
+<ol>
+<li><p><strong>共轭对称</strong>：$(\alpha, \beta) &#x3D; \overline{(\beta, \alpha)}$，$\forall \alpha, \beta$</p>
+</li>
+<li><p><strong>正定</strong>：$(\alpha, \alpha) &gt; 0$，$\forall \alpha \neq 0$则称$(\cdot, \cdot)$ 为<strong>复（Hermite）内积</strong>。</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>老师点评</strong>：条件 1 看起来有点奇怪——为什么不要求 $(\alpha, \beta) &#x3D; (\beta, \alpha)$？因为如果是共轭双线性的，强求对称性会导致 $(\alpha, \alpha)$未必是实数，那就没法定义长度了。共轭对称性恰好保证了$(\alpha, \alpha) &#x3D; \overline{(\alpha, \alpha)}$，即 $(\alpha, \alpha)$ 是实数，再配合正定性，$||\alpha|| &#x3D; \sqrt{(\alpha, \alpha)}$ 就有意义了。</p>
+</blockquote>
+<h3 id="3-2-Hermite-矩阵"><a href="#3-2-Hermite-矩阵" class="headerlink" title="3.2 Hermite 矩阵"></a>3.2 Hermite 矩阵</h3><p><strong>定义</strong>：复矩阵 $A$称为 <strong>Hermite 矩阵</strong>，若$A^H :&#x3D; \bar{A}^T &#x3D; A$（即 $a_{ij} &#x3D; \bar{a}_{ji}$）。</p>
+<p>若 Hermite 矩阵 $A$还满足$\bar{X}^T A X &gt; 0$对所有$X \neq 0$，则称 $A$ 为<strong>Hermite 正定矩阵</strong>。</p>
+<blockquote>
+<p><strong>老师讲解</strong>：Hermite 矩阵就是实对称矩阵在复数域的自然推广。实对称矩阵满足 $A^T &#x3D; A$，Hermite 矩阵满足 $A^H &#x3D; A$。当你把”转置”换成”共轭转置”，实对称理论中绝大多数结论都可以原封不动地推广过来。这是本章最重要的<strong>思维模式</strong>。</p>
+</blockquote>
+<h3 id="3-3-Hermite-记号"><a href="#3-3-Hermite-记号" class="headerlink" title="3.3 Hermite 记号"></a>3.3 Hermite 记号</h3><p>引入记号 $A^H :&#x3D; \bar{A}^T$（共轭转置，也叫 Hermite 转置）。基本性质：</p>
+<ul>
+<li>$(A^H)^H &#x3D; A$-$(AB)^H &#x3D; B^H A^H$（<strong>注意顺序反转</strong>，和$(AB)^T &#x3D; B^T A^T$ 同理）</li>
+</ul>
+<h3 id="3-4-内积-iff-正定矩阵"><a href="#3-4-内积-iff-正定矩阵" class="headerlink" title="3.4 内积 $\iff$ 正定矩阵"></a>3.4 内积 $\iff$ 正定矩阵</h3><p><strong>命题</strong>：共轭双线性函数 $f$是复内积$\iff$ $f$在任意基下的度量矩阵$A$ 是 Hermite 正定矩阵。</p>
+<p><strong>证明</strong>：设 $\alpha, \beta$的坐标为$X, Y$。</p>
+<p><strong>共轭对称 $\iff$ Hermite</strong>：</p>
+<p>
+$$
+(\alpha, \beta) = \overline{(\beta, \alpha)} \iff X^T A \bar{Y} = \overline{Y^T A \bar{X}} = \bar{Y}^T \bar{A} X = X^T \bar{A}^T \bar{Y} \iff A = \bar{A}^T = A^H
+$$
+</p>
+
+<p><strong>正定性</strong>：$(\alpha, \alpha) &gt; 0 \iff \bar{X}^T A X &gt; 0$对所有$X \neq 0$。 $\square$</p>
+<blockquote>
+<p><strong>老师点评</strong>：这个等价性极其重要。它意味着：<strong>研究复内积的问题，可以完全转化为研究 Hermite 正定矩阵的问题</strong>。矩阵工具有什么，我们就用什么。这是”坐标化”思维的威力。</p>
+</blockquote>
+<hr>
+<h2 id="4-Cholesky-分解：正定矩阵的”开方”"><a href="#4-Cholesky-分解：正定矩阵的”开方”" class="headerlink" title="4. Cholesky 分解：正定矩阵的”开方”"></a>4. Cholesky 分解：正定矩阵的”开方”</h2><h3 id="4-1-Hermite-正定矩阵的等价刻画"><a href="#4-1-Hermite-正定矩阵的等价刻画" class="headerlink" title="4.1 Hermite 正定矩阵的等价刻画"></a>4.1 Hermite 正定矩阵的等价刻画</h3><p><strong>定理</strong>：设 $A$ 是 Hermite 矩阵，则以下等价：</p>
+<ol>
+<li><p>$A$ 复正定（$\bar{X}^T A X &gt; 0$对所有$X \neq 0$）</p>
+</li>
+<li><p>$A$的特征值都$&gt; 0$3.$A &#x3D; P^T \bar{P}$，其中 $P$ 是上三角可逆复矩阵</p>
+</li>
+<li><p>$A$的顺序主子式都$&gt; 0$&gt; <strong>老师讲解</strong>：这四个条件在实对称正定矩阵中我们已经见过。复的情形证明思路完全一样，只是把转置$T$换成共轭转置$H$。条件 (2) 让你用特征值判断正定性；条件 (3) 是 Cholesky 分解，有计算意义；条件 (4) 是 Sylvester 准则，只检查主子式就行，不用求特征值。</p>
+</li>
+</ol>
+<h3 id="4-2-Cholesky-分解"><a href="#4-2-Cholesky-分解" class="headerlink" title="4.2 Cholesky 分解"></a>4.2 Cholesky 分解</h3><p><strong>定理（Cholesky 分解）</strong>：</p>
+<p>
+$$
+A \text{ 是复正定矩阵} \iff A = P^T \bar{P}
+$$
+</p>
+
+<p>其中 $P$是对角元都$&gt; 0$ 的上三角矩阵。</p>
+<h3 id="4-3-构造性证明"><a href="#4-3-构造性证明" class="headerlink" title="4.3 构造性证明"></a>4.3 构造性证明</h3><p><strong>动机</strong>：我们要把 $A$合同变换为单位矩阵。方法是<strong>共轭成对的行列变换</strong>——即同时做第$i$行和第$i$列的相同初等变换。这相当于右乘上三角矩阵$P$再左乘$P^T$。</p>
+<p>以 $4 \times 4$ 为例，$A$的顺序主子式都$&gt; 0$：</p>
+<ul>
+<li>$|A_1| &#x3D; a_{11} &gt; 0$-$b_{22} &#x3D; |A_2|&#x2F;|A_1| &gt; 0$-$c_{33} &#x3D; |A_3|&#x2F;|A_2| &gt; 0$-$d_{44} &#x3D; |A_4|&#x2F;|A_3| &gt; 0$</li>
+</ul>
+<p>通过成对高斯消去，$A$逐步化为对角矩阵$\mathrm{diag}(a_{11}, b_{22}, c_{33}, d_{44})$，再对每个对角元开方归一化，最终得到 $P^T \bar{P} &#x3D; A$。</p>
+<blockquote>
+<p><strong>老师点评</strong>：Cholesky 分解在数值计算中<strong>极其重要</strong>。求解正定线性方程组 $Ax &#x3D; b$时，用 Cholesky 分解$A &#x3D; P^T \bar{P}$，然后先后解 $\bar{P}y &#x3D; b$和$P^T x &#x3D; y$（两次回代），比 Gauss 消元快一倍且数值稳定性更好。金融工程中的 Monte Carlo 模拟、机器学习中的高斯过程，都大量用到 Cholesky 分解。</p>
+</blockquote>
+<hr>
+<h2 id="5-酉空间：复版欧氏空间"><a href="#5-酉空间：复版欧氏空间" class="headerlink" title="5. 酉空间：复版欧氏空间"></a>5. 酉空间：复版欧氏空间</h2><h3 id="5-1-定义"><a href="#5-1-定义" class="headerlink" title="5.1 定义"></a>5.1 定义</h3><p><strong>定义</strong>：配有 Hermite 内积的复线性空间称为<strong>酉空间</strong>（Unitary space）。</p>
+<p>在酉空间中：</p>
+<ul>
+<li><p>长度：$||\alpha|| :&#x3D; \sqrt{(\alpha, \alpha)}$</p>
+</li>
+<li><p>正交：$\alpha \perp \beta \iff (\alpha, \beta) &#x3D; 0$</p>
+</li>
+<li><p>距离：$d(\alpha, \beta) :&#x3D; ||\alpha - \beta||$</p>
+</li>
+</ul>
+<h3 id="5-2-Cauchy-Schwarz-不等式"><a href="#5-2-Cauchy-Schwarz-不等式" class="headerlink" title="5.2 Cauchy-Schwarz 不等式"></a>5.2 Cauchy-Schwarz 不等式</h3><p>这是整个度量理论的基石。</p>
+<p><strong>定理</strong>：$||\alpha|| \cdot ||\beta|| \geq |(\alpha, \beta)|$，等号成立 $\iff \alpha, \beta$ 共线。</p>
+<p><strong>证明</strong>：设 $\beta \neq 0$。由正定性，对任意复数 $t$：</p>
+<p>
+$$
+(\alpha - t\beta, \alpha - t\beta) \geq 0
+$$
+</p>
+
+<p>展开（注意共轭线性）：</p>
+<p>
+$$
+(\alpha, \alpha) - t(\alpha, \beta) - \bar{t}(\beta, \alpha) + t\bar{t}(\beta, \beta) \geq 0
+$$
+</p>
+
+<p><strong>关键步骤</strong>：取 $t &#x3D; \dfrac{(\alpha, \beta)}{(\beta, \beta)}$。为什么取这个？因为这是让上式取最小值的 $t$（类比二次函数顶点）。代入得：</p>
+<p>
+$$
+(\alpha, \alpha)(\beta, \beta) - |(\alpha, \beta)|^2 \geq 0
+$$
+</p>
+
+<p>即 $||\alpha|| \cdot ||\beta|| \geq |(\alpha, \beta)|$。 $\square$&gt; <strong>老师讲解</strong>：注意和实空间的区别——右边是$|(\alpha, \beta)|$（绝对值），不是 $|(\alpha, \beta)|$的绝对值，因为$(\alpha, \beta)$本身可能是复数。等号成立当且仅当$\alpha &#x3D; t\beta$，即共线。</p>
+<h3 id="5-3-三角不等式"><a href="#5-3-三角不等式" class="headerlink" title="5.3 三角不等式"></a>5.3 三角不等式</h3><p><strong>定理</strong>：$||\alpha + \beta|| \leq ||\alpha|| + ||\beta||$。</p>
+<p><strong>证明</strong>：</p>
+<p>
+$$
+\begin{aligned}
+
+<p>||\alpha + \beta||^2 &amp;&#x3D; (\alpha+\beta, \alpha+\beta) \</p>
+<p>&amp;&#x3D; (\alpha,\alpha) + (\alpha,\beta) + (\beta,\alpha) + (\beta,\beta) \</p>
+<p>&amp;&#x3D; ||\alpha||^2 + 2\mathrm{Re}(\alpha,\beta) + ||\beta||^2 \</p>
+<p>&amp;\leq ||\alpha||^2 + 2|(\alpha,\beta)| + ||\beta||^2 \</p>
+<p>&amp;\leq ||\alpha||^2 + 2||\alpha||\cdot||\beta|| + ||\beta||^2 \quad \text{（C-S 不等式）} \</p>
+<p>&amp;&#x3D; (||\alpha|| + ||\beta||)^2</p>
+<p>\end{aligned}<br>$$</p>
+</p>
+
+<p>开方即得。 $\square$&gt; <strong>老师点评</strong>：注意第三行到第四行用到了$\mathrm{Re}(z) \leq |z|$。这是复数情形的一个微妙之处——实空间里 $(\alpha,\beta) + (\beta,\alpha) &#x3D; 2(\alpha,\beta)$，但复空间里 $(\alpha,\beta) + (\beta,\alpha) &#x3D; (\alpha,\beta) + \overline{(\alpha,\beta)} &#x3D; 2\mathrm{Re}(\alpha,\beta)$。</p>
+<h3 id="5-4-夹角与标准正交基"><a href="#5-4-夹角与标准正交基" class="headerlink" title="5.4 夹角与标准正交基"></a>5.4 夹角与标准正交基</h3><p>定义 $\alpha, \beta$的夹角$\theta$满足$\cos\theta &#x3D; \dfrac{|(\alpha, \beta)|}{||\alpha|| \cdot ||\beta||}$。</p>
+<blockquote>
+<p><strong>注意</strong>：在复空间中，$\theta$实际上是实平面$\langle \alpha, i\alpha \rangle$与$\langle \beta, i\beta \rangle$ 之间的最小夹角。这和实空间的直觉略有不同。</p>
+</blockquote>
+<p><strong>标准正交基</strong>：两两正交的单位向量构成的基。$\beta_1, \dots, \beta_n$是标准正交基$\iff$内积在${\beta_i}$下的度量矩阵为$I$。</p>
+<h3 id="5-5-标准酉空间-mathbb-C-n-mathbb-C-n-配标准内积-X-Y-bar-X-T-Y-sum-x-i-bar-y-i-，构成-n-维标准酉空间。-beta-1-dots-beta-n-是标准正交基-iff-矩阵-U-beta-1-cdots-beta-n-满足-U-H-U-I-。"><a href="#5-5-标准酉空间-mathbb-C-n-mathbb-C-n-配标准内积-X-Y-bar-X-T-Y-sum-x-i-bar-y-i-，构成-n-维标准酉空间。-beta-1-dots-beta-n-是标准正交基-iff-矩阵-U-beta-1-cdots-beta-n-满足-U-H-U-I-。" class="headerlink" title="5.5 标准酉空间 $\mathbb{C}^n$ $\mathbb{C}^n$配标准内积$(X, Y) &#x3D; \bar{X}^T Y &#x3D; \sum x_i \bar{y}_i$，构成 $n$维标准酉空间。$\beta_1, \dots, \beta_n$是标准正交基$\iff$矩阵$U &#x3D; [\beta_1 \cdots \beta_n]$满足$U^H U &#x3D; I$。"></a>5.5 标准酉空间 $\mathbb{C}^n$ $\mathbb{C}^n$配标准内积$(X, Y) &#x3D; \bar{X}^T Y &#x3D; \sum x_i \bar{y}_i$，构成 $n$维标准酉空间。$\beta_1, \dots, \beta_n$是标准正交基$\iff$矩阵$U &#x3D; [\beta_1 \cdots \beta_n]$满足$U^H U &#x3D; I$。</h3><hr>
+<h2 id="6-酉矩阵与酉群"><a href="#6-酉矩阵与酉群" class="headerlink" title="6. 酉矩阵与酉群"></a>6. 酉矩阵与酉群</h2><h3 id="6-1-定义与等价条件"><a href="#6-1-定义与等价条件" class="headerlink" title="6.1 定义与等价条件"></a>6.1 定义与等价条件</h3><p><strong>定义</strong>：复方阵 $U$ 是<strong>酉矩阵</strong>，若满足以下等价条件之一：</p>
+<ol>
+<li>$U^H U &#x3D; I$2.$U U^H &#x3D; I$3.$U^{-1} &#x3D; U^H$4.$U$的列向量构成$\mathbb{C}^n$ 的标准正交基</li>
+</ol>
+<blockquote>
+<p><strong>老师讲解</strong>：酉矩阵就是”复版正交矩阵”。正交矩阵 $Q$满足$Q^T Q &#x3D; I$，酉矩阵 $U$满足$U^H U &#x3D; I$。把 $T$换成$H$，一切照旧。酉矩阵的列是标准正交的，行也是标准正交的（因为 $U U^H &#x3D; I$ 也成立）。</p>
+</blockquote>
+<h3 id="6-2-特征值性质-★"><a href="#6-2-特征值性质-★" class="headerlink" title="6.2 特征值性质 ★"></a>6.2 特征值性质 ★</h3><p><strong>定理</strong>：</p>
+<ul>
+<li><p>酉矩阵的特征值 $\lambda$满足$|\lambda| &#x3D; 1$（全在单位圆上）</p>
+</li>
+<li><p>Hermite 矩阵的特征值都是<strong>实数</strong></p>
+</li>
+<li><p>反 Hermite 矩阵（$A^H &#x3D; -A$）的特征值都是<strong>纯虚数或 0</strong></p>
+</li>
+</ul>
+<p><strong>证明</strong>（酉矩阵）：设 $A\alpha &#x3D; \lambda\alpha$，$\alpha \neq 0$。取共轭转置：$\bar{\alpha}^T A^H &#x3D; \bar{\lambda}\bar{\alpha}^T$。</p>
+<p>
+$$
+\bar{\alpha}^T \alpha = \bar{\alpha}^T A^H A \alpha = \bar{\lambda}\lambda \bar{\alpha}^T \alpha = |\lambda|^2 \bar{\alpha}^T \alpha
+$$
+</p>
+
+<p>由 $\bar{\alpha}^T \alpha &#x3D; ||\alpha||^2 \neq 0$，得 $|\lambda| &#x3D; 1$。 $\square$&gt; <strong>老师点评</strong>：这个证明非常漂亮——用$A^H A &#x3D; I$直接把$\lambda$和$\bar{\lambda}$凑在一起得到$|\lambda|^2$。Hermite 矩阵的证明类似：$A\alpha &#x3D; \lambda\alpha \Rightarrow \bar{\alpha}^T A \alpha &#x3D; \lambda \bar{\alpha}^T \alpha$，左边 $&#x3D; \overline{\bar{\alpha}^T A \alpha} &#x3D; \bar{\lambda} \bar{\alpha}^T \alpha$（因为 $A &#x3D; A^H$），所以 $\lambda &#x3D; \bar{\lambda}$，即 $\lambda \in \mathbb{R}$。</p>
+<h3 id="6-3-酉群"><a href="#6-3-酉群" class="headerlink" title="6.3 酉群"></a>6.3 酉群</h3><p>
+$$
+U(n) = \{U \in M_n(\mathbb{C}) \mid U^H U = I\}, \quad SU(n) = \{U \in U(n) \mid \det U = 1\}
+$$
+</p>
+
+<p>$U(n)$是$n$ 级酉群，$SU(n)$ 是特殊酉群。</p>
+<blockquote>
+<p><strong>老师点评</strong>：酉群在物理学中<strong>无处不在</strong>。$SU(2)$ 描述自旋，$SU(3)$ 是量子色动力学的规范群，$U(1)$是量子电动力学的规范群。标准模型的规范群是$SU(3) \times SU(2) \times U(1)$。学好酉矩阵，对理解现代物理有直接帮助。</p>
+</blockquote>
+<hr>
+<h2 id="7-Fourier-矩阵与快速傅里叶变换-FFT"><a href="#7-Fourier-矩阵与快速傅里叶变换-FFT" class="headerlink" title="7. Fourier 矩阵与快速傅里叶变换 FFT"></a>7. Fourier 矩阵与快速傅里叶变换 FFT</h2><h3 id="7-1-Fourier-矩阵"><a href="#7-1-Fourier-矩阵" class="headerlink" title="7.1 Fourier 矩阵"></a>7.1 Fourier 矩阵</h3><p>
+$$
+F_n = \frac{1}{\sqrt{n}} \begin{bmatrix}
+
+<p>1 &amp; 1 &amp; 1 &amp; \cdots &amp; 1 \</p>
+<p>1 &amp; \zeta &amp; \zeta^2 &amp; \cdots &amp; \zeta^{n-1} \</p>
+<p>1 &amp; \zeta^2 &amp; \zeta^4 &amp; \cdots &amp; \zeta^{2(n-1)} \</p>
+<p>\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \</p>
+<p>1 &amp; \zeta^{n-1} &amp; \zeta^{2(n-1)} &amp; \cdots &amp; \zeta^{(n-1)^2}</p>
+<p>\end{bmatrix}, \quad \zeta &#x3D; e^{2\pi i &#x2F; n}<br>$$</p>
+</p>
+
+<p>$F_n$ 是酉矩阵。$F_n$的列向量$\alpha_0, \dots, \alpha_{n-1}$构成$\mathbb{C}^n$ 的标准正交基。</p>
+<p><strong>傅立叶变换</strong>：$X &#x3D; F_n Y$把系数$Y &#x3D; (y_0, \dots, y_{n-1})^T$（傅立叶系数）变成信号 $X$。逆变换：$Y &#x3D; F_n^H X$。</p>
+<blockquote>
+<p><strong>老师讲解</strong>：FFT 可能是本章<strong>工程应用价值最高</strong>的内容。没有 FFT，就没有现代数字信号处理、没有 MP3 压缩、没有 WiFi 通信（OFDM）、没有 MRI 成像。FFT 把 DFT 的复杂度从 $O(n^2)$降到$O(n \log n)$，这是计算机科学的里程碑。</p>
+</blockquote>
+<h3 id="7-2-FFT-的核心思想：分治"><a href="#7-2-FFT-的核心思想：分治" class="headerlink" title="7.2 FFT 的核心思想：分治"></a>7.2 FFT 的核心思想：分治</h3><p><strong>关键观察</strong>：$F_{2n}$的元素有周期性。记$\varepsilon &#x3D; e^{2\pi i &#x2F; 2n}$，则 $\varepsilon^2 &#x3D; e^{2\pi i &#x2F; n} &#x3D; \zeta_n$，且 $\varepsilon^{k+n} &#x3D; -\varepsilon^k$。</p>
+<p>利用这个性质，把 $F_{2n}$ 的奇数列移到前面、偶数列移到后面，得到<strong>分块分解</strong>：</p>
+<p>
+$$
+F_{2n} = \begin{bmatrix} I_n & D_n \\ I_n & -D_n \end{bmatrix} \begin{bmatrix} F_n & 0 \\ 0 & F_n \end{bmatrix} \Gamma_{2n}
+$$
+</p>
+
+<p>其中 $D_n &#x3D; \mathrm{diag}(1, \varepsilon, \varepsilon^2, \dots, \varepsilon^{n-1})$，$\Gamma_{2n}$ 是奇偶列置换。</p>
+<p>于是计算 $F_{2n} X$ 变成：</p>
+<p>
+$$
+F_{2n} X = \begin{bmatrix} F_n X_1 + D_n F_n X_2 \\ F_n X_1 - D_n F_n X_2 \end{bmatrix}
+$$
+</p>
+
+<p>其中 $X_1$是$X$ 的奇数位置元素，$X_2$ 是偶数位置元素。</p>
+<blockquote>
+<p><strong>老师讲解</strong>：这就是”蝶形运算”（butterfly operation）。一个 $2n$点的 DFT 被分解为两个$n$点的 DFT 加上$n$ 次复数乘法。递归下去：</p>
+</blockquote>
+<p>
+$$
+N_{2n} = 2N_n + n
+$$
+</p>
+
+<p>展开（$n &#x3D; 2^k$）：</p>
+<p>
+$$
+N_{2^k} = \frac{n}{2} \log_2 n = \frac{n}{2} k
+$$
+</p>
+
+<h3 id="7-3-复杂度对比"><a href="#7-3-复杂度对比" class="headerlink" title="7.3 复杂度对比"></a>7.3 复杂度对比</h3><p>| $n$| 直接$n^2$| FFT$\frac{n}{2}\log_2 n$ | 加速比 |</p>
+<p>|—|—|—|—|</p>
+<p>| $2^{12} &#x3D; 4096$ | 16384 | 192 | 85x |</p>
+<p>| $2^{20} \approx 10^6$|$10^{12}$| 5120 |$2 \times 10^8$ x |</p>
+<p>| $2^{40} \approx 10^{12}$|$10^{24}$ | 5242880 | 天文数字 |</p>
+<blockquote>
+<p><strong>老师点评</strong>：当 $n &#x3D; 2^{40}$时，直接计算需要$10^{24}$次乘法——即使每秒算$10^{18}$ 次（exascale 超算），也要算 30 年。而 FFT 只需要 500 万次，几毫秒就完了。这就是算法的力量。</p>
+</blockquote>
+<hr>
+<h2 id="8-酉变换与-Hermite-变换"><a href="#8-酉变换与-Hermite-变换" class="headerlink" title="8. 酉变换与 Hermite 变换"></a>8. 酉变换与 Hermite 变换</h2><h3 id="8-1-酉变换"><a href="#8-1-酉变换" class="headerlink" title="8.1 酉变换"></a>8.1 酉变换</h3><p><strong>定义</strong>：酉空间上保持内积的线性变换 $A$：</p>
+<p>
+$$
+(A\alpha, A\beta) = (\alpha, \beta), \quad \forall \alpha, \beta
+$$
+</p>
+
+<p><strong>定理</strong>：以下等价：</p>
+<ul>
+<li><p>$A$ 是酉变换</p>
+</li>
+<li><p>$A$ 把标准正交基映为标准正交基</p>
+</li>
+<li><p>$A$ 在标准正交基下的矩阵是酉矩阵</p>
+</li>
+</ul>
+<p><strong>证明</strong>：设 $\beta_1, \dots, \beta_n$ 是标准正交基。$(A\beta_1, \dots, A\beta_n) &#x3D; (\beta_1, \dots, \beta_n)A$。左边是标准正交基 $\iff$ $A$是酉矩阵。$\square$</p>
+<blockquote>
+<p><strong>老师讲解</strong>：酉变换就是”复版正交变换”。正交变换保持实内积，酉变换保持复内积。几何上，酉变换是复空间的”刚性运动”——不改变长度和夹角。</p>
+</blockquote>
+<h3 id="8-2-Hermite-变换"><a href="#8-2-Hermite-变换" class="headerlink" title="8.2 Hermite 变换"></a>8.2 Hermite 变换</h3><p><strong>定义</strong>：若 $(A\alpha, \beta) &#x3D; (\alpha, A\beta)$对所有$\alpha, \beta$，则 $A$ 是 <strong>Hermite（自伴随）变换</strong>。</p>
+<p><strong>定理</strong>：$A$是 Hermite 变换$\iff$ $A$ 在标准正交基下的矩阵是 Hermite 矩阵。</p>
+<p><strong>定理</strong>：Hermite 矩阵的特征值都是实数。</p>
+<blockquote>
+<p><strong>老师点评</strong>：Hermite 变换在量子力学中对应<strong>可观测量</strong>（observable）。量子力学的公理之一就是：每一个物理可观测量对应一个 Hermite 算子，测量结果就是该算子的特征值（必须是实数，所以要求 Hermite）。这就是为什么 Hermite 矩阵的特征值都是实数这条定理如此重要——它保证了量子力学测量的结果确实是实数。</p>
+</blockquote>
+<hr>
+<h2 id="9-共轭变换：伴随算子的复数版"><a href="#9-共轭变换：伴随算子的复数版" class="headerlink" title="9. 共轭变换：伴随算子的复数版"></a>9. 共轭变换：伴随算子的复数版</h2><h3 id="9-1-定义"><a href="#9-1-定义" class="headerlink" title="9.1 定义"></a>9.1 定义</h3><p><strong>定义</strong>：设 $A$是酉空间上的线性变换。若存在$A^*$ 使得：</p>
+<p>
+$$
+(A\alpha, \beta) = (\alpha, A^*\beta), \quad \forall \alpha, \beta
+$$
+</p>
+
+<p>则称 $A^<em>$是$A$ 的*<em>共轭变换</em></em>（adjoint operator）。</p>
+<p><strong>例子</strong>：</p>
+<ul>
+<li><p>酉变换 $U$的共轭变换是$U^{-1}$（因为 $(U\alpha, \beta) &#x3D; (\alpha, U^{-1}\beta)$）</p>
+</li>
+<li><p>Hermite 变换 $A$的共轭变换是$A$ 自身</p>
+</li>
+</ul>
+<h3 id="9-2-存在唯一性"><a href="#9-2-存在唯一性" class="headerlink" title="9.2 存在唯一性"></a>9.2 存在唯一性</h3><p><strong>定理</strong>：有限维酉空间上，任何线性变换 $A$都有唯一的共轭变换$A^<em>$。在标准正交基下，若 $A$的矩阵为$A$，则 $A^</em>$的矩阵为$A^H$。</p>
+<p><strong>证明</strong>：设 $A, A^*$在标准正交基下的矩阵为$A, B$，$\alpha, \beta$的坐标为$X, Y$：</p>
+<p>
+$$
+(A\alpha, \beta) = \bar{X}^T A^H Y, \quad (\alpha, A^*\beta) = \bar{X}^T B Y
+$$
+</p>
+
+<p>故 $A^*$是共轭变换$\iff \bar{X}^T A^H Y &#x3D; \bar{X}^T B Y$对所有$X, Y$ $\iff B &#x3D; A^H$。 $\square$</p>
+<blockquote>
+<p><strong>老师讲解</strong>：这个证明的核心思想是”矩阵由它作用在所有向量上的效果唯一确定”。$\bar{X}^T M Y &#x3D; 0$对所有$X, Y$ $\iff M &#x3D; 0$。这是线性代数中反复使用的技巧。</p>
+</blockquote>
+<hr>
+<h2 id="10-正规变换与正规矩阵的谱分解-★核心定理★"><a href="#10-正规变换与正规矩阵的谱分解-★核心定理★" class="headerlink" title="10. 正规变换与正规矩阵的谱分解 ★核心定理★"></a>10. 正规变换与正规矩阵的谱分解 ★核心定理★</h2><h3 id="10-1-什么是正规变换？"><a href="#10-1-什么是正规变换？" class="headerlink" title="10.1 什么是正规变换？"></a>10.1 什么是正规变换？</h3><p><strong>定义</strong>：若 $A A^* &#x3D; A^* A$，则 $A$ 是<strong>正规变换</strong>。</p>
+<p>对应地，$A A^H &#x3D; A^H A$ 的矩阵称为<strong>正规矩阵</strong>。</p>
+<blockquote>
+<p><strong>老师讲解</strong>：为什么叫”正规”（normal）？因为它是”最一般的好行为矩阵”。酉矩阵、Hermite 矩阵、反 Hermite 矩阵、甚至实对称矩阵，<strong>全都是</strong>正规矩阵的特例。正规矩阵是这些”好矩阵”的统一推广。</p>
+</blockquote>
+<p>验证：</p>
+<ul>
+<li><p>酉矩阵 $U$：$U U^H &#x3D; U U^{-1} &#x3D; I &#x3D; U^{-1} U &#x3D; U^H U$ ✓</p>
+</li>
+<li><p>Hermite 矩阵 $A$：$A A^H &#x3D; A^2 &#x3D; A^H A$ ✓</p>
+</li>
+<li><p>反 Hermite 矩阵 $A$：$A A^H &#x3D; A(-A) &#x3D; -A^2 &#x3D; (-A)A &#x3D; A^H A$ ✓</p>
+</li>
+</ul>
+<h3 id="10-2-★主定理★：正规矩阵的酉对角化"><a href="#10-2-★主定理★：正规矩阵的酉对角化" class="headerlink" title="10.2 ★主定理★：正规矩阵的酉对角化"></a>10.2 ★主定理★：正规矩阵的酉对角化</h3><p><strong>定理</strong>：$A$是正规矩阵$\iff$存在酉矩阵$U$和复对角矩阵$D$，使得：</p>
+<p>
+$$
+A = U D U^H = U D U^{-1}
+$$
+</p>
+
+<blockquote>
+<p><strong>老师点评</strong>：这是本章<strong>最重要的定理</strong>，没有之一。它告诉我们：任何正规矩阵都可以用酉相似变换对角化。对比实对称矩阵的正交对角化 $A &#x3D; Q D Q^T$，这里只是把 $Q$换成$U$，$Q^T$换成$U^H$。但这个推广的威力巨大——它涵盖了酉矩阵、Hermite 矩阵、以及所有它们的组合。</p>
+</blockquote>
+<h3 id="10-3-完整证明"><a href="#10-3-完整证明" class="headerlink" title="10.3 完整证明"></a>10.3 完整证明</h3><p><strong>证明</strong>（数学归纳法）：</p>
+<p><strong>基础</strong>：$1 \times 1$ 矩阵显然成立。</p>
+<p><strong>归纳步骤</strong>：假设对 $&lt; n$级正规矩阵成立。设$A$是$n$ 级正规矩阵。</p>
+<p><strong>第一步</strong>：$\mathbb{C}$上任何矩阵都有特征值（代数闭域），设$\lambda_1$是$A$ 的一个特征值，$\alpha_1$ 是对应的单位特征向量：$A\alpha_1 &#x3D; \lambda_1 \alpha_1$，$||\alpha_1|| &#x3D; 1$。</p>
+<p><strong>第二步</strong>：将 $\alpha_1$扩充为$\mathbb{C}^n$的一组基，用 Schmidt 正交化+单位化，得到标准正交基$\alpha_1, \dots, \alpha_n$。排成酉矩阵 $U_1 &#x3D; [\alpha_1 \ \alpha_2 \ \cdots \ \alpha_n]$。</p>
+<p><strong>第三步</strong>：计算 $U_1^H A U_1$。由于 $A\alpha_1 &#x3D; \lambda_1 \alpha_1$，第一列是 $(\lambda_1, 0, \dots, 0)^T$：</p>
+<p>
+$$
+U_1^H A U_1 = \begin{bmatrix} \lambda_1 & C \\ 0 & B \end{bmatrix}
+$$
+</p>
+
+<p>其中 $C$是$1 \times (n-1)$ 行向量，$B$是$(n-1) \times (n-1)$ 矩阵。</p>
+<p><strong>第四步（关键）</strong>：取共轭转置：</p>
+<p>
+$$
+U_1^H A^H U_1 = \begin{bmatrix} \bar{\lambda}_1 & 0 \\ \bar{C}^T & \bar{B}^T \end{bmatrix}
+$$
+</p>
+
+<p>由 $A$ 正规（$A A^H &#x3D; A^H A$），两边同时做 $U_1^H (\cdot) U_1$ 相似变换，正规性保持：</p>
+<p>
+$$
+\begin{bmatrix} \lambda_1 & C \\ 0 & B \end{bmatrix} \begin{bmatrix} \bar{\lambda}_1 & 0 \\ \bar{C}^T & \bar{B}^T \end{bmatrix} = \begin{bmatrix} \bar{\lambda}_1 & 0 \\ \bar{C}^T & \bar{B}^T \end{bmatrix} \begin{bmatrix} \lambda_1 & C \\ 0 & B \end{bmatrix}
+$$
+</p>
+
+<p>比较左上角元素：</p>
+<p>
+$$
+\lambda_1 \bar{\lambda}_1 + C \bar{C}^T = \lambda_1 \bar{\lambda}_1 \Rightarrow C \bar{C}^T = 0
+$$
+</p>
+
+<p>而 $C \bar{C}^T &#x3D; |c_2|^2 + \cdots + |c_n|^2 &#x3D; 0 \Rightarrow C &#x3D; 0$。</p>
+<blockquote>
+<p><strong>老师讲解</strong>：这是证明的<strong>灵魂步骤</strong>。为什么 $C$必须是 0？因为$A$的正规性强制了这一点。如果$A$ 不是正规的，$C$ 一般不为 0，我们就得不到分块对角形式，归纳法就走不下去了。这就是为什么只有正规矩阵才能酉对角化。</p>
+</blockquote>
+<p><strong>第五步</strong>：现在 $U_1^H A U_1 &#x3D; \mathrm{diag}(\lambda_1, B)$，且 $B$也正规（由$A A^H &#x3D; A^H A$推出$B B^H &#x3D; B^H B$）。对 $B$ 应用归纳假设，$B &#x3D; U_1’ D_1 (U_1’)^H$。</p>
+<p><strong>第六步</strong>：令 $U &#x3D; U_1 \cdot \mathrm{diag}(1, U_1’)$，则 $U$是酉矩阵（酉矩阵的块对角仍是酉的），且$A &#x3D; U D U^H$。 $\square$</p>
+<h3 id="10-4-推论"><a href="#10-4-推论" class="headerlink" title="10.4 推论"></a>10.4 推论</h3><p><strong>推论 1</strong>：$A$正规$\iff A &#x3D; U D U^H$（$U$ 酉，$D$ 复对角）</p>
+<p><strong>推论 2</strong>：$A$酉$\iff A &#x3D; U D U^H$，且 $D$ 的对角元模为 1</p>
+<p><strong>推论 3</strong>：$A$Hermite$\iff A &#x3D; U D U^H$，且 $D$ 是<strong>实</strong>对角矩阵</p>
+<p><strong>推论 4</strong>：$A$反 Hermite$\iff A &#x3D; U D U^H$，且 $D$ 的对角元是纯虚数</p>
+<blockquote>
+<p><strong>老师讲解</strong>：这四个推论是”一把钥匙开四把锁”。同一个谱分解框架，通过限制对角元的性质，就区分了四类重要矩阵。考试和科研中，遇到这四类矩阵中的任何一类，第一反应应该是”它可以酉对角化”。</p>
+</blockquote>
+<h3 id="10-5-不变子空间的正交补"><a href="#10-5-不变子空间的正交补" class="headerlink" title="10.5 不变子空间的正交补"></a>10.5 不变子空间的正交补</h3><p><strong>推论</strong>：设 $A$是正规变换。若$W$是$A$-不变子空间，则 $W^\perp$也是$A$-不变子空间。</p>
+<p><strong>证明</strong>：取标准正交基使 $W &#x3D; \langle \beta_1, \dots, \beta_k \rangle$。$A$的矩阵为$\begin{bmatrix} B &amp; C \ 0 &amp; D \end{bmatrix}$（$W$不变$\Rightarrow$左下为 0）。$A^*$的矩阵为$\begin{bmatrix} B^H &amp; 0 \ C^H &amp; D^H \end{bmatrix}$。</p>
+<p>由 $A A^H &#x3D; A^H A$，比较得 $C C^H &#x3D; 0$。取迹：$\mathrm{tr}(C C^H) &#x3D; \sum |c_{ij}|^2 &#x3D; 0 \Rightarrow C &#x3D; 0$。</p>
+<p>故 $A$ 的矩阵是分块对角的，$W^\perp$也是不变子空间。$\square$</p>
+<blockquote>
+<p><strong>老师点评</strong>：这个结论在实对称矩阵中也有对应（对称变换的不变子空间的正交补仍是不变子空间），但在一般矩阵中不成立。正规性是保证这一点的最弱条件。这个性质在<strong>同时对角化</strong>理论和<strong>谱定理</strong>的证明中反复使用。</p>
+</blockquote>
+<hr>
+<h2 id="11-正交空间与辛空间：更一般的度量结构"><a href="#11-正交空间与辛空间：更一般的度量结构" class="headerlink" title="11. 正交空间与辛空间：更一般的度量结构"></a>11. 正交空间与辛空间：更一般的度量结构</h2><h3 id="11-1-定义"><a href="#11-1-定义" class="headerlink" title="11.1 定义"></a>11.1 定义</h3><p>设 $K$是特征$\neq 2$ 的域，$V$是$K$-线性空间，配非退化双线性函数 $f$。</p>
+<ul>
+<li><p>$f$对称$\Rightarrow$ $(V, f)$ 是<strong>正交空间</strong></p>
+</li>
+<li><p>$f$ 反对称（$f(\alpha, \alpha) &#x3D; 0$）$\Rightarrow$ $(V, f)$ 是<strong>辛空间</strong></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>老师讲解</strong>：到这里，我们跳出了”内积必须正定”的限制。正交空间和辛空间中的”内积”不一定正定，甚至可能不定（有正有负）。这引出了更丰富的几何结构。</p>
+</blockquote>
+<h3 id="11-2-Minkowski-空间"><a href="#11-2-Minkowski-空间" class="headerlink" title="11.2 Minkowski 空间"></a>11.2 Minkowski 空间</h3><p>在 $\mathbb{R}^4$ 中定义 <strong>Minkowski 内积</strong>：</p>
+<p>
+$$
+(\alpha, \beta) = x_1 y_1 + x_2 y_2 + x_3 y_3 - x_4 y_4
+$$
+</p>
+
+<p>这就是狭义相对论中的时空内积！注意符号是 $(+,+,+,-)$，不是 $(+,+,+,+)$。时间维度的符号是负的。</p>
+<p>保持该内积的线性变换称为<strong>洛伦兹变换</strong>：$(A\alpha, A\beta) &#x3D; (\alpha, \beta)$。</p>
+<blockquote>
+<p><strong>老师点评</strong>：Minkowski 空间是正交空间但不是欧氏空间（内积不定）。它的等距群（洛伦兹群）是 $O(3,1)$，不是 $O(4)$。这是物理学中正交空间最经典的例子。</p>
+</blockquote>
+<h3 id="11-3-Witt-消去定理"><a href="#11-3-Witt-消去定理" class="headerlink" title="11.3 Witt 消去定理"></a>11.3 Witt 消去定理</h3><p><strong>定理</strong>：设 $V$ 是有限维正交（辛）空间，$V’, V’’$是同构子空间（存在保内积的同构$\sigma: V’ \to V’’$），则 $\sigma$可扩充为$V$ 上的正交变换。</p>
+<blockquote>
+<p><strong>老师讲解</strong>：Witt 定理说的是：子空间上的等距映射可以”扩展”到整个空间。这在分类理论中是基础工具——它保证了正交（辛）空间的分类只依赖于一些不变量（如符号差），而不依赖于具体的基的选取。</p>
+</blockquote>
+<hr>
+<h2 id="12-正交投影：从理论到计算"><a href="#12-正交投影：从理论到计算" class="headerlink" title="12. 正交投影：从理论到计算"></a>12. 正交投影：从理论到计算</h2><h3 id="12-1-已知标准正交基的情形"><a href="#12-1-已知标准正交基的情形" class="headerlink" title="12.1 已知标准正交基的情形"></a>12.1 已知标准正交基的情形</h3><p>设 $\alpha_1, \dots, \alpha_r$是子空间$W \subset \mathbb{R}^n$ 的标准正交基。$R^n$向$W$的正交投影$P$ 的矩阵为：</p>
+<p>
+$$
+P = \sum_{i=1}^r \alpha_i \alpha_i^T = A A^T
+$$
+</p>
+
+<p>其中 $A &#x3D; [\alpha_1 \ \cdots \ \alpha_r]$。</p>
+<p><strong>推导</strong>：对任意 $\alpha_j$，$P\alpha_j &#x3D; \sum_i (\alpha_i, \alpha_j) \alpha_i &#x3D; \sum_i \alpha_i (\alpha_i^T \alpha_j) &#x3D; (\sum_i \alpha_i \alpha_i^T) \alpha_j$。由于 $P$在基向量上的效果确定了$P$ 的矩阵，得证。</p>
+<h3 id="12-2-已知一般基的情形"><a href="#12-2-已知一般基的情形" class="headerlink" title="12.2 已知一般基的情形"></a>12.2 已知一般基的情形</h3><p>设 $\alpha_1, \dots, \alpha_r$是$W$ 的<strong>一般基</strong>（不必正交），$A &#x3D; [\alpha_1 \ \cdots \ \alpha_r]$ 列满秩。则：</p>
+<p>
+$$
+P = A(A^T A)^{-1} A^T
+$$
+</p>
+
+<blockquote>
+<p><strong>老师讲解</strong>：这个公式是<strong>最小二乘法</strong>的核心。在统计学和机器学习中，线性回归 $\hat{y} &#x3D; X\beta$的正规方程解$\hat{\beta} &#x3D; (X^T X)^{-1} X^T y$，本质上就是投影公式。$X(X^T X)^{-1} X^T$就是设计矩阵$X$ 的列空间上的投影矩阵（hat matrix）。</p>
+</blockquote>
+<h3 id="12-3-正交投影的刻画"><a href="#12-3-正交投影的刻画" class="headerlink" title="12.3 正交投影的刻画"></a>12.3 正交投影的刻画</h3><ol>
+<li><p>$A$列满秩$\Rightarrow X \mapsto A(A^T A)^{-1} A^T X$是到$\mathrm{Im}, A$ 的正交投影</p>
+</li>
+<li><p>$A^T A &#x3D; I \Rightarrow X \mapsto A A^T X$是到$\mathrm{Im}, A$ 的正交投影</p>
+</li>
+<li><p>$A^2 &#x3D; A \Rightarrow V &#x3D; \mathrm{Im}, A \oplus \mathrm{Ker}, A$，$X \mapsto AX$是沿$\mathrm{Ker}, A$向$\mathrm{Im}, A$ 的投影</p>
+</li>
+<li><p>$A$实对称且$A^2 &#x3D; A \Rightarrow X \mapsto AX$是到$\mathrm{Im}, A$ 的<strong>正交</strong>投影</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>老师点评</strong>：条件 4 是关键——幂等（$A^2 &#x3D; A$）保证是投影，对称（$A^T &#x3D; A$）保证是<strong>正交</strong>投影。两者缺一不可。</p>
+</blockquote>
+<h3 id="12-4-求正交补的基"><a href="#12-4-求正交补的基" class="headerlink" title="12.4 求正交补的基"></a>12.4 求正交补的基</h3><p>$W^\perp &#x3D; (\mathrm{Im}, A)^\perp &#x3D; \mathrm{Ker}(A^T)$。所以求 $W^\perp$的基等价于解$A^T X &#x3D; 0$。</p>
+<p><strong>例</strong>：$W &#x3D; \langle (1,1,2,1)^T, (1,0,0,-2)^T \rangle \subset \mathbb{R}^4$。解 $\begin{bmatrix} 1 &amp; 1 &amp; 2 &amp; 1 \ 1 &amp; 0 &amp; 0 &amp; -2 \end{bmatrix} X &#x3D; 0$，得基础解系即为 $W^\perp$ 的基。</p>
+<hr>
+<h2 id="13-Perron-Frobenius-定理：非负矩阵的灵魂"><a href="#13-Perron-Frobenius-定理：非负矩阵的灵魂" class="headerlink" title="13. Perron-Frobenius 定理：非负矩阵的灵魂"></a>13. Perron-Frobenius 定理：非负矩阵的灵魂</h2><h3 id="13-1-背景"><a href="#13-1-背景" class="headerlink" title="13.1 背景"></a>13.1 背景</h3><p>元素全为正数的矩阵叫<strong>正矩阵</strong>，元素 $\geq 0$ 的叫<strong>非负矩阵</strong>。这类矩阵在马尔可夫链、PageRank 算法、人口模型、经济学投入产出分析中无处不在。</p>
+<h3 id="13-2-Perron-Frobenius-定理（正矩阵版）"><a href="#13-2-Perron-Frobenius-定理（正矩阵版）" class="headerlink" title="13.2 Perron-Frobenius 定理（正矩阵版）"></a>13.2 Perron-Frobenius 定理（正矩阵版）</h3><p>对于正方阵 $A$：</p>
+<ol>
+<li><p>$A$有<strong>正</strong>特征值$\lambda$（最大正特征值），代数重数为 1，且有<strong>正</strong>特征向量</p>
+</li>
+<li><p>其余特征值的模都 $&lt; \lambda$3.$A$与$A^T$有相同的最大正特征值$\lambda$称为$A$ 的 <strong>Frobenius 根</strong>（谱半径）。</p>
+</li>
+</ol>
+<h3 id="13-3-非负矩阵版"><a href="#13-3-非负矩阵版" class="headerlink" title="13.3 非负矩阵版"></a>13.3 非负矩阵版</h3><p>对非负方阵，结论类似但特征向量只是<strong>非负</strong>（不一定严格正）。</p>
+<blockquote>
+<p><strong>老师点评</strong>：Perron-Frobenius 定理是 Google 的 PageRank 算法的理论基础。Web 链接矩阵是非负矩阵，PageRank 向量就是它的 Frobenius 根对应的特征向量。没有这个定理，我们就无法保证 PageRank 的存在性和唯一性。此外，在 ergodic 马尔可夫链中，平稳分布也是由这个定理保证的。</p>
+</blockquote>
+<hr>
+<h2 id="14-矩阵范数与特征值估计"><a href="#14-矩阵范数与特征值估计" class="headerlink" title="14. 矩阵范数与特征值估计"></a>14. 矩阵范数与特征值估计</h2><h3 id="14-1-诱导范数"><a href="#14-1-诱导范数" class="headerlink" title="14.1 诱导范数"></a>14.1 诱导范数</h3><p>实矩阵 $B$ 的<strong>欧氏诱导范数</strong>：</p>
+<p>
+$$
+||B|| := \max_{||X||=1} ||BX|| = \sqrt{\lambda_1(B^T B)} = \sigma_1(B)
+$$
+</p>
+
+<p>即最大奇异值。</p>
+<p>若 $A$ 实对称，$||A|| &#x3D; \max_i |\lambda_i(A)|$（最大特征值的绝对值）。</p>
+<h3 id="14-2-范数性质"><a href="#14-2-范数性质" class="headerlink" title="14.2 范数性质"></a>14.2 范数性质</h3><ol>
+<li><p>$||A|| &gt; 0$（$A \neq 0$）</p>
+</li>
+<li><p>$||kA|| &#x3D; |k| \cdot ||A||$</p>
+</li>
+<li><p>三角不等式：$||A+B|| \leq ||A|| + ||B||$</p>
+</li>
+<li><p>次乘性：$||AB|| \leq ||A|| \cdot ||B||$5.$||A^T|| &#x3D; ||A||$</p>
+</li>
+</ol>
+<h3 id="14-3-二次型的取值范围"><a href="#14-3-二次型的取值范围" class="headerlink" title="14.3 二次型的取值范围"></a>14.3 二次型的取值范围</h3><p>对实对称 $A$，$\lambda_n ||X||^2 \leq X^T A X \leq \lambda_1 ||X||^2$。</p>
+<p>等号成立 $\iff$ $X$ 在对应特征子空间内。</p>
+<blockquote>
+<p><strong>老师讲解</strong>：这个不等式是理解对称矩阵特征值几何意义的核心。$X^T A X$ 的值被最大和最小特征值”夹”在中间。这在优化理论中是 Rayleigh 商的基础。</p>
+</blockquote>
+<h3 id="14-4-例题：Hilbert-矩阵的特征值上界"><a href="#14-4-例题：Hilbert-矩阵的特征值上界" class="headerlink" title="14.4 例题：Hilbert 矩阵的特征值上界"></a>14.4 例题：Hilbert 矩阵的特征值上界</h3><p><strong>例</strong>：$A &#x3D; [\frac{1}{i+j-1}]_{n \times n}$的特征值都$&gt; 0$且$\leq 3 + 2\sqrt{2}$。</p>
+<p><strong>解</strong>：记 $B$ 为全 1 下三角矩阵，$D &#x3D; I$。则 $A &#x3D; B^T B &#x3D; B + B^T - D$。</p>
+<p>$B$可逆$\Rightarrow A$正定$\Rightarrow$特征值$&gt; 0$。</p>
+<p>
+$$
+||A|| \leq ||B|| + ||B^T|| + ||D|| = 2||B|| + 1 = 2\sqrt{\lambda_1(B^T B)} + 1
+$$
+</p>
+
+<p>由 $\lambda_1 \leq (2\sqrt{\lambda_1} + 1)^2$，解得 $\sqrt{\lambda_1} \leq 1 + \sqrt{2}$，故 $\lambda_1 \leq 3 + 2\sqrt{2}$。</p>
+<blockquote>
+<p><strong>老师点评</strong>：Hilbert 矩阵是著名的<strong>病态矩阵</strong>——虽然正定，但条件数随 $n$ 指数增长。这个例子展示了用范数不等式估计特征值上界的标准技巧：分解矩阵、分别估计、合并。</p>
+</blockquote>
+<hr>
+<h2 id="15-Penrose-广义逆与-SVD"><a href="#15-Penrose-广义逆与-SVD" class="headerlink" title="15. Penrose 广义逆与 SVD"></a>15. Penrose 广义逆与 SVD</h2><h3 id="15-1-Penrose-广义逆"><a href="#15-1-Penrose-广义逆" class="headerlink" title="15.1 Penrose 广义逆"></a>15.1 Penrose 广义逆</h3><p>对任意复矩阵 $A$，存在<strong>唯一</strong>矩阵 $X$ 满足：</p>
+<p>
+$$
+AXA = A, \quad XAX = X, \quad (AX)^H = AX, \quad (XA)^H = XA
+$$
+</p>
+
+<p>$X$记为$A^+$，称为 <strong>Penrose 广义逆</strong>。</p>
+<p>若 $A$ 列满秩，$A^+ &#x3D; (A^T A)^{-1} A^T$（这就是最小二乘解的公式！）。</p>
+<h3 id="15-2-SVD-与广义逆"><a href="#15-2-SVD-与广义逆" class="headerlink" title="15.2 SVD 与广义逆"></a>15.2 SVD 与广义逆</h3><p>若 $A &#x3D; P S Q^H$（奇异值分解），则：</p>
+<p>
+$$
+A^+ = Q \cdot \mathrm{diag}(\sigma_1^{-1}, \dots, \sigma_r^{-1}, 0, \dots, 0) \cdot P^H
+$$
+</p>
+
+<blockquote>
+<p><strong>老师讲解</strong>：SVD 是线性代数中<strong>最强大的分解工具</strong>。特征值分解只对可逆&#x2F;正规矩阵有效，但 SVD 对<strong>任何矩阵</strong>都成立。SVD 的应用包括：数据压缩（PCA）、图像去噪、推荐系统（矩阵补全）、求解超定&#x2F;欠定方程组。$A^+$ 通过 SVD 构造，把非零奇异值求倒数、零奇异值保持为零，这是最自然的”广义逆”定义。</p>
+</blockquote>
+<h3 id="15-3-MATLAB-数值计算"><a href="#15-3-MATLAB-数值计算" class="headerlink" title="15.3 MATLAB 数值计算"></a>15.3 MATLAB 数值计算</h3><ul>
+<li><p><code>[U, D] = eig(A)</code>：特征值分解</p>
+</li>
+<li><p><code>[P, S, Q] = svd(A)</code>：奇异值分解</p>
+</li>
+<li><p><code>[Q, R] = qr(B)</code>：QR 分解</p>
+</li>
+<li><p><code>rref(B)</code>：行最简形</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong>：Jordan 标准型<strong>数值不稳定</strong>，计算前需用 <code>sym</code> 转为符号矩阵。这是因为 Jordan 块对矩阵元素的小扰动极其敏感——任意矩阵都可以被任意接近的、可对角化的矩阵逼近，所以数值计算中 Jordan 块会”散开”。</p>
+</blockquote>
+<hr>
+<h2 id="16-Cauchy-Interlacing-与-Courant-Fischer-Min-Max-定理-★研究级工具★"><a href="#16-Cauchy-Interlacing-与-Courant-Fischer-Min-Max-定理-★研究级工具★" class="headerlink" title="16. Cauchy Interlacing 与 Courant-Fischer Min-Max 定理 ★研究级工具★"></a>16. Cauchy Interlacing 与 Courant-Fischer Min-Max 定理 ★研究级工具★</h2><h3 id="16-1-Cauchy-Interlacing-原理"><a href="#16-1-Cauchy-Interlacing-原理" class="headerlink" title="16.1 Cauchy Interlacing 原理"></a>16.1 Cauchy Interlacing 原理</h3><p><strong>定理</strong>：$n$级实对称矩阵$A$的特征值$\lambda_1 \geq \cdots \geq \lambda_n$。$A$的$n-1$级主子阵$B$的特征值$\mu_1 \geq \cdots \geq \mu_{n-1}$。则：</p>
+<p>
+$$
+\lambda_1 \geq \mu_1 \geq \lambda_2 \geq \mu_2 \geq \cdots \geq \mu_{n-1} \geq \lambda_n
+$$
+</p>
+
+<blockquote>
+<p><strong>老师讲解</strong>：”Interlacing”就是”交错”——主子阵的特征值”穿插”在原矩阵特征值之间。这个定理在图论（图的子图特征值）、随机矩阵理论、数值线性代数中都有重要应用。</p>
+</blockquote>
+<h3 id="16-2-Weyl-定理"><a href="#16-2-Weyl-定理" class="headerlink" title="16.2 Weyl 定理"></a>16.2 Weyl 定理</h3><p>$A, B$实对称，特征值$\lambda_1 \geq \cdots \geq \lambda_n$和$\mu_1 \geq \cdots \geq \mu_n$。$A+B$的特征值$\tau_k$ 满足：</p>
+<p>
+$$
+\lambda_k + \mu_1 \geq \tau_k \geq \lambda_k + \mu_n
+$$
+</p>
+
+<blockquote>
+<p><strong>老师点评</strong>：Weyl 定理描述了”扰动的特征值如何移动”。如果 $B$ 是小扰动，$\tau_k$不会偏离$\lambda_k$太多——最多偏离$\mu_1 - \mu_n$（$B$ 的谱宽）。这是数值分析中<strong>特征值稳定性</strong>的理论基础。</p>
+</blockquote>
+<h3 id="16-3-★Courant-Fischer-Min-Max-定理★"><a href="#16-3-★Courant-Fischer-Min-Max-定理★" class="headerlink" title="16.3 ★Courant-Fischer Min-Max 定理★"></a>16.3 ★Courant-Fischer Min-Max 定理★</h3><p><strong>定理</strong>：实对称 $A$的特征值$\lambda_1 \geq \cdots \geq \lambda_n$，对应正交单位特征向量 $\alpha_1, \dots, \alpha_n$。则：</p>
+<p>
+$$
+\lambda_k = \min_{\substack{V \subseteq \mathbb{R}^n \\ \dim V = n-k+1}} \max_{0 \neq \alpha \in V} \frac{\alpha^T A \alpha}{\alpha^T \alpha}
+$$
+</p>
+
+<blockquote>
+<p><strong>老师点评</strong>：这是<strong>研究级</strong>的工具。它给出了特征值的变分刻画——$\lambda_k$不是某个特定向量的 Rayleigh 商，而是所有$n-k+1$ 维子空间上 Rayleigh 商最大值的<strong>最小值</strong>。这个定理是有限元方法、谱图理论、量子力学变分原理的共同基础。</p>
+</blockquote>
+<p><strong>证明思路</strong>：记 $U &#x3D; \langle \alpha_1, \dots, \alpha_k \rangle$。对任意 $n-k+1$维子空间$V$：</p>
+<p>
+$$
+\dim V + \dim U = n+1 > n = \dim(V + U)
+$$
+</p>
+
+<p>由维数公式，$\dim(V \cap U) \geq 1$。取 $0 \neq \gamma \in V \cap U$，则 $\gamma \in U \Rightarrow \frac{\gamma^T A \gamma}{\gamma^T \gamma} \geq \lambda_k$（因为 $U$中向量的 Rayleigh 商$\geq \lambda_k$）。</p>
+<p>故 $\max_{\alpha \in V} \frac{\alpha^T A \alpha}{\alpha^T \alpha} \geq \frac{\gamma^T A \gamma}{\gamma^T \gamma} \geq \lambda_k$。 $\square$</p>
+<blockquote>
+<p><strong>老师讲解</strong>：证明的核心是<strong>维数论证</strong>——两个”够大”的子空间一定有非零交集。这是线性代数中最优美的论证技巧之一，在泛函分析和代数拓扑中也反复出现。</p>
+</blockquote>
+<h3 id="16-4-应用：半正定矩阵的特征值比较"><a href="#16-4-应用：半正定矩阵的特征值比较" class="headerlink" title="16.4 应用：半正定矩阵的特征值比较"></a>16.4 应用：半正定矩阵的特征值比较</h3><p><strong>定理</strong>：若 $A, B$ 实对称，$A - B$半正定，则$\lambda_k(A) \geq \lambda_k(B)$。</p>
+<p><strong>证明</strong>：$A-B$半正定$\Rightarrow \alpha^T A \alpha \geq \alpha^T B \alpha$。由 Min-Max：</p>
+<p>
+$$
+\lambda_k(A) = \min_{\dim V=n-k+1} \max_{\alpha \in V} \frac{\alpha^T A \alpha}{\alpha^T \alpha} \geq \min_{\dim V=n-k+1} \max_{\alpha \in V} \frac{\alpha^T B \alpha}{\alpha^T \alpha} = \lambda_k(B)
+$$
+</p>
+
+<p>$\square$### 16.5 Cauchy Interlacing 的推广证明$A + t\alpha\alpha^T$（$t \geq 0$，$||\alpha|| &#x3D; 1$）的特征值 $\mu_k$ 满足：</p>
+<p>
+$$
+\lambda_1 + t \geq \mu_1 \geq \lambda_1 \geq \mu_2 \geq \lambda_2 \geq \cdots \geq \mu_n \geq \lambda_n
+$$
+</p>
+
+<p><strong>证明</strong>：$t\alpha\alpha^T$半正定$\Rightarrow \mu_k \geq \lambda_k$（上题）。又：</p>
+<p>
+$$
+\mu_1 = \max_{||\beta||=1} \beta^T(A + t\alpha\alpha^T)\beta \leq \lambda_1 + t
+$$
+</p>
+
+<p>对 $\mu_{k+1}$，在 $\alpha^\perp$（$n-1$维）中取$n-k$维子空间，由 Min-Max 得$\lambda_k \geq \mu_{k+1}$。 $\square$</p>
+<hr>
+<h2 id="17-三维旋转的矩阵表示：Rodrigues-公式"><a href="#17-三维旋转的矩阵表示：Rodrigues-公式" class="headerlink" title="17. 三维旋转的矩阵表示：Rodrigues 公式"></a>17. 三维旋转的矩阵表示：Rodrigues 公式</h2><h3 id="17-1-问题设定"><a href="#17-1-问题设定" class="headerlink" title="17.1 问题设定"></a>17.1 问题设定</h3><p>设 $\alpha &#x3D; (a_1, a_2, a_3)^T$ 是单位向量（旋转轴），$\theta$是旋转角。求绕$\alpha$旋转$\theta$的矩阵$A$。</p>
+<h3 id="17-2-几何推导"><a href="#17-2-几何推导" class="headerlink" title="17.2 几何推导"></a>17.2 几何推导</h3><p>将任意 $\beta \in \mathbb{R}^3$ 分解：</p>
+<p>
+$$
+\beta = \beta_1 + \beta_2, \quad \beta_1 = (\beta, \alpha)\alpha \in \langle\alpha\rangle, \quad \beta_2 = \beta - (\beta, \alpha)\alpha \in \langle\alpha\rangle^\perp
+$$
+</p>
+
+<p>记 $\gamma &#x3D; \alpha \times \beta_2 &#x3D; \alpha \times \beta$。则 $\alpha, \beta_2, \gamma$ 构成右手系，$||\gamma|| &#x3D; ||\beta_2||$。</p>
+<p>旋转后：</p>
+<p>
+$$
+A\beta = \beta_1 + \cos\theta \cdot \beta_2 + \sin\theta \cdot \gamma
+$$
+</p>
+
+<h3 id="17-3-化为矩阵形式"><a href="#17-3-化为矩阵形式" class="headerlink" title="17.3 化为矩阵形式"></a>17.3 化为矩阵形式</h3><p>定义叉积矩阵 $C &#x3D; \begin{bmatrix} 0 &amp; a_3 &amp; -a_2 \ -a_3 &amp; 0 &amp; a_1 \ a_2 &amp; -a_1 &amp; 0 \end{bmatrix}$，满足 $\beta \times \alpha &#x3D; C\beta$。</p>
+<p>代入并整理：</p>
+<p>
+$$
+\begin{aligned}
+
+<p>A\beta &amp;&#x3D; (\beta, \alpha)\alpha + \cos\theta(\beta - (\beta,\alpha)\alpha) + \sin\theta \cdot \alpha \times \beta \</p>
+<p>&amp;&#x3D; \cos\theta \cdot \beta + (1-\cos\theta)(\alpha\alpha^T)\beta - \sin\theta \cdot C\beta \</p>
+<p>&amp;&#x3D; (\cos\theta \cdot I + (1-\cos\theta)\alpha\alpha^T - \sin\theta \cdot C)\beta</p>
+<p>\end{aligned}<br>$$</p>
+</p>
+
+<p>利用 $\alpha\alpha^T - I &#x3D; C^2$（可验证），最终得到 <strong>Rodrigues 公式</strong>：</p>
+<p>
+$$
+A = I - \sin\theta \cdot C + (1 - \cos\theta) C^2
+$$
+</p>
+
+<blockquote>
+<p><strong>老师讲解</strong>：Rodrigues 公式在计算机图形学、机器人学、航空航天中是<strong>基础工具</strong>。任何 3D 旋转都可以用”轴+角”表示，Rodrigues 公式给出了从轴角到矩阵的显式转换。</p>
+</blockquote>
+<h3 id="17-4-矩阵指数表示"><a href="#17-4-矩阵指数表示" class="headerlink" title="17.4 矩阵指数表示"></a>17.4 矩阵指数表示</h3><p>更简洁地：$A &#x3D; e^{\theta C}$。</p>
+<p><strong>为什么？</strong> 因为 $C$是反对称矩阵且$||\alpha|| &#x3D; 1$，有 $C^3 &#x3D; -C$，$C^4 &#x3D; -C^2$，$C^5 &#x3D; C$，……循环周期为 4。展开 $e^{\theta C}$ 的幂级数：</p>
+<p>
+$$
+e^{\theta C} = I + \theta C + \frac{\theta^2}{2!} C^2 + \frac{\theta^3}{3!} C^3 + \cdots
+$$
+</p>
+
+<p>利用 $C^3 &#x3D; -C$，$C^4 &#x3D; -C^2$等，奇次项合并为$\sin\theta \cdot C$，偶次项合并为 $(1-\cos\theta)C^2$，正好得到 Rodrigues 公式。</p>
+<blockquote>
+<p><strong>老师点评</strong>：$e^{\theta C}$这个记号不是形式上的——矩阵指数$e^A &#x3D; \sum \frac{A^k}{k!}$对任何矩阵都收敛。若$A &#x3D; UJU^{-1}$（Jordan 分解），则 $e^A &#x3D; U e^J U^{-1}$。这在微分方程理论中是核心工具：$\dot{x} &#x3D; Ax$的解是$x(t) &#x3D; e^{At} x(0)$。</p>
+</blockquote>
+<h3 id="17-5-从旋转矩阵恢复轴和角"><a href="#17-5-从旋转矩阵恢复轴和角" class="headerlink" title="17.5 从旋转矩阵恢复轴和角"></a>17.5 从旋转矩阵恢复轴和角</h3><p>由 $A &#x3D; I - \sin\theta \cdot C + (1-\cos\theta)C^2$：</p>
+<ul>
+<li><p>$I + (1-\cos\theta)C^2$ 是对称的</p>
+</li>
+<li><p>$-\sin\theta \cdot C$ 是反对称的</p>
+</li>
+</ul>
+<p>故 $A^T - A &#x3D; 2\sin\theta \cdot C$。由此可读出：</p>
+<ul>
+<li>$\theta &#x3D; \arccos\left(\frac{\mathrm{tr}(A) - 1}{2}\right)$-$\alpha$从$C$ 的非零元素恢复</li>
+</ul>
+<hr>
+<h2 id="18-综合习题选编"><a href="#18-综合习题选编" class="headerlink" title="18. 综合习题选编"></a>18. 综合习题选编</h2><h3 id="习题-1：刚体运动的螺旋结构（Chasles-定理）"><a href="#习题-1：刚体运动的螺旋结构（Chasles-定理）" class="headerlink" title="习题 1：刚体运动的螺旋结构（Chasles 定理）"></a>习题 1：刚体运动的螺旋结构（Chasles 定理）</h3><p>设 $\mathcal{A}$是$\mathbb{R}^3$ 上的保距变换（$||\mathcal{A}\alpha - \mathcal{A}\beta|| &#x3D; ||\alpha - \beta||$）且保持定向。证明：存在直线 $\mathcal{L}$，使得 $\mathcal{A}$是以$\mathcal{L}$为轴的旋转与沿$\mathcal{L}$ 方向的平移的复合。</p>
+<blockquote>
+<p><strong>提示</strong>：这是 Chasles 定理。先证 $\mathcal{A}$ 的线性部分是第一类正交矩阵（有实特征值 1，对应旋转轴），再分析平移分量。</p>
+</blockquote>
+<h3 id="习题-2：钝角向量个数"><a href="#习题-2：钝角向量个数" class="headerlink" title="习题 2：钝角向量个数"></a>习题 2：钝角向量个数</h3><p>证明：$n$维欧氏空间中，两两夹角都是钝角的非零向量至多$n+1$ 个。</p>
+<blockquote>
+<p><strong>提示</strong>：考虑把这些向量”提升”到 $\mathbb{R}^{n+1}$ 中，利用线性无关性论证。</p>
+</blockquote>
+<h3 id="习题-3：Hadamard-乘积保持半正定性-★"><a href="#习题-3：Hadamard-乘积保持半正定性-★" class="headerlink" title="习题 3：Hadamard 乘积保持半正定性 ★"></a>习题 3：Hadamard 乘积保持半正定性 ★</h3><p>设 $A &#x3D; [a_{ij}], B &#x3D; [b_{ij}]$是$n$阶半正定矩阵。证明$C &#x3D; [a_{ij} b_{ij}]$ 也半正定。</p>
+<p><strong>解</strong>：$A$半正定$\Rightarrow A &#x3D; \sum_{k&#x3D;1}^n \lambda_k \alpha_k \alpha_k^T$（$\lambda_k \geq 0$）。故 $a_{ij} &#x3D; \sum_k \lambda_k p_{ik} p_{jk}$，其中 $p_{ik}$是正交矩阵$P$ 的元素。</p>
+<p>
+$$
+X^T C X = \sum_{i,j} a_{ij} b_{ij} x_i x_j = \sum_{i,j} \left(\sum_k \lambda_k p_{ik} p_{jk}\right) b_{ij} x_i x_j = \sum_k \lambda_k \left(\sum_{i,j} b_{ij} (p_{ik} x_i)(p_{jk} x_j)\right)
+$$
+</p>
+
+<p>对每个固定的 $k$，令 $y_i &#x3D; p_{ik} x_i$，则 $\sum_{i,j} b_{ij} y_i y_j &#x3D; Y^T B Y \geq 0$（$B$半正定）。故$X^T C X \geq 0$。 $\square$&gt; <strong>老师点评</strong>：这个定理叫 <strong>Schur product theorem</strong>。证明的精髓是用谱分解把$a_{ij}$”拆开”，然后交换求和顺序，发现内层恰好是$B$ 的二次型。这是处理 Hadamard 乘积的标准技巧。</p>
+<h3 id="习题-4：子空间距离公式"><a href="#习题-4：子空间距离公式" class="headerlink" title="习题 4：子空间距离公式"></a>习题 4：子空间距离公式</h3><p>设 $U, V$是$\mathbb{R}^n$ 的子空间，$\beta \in \mathbb{R}^n$。证明：</p>
+<p>
+$$
+\mathrm{dis}(\beta + U, V) = \mathrm{dis}(\beta, U + V)
+$$
+</p>
+
+<p><strong>提示</strong>：$||(\beta - \alpha) - \gamma|| &#x3D; ||\beta - (\alpha + \gamma)||$，$\forall \alpha \in U, \gamma \in V$。两边取最小值即得。</p>
+<h3 id="习题-5：正规变换的谱投影"><a href="#习题-5：正规变换的谱投影" class="headerlink" title="习题 5：正规变换的谱投影"></a>习题 5：正规变换的谱投影</h3><p>设 $\mathcal{A}$是酉空间$V$ 上的正规变换，$\lambda_1, \dots, \lambda_s$是互异特征值。记$\mathcal{P}<em>i &#x3D; h_i(\mathcal{A})$，其中 $h_i(x) &#x3D; \prod</em>{j \neq i} \frac{x - \lambda_j}{\lambda_i - \lambda_j}$。</p>
+<p>证明：</p>
+<ol>
+<li><p>$\mathcal{P}_i$是向$\mathrm{Ker}(\mathcal{A} - \lambda_i I)$ 的正交投影</p>
+</li>
+<li><p>$g(\mathcal{A}) &#x3D; \sum_i g(\lambda_i) \mathcal{P}_i$（对任意幂级数 $g$）</p>
+</li>
+<li><p>存在多项式 $f$使$f(\mathcal{A}) &#x3D; \mathcal{A}^*$</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>提示</strong>：$h_i(x)$ 是 Lagrange 插值多项式。$\mathcal{P}<em>i$的特征值是$\delta</em>{ij}$（在 $\lambda_j$处取值）。正规性保证不同特征值的特征子空间正交，所以$\mathcal{P}_i$ 是正交投影。</p>
+</blockquote>
+<hr>
+<h2 id="总结：本章的知识脉络"><a href="#总结：本章的知识脉络" class="headerlink" title="总结：本章的知识脉络"></a>总结：本章的知识脉络</h2><pre><code>
+复向量的长度问题
+
+    ↓
+
+共轭双线性函数 → 度量矩阵 → 基变换公式 P^T A P̄
+
+    ↓
+
+加上共轭对称 + 正定 → Hermite 内积 ↔ Hermite 正定矩阵
+
+    ↓
+
+Cholesky 分解 A = P^T P̄
+
+    ↓
+
+酉空间 = 配 Hermite 内积的复线性空间
+
+    ├── Cauchy-Schwarz → 三角不等式 → 夹角 → 标准正交基
+
+    ├── 酉矩阵 (U^H U = I) → 酉群 U(n), SU(n)
+
+    ├── Fourier 矩阵 → FFT (O(n²) → O(n log n))
+
+    ├── 酉变换（保内积）↔ 酉矩阵
+
+    ├── Hermite 变换（自伴随）↔ Hermite 矩阵
+
+    ├── 共轭变换 A* ↔ A^H
+
+    └── ★正规变换 (AA* = A*A) → 酉对角化 A = UDU^H
+
+            ├── 推论：酉/Hermite/反Hermite 的谱分解
+
+            └── 推论：不变子空间的正交补仍不变
+
+  
+
+延伸：
+
+    ├── 正交空间 / 辛空间（不定度量）→ Minkowski 空间 → Witt 定理
+
+    ├── 正交投影 → 最小二乘法
+
+    ├── Perron-Frobenius → 非负矩阵的谱理论
+
+    ├── 矩阵范数 → 特征值估计
+
+    ├── SVD → Penrose 广义逆
+
+    ├── Courant-Fischer Min-Max → 特征值变分刻画
+
+    └── Rodrigues 公式 → 三维旋转的矩阵指数表示
+</code></pre>
+<blockquote>
+<p><strong>最后的忠告</strong>：这一章的内容是后续学习<strong>数值线性代数</strong>、<strong>量子力学</strong>、<strong>信号处理</strong>、<strong>机器学习</strong>的共同基础。正规矩阵的酉对角化、SVD、Courant-Fischer 定理，这三个工具在你未来的学习和研究中会反复出现。务必做到：看到 Hermite 矩阵就想到”特征值是实数、可酉对角化”；看到酉矩阵就想到”特征值在单位圆上、保持内积”；看到正定矩阵就想到”Cholesky 分解、所有顺序主子式 &gt; 0”。</p>
+</blockquote>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

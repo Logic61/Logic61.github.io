@@ -1,0 +1,868 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>9.常微分方程 III | Logic の 博客</title>
+    <meta name="author" content="Logic" />
+    <meta name="description" content="一小块凝固的时间" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>LOGIC の 博客</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;LOGIC の 博客</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>9.常微分方程 III</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2026/4/19
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h2 id="线性常系数微分方程"><a href="#线性常系数微分方程" class="headerlink" title="线性常系数微分方程"></a>线性常系数微分方程</h2><h3 id="1-算子多项式的映射"><a href="#1-算子多项式的映射" class="headerlink" title="1. 算子多项式的映射"></a>1. 算子多项式的映射</h3><p>当我们面对一个 $n$ 阶常系数齐次线性微分方程：</p>
+<p>
+$$
+a_n y^{(n)} + a_{n-1} y^{(n-1)} + \dots + a_1 y' + a_0 y = 0
+$$
+</p>
+
+<p>其实是在讨论微分算子 $D &#x3D; \frac{d}{dx}$的一个多项式$P(D) &#x3D; \sum_{i&#x3D;0}^n a_i D^i$。</p>
+<p>所谓的特征方程 $P(\lambda) &#x3D; 0$，本质上是将算子 $D$ 视为一个变量，把微分方程抽象为了算子空间的代数方程：$P(D)y &#x3D; 0$。</p>
+<h3 id="2-根子空间与核空间（Kernel）的分解"><a href="#2-根子空间与核空间（Kernel）的分解" class="headerlink" title="2. 根子空间与核空间（Kernel）的分解"></a>2. 根子空间与核空间（Kernel）的分解</h3><p>根据代数基本定理，多项式 $P(\lambda)$ 可以在复数域内唯一分解为线性因子的乘积：</p>
+<p>
+$$
+P(\lambda) = \prod_{j=1}^k (\lambda - \lambda_j)^{m_j}
+$$
+</p>
+
+<p>对应到微分算子，就有 $P(D) &#x3D; \prod_{j&#x3D;1}^k (D - \lambda_j)^{m_j}$。</p>
+<p>由于这些算子因子 $(D - \lambda_j)^{m_j}$之间是两两可交换的，根据<strong>核空间分解定理</strong>（或称循环子空间分解），微分方程的解空间$V &#x3D; \ker(P(D))$ 可以分解为若干个互不相干的子空间的直和：</p>
+<p>
+$$
+V = \ker((D - \lambda_1)^{m_1}) \oplus \ker((D - \lambda_2)^{m_2}) \oplus \dots \oplus \ker((D - \lambda_k)^{m_k})
+$$
+</p>
+
+<p>这里的每一个子空间 $\ker((D - \lambda_j)^{m_j})$，正是<strong>根子空间</strong>在函数空间中的体现。</p>
+<h3 id="3-基向量的生成机制"><a href="#3-基向量的生成机制" class="headerlink" title="3. 基向量的生成机制"></a>3. 基向量的生成机制</h3><p>在每个根子空间 $\ker((D - \lambda_j)^{m_j})$中，我们要寻找的是能够被$(D - \lambda_j)^{m_j}$ 湮灭（Annihilated）的所有函数。</p>
+<ul>
+<li><p>当 $m_j &#x3D; 1$（单根）时，子空间由特征向量 $e^{\lambda_j x}$ 张成。</p>
+</li>
+<li><p>当 $m_j &gt; 1$（重根）时，单纯的特征向量不足以填满维度，于是产生了<strong>广义特征向量</strong>。</p>
+</li>
+</ul>
+<p>通过平移公式 $D - \lambda &#x3D; e^{\lambda x} D e^{-\lambda x}$可以证明，这个子空间的基底正好是${e^{\lambda_j x}, x e^{\lambda_j x}, \dots, x^{m_j-1} e^{\lambda_j x}}$。这与线性代数中 Jordan 标准型处理重特征值的逻辑完全一致。</p>
+<p>所以实际上，常系数线性微分方程要做的也就只有做多项式分解，多项式分解能搞定，微分方程也就解决了。</p>
+<h3 id="例"><a href="#例" class="headerlink" title="例"></a>例</h3><p>例如 $f’’’-3f’+2f&#x3D;0$，也就是考虑$D^3-3D+2$的分解，分解成$(D-1)^2(D-2)$，于是就有$f\in Ker(D-1)^2 \oplus Ker(D+2)$，那么$Ker(D-1)^2$是$c_1e^x+c_2xe^x$ ，$Ker(D+2)$是$c_3e^{-2x}$，和也就是$c_1e^x+c_2xe^x+c_3e^{-2x}$ ，也就是通解了。</p>
+<h3 id="特解"><a href="#特解" class="headerlink" title="特解"></a>特解</h3><p>这个一方面是猜，如果要一般地做，也可以如下考虑：<br>“套娃”式地定义中间变量：</p>
+<ul>
+<li><p>令 $z_{n-1} &#x3D; (D - \lambda_2)\dots(D - \lambda_n)y$</p>
+</li>
+<li><p>则第一步求解：$(D - \lambda_1)z_{n-1} &#x3D; f(x)$- 得到$z_{n-1}$后，再解$(D - \lambda_2)z_{n-2} &#x3D; z_{n-1}$- 依此类推，直到解出$y$。</p>
+</li>
+</ul>
+<p>不过积分的话，就未必算的出了（</p>
+<h3 id="猜解"><a href="#猜解" class="headerlink" title="猜解"></a>猜解</h3><p>实际上也就是直觉经验。</p>
+<h4 id="1-f-x-为-n-次多项式-P-n-x-当-f-x-a-n-x-n-dots-a-1-x-a-0-时："><a href="#1-f-x-为-n-次多项式-P-n-x-当-f-x-a-n-x-n-dots-a-1-x-a-0-时：" class="headerlink" title="1. $f(x)$为$n$次多项式$P_n(x)$当$f(x) &#x3D; a_n x^n + \dots + a_1 x + a_0$ 时："></a>1. $f(x)$为$n$次多项式$P_n(x)$当$f(x) &#x3D; a_n x^n + \dots + a_1 x + a_0$ 时：</h4><ul>
+<li><p><strong>若 $0$不是特征根</strong>（即$q \neq 0$）：设特解 $\varphi^* &#x3D; Q_n(x)$（同阶多项式）。</p>
+</li>
+<li><p><strong>若 $0$是单特征根</strong>（即$q &#x3D; 0, p \neq 0$）：设特解 $\varphi^* &#x3D; x Q_n(x)$。</p>
+</li>
+<li><p><strong>若 $0$是二重特征根</strong>（即$q &#x3D; p &#x3D; 0$）：设特解 $\varphi^* &#x3D; x^2 Q_n(x)$。</p>
+</li>
+</ul>
+<h4 id="2-f-x-为指数函数-e-alpha-x-当-f-x-A-e-alpha-x-时："><a href="#2-f-x-为指数函数-e-alpha-x-当-f-x-A-e-alpha-x-时：" class="headerlink" title="2. $f(x)$为指数函数$e^{\alpha x}$当$f(x) &#x3D; A e^{\alpha x}$ 时："></a>2. $f(x)$为指数函数$e^{\alpha x}$当$f(x) &#x3D; A e^{\alpha x}$ 时：</h4><ul>
+<li><p><strong>若 $\alpha$不是特征根</strong>：设$\varphi^* &#x3D; B e^{\alpha x}$。</p>
+</li>
+<li><p><strong>若 $\alpha$是单特征根</strong>：设$\varphi^* &#x3D; B x e^{\alpha x}$。</p>
+</li>
+<li><p><strong>若 $\alpha$是二重特征根</strong>：设$\varphi^* &#x3D; B x^2 e^{\alpha x}$。</p>
+</li>
+</ul>
+<h4 id="3-f-x-为正余弦函数组合"><a href="#3-f-x-为正余弦函数组合" class="headerlink" title="3. $f(x)$ 为正余弦函数组合"></a>3. $f(x)$ 为正余弦函数组合</h4><p>当 $f(x) &#x3D; D_1 \cos(\beta x) + D_2 \sin(\beta x)$ 时：</p>
+<ul>
+<li><p><strong>若 $\pm i\beta$不是特征根</strong>：设$\varphi^* &#x3D; A \cos(\beta x) + B \sin(\beta x)$。</p>
+</li>
+<li><p><strong>若 $\pm i\beta$是特征根</strong>：设$\varphi^* &#x3D; x [A \cos(\beta x) + B \sin(\beta x)]$。</p>
+</li>
+</ul>
+<h4 id="4-复合形式"><a href="#4-复合形式" class="headerlink" title="4. 复合形式"></a>4. 复合形式</h4><p>当 $f(x) &#x3D; e^{\alpha x} [P_n(x) \cos(\beta x) + Q_m(x) \sin(\beta x)]$ 时：</p>
+<p>这是最复杂的情况。设 $k &#x3D; \max(n, m)$，若 $\alpha \pm i\beta$是特征方程的$s$ 重根（对于二阶方程，$s$取$0$或$1$），则：</p>
+<p>
+$$
+\varphi^* = x^s e^{\alpha x} [R_k(x) \cos(\beta x) + S_k(x) \sin(\beta x)]
+$$
+</p>
+
+<h3 id="另一种理解"><a href="#另一种理解" class="headerlink" title="另一种理解"></a>另一种理解</h3><p>我们之前从线性代数的角度思考了线性常系数微分方程的解，实际上可以考虑所谓的特征方程，而不考虑线性代数，虽然实际上几乎是一个东西，但是可以换种角度理解。</p>
+<p>考虑二阶线性递推方程：</p>
+<p>
+$$
+a_{n+2}+c_1a_{n+1}+c_2a_n=0
+$$
+</p>
+
+<p>我们不会解，但是我们会解等比的递推，于是想到构造 $b_n&#x3D;a_{n+1}+ka_n$ ，我们希望的是：</p>
+<p>
+$$
+b_{n+1}=qb_n
+$$
+</p>
+
+<p>或者也就是</p>
+<p>
+$$
+a_{n+2}+xa_{n+1}=y(a_{n+1}+a_n)
+$$
+</p>
+
+<p>这样，我们与原来的方程比较就能解出 $x,y$，从而解出$b_n$的通项，然后反求$a_n$ 。<br>对微分方程我们是不是也可以类似地转换呢：</p>
+<p>
+$$
+y''+c_1y'+c_2y=0
+$$
+</p>
+
+<p>二阶不会，一阶还是会的，于是构造 $h&#x3D;y’-ky$ ，我们希望得到：</p>
+<p>
+$$
+h'-qh=0
+$$
+</p>
+
+<p>也就是</p>
+<p>
+$$
+(y'-ky)'-q(y'-ky)=0
+$$
+</p>
+
+<p>同样，与原式对比就可以解出 $k,q$，从而得到$y’+ky$ 的形式，然后再解一个一阶方程就好了。<br>我们具体算算，利用</p>
+<p>
+$$
+k+q=-c_1,
+qk=c_2
+$$
+</p>
+
+<p>可知 $q,k$也就是对应方程$x^2+c_1x+c_2$即所谓特征方程的两根$\lambda_1,\lambda_2$ 。<br>先考虑两根不同。<br>对这样的方程，当然想到直接分离变量积分：</p>
+<p>
+$$
+\frac{(y'-ky)'}{y'-ky}=q
+$$
+</p>
+
+<p>积分并化简得到</p>
+<p>
+$$
+y'-ky=Ce^{qx}
+$$
+</p>
+
+<p>然后乘上因子 $e^{-kx}$ ：</p>
+<p>
+$$
+(e^{-kx}y)'=Ce^{(q-k)x}
+$$
+</p>
+
+<p>积分得到</p>
+<p>
+$$
+e^{-kx}y=C_1e^{(q-k)x}+C_2'
+$$
+</p>
+
+<p>也就有</p>
+<p>
+$$
+y=C_1e^{qx}+C_2e^{kx}
+$$
+</p>
+
+<p>不难解出特征方程两根，于是 $y$ 的通解：</p>
+<p>
+$$
+y=C_1e^{-\lambda_1x}+C_2e^{-\lambda_2x}
+$$
+</p>
+
+<p>如果两根相同，那么记为 $\lambda$ 。</p>
+<p>
+$$
+(y'-\lambda y)'-\lambda(y'-\lambda y)=0
+$$
+</p>
+
+<p>同样有</p>
+<p>
+$$
+y'-\lambda y=Ce^{\lambda x}
+$$
+</p>
+
+<p>同样作用 $e^{-\lambda x}$ ：</p>
+<p>
+$$
+(e^{-\lambda x}y)'=C
+$$
+</p>
+
+<p>于是得到</p>
+<p>
+$$
+y=Cxe^{\lambda x}
+$$
+</p>
+
+<p>这与我们考虑线性算子时得到的结果一致。</p>
+<h4 id="特解-1"><a href="#特解-1" class="headerlink" title="特解"></a>特解</h4><p>在线性算子中，我们具体考虑特解的一般性计算，将考虑微分算子的逆，笨人并未研究。<br>这里我们则可以比较形式化地直接得到特解，考虑：</p>
+<p>
+$$
+y''+c_1y'+c_2y=f(x)
+$$
+</p>
+
+<p>我们故技重施，写成：</p>
+<p>
+$$
+(y'-\lambda_1y)'-\lambda_2(y'-\lambda_1y)=f(x)
+$$
+</p>
+
+<p>这就降成了一阶微分方程，这样乘上积分因子 $e^{-\lambda_2x}$，记$u&#x3D;y’-\lambda_1 y$ ：</p>
+<p>
+$$
+(e^{-\lambda_2x}u)'=f(x)e^{-\lambda_2x}
+$$
+</p>
+
+<p>积分得到：</p>
+<p>
+$$
+y'-\lambda_1y=e^{\lambda_2x}(\int f(x)e^{-\lambda_2x}dx+C)
+$$
+</p>
+
+<p>再来一次：</p>
+<p>
+$$
+(e^{-\lambda_1x}y)'=RHS\cdot e^{-\lambda_1x}
+$$
+</p>
+
+<p>如果两根不同，则积分：</p>
+<p>
+$$
+y=e^{\lambda_1x}(\int(e^{(\lambda_2-\lambda_1)x}\int f(x)e^{-\lambda_2x}dx+C)dx+C')
+$$
+</p>
+
+<p>把常数分离一下就得到：</p>
+<p>
+$$
+y = e^{\lambda_1x} \left( \int e^{(\lambda_2-\lambda_1)x} \left( \int f(x)e^{-\lambda_2x} dx \right) dx + C_1 \int e^{(\lambda_2-\lambda_1)x} dx + C_2 \right)
+$$
+</p>
+
+<p>也就得到了解的一般形式，但是一般猜解还是舒服一点。<br>如果两根相同，那么第二项积分就变成 $C_1x$ 了。</p>
+<p>第一项积分看起来有点丑陋，而且并不对称，但实际上可以通过运算化简，我们写成定积分：</p>
+<p>
+$$
+\int_{a}^{x} \left( \int_{a}^{t} f(s) e^{-\lambda_1 s} ds \right) e^{(\lambda_1 - \lambda_2)t} dt \cdot e^{\lambda_2 x}
+$$
+</p>
+
+<p>分部积分：</p>
+<p>
+$$
+= \left( \left. \int_{a}^{s} f(s) e^{-\lambda_1 s} ds \cdot \frac{e^{(\lambda_1 - \lambda_2)t}}{\lambda_1 - \lambda_2} \right|_{t=a}^{t=x} - \int_{a}^{x} f(t) e^{-\lambda_1 t} \cdot \frac{e^{(\lambda_1 - \lambda_2)t}}{\lambda_1 - \lambda_2} dt \right) e^{\lambda_2 x}
+$$
+</p>
+
+<p>
+$$
+= \left( \int_{a}^{x} f(s) e^{-\lambda_1 s} ds \cdot \frac{e^{(\lambda_1 - \lambda_2)x}}{\lambda_1 - \lambda_2} + \int_{0}^{x} \frac{f(t) e^{-\lambda_2 t}}{\lambda_2 - \lambda_1} dt \right) e^{\lambda_2 x}
+$$
+</p>
+
+<p><strong>最终形式：</strong></p>
+<p>
+$$
+= \left( \int_{a}^{x} \frac{f(t) e^{-\lambda_1 t}}{\lambda_1 - \lambda_2} dt \right) e^{\lambda_1 x} + \left( \int_{a}^{x} \frac{f(t) e^{-\lambda_2 t}}{\lambda_2 - \lambda_1} dt \right) e^{\lambda_2 x}
+$$
+</p>
+
+<p><strong>① $\lambda_1 \neq \lambda_2$</strong></p>
+<p>
+$$
+y(x) = \left( \int^x \frac{f(t) e^{-\lambda_1 t}}{\lambda_1 - \lambda_2} dt + C_1 \right) e^{\lambda_1 x}
+
+<ul>
+<li>\left( \int^x \frac{f(t) e^{-\lambda_2 t}}{\lambda_2 - \lambda_1} dt + C_2 \right) e^{\lambda_2 x}<br>$$</p></li>
+</ul>
+<p><strong>② $\lambda_1 &#x3D; \lambda_2 &#x3D; \lambda$</strong></p>
+<p>
+$$
+y(x) = \left( \int^x f(t) \cdot t e^{-\lambda t} dt + C_1 \right) e^{\lambda x}
++ \left( \int^x f(t) e^{-\lambda t} dt + C_2 \right) x e^{\lambda x}
+$$
+</p>
+
+<p>这是非常正统，非常一般化的解，但是显然不太好算，也记不住。我们观察形式，发现：</p>
+<p>
+$$
+齐次部分对应：c_1\phi_1(x)+c_2\phi_1(x)
+$$
+</p>
+
+<p>
+$$
+非齐次部分对应：D_1(x)\phi_1(x)+D_2(x)\phi_2(x)
+$$
+</p>
+
+<h2 id="常数变易法"><a href="#常数变易法" class="headerlink" title="常数变易法"></a>常数变易法</h2><p>被判定为邪修，但是很好用（），根据上面我们的观察，我们知道只要整出来齐次的解，只要把系数设成新的函数带进去解出来就可以得到方程的解。实际上就是我们算出来的那一大坨，但是那显然不好记忆（）</p>
+<p>这实际上对非常系数的微分方程也成立，就不证了（buhui），非常系数的齐次解也没有通用的解法，但是我们还是假定我们找到了齐次的通解 $\varphi_1,\varphi_2$ ，然后现在讨论常数变易法。</p>
+<p>原方程：</p>
+<p>
+$$
+y''+p(x)y'+q(x)y=f(x)
+$$
+</p>
+
+<p>假装解出来了齐次解，安上两个系数函数：</p>
+<p>
+$$
+y=C_1(x)\varphi_1(x)+C_2(x)\varphi_2(x)
+$$
+</p>
+
+<p>求导：</p>
+<p>
+$$
+y'=C_1'\varphi_1+C_1\varphi_1'+C_2'\varphi_2+C_2\varphi_2'
+$$
+</p>
+
+<p>
+$$
+y'(x) = \underline{C_1' \varphi_1 + C_2' \varphi_2} + C_1 \varphi_1' + C_2 \varphi_2'
+$$
+</p>
+
+<p>$\qquad$设划线处$&#x3D; 0$ （一会解释为什么能这么干）</p>
+<p>
+$$
+y''(x) = C_1' \varphi_1' + C_2' \varphi_2' + C_1 \varphi_1'' + C_2 \varphi_2''
+$$
+</p>
+
+<p>
+$$
+f(x) = C_1' \varphi_1' + C_2' \varphi_2' + \underline{C_1 \varphi_1'' + C_2 \varphi_2''}
+$$
+</p>
+
+<p>
+$$
+\qquad + p(x) (\underline{C_1 \varphi_1' + C_2 \varphi_2'})
+$$
+</p>
+
+<p>
+$$
+\qquad + q(x) (\underline{C_1 \varphi_1 + C_2 \varphi_2})
+$$
+</p>
+
+<p>
+$$
+= C_1' \varphi_1' + C_2' \varphi_2'
+$$
+</p>
+
+<p>那么就得到两个方程：</p>
+<p>
+$$
+\begin{cases} C_1' \varphi_1 + C_2' \varphi_2 = 0 \\ C_1' \varphi_1' + C_2' \varphi_2' = f \end{cases}
+$$
+</p>
+
+<p>
+$$
+\Rightarrow \begin{aligned} C_1' &= -\frac{f \varphi_2}{W} \\ C_2' &= \frac{f \varphi_1}{W} \end{aligned}
+$$
+</p>
+
+<p>这里的 $W$ 是系数行列式，也就是朗斯基行列式。</p>
+<p>
+$$
+\Rightarrow \begin{aligned} C_1(x) &= \int^x -\frac{f(t) \varphi_2(t)}{W(t)} dt + D_1 \\ C_2(x) &= \int^x \frac{f \varphi_1}{W} dt + D_2 \end{aligned}
+$$
+</p>
+
+<p>从而</p>
+<p>
+$$
+y'' + p(x) y' + q(x) y = f(x)
+$$
+</p>
+
+<p>
+$$
+\downarrow
+$$
+</p>
+
+<p>
+$$
+y
+
+<p>&#x3D; \left( \int^x -\frac{f \varphi_2}{W} dt + D_1 \right) \varphi_1(x)</p>
+<ul>
+<li>\left( \int^x \frac{f \varphi_1}{W} dt + D_2 \right) \varphi_2(x)<br>$$</p></li>
+</ul>
+<h3 id="欧拉方程"><a href="#欧拉方程" class="headerlink" title="欧拉方程"></a>欧拉方程</h3><p>
+$$
+\sum_i a_ix^iy^{(i)}=0
+$$
+</p>
+
+<p>其中 $a_i$ 为常数，这样形式的微分方程称为所谓欧拉方程。<br>欧拉方程有一个不错的性质，考虑 $z(x)&#x3D;y(-x)$，那么偶数项不消说，奇数项由于$z’$和$x$ 都有多一个负号，所以抵消了。也就是说，$z$也满足方程，换言之，只需要考虑$x&gt;0$ 的情形。</p>
+<p>那么什么函数值域大于 $0$呢，自然的想法是$e^x$，我们令$x&#x3D;e^t$，那么$xy’&#x3D;e^t\frac{dy}{dx}&#x3D;e^t\frac{dy}{dt}\frac{dt}{dx}$，注意到$\frac{dt}{dx}&#x3D;e^{-t}$，那么就有$xy’&#x3D;\frac{dy}{dt}$，如此美妙。我们考虑第二项，设$D &#x3D; \frac{d}{dt}$，则$x^2 \frac{d^2y}{dx^2} &#x3D; D(D-1)y$，利用数学归纳法可以得到$x^k \frac{d^ky}{dx^k} &#x3D; D(D-1)\dots(D-k+1)y$ 。这么一来，就又变回常系数线性方程了。</p>
+<p>例如，我们考虑</p>
+<p>
+$$
+x^2y''+\frac{3}{2}xy'-y=0
+$$
+</p>
+
+<p>那么换元后就是</p>
+<p>
+$$
+(D(D-1)+\frac{3}{2}D-1)y=0
+$$
+</p>
+
+<p>整理得到</p>
+<p>
+$$
+(D^2+\frac{1}{2}D-1)y=0
+$$
+</p>
+
+<p>这个丑陋的方程就不解了，总之是解出两个根 $\lambda_i$ ，然后</p>
+<p>
+$$
+y=C_1e^{\lambda_1t}+C_2e^{\lambda_2t}
+$$
+</p>
+
+<p>但是这还不是 $y(x)$，代入$t&#x3D;lnx</p>
+<p>
+$$
+$y(x)=C_1x^{\lambda_1}+C_2x^{\lambda_2}
+$$
+</p>
+
+<p>但是这要求 $x&gt;0$，利用之前所说，只要把$x$ 加上绝对值就好</p>
+<p>
+$$
+y(x)=C_1|x|^{\lambda_1}+C_2|x|^{\lambda_2}
+$$
+</p>
+
+<p>相应的，如果有重根，就得到</p>
+<p>
+$$
+y(x)=C_1x^{\lambda}+C_2ln|x|x^{\lambda}
+$$
+</p>
+
+<h3 id="伯努利方程"><a href="#伯努利方程" class="headerlink" title="伯努利方程"></a>伯努利方程</h3><p>
+$$
+y'+P(x)y=Q(x)y^n
+$$
+</p>
+
+<p>如果没有 $y^n$，那就是标准的一阶非齐次方程，于是自然想到除掉$y^n$ ，得到</p>
+<p>
+$$
+y^{-n}y'+P(x)y^{1-n}=Q(x)
+$$
+</p>
+
+<p>发现 $1-n$和$-n$差$1$，这与求一次导有所关联，于是进行变量代换$z&#x3D;y^{1-n}$ ，那么</p>
+<p>
+$$
+z'+P(x)z=Q(x)
+$$
+</p>
+
+<p>就得到了标准的一阶非齐次方程的形式。</p>
+<h2 id="一阶-ODE-组"><a href="#一阶-ODE-组" class="headerlink" title="一阶 ODE 组"></a>一阶 ODE 组</h2><p>$n$ 个耦合的一阶微分方程如何求解？</p>
+<p>
+$$
+y_1'=F_1(x,y_1,y_2,...,y_n)
+$$
+</p>
+
+<p>
+$$
+...
+$$
+</p>
+
+<p>
+$$
+y_n'=F_n(x,y_1,y_2,...,y_n)
+$$
+</p>
+
+<p>为了方便描述，可以记 $\vec{y}&#x3D;(y_1,…,y_n)^T$，类似的$\vec{F}&#x3D;(F_1,…,F_n)^T$ 。</p>
+<p>通解形如</p>
+<p>
+$$
+y_1(x)=\varphi_1(x,C_1,...C_n)
+$$
+</p>
+
+<p>因为要解 $n$个方程，故有$n$ 个常数。<br>独立性的判断仍然是行列式</p>
+<p>
+$$
+|\frac{D(\vec{\varphi})}{D(\vec{C})}|
+$$
+</p>
+
+<p>存在唯一性条件则相应有所变化，要求对 $(x,\vec{y})\in \Omega \subseteq \mathbb{R}\times \mathbb{R}^n$，在其上每个$F_i$对每个$y_i$ 满足一致的李普希兹条件。</p>
+<h3 id="为什么要研究方程组"><a href="#为什么要研究方程组" class="headerlink" title="为什么要研究方程组"></a>为什么要研究方程组</h3><p>我们考虑 $n$阶微分方程，实际上可以通过变量替换变成一个一阶 ode 组，只要令$u_i&#x3D;y^{(i)}$ ，就得到</p>
+<p>
+$$
+u_1'=u_2
+$$
+</p>
+
+<p>
+$$
+...
+$$
+</p>
+
+<p>
+$$
+u_{n-1}'=u_n
+$$
+</p>
+
+<p>
+$$
+u_n=F(x,u_0,u_1...)，即原来的微分方程
+$$
+</p>
+
+<p>也就是说，要解 $n$阶方程，只要解这样一个方程组就好。所以$n$阶方程有$n$个常数，实际上是因为对应$n$个一阶方程。把上述的常数独立性条件的$\varphi$改成对应的$y^{(n)}$,就发现和$n$ 阶微分方程的常数独立性条件一样。</p>
+<p>对存在唯一性条件，我们看 $\vec{F}$ ：</p>
+<p>
+$$
+\vec{F}(x, \vec{y}) =  (y_2 \ y_3 \ \cdots \ G(x, y_1, \dots, y_n))^T
+$$
+</p>
+
+<p>那么对应的雅可比矩阵也就是</p>
+<p>
+$$
+\frac{D(\vec{F})}{D(\vec{y})} = \begin{pmatrix} 
+0 & 1 & 0 & \cdots & 0 \\ 
+0 & 0 & 1 & \cdots & 0 \\ 
+\vdots & \vdots & \vdots & \ddots & \vdots \\ 
+0 & 0 & 0 & \cdots & 1 \\ 
+G_{y_1} & G_{y_2} & G_{y_3} & \cdots & G_{y_n} 
+\end{pmatrix}
+$$
+</p>
+
+<p>这个矩阵 $\in C^1$ 是李普希兹连续的一个充分条件(导数有界)，那么也就只要求最下方那一排导数连续。</p>
+<p>二阶微分方程存在唯一性条件要求 $p,q$ 连续，实际上也就是对应的导数。</p>
+<h3 id="各种形式"><a href="#各种形式" class="headerlink" title="各种形式"></a>各种形式</h3><h4 id="1-一般形式（General-Form）"><a href="#1-一般形式（General-Form）" class="headerlink" title="1. 一般形式（General Form）"></a>1. 一般形式（General Form）</h4><p>最顶层是高度抽象的非线性向量方程：</p>
+<p>
+$$
+\vec{y}' = \vec{F}(x, \vec{y})
+$$
+</p>
+
+<ul>
+<li><strong>含义</strong>：系统的演化速率 $\vec{y}’$取决于当前自变量$x$和状态向量$\vec{y}$ 的某种复杂非线性组合。</li>
+</ul>
+<h4 id="2-线性化（Linearization）"><a href="#2-线性化（Linearization）" class="headerlink" title="2. 线性化（Linearization）"></a>2. 线性化（Linearization）</h4><p>通过引入“<strong>线性</strong>”约束，方程退化为变系数线性微分方程组：</p>
+<p>
+$$
+\vec{y}' = A(x)\vec{y} + \vec{f}(x)
+$$
+</p>
+
+<ul>
+<li><p><strong>结构</strong>：</p>
+<ul>
+<li><p>$A(x)$是系数矩阵，其元素随自变量$x$ 变化。</p>
+</li>
+<li><p>$\vec{f}(x)$ 是非齐次项（或称强制项）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>逻辑</strong>：此时状态 $\vec{y}$ 对演化速率的影响是线性的。</p>
+</li>
+</ul>
+<h4 id="3-常系数化（Constant-Coefficients）"><a href="#3-常系数化（Constant-Coefficients）" class="headerlink" title="3. 常系数化（Constant Coefficients）"></a>3. 常系数化（Constant Coefficients）</h4><p>进一步引入“<strong>常系数</strong>”约束，方程退化为最易求解的形式：</p>
+<p>
+$$
+\vec{y}' = A\vec{y} + \vec{f}(x)
+$$
+</p>
+
+<ul>
+<li><p><strong>核心变化</strong>：矩阵 $A$不再随$x$ 变化，而是一个常数矩阵。</p>
+</li>
+<li><p><strong>价值</strong>：这是线性代数介入最深的领域，可以通过计算矩阵 $A$ 的<strong>特征值</strong>和<strong>特征向量</strong>（如 Jordan 标准型）来直接写出通解。</p>
+</li>
+</ul>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2026 Logic の 博客
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;Logic
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="logic61/logic61.github.io"
+    data-repo-id="R_kgDOQVax3w"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQVax384CxyHP"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
